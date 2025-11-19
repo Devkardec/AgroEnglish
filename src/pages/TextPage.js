@@ -13,14 +13,39 @@ export function TextPage(level, index) {
       </div>
 
       <section class="card">
-        <details class="accordion">
-          <summary class="section-title">Voz da narração</summary>
-          <div id="voiceSelector" class="selector" style="gap:6px"></div>
-        </details>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn" data-tab="study" id="tabStudyBtn">📘 Guia de Estudo</button>
+          <button class="btn secondary" data-tab="practice" id="tabPracticeBtn">✍️ Sala de Exercícios</button>
+          <button class="btn secondary" data-tab="speech" id="tabSpeechBtn">🎧 Laboratório de Fala</button>
+        </div>
       </section>
 
-      <section class="card">
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <section id="tab-study" class="card">
+        <div class="section-title">Guia de Estudo</div>
+        <div id="grammar"></div>
+        <div class="section-title" style="margin-top:12px">Vocabulário</div>
+        <div id="vocab" class="flash-grid"></div>
+        <div class="section-title" style="margin-top:12px">Verbos</div>
+        <div id="verbs"></div>
+      </section>
+
+      <section id="tab-practice" class="card" style="display:none">
+        <div class="section-title">Sala de Exercícios</div>
+        <div id="mc"></div>
+        <div id="gExercises" style="margin-top:12px"></div>
+        <div id="fill" style="margin-top:12px"></div>
+        <button class="btn" id="checkFill" style="margin-top:8px">Checar</button>
+        <div id="fillResult" class="small" style="margin-top:6px"></div>
+      </section>
+
+      <section id="tab-speech" class="card" style="display:none">
+        <div class="section-title">Laboratório de Fala</div>
+        <div class="small">Ajuste a voz e pratique escuta e pronúncia.</div>
+        <div style="margin-top:10px">
+          <div class="section-title">Voz da narração</div>
+          <div id="voiceSelector" class="selector" style="gap:6px"></div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn" id="play">Play</button>
           <button class="btn" id="resume">Resume</button>
           <button class="btn" id="pause">Pause</button>
@@ -30,51 +55,11 @@ export function TextPage(level, index) {
           <button class="btn secondary" data-speed="1.5">1.5x</button>
           <button class="btn" id="toggleTr">Mostrar/Ocultar tradução</button>
         </div>
-        <div id="lines" class="lines"></div>
-      </section>
-
-      <section class="card">
-        <details class="accordion">
-          <summary class="section-title">Vocabulário</summary>
-          <div id="vocab" class="flash-grid"></div>
-        </details>
-      </section>
-
-      <section class="card">
-        <details class="accordion">
-          <summary class="section-title">Gramática</summary>
-          <div id="grammar"></div>
-        </details>
-      </section>
-
-      <section class="card">
-        <details class="accordion">
-          <summary class="section-title">Verbos</summary>
-          <div id="verbs"></div>
-        </details>
-      </section>
-
-      <section class="card">
-        <details class="accordion">
-          <summary class="section-title">Exercícios – Múltipla escolha</summary>
-          <div id="mc"></div>
-        </details>
-      </section>
-
-      <section class="card">
-        <details class="accordion">
-          <summary class="section-title">Exercícios – Completar frases</summary>
-          <div id="fill"></div>
-          <button class="btn" id="checkFill" style="margin-top:8px">Checar</button>
-          <div id="fillResult" class="small" style="margin-top:6px"></div>
-        </details>
-      </section>
-
-      <section class="card">
-        <details class="accordion">
-          <summary class="section-title">Treinar pronuncia</summary>
-          <div id="pronList" class="pron-grid"></div>
-        </details>
+        <div id="lines" class="lines" style="margin-top:10px"></div>
+        <div class="section-title" style="margin-top:12px">Exemplos com áudio</div>
+        <div id="speechExamples" class="grid"></div>
+        <div class="section-title" style="margin-top:12px">Treinar pronúncia</div>
+        <div id="pronList" class="pron-grid"></div>
       </section>
 
       <div style="margin-top:16px;display:flex;gap:8px">

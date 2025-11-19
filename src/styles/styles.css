@@ -108,6 +108,12 @@ details.accordion > div { margin-top:8px }
 .grammar-aux { color:#123b7a; font-weight:800 }
 .grammar-suffix { color:#c2132a; font-weight:800 }
 
+/* Tabs UX */
+button[data-tab] { transition: background-color .15s ease, box-shadow .15s ease, color .15s ease }
+button[data-tab].active { background: var(--green); color: #fff; box-shadow: 0 0 0 2px rgba(11,47,106,0.15) inset }
+button[data-tab]:hover { background: #eef7ff }
+button[data-tab].active:hover { background: #103a72 }
+
 @media (max-width: 640px) {
   .app-header { padding:10px; display:grid; grid-template-columns:auto 1fr; align-items:center; gap:10px }
   .app-header .brand span { display:none }

@@ -403,6 +403,33 @@ function initTextPage(level, idx) {
     document.getElementById('title').textContent = data.title + ' · ' + level;
     const vEl = document.querySelector('#verbs'); if (vEl) vEl.textContent = '';
 
+    const study = document.getElementById('tab-study');
+    const practice = document.getElementById('tab-practice');
+    const speech = document.getElementById('tab-speech');
+    const btnStudy = document.getElementById('tabStudyBtn');
+    const btnPractice = document.getElementById('tabPracticeBtn');
+    const btnSpeech = document.getElementById('tabSpeechBtn');
+    function showTab(tab){
+      if (!study || !practice || !speech) return;
+      study.style.display = tab==='study' ? 'block' : 'none';
+      practice.style.display = tab==='practice' ? 'block' : 'none';
+      speech.style.display = tab==='speech' ? 'block' : 'none';
+      if (btnStudy && btnPractice && btnSpeech){
+        btnStudy.classList.toggle('secondary', tab!=='study');
+        btnPractice.classList.toggle('secondary', tab!=='practice');
+        btnSpeech.classList.toggle('secondary', tab!=='speech');
+        btnStudy.classList.toggle('active', tab==='study');
+        btnPractice.classList.toggle('active', tab==='practice');
+        btnSpeech.classList.toggle('active', tab==='speech');
+      }
+      try { localStorage.setItem('lastTab', tab) } catch {}
+    }
+    if (btnStudy) btnStudy.addEventListener('click', ()=> showTab('study'));
+    if (btnPractice) btnPractice.addEventListener('click', ()=> showTab('practice'));
+    if (btnSpeech) btnSpeech.addEventListener('click', ()=> showTab('speech'));
+    const lastTab = localStorage.getItem('lastTab') || 'study';
+    showTab(lastTab);
+
     document.querySelector('#toggleTr').addEventListener('click', () => {
       linesEl.classList.toggle('hide-pt');
     });
@@ -599,36 +626,20 @@ function initTextPage(level, idx) {
     const explainList = aff.map(s=>`<div class="card"><div class="line"><div class="en">${annotateTextManual(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div><div class="small" style="margin-top:6px">Presente simples: rotina agrícola.</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${s.en}">Ouvir Áudio</button></div></div>`).join('');
     const whenList = [...groupWe.slice(0,3), ...groupIt.slice(0,2)].map(s=>`<div class="card"><div class="line"><div class="en">${annotateTextManual(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div></div>`).join('');
     el.innerHTML = `
-      <details class="accordion">
-        <summary class="section-title">Conceito</summary>
-        <div><div class="small">${gRaw}</div></div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">Explicação para iniciantes</summary>
-        <div>${explainForBeginners(gRaw)}</div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">Quando usar</summary>
-        <div class="grid">${whenList}</div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">Estrutura</summary>
-        <div>${conjTable}</div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">Afirmativa/Negativa/Pergunta</summary>
-        <div>${table3(aff,negs,quess)}</div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">S/Es (He/She/It)</summary>
-        <div>${sTable}</div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">Exemplos reescritos</summary>
-        <div class="grid">${explainList}</div>
-      </details>
-      <div id="gExercises"></div>
+      <div class="section-title">Explicação para iniciantes</div>
+      <div>${explainForBeginners(gRaw)}</div>
+      <div class="section-title" style="margin-top:12px">Quando usar</div>
+      <div class="grid">${whenList}</div>
+      <div class="section-title" style="margin-top:12px">Estrutura (Tradução)</div>
+      <div>${conjTable}</div>
+      <div class="section-title" style="margin-top:12px">Afirmativa/Negativa/Pergunta</div>
+      <div>${table3(aff,negs,quess)}</div>
+      <div class="section-title" style="margin-top:12px">Regra He/She/It (+s)</div>
+      <div>${sTable}</div>
     `;
+
+    const speechEx = document.getElementById('speechExamples');
+    if (speechEx) speechEx.innerHTML = explainList;
     const gEx = document.getElementById('gExercises');
     function renderVerbFill(){ const items = [
       { sentence: 'We ____ pastures to improve forage quality.', answer: 'rotate' },
