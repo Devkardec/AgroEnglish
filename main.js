@@ -419,7 +419,7 @@ function initTextPage(level, idx) {
       <div class="flashcard" data-en="${it.en.replace(/"/g,'&quot;')}">
         <div class="flashcard-inner">
           <div class="flashcard-face front">
-            <div class="word">${highlightGrammar(it.en)}</div>
+            <div class="word">${markGrammar(it.en)}</div>
           </div>
           <div class="flashcard-face back">
             <div class="meaning">${fixPT(it.pt)}</div>
