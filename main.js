@@ -15,18 +15,34 @@ const state = {
   progress: JSON.parse(localStorage.getItem('progress') || '{}')
 };
 
+function chooseBestEnglishVoice(list) {
+  const arr = Array.isArray(list) ? list : [];
+  const langOf = v => String(v.lang || '').toLowerCase();
+  const us = arr.filter(x => langOf(x).startsWith('en-us'));
+  const en = arr.filter(x => langOf(x).startsWith('en'));
+  const pool = us.length ? us : (en.length ? en : arr);
+  const byName = (substr) => pool.find(x => String(x.name || '').toLowerCase().includes(substr));
+  const g = byName('google us english');
+  if (g) return g;
+  const nat = pool.find(x => /natural/i.test(String(x.name || '')));
+  if (nat) return nat;
+  const hi = pool.find(x => /premium|enhanced/i.test(String(x.name || '')));
+  if (hi) return hi;
+  return pool[0] || arr[0] || null;
+}
+
 function loadVoices() {
   const v = window.speechSynthesis.getVoices();
   if (v && v.length) {
     const us = v.filter(x => (x.lang || '').toLowerCase().startsWith('en-us'));
     const en = v.filter(x => (x.lang || '').toLowerCase().startsWith('en'));
     state.voices = us.length ? us : (en.length ? en : v);
-    if (!state.voiceName) {
-      const preferred = state.voices.find(x => x.name.includes('Google US English')) || state.voices[0];
-      if (preferred) state.voiceName = preferred.name;
+    const best = chooseBestEnglishVoice(v);
+    if (!state.voiceName && best) {
+      state.voiceName = best.name;
     }
     if (!state.voices.find(vv => vv.name === state.voiceName)) {
-      state.voiceName = state.voices[0] ? state.voices[0].name : '';
+      state.voiceName = best ? best.name : (state.voices[0] ? state.voices[0].name : '');
     }
   }
 
@@ -98,18 +114,7 @@ export function speak(text) {
   if (!text) return;
   const pick = () => {
     const v = state.voices;
-    const prefOrder = [
-      (n, lang) => n.includes('Google US English') && lang.startsWith('en'),
-      (n, lang) => n.includes('Google') && lang.startsWith('en'),
-      (n, lang) => n.includes('Microsoft') && lang.startsWith('en'),
-      (n, lang) => lang.startsWith('en'),
-      () => true
-    ];
-    for (const rule of prefOrder) {
-      const found = v.find(x => rule(x.name, x.lang||''));
-      if (found) return found;
-    }
-    return v[0];
+    return chooseBestEnglishVoice(v);
   };
   const voice = state.voices.find(v => v.name === state.voiceName) || pick();
   const chunks = String(text).split(/(?<=[.!?])\s+/);
@@ -1251,10 +1256,15 @@ document.addEventListener('click', e => {
   if (t && t.id === 'voiceBtn') {
     const menu = document.getElementById('voiceMenu');
     if (!menu) return;
-    const list = (state.voices||[]).filter(v=>{
-      const lang = (v.lang||'').toLowerCase();
-      return lang.startsWith('en-us') || lang.startsWith('en');
-    }).sort((a,b)=>a.name.localeCompare(b.name));
+    const list = (state.voices||[])
+      .filter(v=>{ const lang = String(v.lang||'').toLowerCase(); return lang.startsWith('en-us') || lang.startsWith('en') })
+      .sort((a,b)=>{
+        const na = String(a.name||'');
+        const nb = String(b.name||'');
+        const pa = na.toLowerCase().includes('google us english') ? 0 : (/natural/i.test(na) ? 1 : (/premium|enhanced/i.test(na) ? 2 : 3));
+        const pb = nb.toLowerCase().includes('google us english') ? 0 : (/natural/i.test(nb) ? 1 : (/premium|enhanced/i.test(nb) ? 2 : 3));
+        if (pa!==pb) return pa-pb; return na.localeCompare(nb);
+      });
     const items = list.map(v=>`
       <div class="selector" style="gap:6px">
         <div class="option ${v.name===state.voiceName?'active':''}" data-voice="${v.name}">${v.name} <span class="small">(${v.lang})</span></div>
@@ -1302,11 +1312,13 @@ if ('serviceWorker' in navigator) {
     const el = document.getElementById('voiceSelector');
     if (!el) return;
     const list = (state.voices||[])
-      .filter(v=>{ const lang=(v.lang||'').toLowerCase(); return lang.startsWith('en') })
+      .filter(v=>{ const lang=String(v.lang||'').toLowerCase(); return lang.startsWith('en') })
       .sort((a,b)=>{
-        const pa = (a.name.includes('Google US English')?0:a.name.includes('Google')?1:a.name.includes('Microsoft')?2:a.name.includes('Samantha')||a.name.includes('Daniel')?3:4);
-        const pb = (b.name.includes('Google US English')?0:b.name.includes('Google')?1:b.name.includes('Microsoft')?2:b.name.includes('Samantha')||b.name.includes('Daniel')?3:4);
-        if (pa!==pb) return pa-pb; return a.name.localeCompare(b.name);
+        const na = String(a.name||'');
+        const nb = String(b.name||'');
+        const pa = na.toLowerCase().includes('google us english') ? 0 : (/natural/i.test(na) ? 1 : (/premium|enhanced/i.test(na) ? 2 : 3));
+        const pb = nb.toLowerCase().includes('google us english') ? 0 : (/natural/i.test(nb) ? 1 : (/premium|enhanced/i.test(nb) ? 2 : 3));
+        if (pa!==pb) return pa-pb; return na.localeCompare(nb);
       });
     const items = list.map(v=>`
       <div class="selector" style="gap:6px">
