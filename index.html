@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0a7c52">
+  <link rel="manifest" href="./public/manifest.json">
+  <link rel="icon" href="./public/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./public/icons/icon.svg">
+  <title>AgroEnglish Pro</title>
+  <link rel="stylesheet" href="./src/styles/styles.css">
+  <meta name="description" content="PWA para inglês técnico rural: agricultura, pecuária, veterinária, máquinas e rotinas de fazenda.">
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module" src="./main.js"></script>
+  <noscript>Este aplicativo requer JavaScript.</noscript>
+  <style>body{min-height:100vh}</style>
+  <script>
+    if (!('serviceWorker' in navigator)) {
+      console.warn('Service Worker não suportado neste navegador.')
+    }
+  </script>
+  </body>
+</html>
+

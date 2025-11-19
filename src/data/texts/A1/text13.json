@@ -1,0 +1,180 @@
+{
+    "title":  "Morning at the farm",
+    "text":  "Morning at the farm. Veterinary biosecurity keeps the herd healthy. I clean the barn after milking. Farm safety rules are part of our routine. I work on a farm. The tractor needs a safety check before operation. The greenhouse helps control temperature and humidity. I start the tractor carefully. We water animals and fix tools. In winter we protect equipment from freezing. Sprayer calibration prevents over application. We rotate pastures to improve forage quality. We record yields and monitor feed intake. I feed cows and check plants. Irrigation is scheduled to reduce water waste. We start work before sunrise during harvest.",
+    "translation":  "Veterinary biosecurity keeps the herd healthy. I clean the celeiro after milking. fazenda seguranÃ§a rules are part of our routine. I work on a fazenda. The trator needs a seguranÃ§a check before operation. The estufa helps control temperature and humidity. I start the trator carefully. We water animais and fix tools. In inverno we protect equipment from freezing. pulverizador calibration prevents over application. We rotate pastagems to improve forage quality. We record yields and monitor alimentar intake. I alimentar vacas and check plants. irrigaÃ§Ã£o is scheduled to reduce water waste. We start work before sunrise during colheita.",
+    "pairs":  [
+                  {
+                      "pt":  "Veterinary biosecurity keeps the herd healthy.",
+                      "en":  "Veterinary biosecurity keeps the herd healthy."
+                  },
+                  {
+                      "pt":  "I clean the celeiro after milking.",
+                      "en":  "I clean the barn after milking."
+                  },
+                  {
+                      "pt":  "fazenda seguranÃ§a rules are part of our routine.",
+                      "en":  "Farm safety rules are part of our routine."
+                  },
+                  {
+                      "pt":  "I work on a fazenda.",
+                      "en":  "I work on a farm."
+                  },
+                  {
+                      "pt":  "The trator needs a seguranÃ§a check before operation.",
+                      "en":  "The tractor needs a safety check before operation."
+                  },
+                  {
+                      "pt":  "The estufa helps control temperature and humidity.",
+                      "en":  "The greenhouse helps control temperature and humidity."
+                  },
+                  {
+                      "pt":  "I start the trator carefully.",
+                      "en":  "I start the tractor carefully."
+                  },
+                  {
+                      "pt":  "We water animais and fix tools.",
+                      "en":  "We water animals and fix tools."
+                  },
+                  {
+                      "pt":  "In inverno we protect equipment from freezing.",
+                      "en":  "In winter we protect equipment from freezing."
+                  },
+                  {
+                      "pt":  "pulverizador calibration prevents over application.",
+                      "en":  "Sprayer calibration prevents over application."
+                  },
+                  {
+                      "pt":  "We rotate pastagems to improve forage quality.",
+                      "en":  "We rotate pastures to improve forage quality."
+                  },
+                  {
+                      "pt":  "We record yields and monitor alimentar intake.",
+                      "en":  "We record yields and monitor feed intake."
+                  },
+                  {
+                      "pt":  "I alimentar vacas and check plants.",
+                      "en":  "I feed cows and check plants."
+                  },
+                  {
+                      "pt":  "irrigaÃ§Ã£o is scheduled to reduce water waste.",
+                      "en":  "Irrigation is scheduled to reduce water waste."
+                  },
+                  {
+                      "pt":  "We start work before sunrise during colheita.",
+                      "en":  "We start work before sunrise during harvest."
+                  }
+              ],
+    "vocabulary":  [
+                       {
+                           "word":  "tractor",
+                           "meaning":  "trator"
+                       },
+                       {
+                           "word":  "cow",
+                           "meaning":  "vaca"
+                       },
+                       {
+                           "word":  "corn",
+                           "meaning":  "milho"
+                       },
+                       {
+                           "word":  "sprayer",
+                           "meaning":  "pulverizador"
+                       },
+                       {
+                           "word":  "harvest",
+                           "meaning":  "colheita"
+                       },
+                       {
+                           "word":  "irrigation",
+                           "meaning":  "irrigaÃ§Ã£o"
+                       },
+                       {
+                           "word":  "pasture",
+                           "meaning":  "pastagem"
+                       },
+                       {
+                           "word":  "greenhouse",
+                           "meaning":  "estufa"
+                       },
+                       {
+                           "word":  "veterinary",
+                           "meaning":  "veterinÃ¡ria"
+                       },
+                       {
+                           "word":  "safety",
+                           "meaning":  "seguranÃ§a"
+                       }
+                   ],
+    "grammar":  "Present simple with farm routines.",
+    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
+    "exercises":  {
+                      "multiple_choice":  [
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What do we check every morning?",
+                                                  "options":  [
+                                                                  "Plants",
+                                                                  "Emails",
+                                                                  "Movies",
+                                                                  "Games"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "Which machine is for spraying?",
+                                                  "options":  [
+                                                                  "Sprayer",
+                                                                  "Oven",
+                                                                  "Printer",
+                                                                  "Mixer"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What protects animals in cold weather?",
+                                                  "options":  [
+                                                                  "Barn",
+                                                                  "Laptop",
+                                                                  "Radio",
+                                                                  "Paint"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What do we rotate to improve forage?",
+                                                  "options":  [
+                                                                  "Pastures",
+                                                                  "Books",
+                                                                  "Rooms",
+                                                                  "Shoes"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "Where do we grow plants with climate control?",
+                                                  "options":  [
+                                                                  "Greenhouse",
+                                                                  "Garage",
+                                                                  "Office",
+                                                                  "Kitchen"
+                                                              ]
+                                              }
+                                          ],
+                      "fill_in":  [
+                                      {
+                                          "sentence":  "We ____ the cows every morning.",
+                                          "answer":  "feed"
+                                      },
+                                      {
+                                          "sentence":  "Start the ____ carefully.",
+                                          "answer":  "tractor"
+                                      },
+                                      {
+                                          "sentence":  "Check the ____ for the animals.",
+                                          "answer":  "water"
+                                      }
+                                  ],
+                      "speaking":  "Repeat: Morning at the farm"
+                  }
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <rect width="256" height="256" rx="48" fill="#0a7c52"/>
+  <g fill="#ffffff" font-family="Arial, sans-serif" font-weight="700">
+    <text x="50%" y="48%" font-size="92" text-anchor="middle">AE</text>
+    <text x="50%" y="78%" font-size="28" text-anchor="middle">AgroEnglish</text>
+  </g>
+</svg>
+

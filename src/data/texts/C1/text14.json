@@ -1,0 +1,172 @@
+{
+    "title":  "Equipment reliability analysis",
+    "text":  "Equipment reliability analysis. The tractor needs a safety check before operation. Irrigation is scheduled to reduce water waste. We start work before sunrise during harvest. Veterinary biosecurity keeps the herd healthy. We design protocols for herd health management. In winter we protect equipment from freezing. We interpret telemetry from precision agriculture systems. Sprayer calibration prevents over application. Farm safety rules are part of our routine. We assess soil nutrients for fertilization plans. The greenhouse helps control temperature and humidity. We record yields and monitor feed intake. We rotate pastures to improve forage quality.",
+    "translation":  "The trator needs a seguranÃ§a check before operation. irrigaÃ§Ã£o is scheduled to reduce water waste. We start work before sunrise during colheita. Veterinary biosecurity keeps the herd healthy. We design protocols for herd health management. In inverno we protect equipment from freezing. We interpret telemetry from precision agriculture systems. pulverizador calibration prevents over application. fazenda seguranÃ§a rules are part of our routine. We assess soil nutrients for fertilization plans. The estufa helps control temperature and humidity. We record yields and monitor alimentar intake. We rotate pastagems to improve forage quality.",
+    "pairs":  [
+                  {
+                      "pt":  "The trator needs a seguranÃ§a check before operation.",
+                      "en":  "The tractor needs a safety check before operation."
+                  },
+                  {
+                      "pt":  "irrigaÃ§Ã£o is scheduled to reduce water waste.",
+                      "en":  "Irrigation is scheduled to reduce water waste."
+                  },
+                  {
+                      "pt":  "We start work before sunrise during colheita.",
+                      "en":  "We start work before sunrise during harvest."
+                  },
+                  {
+                      "pt":  "Veterinary biosecurity keeps the herd healthy.",
+                      "en":  "Veterinary biosecurity keeps the herd healthy."
+                  },
+                  {
+                      "pt":  "We design protocols for herd health management.",
+                      "en":  "We design protocols for herd health management."
+                  },
+                  {
+                      "pt":  "In inverno we protect equipment from freezing.",
+                      "en":  "In winter we protect equipment from freezing."
+                  },
+                  {
+                      "pt":  "We interpret telemetry from precision agriculture systems.",
+                      "en":  "We interpret telemetry from precision agriculture systems."
+                  },
+                  {
+                      "pt":  "pulverizador calibration prevents over application.",
+                      "en":  "Sprayer calibration prevents over application."
+                  },
+                  {
+                      "pt":  "fazenda seguranÃ§a rules are part of our routine.",
+                      "en":  "Farm safety rules are part of our routine."
+                  },
+                  {
+                      "pt":  "We assess soil nutrients for fertilization plans.",
+                      "en":  "We assess soil nutrients for fertilization plans."
+                  },
+                  {
+                      "pt":  "The estufa helps control temperature and humidity.",
+                      "en":  "The greenhouse helps control temperature and humidity."
+                  },
+                  {
+                      "pt":  "We record yields and monitor alimentar intake.",
+                      "en":  "We record yields and monitor feed intake."
+                  },
+                  {
+                      "pt":  "We rotate pastagems to improve forage quality.",
+                      "en":  "We rotate pastures to improve forage quality."
+                  }
+              ],
+    "vocabulary":  [
+                       {
+                           "word":  "tractor",
+                           "meaning":  "trator"
+                       },
+                       {
+                           "word":  "cow",
+                           "meaning":  "vaca"
+                       },
+                       {
+                           "word":  "corn",
+                           "meaning":  "milho"
+                       },
+                       {
+                           "word":  "sprayer",
+                           "meaning":  "pulverizador"
+                       },
+                       {
+                           "word":  "harvest",
+                           "meaning":  "colheita"
+                       },
+                       {
+                           "word":  "irrigation",
+                           "meaning":  "irrigaÃ§Ã£o"
+                       },
+                       {
+                           "word":  "pasture",
+                           "meaning":  "pastagem"
+                       },
+                       {
+                           "word":  "greenhouse",
+                           "meaning":  "estufa"
+                       },
+                       {
+                           "word":  "veterinary",
+                           "meaning":  "veterinÃ¡ria"
+                       },
+                       {
+                           "word":  "safety",
+                           "meaning":  "seguranÃ§a"
+                       }
+                   ],
+    "grammar":  "Complex clauses: purpose and result; nominalization.",
+    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
+    "exercises":  {
+                      "multiple_choice":  [
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What do we check every morning?",
+                                                  "options":  [
+                                                                  "Plants",
+                                                                  "Emails",
+                                                                  "Movies",
+                                                                  "Games"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "Which machine is for spraying?",
+                                                  "options":  [
+                                                                  "Sprayer",
+                                                                  "Oven",
+                                                                  "Printer",
+                                                                  "Mixer"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What protects animals in cold weather?",
+                                                  "options":  [
+                                                                  "Barn",
+                                                                  "Laptop",
+                                                                  "Radio",
+                                                                  "Paint"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What do we rotate to improve forage?",
+                                                  "options":  [
+                                                                  "Pastures",
+                                                                  "Books",
+                                                                  "Rooms",
+                                                                  "Shoes"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "Where do we grow plants with climate control?",
+                                                  "options":  [
+                                                                  "Greenhouse",
+                                                                  "Garage",
+                                                                  "Office",
+                                                                  "Kitchen"
+                                                              ]
+                                              }
+                                          ],
+                      "fill_in":  [
+                                      {
+                                          "sentence":  "We ____ the cows every morning.",
+                                          "answer":  "feed"
+                                      },
+                                      {
+                                          "sentence":  "Start the ____ carefully.",
+                                          "answer":  "tractor"
+                                      },
+                                      {
+                                          "sentence":  "Check the ____ for the animals.",
+                                          "answer":  "water"
+                                      }
+                                  ],
+                      "speaking":  "Repeat: Equipment reliability analysis"
+                  }
+}

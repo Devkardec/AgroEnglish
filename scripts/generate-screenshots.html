@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Screenshot Generator</title>
+</head>
+<body>
+  <h1>Screenshot Generator</h1>
+  <p>Open the console to see the generated screenshots.</p>
+
+  <script>
+    function generateScreenshot(text, filename) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1280;
+      canvas.height = 720;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = '#0a7c52';
+      ctx.fillRect(0, 0, 1280, 720);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 72px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(text, 640, 360);
+
+      const dataUrl = canvas.toDataURL('image/png');
+      const a = document.createElement('a');
+      a.href = dataUrl;
+      a.download = filename;
+      a.click();
+    }
+
+    generateScreenshot('AgroEnglish Pro', 'screenshot1.png');
+    generateScreenshot('Página de um texto', 'screenshot2.png');
+  </script>
+</body>
+</html>

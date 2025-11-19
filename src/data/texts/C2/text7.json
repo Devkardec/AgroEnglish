@@ -1,0 +1,160 @@
+﻿{
+    "title":  "Resource allocation in large-scale farming",
+    "text":  "Resource allocation in large-scale farming. The greenhouse helps control temperature and humidity. Sprayer calibration prevents over application. Irrigation is scheduled to reduce water waste. We assess soil nutrients to optimize fertilization plans. I feed the cows and make sure they have clean water. Telemetry from precision agriculture guides irrigation decisions. The sun is low, and the soil is cool and soft. I check the crops to see if the plants are healthy. In Canadian winter, we protect equipment from freezing. I work on Green Valley Farm, and every day is busy.",
+    "translation":  "A estufa ajuda a controlar a temperatura e a umidade. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o. Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa. A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio. Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis. No inverno canadense, protegemos os equipamentos contra o congelamento. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
+    "pairs":  [
+                  {
+                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
+                      "en":  "The greenhouse helps control temperature and humidity."
+                  },
+                  {
+                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
+                      "en":  "Sprayer calibration prevents over application."
+                  },
+                  {
+                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
+                      "en":  "Irrigation is scheduled to reduce water waste."
+                  },
+                  {
+                      "pt":  "Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o.",
+                      "en":  "We assess soil nutrients to optimize fertilization plans."
+                  },
+                  {
+                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
+                      "en":  "I feed the cows and make sure they have clean water."
+                  },
+                  {
+                      "pt":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o.",
+                      "en":  "Telemetry from precision agriculture guides irrigation decisions."
+                  },
+                  {
+                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
+                      "en":  "The sun is low, and the soil is cool and soft."
+                  },
+                  {
+                      "pt":  "Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis.",
+                      "en":  "I check the crops to see if the plants are healthy."
+                  },
+                  {
+                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
+                      "en":  "In Canadian winter, we protect equipment from freezing."
+                  },
+                  {
+                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
+                      "en":  "I work on Green Valley Farm, and every day is busy."
+                  }
+              ],
+    "vocabulary":  [
+                       {
+                           "word":  "tractor",
+                           "meaning":  "trator"
+                       },
+                       {
+                           "word":  "cow",
+                           "meaning":  "vaca"
+                       },
+                       {
+                           "word":  "corn",
+                           "meaning":  "milho"
+                       },
+                       {
+                           "word":  "sprayer",
+                           "meaning":  "pulverizador"
+                       },
+                       {
+                           "word":  "harvest",
+                           "meaning":  "colheita"
+                       },
+                       {
+                           "word":  "irrigation",
+                           "meaning":  "irrigaÃ§Ã£o"
+                       },
+                       {
+                           "word":  "pasture",
+                           "meaning":  "pastagem"
+                       },
+                       {
+                           "word":  "greenhouse",
+                           "meaning":  "estufa"
+                       },
+                       {
+                           "word":  "veterinary",
+                           "meaning":  "veterinÃ¡ria"
+                       },
+                       {
+                           "word":  "safety",
+                           "meaning":  "seguranÃ§a"
+                       }
+                   ],
+    "grammar":  "Academic style: hedging and precise terminology.",
+    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
+    "exercises":  {
+                      "multiple_choice":  [
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What do we check every morning?",
+                                                  "options":  [
+                                                                  "Plants",
+                                                                  "Emails",
+                                                                  "Movies",
+                                                                  "Games"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "Which machine is for spraying?",
+                                                  "options":  [
+                                                                  "Sprayer",
+                                                                  "Oven",
+                                                                  "Printer",
+                                                                  "Mixer"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What protects animals in cold weather?",
+                                                  "options":  [
+                                                                  "Barn",
+                                                                  "Laptop",
+                                                                  "Radio",
+                                                                  "Paint"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What do we rotate to improve forage?",
+                                                  "options":  [
+                                                                  "Pastures",
+                                                                  "Books",
+                                                                  "Rooms",
+                                                                  "Shoes"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "Where do we grow plants with climate control?",
+                                                  "options":  [
+                                                                  "Greenhouse",
+                                                                  "Garage",
+                                                                  "Office",
+                                                                  "Kitchen"
+                                                              ]
+                                              }
+                                          ],
+                      "fill_in":  [
+                                      {
+                                          "sentence":  "We ____ the cows every morning.",
+                                          "answer":  "feed"
+                                      },
+                                      {
+                                          "sentence":  "Start the ____ carefully.",
+                                          "answer":  "tractor"
+                                      },
+                                      {
+                                          "sentence":  "Check the ____ for the animals.",
+                                          "answer":  "water"
+                                      }
+                                  ],
+                      "speaking":  "Repeat: Resource allocation in large-scale farming"
+                  }
+}

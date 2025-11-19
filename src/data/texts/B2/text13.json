@@ -1,0 +1,172 @@
+{
+    "title":  "Irrigation scheduling",
+    "text":  "Irrigation scheduling. Irrigation is scheduled to reduce water waste. We record yields and monitor feed intake. We rotate pastures to improve forage quality. The tractor needs a safety check before operation. In winter we protect equipment from freezing. Farm safety rules are part of our routine. We start work before sunrise during harvest. The greenhouse helps control temperature and humidity. Veterinary biosecurity keeps the herd healthy. We analyze data for irrigation scheduling. We apply biosecurity protocols on the farm. We operate machines efficiently using procedures. Sprayer calibration prevents over application.",
+    "translation":  "irrigaÃ§Ã£o is scheduled to reduce water waste. We record yields and monitor alimentar intake. We rotate pastagems to improve forage quality. The trator needs a seguranÃ§a check before operation. In inverno we protect equipment from freezing. fazenda seguranÃ§a rules are part of our routine. We start work before sunrise during colheita. The estufa helps control temperature and humidity. Veterinary biosecurity keeps the herd healthy. We analyze data for irrigaÃ§Ã£o scheduling. We apply biosecurity protocols on the fazenda. We operate machines efficiently using procedures. pulverizador calibration prevents over application.",
+    "pairs":  [
+                  {
+                      "pt":  "irrigaÃ§Ã£o is scheduled to reduce water waste.",
+                      "en":  "Irrigation is scheduled to reduce water waste."
+                  },
+                  {
+                      "pt":  "We record yields and monitor alimentar intake.",
+                      "en":  "We record yields and monitor feed intake."
+                  },
+                  {
+                      "pt":  "We rotate pastagems to improve forage quality.",
+                      "en":  "We rotate pastures to improve forage quality."
+                  },
+                  {
+                      "pt":  "The trator needs a seguranÃ§a check before operation.",
+                      "en":  "The tractor needs a safety check before operation."
+                  },
+                  {
+                      "pt":  "In inverno we protect equipment from freezing.",
+                      "en":  "In winter we protect equipment from freezing."
+                  },
+                  {
+                      "pt":  "fazenda seguranÃ§a rules are part of our routine.",
+                      "en":  "Farm safety rules are part of our routine."
+                  },
+                  {
+                      "pt":  "We start work before sunrise during colheita.",
+                      "en":  "We start work before sunrise during harvest."
+                  },
+                  {
+                      "pt":  "The estufa helps control temperature and humidity.",
+                      "en":  "The greenhouse helps control temperature and humidity."
+                  },
+                  {
+                      "pt":  "Veterinary biosecurity keeps the herd healthy.",
+                      "en":  "Veterinary biosecurity keeps the herd healthy."
+                  },
+                  {
+                      "pt":  "We analyze data for irrigaÃ§Ã£o scheduling.",
+                      "en":  "We analyze data for irrigation scheduling."
+                  },
+                  {
+                      "pt":  "We apply biosecurity protocols on the fazenda.",
+                      "en":  "We apply biosecurity protocols on the farm."
+                  },
+                  {
+                      "pt":  "We operate machines efficiently using procedures.",
+                      "en":  "We operate machines efficiently using procedures."
+                  },
+                  {
+                      "pt":  "pulverizador calibration prevents over application.",
+                      "en":  "Sprayer calibration prevents over application."
+                  }
+              ],
+    "vocabulary":  [
+                       {
+                           "word":  "tractor",
+                           "meaning":  "trator"
+                       },
+                       {
+                           "word":  "cow",
+                           "meaning":  "vaca"
+                       },
+                       {
+                           "word":  "corn",
+                           "meaning":  "milho"
+                       },
+                       {
+                           "word":  "sprayer",
+                           "meaning":  "pulverizador"
+                       },
+                       {
+                           "word":  "harvest",
+                           "meaning":  "colheita"
+                       },
+                       {
+                           "word":  "irrigation",
+                           "meaning":  "irrigaÃ§Ã£o"
+                       },
+                       {
+                           "word":  "pasture",
+                           "meaning":  "pastagem"
+                       },
+                       {
+                           "word":  "greenhouse",
+                           "meaning":  "estufa"
+                       },
+                       {
+                           "word":  "veterinary",
+                           "meaning":  "veterinÃ¡ria"
+                       },
+                       {
+                           "word":  "safety",
+                           "meaning":  "seguranÃ§a"
+                       }
+                   ],
+    "grammar":  "Passive voice in technical procedures.",
+    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
+    "exercises":  {
+                      "multiple_choice":  [
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What do we check every morning?",
+                                                  "options":  [
+                                                                  "Plants",
+                                                                  "Emails",
+                                                                  "Movies",
+                                                                  "Games"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "Which machine is for spraying?",
+                                                  "options":  [
+                                                                  "Sprayer",
+                                                                  "Oven",
+                                                                  "Printer",
+                                                                  "Mixer"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What protects animals in cold weather?",
+                                                  "options":  [
+                                                                  "Barn",
+                                                                  "Laptop",
+                                                                  "Radio",
+                                                                  "Paint"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What do we rotate to improve forage?",
+                                                  "options":  [
+                                                                  "Pastures",
+                                                                  "Books",
+                                                                  "Rooms",
+                                                                  "Shoes"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "Where do we grow plants with climate control?",
+                                                  "options":  [
+                                                                  "Greenhouse",
+                                                                  "Garage",
+                                                                  "Office",
+                                                                  "Kitchen"
+                                                              ]
+                                              }
+                                          ],
+                      "fill_in":  [
+                                      {
+                                          "sentence":  "We ____ the cows every morning.",
+                                          "answer":  "feed"
+                                      },
+                                      {
+                                          "sentence":  "Start the ____ carefully.",
+                                          "answer":  "tractor"
+                                      },
+                                      {
+                                          "sentence":  "Check the ____ for the animals.",
+                                          "answer":  "water"
+                                      }
+                                  ],
+                      "speaking":  "Repeat: Irrigation scheduling"
+                  }
+}

@@ -1,0 +1,160 @@
+﻿{
+    "title":  "Tractor maintenance",
+    "text":  "Tractor maintenance. We rotate pastures to improve forage quality. I talk to the team and assign tasks for the afternoon. The greenhouse helps control temperature and humidity. Irrigation is scheduled to reduce water waste. In the morning, I wake up early and walk to the fields. I work on Green Valley Farm, and every day is busy. Maintenance avoids breakdowns during harvest. We sell fresh vegetables at the local market. In Canadian winter, we protect equipment from freezing. Farm safety rules are part of our routine.",
+    "translation":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. Eu converso com a equipe e distribuo as tarefas para a tarde. A estufa ajuda a controlar a temperatura e a umidade. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. De manhÃ£, eu acordo cedo e caminho atÃ© os campos. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. A manutenÃ§Ã£o evita falhas durante a colheita. NÃ³s vendemos hortaliÃ§as frescas no mercado local. No inverno canadense, protegemos os equipamentos contra o congelamento. As regras de seguranÃ§a rural fazem parte da nossa rotina.",
+    "pairs":  [
+                  {
+                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
+                      "en":  "We rotate pastures to improve forage quality."
+                  },
+                  {
+                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
+                      "en":  "I talk to the team and assign tasks for the afternoon."
+                  },
+                  {
+                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
+                      "en":  "The greenhouse helps control temperature and humidity."
+                  },
+                  {
+                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
+                      "en":  "Irrigation is scheduled to reduce water waste."
+                  },
+                  {
+                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
+                      "en":  "In the morning, I wake up early and walk to the fields."
+                  },
+                  {
+                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
+                      "en":  "I work on Green Valley Farm, and every day is busy."
+                  },
+                  {
+                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
+                      "en":  "Maintenance avoids breakdowns during harvest."
+                  },
+                  {
+                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
+                      "en":  "We sell fresh vegetables at the local market."
+                  },
+                  {
+                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
+                      "en":  "In Canadian winter, we protect equipment from freezing."
+                  },
+                  {
+                      "pt":  "As regras de seguranÃ§a rural fazem parte da nossa rotina.",
+                      "en":  "Farm safety rules are part of our routine."
+                  }
+              ],
+    "vocabulary":  [
+                       {
+                           "word":  "tractor",
+                           "meaning":  "trator"
+                       },
+                       {
+                           "word":  "cow",
+                           "meaning":  "vaca"
+                       },
+                       {
+                           "word":  "corn",
+                           "meaning":  "milho"
+                       },
+                       {
+                           "word":  "sprayer",
+                           "meaning":  "pulverizador"
+                       },
+                       {
+                           "word":  "harvest",
+                           "meaning":  "colheita"
+                       },
+                       {
+                           "word":  "irrigation",
+                           "meaning":  "irrigaÃ§Ã£o"
+                       },
+                       {
+                           "word":  "pasture",
+                           "meaning":  "pastagem"
+                       },
+                       {
+                           "word":  "greenhouse",
+                           "meaning":  "estufa"
+                       },
+                       {
+                           "word":  "veterinary",
+                           "meaning":  "veterinÃ¡ria"
+                       },
+                       {
+                           "word":  "safety",
+                           "meaning":  "seguranÃ§a"
+                       }
+                   ],
+    "grammar":  "Past simple for work stories; modals for advice.",
+    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
+    "exercises":  {
+                      "multiple_choice":  [
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What do we check every morning?",
+                                                  "options":  [
+                                                                  "Plants",
+                                                                  "Emails",
+                                                                  "Movies",
+                                                                  "Games"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "Which machine is for spraying?",
+                                                  "options":  [
+                                                                  "Sprayer",
+                                                                  "Oven",
+                                                                  "Printer",
+                                                                  "Mixer"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What protects animals in cold weather?",
+                                                  "options":  [
+                                                                  "Barn",
+                                                                  "Laptop",
+                                                                  "Radio",
+                                                                  "Paint"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "What do we rotate to improve forage?",
+                                                  "options":  [
+                                                                  "Pastures",
+                                                                  "Books",
+                                                                  "Rooms",
+                                                                  "Shoes"
+                                                              ]
+                                              },
+                                              {
+                                                  "answer":  0,
+                                                  "question":  "Where do we grow plants with climate control?",
+                                                  "options":  [
+                                                                  "Greenhouse",
+                                                                  "Garage",
+                                                                  "Office",
+                                                                  "Kitchen"
+                                                              ]
+                                              }
+                                          ],
+                      "fill_in":  [
+                                      {
+                                          "sentence":  "We ____ the cows every morning.",
+                                          "answer":  "feed"
+                                      },
+                                      {
+                                          "sentence":  "Start the ____ carefully.",
+                                          "answer":  "tractor"
+                                      },
+                                      {
+                                          "sentence":  "Check the ____ for the animals.",
+                                          "answer":  "water"
+                                      }
+                                  ],
+                      "speaking":  "Repeat: Tractor maintenance"
+                  }
+}
