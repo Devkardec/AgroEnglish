@@ -704,63 +704,66 @@ function initTextPage(level, idx) {
     const firstVerb = baseVerbs[0]; if(firstVerb){ const firstOp = el.querySelector(`.option[data-verb="${firstVerb}"]`); if(firstOp) firstOp.classList.add('active'); renderVerbPanel(firstVerb); }
   }
 
-  function renderMC(list) {
+  function renderMC(data) {
     const mcEl = document.querySelector('#mc');
-    mcEl.innerHTML = list
-      .map(
-        (q, i) => `
-        <div class="card">
-          <div><strong>${i + 1}. ${q.question}</strong></div>
-          <div style="margin-top:6px">${q.options
-            .map(
-              (op, j) =>
-                `<button class="btn secondary" data-mc="${i}" data-idx="${j}">${op}</button>`
-            )
-            .join(' ')}</div>
-          <div class="small" id="mcRes${i}" style="margin-top:6px"></div>
-        </div>`
-      )
-      .join('');
+    const src = (data && data.exercises && Array.isArray(data.exercises.multiple_choice) && data.exercises.multiple_choice.length)
+      ? data.exercises.multiple_choice
+      : (() => {
+          const voc = Array.isArray(data.vocabulary) ? data.vocabulary : [];
+          const items = voc.slice(0,5);
+          const distractors = voc.map(v=>v.meaning).filter(Boolean);
+          return items.map((v,i)=>{
+            const opts = [v.meaning];
+            while (opts.length<4 && distractors.length) {
+              const pick = distractors[Math.floor(Math.random()*distractors.length)];
+              if (!opts.includes(pick)) opts.push(pick);
+            }
+            return { question:`Qual é a tradução de "${v.word}"?`, options: opts.sort(()=>Math.random()-0.5), answer: opts.indexOf(v.meaning) };
+          });
+        })();
+    mcEl.innerHTML = src.map((q,i)=>`
+      <div class="card">
+        <div><strong>${i+1}. ${q.question}</strong></div>
+        <div style="margin-top:6px">${q.options.map((op,j)=>`<button class="btn secondary" data-mc="${i}" data-idx="${j}">${op}</button>`).join(' ')}</div>
+        <div class="small" id="mcRes${i}" style="margin-top:6px"></div>
+      </div>
+    `).join('') || '<div class="small">Sem questões disponíveis.</div>';
     mcEl.addEventListener('click', (e) => {
       const t = e.target;
       if (!t.dataset.mc) return;
       const qi = Number(t.dataset.mc);
       const oi = Number(t.dataset.idx);
-      const ok = oi === list[qi].answer;
-      document.getElementById('mcRes' + qi).textContent = ok
-        ? 'Good pronunciation!'
-        : 'Try again.';
+      const ok = oi === src[qi].answer;
+      document.getElementById('mcRes' + qi).textContent = ok ? 'Acertou!' : 'Tente novamente.';
     });
   }
 
-  function renderFill(list) {
+  function renderFill(data) {
     const fillEl = document.querySelector('#fill');
-    fillEl.innerHTML = list
-      .map(
-        (f, i) => `
-        <div class="card">
-          <div>${
-            i + 1
-          }. ${f.sentence.replace(
-            '____',
-            `<input class="blank" data-fill="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`
-          )}</div>
-        </div>`
-      )
-      .join('');
+    const src = (data && data.exercises && Array.isArray(data.exercises.fill_in) && data.exercises.fill_in.length) ? data.exercises.fill_in : (()=>{
+      const textParts = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
+      const verbs = String(data.verbs||'').split(':')[1] || String(data.verbs||'');
+      const baseVerbs = verbs.split(',').map(s=>s.trim()).filter(Boolean);
+      const items = textParts.slice(0,3).map((s,i)=>{
+        const v = baseVerbs.find(vv=> new RegExp(`\\b${vv}(s)?\\b`,'i').test(s));
+        if (v) return { sentence: s.replace(new RegExp(`\\b${v}(s)?\\b`,'i'),'____'), answer: v.replace(/s$/,'') };
+        const w = (s.split(' ')[2]||'tractor');
+        return { sentence: s.replace(w,'____'), answer: w.replace(/[.,]/g,'') };
+      });
+      return items;
+    })();
+    fillEl.innerHTML = src.map((f,i)=>`
+      <div class="card"><div>${i+1}. ${f.sentence.replace('____',`<input class="blank" data-fill="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`)}</div></div>
+    `).join('') || '<div class="small">Sem itens para completar.</div>';
     document.querySelector('#checkFill').addEventListener('click', () => {
       const inputs = fillEl.querySelectorAll('input.blank');
       let correct = 0;
       inputs.forEach((inp) => {
         const i = Number(inp.dataset.fill);
-        if (
-          (inp.value || '').trim().toLowerCase() ===
-          String(list[i].answer).toLowerCase()
-        )
+        if ((inp.value || '').trim().toLowerCase() === String(src[i].answer).toLowerCase())
           correct++;
       });
-      document.querySelector('#fillResult').textContent =
-        correct === inputs.length ? 'Good pronunciation!' : 'Try again.';
+      document.querySelector('#fillResult').textContent = correct === inputs.length ? 'Acertou!' : 'Tente novamente.';
     });
   }
 
@@ -833,8 +836,8 @@ function initTextPage(level, idx) {
       renderGrammar(data);
       renderVerbs(data);
       renderVerbsModule(data);
-      renderMC((data.exercises && data.exercises.multiple_choice) || []);
-      renderFill((data.exercises && data.exercises.fill_in) || []);
+      renderMC(data);
+      renderFill(data);
       document.querySelector('#speakPrompt').textContent =
         (data.exercises && data.exercises.speaking) || '';
       document
@@ -902,11 +905,7 @@ function initTextPage(level, idx) {
       }
       const ptSentences = getPtSentences(data);
       if (pronList) {
-        const width = pronList.clientWidth || 980;
-        const cols = Math.max(1, Math.floor(width / 280));
-        const rows = 2;
-        const max = Math.min(sentences.length || 0, cols * rows);
-        const shown = sentences.slice(0, max);
+        const shown = sentences.slice(0, Math.min(sentences.length || 0, 6));
         pronList.innerHTML = shown.map((s,i)=>`
           <div class="pron-card">
             <div class="text">${s}</div>
