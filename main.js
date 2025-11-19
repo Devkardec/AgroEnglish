@@ -29,6 +29,58 @@ function loadVoices() {
       state.voiceName = state.voices[0] ? state.voices[0].name : '';
     }
   }
+
+  function renderVerbsModule(data) {
+    const el = document.querySelector('#verbs');
+    if (!el) return;
+    const listStr = String(data.verbs||'');
+    const m = listStr.split(':')[1] || listStr;
+    const baseVerbs = m.split(',').map(s=>s.trim()).filter(Boolean);
+    const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
+    const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : String(data.text||'').split(/(?<=[.!?])\s+/).map((s,i)=>({en:s, pt:String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT)[i]||''}));
+    function findSentenceWith(v){ return sentences.find(s=> new RegExp(`\b${v}(s)?\b`,'i').test(s.en)) }
+    function buildExample(v){ const s=findSentenceWith(v); if (s) return s; const map = {
+      feed: {en:'I feed cows and check plants.', pt:'I alimentar vacas and check plants.'},
+      check: {en:'We check plants.', pt:'check plants.'},
+      start: {en:'I start the tractor carefully.', pt:'I start the trator carefully.'},
+      clean: {en:'I clean the barn after milking.', pt:'I clean the celeiro after milking.'},
+      adjust: {en:'We adjust sprayer calibration.', pt:'pulverizador calibration.'},
+      monitor: {en:'We monitor feed intake.', pt:'We monitor alimentar intake.'},
+      operate: {en:'We operate the sprayer.', pt:'pulverizador.'},
+      record: {en:'We record yields.', pt:'We record yields.'},
+      assess: {en:'We assess yields.', pt:'yields.'},
+      coordinate: {en:'We coordinate biosecurity.', pt:'biosecurity.'}
+    }; return map[v] }
+    function exerciseFor(v, ex){ return `<div class="card"><div>${v}: <strong>${ex.en}</strong></div><div class="small">${ex.pt}</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${ex.en}">Ouvir Áudio</button></div><div style="margin-top:8px">Complete: ${ex.en.replace(new RegExp(`\b${v}\b`,'i'), '____')}</div></div>` }
+    const blocks = baseVerbs.map(v=>{ const ex = buildExample(v); return exerciseFor(v, ex) }).join('');
+    const micro = `<div class="card"><div class="line"><div class="en">We start work before sunrise, record yields and monitor feed intake.</div></div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="We start work before sunrise, record yields and monitor feed intake.">Ouvir Áudio</button></div></div>`;
+    const tablePS = `
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo agrícola</th></tr></thead>
+        <tbody>
+          <tr><td>I/You/We/They</td><td>We record yields. We monitor feed intake.</td></tr>
+          <tr><td>He/She/It (+s)</td><td>Sprayer calibration prevents over application. The greenhouse helps control temperature and humidity.</td></tr>
+        </tbody>
+      </table>
+    `;
+    const errors = `
+      <div class="grid">
+        <div class="card"><div>Omissão de +s:</div><div class="small">prevents/keeps/helps/needs</div></div>
+        <div class="card"><div>Rotina:</div><div class="small">Use present simple: feed, check, record, monitor.</div></div>
+        <div class="card"><div>Ordem:</div><div class="small">We rotate pastures to improve forage quality.</div></div>
+      </div>
+    `;
+    el.insertAdjacentHTML('beforeend', `
+      <div class="section-title" style="margin-top:10px">Como usar no Present Simple</div>
+      <div>${tablePS}</div>
+      <div class="section-title" style="margin-top:10px">Verbos do texto</div>
+      <div class="grid">${blocks}</div>
+      <div class="section-title" style="margin-top:10px">Micro-história</div>
+      <div>${micro}</div>
+      <div class="section-title" style="margin-top:10px">Erros comuns do aluno iniciante</div>
+      <div>${errors}</div>
+    `);
+  }
   try { render() } catch {}
 }
 loadVoices();
@@ -380,20 +432,67 @@ function initTextPage(level, idx) {
         </tbody>
       </table>
     `;
-    const practice = [...groupI.slice(0,1), ...groupWe.slice(0,2), ...groupIt.slice(0,1)];
+    const practice = [...groupI.slice(0,1), ...groupWe.slice(0,2), ...groupIt.slice(0,2)];
+    function stripEnd(v){ return v.replace(/(es|s)$/,'') }
+    const baseListStr = String(data.verbs||'').split(':')[1] || String(data.verbs||'');
+    const baseVerbs = baseListStr.split(',').map(s=>s.trim()).filter(Boolean);
+    const extraVerbs = ['water','work','start','feed','check','clean','record','monitor','rotate','improve','need','help','keep','protect','control','prevent'];
+    const allVerbs = Array.from(new Set([...baseVerbs, ...extraVerbs]));
+    function firstVerb(s){ const lower=s.toLowerCase(); if (lower.includes(' is ')) return {verb:'is'}; for (const v of allVerbs){ if (lower.includes(' '+v+' ')) return {verb:v} } for (const v of allVerbs){ if (lower.includes(' '+v+'s ')) return {verb:v+'s'} } return {verb: ''} }
+    function neg(s){ const fv = firstVerb(s.en); const lower=s.en; if (lower.includes(' is ')) return {en: lower.replace(' is ', ' is not '), pt: s.pt}; const subjWord = s.en.split(' ')[0]; const is3 = subjWord.toLowerCase().match(/^(he|she|it|the|sprayer|farm|veterinary|irrigation|greenhouse)/); const aux = is3 ? 'does' : 'do'; if (fv.verb && /s$/.test(fv.verb)) { const base = stripEnd(fv.verb); return {en: s.en.replace(new RegExp(`\b${fv.verb}\b`,'i'), `${aux} not ${base}`), pt: s.pt} } return {en: s.en.replace(new RegExp(`\b${fv.verb}\b`,'i'), `${aux} not ${fv.verb}`), pt: s.pt} }
+    function ques(s){ const lower=s.en; if (lower.includes(' is ')) { const parts = lower.split(' is '); return {en: `Is ${parts[0].trim()} ${parts[1].trim()}?`, pt: s.pt} } const subjWord = s.en.split(' ')[0]; const is3 = subjWord.toLowerCase().match(/^(he|she|it|the|sprayer|farm|veterinary|irrigation|greenhouse)/); const aux = is3 ? 'Does' : 'Do'; const rest = s.en.replace(new RegExp(`^${subjWord}\s+`),''); const words = rest.split(' '); if (words.length){ words[0] = stripEnd(words[0]); } return {en: `${aux} ${subjWord} ${words.join(' ')}?`, pt: s.pt} }
+    const aff = practice;
+    const negs = aff.map(neg);
+    const quess = aff.map(ques);
+    function table3(a,b,c){ return `
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr><th style="text-align:left">Afirmativa</th><th style="text-align:left">Negativa</th><th style="text-align:left">Pergunta</th></tr></thead>
+        <tbody>
+          ${a.map((x,i)=>`<tr><td>${x.en}</td><td>${b[i].en}</td><td>${c[i].en}</td></tr>`).join('')}
+        </tbody>
+      </table>
+    ` }
+    const sThird = sentences.filter(s=>/(prevents|keeps|helps|needs|is scheduled)/i.test(s.en)).slice(0,5);
+    const sTable = `
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
+        <tbody>
+          ${sThird.map(s=>`<tr><td>He/She/It: +s / is</td><td>${s.en}</td></tr>`).join('')}
+          ${groupWe.slice(0,3).map(s=>`<tr><td>I/You/We/They: base</td><td>${s.en}</td></tr>`).join('')}
+        </tbody>
+      </table>
+    `;
+    const explainList = aff.map(s=>`<div class="card"><div class="line"><div class="en">${s.en}</div><div class="pt">${fixPT(s.pt||'')}</div></div><div class="small" style="margin-top:6px">Presente simples: rotina agrícola.</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${s.en}">Ouvir Áudio</button></div></div>`).join('');
+    const whenList = [...groupWe.slice(0,3), ...groupIt.slice(0,2)].map(s=>`<div class="card"><div class="line"><div class="en">${s.en}</div><div class="pt">${fixPT(s.pt||'')}</div></div></div>`).join('');
     el.innerHTML = `
       <div class="section-title">Conceito</div>
       <div class="small">${gRaw}</div>
+      <div class="section-title" style="margin-top:10px">Quando usar</div>
+      <div class="grid">${whenList}</div>
       <div class="section-title" style="margin-top:10px">Estrutura</div>
       <div>${conjTable}</div>
-      <div class="section-title" style="margin-top:10px">Prática</div>
-      <div class="grid">${practice.map(ex=>`
-        <div class="card">
-          <div class="line"><div class="en">${ex.en}</div><div class="pt">${fixPT(ex.pt||'')}</div></div>
-          <div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${ex.en}">Ouvir Áudio</button></div>
-        </div>
-      `).join('')}</div>
+      <div style="margin-top:10px">${table3(aff,negs,quess)}</div>
+      <div class="section-title" style="margin-top:10px">S/Es (He/She/It)</div>
+      <div>${sTable}</div>
+      <div class="section-title" style="margin-top:10px">Exemplos reescritos</div>
+      <div class="grid">${explainList}</div>
+      <div id="gExercises"></div>
     `;
+    const gEx = document.getElementById('gExercises');
+    function renderVerbFill(){ const items = [
+      { sentence: 'We ____ pastures to improve forage quality.', answer: 'rotate' },
+      { sentence: 'We ____ yields and monitor feed intake.', answer: 'record' },
+      { sentence: 'I ____ the tractor carefully.', answer: 'start' },
+      { sentence: 'I ____ cows and check plants.', answer: 'feed' }
+    ]; gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Complete com o verbo</div>`; const html = items.map((f,i)=>`<div class="card"><div>${i+1}. ${f.sentence.replace('____',`<input class="blank" data-gv="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`)}</div></div>`).join(''); gEx.innerHTML += `<div>${html}</div><div class="small" id="gVRes" style="margin-top:6px"></div><button class="btn" id="gVCheck" style="margin-top:8px">Checar</button>`; document.getElementById('gVCheck').addEventListener('click', ()=>{ const inputs = gEx.querySelectorAll('input.blank[data-gv]'); let c=0; inputs.forEach(inp=>{ const i=Number(inp.dataset.gv); const ok = (inp.value||'').trim().toLowerCase()===items[i].answer; if(ok) c++ }); document.getElementById('gVRes').textContent = c===inputs.length ? 'Good pronunciation!' : 'Try again.' }) }
+    function renderDoDoes(){ const items = [
+      { sentence: '[____] we water animals and fix tools?', answer: 'do' },
+      { sentence: '[____] the tractor need a safety check?', answer: 'does' },
+      { sentence: '[____] sprayer calibration prevent over application?', answer: 'does' }
+    ]; gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Complete com do/does</div>`; const html = items.map((f,i)=>`<div class="card"><div>${i+1}. ${f.sentence.replace('[____]',`<input class="blank" data-dd="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:80px" />`)}</div></div>`).join(''); gEx.innerHTML += `<div>${html}</div><div class="small" id="gDDRes" style="margin-top:6px"></div><button class="btn" id="gDDCheck" style="margin-top:8px">Checar</button>`; document.getElementById('gDDCheck').addEventListener('click', ()=>{ const inputs = gEx.querySelectorAll('input.blank[data-dd]'); let c=0; inputs.forEach(inp=>{ const i=Number(inp.dataset.dd); const ok = (inp.value||'').trim().toLowerCase()===items[i].answer; if(ok) c++ }); document.getElementById('gDDRes').textContent = c===inputs.length ? 'Good pronunciation!' : 'Try again.' }) }
+    function renderClassify(){ const items = aff.map((a,i)=>({a:a.en,n:negs[i].en,q:quess[i].en})).slice(0,3).flatMap(x=>[ {txt:x.a, type:'Afirmativa'}, {txt:x.n, type:'Negativa'}, {txt:x.q, type:'Pergunta'} ]).sort(()=>Math.random()-0.5); gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Classifique</div>`; const html = items.map((it,i)=>`<div class="card"><div>${i+1}. ${it.txt}</div><div style="margin-top:6px"><button class="btn secondary" data-clf="${i}" data-type="Afirmativa">Afirmativa</button> <button class="btn secondary" data-clf="${i}" data-type="Negativa">Negativa</button> <button class="btn secondary" data-clf="${i}" data-type="Pergunta">Pergunta</button></div><div class="small" id="clf${i}" style="margin-top:6px"></div></div>`).join(''); gEx.innerHTML += `<div>${html}</div>`; gEx.addEventListener('click',(e)=>{ const t=e.target; if(!t.dataset.clf) return; const i=Number(t.dataset.clf); const res = document.getElementById('clf'+i); const chosen = t.dataset.type; const correct = items[i].type; res.textContent = chosen===correct ? 'Good pronunciation!' : 'Try again.' }) }
+    function renderTransform(){ const items = aff.slice(0,3); gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Transforme</div>`; const html = items.map((s,i)=>`<div class="card"><div>${i+1}. ${s.en}</div><div style="margin-top:6px"><button class="btn secondary" data-showneg="${i}">Ver negativa</button> <button class="btn secondary" data-showq="${i}">Ver pergunta</button></div><div class="small" id="tr${i}" style="margin-top:6px"></div></div>`).join(''); gEx.innerHTML += `<div>${html}</div>`; gEx.addEventListener('click',(e)=>{ const t=e.target; if(t.dataset.showneg){ const i=Number(t.dataset.showneg); document.getElementById('tr'+i).textContent = negs[i].en; } if(t.dataset.showq){ const i=Number(t.dataset.showq); document.getElementById('tr'+i).textContent = quess[i].en; } }) }
+    renderVerbFill(); renderDoDoes(); renderClassify(); renderTransform();
   }
 
   function renderVerbs(data) {
@@ -550,6 +649,7 @@ function initTextPage(level, idx) {
       renderVocabulary(data);
       renderGrammar(data);
       renderVerbs(data);
+      renderVerbsModule(data);
       renderMC((data.exercises && data.exercises.multiple_choice) || []);
       renderFill((data.exercises && data.exercises.fill_in) || []);
       document.querySelector('#speakPrompt').textContent =
