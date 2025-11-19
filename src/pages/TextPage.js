@@ -27,8 +27,10 @@ export function TextPage(level, index) {
       </section>
 
       <section class="card">
-        <div class="section-title">Vocabulário</div>
-        <div id="vocab" class="flash-grid"></div>
+        <details class="accordion">
+          <summary class="section-title">Vocabulário</summary>
+          <div id="vocab" class="flash-grid"></div>
+        </details>
       </section>
 
       <section class="card">
@@ -46,20 +48,26 @@ export function TextPage(level, index) {
       </section>
 
       <section class="card">
-        <div class="section-title">Exercícios – Múltipla escolha</div>
-        <div id="mc"></div>
+        <details class="accordion">
+          <summary class="section-title">Exercícios – Múltipla escolha</summary>
+          <div id="mc"></div>
+        </details>
       </section>
 
       <section class="card">
-        <div class="section-title">Exercícios – Completar frases</div>
-        <div id="fill"></div>
-        <button class="btn" id="checkFill" style="margin-top:8px">Checar</button>
-        <div id="fillResult" class="small" style="margin-top:6px"></div>
+        <details class="accordion">
+          <summary class="section-title">Exercícios – Completar frases</summary>
+          <div id="fill"></div>
+          <button class="btn" id="checkFill" style="margin-top:8px">Checar</button>
+          <div id="fillResult" class="small" style="margin-top:6px"></div>
+        </details>
       </section>
 
       <section class="card">
-        <div class="section-title">Frases do texto</div>
-        <div id="pronList" class="pron-grid"></div>
+        <details class="accordion">
+          <summary class="section-title">Treinar pronuncia</summary>
+          <div id="pronList" class="pron-grid"></div>
+        </details>
       </section>
 
       <div style="margin-top:16px;display:flex;gap:8px">
