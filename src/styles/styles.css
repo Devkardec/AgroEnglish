@@ -114,6 +114,22 @@ button[data-tab].active { background: var(--green); color: #fff; box-shadow: 0 0
 button[data-tab]:hover { background: #eef7ff }
 button[data-tab].active:hover { background: #103a72 }
 
+/* Tab buttons - layout & icons */
+.tab-button, button[data-tab] {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  flex:1; min-width:0; padding:10px 12px; border-radius:8px;
+}
+button[data-tab]::before { font-size:1rem; line-height:1; }
+[data-tab="study"]::before { content:"📖"; }
+[data-tab="practice"]::before { content:"✍️"; }
+[data-tab="speech"]::before { content:"🎧"; }
+
+/* Mobile: show only icon, enlarge icon */
+@media (max-width:600px) {
+  .tab-button, button[data-tab] { font-size:0; padding:12px; }
+  .tab-button::before, button[data-tab]::before { font-size:20px; margin-right:0; }
+}
+
 @media (max-width: 640px) {
   .app-header { padding:10px; display:grid; grid-template-columns:auto 1fr; align-items:center; gap:10px }
   .app-header .brand span { display:none }
