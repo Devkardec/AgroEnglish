@@ -5,6 +5,7 @@ export function Settings({ state, setSetting }) {
     <main class="main">
       <h2>Configurações de Voz</h2>
       ${VoiceSelector({ voices: state.voices, current: state.voiceName })}
+      <div style="margin-top:8px"><button class="btn secondary" id="refreshVoices">Atualizar vozes</button></div>
       <div style="margin-top:16px">
         <label>Velocidade: <span class="small">${state.rate.toFixed(2)}</span></label>
         <input type="range" min="0.6" max="1.6" step="0.1" value="${state.rate}" id="rate">
@@ -21,9 +22,15 @@ export function Settings({ state, setSetting }) {
         const rate = document.getElementById('rate')
         const pitch = document.getElementById('pitch')
         const test = document.getElementById('test')
+        const refresh = document.getElementById('refreshVoices')
         rate.addEventListener('input', e => { localStorage.setItem('rate', e.target.value); location.hash='#/settings' })
         pitch.addEventListener('input', e => { localStorage.setItem('pitch', e.target.value); location.hash='#/settings' })
         test.addEventListener('click', () => speak('This is AgroEnglish Pro. Ready for farm work.'))
+        refresh.addEventListener('click', () => {
+          try { window.speechSynthesis.getVoices() } catch {}
+          try { speak('Voice list updated.') } catch {}
+          setTimeout(() => { location.hash = '#/settings' }, 300)
+        })
       </script>
     </main>
   `

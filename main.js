@@ -29,6 +29,7 @@ function loadVoices() {
       state.voiceName = state.voices[0] ? state.voices[0].name : '';
     }
   }
+  try { render() } catch {}
 }
 loadVoices();
 window.speechSynthesis.onvoiceschanged = loadVoices;
@@ -831,6 +832,44 @@ document.addEventListener('click', e => {
   if (t && t.dataset && t.dataset.voice) {
     setSetting('voiceName', t.dataset.voice);
     render();
+  }
+  if (t && t.id === 'voiceBtn') {
+    const menu = document.getElementById('voiceMenu');
+    if (!menu) return;
+    const list = (state.voices||[]).filter(v=>{
+      const lang = (v.lang||'').toLowerCase();
+      return lang.startsWith('en-us') || lang.startsWith('en');
+    }).sort((a,b)=>a.name.localeCompare(b.name));
+    const items = list.map(v=>`
+      <div class="selector" style="gap:6px">
+        <div class="option ${v.name===state.voiceName?'active':''}" data-voice="${v.name}">${v.name} <span class="small">(${v.lang})</span></div>
+        <button class="btn sm secondary" data-voice-test="${v.name}">Testar</button>
+      </div>
+    `).join('') || '<div class="small">Sem vozes em inglês disponíveis</div>';
+    const refresh = '<div style="margin-top:6px"><button class="btn sm" data-voice-refresh="1">Atualizar vozes</button></div>';
+    menu.innerHTML = items + refresh;
+    menu.style.display = menu.style.display==='none' ? 'block' : 'none';
+  }
+  if (t && t.dataset && t.dataset.voiceTest) {
+    const name = t.dataset.voiceTest;
+    const v = state.voices.find(x=>x.name===name);
+    if (v) {
+      const u = new SpeechSynthesisUtterance('Testing voice. AgroEnglish Pro.');
+      u.voice = v;
+      u.rate = Number(localStorage.getItem('rate')||state.rate);
+      u.pitch = Number(localStorage.getItem('pitch')||state.pitch);
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+    }
+  }
+  if (t && t.dataset && t.dataset.voiceRefresh) {
+    try { window.speechSynthesis.getVoices() } catch {}
+    setTimeout(()=> render(), 300);
+  }
+  const menu = document.getElementById('voiceMenu');
+  if (menu && menu.style.display==='block') {
+    const within = t.id === 'voiceBtn' || t.closest('#voiceMenu');
+    if (!within) menu.style.display = 'none';
   }
   if (t && t.dataset && t.dataset.action === 'toggle-theme') {
     const next = state.theme === 'light' ? 'dark' : 'light';
