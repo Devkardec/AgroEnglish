@@ -10,7 +10,6 @@ export function Header() {
       </div>
       <nav class="nav">
         <a href="#/" class="${hash==='#/'?'active':''}">Home</a>
-        <a href="#/level/A1" class="${hash.startsWith('#/level')?'active':''}">Levels</a>
         <a class="continue" href="#/text/${lvl||'A1'}/${idx||1}" ${!lvl?'style="display:none"':''}>Continuar</a>
         <button class="btn theme" data-action="toggle-theme">Tema</button>
       </nav>
