@@ -519,7 +519,6 @@ function initTextPage(level, idx) {
     const explainList = aff.map(s=>`<div class="card"><div class="line"><div class="en">${s.en}</div><div class="pt">${fixPT(s.pt||'')}</div></div><div class="small" style="margin-top:6px">Presente simples: rotina agrícola.</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${s.en}">Ouvir Áudio</button></div></div>`).join('');
     const whenList = [...groupWe.slice(0,3), ...groupIt.slice(0,2)].map(s=>`<div class="card"><div class="line"><div class="en">${s.en}</div><div class="pt">${fixPT(s.pt||'')}</div></div></div>`).join('');
     el.innerHTML = `
-      <div class="accordion-toolbar"><button class="btn sm secondary" data-acc="open-all">Expandir tudo</button><button class="btn sm secondary" data-acc="close-all">Recolher tudo</button></div>
       <details class="accordion">
         <summary class="section-title">Conceito</summary>
         <div><div class="small">${gRaw}</div></div>
@@ -550,7 +549,6 @@ function initTextPage(level, idx) {
       </details>
       <div id="gExercises"></div>
     `;
-    el.addEventListener('click',(e)=>{ const t=e.target; if(t.dataset.acc==='open-all'){ el.querySelectorAll('details.accordion').forEach(d=>d.open=true) } if(t.dataset.acc==='close-all'){ el.querySelectorAll('details.accordion').forEach(d=>d.open=false) } });
     const gEx = document.getElementById('gExercises');
     function renderVerbFill(){ const items = [
       { sentence: 'We ____ pastures to improve forage quality.', answer: 'rotate' },
@@ -575,35 +573,23 @@ function initTextPage(level, idx) {
     const m = listStr.split(':')[1] || listStr;
     const baseVerbs = m.split(',').map(s=>s.trim()).filter(Boolean);
     const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
-    const sentences = pairs.length ? pairs.map(p=>p.en) : String(data.text||'').split(/(?<=[.!?])\s+/);
-    function includesVerb(s){ return baseVerbs.some(v=> new RegExp(`\\b${v}\\b`,'i').test(s)) }
-    const examples = sentences.filter(includesVerb).slice(0,6);
-    const cards = examples.map(en=>`
-      <div class="card">
-        <div class="line"><div class="en">${en}</div></div>
-        <div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${en}">Ouvir Áudio</button></div>
-      </div>
-    `).join('');
-    const listHtml = baseVerbs.map(v=>`<div class="selector"><div class="option">${v}</div></div>`).join('');
-    const tablePS = `
-      <table style="width:100%;border-collapse:collapse">
-        <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
-        <tbody>
-          <tr><td>I/You/We/They</td><td>We record yields. We monitor feed intake.</td></tr>
-          <tr><td>He/She/It (+s)</td><td>Sprayer calibration prevents over application. The greenhouse helps control temperature.</td></tr>
-        </tbody>
-      </table>
-    `;
-    const tableIngEd = `
-      <table style="width:100%;border-collapse:collapse">
-        <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Regra</th><th style="text-align:left">Exemplo</th></tr></thead>
-        <tbody>
-          <tr><td>-ing</td><td>verbo + ing</td><td>feed → feeding; check → checking; record → recording</td></tr>
-          <tr><td>-ing</td><td>remova e final</td><td>operate → operating; rotate → rotating</td></tr>
-          <tr><td>-ed</td><td>verbo + ed</td><td>record → recorded; monitor → monitored</td></tr>
-        </tbody>
-      </table>
-    `;
+    const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : String(data.text||'').split(/(?<=[.!?])\s+/).map((s,i)=>({en:s, pt:String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT)[i]||''}));
+    function exampleForVerb(v){ const found = sentences.find(s=> new RegExp(`\b${v}(s)?\b`,'i').test(s.en)); if (found) return found; const fb = {
+      feed:{en:'We feed the cows every morning.', pt:'Nós alimentamos as vacas todas as manhãs.'},
+      check:{en:'We check water for the animals.', pt:'Nós verificamos a água dos animais.'},
+      start:{en:'I start the tractor carefully.', pt:'Eu ligo o trator com cuidado.'},
+      clean:{en:'I clean the barn after milking.', pt:'Eu limpo o celeiro após a ordenha.'},
+      adjust:{en:'We adjust sprayer calibration.', pt:'Nós ajustamos a calibração do pulverizador.'},
+      monitor:{en:'We monitor feed intake.', pt:'Nós monitoramos o consumo de ração.'},
+      operate:{en:'We operate the sprayer safely.', pt:'Nós operamos o pulverizador com segurança.'},
+      record:{en:'We record yields each week.', pt:'Nós registramos a produtividade toda semana.'},
+      assess:{en:'We assess pasture quality.', pt:'Nós avaliamos a qualidade da pastagem.'},
+      coordinate:{en:'We coordinate biosecurity routines.', pt:'Nós coordenamos rotinas de biossegurança.'}
+    }; return fb[v] || {en:`We ${v} on the farm.`, pt:`Nós ${v} na fazenda.`}; }
+    function thirdForm(v){ if(/(ch|sh|x|o)$/i.test(v)||v==='go') return v==='go'?'goes':v+'es'; if(/y$/i.test(v)) return v.replace(/y$/,'ies'); return v+'s'; }
+    function ingForm(v){ if(/e$/i.test(v) && v!=='be') return v.replace(/e$/,'')+'ing'; return v+'ing'; }
+    function pastForm(v){ const irr={feed:'fed',go:'went',have:'had',do:'did',buy:'bought'}; if(irr[v]) return irr[v]; if(/e$/i.test(v)) return v+'d'; return v+'ed'; }
+    const listHtml = baseVerbs.map(v=>`<div class="selector"><div class="option" data-verb="${v}">${v}</div></div>`).join('');
     const collocations = `
       <div class="grid">
         <div class="card"><div>feed + cows</div><div class="small">Alimentar o gado diariamente.</div></div>
@@ -615,7 +601,6 @@ function initTextPage(level, idx) {
       </div>
     `;
     el.innerHTML = `
-      <div class="accordion-toolbar"><button class="btn sm secondary" data-acc="open-all">Expandir tudo</button><button class="btn sm secondary" data-acc="close-all">Recolher tudo</button></div>
       <details class="accordion">
         <summary class="section-title">Conceito</summary>
         <div>
@@ -629,13 +614,12 @@ function initTextPage(level, idx) {
         <div class="small">${listHtml}</div>
       </details>
       <details class="accordion">
-        <summary class="section-title">Conjugação básica</summary>
-        <div>${tablePS}</div>
-        <div style="margin-top:10px">${tableIngEd}</div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">Exemplos</summary>
-        <div class="grid">${cards}</div>
+        <summary class="section-title">Painel do verbo</summary>
+        <div id="verbPanel">
+          <div class="small">Selecione um verbo na lista para ver formas, exemplos e prática.</div>
+          <div id="verbConj" style="margin-top:10px"></div>
+          <div id="verbExamples" style="margin-top:10px"></div>
+        </div>
       </details>
       <details class="accordion">
         <summary class="section-title">Prática</summary>
@@ -651,7 +635,6 @@ function initTextPage(level, idx) {
       </details>
       <div class="small" style="margin-top:8px">Vistos neste texto: ${baseVerbs.join(', ')}</div>
     `;
-    el.addEventListener('click',(e)=>{ const t=e.target; if(t.dataset.acc==='open-all'){ el.querySelectorAll('details.accordion').forEach(d=>d.open=true) } if(t.dataset.acc==='close-all'){ el.querySelectorAll('details.accordion').forEach(d=>d.open=false) } });
     const vEx = document.getElementById('vExercises');
     if (vEx) {
       const fillItems = [
@@ -700,6 +683,25 @@ function initTextPage(level, idx) {
         document.getElementById('vIRes').textContent = c===ingItems.length ? 'Acertou!' : 'Tente novamente.';
       });
     }
+    function renderVerbPanel(v){ const ex = exampleForVerb(v); const conjHtml = `
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td>Base</td><td>We ${v} on the farm.</td></tr>
+          <tr><td>He/She/It</td><td>He ${thirdForm(v)} tools.</td></tr>
+          <tr><td>-ing</td><td>${ingForm(v)} tasks now.</td></tr>
+          <tr><td>Past</td><td>We ${pastForm(v)} yesterday.</td></tr>
+        </tbody>
+      </table>`;
+      document.getElementById('verbConj').innerHTML = conjHtml;
+      document.getElementById('verbExamples').innerHTML = `
+        <div class="card">
+          <div class="line"><div class="en">${ex.en}</div><div class="pt">${fixPT(ex.pt||'')}</div></div>
+          <div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${ex.en}">Ouvir Áudio</button></div>
+        </div>`;
+    }
+    el.addEventListener('click',(e)=>{ const op = e.target.closest('.option[data-verb]'); if(!op) return; el.querySelectorAll('.selector .option').forEach(o=>o.classList.remove('active')); op.classList.add('active'); renderVerbPanel(op.dataset.verb); });
+    const firstVerb = baseVerbs[0]; if(firstVerb){ const firstOp = el.querySelector(`.option[data-verb="${firstVerb}"]`); if(firstOp) firstOp.classList.add('active'); renderVerbPanel(firstVerb); }
   }
 
   function renderMC(list) {
