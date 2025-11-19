@@ -103,3 +103,19 @@ details.accordion > div { margin-top:8px }
 .selector .option { background:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.06) }
 .selector .option:hover { background:#f6fbff; border-color:#123b7a }
 .selector .option.active { background:linear-gradient(90deg, #eef7ff, #e9f6f1); border-color:var(--green) }
+
+@media (max-width: 640px) {
+  .app-header { padding:10px; flex-wrap:wrap }
+  .app-header .brand span { display:none }
+  .app-header .brand img { width:42px; height:42px }
+  .app-header .nav { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px; width:100%; margin-top:8px }
+  .app-header .nav a,
+  .app-header .nav .continue,
+  .app-header .nav .theme { margin:0; padding:8px 10px; font-size:14px; text-align:center }
+  .btn { padding:10px 14px; font-size:15px }
+  .btn.sm { padding:6px 8px; font-size:12px }
+  .section-title { font-size:20px }
+  .features { grid-template-columns:repeat(auto-fit,minmax(160px,1fr)) }
+  .flash-grid { grid-template-columns:repeat(auto-fit,minmax(140px,1fr)) }
+  .levels-grid { grid-template-columns:repeat(auto-fit,minmax(120px,1fr)) }
+}
