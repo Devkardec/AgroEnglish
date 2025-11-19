@@ -24,7 +24,7 @@ export function TextPage(level, index) {
         <div class="section-title">Guia de Estudo</div>
         <div style="margin-top:8px">
           <details class="accordion">
-            <summary>Voz da narração</summary>
+            <summary><span class="section-title" style="margin:0">Voz da narração</span></summary>
             <div style="margin-top:8px">
               <div id="voiceSelector" class="selector" style="gap:6px"></div>
             </div>
