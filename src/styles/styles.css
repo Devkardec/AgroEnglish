@@ -52,6 +52,16 @@ input[type="range"] { width:100%; }
 .levels-grid .level-card { flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:6px }
 .levels-grid .level-card .badge { display:block; margin-top:4px; color:var(--muted) }
 
+/* Modern level navigation buttons */
+.levels-nav { margin-top:12px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px }
+.btn.level-nav { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border-radius:16px; padding:16px 18px }
+.btn.level-nav .title { font-weight:700 }
+.btn.level-nav .desc { font-size:13px; margin-top:6px; opacity:.95 }
+@media (max-width:600px) {
+  .levels-nav { grid-template-columns:repeat(auto-fit,minmax(160px,1fr)) }
+  .btn.level-nav { padding:14px }
+}
+
 .badge { display:inline-block; background:#eef3fb; color:var(--green); padding:4px 10px; border-radius:999px; font-size:12px; border:1px solid #d6e1f5 }
 
 .home-actions { margin-top:16px; display:flex; gap:10px; flex-wrap:wrap }

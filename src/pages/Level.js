@@ -25,30 +25,30 @@ export function Level(level) {
       
       <section class="card" style="margin-top:16px">
         <div class="section-title" style="text-align:center">Navegar por níveis</div>
-        <div class="levels-grid">
-          <a class="level-card" href="#/level/A1">
-            <span class="title" style="text-align:center">A1 – Iniciante</span>
-            <span class="small" style="display:block;text-align:center">Consegue entender e usar frases simples do dia a dia.</span>
+        <div class="levels-nav">
+          <a class="btn level-nav" href="#/level/A1">
+            <span class="title">A1 – Iniciante</span>
+            <span class="desc">Consegue entender e usar frases simples do dia a dia.</span>
           </a>
-          <a class="level-card" href="#/level/A2">
-            <span class="title" style="text-align:center">A2 – Básico</span>
-            <span class="small" style="display:block;text-align:center">Consegue lidar com situações simples e comunicar necessidades imediatas.</span>
+          <a class="btn level-nav" href="#/level/A2">
+            <span class="title">A2 – Básico</span>
+            <span class="desc">Consegue lidar com situações simples e comunicar necessidades imediatas.</span>
           </a>
-          <a class="level-card" href="#/level/B1">
-            <span class="title" style="text-align:center">B1 – Intermediário</span>
-            <span class="small" style="display:block;text-align:center">Consegue se virar em viagens, falar sobre experiências e dar opiniões simples.</span>
+          <a class="btn level-nav" href="#/level/B1">
+            <span class="title">B1 – Intermediário</span>
+            <span class="desc">Consegue se virar em viagens, falar sobre experiências e dar opiniões simples.</span>
           </a>
-          <a class="level-card" href="#/level/B2">
-            <span class="title" style="text-align:center">B2 – Intermediário avançado</span>
-            <span class="small" style="display:block;text-align:center">Consegue participar de conversas mais complexas e compreender textos detalhados.</span>
+          <a class="btn level-nav" href="#/level/B2">
+            <span class="title">B2 – Intermediário avançado</span>
+            <span class="desc">Consegue participar de conversas mais complexas e compreender textos detalhados.</span>
           </a>
-          <a class="level-card" href="#/level/C1">
-            <span class="title" style="text-align:center">C1 – Avançado</span>
-            <span class="small" style="display:block;text-align:center">Consegue se expressar de forma fluente e espontânea, em contextos acadêmicos ou profissionais.</span>
+          <a class="btn level-nav" href="#/level/C1">
+            <span class="title">C1 – Avançado</span>
+            <span class="desc">Consegue se expressar de forma fluente e espontânea, em contextos acadêmicos ou profissionais.</span>
           </a>
-          <a class="level-card" href="#/level/C2">
-            <span class="title" style="text-align:center">C2 – Proficiência</span>
-            <span class="small" style="display:block;text-align:center">Nível próximo ao de um falante nativo; entende praticamente tudo e comunica com precisão.</span>
+          <a class="btn level-nav" href="#/level/C2">
+            <span class="title">C2 – Proficiência</span>
+            <span class="desc">Nível próximo ao de um falante nativo; entende praticamente tudo e comunica com precisão.</span>
           </a>
         </div>
       </section>
