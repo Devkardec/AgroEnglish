@@ -23,8 +23,12 @@ export function TextPage(level, index) {
       <section id="tab-study" class="card">
         <div class="section-title">Guia de Estudo</div>
         <div style="margin-top:8px">
-          <div class="section-title">Voz da narração</div>
-          <div id="voiceSelector" class="selector" style="gap:6px"></div>
+          <details class="accordion">
+            <summary>Voz da narração</summary>
+            <div style="margin-top:8px">
+              <div id="voiceSelector" class="selector" style="gap:6px"></div>
+            </div>
+          </details>
         </div>
         <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn" id="play">Play</button>

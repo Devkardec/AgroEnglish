@@ -167,3 +167,8 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
 .card details.accordion > summary { background:transparent; border:0; padding:0; border-radius:0 }
 .card details.accordion[open] > summary { border-bottom:1px solid #e5e9e7; padding-bottom:8px }
 .card details.accordion > div { margin-top:10px }
+@media (min-width: 641px) {
+  .app-header { justify-content:center; gap:20px }
+  .app-header .nav { justify-content:center }
+  .app-header .brand img { height:84px; width:auto; object-fit:contain }
+}
