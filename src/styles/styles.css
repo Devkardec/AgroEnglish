@@ -107,11 +107,14 @@ details.accordion > div { margin-top:8px }
 @media (max-width: 640px) {
   .app-header { padding:10px; flex-wrap:wrap }
   .app-header .brand span { display:none }
-  .app-header .brand img { width:42px; height:42px }
+  .app-header .brand img { width:54px; height:54px }
   .app-header .nav { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px; width:100%; margin-top:8px }
   .app-header .nav a,
   .app-header .nav .continue,
-  .app-header .nav .theme { margin:0; padding:8px 10px; font-size:14px; text-align:center }
+  .app-header .nav .theme { margin:0; padding:10px 12px; font-size:15px; text-align:center; border-radius:12px }
+  .app-header .nav a,
+  .app-header .nav .continue { background:linear-gradient(90deg, var(--green), var(--green2)); color:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.12) }
+  .app-header .nav a.active { filter:brightness(1.05) }
   .btn { padding:10px 14px; font-size:15px }
   .btn.sm { padding:6px 8px; font-size:12px }
   .section-title { font-size:20px }
