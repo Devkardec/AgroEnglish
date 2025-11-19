@@ -141,16 +141,25 @@ function fixPT(s) {
   return out;
 }
 
-function highlightGrammar(text){
-  let t = String(text||'');
-  t = t.replace(/\b(do|does|don't|doesn't)\b/gi, '<span class="grammar-aux">$1</span>');
-  t = t.replace(/\b([A-Za-z]{3,})(es|s)\b/g, (m, root, suf)=>{
-    const lower = (root+suf).toLowerCase();
-    const blacklist = ['this','is','as','was','has','does','goes','yes','news'];
-    if (blacklist.includes(lower)) return m;
-    return root + '<span class="grammar-suffix">'+suf+'</span>';
-  });
-  return t;
+function annotateTextManual(str){
+  return String(str||'')
+    .replace(/\bprevents\b/g, "<span class='grammar-suffix'>prevents</span>")
+    .replace(/\bkeeps\b/g, "<span class='grammar-suffix'>keeps</span>")
+    .replace(/\brotates\b/g, "<span class='grammar-suffix'>rotates</span>")
+    .replace(/\bdrives\b/g, "<span class='grammar-suffix'>drives</span>")
+    .replace(/\bdo\b/g, "<span class='grammar-aux'>do</span>")
+    .replace(/\bdoes\b/g, "<span class='grammar-aux'>does</span>")
+    .replace(/\bdon't\b/g, "<span class='grammar-aux'>don't</span>")
+    .replace(/\bdoesn't\b/g, "<span class='grammar-aux'>doesn't</span>");
+}
+
+function renderVerbsModule(data){
+  const el = document.querySelector('#verbs');
+  if (!el) return;
+  const pairs = Array.isArray(data.pairs) ? data.pairs : [];
+  const examples = pairs.filter(p=>/\b(prevents|keeps|rotates|drives)\b/i.test(p.en)).slice(0,4);
+  const cards = examples.map(p=>`<div class="card"><div class="line"><div class="en">${annotateTextManual(p.en)}</div><div class="pt">${fixPT(p.pt||'')}</div></div></div>`).join('');
+  el.innerHTML = `<div class="section-title">Verbos na 3ª pessoa</div><div class="grid">${cards||'<div class="small">Sem exemplos com prevents/keeps/rotates/drives neste texto.</div>'}</div>`;
 }
 
 function setSetting(key, val) {
@@ -419,7 +428,7 @@ function initTextPage(level, idx) {
       <div class="flashcard" data-en="${it.en.replace(/"/g,'&quot;')}">
         <div class="flashcard-inner">
           <div class="flashcard-face front">
-            <div class="word">${markGrammar(it.en)}</div>
+            <div class="word">${annotateTextManual(it.en)}</div>
           </div>
           <div class="flashcard-face back">
             <div class="meaning">${fixPT(it.pt)}</div>
@@ -518,7 +527,7 @@ function initTextPage(level, idx) {
     const groupI = sentences.filter(s=>/^\s*i\b/i.test(s.en)).slice(0,4);
     const groupWe = sentences.filter(s=>/^\s*we\b/i.test(s.en)).slice(0,4);
     const groupIt = sentences.filter(s=>/^(the tractor|the greenhouse|veterinary biosecurity|irrigation)\b/i.test(s.en)).slice(0,4);
-    function tableRow(subj, arr){ return arr.map(s=>`<tr><td>${subj}</td><td>${highlightGrammar(s.en)}</td><td>${fixPT(s.pt||'')}</td></tr>`).join('') }
+    function tableRow(subj, arr){ return arr.map(s=>`<tr><td>${subj}</td><td>${annotateTextManual(s.en)}</td><td>${fixPT(s.pt||'')}</td></tr>`).join('') }
     const conjTable = `
       <table style="width:100%;border-collapse:collapse">
         <thead><tr><th style="text-align:left">Sujeito</th><th style="text-align:left">Frase (EN)</th><th style="text-align:left">Tradução (PT)</th></tr></thead>
@@ -564,8 +573,8 @@ function initTextPage(level, idx) {
         interrogative: (qAux+' '+subject+' '+restWords.join(' ')+'?').trim()
       };
     }
-    const neg = (s)=>({ en: highlightGrammar(buildPresentSimpleForms(s.en).negative), pt: s.pt });
-    const ques = (s)=>({ en: highlightGrammar(buildPresentSimpleForms(s.en).interrogative), pt: s.pt });
+    const neg = (s)=>({ en: annotateTextManual(buildPresentSimpleForms(s.en).negative), pt: s.pt });
+    const ques = (s)=>({ en: annotateTextManual(buildPresentSimpleForms(s.en).interrogative), pt: s.pt });
     const aff = practice;
     const negs = aff.map(neg);
     const quess = aff.map(ques);
@@ -573,7 +582,7 @@ function initTextPage(level, idx) {
       <table style="width:100%;border-collapse:collapse">
         <thead><tr><th style="text-align:left">Afirmativa</th><th style="text-align:left">Negativa</th><th style="text-align:left">Pergunta</th></tr></thead>
         <tbody>
-          ${a.map((x,i)=>`<tr><td>${highlightGrammar(x.en)}</td><td>${b[i].en}</td><td>${c[i].en}</td></tr>`).join('')}
+          ${a.map((x,i)=>`<tr><td>${annotateTextManual(x.en)}</td><td>${b[i].en}</td><td>${c[i].en}</td></tr>`).join('')}
         </tbody>
       </table>
     ` }
@@ -582,13 +591,13 @@ function initTextPage(level, idx) {
       <table style="width:100%;border-collapse:collapse">
         <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
         <tbody>
-          ${sThird.map(s=>`<tr><td>He/She/It: +s</td><td>${highlightGrammar(s.en)}</td></tr>`).join('')}
-          ${groupWe.slice(0,3).map(s=>`<tr><td>I/You/We/They: base</td><td>${highlightGrammar(s.en)}</td></tr>`).join('')}
+          ${sThird.map(s=>`<tr><td>He/She/It: +s</td><td>${annotateTextManual(s.en)}</td></tr>`).join('')}
+          ${groupWe.slice(0,3).map(s=>`<tr><td>I/You/We/They: base</td><td>${s.en}</td></tr>`).join('')}
         </tbody>
       </table>
     `;
-    const explainList = aff.map(s=>`<div class="card"><div class="line"><div class="en">${highlightGrammar(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div><div class="small" style="margin-top:6px">Presente simples: rotina agrícola.</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${s.en}">Ouvir Áudio</button></div></div>`).join('');
-    const whenList = [...groupWe.slice(0,3), ...groupIt.slice(0,2)].map(s=>`<div class="card"><div class="line"><div class="en">${highlightGrammar(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div></div>`).join('');
+    const explainList = aff.map(s=>`<div class="card"><div class="line"><div class="en">${annotateTextManual(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div><div class="small" style="margin-top:6px">Presente simples: rotina agrícola.</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${s.en}">Ouvir Áudio</button></div></div>`).join('');
+    const whenList = [...groupWe.slice(0,3), ...groupIt.slice(0,2)].map(s=>`<div class="card"><div class="line"><div class="en">${annotateTextManual(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div></div>`).join('');
     el.innerHTML = `
       <details class="accordion">
         <summary class="section-title">Conceito</summary>
@@ -933,12 +942,12 @@ function initTextPage(level, idx) {
     try {
       const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
       if (pairs.length) {
-      linesEl.innerHTML = pairs.map(p=>`<div class="line"><div class="en">${highlightGrammar(p.en)}</div><div class="pt">${fixPT(p.pt)}</div></div>`).join('');
+      linesEl.innerHTML = pairs.map(p=>`<div class="line"><div class="en">${annotateTextManual(p.en)}</div><div class="pt">${fixPT(p.pt)}</div></div>`).join('');
         return;
       }
       const en = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
       const pt = String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT);
-      linesEl.innerHTML = en.map((s,i)=>`<div class="line"><div class="en">${highlightGrammar(s)}</div><div class="pt">${pt[i]||''}</div></div>`).join('');
+      linesEl.innerHTML = en.map((s,i)=>`<div class="line"><div class="en">${annotateTextManual(s)}</div><div class="pt">${pt[i]||''}</div></div>`).join('');
       if (!linesEl.innerHTML) {
         linesEl.innerHTML = '<div class="small">Texto indisponível.</div>';
       }
