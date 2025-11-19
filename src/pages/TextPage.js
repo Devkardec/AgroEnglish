@@ -58,34 +58,9 @@ export function TextPage(level, index) {
       </section>
 
       <section class="card">
-        <div class="section-title">Pronúncia</div>
-        <div id="speakPrompt" class="small"></div>
-        <div class="small" style="margin-top:6px">Treine ouvindo e lendo trechos, grave e depois ouça sua pronúncia.</div>
-        <div style="margin-top:10px">
-          <button class="btn" id="openPronModal">Treinar pronúncia</button>
-        </div>
-
-        <div class="section-title" style="margin-top:12px">Frases do texto</div>
+        <div class="section-title">Frases do texto</div>
         <div id="pronList" class="pron-grid"></div>
       </section>
-
-      <div class="modal-overlay" id="pronModal" aria-hidden="true">
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pronModalTitle">
-          <div class="modal-header">
-            <div id="pronModalTitle">Treinar pronúncia</div>
-            <button class="btn secondary" id="closePronModal">Fechar</button>
-          </div>
-          <div class="modal-body">
-            <div class="small">Ouça a frase, leia, grave e compare sua pronúncia.</div>
-            <div id="pronModalList" class="pron-grid" style="margin-top:12px"></div>
-            <div id="recMeter" class="meter"><span></span></div>
-            <div id="recStatus" class="small" style="margin-top:8px"></div>
-          </div>
-          <div class="modal-actions">
-            <button class="btn secondary" id="closePronModal2">Fechar</button>
-          </div>
-        </div>
-      </div>
 
       <div style="margin-top:16px;display:flex;gap:8px">
         <a class="btn secondary" href="#/text/${level}/${Math.max(
