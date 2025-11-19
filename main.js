@@ -365,47 +365,32 @@ function initTextPage(level, idx) {
     if (!el) return;
     const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
     const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : String(data.text||'').split(/(?<=[.!?])\s+/).map((s,i)=>({en:s, pt:String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT)[i]||''}));
-    const g = String(data.grammar||'').toLowerCase();
-    let intro = 'Explicação baseada no texto.';
-    function pick(fn, n){ const arr = sentences.filter(fn); return arr.slice(0, n || 3) }
-    let examples = [];
-    if (g.includes('present simple')) {
-      intro = 'Presente simples descreve rotinas e fatos. Estrutura: sujeito + verbo no presente.';
-      examples = pick(s=>/^(we|i|you|they|he|she)\b/i.test(s.en));
-    } else if (g.includes('adverbs') || g.includes('frequency')) {
-      intro = 'Advérbios de frequência indicam periodicidade: always, usually, often, every day.';
-      examples = pick(s=>/(every|always|usually|often|morning|afternoon)/i.test(s.en));
-    } else if (g.includes('past')) {
-      intro = 'Passado simples narra eventos concluídos: verbo no passado (worked, sold).';
-      examples = pick(s=>/(\b\w+ed\b|\bsold\b|\bwoke\b|\bwent\b)/i.test(s.en));
-    } else if (g.includes('passive')) {
-      intro = 'Voz passiva: be + particípio (is scheduled, are rotated).';
-      examples = pick(s=>/\b(is|are|was|were)\s+\w+ed\b/i.test(s.en));
-    } else if (g.includes('complex clauses') || g.includes('purpose') || g.includes('result')) {
-      intro = 'Propósito/resultado: to + verbo, in order to, so (that).';
-      examples = pick(s=>/( to \w+|in order to|so that| so )/i.test(s.en));
-    } else if (g.includes('academic')) {
-      intro = 'Estilo acadêmico usa termos técnicos e precisão lexical.';
-      examples = pick(s=>/(assessment|analysis|strategy|protocols|compliance)/i.test(s.en));
-    }
-    if (!examples.length) examples = sentences.slice(0,3);
+    const gRaw = String(data.grammar||'');
+    const groupI = sentences.filter(s=>/^\s*i\b/i.test(s.en)).slice(0,4);
+    const groupWe = sentences.filter(s=>/^\s*we\b/i.test(s.en)).slice(0,4);
+    const groupIt = sentences.filter(s=>/^(the tractor|the greenhouse|veterinary biosecurity|irrigation)\b/i.test(s.en)).slice(0,4);
+    function tableRow(subj, arr){ return arr.map(s=>`<tr><td>${subj}</td><td>${s.en}</td><td>${fixPT(s.pt||'')}</td></tr>`).join('') }
+    const conjTable = `
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr><th style="text-align:left">Sujeito</th><th style="text-align:left">Frase (EN)</th><th style="text-align:left">Tradução (PT)</th></tr></thead>
+        <tbody>
+          ${tableRow('I', groupI)}
+          ${tableRow('We', groupWe)}
+          ${tableRow('It', groupIt)}
+        </tbody>
+      </table>
+    `;
+    const practice = [...groupI.slice(0,1), ...groupWe.slice(0,2), ...groupIt.slice(0,1)];
     el.innerHTML = `
       <div class="section-title">Conceito</div>
-      <div class="small">${intro}</div>
+      <div class="small">${gRaw}</div>
       <div class="section-title" style="margin-top:10px">Estrutura</div>
-      <div class="small">${
-        g.includes('present simple') ? 'Sujeito + verbo base (he/she/it: +s). Ex.: We plan, He checks.' :
-        (g.includes('adverbs') || g.includes('frequency')) ? 'Sujeito + verbo + advérbio de frequência. Ex.: We usually check.' :
-        g.includes('past') ? 'Sujeito + verbo no passado. Ex.: We worked, They sold.' :
-        g.includes('passive') ? 'Be + particípio. Ex.: Irrigation is scheduled.' :
-        (g.includes('complex clauses') || g.includes('purpose') || g.includes('result')) ? 'to + verbo / in order to / so (that). Ex.: We rotate pastures to improve forage.' :
-        'Use as frases do texto para identificar a estrutura principal.'}
-      </div>
+      <div>${conjTable}</div>
       <div class="section-title" style="margin-top:10px">Prática</div>
-      <div class="grid">${examples.map(ex=>`
+      <div class="grid">${practice.map(ex=>`
         <div class="card">
           <div class="line"><div class="en">${ex.en}</div><div class="pt">${fixPT(ex.pt||'')}</div></div>
-          <div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${ex.en}">Ouvir exemplo</button></div>
+          <div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${ex.en}">Ouvir Áudio</button></div>
         </div>
       `).join('')}</div>
     `;
@@ -419,20 +404,19 @@ function initTextPage(level, idx) {
     const baseVerbs = m.split(',').map(s=>s.trim()).filter(Boolean);
     const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
     const sentences = pairs.length ? pairs.map(p=>p.en) : String(data.text||'').split(/(?<=[.!?])\s+/);
-    function includesVerb(s){ return baseVerbs.some(v=> new RegExp(`\\b${v}(s|ed)?\\b`,'i').test(s)) }
-    const examples = sentences.filter(includesVerb).slice(0,3);
+    function includesVerb(s){ return baseVerbs.some(v=> new RegExp(`\\b${v}\\b`,'i').test(s)) }
+    const examples = sentences.filter(includesVerb).slice(0,6);
     const cards = examples.map(en=>`
       <div class="card">
         <div class="line"><div class="en">${en}</div></div>
-        <div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${en}">Ouvir exemplo</button></div>
+        <div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${en}">Ouvir Áudio</button></div>
       </div>
     `).join('');
+    const listHtml = baseVerbs.map(v=>`<div class="selector"><div class="option">${v}</div></div>`).join('');
     el.innerHTML = `
-      <div class="section-title">Conceito</div>
-      <div class="small">Verbos de ação descrevem tarefas da fazenda (alimentar, verificar, operar...).</div>
-      <div class="section-title" style="margin-top:10px">Estrutura</div>
-      <div class="small">Forma base para instruções (feed, check). 3ª pessoa: +s (he checks). Propósito: to + verbo (to improve).</div>
-      <div class="section-title" style="margin-top:10px">Prática</div>
+      <div class="section-title">Lista</div>
+      <div class="small">${listHtml}</div>
+      <div class="section-title" style="margin-top:10px">Exemplos</div>
       <div class="grid">${cards}</div>
       <div class="small" style="margin-top:8px">Vistos neste texto: ${baseVerbs.join(', ')}</div>
     `;
