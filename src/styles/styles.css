@@ -55,7 +55,7 @@ input[type="range"] { width:100%; }
 /* Modern level navigation buttons */
 .levels-nav { margin-top:12px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px }
 .btn.level-nav { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border-radius:16px; padding:16px 18px }
-.btn.level-nav .title { font-weight:700; color:#123b7a }
+.btn.level-nav .title { font-weight:800; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,0.25) }
 .btn.level-nav .desc { font-size:13px; margin-top:6px; opacity:.95 }
 /* remove underline on level nav buttons */
 .btn.level-nav, .btn.level-nav:hover, .btn.level-nav:focus { text-decoration:none }
