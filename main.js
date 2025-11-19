@@ -350,6 +350,7 @@ function initTextPage(level, idx) {
   const path2 = `./src/data/texts/${level}/text${idx}.json`;
   const linesEl = document.querySelector('#lines');
   const backToTopBtn = document.querySelector('#backToTop');
+  try { renderVoiceSelector(); } catch {}
 
   function setupAudio() {
     const rate = Number(localStorage.getItem('rate') || 1);
@@ -1218,3 +1219,22 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./service-worker.js');
   });
 }
+  function renderVoiceSelector(){
+    const el = document.getElementById('voiceSelector');
+    if (!el) return;
+    const list = (state.voices||[])
+      .filter(v=>{ const lang=(v.lang||'').toLowerCase(); return lang.startsWith('en') })
+      .sort((a,b)=>{
+        const pa = (a.name.includes('Google US English')?0:a.name.includes('Google')?1:a.name.includes('Microsoft')?2:a.name.includes('Samantha')||a.name.includes('Daniel')?3:4);
+        const pb = (b.name.includes('Google US English')?0:b.name.includes('Google')?1:b.name.includes('Microsoft')?2:b.name.includes('Samantha')||b.name.includes('Daniel')?3:4);
+        if (pa!==pb) return pa-pb; return a.name.localeCompare(b.name);
+      });
+    const items = list.map(v=>`
+      <div class="selector" style="gap:6px">
+        <div class="option ${v.name===state.voiceName?'active':''}" data-voice="${v.name}">${v.name} <span class="small">(${v.lang})</span></div>
+        <button class="btn sm secondary" data-voice-test="${v.name}">Testar</button>
+      </div>
+    `).join('') || '<div class="small">Sem vozes em inglês disponíveis neste dispositivo.</div>';
+    const refresh = '<div style="margin-top:6px"><button class="btn sm" data-voice-refresh="1">Atualizar vozes</button></div>';
+    el.innerHTML = items + refresh;
+  }

@@ -13,6 +13,13 @@ export function TextPage(level, index) {
       </div>
 
       <section class="card">
+        <details class="accordion">
+          <summary class="section-title">Voz da narração</summary>
+          <div id="voiceSelector" class="selector" style="gap:6px"></div>
+        </details>
+      </section>
+
+      <section class="card">
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn" id="play">Play</button>
           <button class="btn" id="resume">Resume</button>
