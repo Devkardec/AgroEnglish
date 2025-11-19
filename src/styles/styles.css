@@ -105,10 +105,10 @@ details.accordion > div { margin-top:8px }
 .selector .option.active { background:linear-gradient(90deg, #eef7ff, #e9f6f1); border-color:var(--green) }
 
 @media (max-width: 640px) {
-  .app-header { padding:10px; flex-wrap:wrap }
+  .app-header { padding:10px; flex-wrap:nowrap }
   .app-header .brand span { display:none }
-  .app-header .brand img { width:54px; height:54px }
-  .app-header .nav { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px; width:100%; margin-top:8px }
+  .app-header .brand img { width:72px; height:72px }
+  .app-header .nav { display:flex; gap:8px; flex-wrap:nowrap; overflow-x:auto; width:auto; margin-top:0; justify-content:flex-end }
   .app-header .nav a,
   .app-header .nav .continue,
   .app-header .nav .theme { margin:0; padding:10px 12px; font-size:15px; text-align:center; border-radius:12px }
