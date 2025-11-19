@@ -39,18 +39,23 @@ function loadVoices() {
     const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
     const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : String(data.text||'').split(/(?<=[.!?])\s+/).map((s,i)=>({en:s, pt:String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT)[i]||''}));
     function findSentenceWith(v){ return sentences.find(s=> new RegExp(`\b${v}(s)?\b`,'i').test(s.en)) }
-    function buildExample(v){ const s=findSentenceWith(v); if (s) return s; const map = {
-      feed: {en:'I feed cows and check plants.', pt:'I alimentar vacas and check plants.'},
-      check: {en:'We check plants.', pt:'check plants.'},
-      start: {en:'I start the tractor carefully.', pt:'I start the trator carefully.'},
-      clean: {en:'I clean the barn after milking.', pt:'I clean the celeiro after milking.'},
-      adjust: {en:'We adjust sprayer calibration.', pt:'pulverizador calibration.'},
-      monitor: {en:'We monitor feed intake.', pt:'We monitor alimentar intake.'},
-      operate: {en:'We operate the sprayer.', pt:'pulverizador.'},
-      record: {en:'We record yields.', pt:'We record yields.'},
-      assess: {en:'We assess yields.', pt:'yields.'},
-      coordinate: {en:'We coordinate biosecurity.', pt:'biosecurity.'}
-    }; return map[v] }
+    function buildExample(v){
+        const s = findSentenceWith(v);
+        if (s) return s;
+        const map = {
+          feed: {en:'I feed cows and check plants.', pt:'I alimentar vacas and check plants.'},
+          check: {en:'We check plants.', pt:'check plants.'},
+          start: {en:'I start the tractor carefully.', pt:'I start the trator carefully.'},
+          clean: {en:'I clean the barn after milking.', pt:'I clean the celeiro after milking.'},
+          adjust: {en:'We adjust sprayer calibration.', pt:'pulverizador calibration.'},
+          monitor: {en:'We monitor feed intake.', pt:'We monitor alimentar intake.'},
+          operate: {en:'We operate the sprayer.', pt:'pulverizador.'},
+          record: {en:'We record yields.', pt:'We record yields.'},
+          assess: {en:'We assess yields.', pt:'yields.'},
+          coordinate: {en:'We coordinate biosecurity.', pt:'biosecurity.'}
+        };
+        return map[v] || { en: `We ${v} the fields.`, pt: `Nós ${v} os campos.` };
+    }
     function exerciseFor(v, ex){ return `<div class="card"><div>${v}: <strong>${ex.en}</strong></div><div class="small">${ex.pt}</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${ex.en}">Ouvir Áudio</button></div><div style="margin-top:8px">Complete: ${ex.en.replace(new RegExp(`\b${v}\b`,'i'), '____')}</div></div>` }
     const blocks = baseVerbs.map(v=>{ const ex = buildExample(v); return exerciseFor(v, ex) }).join('');
     const micro = `<div class="card"><div class="line"><div class="en">We start work before sunrise, record yields and monitor feed intake.</div></div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="We start work before sunrise, record yields and monitor feed intake.">Ouvir Áudio</button></div></div>`;
@@ -712,25 +717,47 @@ function initTextPage(level, idx) {
 
   function renderMC(data) {
     const mcEl = document.querySelector('#mc');
-    const src = (data && data.exercises && Array.isArray(data.exercises.multiple_choice) && data.exercises.multiple_choice.length)
-      ? data.exercises.multiple_choice
-      : (() => {
+    let src;
+
+    if (data && data.exercises && Array.isArray(data.exercises.multiple_choice) && data.exercises.multiple_choice.length) {
+        src = data.exercises.multiple_choice.map(q => {
+            const correctAnswer = q.options[q.answer];
+            const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+            const newAnswer = shuffledOptions.indexOf(correctAnswer);
+            return {
+                question: q.question,
+                options: shuffledOptions,
+                answer: newAnswer
+            };
+        });
+    } else {
+        src = (() => {
           const pairs = Array.isArray(data.pairs) ? data.pairs.slice(0,5) : [];
           if (pairs.length) {
-            return pairs.map(p=>({ question:`Tradução correta: "${p.en}"`, options:[fixPT(p.pt),'Trator','Estufa','Segurança'].sort(()=>Math.random()-0.5), answer:0 }));
+            return pairs.map(p => {
+              const correctAnswer = fixPT(p.pt);
+              const options = [correctAnswer, 'Trator', 'Estufa', 'Segurança'].sort(() => Math.random() - 0.5);
+              const answer = options.indexOf(correctAnswer);
+              return { question: `Tradução correta: "${p.en}"`, options, answer };
+            });
           }
           const voc = Array.isArray(data.vocabulary) ? data.vocabulary : [];
           const items = voc.slice(0,5);
-          const distractors = voc.map(v=>v.meaning).filter(Boolean);
           return items.map((v)=>{
-            const opts = [v.meaning];
+            const correctAnswer = v.meaning;
+            const distractors = voc.map(v=>v.meaning).filter(Boolean).filter(m => m !== correctAnswer);
+            const opts = [correctAnswer];
             while (opts.length<4 && distractors.length) {
-              const pick = distractors[Math.floor(Math.random()*distractors.length)];
+              const pick = distractors.splice(Math.floor(Math.random()*distractors.length), 1)[0];
               if (!opts.includes(pick)) opts.push(pick);
             }
-            return { question:`Qual é a tradução de "${v.word}"?`, options: opts.sort(()=>Math.random()-0.5), answer: opts.indexOf(v.meaning) };
+            const shuffledOpts = opts.sort(()=>Math.random()-0.5);
+            const answer = shuffledOpts.indexOf(correctAnswer);
+            return { question:`Qual é a tradução de "${v.word}"?`, options: shuffledOpts, answer };
           });
         })();
+    }
+
     mcEl.innerHTML = src.map((q,i)=>`
       <div class="card">
         <div><strong>${i+1}. ${q.question}</strong></div>
@@ -738,13 +765,16 @@ function initTextPage(level, idx) {
         <div class="small" id="mcRes${i}" style="margin-top:6px"></div>
       </div>
     `).join('') || '<div class="small">Sem questões disponíveis.</div>';
+
     mcEl.addEventListener('click', (e) => {
       const t = e.target;
       if (!t.dataset.mc) return;
       const qi = Number(t.dataset.mc);
       const oi = Number(t.dataset.idx);
       const ok = oi === src[qi].answer;
-      document.getElementById('mcRes' + qi).textContent = ok ? 'Acertou!' : 'Tente novamente.';
+      const resEl = document.getElementById('mcRes' + qi);
+      resEl.textContent = ok ? 'Acertou!' : 'Tente novamente.';
+      resEl.style.color = ok ? 'green' : 'red';
     });
   }
 
@@ -775,13 +805,28 @@ function initTextPage(level, idx) {
     `).join('') || '<div class="small">Sem itens para completar.</div>';
     document.querySelector('#checkFill').addEventListener('click', () => {
       const inputs = fillEl.querySelectorAll('input.blank');
-      let correct = 0;
+      let correctCount = 0;
       inputs.forEach((inp) => {
         const i = Number(inp.dataset.fill);
-        if ((inp.value || '').trim().toLowerCase() === String(src[i].answer).toLowerCase())
-          correct++;
+        const userAnswer = (inp.value || '').trim().toLowerCase();
+        const correctAnswer = String(src[i].answer).toLowerCase();
+        if (userAnswer === correctAnswer) {
+            correctCount++;
+            inp.style.borderColor = 'green';
+        } else {
+            inp.style.borderColor = 'red';
+        }
       });
-      document.querySelector('#fillResult').textContent = correct === inputs.length ? 'Acertou!' : 'Tente novamente.';
+      const resultEl = document.querySelector('#fillResult');
+      if (resultEl) {
+        if (correctCount === inputs.length) {
+            resultEl.textContent = 'Parabéns, você acertou tudo!';
+            resultEl.style.color = 'green';
+        } else {
+            resultEl.textContent = `Você acertou ${correctCount} de ${inputs.length}. Tente novamente.`;
+            resultEl.style.color = 'red';
+        }
+      }
     });
   }
 
@@ -850,19 +895,25 @@ function initTextPage(level, idx) {
       setupUI(data);
       renderLines(data);
       setupAudio();
-      renderVocabulary(data);
-      renderGrammar(data);
-      renderVerbs(data);
-      renderVerbsModule(data);
-      renderMC(data);
-      renderFill(data);
-      document.querySelector('#speakPrompt').textContent =
-        (data.exercises && data.exercises.speaking) || '';
-      document
-        .getElementById('startRec')
-        .addEventListener('click', () =>
+      
+      try { renderVocabulary(data); } catch (e) { console.error('Error in renderVocabulary:', e); }
+      try { renderGrammar(data); } catch (e) { console.error('Error in renderGrammar:', e); }
+      try { renderVerbs(data); } catch (e) { console.error('Error in renderVerbs:', e); }
+      try { renderVerbsModule(data); } catch (e) { console.error('Error in renderVerbsModule:', e); }
+      try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
+      try { renderFill(data); } catch (e) { console.error('Error in renderFill:', e); }
+
+      const speakPromptEl = document.querySelector('#speakPrompt');
+      if (speakPromptEl) {
+        speakPromptEl.textContent = (data.exercises && data.exercises.speaking) || '';
+      }
+      
+      const startRecEl = document.getElementById('startRec');
+      if (startRecEl) {
+        startRecEl.addEventListener('click', () =>
           startRecognition((data.exercises && data.exercises.speaking) || '')
         );
+      }
 
       let mediaStream = null;
       let mediaRecorder = null;
