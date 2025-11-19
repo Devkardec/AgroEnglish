@@ -48,6 +48,10 @@ input[type="range"] { width:100%; }
 .level-card:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.08) }
 .level-card .title { font-weight:700; color:var(--green) }
 
+/* Centered cards for text selection list */
+.levels-grid .level-card { flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:6px }
+.levels-grid .level-card .badge { display:block; margin-top:4px; color:var(--muted) }
+
 .badge { display:inline-block; background:#eef3fb; color:var(--green); padding:4px 10px; border-radius:999px; font-size:12px; border:1px solid #d6e1f5 }
 
 .home-actions { margin-top:16px; display:flex; gap:10px; flex-wrap:wrap }

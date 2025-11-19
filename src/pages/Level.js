@@ -7,6 +7,11 @@ function pathFor(level) {
 export function Level(level) {
   return `
     <main class="main">
+      <section class="card" style="margin-bottom:16px">
+        <div class="section-title">Escolha o texto</div>
+        <div id="textList" class="levels-grid"></div>
+      </section>
+
       <section class="level-hero">
         <h2 class="title">Nível ${level}</h2>
         <p class="desc">Conteúdos práticos alinhados ao nível ${level}. Agricultura, pecuária, veterinária e máquinas com vocabulário técnico.</p>
@@ -17,10 +22,7 @@ export function Level(level) {
       </section>
       <div id="phrases" class="grid"></div>
       <div class="small" style="margin-top:8px">Toque em Speak para ouvir com voz nativa.</div>
-      <section class="card" style="margin-top:16px">
-        <div class="section-title">Textos do nível</div>
-        <div id="textList" class="levels-grid"></div>
-      </section>
+      
       <div style="margin-top:16px">
         <a class="btn secondary" href="#/level/A1">A1</a>
         <a class="btn secondary" href="#/level/A2">A2</a>
