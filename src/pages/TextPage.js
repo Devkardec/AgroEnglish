@@ -22,6 +22,23 @@ export function TextPage(level, index) {
 
       <section id="tab-study" class="card">
         <div class="section-title">Guia de Estudo</div>
+        <div style="margin-top:8px">
+          <div class="section-title">Voz da narração</div>
+          <div id="voiceSelector" class="selector" style="gap:6px"></div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn" id="play">Play</button>
+          <button class="btn" id="resume">Resume</button>
+          <button class="btn" id="pause">Pause</button>
+          <button class="btn" id="stop">Stop</button>
+          <button class="btn secondary" data-speed="0.5">0.5x</button>
+          <button class="btn secondary" data-speed="1">1x</button>
+          <button class="btn secondary" data-speed="1.5">1.5x</button>
+          <button class="btn" id="toggleTr">Mostrar/Ocultar tradução</button>
+        </div>
+        <div id="lines" class="lines" style="margin-top:8px"></div>
+
+        <div class="section-title" style="margin-top:12px">Explicação e Estrutura</div>
         <div id="grammar"></div>
         <div class="section-title" style="margin-top:12px">Vocabulário</div>
         <div id="vocab" class="flash-grid"></div>
@@ -40,24 +57,7 @@ export function TextPage(level, index) {
 
       <section id="tab-speech" class="card" style="display:none">
         <div class="section-title">Laboratório de Fala</div>
-        <div class="small">Ajuste a voz e pratique escuta e pronúncia.</div>
-        <div style="margin-top:10px">
-          <div class="section-title">Voz da narração</div>
-          <div id="voiceSelector" class="selector" style="gap:6px"></div>
-        </div>
-        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn" id="play">Play</button>
-          <button class="btn" id="resume">Resume</button>
-          <button class="btn" id="pause">Pause</button>
-          <button class="btn" id="stop">Stop</button>
-          <button class="btn secondary" data-speed="0.5">0.5x</button>
-          <button class="btn secondary" data-speed="1">1x</button>
-          <button class="btn secondary" data-speed="1.5">1.5x</button>
-          <button class="btn" id="toggleTr">Mostrar/Ocultar tradução</button>
-        </div>
-        <div id="lines" class="lines" style="margin-top:10px"></div>
-        <div class="section-title" style="margin-top:12px">Exemplos com áudio</div>
-        <div id="speechExamples" class="grid"></div>
+        <div class="small">Prática ativa de pronúncia.</div>
         <div class="section-title" style="margin-top:12px">Treinar pronúncia</div>
         <div id="pronList" class="pron-grid"></div>
       </section>
