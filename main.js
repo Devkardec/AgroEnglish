@@ -120,6 +120,12 @@ export function speak(text) {
   })(0);
 }
 
+function getVoice(){
+  const v = state.voices;
+  const pref = v.find(x=> x.name === state.voiceName);
+  return pref || v[0] || null;
+}
+
 function fixPT(s) {
   s = String(s || '');
   const map = {
@@ -709,10 +715,14 @@ function initTextPage(level, idx) {
     const src = (data && data.exercises && Array.isArray(data.exercises.multiple_choice) && data.exercises.multiple_choice.length)
       ? data.exercises.multiple_choice
       : (() => {
+          const pairs = Array.isArray(data.pairs) ? data.pairs.slice(0,5) : [];
+          if (pairs.length) {
+            return pairs.map(p=>({ question:`Tradução correta: "${p.en}"`, options:[fixPT(p.pt),'Trator','Estufa','Segurança'].sort(()=>Math.random()-0.5), answer:0 }));
+          }
           const voc = Array.isArray(data.vocabulary) ? data.vocabulary : [];
           const items = voc.slice(0,5);
           const distractors = voc.map(v=>v.meaning).filter(Boolean);
-          return items.map((v,i)=>{
+          return items.map((v)=>{
             const opts = [v.meaning];
             while (opts.length<4 && distractors.length) {
               const pick = distractors[Math.floor(Math.random()*distractors.length)];
@@ -741,14 +751,22 @@ function initTextPage(level, idx) {
   function renderFill(data) {
     const fillEl = document.querySelector('#fill');
     const src = (data && data.exercises && Array.isArray(data.exercises.fill_in) && data.exercises.fill_in.length) ? data.exercises.fill_in : (()=>{
+      const pairs = Array.isArray(data.pairs) ? data.pairs.slice(0,3) : [];
+      if (pairs.length) {
+        return pairs.map(p=>{
+          const words = p.en.split(' ');
+          const target = words.find(w=>/^(tractor|water|gloves|masks|record|monitor|feed|start)$/i.test(w)) || words[1] || words[0];
+          return { sentence: p.en.replace(target,'____'), answer: target.replace(/[.,]/g,'').toLowerCase() };
+        });
+      }
       const textParts = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
       const verbs = String(data.verbs||'').split(':')[1] || String(data.verbs||'');
       const baseVerbs = verbs.split(',').map(s=>s.trim()).filter(Boolean);
-      const items = textParts.slice(0,3).map((s,i)=>{
-        const v = baseVerbs.find(vv=> new RegExp(`\\b${vv}(s)?\\b`,'i').test(s));
-        if (v) return { sentence: s.replace(new RegExp(`\\b${v}(s)?\\b`,'i'),'____'), answer: v.replace(/s$/,'') };
+      const items = textParts.slice(0,3).map((s)=>{
+        const v = baseVerbs.find(vv=> new RegExp(`\b${vv}(s)?\b`,'i').test(s));
+        if (v) return { sentence: s.replace(new RegExp(`\b${v}(s)?\b`,'i'),'____'), answer: v.replace(/s$/,'') };
         const w = (s.split(' ')[2]||'tractor');
-        return { sentence: s.replace(w,'____'), answer: w.replace(/[.,]/g,'') };
+        return { sentence: s.replace(w,'____'), answer: w.replace(/[.,]/g,'').toLowerCase() };
       });
       return items;
     })();
