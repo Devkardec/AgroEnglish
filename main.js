@@ -431,17 +431,36 @@ function initTextPage(level, idx) {
     const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : String(data.text||'').split(/(?<=[.!?])\s+/).map((s,i)=>({en:s, pt:String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT)[i]||''}));
     const gRaw = String(data.grammar||'');
     function explainForBeginners(v){
-      const k = v.toLowerCase();
+      const k = String(v||'').toLowerCase();
       if (k.includes('present simple')) {
         return `
           <div class="card">
             <div class="small">
-              <div><strong>O que é:</strong> tempo para rotina, fatos e horários.</div>
-              <div style="margin-top:6px"><strong>Como formar:</strong> Sujeito + verbo base. Para he/she/it, acrescente <em>s</em> ou <em>es</em>.</div>
-              <div style="margin-top:6px"><strong>Negativa:</strong> <em>do not (don't)</em> / <em>does not (doesn't)</em> + verbo base. Com <em>be</em>: <em>is not</em>.</div>
-              <div style="margin-top:6px"><strong>Pergunta:</strong> <em>Do</em>/<em>Does</em> + sujeito + verbo base. Com <em>be</em>: inversão (<em>Is it ...?</em>).</div>
-              <div style="margin-top:6px"><strong>Frequência:</strong> <em>always, usually, often, sometimes, never</em>.</div>
-              <div style="margin-top:6px"><strong>Dica:</strong> pense em rotina da fazenda: tarefas diárias, instruções simples e regras de segurança.</div>
+              <ul style="margin:0;padding-left:18px;line-height:1.6">
+                <li><strong>Uso:</strong> rotina da fazenda com verbos de ação: work, drive, check, feed.</li>
+                <li><strong>Forma direta:</strong> diga quem faz + verbo base. 
+                  <span style="color:#c2132a;font-weight:800">He/She/It</span> ganha 
+                  <span style="color:#c2132a;font-weight:800">s</span> no verbo.
+                  Ex.: <strong>I drive</strong> · <strong>He drive<span style="color:#c2132a;font-weight:800">s</span></strong>.
+                </li>
+                <li><strong>Negativa:</strong> 
+                  <span style="color:#123b7a;font-weight:800">don't</span> para I/You/We/They · 
+                  <span style="color:#123b7a;font-weight:800">doesn't</span> para He/She/It. 
+                  Ex.: <strong>We <span style="color:#123b7a">don't</span> check</strong> · 
+                  <strong>He <span style="color:#123b7a">doesn't</span> check</strong>.
+                </li>
+                <li><strong>Pergunta:</strong> 
+                  <span style="color:#123b7a;font-weight:800">Do</span> (I/You/We/They) · 
+                  <span style="color:#123b7a;font-weight:800">Does</span> (He/She/It) + verbo base. 
+                  Ex.: <strong>Do you work?</strong> · <strong>Does he drive?</strong>
+                </li>
+                <li><strong>Exemplos agro curtos:</strong> 
+                  <strong>I drive</strong> the tractor · 
+                  <strong>She drive<span style="color:#c2132a;font-weight:800">s</span></strong> the tractor. 
+                  <strong>We check</strong> water · 
+                  <strong>Sprayer calibration prevent<span style="color:#c2132a;font-weight:800">s</span></strong> over application.
+                </li>
+              </ul>
             </div>
           </div>
         `;
