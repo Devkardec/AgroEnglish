@@ -499,14 +499,42 @@ function initTextPage(level, idx) {
       </table>
     `;
     const practice = [...groupI.slice(0,1), ...groupWe.slice(0,2), ...groupIt.slice(0,2)];
-    function stripEnd(v){ return v.replace(/(es|s)$/,'') }
-    const baseListStr = String(data.verbs||'').split(':')[1] || String(data.verbs||'');
-    const baseVerbs = baseListStr.split(',').map(s=>s.trim()).filter(Boolean);
-    const extraVerbs = ['water','work','start','feed','check','clean','record','monitor','rotate','improve','need','help','keep','protect','control','prevent'];
-    const allVerbs = Array.from(new Set([...baseVerbs, ...extraVerbs]));
-    function firstVerb(s){ const lower=s.toLowerCase(); if (lower.includes(' is ')) return {verb:'is'}; for (const v of allVerbs){ if (lower.includes(' '+v+' ')) return {verb:v} } for (const v of allVerbs){ if (lower.includes(' '+v+'s ')) return {verb:v+'s'} } return {verb: ''} }
-    function neg(s){ const fv = firstVerb(s.en); const lower=s.en; if (lower.includes(' is ')) return {en: lower.replace(' is ', ' is not '), pt: s.pt}; const subjWord = s.en.split(' ')[0]; const is3 = subjWord.toLowerCase().match(/^(he|she|it|the|sprayer|farm|veterinary|irrigation|greenhouse)/); const aux = is3 ? 'does' : 'do'; if (fv.verb && /s$/.test(fv.verb)) { const base = stripEnd(fv.verb); return {en: s.en.replace(new RegExp(`\b${fv.verb}\b`,'i'), `${aux} not ${base}`), pt: s.pt} } return {en: s.en.replace(new RegExp(`\b${fv.verb}\b`,'i'), `${aux} not ${fv.verb}`), pt: s.pt} }
-    function ques(s){ const lower=s.en; if (lower.includes(' is ')) { const parts = lower.split(' is '); return {en: `Is ${parts[0].trim()} ${parts[1].trim()}?`, pt: s.pt} } const subjWord = s.en.split(' ')[0]; const is3 = subjWord.toLowerCase().match(/^(he|she|it|the|sprayer|farm|veterinary|irrigation|greenhouse)/); const aux = is3 ? 'Does' : 'Do'; const rest = s.en.replace(new RegExp(`^${subjWord}\s+`),''); const words = rest.split(' '); if (words.length){ words[0] = stripEnd(words[0]); } return {en: `${aux} ${subjWord} ${words.join(' ')}?`, pt: s.pt} }
+    function buildPresentSimpleForms(en){
+      const clean = String(en||'').trim().replace(/[.?!]+$/, '');
+      const words = clean.split(/\s+/);
+      const firstTwo = words.slice(0,2).join(' ');
+      let subject;
+      if (/^the\b/i.test(clean) && words.length>=2) subject = words[0]+' '+words[1];
+      else if (/^(sprayer calibration|veterinary biosecurity|canadian winter)/i.test(firstTwo)) subject = firstTwo;
+      else subject = words[0];
+      const subjEsc = subject.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+      let rest = clean.replace(new RegExp('^'+subjEsc+'\\s+'),'');
+      let v = (rest.split(/\s+/)[0]||'').toLowerCase();
+      const isThird = /^(he|she|it)$/i.test(subject) || /^the\s/i.test(subject) || /^(sprayer calibration|veterinary biosecurity|canadian winter)/i.test(subject);
+      if (v==='is'){
+        const tail = rest.replace(/^is\s+/i,'');
+        return { affirmative: clean, negative: subject+' is not '+tail, interrogative: 'Is '+subject+' '+tail+'?' };
+      }
+      function baseVerb(w){
+        if (/^goes$/i.test(w)) return 'go';
+        if (/ies$/i.test(w)) return w.replace(/ies$/i,'y');
+        if (/(ch|sh|x|o|ss|zz)$/i.test(w.replace(/es$/i,'')) && /es$/i.test(w)) return w.replace(/es$/i,'');
+        if (/s$/i.test(w)) return w.replace(/s$/i,'');
+        return w;
+      }
+      const base = baseVerb(v);
+      const restWords = rest.split(/\s+/);
+      if (restWords.length) restWords[0] = base;
+      const negAux = isThird ? "doesn't" : "don't";
+      const qAux = isThird ? 'Does' : 'Do';
+      return {
+        affirmative: clean,
+        negative: (subject+' '+negAux+' '+base+' '+restWords.slice(1).join(' ')).trim(),
+        interrogative: (qAux+' '+subject+' '+restWords.join(' ')+'?').trim()
+      };
+    }
+    const neg = (s)=>({ en: buildPresentSimpleForms(s.en).negative, pt: s.pt });
+    const ques = (s)=>({ en: buildPresentSimpleForms(s.en).interrogative, pt: s.pt });
     const aff = practice;
     const negs = aff.map(neg);
     const quess = aff.map(ques);
