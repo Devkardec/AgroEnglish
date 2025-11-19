@@ -6,7 +6,7 @@ export function Header() {
   return `
     <header class="app-header">
       <div class="brand">
-        <img src="/img/logoagroenglish.png" width="28" height="28" alt="AgroEnglish Logo" />
+        <img src="/img/logoagroenglishSF.png" width="28" height="28" alt="AgroEnglish Logo" />
         <span>AgroEnglish Pro</span>
       </div>
       <nav class="nav">

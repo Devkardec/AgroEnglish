@@ -519,6 +519,7 @@ function initTextPage(level, idx) {
     const explainList = aff.map(s=>`<div class="card"><div class="line"><div class="en">${s.en}</div><div class="pt">${fixPT(s.pt||'')}</div></div><div class="small" style="margin-top:6px">Presente simples: rotina agrícola.</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${s.en}">Ouvir Áudio</button></div></div>`).join('');
     const whenList = [...groupWe.slice(0,3), ...groupIt.slice(0,2)].map(s=>`<div class="card"><div class="line"><div class="en">${s.en}</div><div class="pt">${fixPT(s.pt||'')}</div></div></div>`).join('');
     el.innerHTML = `
+      <div class="accordion-toolbar"><button class="btn sm secondary" data-acc="open-all">Expandir tudo</button><button class="btn sm secondary" data-acc="close-all">Recolher tudo</button></div>
       <details class="accordion">
         <summary class="section-title">Conceito</summary>
         <div><div class="small">${gRaw}</div></div>
@@ -549,6 +550,7 @@ function initTextPage(level, idx) {
       </details>
       <div id="gExercises"></div>
     `;
+    el.addEventListener('click',(e)=>{ const t=e.target; if(t.dataset.acc==='open-all'){ el.querySelectorAll('details.accordion').forEach(d=>d.open=true) } if(t.dataset.acc==='close-all'){ el.querySelectorAll('details.accordion').forEach(d=>d.open=false) } });
     const gEx = document.getElementById('gExercises');
     function renderVerbFill(){ const items = [
       { sentence: 'We ____ pastures to improve forage quality.', answer: 'rotate' },
@@ -583,13 +585,121 @@ function initTextPage(level, idx) {
       </div>
     `).join('');
     const listHtml = baseVerbs.map(v=>`<div class="selector"><div class="option">${v}</div></div>`).join('');
+    const tablePS = `
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td>I/You/We/They</td><td>We record yields. We monitor feed intake.</td></tr>
+          <tr><td>He/She/It (+s)</td><td>Sprayer calibration prevents over application. The greenhouse helps control temperature.</td></tr>
+        </tbody>
+      </table>
+    `;
+    const tableIngEd = `
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Regra</th><th style="text-align:left">Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td>-ing</td><td>verbo + ing</td><td>feed → feeding; check → checking; record → recording</td></tr>
+          <tr><td>-ing</td><td>remova e final</td><td>operate → operating; rotate → rotating</td></tr>
+          <tr><td>-ed</td><td>verbo + ed</td><td>record → recorded; monitor → monitored</td></tr>
+        </tbody>
+      </table>
+    `;
+    const collocations = `
+      <div class="grid">
+        <div class="card"><div>feed + cows</div><div class="small">Alimentar o gado diariamente.</div></div>
+        <div class="card"><div>check + water</div><div class="small">Verificar água dos animais.</div></div>
+        <div class="card"><div>start + tractor</div><div class="small">Ligar o trator com segurança.</div></div>
+        <div class="card"><div>record + yields</div><div class="small">Registrar produtividade.</div></div>
+        <div class="card"><div>monitor + intake</div><div class="small">Monitorar consumo de ração.</div></div>
+        <div class="card"><div>calibrate + sprayer</div><div class="small">Calibrar pulverizador.</div></div>
+      </div>
+    `;
     el.innerHTML = `
-      <div class="section-title">Lista</div>
-      <div class="small">${listHtml}</div>
-      <div class="section-title" style="margin-top:10px">Exemplos</div>
-      <div class="grid">${cards}</div>
+      <div class="accordion-toolbar"><button class="btn sm secondary" data-acc="open-all">Expandir tudo</button><button class="btn sm secondary" data-acc="close-all">Recolher tudo</button></div>
+      <details class="accordion">
+        <summary class="section-title">Conceito</summary>
+        <div>
+          <div class="small">Verbos são ações. Use forma base para I/You/We/They e acrescente s/es em He/She/It.</div>
+          <div class="small" style="margin-top:6px">Use -ing para atividades em progresso e -ed para passado regular.</div>
+          <div class="small" style="margin-top:6px">Irregulares mudam forma no passado (ex.: go → went).</div>
+        </div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">Lista</summary>
+        <div class="small">${listHtml}</div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">Conjugação básica</summary>
+        <div>${tablePS}</div>
+        <div style="margin-top:10px">${tableIngEd}</div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">Exemplos</summary>
+        <div class="grid">${cards}</div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">Prática</summary>
+        <div id="vExercises"></div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">Colocações no agro</summary>
+        <div>${collocations}</div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">Pronúncia</summary>
+        <div class="small">Fale lentamente, enfatize consoantes finais (feed, record) e pratique pares similares (record x regard).</div>
+      </details>
       <div class="small" style="margin-top:8px">Vistos neste texto: ${baseVerbs.join(', ')}</div>
     `;
+    el.addEventListener('click',(e)=>{ const t=e.target; if(t.dataset.acc==='open-all'){ el.querySelectorAll('details.accordion').forEach(d=>d.open=true) } if(t.dataset.acc==='close-all'){ el.querySelectorAll('details.accordion').forEach(d=>d.open=false) } });
+    const vEx = document.getElementById('vExercises');
+    if (vEx) {
+      const fillItems = [
+        { sentence: 'We ____ the cows every morning.', answer: 'feed' },
+        { sentence: 'Start the ____ carefully.', answer: 'tractor' },
+        { sentence: 'We ____ yields and ____ feed intake.', answer: 'record|monitor' }
+      ];
+      const fillHtml = fillItems.map((f,i)=>{
+        const s = f.sentence.replace('____',`<input class="blank" data-vf="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`).replace('____',`<input class="blank" data-vf2="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`);
+        return `<div class="card"><div>${i+1}. ${s}</div></div>`;
+      }).join('');
+      vEx.innerHTML = `<div class="section-title">Complete com o verbo</div><div>${fillHtml}</div><div class="small" id="vFRes" style="margin-top:6px"></div><button class="btn" id="vFCheck" style="margin-top:8px">Checar</button>`;
+      const sItems = [
+        { base:'monitor', subj:'He', expect:'monitors' },
+        { base:'help', subj:'She', expect:'helps' },
+        { base:'record', subj:'It', expect:'records' }
+      ];
+      const sHtml = sItems.map((it,i)=>`<div class="card"><div>${i+1}. ${it.subj} ____ feed intake.</div><input class="blank" data-vs="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:120px" /></div>`).join('');
+      vEx.innerHTML += `<div class="section-title" style="margin-top:10px">He/She/It (+s)</div><div>${sHtml}</div><div class="small" id="vSRes" style="margin-top:6px"></div><button class="btn" id="vSCheck" style="margin-top:8px">Checar</button>`;
+      const ingItems = [
+        { base:'feed', expect:'feeding' },
+        { base:'check', expect:'checking' },
+        { base:'operate', expect:'operating' }
+      ];
+      const ingHtml = ingItems.map((it,i)=>`<div class="card"><div>${i+1}. ${it.base} → <input class="blank" data-vi="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:140px" /></div></div>`).join('');
+      vEx.innerHTML += `<div class="section-title" style="margin-top:10px">Forma -ing</div><div>${ingHtml}</div><div class="small" id="vIRes" style="margin-top:6px"></div><button class="btn" id="vICheck" style="margin-top:8px">Checar</button>`;
+      document.getElementById('vFCheck').addEventListener('click', ()=>{
+        let c=0; fillItems.forEach((f,i)=>{
+          const a = (f.answer||'').toLowerCase();
+          const parts = a.split('|');
+          const inp1 = vEx.querySelector(`input[data-vf="${i}"]`);
+          const inp2 = vEx.querySelector(`input[data-vf2="${i}"]`);
+          const v1 = (inp1&&inp1.value||'').trim().toLowerCase();
+          const v2 = (inp2&&inp2.value||'').trim().toLowerCase();
+          if (parts.length===1) { if (v1===parts[0]) c++; }
+          else { if (v1===parts[0] && v2===parts[1]) c++; }
+        });
+        document.getElementById('vFRes').textContent = c===fillItems.length ? 'Acertou!' : 'Tente novamente.';
+      });
+      document.getElementById('vSCheck').addEventListener('click', ()=>{
+        let c=0; sItems.forEach((it,i)=>{ const inp=vEx.querySelector(`input[data-vs="${i}"]`); if((inp&&inp.value||'').trim().toLowerCase()===it.expect) c++ });
+        document.getElementById('vSRes').textContent = c===sItems.length ? 'Acertou!' : 'Tente novamente.';
+      });
+      document.getElementById('vICheck').addEventListener('click', ()=>{
+        let c=0; ingItems.forEach((it,i)=>{ const inp=vEx.querySelector(`input[data-vi="${i}"]`); if((inp&&inp.value||'').trim().toLowerCase()===it.expect) c++ });
+        document.getElementById('vIRes').textContent = c===ingItems.length ? 'Acertou!' : 'Tente novamente.';
+      });
+    }
   }
 
   function renderMC(list) {

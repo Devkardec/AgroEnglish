@@ -89,7 +89,11 @@ input[type="range"] { width:100%; }
 .meter { height:8px; background:#e5e9e7; border-radius:8px; overflow:hidden; margin-top:8px }
 .meter span { display:block; height:100%; width:0; background:linear-gradient(90deg, var(--green), var(--green2)) }
 details.accordion { border:none }
-details.accordion > summary { cursor:pointer; display:flex; align-items:center; justify-content:space-between }
+details.accordion > summary { cursor:pointer; display:flex; align-items:center; justify-content:space-between; background:#eef3fb; border:1px solid #d6e1f5; border-radius:12px; padding:10px 12px }
 details.accordion > summary::after { content:'\25B8'; color:var(--muted); transition:transform .2s ease }
 details.accordion[open] > summary::after { transform:rotate(90deg) }
 details.accordion > div { margin-top:8px }
+.accordion-toolbar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px }
+
+[data-theme="dark"] details.accordion > summary { background:#182025; border-color:#2a302d }
+[data-theme="dark"] details.accordion[open] > summary { background:#1a2328 }

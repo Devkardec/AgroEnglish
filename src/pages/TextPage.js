@@ -39,8 +39,10 @@ export function TextPage(level, index) {
       </section>
 
       <section class="card">
-        <div class="section-title">Verbos</div>
-        <div id="verbs" class="small"></div>
+        <details class="accordion">
+          <summary class="section-title">Verbos</summary>
+          <div id="verbs"></div>
+        </details>
       </section>
 
       <section class="card">
