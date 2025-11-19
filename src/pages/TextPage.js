@@ -32,8 +32,10 @@ export function TextPage(level, index) {
       </section>
 
       <section class="card">
-        <div class="section-title">Gramática</div>
-        <div id="grammar" class="small"></div>
+        <details class="accordion">
+          <summary class="section-title">Gramática</summary>
+          <div id="grammar"></div>
+        </details>
       </section>
 
       <section class="card">

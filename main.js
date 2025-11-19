@@ -418,6 +418,60 @@ function initTextPage(level, idx) {
     const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
     const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : String(data.text||'').split(/(?<=[.!?])\s+/).map((s,i)=>({en:s, pt:String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT)[i]||''}));
     const gRaw = String(data.grammar||'');
+    function explainForBeginners(v){
+      const k = v.toLowerCase();
+      if (k.includes('present simple')) {
+        return `
+          <div class="card">
+            <div class="small">
+              <div><strong>O que é:</strong> tempo para rotina, fatos e horários.</div>
+              <div style="margin-top:6px"><strong>Como formar:</strong> Sujeito + verbo base. Para he/she/it, acrescente <em>s</em> ou <em>es</em>.</div>
+              <div style="margin-top:6px"><strong>Negativa:</strong> <em>do not (don't)</em> / <em>does not (doesn't)</em> + verbo base. Com <em>be</em>: <em>is not</em>.</div>
+              <div style="margin-top:6px"><strong>Pergunta:</strong> <em>Do</em>/<em>Does</em> + sujeito + verbo base. Com <em>be</em>: inversão (<em>Is it ...?</em>).</div>
+              <div style="margin-top:6px"><strong>Frequência:</strong> <em>always, usually, often, sometimes, never</em>.</div>
+              <div style="margin-top:6px"><strong>Dica:</strong> pense em rotina da fazenda: tarefas diárias, instruções simples e regras de segurança.</div>
+            </div>
+          </div>
+        `;
+      }
+      if (k.includes('past simple')) {
+        return `
+          <div class="card">
+            <div class="small">
+              <div><strong>O que é:</strong> tempo para eventos concluídos no passado.</div>
+              <div style="margin-top:6px"><strong>Como formar:</strong> verbo no passado (<em>worked</em>, <em>checked</em>). Irregulares mudam forma (<em>went</em>).</div>
+              <div style="margin-top:6px"><strong>Negativa:</strong> <em>did not (didn't)</em> + verbo base.</div>
+              <div style="margin-top:6px"><strong>Pergunta:</strong> <em>Did</em> + sujeito + verbo base?</div>
+            </div>
+          </div>
+        `;
+      }
+      if (k.includes('passive')) {
+        return `
+          <div class="card">
+            <div class="small">
+              <div><strong>Ideia:</strong> foca na ação, não em quem a faz.</div>
+              <div style="margin-top:6px"><strong>Estrutura:</strong> <em>be</em> + particípio (<em>is checked</em>, <em>was calibrated</em>).</div>
+            </div>
+          </div>
+        `;
+      }
+      if (k.includes('modals')) {
+        return `
+          <div class="card">
+            <div class="small">
+              <div><strong>Função:</strong> dar conselho, obrigação ou possibilidade.</div>
+              <div style="margin-top:6px"><strong>Exemplos:</strong> <em>should</em>, <em>must</em>, <em>can</em>, <em>may</em>.</div>
+            </div>
+          </div>
+        `;
+      }
+      return `
+        <div class="card">
+          <div class="small">Explicação básica: foque em sujeito + verbo + complemento e observe exemplos.</div>
+        </div>
+      `;
+    }
     const groupI = sentences.filter(s=>/^\s*i\b/i.test(s.en)).slice(0,4);
     const groupWe = sentences.filter(s=>/^\s*we\b/i.test(s.en)).slice(0,4);
     const groupIt = sentences.filter(s=>/^(the tractor|the greenhouse|veterinary biosecurity|irrigation)\b/i.test(s.en)).slice(0,4);
@@ -465,17 +519,34 @@ function initTextPage(level, idx) {
     const explainList = aff.map(s=>`<div class="card"><div class="line"><div class="en">${s.en}</div><div class="pt">${fixPT(s.pt||'')}</div></div><div class="small" style="margin-top:6px">Presente simples: rotina agrícola.</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${s.en}">Ouvir Áudio</button></div></div>`).join('');
     const whenList = [...groupWe.slice(0,3), ...groupIt.slice(0,2)].map(s=>`<div class="card"><div class="line"><div class="en">${s.en}</div><div class="pt">${fixPT(s.pt||'')}</div></div></div>`).join('');
     el.innerHTML = `
-      <div class="section-title">Conceito</div>
-      <div class="small">${gRaw}</div>
-      <div class="section-title" style="margin-top:10px">Quando usar</div>
-      <div class="grid">${whenList}</div>
-      <div class="section-title" style="margin-top:10px">Estrutura</div>
-      <div>${conjTable}</div>
-      <div style="margin-top:10px">${table3(aff,negs,quess)}</div>
-      <div class="section-title" style="margin-top:10px">S/Es (He/She/It)</div>
-      <div>${sTable}</div>
-      <div class="section-title" style="margin-top:10px">Exemplos reescritos</div>
-      <div class="grid">${explainList}</div>
+      <details class="accordion">
+        <summary class="section-title">Conceito</summary>
+        <div><div class="small">${gRaw}</div></div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">Explicação para iniciantes</summary>
+        <div>${explainForBeginners(gRaw)}</div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">Quando usar</summary>
+        <div class="grid">${whenList}</div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">Estrutura</summary>
+        <div>${conjTable}</div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">Afirmativa/Negativa/Pergunta</summary>
+        <div>${table3(aff,negs,quess)}</div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">S/Es (He/She/It)</summary>
+        <div>${sTable}</div>
+      </details>
+      <details class="accordion">
+        <summary class="section-title">Exemplos reescritos</summary>
+        <div class="grid">${explainList}</div>
+      </details>
       <div id="gExercises"></div>
     `;
     const gEx = document.getElementById('gExercises');

@@ -6,7 +6,7 @@ export function Header() {
   return `
     <header class="app-header">
       <div class="brand">
-        <svg viewBox="0 0 64 64" width="28" height="28" aria-hidden="true"><path d="M6 46c12-2 18-10 26-20s16-12 26-10" fill="none" stroke="#fff" stroke-width="4"/><circle cx="20" cy="48" r="6" fill="#fff"/><rect x="2" y="8" width="10" height="6" rx="3" fill="#fff"/></svg>
+        <img src="/img/logoagroenglish.png" width="28" height="28" alt="AgroEnglish Logo" />
         <span>AgroEnglish Pro</span>
       </div>
       <nav class="nav">
