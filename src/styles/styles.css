@@ -435,3 +435,24 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
   background: var(--card);
   color: var(--text);
 }
+.glossary-actions {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.glossary-sort select {
+  padding: 8px 10px;
+  border: 1px solid #cfd7d3;
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--text);
+}
+
+.glossary-load {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0 24px 0;
+}

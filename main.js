@@ -211,8 +211,35 @@ function initGlossaryPage() {
   const grid = document.getElementById('glossary-grid');
   const searchInput = document.getElementById('glossary-search');
   const countEl = document.getElementById('glossary-count');
+  const sortSelect = document.getElementById('glossary-sort-select');
+  const loadMoreBtn = document.getElementById('glossary-load-more');
+  let pageSize = 12;
 
   if (filterContainer && grid) {
+    const apply = () => {
+      const q = (localStorage.getItem('glossaryQuery')||'').trim().toLowerCase();
+      const catBtn = filterContainer.querySelector('.filter-btn.active');
+      const category = catBtn ? catBtn.dataset.category : (localStorage.getItem('glossaryCategory')||'All');
+      const sort = localStorage.getItem('glossarySort')||'az';
+      let data = (category === 'All' ? vocabularyData : vocabularyData.filter(item => item.category === category))
+        .filter(i => {
+          if (!q) return true;
+          const fields = [i.term_en, i.term_pt, i.definition_en, i.definition_pt];
+          return fields.some(f => String(f||'').toLowerCase().includes(q));
+        });
+      if (sort === 'az') data = data.slice().sort((a,b)=>String(a.term_en||'').localeCompare(String(b.term_en||'')));
+      if (sort === 'za') data = data.slice().sort((a,b)=>String(b.term_en||'').localeCompare(String(a.term_en||'')));
+      if (sort === 'category') data = data.slice().sort((a,b)=>String(a.category||'').localeCompare(String(b.category||'')) || String(a.term_en||'').localeCompare(String(b.term_en||'')));
+      const visible = data.slice(0, pageSize);
+      grid.innerHTML = visible.map(GlossaryCard).join('');
+      if (countEl) countEl.textContent = `${data.length} termos`;
+      const flipMap = JSON.parse(localStorage.getItem('glossaryFlip')||'{}');
+      for (const k in flipMap) {
+        const cardEl = grid.querySelector(`.glossary-card-container[data-id="${k}"] .glossary-card`);
+        if (cardEl && flipMap[k]) cardEl.classList.add('is-flipped');
+      }
+      if (loadMoreBtn) loadMoreBtn.style.display = data.length > pageSize ? 'inline-flex' : 'none';
+    };
     filterContainer.addEventListener('click', (e) => {
       if (e.target.matches('.filter-btn')) {
         const category = e.target.dataset.category;
@@ -220,21 +247,8 @@ function initGlossaryPage() {
         if (active) active.classList.remove('active');
         e.target.classList.add('active');
         localStorage.setItem('glossaryCategory', category);
-        const q = (localStorage.getItem('glossaryQuery')||'').trim().toLowerCase();
-        const filteredData = (category === 'All' ? vocabularyData : vocabularyData.filter(item => item.category === category))
-          .filter(i => {
-            if (!q) return true;
-            const fields = [i.term_en, i.term_pt, i.definition_en, i.definition_pt];
-            return fields.some(f => String(f||'').toLowerCase().includes(q));
-          });
-        
-        grid.innerHTML = filteredData.map(GlossaryCard).join('');
-        if (countEl) countEl.textContent = `${filteredData.length} termos`;
-        const flipMap = JSON.parse(localStorage.getItem('glossaryFlip')||'{}');
-        for (const k in flipMap) {
-          const cardEl = grid.querySelector(`.glossary-card-container[data-id="${k}"] .glossary-card`);
-          if (cardEl && flipMap[k]) cardEl.classList.add('is-flipped');
-        }
+        pageSize = 12;
+        apply();
       }
     });
 
@@ -284,22 +298,30 @@ function initGlossaryPage() {
 
     if (searchInput) {
       let t;
-      const apply = () => {
-        const q = searchInput.value.trim().toLowerCase();
+      const applySearch = () => {
         localStorage.setItem('glossaryQuery', searchInput.value);
-        const catBtn = filterContainer.querySelector('.filter-btn.active');
-        const category = catBtn ? catBtn.dataset.category : 'All';
-        const filteredData = (category === 'All' ? vocabularyData : vocabularyData.filter(item => item.category === category))
-          .filter(i => {
-            if (!q) return true;
-            const fields = [i.term_en, i.term_pt, i.definition_en, i.definition_pt];
-            return fields.some(f => String(f||'').toLowerCase().includes(q));
-          });
-        grid.innerHTML = filteredData.map(GlossaryCard).join('');
-        if (countEl) countEl.textContent = `${filteredData.length} termos`;
+        pageSize = 12;
+        apply();
       };
-      searchInput.addEventListener('input', () => { clearTimeout(t); t = setTimeout(apply, 150); });
+      searchInput.addEventListener('input', () => { clearTimeout(t); t = setTimeout(applySearch, 150); });
     }
+
+    if (sortSelect) {
+      sortSelect.addEventListener('change', () => {
+        localStorage.setItem('glossarySort', sortSelect.value);
+        pageSize = 12;
+        apply();
+      });
+    }
+
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        pageSize += 12;
+        apply();
+      });
+    }
+
+    apply();
   }
 }
 

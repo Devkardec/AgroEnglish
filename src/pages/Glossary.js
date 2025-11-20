@@ -5,6 +5,7 @@ export function Glossary() {
   const categories = ['All', ...new Set(vocabularyData.map(item => item.category))];
   const saved = localStorage.getItem('glossaryCategory') || 'All';
   const savedQuery = localStorage.getItem('glossaryQuery') || '';
+  const savedSort = localStorage.getItem('glossarySort') || 'az';
 
   // Generate the HTML for the filter buttons
   const filterButtonsHTML = categories.map(category => `
@@ -36,13 +37,26 @@ export function Glossary() {
         ${filterButtonsHTML}
       </div>
 
-      <div class="glossary-search">
-        <input type="text" id="glossary-search" placeholder="Buscar termos e definições" value="${savedQuery}" />
+      <div class="glossary-actions">
+        <div class="glossary-search">
+          <input type="text" id="glossary-search" placeholder="Buscar termos e definições" value="${savedQuery}" />
+        </div>
+        <div class="glossary-sort">
+          <label for="glossary-sort-select" class="small">Ordenar</label>
+          <select id="glossary-sort-select">
+            <option value="az" ${savedSort==='az'?'selected':''}>A → Z</option>
+            <option value="za" ${savedSort==='za'?'selected':''}>Z → A</option>
+            <option value="category" ${savedSort==='category'?'selected':''}>Categoria</option>
+          </select>
+        </div>
         <div class="small" id="glossary-count">${initialData.length} termos</div>
       </div>
 
       <div class="glossary-grid" id="glossary-grid">
         ${initialCardsHTML}
+      </div>
+      <div class="glossary-load">
+        <button class="btn" id="glossary-load-more">Carregar mais</button>
       </div>
     </main>
   `;
