@@ -631,17 +631,25 @@ async function setupAudio(data) {
 
   const title = String(data && data.title || '').trim();
   const level = (location.hash.split('/')[2] || '').trim();
+  const idx = Number((location.hash.split('/')[3] || '1').trim());
+  function slugify(s){
+    return String(s||'')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9]+/gi,'_')
+      .replace(/_+/g,'_')
+      .replace(/^_|_$/g,'')
+      .toLowerCase();
+  }
   const fileName = encodeURIComponent(`${title} · ${level}.mp3`);
-  const candidates = [
-    `/audio/${fileName}`,
-    `./audio/${fileName}`,
-    `/src/audio/${fileName}`,
-    `./src/audio/${fileName}`,
-    `/audio/${level}/${fileName}`,
-    `./audio/${level}/${fileName}`,
-    `/src/audio/${level}/${fileName}`,
-    `./src/audio/${level}/${fileName}`
-  ];
+  const alt1 = `${slugify(title)}_${level}.mp3`;
+  const alt2 = `text${idx}.mp3`;
+  const alt3 = `${level}_${idx}.mp3`;
+  const names = [fileName, alt1, alt2, alt3];
+  const candidates = [];
+  names.forEach(n=>{
+    candidates.push(`/audio/${n}`, `./audio/${n}`, `/src/audio/${n}`, `./src/audio/${n}`);
+    candidates.push(`/audio/${level}/${n}`, `./audio/${level}/${n}`, `/src/audio/${level}/${n}`, `./src/audio/${level}/${n}`);
+  });
   (async () => {
     for (const url of candidates) {
       try { const r = await fetch(url, { method: 'HEAD' }); if (r.ok) { audio.src = url; hasMp3 = true; break; } } catch {}

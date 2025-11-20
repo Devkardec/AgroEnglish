@@ -13,7 +13,7 @@ export function Level(level) {
         <div class="actions">
           <a class="btn" href="#/text/${level}/1">Começar</a>
         </div>
-        <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="150" width="216" height="40" rx="12" fill="#fff"/><rect x="40" y="120" width="80" height="30" rx="8" fill="#fff"/><circle cx="70" cy="150" r="28" fill="#fff"/></svg>
+        
       </section>
 
       <section class="card" style="margin-bottom:16px">
