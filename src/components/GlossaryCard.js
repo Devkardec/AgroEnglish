@@ -2,13 +2,12 @@ export function GlossaryCard(item) {
   if (!item) return '';
   const base = String(item.image||'').toLowerCase();
   const hasImage = !!item.image && !base.includes('placehold.co');
-  const cat = String(item.category||'').toLowerCase().replace(/\s+/g,'-');
   const imageFront = hasImage
     ? `<img src="${item.image}" alt="${item.term_en}" loading="lazy" decoding="async" onerror="this.onerror=null;this.remove()" />`
-    : `<div class="image-fallback cat-${cat}"></div>`;
+    : `<div class="image-fallback"></div>`;
   const imageBack = hasImage
     ? `<img src="${item.image}" alt="${item.term_pt}" loading="lazy" decoding="async" onerror="this.onerror=null;this.remove()" />`
-    : `<div class="image-fallback cat-${cat}"></div>`;
+    : `<div class="image-fallback"></div>`;
 
   return `
     <div class="glossary-card-container" data-id="${item.id}" tabindex="0" role="button" aria-label="Flip card / Virar card">
