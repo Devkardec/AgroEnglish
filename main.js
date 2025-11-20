@@ -211,30 +211,28 @@ function initGlossaryPage() {
   const grid = document.getElementById('glossary-grid');
 
   if (filterContainer && grid) {
-    // Handle clicks on filter buttons
     filterContainer.addEventListener('click', (e) => {
       if (e.target.matches('.filter-btn')) {
         const category = e.target.dataset.category;
-
-        // Update the active state on buttons
-        filterContainer.querySelector('.filter-btn.active').classList.remove('active');
+        const active = filterContainer.querySelector('.filter-btn.active');
+        if (active) active.classList.remove('active');
         e.target.classList.add('active');
-
-        // Filter the vocabulary data based on the selected category
-        const filteredData = category === 'All'
-          ? vocabularyData
-          : vocabularyData.filter(item => item.category === category);
+        localStorage.setItem('glossaryCategory', category);
+        const filteredData = category === 'All' ? vocabularyData : vocabularyData.filter(item => item.category === category);
         
-        // Re-render the grid with the filtered cards
         grid.innerHTML = filteredData.map(GlossaryCard).join('');
+        const flipMap = JSON.parse(localStorage.getItem('glossaryFlip')||'{}');
+        for (const k in flipMap) {
+          const cardEl = grid.querySelector(`.glossary-card-container[data-id="${k}"] .glossary-card`);
+          if (cardEl && flipMap[k]) cardEl.classList.add('is-flipped');
+        }
       }
     });
 
-    // Handle clicks on the grid for both flipping and speaking
     grid.addEventListener('click', (e) => {
       const speakButton = e.target.closest('.speak-btn');
       if (speakButton) {
-        e.stopPropagation(); // Prevents the card from flipping
+        e.stopPropagation();
         const termToSpeak = speakButton.dataset.term;
         if (termToSpeak) {
           speak(termToSpeak);
@@ -244,9 +242,36 @@ function initGlossaryPage() {
 
       const cardContainer = e.target.closest('.glossary-card-container');
       if (cardContainer) {
-        cardContainer.querySelector('.glossary-card').classList.toggle('is-flipped');
+        const card = cardContainer.querySelector('.glossary-card');
+        card.classList.toggle('is-flipped');
+        const id = cardContainer.getAttribute('data-id');
+        const flipMap = JSON.parse(localStorage.getItem('glossaryFlip')||'{}');
+        flipMap[id] = card.classList.contains('is-flipped');
+        localStorage.setItem('glossaryFlip', JSON.stringify(flipMap));
       }
     });
+
+    grid.addEventListener('keydown', (e) => {
+      const key = e.key;
+      if (key === 'Enter' || key === ' ') {
+        const cardContainer = e.target.closest('.glossary-card-container');
+        if (cardContainer) {
+          e.preventDefault();
+          const card = cardContainer.querySelector('.glossary-card');
+          card.classList.toggle('is-flipped');
+          const id = cardContainer.getAttribute('data-id');
+          const flipMap = JSON.parse(localStorage.getItem('glossaryFlip')||'{}');
+          flipMap[id] = card.classList.contains('is-flipped');
+          localStorage.setItem('glossaryFlip', JSON.stringify(flipMap));
+        }
+      }
+    });
+
+    const initialFlip = JSON.parse(localStorage.getItem('glossaryFlip')||'{}');
+    for (const k in initialFlip) {
+      const cardEl = grid.querySelector(`.glossary-card-container[data-id="${k}"] .glossary-card`);
+      if (cardEl && initialFlip[k]) cardEl.classList.add('is-flipped');
+    }
   }
 }
 

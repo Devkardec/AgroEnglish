@@ -2,13 +2,13 @@ import vocabularyData from '../data/vocabularyData.js';
 import { GlossaryCard } from '../components/GlossaryCard.js';
 
 export function Glossary() {
-  // Get all unique categories and add "All" at the beginning
   const categories = ['All', ...new Set(vocabularyData.map(item => item.category))];
+  const saved = localStorage.getItem('glossaryCategory') || 'All';
 
   // Generate the HTML for the filter buttons
   const filterButtonsHTML = categories.map(category => `
     <button
-      class="filter-btn ${category === 'All' ? 'active' : ''}"
+      class="filter-btn ${category === saved ? 'active' : ''}"
       data-category="${category}"
     >
       ${category}
@@ -16,7 +16,8 @@ export function Glossary() {
   `).join('');
 
   // Generate the initial grid of cards (showing all items)
-  const initialCardsHTML = vocabularyData.map(GlossaryCard).join('');
+  const initialData = saved === 'All' ? vocabularyData : vocabularyData.filter(item => item.category === saved);
+  const initialCardsHTML = initialData.map(GlossaryCard).join('');
 
   // Return the full page HTML structure
   return `
