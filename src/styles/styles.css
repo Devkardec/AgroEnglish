@@ -224,8 +224,8 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
 
 .glossary-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
 }
 
 /* Glossary Card Flip Effect */
@@ -244,6 +244,11 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
   transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(26, 37, 51, 0.07);
+}
+
+.glossary-card-container:hover .glossary-card:not(.is-flipped) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(26, 37, 51, 0.12);
 }
 
 .glossary-card.is-flipped {
@@ -414,4 +419,19 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
   .card-front h3 {
     font-size: 20px;
   }
+}
+.glossary-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.glossary-search input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #cfd7d3;
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--text);
 }

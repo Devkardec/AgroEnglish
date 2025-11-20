@@ -107,6 +107,138 @@ const vocabularyData = [
     example_pt: "O período de gestação de uma porca é de aproximadamente 3 meses, 3 semanas e 3 dias.",
     image: "https://placehold.co/400x250/0b2f6a/ffffff?text=Gestation+Period"
   }
+  ,{
+    id: 10,
+    category: "Irrigation",
+    term_en: "Drip Irrigation",
+    phonetic: "/drɪp ˌɪrɪˈɡeɪʃən/",
+    definition_en: "A micro-irrigation system that saves water by delivering it directly to the plant root zone.",
+    example_en: "Drip irrigation reduces evaporation and improves water-use efficiency.",
+    term_pt: "Irrigação por gotejamento",
+    definition_pt: "Sistema de microirrigação que economiza água ao entregar diretamente na zona radicular.",
+    example_pt: "A irrigação por gotejamento reduz a evaporação e melhora a eficiência do uso da água.",
+    image: "https://placehold.co/400x250/0b2f6a/ffffff?text=Drip+Irrigation"
+  }
+  ,{
+    id: 11,
+    category: "Machinery",
+    term_en: "Hydraulic Coupler",
+    phonetic: "/haɪˈdrɒlɪk ˈkʌplər/",
+    definition_en: "A quick-connect device that links hydraulic hoses between tractor and implement.",
+    example_en: "Clean the hydraulic coupler before connecting to avoid contamination.",
+    term_pt: "Acoplador hidráulico",
+    definition_pt: "Dispositivo de engate rápido que liga mangueiras hidráulicas entre trator e implemento.",
+    example_pt: "Limpe o acoplador hidráulico antes de conectar para evitar contaminação.",
+    image: "https://placehold.co/400x250/0b2f6a/ffffff?text=Hydraulic+Coupler"
+  }
+  ,{
+    id: 12,
+    category: "Soil",
+    term_en: "pH",
+    phonetic: "/piː eɪtʃ/",
+    definition_en: "A measure of acidity or alkalinity of soil, affecting nutrient availability to plants.",
+    example_en: "Adjust soil pH with lime to improve nutrient uptake in crops.",
+    term_pt: "pH",
+    definition_pt: "Medida de acidez ou alcalinidade do solo, que afeta a disponibilidade de nutrientes.",
+    example_pt: "Ajuste o pH do solo com calcário para melhorar a absorção de nutrientes nas culturas.",
+    image: "https://placehold.co/400x250/0b2f6a/ffffff?text=Soil+pH"
+  }
+  ,{
+    id: 13,
+    category: "Safety",
+    term_en: "PPE",
+    phonetic: "/ˌpiː.piːˈiː/",
+    definition_en: "Personal protective equipment used to minimize exposure to hazards.",
+    example_en: "Always wear PPE when handling agrochemicals.",
+    term_pt: "EPI",
+    definition_pt: "Equipamento de proteção individual utilizado para minimizar a exposição a riscos.",
+    example_pt: "Sempre use EPI ao manusear agroquímicos.",
+    image: "https://placehold.co/400x250/0b2f6a/ffffff?text=PPE"
+  }
+  ,{
+    id: 14,
+    category: "Crops",
+    term_en: "Mulching",
+    phonetic: "/ˈmʌltʃɪŋ/",
+    definition_en: "Covering the soil with organic or synthetic material to conserve moisture and suppress weeds.",
+    example_en: "Mulching helps maintain soil temperature and reduces erosion.",
+    term_pt: "Cobertura morta",
+    definition_pt: "Cobrir o solo com material orgânico ou sintético para conservar umidade e suprimir ervas daninhas.",
+    example_pt: "A cobertura morta ajuda a manter a temperatura do solo e reduz a erosão.",
+    image: "https://placehold.co/400x250/0b2f6a/ffffff?text=Mulching"
+  }
+  ,{
+    id: 15,
+    category: "Machinery",
+    term_en: "Boom Sprayer",
+    phonetic: "/buːm ˈspreɪər/",
+    definition_en: "A sprayer with a long boom used to apply pesticides or fertilizers evenly across fields.",
+    example_en: "Calibrate the boom sprayer to ensure accurate application rates.",
+    term_pt: "Pulverizador de barra",
+    definition_pt: "Pulverizador com barra longa usado para aplicar pesticidas ou fertilizantes uniformemente.",
+    example_pt: "Calibre o pulverizador de barra para garantir taxas de aplicação precisas.",
+    image: "https://placehold.co/400x250/0b2f6a/ffffff?text=Boom+Sprayer"
+  }
+  ,{
+    id: 16,
+    category: "Veterinary",
+    term_en: "Biosecurity",
+    phonetic: "/ˌbaɪoʊsɪˈkjʊrɪti/",
+    definition_en: "Procedures intended to protect livestock from infection and disease.",
+    example_en: "Strict biosecurity reduces the risk of contagious outbreaks.",
+    term_pt: "Biossegurança",
+    definition_pt: "Procedimentos destinados a proteger o rebanho contra infecções e doenças.",
+    example_pt: "Biossegurança rígida reduz o risco de surtos contagiosos.",
+    image: "https://placehold.co/400x250/0b2f6a/ffffff?text=Biosecurity"
+  }
+  ,{
+    id: 17,
+    category: "Soil",
+    term_en: "Organic Matter",
+    phonetic: "/ɔːˈɡænɪk ˈmætər/",
+    definition_en: "Decomposed plant and animal residues that improve soil structure and fertility.",
+    example_en: "High organic matter enhances water retention and microbial activity.",
+    term_pt: "Matéria orgânica",
+    definition_pt: "Resíduos de plantas e animais decompostos que melhoram a estrutura e a fertilidade do solo.",
+    example_pt: "Alta matéria orgânica aumenta a retenção de água e a atividade microbiana.",
+    image: "https://placehold.co/400x250/0b2f6a/ffffff?text=Organic+Matter"
+  }
+  ,{
+    id: 18,
+    category: "Safety",
+    term_en: "Lockout/Tagout",
+    phonetic: "/ˈlɒkaʊt ˈtæɡaʊt/",
+    definition_en: "Safety procedure to ensure equipment remains off and cannot be started during maintenance.",
+    example_en: "Implement lockout/tagout before servicing machinery.",
+    term_pt: "Bloqueio/Etiquetagem",
+    definition_pt: "Procedimento de segurança para garantir que o equipamento permaneça desligado durante manutenção.",
+    example_pt: "Implemente bloqueio/etiquetagem antes de realizar manutenção em máquinas.",
+    image: "https://placehold.co/400x250/0b2f6a/ffffff?text=Lockout+Tagout"
+  }
+  ,{
+    id: 19,
+    category: "Crops",
+    term_en: "Cover Crop",
+    phonetic: "/ˈkʌvər krɒp/",
+    definition_en: "Crops planted to protect and enrich the soil between main growing seasons.",
+    example_en: "Plant cover crops to reduce erosion and fix nitrogen.",
+    term_pt: "Planta de cobertura",
+    definition_pt: "Culturas plantadas para proteger e enriquecer o solo entre safras.",
+    example_pt: "Plante culturas de cobertura para reduzir a erosão e fixar nitrogênio.",
+    image: "https://placehold.co/400x250/0b2f6a/ffffff?text=Cover+Crop"
+  }
+  ,{
+    id: 20,
+    category: "Machinery",
+    term_en: "PTO Guard",
+    phonetic: "/ˌpiː.tiːˈoʊ ɡɑːrd/",
+    definition_en: "A protective cover that shields the rotating PTO shaft to prevent entanglement injuries.",
+    example_en: "Never remove the PTO guard while equipment is running.",
+    term_pt: "Proteção do TDF",
+    definition_pt: "Capa protetora que protege o eixo TDF giratório para evitar acidentes por enroscamento.",
+    example_pt: "Nunca remova a proteção do TDF com o equipamento em funcionamento.",
+    image: "https://placehold.co/400x250/0b2f6a/ffffff?text=PTO+Guard"
+  }
 ];
 
 export default vocabularyData;
