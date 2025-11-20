@@ -6,12 +6,23 @@ export function Glossary() {
   const saved = localStorage.getItem('glossaryCategory') || 'All';
   const savedQuery = localStorage.getItem('glossaryQuery') || '';
   const savedSort = localStorage.getItem('glossarySort') || 'az';
+  const categoryPt = {
+    All: 'Todos',
+    Machinery: 'Maquinário',
+    Crops: 'Culturas',
+    Veterinary: 'Veterinária',
+    Irrigation: 'Irrigação',
+    Soil: 'Solo',
+    Safety: 'Segurança'
+  };
 
   // Generate the HTML for the filter buttons
   const filterButtonsHTML = categories.map(category => `
     <button
       class="filter-btn ${category === saved ? 'active' : ''}"
       data-category="${category}"
+      title="${categoryPt[category] || category}"
+      data-pt="${categoryPt[category] || category}"
     >
       ${category}
     </button>

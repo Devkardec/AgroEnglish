@@ -209,6 +209,7 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .filter-btn:hover {
@@ -220,6 +221,44 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
   background: var(--green);
   color: #fff;
   border-color: var(--green);
+}
+
+/* Fancy tooltip with PT translation on hover */
+.filter-btn[data-pt]::after {
+  content: attr(data-pt);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(6px);
+  background: #0b2f6a;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(11,47,106,0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: 5;
+}
+.filter-btn[data-pt]::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 5px);
+  transform: translateX(-50%) rotate(45deg) translateY(6px);
+  width: 8px;
+  height: 8px;
+  background: #0b2f6a;
+  opacity: 0;
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: 4;
+}
+.filter-btn:hover[data-pt]::after,
+.filter-btn:hover[data-pt]::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .glossary-grid {
