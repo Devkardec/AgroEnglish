@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "level": "A1",
+    "category": "Machines",
+    "title": "John's Red Tractor",
+    "title_pt": "O trator vermelho do John",
+    "text_en": "My name is John. I work on a farm. I drive a red tractor. The tractor is strong. I point to the wheel. The wheel turns fast. I check the engine. It runs well. I clean the seat. I park near the barn. I lock the brake. I wave to my friend. I love my tractor.",
+    "text_pt": "Meu nome é John. Eu trabalho numa fazenda. Eu dirijo um trator vermelho. O trator é forte. Eu aponto para a roda. A roda gira rápido. Eu verifico o motor. Ele funciona bem. Eu limpo o assento. Eu estaciono perto do celeiro. Eu travo o freio. Eu aceno para meu amigo. Eu amo meu trator.",
+    "teaching_modules": {
+      "explanation": "Usamos Present Simple com frases curtas. Para 'I' usamos o verbo base (I drive). Para 'It' o verbo ganha 's' (It runs).",
+      "grammar_table": [
+        {"subject": "I (Eu)", "verb": "Drive", "example": "I drive the tractor"},
+        {"subject": "It (Ele/Coisa)", "verb": "Runs", "example": "It runs well"}
+      ],
+      "vocabulary": [
+        {"word": "Tractor", "translation": "Trator"},
+        {"word": "Wheel", "translation": "Roda"},
+        {"word": "Engine", "translation": "Motor"},
+        {"word": "Seat", "translation": "Assento"}
+      ],
+      "verbs_list": [
+        {"base": "Work", "third_person": "Works", "translation": "Trabalhar"},
+        {"base": "Drive", "third_person": "Drives", "translation": "Dirigir"},
+        {"base": "Check", "third_person": "Checks", "translation": "Checar"}
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "level": "A1",
+    "category": "Machines",
+    "title": "Working the Soil",
+    "title_pt": "Trabalhando o solo",
+    "text_en": "I start the tractor. I drive slowly. I see the soil. The soil is brown. I turn the earth. I follow a straight line. I watch the sun. I feel the wind. I keep my hands on the wheel. I stop and check the field. I adjust the seat. I check a small map. I finish the work.",
+    "text_pt": "Eu ligo o trator. Eu dirijo devagar. Eu vejo o solo. O solo é marrom. Eu viro a terra. Eu sigo uma linha reta. Eu observo o sol. Eu sinto o vento. Eu mantenho as mãos na roda. Eu paro e verifico o campo. Eu ajusto o assento. Eu confiro um pequeno mapa. Eu termino o trabalho.",
+    "teaching_modules": {
+      "explanation": "Present Simple descreve rotina: I start, I drive, I see. Para 'It' ou 'The soil', o verbo ganha 's' (The soil looks soft).",
+      "grammar_table": [
+        {"subject": "I (Eu)", "verb": "Start", "example": "I start the tractor"},
+        {"subject": "It (Solo)", "verb": "Looks", "example": "It looks brown"}
+      ],
+      "vocabulary": [
+        {"word": "Soil", "translation": "Solo"},
+        {"word": "Field", "translation": "Campo"},
+        {"word": "Line", "translation": "Linha"},
+        {"word": "Earth", "translation": "Terra"}
+      ],
+      "verbs_list": [
+        {"base": "Start", "third_person": "Starts", "translation": "Ligar/Iniciar"},
+        {"base": "Drive", "third_person": "Drives", "translation": "Dirigir"},
+        {"base": "Turn", "third_person": "Turns", "translation": "Virar"}
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "level": "A1",
+    "category": "Machines",
+    "title": "Planting Corn Seeds",
+    "title_pt": "Plantando sementes de milho",
+    "text_en": "I carry corn seeds. I walk to the field. I open a small bag. I put seeds in the soil. I use my hands. I make short rows. I drink water and rest. I check the rows. The sun is warm. I cover the seeds with soil. I carry the bag back. I smile at the rows. I feel happy and calm.",
+    "text_pt": "Eu levo sementes de milho. Eu caminho até o campo. Eu abro uma sacola pequena. Eu coloco sementes no solo. Eu uso minhas mãos. Eu faço fileiras curtas. Eu bebo água e descanso. Eu verifico as fileiras. O sol está quente. Eu cubro as sementes com solo. Eu levo a sacola de volta. Eu sorrio para as fileiras. Eu me sinto feliz e calmo.",
+    "teaching_modules": {
+      "explanation": "Frases curtas em Present Simple: I carry, I put, I check. Em 3ª pessoa, o verbo ganha 's' (The sun warms the field).",
+      "grammar_table": [
+        {"subject": "I (Eu)", "verb": "Put", "example": "I put seeds in the soil"},
+        {"subject": "It (Sol)", "verb": "Warms", "example": "It warms the field"}
+      ],
+      "vocabulary": [
+        {"word": "Seeds", "translation": "Sementes"},
+        {"word": "Corn", "translation": "Milho"},
+        {"word": "Row", "translation": "Fileira"},
+        {"word": "Bag", "translation": "Sacola"}
+      ],
+      "verbs_list": [
+        {"base": "Carry", "third_person": "Carries", "translation": "Carregar"},
+        {"base": "Put", "third_person": "Puts", "translation": "Colocar"},
+        {"base": "Check", "third_person": "Checks", "translation": "Checar"}
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "level": "A1",
+    "category": "Machines",
+    "title": "Rain Helps Plants Grow",
+    "title_pt": "A chuva ajuda as plantas a crescer",
+    "text_en": "Rain falls on the field. I watch the plants. The rain gives water. The water helps the plants grow. I walk and check the soil. The soil is wet. I see green leaves. I wait and smile. I open the gate slowly. I take a photo of the field. I write the weather in a notebook. The plants grow every day.",
+    "text_pt": "A chuva cai no campo. Eu observo as plantas. A chuva dá água. A água ajuda as plantas a crescer. Eu caminho e verifico o solo. O solo está úmido. Eu vejo folhas verdes. Eu espero e sorrio. Eu abro o portão devagar. Eu tiro uma foto do campo. Eu escrevo o clima em um caderno. As plantas crescem todos os dias.",
+    "teaching_modules": {
+      "explanation": "Present Simple para fatos simples: Rain falls, Water helps. Para 'Rain/Water/It' o verbo leva 's' (It helps).",
+      "grammar_table": [
+        {"subject": "I (Eu)", "verb": "Watch", "example": "I watch the plants"},
+        {"subject": "It (Chuva/Água)", "verb": "Helps", "example": "It helps the plants"}
+      ],
+      "vocabulary": [
+        {"word": "Rain", "translation": "Chuva"},
+        {"word": "Water", "translation": "Água"},
+        {"word": "Leaf", "translation": "Folha"},
+        {"word": "Wet", "translation": "Úmido"}
+      ],
+      "verbs_list": [
+        {"base": "Fall", "third_person": "Falls", "translation": "Cair"},
+        {"base": "Help", "third_person": "Helps", "translation": "Ajudar"},
+        {"base": "Grow", "third_person": "Grows", "translation": "Crescer"}
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "level": "A1",
+    "category": "Livestock",
+    "title": "Cows and a Calf in the Barn",
+    "title_pt": "Vacas e um bezerro no celeiro",
+    "text_en": "I walk into the barn. I see cows and a small calf. I carry a bucket of milk. I give milk to the calf. The cow watches and stays calm. I clean the floor. I check the water. I close the gate. I hang the bucket. I pet the calf gently. I turn off the light. I feel safe and happy.",
+    "text_pt": "Eu entro no celeiro. Eu vejo vacas e um bezerro pequeno. Eu carrego um balde de leite. Eu dou leite ao bezerro. A vaca observa e fica calma. Eu limpo o chão. Eu verifico a água. Eu fecho o portão. Eu penduro o balde. Eu faço carinho no bezerro com cuidado. Eu apago a luz. Eu me sinto seguro e feliz.",
+    "teaching_modules": {
+      "explanation": "Rotina em Present Simple: I see, I give, I clean. Para 'The cow/It' o verbo ganha 's' (It stays calm).",
+      "grammar_table": [
+        {"subject": "I (Eu)", "verb": "Give", "example": "I give milk to the calf"},
+        {"subject": "It (Vaca/Bezerro)", "verb": "Stays", "example": "It stays calm"}
+      ],
+      "vocabulary": [
+        {"word": "Barn", "translation": "Celeiro"},
+        {"word": "Cow", "translation": "Vaca"},
+        {"word": "Calf", "translation": "Bezerro"},
+        {"word": "Gate", "translation": "Portão"}
+      ],
+      "verbs_list": [
+        {"base": "Walk", "third_person": "Walks", "translation": "Caminhar"},
+        {"base": "Give", "third_person": "Gives", "translation": "Dar"},
+        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"}
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "level": "A1",
+    "category": "Livestock",
+    "title": "Feeding the Chickens",
+    "title_pt": "Alimentando as galinhas",
+    "text_en": "I walk to the chickens. I carry a bag of feed. I throw feed on the ground. The chickens eat and cluck. I check the eggs. I see two eggs. I clean the nest. I close the door. I wash my hands. I put the bag away. I smile and feel calm.",
+    "text_pt": "Eu caminho até as galinhas. Eu carrego uma sacola de ração. Eu jogo ração no chão. As galinhas comem e cacarejam. Eu verifico os ovos. Eu vejo dois ovos. Eu limpo o ninho. Eu fecho a porta. Eu lavo minhas mãos. Eu guardo a sacola. Eu sorrio e me sinto calmo.",
+    "teaching_modules": {
+      "explanation": "Frases curtas em Present Simple: I carry, I throw, I check. Para 'It' ou 'The hen' usamos 's' (It eats).",
+      "grammar_table": [
+        {"subject": "I (Eu)", "verb": "Check", "example": "I check the eggs"},
+        {"subject": "It (Galinhas/Galinha)", "verb": "Eats", "example": "It eats feed"}
+      ],
+      "vocabulary": [
+        {"word": "Chicken", "translation": "Galinha"},
+        {"word": "Feed", "translation": "Ração"},
+        {"word": "Egg", "translation": "Ovo"},
+        {"word": "Nest", "translation": "Ninho"}
+      ],
+      "verbs_list": [
+        {"base": "Carry", "third_person": "Carries", "translation": "Carregar"},
+        {"base": "Throw", "third_person": "Throws", "translation": "Jogar"},
+        {"base": "Check", "third_person": "Checks", "translation": "Checar"}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "level": "A1",
+    "category": "Livestock",
+    "title": "Cleaning the Pig Pen",
+    "title_pt": "Limpando o chiqueiro",
+    "text_en": "I walk to the pig pen. I see pigs in the mud. I carry a bucket and a brush. I clean the floor. I move mud to a corner. I wash a small area. I rinse the brush. I hang the bucket. I open a window. I feel safe and calm. The pig pen looks neat.",
+    "text_pt": "Eu caminho até o chiqueiro. Eu vejo porcos na lama. Eu carrego um balde e uma escova. Eu limpo o chão. Eu empurro a lama para um canto. Eu lavo uma área pequena. Eu enxáguo a escova. Eu penduro o balde. Eu abro uma janela. Eu me sinto seguro e calmo. O chiqueiro fica organizado.",
+    "teaching_modules": {
+      "explanation": "Present Simple para limpeza: I clean, I move, I wash. Para 'It' o verbo ganha 's' (It looks neat).",
+      "grammar_table": [
+        {"subject": "I (Eu)", "verb": "Clean", "example": "I clean the floor"},
+        {"subject": "It (Chiqueiro)", "verb": "Looks", "example": "It looks neat"}
+      ],
+      "vocabulary": [
+        {"word": "Pig", "translation": "Porco"},
+        {"word": "Mud", "translation": "Lama"},
+        {"word": "Bucket", "translation": "Balde"},
+        {"word": "Brush", "translation": "Escova"}
+      ],
+      "verbs_list": [
+        {"base": "See", "third_person": "Sees", "translation": "Ver"},
+        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"},
+        {"base": "Wash", "third_person": "Washes", "translation": "Lavar"}
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "level": "A1",
+    "category": "Veterinary",
+    "title": "The Vet Visits the Farm",
+    "title_pt": "O veterinário visita a fazenda",
+    "text_en": "The vet visits our farm. I greet the vet. The vet checks a cow. The vet helps and smiles. I carry tools and water. I clean the area. I listen to simple advice. I point to a list. The vet writes notes. We schedule a next visit. I feel calm and safe.",
+    "text_pt": "O veterinário visita nossa fazenda. Eu cumprimento o veterinário. O veterinário examina uma vaca. O veterinário ajuda e sorri. Eu carrego ferramentas e água. Eu limpo a área. Eu escuto conselhos simples. Eu aponto para uma lista. O veterinário escreve notas. Nós marcamos uma próxima visita. Eu me sinto calmo e seguro.",
+    "teaching_modules": {
+      "explanation": "Present Simple em ações simples: The vet visits, checks, helps. Em 3ª pessoa, o verbo ganha 's'.",
+      "grammar_table": [
+        {"subject": "I (Eu)", "verb": "Greet", "example": "I greet the vet"},
+        {"subject": "He/She (Vet)", "verb": "Visits", "example": "He visits the farm"}
+      ],
+      "vocabulary": [
+        {"word": "Vet", "translation": "Veterinário"},
+        {"word": "Advice", "translation": "Conselho"},
+        {"word": "Tools", "translation": "Ferramentas"},
+        {"word": "Cow", "translation": "Vaca"}
+      ],
+      "verbs_list": [
+        {"base": "Visit", "third_person": "Visits", "translation": "Visitar"},
+        {"base": "Check", "third_person": "Checks", "translation": "Examinar"},
+        {"base": "Help", "third_person": "Helps", "translation": "Ajudar"}
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "level": "A1",
+    "category": "Veterinary",
+    "title": "Happy or Sad Animal",
+    "title_pt": "Animal feliz ou triste",
+    "text_en": "I look at the animal. I see the eyes and the face. The animal looks happy. The ears are up. I feel calm. I give water. I talk softly. Sometimes the animal looks sad. The ears are down. I help and clean the area. I call the vet if it looks sad. I open the gate for air. I watch the animal again.",
+    "text_pt": "Eu olho para o animal. Eu vejo os olhos e o rosto. O animal parece feliz. As orelhas estão para cima. Eu me sinto calmo. Eu dou água. Eu falo baixo. Às vezes o animal parece triste. As orelhas estão para baixo. Eu ajudo e limpo a área. Eu chamo o veterinário se ele parece triste. Eu abro o portão para entrar ar. Eu observo o animal novamente.",
+    "teaching_modules": {
+      "explanation": "Present Simple para estados e ações curtas: The animal looks, I give, I talk. 'It' usa verbo com 's' (It looks).",
+      "grammar_table": [
+        {"subject": "I (Eu)", "verb": "Give", "example": "I give water"},
+        {"subject": "It (Animal)", "verb": "Looks", "example": "It looks happy"}
+      ],
+      "vocabulary": [
+        {"word": "Happy", "translation": "Feliz"},
+        {"word": "Sad", "translation": "Triste"},
+        {"word": "Eyes", "translation": "Olhos"},
+        {"word": "Ears", "translation": "Orelhas"}
+      ],
+      "verbs_list": [
+        {"base": "Look", "third_person": "Looks", "translation": "Olhar/Parecer"},
+        {"base": "Talk", "third_person": "Talks", "translation": "Falar"},
+        {"base": "Help", "third_person": "Helps", "translation": "Ajudar"}
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "level": "A1",
+    "category": "Veterinary",
+    "title": "Simple Medicine for the Calf",
+    "title_pt": "Remédio simples para o bezerro",
+    "text_en": "I carry simple medicine. I walk to the calf. I read a small label. I give medicine with care. The calf drinks and stays calm. I check the time. I write the dose on paper. I store the bottle. I wash my hands. I clean the table and smile. I feel happy. The calf looks healthy.",
+    "text_pt": "Eu levo remédio simples. Eu caminho até o bezerro. Eu leio um rótulo pequeno. Eu dou o remédio com cuidado. O bezerro bebe e fica calmo. Eu verifico a hora. Eu escrevo a dose no papel. Eu guardo o frasco. Eu lavo minhas mãos. Eu limpo a mesa e sorrio. Eu me sinto feliz. O bezerro parece saudável.",
+    "teaching_modules": {
+      "explanation": "Present Simple para passos simples: I read, I give, I write. Em 3ª pessoa, o verbo ganha 's' (It looks healthy).",
+      "grammar_table": [
+        {"subject": "I (Eu)", "verb": "Give", "example": "I give medicine"},
+        {"subject": "It (Bezerro)", "verb": "Looks", "example": "It looks healthy"}
+      ],
+      "vocabulary": [
+        {"word": "Medicine", "translation": "Remédio"},
+        {"word": "Label", "translation": "Rótulo"},
+        {"word": "Dose", "translation": "Dose"},
+        {"word": "Paper", "translation": "Papel"}
+      ],
+      "verbs_list": [
+        {"base": "Carry", "third_person": "Carries", "translation": "Carregar"},
+        {"base": "Read", "third_person": "Reads", "translation": "Ler"},
+        {"base": "Give", "third_person": "Gives", "translation": "Dar"}
+      ]
+    }
+  }
+]

@@ -1,0 +1,283 @@
+[
+  {
+    "id": 1,
+    "level": "B1",
+    "category": "Máquinas/Campo",
+    "title": "The Big Storm",
+  "title_pt": "A Grande Tempestade",
+    "text_en": "Yesterday was a hard day. We had a big storm last night. The wind was very strong and the roof shook. The rain did not stop for hours, so the yard flooded. I stayed inside the house and watched the sky. I was worried about the animals and the farm because the noise was loud. In the morning, I walked outside to check the damage. I saw broken branches, wet soil, and a bent gate. I took photos and wrote notes for the team.",
+    "text_pt": "Ontem foi um dia difícil. Tivemos uma grande tempestade ontem à noite. O vento estava muito forte e o telhado balançou. A chuva não parou por horas, então o pátio alagou. Eu fiquei dentro de casa e observei o céu. Eu estava preocupado com os animais e a fazenda porque o barulho era alto. De manhã, caminhei para fora para verificar o estrago. Eu vi galhos quebrados, solo molhado e um portão torto. Eu tirei fotos e escrevi notas para a equipe.",
+    "teaching_modules": {
+      "explanation": "Neste nível, focamos no PAST SIMPLE (Passado). Note verbos regulares com -ED (Stayed, Walked) e irregulares (Had, Was).",
+      "grammar_table": [
+        {"subject": "We", "verb": "Had", "example": "We had a storm (Irregular)"},
+        {"subject": "The wind", "verb": "Was", "example": "The wind was strong (Verb To Be Past)"},
+        {"subject": "I", "verb": "Walked", "example": "I walked outside (Regular -ED)"}
+      ],
+      "vocabulary": [
+        {"word": "Yesterday", "translation": "Ontem"},
+        {"word": "Storm", "translation": "Tempestade"},
+        {"word": "Wind", "translation": "Vento"},
+        {"word": "Worried", "translation": "Preocupado"},
+        {"word": "Damage", "translation": "Estrago/Dano"}
+      ],
+      "verbs_list": [
+        {"base": "Have", "past": "Had", "translation": "Ter/Teve"},
+        {"base": "Be", "past": "Was/Were", "translation": "Ser/Era"},
+        {"base": "Walk", "past": "Walked", "translation": "Caminhar/Caminhou"}
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "level": "B1",
+    "category": "Máquinas/Campo",
+    "title": "The Damage",
+  "title_pt": "O Estrago",
+    "text_en": "In the morning, John saw a broken fence and fallen trees. Because the posts broke, we closed the gate and stopped traffic. The road was blocked, so we moved tools back to the shed and covered the tractor. We checked the map and marked a dangerous area near the creek. We collected branches, swept water, and stacked wood. Yesterday's wind was strong near the hill, so we avoided that path.",
+    "text_pt": "De manhã, John viu uma cerca quebrada e árvores caídas. Porque os postes quebraram, nós fechamos o portão e interrompemos a passagem. A estrada estava bloqueada, então nós levamos as ferramentas de volta ao galpão e cobrimos o trator. Nós verificamos o mapa e marcamos uma área perigosa perto do riacho. Nós recolhemos galhos, varremos a água e empilhamos madeira. O vento de ontem foi forte perto da colina, então nós evitamos aquele caminho.",
+    "teaching_modules": {
+      "explanation": "Past Simple narra fatos concluídos (saw, broke, closed). Observe o uso de because/so para ligar causa e resultado.",
+      "grammar_table": [
+        {"subject": "John", "verb": "Saw", "example": "John saw a broken fence."},
+        {"subject": "Posts", "verb": "Broke", "example": "The posts broke in the storm."},
+        {"subject": "We", "verb": "Closed", "example": "We closed the gate because of the damage."}
+      ],
+      "vocabulary": [
+        {"word": "Because", "translation": "Porque"},
+        {"word": "So", "translation": "Então"},
+        {"word": "Fence", "translation": "Cerca"},
+        {"word": "Shed", "translation": "Galpão"}
+      ],
+      "verbs_list": [
+        {"base": "See", "past": "Saw", "translation": "Ver/Viu"},
+        {"base": "Break", "past": "Broke", "translation": "Quebrar/Quebrou"},
+        {"base": "Close", "past": "Closed", "translation": "Fechar/Fechou"}
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "level": "B1",
+    "category": "Máquinas/Campo",
+    "title": "The Broken Tractor",
+  "title_pt": "O Trator Quebrado",
+    "text_en": "John tried to start the tractor, but it did not work. Smoke came out of the engine and the light blinked. Because the battery was weak, the starter failed and the panel went dark. We opened the hood and saw a loose belt and wet cables. So we pushed the tractor into the barn, placed chocks, and stopped for safety. We wrote a report with time and symptoms.",
+    "text_pt": "John tentou ligar o trator, mas ele não funcionou. Fumaça saiu do motor e a luz piscou. Porque a bateria estava fraca, o motor de arranque falhou e o painel apagou. Nós abrimos o capô e vimos uma correia solta e cabos molhados. Então nós empurramos o trator para dentro do celeiro, colocamos calços e paramos por segurança. Nós escrevemos um relatório com horário e sintomas.",
+    "teaching_modules": {
+      "explanation": "Past Simple com negativa (did not work) e verbos irregulares (came, saw). Because/so explicam falha e ação.",
+      "grammar_table": [
+        {"subject": "John", "verb": "Tried", "example": "John tried to start the tractor."},
+        {"subject": "It", "verb": "Did not work", "example": "It did not work after the storm."},
+        {"subject": "Smoke", "verb": "Came", "example": "Smoke came out of the engine."}
+      ],
+      "vocabulary": [
+        {"word": "Battery", "translation": "Bateria"},
+        {"word": "Starter", "translation": "Motor de arranque"},
+        {"word": "Hood", "translation": "Capô"},
+        {"word": "Barn", "translation": "Celeiro"}
+      ],
+      "verbs_list": [
+        {"base": "Try", "past": "Tried", "translation": "Tentar/Tentou"},
+        {"base": "Come", "past": "Came", "translation": "Vir/Vieram/Veio"},
+        {"base": "See", "past": "Saw", "translation": "Ver/Viu"}
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "level": "B1",
+    "category": "Máquinas/Campo",
+    "title": "Calling Help",
+  "title_pt": "Chamando Ajuda",
+    "text_en": "John called the mechanic because we needed help after the storm. He answered and asked for photos and short videos. We sent pictures and described the metal noise. Because the road was muddy, we waited at the barn and kept the doors closed. So the team prepared tools, cleaned the workbench, and wrote a checklist for tomorrow.",
+    "text_pt": "John ligou para o mecânico porque nós precisávamos de ajuda após a tempestade. Ele atendeu e pediu fotos e vídeos curtos. Nós enviamos imagens e descrevemos o barulho metálico. Porque a estrada estava lamacenta, nós esperamos no celeiro e mantivemos as portas fechadas. Então a equipe preparou ferramentas, limpou a bancada e escreveu uma lista de verificação para amanhã.",
+    "teaching_modules": {
+      "explanation": "Past Simple para ações comunicadas (called, answered, sent). Uso de because/so para justificar espera e preparação.",
+      "grammar_table": [
+        {"subject": "John", "verb": "Called", "example": "John called the mechanic yesterday."},
+        {"subject": "He", "verb": "Asked", "example": "He asked for photos."},
+        {"subject": "We", "verb": "Sent", "example": "We sent pictures to explain the problem."}
+      ],
+      "vocabulary": [
+        {"word": "Because", "translation": "Porque"},
+        {"word": "So", "translation": "Então"},
+        {"word": "Muddy", "translation": "Lamacento"},
+        {"word": "Checklist", "translation": "Lista de verificação"}
+      ],
+      "verbs_list": [
+        {"base": "Call", "past": "Called", "translation": "Ligar/Ligou"},
+        {"base": "Ask", "past": "Asked", "translation": "Pedir/Pediu"},
+        {"base": "Send", "past": "Sent", "translation": "Enviar/Enviou"}
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "level": "B1",
+    "category": "Pecuária",
+    "title": "Cows Escaped",
+  "title_pt": "Fuga das Vacas",
+    "text_en": "The cows escaped because the fence fell in the storm. We saw tracks near the creek and counted the herd carefully. Two cows were missing, so we closed other gates and warned neighbors. We checked water lines and fixed a bent pipe. We marked the path with flags because visibility was poor.",
+    "text_pt": "As vacas fugiram porque a cerca caiu na tempestade. Nós vimos rastros perto do riacho e contamos o rebanho com cuidado. Duas vacas estavam faltando, então nós fechamos outros portões e avisamos os vizinhos. Nós checamos as linhas de água e consertamos um cano torto. Nós marcamos o caminho com bandeiras porque a visibilidade estava ruim.",
+    "teaching_modules": {
+      "explanation": "Past Simple para o incidente (escaped, fell, saw, counted). Because/so conectam causa e reação da equipe.",
+      "grammar_table": [
+        {"subject": "The cows", "verb": "Escaped", "example": "The cows escaped yesterday."},
+        {"subject": "The fence", "verb": "Fell", "example": "The fence fell in the storm."},
+        {"subject": "We", "verb": "Warned", "example": "We warned neighbors."}
+      ],
+      "vocabulary": [
+        {"word": "Creek", "translation": "Riacho"},
+        {"word": "Track", "translation": "Rastro"},
+        {"word": "Gate", "translation": "Portão"},
+        {"word": "Neighbor", "translation": "Vizinho"}
+      ],
+      "verbs_list": [
+        {"base": "Escape", "past": "Escaped", "translation": "Escapar/Escapou"},
+        {"base": "Count", "past": "Counted", "translation": "Contar/Contou"},
+        {"base": "Warn", "past": "Warned", "translation": "Avisar/Avisou"}
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "level": "B1",
+    "category": "Pecuária",
+    "title": "The Search",
+  "title_pt": "A Busca",
+    "text_en": "John searched for the animals in the rain and carried a small lamp. He walked across fields and hills and called each cow by name. Because the mud was deep, he moved slowly and rested twice. He found the herd far from home, so we guided them back with ropes and corn. We closed the paddock and checked the count again.",
+    "text_pt": "John procurou os animais na chuva e carregou uma pequena lanterna. Ele caminhou por campos e colinas e chamou cada vaca pelo nome. Porque a lama estava profunda, ele se moveu devagar e descansou duas vezes. Ele encontrou o rebanho longe de casa, então nós os guiamos de volta com cordas e milho. Nós fechamos o piquete e conferimos a contagem novamente.",
+    "teaching_modules": {
+      "explanation": "Past Simple de ação contínua no passado (searched, walked, moved, found). Because/so estruturam dificuldade e solução.",
+      "grammar_table": [
+        {"subject": "John", "verb": "Searched", "example": "John searched for the animals."},
+        {"subject": "He", "verb": "Moved", "example": "He moved slowly because of the mud."},
+        {"subject": "We", "verb": "Guided", "example": "We guided the herd back."}
+      ],
+      "vocabulary": [
+        {"word": "Mud", "translation": "Lama"},
+        {"word": "Hill", "translation": "Colina"},
+        {"word": "Rope", "translation": "Corda"},
+        {"word": "Herd", "translation": "Rebanho"}
+      ],
+      "verbs_list": [
+        {"base": "Search", "past": "Searched", "translation": "Procurar/Procurou"},
+        {"base": "Move", "past": "Moved", "translation": "Mover/Moveu"},
+        {"base": "Find", "past": "Found", "translation": "Encontrar/Encontrou"}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "level": "B1",
+    "category": "Pecuária",
+    "title": "Power Cut",
+  "title_pt": "Sem Luz",
+    "text_en": "The power cut happened last night during the storm. The milk tank stopped, so the milk spoiled and smelled sour. We checked the log because the alarms did not ring and the screen froze. We reset the panel, tested the backup socket, and cleaned the room. We wrote a short report for tomorrow.",
+    "text_pt": "A queda de energia aconteceu ontem à noite durante a tempestade. O tanque de leite parou, então o leite estragou e ficou com cheiro azedo. Nós verificamos o registro porque os alarmes não tocaram e a tela travou. Nós reiniciamos o painel, testamos a tomada de reserva e limpamos a sala. Nós escrevemos um relatório curto para amanhã.",
+    "teaching_modules": {
+      "explanation": "Past Simple para o evento e as ações corretivas (happened, stopped, checked, reset, cleaned). Uso de negativa com did not.",
+      "grammar_table": [
+        {"subject": "The power", "verb": "Cut/Happened", "example": "The power cut happened last night."},
+        {"subject": "Alarms", "verb": "Did not ring", "example": "The alarms did not ring."},
+        {"subject": "We", "verb": "Reset/Cleaned", "example": "We reset the panel and cleaned the room."}
+      ],
+      "vocabulary": [
+        {"word": "Tank", "translation": "Tanque"},
+        {"word": "Alarm", "translation": "Alarme"},
+        {"word": "Panel", "translation": "Painel"},
+        {"word": "Log", "translation": "Registro"}
+      ],
+      "verbs_list": [
+        {"base": "Stop", "past": "Stopped", "translation": "Parar/Parou"},
+        {"base": "Reset", "past": "Reset", "translation": "Reiniciar/Reiniciou"},
+        {"base": "Clean", "past": "Cleaned", "translation": "Limpar/Limpou"}
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "level": "B1",
+    "category": "Veterinária",
+    "title": "Sick Cow",
+  "title_pt": "Vaca Doente",
+    "text_en": "One cow was sick yesterday after the long rain. She did not eat and stayed apart from the herd. We took her temperature because she looked weak and breathed fast. So we isolated her in a clean pen, gave water, and changed the bedding. We called the vet and prepared records.",
+    "text_pt": "Uma vaca ficou doente ontem após a longa chuva. Ela não comeu e ficou separada do rebanho. Nós medimos a temperatura porque ela parecia fraca e respirava rápido. Então nós a isolamos em um curral limpo, demos água e trocamos a cama. Nós chamamos o veterinário e preparamos os registros.",
+    "teaching_modules": {
+      "explanation": "Past Simple com estados e ações (was, did not eat, stayed, took, looked). Because/so ligam observação à medida tomada.",
+      "grammar_table": [
+        {"subject": "The cow", "verb": "Was", "example": "The cow was sick yesterday."},
+        {"subject": "She", "verb": "Did not eat", "example": "She did not eat."},
+        {"subject": "We", "verb": "Took", "example": "We took her temperature."}
+      ],
+      "vocabulary": [
+        {"word": "Pen", "translation": "Curral"},
+        {"word": "Temperature", "translation": "Temperatura"},
+        {"word": "Weak", "translation": "Fraca"},
+        {"word": "Isolate", "translation": "Isolar"}
+      ],
+      "verbs_list": [
+        {"base": "Be", "past": "Was/Were", "translation": "Ser/Estar"},
+        {"base": "Eat", "past": "Ate", "translation": "Comer/Comeu"},
+        {"base": "Take", "past": "Took", "translation": "Medir/Tomar"}
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "level": "B1",
+    "category": "Veterinária",
+    "title": "Diagnosis",
+  "title_pt": "O Diagnóstico",
+    "text_en": "The vet came in the afternoon and arrived during light rain. He examined the cow and said it was an infection because the lab strip changed color. We cleaned equipment because hygiene was important and we organized the table. So we prepared a simple plan and wrote notes for the team and the morning check.",
+    "text_pt": "O veterinário veio à tarde e chegou durante uma chuva leve. Ele examinou a vaca e disse que era uma infecção porque a fita do teste mudou de cor. Nós limpamos os equipamentos porque a higiene era importante e organizamos a mesa. Então nós preparamos um plano simples e escrevemos notas para a equipe e para a checagem da manhã.",
+    "teaching_modules": {
+      "explanation": "Past Simple com relato clínico (came, examined, said, cleaned, prepared, wrote). Because/so formam uma narrativa lógica.",
+      "grammar_table": [
+        {"subject": "The vet", "verb": "Came", "example": "The vet came in the afternoon."},
+        {"subject": "He", "verb": "Said", "example": "He said it was an infection."},
+        {"subject": "We", "verb": "Cleaned/Prepared/Wrote", "example": "We cleaned equipment and wrote notes."}
+      ],
+      "vocabulary": [
+        {"word": "Infection", "translation": "Infecção"},
+        {"word": "Hygiene", "translation": "Higiene"},
+        {"word": "Equipment", "translation": "Equipamento"},
+        {"word": "Note", "translation": "Nota"}
+      ],
+      "verbs_list": [
+        {"base": "Come", "past": "Came", "translation": "Vir/Veio"},
+        {"base": "Say", "past": "Said", "translation": "Dizer/Disse"},
+        {"base": "Clean", "past": "Cleaned", "translation": "Limpar/Limpou"}
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "level": "B1",
+    "category": "Veterinária",
+    "title": "Treatment",
+  "title_pt": "O Tratamento",
+    "text_en": "She took medicine and rested yesterday after the diagnosis. Because the fever went down, she drank water and ate a little hay. So the team felt calm and recorded her progress. We changed the bedding and checked her hydration again at night. The vet will check her tomorrow, and she will improve if the temperature stays normal.",
+    "text_pt": "Ela tomou remédio e descansou ontem após o diagnóstico. Porque a febre baixou, ela bebeu água e comeu um pouco de feno. Então a equipe ficou calma e registrou o progresso. Nós trocamos a cama e checamos a hidratação novamente à noite. O veterinário vai checá-la amanhã e ela vai melhorar se a temperatura ficar normal.",
+    "teaching_modules": {
+      "explanation": "Past Simple para ações de tratamento (took, rested, drank, ate). Inclusão de Future para previsão (will check, will improve). Because/so conectam resultado clínico e estado da equipe.",
+      "grammar_table": [
+        {"subject": "She", "verb": "Took/Rested", "example": "She took medicine and rested yesterday."},
+        {"subject": "Fever", "verb": "Went down", "example": "The fever went down."},
+        {"subject": "The vet", "verb": "Will check", "example": "The vet will check her tomorrow."}
+      ],
+      "vocabulary": [
+        {"word": "Medicine", "translation": "Remédio"},
+        {"word": "Fever", "translation": "Febre"},
+        {"word": "Improve", "translation": "Melhorar"},
+        {"word": "Tomorrow", "translation": "Amanhã"}
+      ],
+      "verbs_list": [
+        {"base": "Take", "past": "Took", "translation": "Tomar/Tomou"},
+        {"base": "Drink", "past": "Drank", "translation": "Beber/Bebeu"},
+        {"base": "Eat", "past": "Ate", "translation": "Comer/Comeu"}
+      ]
+    }
+  }
+]

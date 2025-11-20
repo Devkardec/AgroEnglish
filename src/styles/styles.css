@@ -44,13 +44,47 @@ input[type="range"] { width:100%; }
 .feature-card .icon { font-size:24px; margin-bottom:6px }
 
 .levels-grid { margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px }
-.level-card { background:var(--card); border:1px solid #e5e9e7; border-radius:16px; padding:14px; display:flex; align-items:center; justify-content:space-between; transition:transform .2s ease, box-shadow .2s ease }
+.level-card { background:var(--card); border:1px solid #e5e9e7; border-radius:16px; padding:14px; display:flex; align-items:center; justify-content:space-between; transition:transform .2s ease, box-shadow .2s ease; text-decoration:none; position:relative }
 .level-card:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.08) }
 .level-card .title { font-weight:700; color:var(--green) }
 
 /* Centered cards for text selection list */
 .levels-grid .level-card { flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:6px }
 .levels-grid .level-card .badge { display:block; margin-top:4px; color:var(--muted) }
+
+/* Tooltip com tradução PT ao passar o mouse no card do texto */
+.levels-grid .level-card[data-pt]::after {
+  content: attr(data-pt);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(6px);
+  background: #0b2f6a;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(11,47,106,0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: 5;
+}
+.levels-grid .level-card[data-pt]::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 5px);
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #0b2f6a;
+  opacity: 0;
+  transition: opacity .15s ease;
+  z-index: 5;
+}
+.levels-grid .level-card[data-pt]:hover::after,
+.levels-grid .level-card[data-pt]:hover::before { opacity: 1; transform: translateX(-50%) translateY(0) }
 
 /* Modern level navigation buttons */
 .levels-nav { margin-top:12px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px }

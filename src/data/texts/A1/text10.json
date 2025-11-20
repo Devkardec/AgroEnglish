@@ -1,49 +1,14 @@
-﻿{
-    "title":  "Morning on the Farm",
-    "text":  "Feeding the cows. The tractor starts slowly; I drive carefully on the farm road. Irrigation is scheduled to reduce water waste. We plan the day: planting, irrigation, and equipment checks. We sell fresh vegetables at the local market. We rotate pastures to improve forage quality. In Canadian winter, we protect equipment from freezing. In the morning, I wake up early and walk to the fields. I work on Green Valley Farm, and every day is busy. The sun is low, and the soil is cool and soft. I feed the cows and make sure they have clean water.",
-    "translation":  "O trator liga devagar; eu dirijo com cuidado na estrada da fazenda. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos. NÃ³s vendemos hortaliÃ§as frescas no mercado local. NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. No inverno canadense, protegemos os equipamentos contra o congelamento. De manhÃ£, eu acordo cedo e caminho atÃ© os campos. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio. Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-    "pairs":  [
-                  {
-                      "pt":  "O trator liga devagar; eu dirijo com cuidado na estrada da fazenda.",
-                      "en":  "The tractor starts slowly; I drive carefully on the farm road."
-                  },
-                  {
-                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos.",
-                      "en":  "We plan the day: planting, irrigation, and equipment checks."
-                  },
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  },
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  },
-                  {
-                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-                      "en":  "I feed the cows and make sure they have clean water."
-                  }
-              ],
+{
+    "title":  "Planejando o amanhã",
+    "text":  "I sit with my family. We plan tomorrow. We make a simple list. We write tasks for the field, the barn, and the animals. I check the tools. I clean the boots. I drink water. I feel calm and ready. I sleep early. I love my farm. I work with care every day. I learn new words and tasks. Tomorrow is a new day on Green Valley Farm.",
+    "translation":  "Eu me sento com minha família. Nós planejamos o amanhã. Nós fazemos uma lista simples. Nós escrevemos tarefas para o campo, o celeiro e os animais. Eu verifico as ferramentas. Eu limpo as botas. Eu bebo água. Eu me sinto calmo e pronto. Eu durmo cedo. Eu amo minha fazenda. Eu trabalho com cuidado todos os dias. Eu aprendo novas palavras e tarefas. Amanhã é um novo dia na Fazenda Green Valley.",
+    "vocabulary":  [
+                       { "word": "plan", "meaning": "planejar" },
+                       { "word": "list", "meaning": "lista" },
+                       { "word": "task", "meaning": "tarefa" },
+                       { "word": "boot", "meaning": "bota" },
+                       { "word": "farm", "meaning": "fazenda" }
+                   ],
     "vocabulary":  [
                        {
                            "word":  "tractor",
@@ -87,74 +52,6 @@
                        }
                    ],
     "grammar":  "Present simple with farm routines.",
-    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
-    "exercises":  {
-                      "multiple_choice":  [
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we check every morning?",
-                                                  "options":  [
-                                                                  "Plants",
-                                                                  "Emails",
-                                                                  "Movies",
-                                                                  "Games"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Which machine is for spraying?",
-                                                  "options":  [
-                                                                  "Sprayer",
-                                                                  "Oven",
-                                                                  "Printer",
-                                                                  "Mixer"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What protects animals in cold weather?",
-                                                  "options":  [
-                                                                  "Barn",
-                                                                  "Laptop",
-                                                                  "Radio",
-                                                                  "Paint"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we rotate to improve forage?",
-                                                  "options":  [
-                                                                  "Pastures",
-                                                                  "Books",
-                                                                  "Rooms",
-                                                                  "Shoes"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Where do we grow plants with climate control?",
-                                                  "options":  [
-                                                                  "Greenhouse",
-                                                                  "Garage",
-                                                                  "Office",
-                                                                  "Kitchen"
-                                                              ]
-                                              }
-                                          ],
-                      "fill_in":  [
-                                      {
-                                          "sentence":  "We ____ the cows every morning.",
-                                          "answer":  "feed"
-                                      },
-                                      {
-                                          "sentence":  "Start the ____ carefully.",
-                                          "answer":  "tractor"
-                                      },
-                                      {
-                                          "sentence":  "Check the ____ for the animals.",
-                                          "answer":  "water"
-                                      }
-                                  ],
-                      "speaking":  "Repeat: Feeding the cows"
-                  }
+    "verbs":  "Verbs used: sit, plan, make, write, check, clean, drink, feel, sleep, love.",
+    "exercises":  { "multiple_choice": [], "fill_in": [], "speaking": "Repeat: Planning tomorrow" }
 }

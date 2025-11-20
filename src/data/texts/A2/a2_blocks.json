@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "level": "A2",
+    "category": "Machines",
+    "title": "Checking the Tractor",
+    "title_pt": "Verificando o trator",
+    "text_en": "I usually check the tractor in the morning. I look at the oil and the tires. Today, I am checking the oil now. The tire is dirty, but the engine is fine. I clean the tire and I wipe the seat. I start the engine and I listen. It sounds good. I write a note. I add a small note about noise. I am closing the hood now. I plan the route because the road is wet. I feel ready for work. I close the toolbox.",
+    "text_pt": "Eu geralmente checo o trator de manhã. Eu olho o óleo e os pneus. Hoje, eu estou checando o óleo agora. O pneu está sujo, mas o motor está bom. Eu limpo o pneu e eu limpo o assento. Eu ligo o motor e eu escuto. Ele soa bem. Eu escrevo uma nota. Eu adiciono uma pequena nota sobre ruído. Eu estou fechando o capô agora. Eu planejo a rota porque a estrada está molhada. Eu me sinto pronto para o trabalho. Eu fecho a caixa de ferramentas.",
+    "teaching_modules": {
+      "explanation": "Usamos advérbios (usually) para rotina em Present Simple e Present Continuous (I am checking) para o que acontece agora.",
+      "grammar_table": [
+        {"subject": "I", "verb": "Check", "example": "I usually check the tractor (Rotina)"},
+        {"subject": "I", "verb": "Am checking", "example": "I am checking the oil now (Agora)"}
+      ],
+      "vocabulary": [
+        {"word": "Oil", "translation": "Óleo"},
+        {"word": "Tire", "translation": "Pneu"},
+        {"word": "Seat", "translation": "Assento"},
+        {"word": "Engine", "translation": "Motor"}
+      ],
+      "verbs_list": [
+        {"base": "Check", "third_person": "Checks", "translation": "Checar"},
+        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"},
+        {"base": "Start", "third_person": "Starts", "translation": "Ligar"}
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "level": "A2",
+    "category": "Machines",
+    "title": "Harvesting Vegetables for Sale",
+    "title_pt": "Colhendo vegetais para venda",
+    "text_en": "We usually pick vegetables on Friday. We carry boxes and we smile. Today, we are picking carrots now. The box is light, but the table is wet. I wash a tomato and I count pieces. We sort good ones and bad ones. We put labels on the box. We weigh boxes and record numbers. We are cleaning the table now because it is sticky. We plan prices for the market, so we feel ready. We keep working. The box is full. We plan the trip to the market.",
+    "text_pt": "Nós geralmente colhemos vegetais na sexta. Nós carregamos caixas e nós sorrimos. Hoje, nós estamos colhendo cenouras agora. A caixa está leve, mas a mesa está molhada. Eu lavo um tomate e eu conto peças. Nós separamos os bons e os ruins. Nós colocamos etiquetas na caixa. Nós pesamos caixas e registramos números. Nós estamos limpando a mesa agora porque ela está pegajosa. Nós planejamos preços para o mercado, então nós nos sentimos prontos. Nós continuamos trabalhando. A caixa fica cheia. Nós planejamos a ida ao mercado.",
+    "teaching_modules": {
+      "explanation": "Rotina com advérbios (usually) e ação em progresso com Present Continuous (we are picking).",
+      "grammar_table": [
+        {"subject": "We", "verb": "Pick", "example": "We usually pick vegetables (Rotina)"},
+        {"subject": "We", "verb": "Are picking", "example": "We are picking carrots now (Agora)"}
+      ],
+      "vocabulary": [
+        {"word": "Carrot", "translation": "Cenoura"},
+        {"word": "Tomato", "translation": "Tomate"},
+        {"word": "Box", "translation": "Caixa"},
+        {"word": "Market", "translation": "Mercado"}
+      ],
+      "verbs_list": [
+        {"base": "Pick", "third_person": "Picks", "translation": "Colher"},
+        {"base": "Carry", "third_person": "Carries", "translation": "Carregar"},
+        {"base": "Count", "third_person": "Counts", "translation": "Contar"}
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "level": "A2",
+    "category": "Machines",
+    "title": "Irrigation On Now",
+    "title_pt": "Irrigação ligada agora",
+    "text_en": "I usually turn on irrigation at noon. I check pressure and I walk rows. Now, I am checking water now. The soil is wet. A small pipe leaks, but the valve is okay. I fix the leak and I tighten a clamp. I check the schedule for the next zone. I am walking the rows slowly. I fix a sign because the wind is strong. I write a short note. I close the valve gently. I watch the flow. I feel calm.",
+    "text_pt": "Eu geralmente ligo a irrigação ao meio-dia. Eu checo a pressão e eu caminho pelas fileiras. Agora, eu estou checando a água agora. O solo está úmido. Um cano pequeno vaza, mas a válvula está ok. Eu conserto o vazamento e eu aperto uma abraçadeira. Eu confiro o cronograma da próxima zona. Eu estou caminhando pelas fileiras devagar. Eu arrumo uma placa porque o vento está forte. Eu escrevo uma nota curta. Eu fecho a válvula com cuidado. Eu observo o fluxo. Eu me sinto calmo.",
+    "teaching_modules": {
+      "explanation": "Present Simple com advérbio (usually) e Present Continuous para o que acontece agora (I am checking).",
+      "grammar_table": [
+        {"subject": "I", "verb": "Turn on", "example": "I usually turn on irrigation (Rotina)"},
+        {"subject": "I", "verb": "Am checking", "example": "I am checking the pipes now (Agora)"}
+      ],
+      "vocabulary": [
+        {"word": "Irrigation", "translation": "Irrigação"},
+        {"word": "Pipe", "translation": "Cano"},
+        {"word": "Leak", "translation": "Vazamento"},
+        {"word": "Flow", "translation": "Fluxo"}
+      ],
+      "verbs_list": [
+        {"base": "Turn", "third_person": "Turns", "translation": "Ligar"},
+        {"base": "Check", "third_person": "Checks", "translation": "Checar"},
+        {"base": "Fix", "third_person": "Fixes", "translation": "Consertar"}
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "level": "A2",
+    "category": "Machines",
+    "title": "Walking the Field and Cleaning Tools",
+    "title_pt": "Caminhando pelo campo e limpando ferramentas",
+    "text_en": "We usually walk the field in the morning. We check rows and we plan the day. Today, I am pulling weeds now. The wind is strong, but the sun is warm. I clean tools and I wash a spade. I carry a small bag. We review safety rules. I am tying bags now. We plan the afternoon work, so the team feels organized. I pick trash and I smile. The field looks better. I put the spade on the rack. I drink water.",
+    "text_pt": "Nós geralmente caminhamos pelo campo de manhã. Nós checamos as fileiras e nós planejamos o dia. Hoje, eu estou arrancando ervas daninhas agora. O vento está forte, mas o sol está quente. Eu limpo ferramentas e eu lavo uma pá. Eu carrego uma sacola pequena. Nós revisamos regras de segurança. Eu estou amarrando sacolas agora. Nós planejamos o trabalho da tarde, então a equipe se sente organizada. Eu pego lixo e eu sorrio. O campo fica melhor. Eu coloco a pá no suporte. Eu bebo água.",
+    "teaching_modules": {
+      "explanation": "Rotina com 'usually' em Present Simple e ação atual com Present Continuous (I am pulling).",
+      "grammar_table": [
+        {"subject": "We", "verb": "Check", "example": "We usually check rows (Rotina)"},
+        {"subject": "I", "verb": "Am cleaning", "example": "I am cleaning tools now (Agora)"}
+      ],
+      "vocabulary": [
+        {"word": "Field", "translation": "Campo"},
+        {"word": "Row", "translation": "Fileira"},
+        {"word": "Weed", "translation": "Erva daninha"},
+        {"word": "Tool", "translation": "Ferramenta"}
+      ],
+      "verbs_list": [
+        {"base": "Walk", "third_person": "Walks", "translation": "Caminhar"},
+        {"base": "Check", "third_person": "Checks", "translation": "Checar"},
+        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"}
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "level": "A2",
+    "category": "Livestock",
+    "title": "Milking Routine",
+    "title_pt": "Rotina de ordenha",
+    "text_en": "We always milk the cows at six. We speak calmly and we work slowly. Now, I am washing the buckets now. I prepare the area and I connect lines. I check the milk filter. The equipment is clean. We measure temperature and write the numbers. I am writing a short log now. We store milk carefully because hygiene is important. I carry warm milk and I close the gate. The barn is calm. I write the time. I clean a small spill.",
+    "text_pt": "Nós sempre ordenhamos as vacas às seis. Nós falamos calmamente e nós trabalhamos devagar. Agora, eu estou lavando os baldes agora. Eu preparo a área e eu conecto as linhas. Eu checo o filtro do leite. O equipamento está limpo. Nós medimos a temperatura e escrevemos os números. Eu estou escrevendo um registro curto agora. Nós armazenamos o leite com cuidado porque a higiene é importante. Eu carrego leite morno e eu fecho o portão. O celeiro está calmo. Eu escrevo a hora. Eu limpo um pequeno derramamento.",
+    "teaching_modules": {
+      "explanation": "Uso de 'always' para rotina e Present Continuous para a atividade em progresso (I am washing).",
+      "grammar_table": [
+        {"subject": "We", "verb": "Milk", "example": "We always milk the cows (Rotina)"},
+        {"subject": "I", "verb": "Am washing", "example": "I am washing the buckets now (Agora)"}
+      ],
+      "vocabulary": [
+        {"word": "Milk", "translation": "Leite"},
+        {"word": "Cow", "translation": "Vaca"},
+        {"word": "Bucket", "translation": "Balde"},
+        {"word": "Gate", "translation": "Portão"}
+      ],
+      "verbs_list": [
+        {"base": "Milk", "third_person": "Milks", "translation": "Ordenhar"},
+        {"base": "Wash", "third_person": "Washes", "translation": "Lavar"},
+        {"base": "Carry", "third_person": "Carries", "translation": "Carregar"}
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "level": "A2",
+    "category": "Livestock",
+    "title": "Sorting Eggs for Sale",
+    "title_pt": "Separando ovos para venda",
+    "text_en": "We usually collect eggs in the morning. We sort eggs and we label boxes. Today, I am counting eggs now. I put eggs in a box. One egg breaks, but we clean the table. We clean crates and check labels. I am taping a box now. We plan delivery so the eggs arrive fresh. I weigh a box. I write the number on the label. I move the box to the shelf. We continue working. We feel happy.",
+    "text_pt": "Nós geralmente coletamos ovos de manhã. Nós separamos ovos e nós rotulamos caixas. Hoje, eu estou contando ovos agora. Eu coloco ovos em uma caixa. Um ovo quebra, mas nós limpamos a mesa. Nós limpamos engradados e conferimos etiquetas. Eu estou colocando fita em uma caixa agora. Nós planejamos a entrega para que os ovos cheguem frescos. Eu peso uma caixa. Eu escrevo o número na etiqueta. Eu movo a caixa para a prateleira. Nós continuamos trabalhando. Nós nos sentimos felizes.",
+    "teaching_modules": {
+      "explanation": "Rotina com 'usually' e ação atual com Present Continuous (I am counting).",
+      "grammar_table": [
+        {"subject": "We", "verb": "Collect", "example": "We usually collect eggs (Rotina)"},
+        {"subject": "I", "verb": "Am putting", "example": "I am putting eggs in a box (Agora)"}
+      ],
+      "vocabulary": [
+        {"word": "Egg", "translation": "Ovo"},
+        {"word": "Nest", "translation": "Ninho"},
+        {"word": "Box", "translation": "Caixa"},
+        {"word": "Table", "translation": "Mesa"}
+      ],
+      "verbs_list": [
+        {"base": "Collect", "third_person": "Collects", "translation": "Coletar"},
+        {"base": "Count", "third_person": "Counts", "translation": "Contar"},
+        {"base": "Put", "third_person": "Puts", "translation": "Colocar"}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "level": "A2",
+    "category": "Livestock",
+    "title": "Cleaning the Stable",
+    "title_pt": "Limpando o estábulo",
+    "text_en": "We usually clean the stable after feeding. We open doors and we let air in. Now, I am sweeping the floor now. I move straw and I wash a corner. The smell is strong, but I feel calm. We open small windows for air. I am folding cloths now. We check tools because we use them later. The stable looks better. I dry the floor. I put the broom away. I wipe a bucket. I rest a little.",
+    "text_pt": "Nós geralmente limpamos o estábulo após alimentar. Nós abrimos as portas e nós deixamos o ar entrar. Agora, eu estou varrendo o chão agora. Eu movo a palha e eu lavo um canto. O cheiro está forte, mas eu me sinto calmo. Nós abrimos janelas pequenas para o ar. Eu estou dobrando panos agora. Nós conferimos ferramentas porque as usamos mais tarde. O estábulo fica melhor. Eu seco o chão. Eu guardo a vassoura. Eu limpo um balde. Eu descanso um pouco.",
+    "teaching_modules": {
+      "explanation": "Present Simple com rotina e Present Continuous para o que acontece agora (I am sweeping).",
+      "grammar_table": [
+        {"subject": "We", "verb": "Clean", "example": "We usually clean the stable (Rotina)"},
+        {"subject": "I", "verb": "Am moving", "example": "I am moving straw now (Agora)"}
+      ],
+      "vocabulary": [
+        {"word": "Stable", "translation": "Estábulo"},
+        {"word": "Straw", "translation": "Palha"},
+        {"word": "Broom", "translation": "Vassoura"},
+        {"word": "Floor", "translation": "Chão"}
+      ],
+      "verbs_list": [
+        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"},
+        {"base": "Sweep", "third_person": "Sweeps", "translation": "Varrer"},
+        {"base": "Move", "third_person": "Moves", "translation": "Mover"}
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "level": "A2",
+    "category": "Veterinary",
+    "title": "Simple Bandage on a Dog",
+    "title_pt": "Curativo simples em um cachorro",
+    "text_en": "I usually check the dog's paw gently. I look for cuts and I talk to the owner. Today, I am washing the paw now. I am putting a simple bandage. The dog is calm, but the cut is red. I speak softly and I smile. I give basic advice. I usually praise the dog. I am giving a treat now. We plan a simple check tomorrow, so the owner feels calm. I write the time. I throw away trash. I clean the table.",
+    "text_pt": "Eu geralmente checo a pata do cachorro com cuidado. Eu procuro cortes e eu falo com o dono. Hoje, eu estou lavando a pata agora. Eu estou colocando um curativo simples. O cachorro está calmo, mas o corte está vermelho. Eu falo baixo e eu sorrio. Eu dou um conselho básico. Eu geralmente elogio o cachorro. Eu estou dando um petisco agora. Nós planejamos uma checagem simples para amanhã, então o dono fica calmo. Eu escrevo a hora. Eu jogo o lixo fora. Eu limpo a mesa.",
+    "teaching_modules": {
+      "explanation": "Rotina com 'usually' e ação atual com Present Continuous (I am washing).",
+      "grammar_table": [
+        {"subject": "I", "verb": "Check", "example": "I usually check the paw (Rotina)"},
+        {"subject": "I", "verb": "Am putting", "example": "I am putting a bandage now (Agora)"}
+      ],
+      "vocabulary": [
+        {"word": "Dog", "translation": "Cachorro"},
+        {"word": "Paw", "translation": "Pata"},
+        {"word": "Bandage", "translation": "Curativo"},
+        {"word": "Cut", "translation": "Corte"}
+      ],
+      "verbs_list": [
+        {"base": "Check", "third_person": "Checks", "translation": "Checar"},
+        {"base": "Wash", "third_person": "Washes", "translation": "Lavar"},
+        {"base": "Put", "third_person": "Puts", "translation": "Colocar"}
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "level": "A2",
+    "category": "Veterinary",
+    "title": "Vitamins for Chickens",
+    "title_pt": "Vitaminas para as galinhas",
+    "text_en": "We usually give vitamins to the chickens. We watch the water and we check drinkers. Now, I am mixing water now. I am adding drops. The chickens drink and cluck. One drinker is empty, but a tray is clean. We monitor drinkers and record numbers. I am washing a bottle now. We plan the next dose because the weather is hot. I refill the drinker and I clean the tray. I check another line. I close the bottle. I write the dose.",
+    "text_pt": "Nós geralmente damos vitaminas às galinhas. Nós observamos a água e nós checamos os bebedouros. Agora, eu estou misturando água agora. Eu estou adicionando gotas. As galinhas bebem e cacarejam. Um bebedouro está vazio, mas uma bandeja está limpa. Nós monitoramos os bebedouros e registramos números. Eu estou lavando um frasco agora. Nós planejamos a próxima dose porque o clima está quente. Eu reponho o bebedouro e eu limpo a bandeja. Eu checo outra linha. Eu fecho o frasco. Eu escrevo a dose.",
+    "teaching_modules": {
+      "explanation": "Rotina com 'usually' e ação atual com Present Continuous (I am mixing).",
+      "grammar_table": [
+        {"subject": "We", "verb": "Give", "example": "We usually give vitamins (Rotina)"},
+        {"subject": "I", "verb": "Am adding", "example": "I am adding drops now (Agora)"}
+      ],
+      "vocabulary": [
+        {"word": "Chicken", "translation": "Galinha"},
+        {"word": "Vitamin", "translation": "Vitamina"},
+        {"word": "Water", "translation": "Água"},
+        {"word": "Drop", "translation": "Gota"}
+      ],
+      "verbs_list": [
+        {"base": "Give", "third_person": "Gives", "translation": "Dar"},
+        {"base": "Mix", "third_person": "Mixes", "translation": "Misturar"},
+        {"base": "Add", "third_person": "Adds", "translation": "Adicionar"}
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "level": "A2",
+    "category": "Veterinary",
+    "title": "Basic Hygiene",
+    "title_pt": "Higiene básica",
+    "text_en": "We always wash hands and clean tools. We keep the room safe and tidy. Today, I am washing my hands now. I am drying them with a towel. I clean the table and I take out the trash. We label clean tools for safety. I am changing gloves now. We review a checklist, so the room stays safe. The room looks good, but the window is closed. I open the window for fresh air. I check the towel and I change it. I wash a cup. I feel ready.",
+    "text_pt": "Nós sempre lavamos as mãos e limpamos ferramentas. Nós mantemos a sala segura e arrumada. Hoje, eu estou lavando minhas mãos agora. Eu estou secando com uma toalha. Eu limpo a mesa e eu tiro o lixo. Nós etiquetamos ferramentas limpas por segurança. Eu estou trocando as luvas agora. Nós revisamos uma lista de verificação, então a sala permanece segura. A sala fica boa, mas a janela está fechada. Eu abro a janela para ar fresco. Eu checo a toalha e eu a troco. Eu lavo um copo. Eu me sinto pronto.",
+    "teaching_modules": {
+      "explanation": "Rotina com 'always' e ação atual com Present Continuous (I am washing).",
+      "grammar_table": [
+        {"subject": "We", "verb": "Wash", "example": "We always wash hands (Rotina)"},
+        {"subject": "I", "verb": "Am drying", "example": "I am drying my hands now (Agora)"}
+      ],
+      "vocabulary": [
+        {"word": "Hands", "translation": "Mãos"},
+        {"word": "Soap", "translation": "Sabão"},
+        {"word": "Towel", "translation": "Toalha"},
+        {"word": "Trash", "translation": "Lixo"}
+      ],
+      "verbs_list": [
+        {"base": "Wash", "third_person": "Washes", "translation": "Lavar"},
+        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"},
+        {"base": "Dry", "third_person": "Dries", "translation": "Secar"}
+      ]
+    }
+  }
+]

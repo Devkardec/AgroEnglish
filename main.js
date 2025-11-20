@@ -150,15 +150,8 @@ function fixPT(s) {
 }
 
 function annotateTextManual(str){
-  return String(str||'')
-    .replace(/\bprevents\b/g, "<span class='grammar-suffix'>prevents</span>")
-    .replace(/\bkeeps\b/g, "<span class='grammar-suffix'>keeps</span>")
-    .replace(/\brotates\b/g, "<span class='grammar-suffix'>rotates</span>")
-    .replace(/\bdrives\b/g, "<span class='grammar-suffix'>drives</span>")
-    .replace(/\bdo\b/g, "<span class='grammar-aux'>do</span>")
-    .replace(/\bdoes\b/g, "<span class='grammar-aux'>does</span>")
-    .replace(/\bdon't\b/g, "<span class='grammar-aux'>don't</span>")
-    .replace(/\bdoesn't\b/g, "<span class='grammar-aux'>doesn't</span>");
+  const out = String(str||'');
+  return out.replace(/<[^>]*>/g, '');
 }
 
 function renderVerbsModule(data){
@@ -166,8 +159,14 @@ function renderVerbsModule(data){
   if (!el) return;
   const pairs = Array.isArray(data.pairs) ? data.pairs : [];
   const examples = pairs.filter(p=>/\b(prevents|keeps|rotates|drives)\b/i.test(p.en)).slice(0,4);
+  if (!examples.length) return;
   const cards = examples.map(p=>`<div class="card"><div class="line"><div class="en">${annotateTextManual(p.en)}</div><div class="pt">${fixPT(p.pt||'')}</div></div></div>`).join('');
-  el.innerHTML = `<div class="section-title">Verbos na 3ª pessoa</div><div class="grid">${cards||'<div class="small">Sem exemplos com prevents/keeps/rotates/drives neste texto.</div>'}</div>`;
+  el.insertAdjacentHTML('beforeend', `
+    <details class="accordion">
+      <summary class="section-title">Exemplos do texto (3ª pessoa)</summary>
+      <div class="grid">${cards}</div>
+    </details>
+  `);
 }
 
 function setSetting(key, val) {
@@ -462,16 +461,62 @@ function initLevelPage(level) {
 
   const textList = document.getElementById('textList');
   if (textList) {
-    const reqs = Array.from({ length: 10 }, (_, i) => fetch(`/src/data/texts/${level}/text${i + 1}.json`).then(r => r.json()).catch(()=>null));
-    Promise.all(reqs).then(items => {
-      const links = items.map((data, i) => {
-        const title = (data && data.title) ? data.title : `Texto ${i+1}`;
-        return `<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
-      }).join('');
-      textList.innerHTML = links;
-    }).catch(()=>{
-      textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
-    });
+    if (level === 'A1') {
+      const p1 = '/src/data/texts/A1/a1_blocks.json';
+      const p2 = './src/data/texts/A1/a1_blocks.json';
+      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
+        const links = items.slice(0,10).map((data, i) => {
+          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
+          const ptHint = String((data && data.title_pt) || '').trim();
+          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+        }).join('');
+        textList.innerHTML = links;
+      }).catch(()=>{
+        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
+      });
+    } else if (level === 'A2') {
+      const p1 = '/src/data/texts/A2/a2_blocks.json';
+      const p2 = './src/data/texts/A2/a2_blocks.json';
+      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
+        const links = items.slice(0,10).map((data, i) => {
+          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
+          const ptHint = String((data && data.title_pt) || '').trim();
+          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+        }).join('');
+        textList.innerHTML = links;
+      }).catch(()=>{
+        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
+      });
+    } else if (level === 'B1') {
+      const p1 = '/src/data/texts/B1/b1_blocks.json';
+      const p2 = './src/data/texts/B1/b1_blocks.json';
+      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
+        const links = items.slice(0,10).map((data, i) => {
+          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
+          const ptHint = String((data && data.title_pt) || '').trim();
+          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+        }).join('');
+        textList.innerHTML = links;
+      }).catch(()=>{
+        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
+      });
+    } else {
+      const reqs = Array.from({ length: 10 }, (_, i) => fetch(`/src/data/texts/${level}/text${i + 1}.json`).then(r => r.json()).catch(()=>null));
+      Promise.all(reqs).then(items => {
+        const links = items.map((data, i) => {
+          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
+          const ptHint = String((data && data.title_pt) || '').trim();
+          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+        }).join('');
+        textList.innerHTML = links;
+      }).catch(()=>{
+        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
+      });
+    }
   }
 
   const openBtn = document.getElementById('openLevelInfo');
@@ -519,7 +564,16 @@ async function setupAudio(data) {
   const title = String(data && data.title || '').trim();
   const level = (location.hash.split('/')[2] || '').trim();
   const fileName = encodeURIComponent(`${title} · ${level}.mp3`);
-  const candidates = [`/audio/${fileName}`, `./audio/${fileName}`, `/src/audio/${fileName}`, `./src/audio/${fileName}`];
+  const candidates = [
+    `/audio/${fileName}`,
+    `./audio/${fileName}`,
+    `/src/audio/${fileName}`,
+    `./src/audio/${fileName}`,
+    `/audio/${level}/${fileName}`,
+    `./audio/${level}/${fileName}`,
+    `/src/audio/${level}/${fileName}`,
+    `./src/audio/${level}/${fileName}`
+  ];
   (async () => {
     for (const url of candidates) {
       try { const r = await fetch(url, { method: 'HEAD' }); if (r.ok) { audio.src = url; hasMp3 = true; break; } } catch {}
@@ -761,8 +815,17 @@ async function setupAudio(data) {
         </tbody>
       </table>
     ` }
-    const sThird = sentences.filter(s=>/(prevents|keeps|helps|needs|starts|drives|checks|records|monitors|rotates|improves)/i.test(s.en)).slice(0,5);
-    const sTable = `
+    function thirdSubject(en){
+      const clean = String(en||'').trim();
+      const w = clean.split(/\s+/);
+      const subj = w.slice(0,2).join(' ');
+      if (/^(he|she|it)\b/i.test(w[0])) return true;
+      if (/^(the|a|an)\b/i.test(w[0])) return true;
+      if (/^(rain|water|cow|engine|barn|vet|pig|chicken)\b/i.test(w[0])) return true;
+      return false;
+    }
+    const sThird = sentences.filter(s=> thirdSubject(s.en)).slice(0,5);
+    let sTable = `
       <table style="width:100%;border-collapse:collapse">
         <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
         <tbody>
@@ -771,10 +834,55 @@ async function setupAudio(data) {
         </tbody>
       </table>
     `;
+    if (data.he_she_it_rule && data.he_she_it_rule.example) {
+      sTable = `
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td>He/She/It: +s</td><td>${annotateTextManual(data.he_she_it_rule.example)}</td></tr>
+            ${groupWe.slice(0,1).map(s=>`<tr><td>I/You/We/They: base</td><td>${s.en}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function renderFormsFromChapter() {
+      const gf = data.grammar_forms || {};
+      const rows = [
+        { label: 'Afirmativa', v: gf.affirmative },
+        { label: 'Negativa', v: gf.negative },
+        { label: 'Pergunta', v: gf.interrogative }
+      ].filter(x => x.v && String(x.v).trim());
+      if (!rows.length) return '';
+      return `
+        <div class="section-title" style="margin-top:12px">Formas do Present Simple (capítulo)</div>
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
+          <tbody>
+            ${rows.map(r=>`<tr><td>${r.label}</td><td>${annotateTextManual(String(r.v))}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      `;
+    }
     const explainList = aff.map(s=>`<div class="card"><div class="line"><div class="en">${annotateTextManual(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div><div class="small" style="margin-top:6px">Presente simples: rotina agrícola.</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${s.en}">Ouvir Áudio</button></div></div>`).join('');
-    const whenList = [...groupWe.slice(0,3), ...groupIt.slice(0,2)].map(s=>`<div class="card"><div class="line"><div class="en">${annotateTextManual(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div></div>`).join('');
+    const groupBe = (()=>{ const seen=new Set(); return sentences.filter(s=>/\b(is|are)\b/i.test(s.en)).filter(s=>{ if(seen.has(s.en)) return false; seen.add(s.en); return true }).slice(0,3) })();
+    const baseSample = groupI[0] || groupWe[0] || sentences[0] || { en: 'I work on the farm.', pt: 'Eu trabalho na fazenda.' };
+    const formsSample = buildPresentSimpleForms(baseSample.en);
+    function lineHtml(s){ return `<div class="line"><div class="en">${annotateTextManual(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div>` }
+    const routineLines = [...groupI.slice(0,2), ...groupWe.slice(0,1)];
+    const thirdLines = (()=>{ const arr = sentences.filter(s=> thirdSubject(s.en)).slice(0,3); if(arr.length>=2) return arr; return [ { en: 'He drives the tractor.', pt: 'Ele dirige o trator.' }, { en: 'It runs well.', pt: 'Ele funciona bem.' } ]; })();
+    function ptNeg(s){ let out = fixPT(String(s||'')).trim().replace(/[.?!]+$/,''); if(/^Eu\s/i.test(out)) return out.replace(/^Eu\s/i,'Eu não '); if(/^Nós\s/i.test(out)) return out.replace(/^Nós\s/i,'Nós não '); if(/^Ele\s/i.test(out)) return out.replace(/^Ele\s/i,'Ele não '); if(/^Ela\s/i.test(out)) return out.replace(/^Ela\s/i,'Ela não '); return 'Não '+out.toLowerCase(); }
+    function ptQ(s){ let out = fixPT(String(s||'')).trim().replace(/[.]+$/,''); return out+'?'; }
+    const negLine = { en: formsSample.negative, pt: ptNeg(baseSample.pt) };
+    const qLine = { en: formsSample.interrogative, pt: ptQ(baseSample.pt) };
+    const whenList = [
+      `<div class="card"><div class="small"><strong>Rotina</strong></div>${(routineLines.length?routineLines:[{en:'I drive the tractor.',pt:'Eu dirijo o trator.'},{en:'We check the water.',pt:'Nós verificamos a água.'}]).map(lineHtml).join('')}</div>`,
+      `<div class="card"><div class="small"><strong>He/She/It</strong></div>${thirdLines.map(lineHtml).join('')}</div>`,
+      `<div class="card"><div class="small"><strong>Estados (be)</strong></div>${(groupBe.length?groupBe:[{en:'The tractor is strong.',pt:'O trator é forte.'},{en:'The soil is wet.',pt:'O solo está úmido.'}]).map(lineHtml).join('')}</div>`,
+      `<div class="card"><div class="small"><strong>Negativa</strong></div>${lineHtml({en:annotateTextManual(negLine.en), pt:negLine.pt})}</div>`,
+      `<div class="card"><div class="small"><strong>Pergunta</strong></div>${lineHtml({en:annotateTextManual(qLine.en), pt:qLine.pt})}</div>`
+    ].join('');
     el.innerHTML = `
-      <div class="section-title">Explicação para iniciantes</div>
       <div>${explainForBeginners(gRaw)}</div>
       <div class="section-title" style="margin-top:12px">Quando usar</div>
       <div class="grid">${whenList}</div>
@@ -782,6 +890,7 @@ async function setupAudio(data) {
       <div>${conjTable}</div>
       <div class="section-title" style="margin-top:12px">Afirmativa/Negativa/Pergunta</div>
       <div>${table3(aff,negs,quess)}</div>
+      ${renderFormsFromChapter()}
       <div class="section-title" style="margin-top:12px">Regra He/She/It (+s)</div>
       <div>${sTable}</div>
     `;
@@ -793,16 +902,56 @@ async function setupAudio(data) {
       { sentence: 'We ____ pastures to improve forage quality.', answer: 'rotate' },
       { sentence: 'We ____ yields and monitor feed intake.', answer: 'record' },
       { sentence: 'I ____ the tractor carefully.', answer: 'start' },
-      { sentence: 'I ____ cows and check plants.', answer: 'feed' }
-    ]; gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Complete com o verbo</div>`; const html = items.map((f,i)=>`<div class="card"><div>${i+1}. ${f.sentence.replace('____',`<input class="blank" data-gv="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`)}</div></div>`).join(''); gEx.innerHTML += `<div>${html}</div><div class="small" id="gVRes" style="margin-top:6px"></div><button class="btn" id="gVCheck" style="margin-top:8px">Checar</button>`; document.getElementById('gVCheck').addEventListener('click', ()=>{ const inputs = gEx.querySelectorAll('input.blank[data-gv]'); let c=0; inputs.forEach(inp=>{ const i=Number(inp.dataset.gv); const ok = (inp.value||'').trim().toLowerCase()===items[i].answer; if(ok) c++ }); document.getElementById('gVRes').textContent = c===inputs.length ? 'Good pronunciation!' : 'Try again.' }) }
+      { sentence: 'I ____ cows and check plants.', answer: 'feed' },
+      { sentence: 'We ____ the greenhouse fans.', answer: 'check' },
+      { sentence: 'She ____ safety gloves.', answer: 'wears' }
+    ]; gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Complete com o verbo</div>`; const html = items.map((f,i)=>`<div class="card"><div>${i+1}. ${f.sentence.replace('____',`<input class="blank" data-gv="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`)}</div></div>`).join(''); gEx.innerHTML += `<div>${html}</div><div class="small" id="gVRes" style="margin-top:6px"></div><button class="btn" id="gVCheck" style="margin-top:8px">Checar</button>`; document.getElementById('gVCheck').addEventListener('click', ()=>{ const inputs = gEx.querySelectorAll('input.blank[data-gv]'); let c=0; inputs.forEach(inp=>{ const i=Number(inp.dataset.gv); const ok = (inp.value||'').trim().toLowerCase()===items[i].answer; if(ok) c++ }); document.getElementById('gVRes').textContent = c===inputs.length ? 'Acertou!' : 'Tente novamente.' }) }
     function renderDoDoes(){ const items = [
       { sentence: '[____] we water animals and fix tools?', answer: 'do' },
       { sentence: '[____] the tractor need a safety check?', answer: 'does' },
       { sentence: '[____] sprayer calibration prevent over application?', answer: 'does' }
-    ]; gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Complete com do/does</div>`; const html = items.map((f,i)=>`<div class="card"><div>${i+1}. ${f.sentence.replace('[____]',`<input class="blank" data-dd="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:80px" />`)}</div></div>`).join(''); gEx.innerHTML += `<div>${html}</div><div class="small" id="gDDRes" style="margin-top:6px"></div><button class="btn" id="gDDCheck" style="margin-top:8px">Checar</button>`; document.getElementById('gDDCheck').addEventListener('click', ()=>{ const inputs = gEx.querySelectorAll('input.blank[data-dd]'); let c=0; inputs.forEach(inp=>{ const i=Number(inp.dataset.dd); const ok = (inp.value||'').trim().toLowerCase()===items[i].answer; if(ok) c++ }); document.getElementById('gDDRes').textContent = c===inputs.length ? 'Good pronunciation!' : 'Try again.' }) }
-    function renderClassify(){ const items = aff.map((a,i)=>({a:a.en,n:negs[i].en,q:quess[i].en})).slice(0,3).flatMap(x=>[ {txt:x.a, type:'Afirmativa'}, {txt:x.n, type:'Negativa'}, {txt:x.q, type:'Pergunta'} ]).sort(()=>Math.random()-0.5); gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Classifique</div>`; const html = items.map((it,i)=>`<div class="card"><div>${i+1}. ${it.txt}</div><div style="margin-top:6px"><button class="btn secondary" data-clf="${i}" data-type="Afirmativa">Afirmativa</button> <button class="btn secondary" data-clf="${i}" data-type="Negativa">Negativa</button> <button class="btn secondary" data-clf="${i}" data-type="Pergunta">Pergunta</button></div><div class="small" id="clf${i}" style="margin-top:6px"></div></div>`).join(''); gEx.innerHTML += `<div>${html}</div>`; gEx.addEventListener('click',(e)=>{ const t=e.target; if(!t.dataset.clf) return; const i=Number(t.dataset.clf); const res = document.getElementById('clf'+i); const chosen = t.dataset.type; const correct = items[i].type; res.textContent = chosen===correct ? 'Good pronunciation!' : 'Try again.' }) }
-    function renderTransform(){ const items = aff.slice(0,3); gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Transforme</div>`; const html = items.map((s,i)=>`<div class="card"><div>${i+1}. ${s.en}</div><div style="margin-top:6px"><button class="btn secondary" data-showneg="${i}">Ver negativa</button> <button class="btn secondary" data-showq="${i}">Ver pergunta</button></div><div class="small" id="tr${i}" style="margin-top:6px"></div></div>`).join(''); gEx.innerHTML += `<div>${html}</div>`; gEx.addEventListener('click',(e)=>{ const t=e.target; if(t.dataset.showneg){ const i=Number(t.dataset.showneg); document.getElementById('tr'+i).textContent = negs[i].en; } if(t.dataset.showq){ const i=Number(t.dataset.showq); document.getElementById('tr'+i).textContent = quess[i].en; } }) }
-    renderVerbFill(); renderDoDoes(); renderClassify(); renderTransform();
+    ]; gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Complete com do/does</div>`; const html = items.map((f,i)=>`<div class="card"><div>${i+1}. ${f.sentence.replace('[____]',`<input class="blank" data-dd="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:80px" />`)}</div></div>`).join(''); gEx.innerHTML += `<div>${html}</div><div class="small" id="gDDRes" style="margin-top:6px"></div><button class="btn" id="gDDCheck" style="margin-top:8px">Checar</button>`; document.getElementById('gDDCheck').addEventListener('click', ()=>{ const inputs = gEx.querySelectorAll('input.blank[data-dd]'); let c=0; inputs.forEach(inp=>{ const i=Number(inp.dataset.dd); const ok = (inp.value||'').trim().toLowerCase()===items[i].answer; if(ok) c++ }); document.getElementById('gDDRes').textContent = c===inputs.length ? 'Acertou!' : 'Tente novamente.' }) }
+    function renderClassify(){ const items = aff.map((a,i)=>({a:a.en,n:negs[i].en,q:quess[i].en})).slice(0,6).flatMap(x=>[ {txt:x.a, type:'Afirmativa'}, {txt:x.n, type:'Negativa'}, {txt:x.q, type:'Pergunta'} ]).sort(()=>Math.random()-0.5); gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Classifique</div>`; const html = items.map((it,i)=>`<div class="card"><div>${i+1}. ${it.txt}</div><div style="margin-top:6px"><button class="btn secondary" data-clf="${i}" data-type="Afirmativa">Afirmativa</button> <button class="btn secondary" data-clf="${i}" data-type="Negativa">Negativa</button> <button class="btn secondary" data-clf="${i}" data-type="Pergunta">Pergunta</button></div><div class="small" id="clf${i}" style="margin-top:6px"></div></div>`).join(''); gEx.innerHTML += `<div>${html}</div>`; gEx.addEventListener('click',(e)=>{ const t=e.target; if(!t.dataset.clf) return; const i=Number(t.dataset.clf); const res = document.getElementById('clf'+i); const chosen = t.dataset.type; const correct = items[i].type; res.textContent = chosen===correct ? 'Acertou!' : 'Tente novamente.' }) }
+    function renderTransform(){ const items = aff.slice(0,6); gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Transforme</div>`; const html = items.map((s,i)=>`<div class="card"><div>${i+1}. ${s.en}</div><div style="margin-top:6px"><button class="btn secondary" data-showneg="${i}">Ver negativa</button> <button class="btn secondary" data-showq="${i}">Ver pergunta</button></div><div class="small" id="tr${i}" style="margin-top:6px"></div></div>`).join(''); gEx.innerHTML += `<div>${html}</div>`; gEx.addEventListener('click',(e)=>{ const t=e.target; if(t.dataset.showneg){ const i=Number(t.dataset.showneg); document.getElementById('tr'+i).textContent = negs[i].en; } if(t.dataset.showq){ const i=Number(t.dataset.showq); document.getElementById('tr'+i).textContent = quess[i].en; } }) }
+    function renderOrdering(){ const parts = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean).slice(0,6); if(!parts.length) return; const shuffled = [...parts].sort(()=>Math.random()-0.5); gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Ordene as frases</div>`; const html = shuffled.map((s,i)=>`<div class="card"><div>${i+1}. <span id="ord${i}">${s}</span></div><div style="margin-top:6px"><button class="btn secondary" data-moveup="${i}">Subir</button> <button class="btn secondary" data-movedown="${i}">Descer</button></div></div>`).join(''); gEx.innerHTML += `<div>${html}</div><div class="small" id="ordRes" style="margin-top:6px"></div>`; const list = shuffled.map((s,i)=>({idx:i, txt:s})); gEx.addEventListener('click',(e)=>{ const t=e.target; if(t.dataset.moveup||t.dataset.movedown){ const i = Number(t.dataset.moveup||t.dataset.movedown); const j = t.dataset.moveup ? i-1 : i+1; if (j<0 || j>=list.length) return; const tmp = list[i]; list[i]=list[j]; list[j]=tmp; list.forEach((x,k)=>{ const el=document.getElementById('ord'+k); if(el) el.textContent = x.txt; }); const ok = list.map(x=>x.txt).join(' ')===(parts.join(' ')); document.getElementById('ordRes').textContent = ok ? 'Acertou!' : '' } }) }
+    function renderDictation(){ const parts = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean).slice(0,3); if(!parts.length) return; gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Ditado</div>`; const html = parts.map((s,i)=>`<div class="card"><div>${i+1}. <button class="btn secondary" data-dict="${i}">Ouvir</button></div><div style="margin-top:6px"><input class="blank" data-di="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:100%" /></div><div class="small" id="diRes${i}" style="margin-top:6px"></div></div>`).join(''); gEx.innerHTML += `<div>${html}</div>`; function speakText(t){ try{ speak(t) }catch{} } function lev(a,b){ const m=Array.from({length:a.length+1},(_,i)=>Array(b.length+1).fill(0)); for(let i=0;i<=a.length;i++) m[i][0]=i; for(let j=0;j<=b.length;j++) m[0][j]=j; for(let i=1;i<=a.length;i++){ for(let j=1;j<=b.length;j++){ const cost=a[i-1]===b[j-1]?0:1; m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+cost) } } return m[a.length][b.length] } gEx.addEventListener('click',(e)=>{ const t=e.target; if(!t.dataset.dict) return; const i=Number(t.dataset.dict); speakText(parts[i]); }); gEx.addEventListener('input',(e)=>{ const inp=e.target; if(!inp.dataset.di) return; const i=Number(inp.dataset.di); const said=(inp.value||'').trim().toLowerCase(); const exp=String(parts[i]||'').toLowerCase(); const distance=lev(said,exp); const threshold=Math.max(2,Math.round(exp.length*0.2)); const ok=distance<=threshold; const res=document.getElementById('diRes'+i); if(res) { res.textContent = ok ? 'Acertou!' : 'Tente novamente.'; res.style.color = ok ? 'green' : 'red'; } }); }
+    function renderMatchVocab(){
+      const voc = Array.isArray(data.vocabulary) ? data.vocabulary : [];
+      if (!voc.length) return;
+      const items = voc.slice(0, Math.min(8, voc.length)).map(v=>({ en: v.word || (v.en||''), pt: v.meaning || (v.translation||'') })).filter(x=>x.en && x.pt);
+      if (!items.length) return;
+      const left = items.map((it,i)=>`<button class="btn secondary" data-mv-l="${i}">${it.en}</button>`).join(' ');
+      const right = items.map((it,i)=>`<button class="btn secondary" data-mv-r="${i}">${it.pt}</button>`).sort(()=>Math.random()-0.5).join(' ');
+      gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Associe vocabulário</div><div class="card"><div><div>${left}</div><div style="margin-top:8px">${right}</div><div class="small" id="mvRes" style="margin-top:6px"></div></div></div>`;
+      let selL = null; let selR = null; let okPairs = 0; const total = items.length;
+      gEx.addEventListener('click', (e)=>{
+        const t = e.target; const l = t.dataset.mvL; const r = t.dataset.mvR; const res = document.getElementById('mvRes');
+        if (l !== undefined){ selL = Number(l); t.classList.add('active'); }
+        if (r !== undefined){ selR = Number(r); t.classList.add('active'); }
+        if (selL !== null && selR !== null){
+          if (selL === selR){ okPairs++; res.textContent = `Acertou (${okPairs}/${total}).`; res.style.color = 'green'; }
+          else { res.textContent = 'Tente novamente.'; res.style.color = 'red'; }
+          selL = null; selR = null;
+        }
+      });
+    }
+    function renderTrueFalse(){
+      const sentences = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
+      if (!sentences.length) return;
+      const altWords = ['tractor','water','cow','milk','field','greenhouse','fence','storm'];
+      function makeFalse(s){
+        const w = s.split(/\s+/);
+        for (let i=0;i<w.length;i++){
+          const k = w[i].toLowerCase().replace(/[^a-z]/gi,'');
+          if (altWords.includes(k)) { const pick = altWords[(altWords.indexOf(k)+3)%altWords.length]; w[i] = pick[0].toUpperCase()+pick.slice(1)+ (/[.,!?]$/.test(w[i])?w[i].match(/[.,!?]$/)[0]:''); break; }
+        }
+        return w.join(' ');
+      }
+      const items = sentences.slice(0,6).map((s,i)=>({ txt: s, truth: i%2===0 ? true : false, shown: i%2===0 ? s : makeFalse(s) }));
+      gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Compreensão: Verdadeiro ou Falso</div>` + items.map((it,i)=>`<div class="card"><div>${i+1}. ${it.shown}</div><div style="margin-top:6px"><button class="btn secondary" data-tf="${i}" data-ans="true">Verdadeiro</button> <button class="btn secondary" data-tf="${i}" data-ans="false">Falso</button></div><div class="small" id="tfRes${i}" style="margin-top:6px"></div></div>`).join('');
+      gEx.addEventListener('click',(e)=>{ const t=e.target; if(!t.dataset.tf) return; const i=Number(t.dataset.tf); const ans=(t.dataset.ans==='true'); const ok = ans === items[i].truth; const res=document.getElementById('tfRes'+i); if(res){ res.textContent = ok ? 'Acertou!' : 'Tente novamente.'; res.style.color = ok ? 'green' : 'red'; } });
+    }
+    renderVerbFill(); renderDoDoes(); renderClassify(); renderTransform(); renderOrdering(); renderDictation(); renderMatchVocab(); renderTrueFalse();
   }
 
   function renderVerbs(data) {
@@ -810,137 +959,59 @@ async function setupAudio(data) {
     if (!el) return;
     const listStr = String(data.verbs||'');
     const m = listStr.split(':')[1] || listStr;
-    const baseVerbs = m.split(',').map(s=>s.trim()).filter(Boolean);
-    const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
-    const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : String(data.text||'').split(/(?<=[.!?])\s+/).map((s,i)=>({en:s, pt:String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT)[i]||''}));
-    function exampleForVerb(v){ const found = sentences.find(s=> new RegExp(`\b${v}(s)?\b`,'i').test(s.en)); if (found) return found; const fb = {
-      feed:{en:'We feed the cows every morning.', pt:'Nós alimentamos as vacas todas as manhãs.'},
-      check:{en:'We check water for the animals.', pt:'Nós verificamos a água dos animais.'},
-      start:{en:'I start the tractor carefully.', pt:'Eu ligo o trator com cuidado.'},
-      clean:{en:'I clean the barn after milking.', pt:'Eu limpo o celeiro após a ordenha.'},
-      adjust:{en:'We adjust sprayer calibration.', pt:'Nós ajustamos a calibração do pulverizador.'},
-      monitor:{en:'We monitor feed intake.', pt:'Nós monitoramos o consumo de ração.'},
-      operate:{en:'We operate the sprayer safely.', pt:'Nós operamos o pulverizador com segurança.'},
-      record:{en:'We record yields each week.', pt:'Nós registramos a produtividade toda semana.'},
-      assess:{en:'We assess pasture quality.', pt:'Nós avaliamos a qualidade da pastagem.'},
-      coordinate:{en:'We coordinate biosecurity routines.', pt:'Nós coordenamos rotinas de biossegurança.'}
-    }; return fb[v] || {en:`We ${v} on the farm.`, pt:`Nós ${v} na fazenda.`}; }
+    const baseVerbs = m.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
     function thirdForm(v){ if(/(ch|sh|x|o)$/i.test(v)||v==='go') return v==='go'?'goes':v+'es'; if(/y$/i.test(v)) return v.replace(/y$/,'ies'); return v+'s'; }
-    function ingForm(v){ if(/e$/i.test(v) && v!=='be') return v.replace(/e$/,'')+'ing'; return v+'ing'; }
-    function pastForm(v){ const irr={feed:'fed',go:'went',have:'had',do:'did',buy:'bought'}; if(irr[v]) return irr[v]; if(/e$/i.test(v)) return v+'d'; return v+'ed'; }
-    const listHtml = baseVerbs.map(v=>`<div class="selector"><div class="option" data-verb="${v}">${v}</div></div>`).join('');
-    const collocations = `
-      <div class="grid">
-        <div class="card"><div>feed + cows</div><div class="small">Alimentar o gado diariamente.</div></div>
-        <div class="card"><div>check + water</div><div class="small">Verificar água dos animais.</div></div>
-        <div class="card"><div>start + tractor</div><div class="small">Ligar o trator com segurança.</div></div>
-        <div class="card"><div>record + yields</div><div class="small">Registrar produtividade.</div></div>
-        <div class="card"><div>monitor + intake</div><div class="small">Monitorar consumo de ração.</div></div>
-        <div class="card"><div>calibrate + sprayer</div><div class="small">Calibrar pulverizador.</div></div>
-      </div>
-    `;
+    function pairFor(v){
+      const map = {
+        work: [{en:'I work on the farm.', pt:'Eu trabalho na fazenda.'},{en:'He works on the farm.', pt:'Ele trabalha na fazenda.'}],
+        drive: [{en:'I drive the tractor.', pt:'Eu dirijo o trator.'},{en:'He drives the tractor.', pt:'Ele dirige o trator.'}],
+        check: [{en:'We check the water.', pt:'Nós verificamos a água.'},{en:'The vet checks the cow.', pt:'O veterinário examina a vaca.'}],
+        feed: [{en:'We feed the chickens.', pt:'Nós alimentamos as galinhas.'},{en:'He feeds the chickens.', pt:'Ele alimenta as galinhas.'}],
+        start: [{en:'I start the engine.', pt:'Eu ligo o motor.'},{en:'It starts quickly.', pt:'Ele liga rápido.'}],
+        clean: [{en:'I clean the barn.', pt:'Eu limpo o celeiro.'},{en:'She cleans the barn.', pt:'Ela limpa o celeiro.'}],
+        give: [{en:'I give water.', pt:'Eu dou água.'},{en:'He gives water.', pt:'Ele dá água.'}],
+        watch: [{en:'I watch the plants.', pt:'Eu observo as plantas.'},{en:'She watches the plants.', pt:'Ela observa as plantas.'}],
+        put: [{en:'I put seeds in the soil.', pt:'Eu coloco sementes no solo.'},{en:'He puts seeds in the soil.', pt:'Ele coloca sementes no solo.'}],
+        carry: [{en:'I carry a bucket.', pt:'Eu carrego um balde.'},{en:'She carries a bucket.', pt:'Ela carrega um balde.'}],
+        look: [{en:'We look at the field.', pt:'Nós olhamos o campo.'},{en:'It looks healthy.', pt:'Ele parece saudável.'}],
+        help: [{en:'We help the calf.', pt:'Nós ajudamos o bezerro.'},{en:'It helps the plants.', pt:'Ele ajuda as plantas.'}]
+      };
+      if (map[v]) return map[v];
+      const t = thirdForm(v);
+      const ptBaseMap = {
+        work:'trabalhamos', drive:'dirigimos', check:'verificamos', feed:'alimentamos', start:'ligamos', clean:'limpamos', give:'damos', watch:'observamos', put:'colocamos', carry:'carregamos', look:'olhamos', help:'ajudamos'
+      };
+      const ptThirdMap = {
+        work:'trabalha', drive:'dirige', check:'verifica', feed:'alimenta', start:'liga', clean:'limpa', give:'dá', watch:'observa', put:'coloca', carry:'carrega', look:'olha', help:'ajuda'
+      };
+      const ptBase = ptBaseMap[v] || `${v}`;
+      const ptThird = ptThirdMap[v] || `${t}`;
+      return [{en:`We ${v} on the farm.`, pt:`Nós ${ptBase} na fazenda.`},{en:`He ${t} tools.`, pt:`Ele ${ptThird} as ferramentas.`}];
+    }
+    let examples = [];
+    baseVerbs.forEach(v=>{ const p = pairFor(v); examples.push(...p); });
+    // dedupe by EN
+    const seen = new Set();
+    examples = examples.filter(r=>{ if(seen.has(r.en)) return false; seen.add(r.en); return true; });
+    const fallback = [
+      {en:'I drive the tractor.', pt:'Eu dirijo o trator.'},
+      {en:'He drives the tractor.', pt:'Ele dirige o trator.'},
+      {en:'We check the water.', pt:'Nós verificamos a água.'},
+      {en:'It looks healthy.', pt:'Ele parece saudável.'}
+    ];
+    if (examples.length < 10) examples = examples.concat(fallback).slice(0,10);
+    else examples = examples.slice(0,10);
+    const rows = examples.map(r=>`<tr><td>${annotateTextManual(r.en)}</td><td>${fixPT(r.pt)}</td></tr>`).join('');
     el.innerHTML = `
-      <details class="accordion">
-        <summary class="section-title">Conceito</summary>
-        <div>
-          <div class="small">Verbos são ações. Use forma base para I/You/We/They e acrescente s/es em He/She/It.</div>
-          <div class="small" style="margin-top:6px">Use -ing para atividades em progresso e -ed para passado regular.</div>
-          <div class="small" style="margin-top:6px">Irregulares mudam forma no passado (ex.: go → went).</div>
-        </div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">Lista</summary>
-        <div class="small">${listHtml}</div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">Painel do verbo</summary>
-        <div id="verbPanel">
-          <div class="small">Selecione um verbo na lista para ver formas, exemplos e prática.</div>
-          <div id="verbConj" style="margin-top:10px"></div>
-          <div id="verbExamples" style="margin-top:10px"></div>
-        </div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">Prática</summary>
-        <div id="vExercises"></div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">Colocações no agro</summary>
-        <div>${collocations}</div>
-      </details>
-      <details class="accordion">
-        <summary class="section-title">Pronúncia</summary>
-        <div class="small">Fale lentamente, enfatize consoantes finais (feed, record) e pratique pares similares (record x regard).</div>
-      </details>
-      <div class="small" style="margin-top:8px">Vistos neste texto: ${baseVerbs.join(', ')}</div>
-    `;
-    const vEx = document.getElementById('vExercises');
-    if (vEx) {
-      const fillItems = [
-        { sentence: 'We ____ the cows every morning.', answer: 'feed' },
-        { sentence: 'Start the ____ carefully.', answer: 'tractor' },
-        { sentence: 'We ____ yields and ____ feed intake.', answer: 'record|monitor' }
-      ];
-      const fillHtml = fillItems.map((f,i)=>{
-        const s = f.sentence.replace('____',`<input class="blank" data-vf="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`).replace('____',`<input class="blank" data-vf2="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`);
-        return `<div class="card"><div>${i+1}. ${s}</div></div>`;
-      }).join('');
-      vEx.innerHTML = `<div class="section-title">Complete com o verbo</div><div>${fillHtml}</div><div class="small" id="vFRes" style="margin-top:6px"></div><button class="btn" id="vFCheck" style="margin-top:8px">Checar</button>`;
-      const sItems = [
-        { base:'monitor', subj:'He', expect:'monitors' },
-        { base:'help', subj:'She', expect:'helps' },
-        { base:'record', subj:'It', expect:'records' }
-      ];
-      const sHtml = sItems.map((it,i)=>`<div class="card"><div>${i+1}. ${it.subj} ____ feed intake.</div><input class="blank" data-vs="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:120px" /></div>`).join('');
-      vEx.innerHTML += `<div class="section-title" style="margin-top:10px">He/She/It (+s)</div><div>${sHtml}</div><div class="small" id="vSRes" style="margin-top:6px"></div><button class="btn" id="vSCheck" style="margin-top:8px">Checar</button>`;
-      const ingItems = [
-        { base:'feed', expect:'feeding' },
-        { base:'check', expect:'checking' },
-        { base:'operate', expect:'operating' }
-      ];
-      const ingHtml = ingItems.map((it,i)=>`<div class="card"><div>${i+1}. ${it.base} → <input class="blank" data-vi="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:140px" /></div></div>`).join('');
-      vEx.innerHTML += `<div class="section-title" style="margin-top:10px">Forma -ing</div><div>${ingHtml}</div><div class="small" id="vIRes" style="margin-top:6px"></div><button class="btn" id="vICheck" style="margin-top:8px">Checar</button>`;
-      document.getElementById('vFCheck').addEventListener('click', ()=>{
-        let c=0; fillItems.forEach((f,i)=>{
-          const a = (f.answer||'').toLowerCase();
-          const parts = a.split('|');
-          const inp1 = vEx.querySelector(`input[data-vf="${i}"]`);
-          const inp2 = vEx.querySelector(`input[data-vf2="${i}"]`);
-          const v1 = (inp1&&inp1.value||'').trim().toLowerCase();
-          const v2 = (inp2&&inp2.value||'').trim().toLowerCase();
-          if (parts.length===1) { if (v1===parts[0]) c++; }
-          else { if (v1===parts[0] && v2===parts[1]) c++; }
-        });
-        document.getElementById('vFRes').textContent = c===fillItems.length ? 'Acertou!' : 'Tente novamente.';
-      });
-      document.getElementById('vSCheck').addEventListener('click', ()=>{
-        let c=0; sItems.forEach((it,i)=>{ const inp=vEx.querySelector(`input[data-vs="${i}"]`); if((inp&&inp.value||'').trim().toLowerCase()===it.expect) c++ });
-        document.getElementById('vSRes').textContent = c===sItems.length ? 'Acertou!' : 'Tente novamente.';
-      });
-      document.getElementById('vICheck').addEventListener('click', ()=>{
-        let c=0; ingItems.forEach((it,i)=>{ const inp=vEx.querySelector(`input[data-vi="${i}"]`); if((inp&&inp.value||'').trim().toLowerCase()===it.expect) c++ });
-        document.getElementById('vIRes').textContent = c===ingItems.length ? 'Acertou!' : 'Tente novamente.';
-      });
-    }
-    function renderVerbPanel(v){ const ex = exampleForVerb(v); const conjHtml = `
+      <div class="card">
+        <div><strong>O que é:</strong> verbo é ação do dia a dia. Use forma base com I/You/We/They. Em He/She/It acrescente s/es.</div>
+      </div>
+      <div class="section-title" style="margin-top:10px">Exemplos</div>
       <table style="width:100%;border-collapse:collapse">
-        <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
-        <tbody>
-          <tr><td>Base</td><td>We ${v} on the farm.</td></tr>
-          <tr><td>He/She/It</td><td>He ${thirdForm(v)} tools.</td></tr>
-          <tr><td>-ing</td><td>${ingForm(v)} tasks now.</td></tr>
-          <tr><td>Past</td><td>We ${pastForm(v)} yesterday.</td></tr>
-        </tbody>
-      </table>`;
-      document.getElementById('verbConj').innerHTML = conjHtml;
-      document.getElementById('verbExamples').innerHTML = `
-        <div class="card">
-          <div class="line"><div class="en">${ex.en}</div><div class="pt">${fixPT(ex.pt||'')}</div></div>
-          <div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${ex.en}">Ouvir Áudio</button></div>
-        </div>`;
-    }
-    el.addEventListener('click',(e)=>{ const op = e.target.closest('.option[data-verb]'); if(!op) return; el.querySelectorAll('.selector .option').forEach(o=>o.classList.remove('active')); op.classList.add('active'); renderVerbPanel(op.dataset.verb); });
-    const firstVerb = baseVerbs[0]; if(firstVerb){ const firstOp = el.querySelector(`.option[data-verb="${firstVerb}"]`); if(firstOp) firstOp.classList.add('active'); renderVerbPanel(firstVerb); }
+        <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `;
   }
 
   function renderMC(data) {
@@ -960,7 +1031,7 @@ async function setupAudio(data) {
         });
     } else {
         src = (() => {
-          const pairs = Array.isArray(data.pairs) ? data.pairs.slice(0,5) : [];
+          const pairs = Array.isArray(data.pairs) ? data.pairs.slice(0,8) : [];
           if (pairs.length) {
             return pairs.map(p => {
               const correctAnswer = fixPT(p.pt);
@@ -970,7 +1041,7 @@ async function setupAudio(data) {
             });
           }
           const voc = Array.isArray(data.vocabulary) ? data.vocabulary : [];
-          const items = voc.slice(0,5);
+          const items = voc.slice(0,8);
           return items.map((v)=>{
             const correctAnswer = v.meaning;
             const distractors = voc.map(v=>v.meaning).filter(Boolean).filter(m => m !== correctAnswer);
@@ -1009,7 +1080,7 @@ async function setupAudio(data) {
   function renderFill(data) {
     const fillEl = document.querySelector('#fill');
     const src = (data && data.exercises && Array.isArray(data.exercises.fill_in) && data.exercises.fill_in.length) ? data.exercises.fill_in : (()=>{
-      const pairs = Array.isArray(data.pairs) ? data.pairs.slice(0,3) : [];
+      const pairs = Array.isArray(data.pairs) ? data.pairs.slice(0,6) : [];
       if (pairs.length) {
         return pairs.map(p=>{
           const words = p.en.split(' ');
@@ -1020,7 +1091,7 @@ async function setupAudio(data) {
       const textParts = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
       const verbs = String(data.verbs||'').split(':')[1] || String(data.verbs||'');
       const baseVerbs = verbs.split(',').map(s=>s.trim()).filter(Boolean);
-      const items = textParts.slice(0,3).map((s)=>{
+      const items = textParts.slice(0,6).map((s)=>{
         const v = baseVerbs.find(vv=> new RegExp(`\b${vv}(s)?\b`,'i').test(s));
         if (v) return { sentence: s.replace(new RegExp(`\b${v}(s)?\b`,'i'),'____'), answer: v.replace(/s$/,'') };
         const w = (s.split(' ')[2]||'tractor');
@@ -1101,12 +1172,12 @@ async function setupAudio(data) {
     try {
       const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
       if (pairs.length) {
-      linesEl.innerHTML = pairs.map(p=>`<div class="line"><div class="en">${annotateTextManual(p.en)}</div><div class="pt">${fixPT(p.pt)}</div></div>`).join('');
+      linesEl.innerHTML = pairs.map(p=>`<div class="line"><div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div></div>`).join('');
         return;
       }
       const en = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
       const pt = String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT);
-      linesEl.innerHTML = en.map((s,i)=>`<div class="line"><div class="en">${annotateTextManual(s)}</div><div class="pt">${pt[i]||''}</div></div>`).join('');
+      linesEl.innerHTML = en.map((s,i)=>`<div class="line"><div class="en">${s}</div><div class="pt">${pt[i]||''}</div></div>`).join('');
       if (!linesEl.innerHTML) {
         linesEl.innerHTML = '<div class="small">Texto indisponível.</div>';
       }
@@ -1115,7 +1186,142 @@ async function setupAudio(data) {
     }
   }
 
+  function a1ToLegacy(item) {
+    const tm = item.teaching_modules || {};
+    const vocab = Array.isArray(tm.vocabulary)
+      ? tm.vocabulary.map(v => ({ word: String(v.word||'').toLowerCase(), meaning: String(v.translation||'').toLowerCase() }))
+      : (Array.isArray(item.vocabulary)
+        ? item.vocabulary.map(v => ({ word: String(v.word||'').toLowerCase(), meaning: String(v.translation||'').toLowerCase() }))
+        : []);
+    const verbsBase = Array.isArray(tm.verbs_list)
+      ? Array.from(new Set(tm.verbs_list.map(s => String(s.base||'').toLowerCase()).filter(Boolean)))
+      : (Array.isArray(item.structure_table)
+        ? Array.from(new Set(item.structure_table.map(s => String(s.verb||'').toLowerCase()).filter(Boolean)))
+        : []);
+    const verbsStr = verbsBase.length ? `Verbs used: ${verbsBase.join(', ')}.` : '';
+
+    function buildForms(ex) {
+      const clean = String(ex||'').trim().replace(/[.?!]+$/, '');
+      if (!clean) return { affirmative: '', negative: '', interrogative: '' };
+      const words = clean.split(/\s+/);
+      let subject = words[0];
+      if (/^(the|a|an)$/i.test(words[0]) && words.length >= 2) subject = words[0] + ' ' + words[1];
+      const subjEsc = subject.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+      let rest = clean.replace(new RegExp('^' + subjEsc + '\\s+'), '');
+      const first = (rest.split(/\s+/)[0]||'').toLowerCase();
+      const isThird = /^(he|she|it)$/i.test(subject) || /^(the|a|an)\b/i.test(subject);
+      if (first === 'is') {
+        const tail = rest.replace(/^is\s+/i,'');
+        return { affirmative: clean, negative: subject + ' is not ' + tail, interrogative: 'Is ' + subject + ' ' + tail + '?' };
+      }
+      function baseVerb(w){
+        if (/^goes$/i.test(w)) return 'go';
+        if (/ies$/i.test(w)) return w.replace(/ies$/i,'y');
+        if (/(ch|sh|x|o|ss|zz)$/i.test(w.replace(/es$/i,'')) && /es$/i.test(w)) return w.replace(/es$/i,'');
+        if (/s$/i.test(w)) return w.replace(/s$/i,'');
+        return w;
+      }
+      const base = baseVerb(first);
+      const restWords = rest.split(/\s+/);
+      if (restWords.length) restWords[0] = base;
+      const negAux = isThird ? "doesn't" : "don't";
+      const qAux = isThird ? 'Does' : 'Do';
+      return {
+        affirmative: clean,
+        negative: (subject + ' ' + negAux + ' ' + base + ' ' + restWords.slice(1).join(' ')).trim(),
+        interrogative: (qAux + ' ' + subject + ' ' + restWords.join(' ') + '?').trim()
+      };
+    }
+
+    let heSheItExample = null;
+    if (Array.isArray(tm.grammar_table)) {
+      const thirdRow = tm.grammar_table.find(r => /\b(it|he|she)\b/i.test(String(r.subject||'')));
+      heSheItExample = thirdRow && thirdRow.example ? String(thirdRow.example) : null;
+    }
+    const baseExample = heSheItExample || (Array.isArray(tm.grammar_table) ? (tm.grammar_table[0] && tm.grammar_table[0].example) : '') || '';
+    const forms = buildForms(baseExample);
+
+    const lvl = String(item.level||'').toUpperCase();
+    const grammarText = (lvl === 'B1')
+      ? 'Past simple narrative with cause/result (because/so). Future (will/going to) for plans.'
+      : (lvl === 'A2'
+        ? 'Present simple + present continuous (routine vs now).'
+        : (lvl === 'B2'
+          ? 'Procedures, passive voice, sequences, and technical reporting.'
+          : (lvl === 'C1'
+            ? 'Advanced management language, complex clauses, and precise modality.'
+            : (lvl === 'C2'
+              ? 'Academic/report style, compliance wording, and controlled terminology.'
+              : 'Present simple with farm routines.'))));
+    const grammarForms = (lvl === 'B1') ? null : (forms.affirmative ? forms : (item.grammar_forms || null));
+
+    let mc = [];
+    if (Array.isArray(vocab) && vocab.length) {
+      const meanings = vocab.map(v=>v.meaning).filter(Boolean);
+      mc = vocab.slice(0,5).map(v => {
+        const correct = v.meaning;
+        const distractors = meanings.filter(m => m !== correct);
+        const opts = [correct];
+        while (opts.length < 4 && distractors.length) {
+          const pickIdx = Math.floor(Math.random()*distractors.length);
+          const pick = distractors.splice(pickIdx,1)[0];
+          if (pick && !opts.includes(pick)) opts.push(pick);
+        }
+        const shuffled = opts.sort(()=>Math.random()-0.5);
+        const answer = shuffled.indexOf(correct);
+        return { question: `Qual é a tradução de "${v.word}"?`, options: shuffled, answer };
+      });
+    } else {
+      const parts = String(item.text_en||'').split(/(?<=[.!?])\s+/).filter(Boolean).slice(0,5);
+      mc = parts.map(s => {
+        const correct = s;
+        const opts = [correct, 'I drive the tractor.', 'We check the water.', 'He feeds the cows.'].sort(()=>Math.random()-0.5);
+        const answer = opts.indexOf(correct);
+        return { question: 'Qual frase apareceu no texto?', options: opts, answer };
+      });
+    }
+    return {
+      title: item.title || `Texto ${idx}`,
+      text: item.text_en || '',
+      translation: item.text_pt || '',
+      vocabulary: vocab,
+      grammar: grammarText,
+      verbs: verbsStr,
+      exercises: { multiple_choice: mc, fill_in: [], speaking: `Repeat: ${item.title||''}` },
+      he_she_it_rule: heSheItExample ? { example: heSheItExample } : (item.he_she_it_rule || null),
+      grammar_forms: grammarForms,
+      usage_table: item.usage_table || null,
+      structure_table: item.structure_table || null
+    };
+  }
   function fetchText() {
+    if (level === 'A1') {
+      const p1 = '/src/data/texts/A1/a1_blocks.json';
+      const p2 = './src/data/texts/A1/a1_blocks.json';
+      return (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json())))
+        .then(items => {
+          const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
+          return a1ToLegacy(item);
+        });
+    }
+    if (level === 'A2') {
+      const p1 = '/src/data/texts/A2/a2_blocks.json';
+      const p2 = './src/data/texts/A2/a2_blocks.json';
+      return (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json())))
+        .then(items => {
+          const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
+          return a1ToLegacy(item);
+        });
+    }
+    if (level === 'B1') {
+      const p1 = '/src/data/texts/B1/b1_blocks.json';
+      const p2 = './src/data/texts/B1/b1_blocks.json';
+      return (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json())))
+        .then(items => {
+          const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
+          return a1ToLegacy(item);
+        });
+    }
     return fetch(path1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(path2).then(r=>r.json()));
   }
   fetchText()
@@ -1127,7 +1333,6 @@ async function setupAudio(data) {
       try { renderVocabulary(data); } catch (e) { console.error('Error in renderVocabulary:', e); }
       try { renderGrammar(data); } catch (e) { console.error('Error in renderGrammar:', e); }
       try { renderVerbs(data); } catch (e) { console.error('Error in renderVerbs:', e); }
-      try { renderVerbsModule(data); } catch (e) { console.error('Error in renderVerbsModule:', e); }
       try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
       try { renderFill(data); } catch (e) { console.error('Error in renderFill:', e); }
 

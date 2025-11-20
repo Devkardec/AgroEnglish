@@ -1,0 +1,342 @@
+[
+  {
+    "id": 1,
+    "level": "A1",
+    "title": "John se apresenta e a fazenda",
+    "text_en": "Hello. My name is John. I live on Green Valley Farm. I work every day. The farm is small and friendly. I see the sun in the morning. I see the fields and the barn. I drive the tractor slowly. I carry simple tools. I feed the cows and check the water. I clean the yard. I talk to my family. We plan the day. I like my job. I learn new words. Welcome to my farm.",
+    "text_pt": "Olá. Meu nome é John. Eu moro na Fazenda Green Valley. Eu trabalho todos os dias. A fazenda é pequena e amigável. Eu vejo o sol de manhã. Eu vejo os campos e o celeiro. Eu dirijo o trator devagar. Eu carrego ferramentas simples. Eu alimento as vacas e verifico a água. Eu limpo o pátio. Eu converso com minha família. Nós planejamos o dia. Eu gosto do meu trabalho. Eu aprendo novas palavras. Bem-vindo à minha fazenda.",
+    "explanation": "O texto usa Present Simple com frases curtas: sujeito + verbo no presente para rotinas e fatos (I work, I see, We plan).",
+    "usage_table": [
+      {"phrase_en": "I live on Green Valley Farm", "phrase_pt": "Eu moro na Fazenda Green Valley"},
+      {"phrase_en": "I drive the tractor slowly", "phrase_pt": "Eu dirijo o trator devagar"},
+      {"phrase_en": "We plan the day", "phrase_pt": "Nós planejamos o dia"},
+      {"phrase_en": "I feed the cows", "phrase_pt": "Eu alimento as vacas"}
+    ],
+    "structure_table": [
+      {"subject": "I", "verb": "live", "complement": "on the farm", "translation": "Eu moro na fazenda"},
+      {"subject": "I", "verb": "work", "complement": "every day", "translation": "Eu trabalho todos os dias"},
+      {"subject": "I", "verb": "drive", "complement": "the tractor", "translation": "Eu dirijo o trator"},
+      {"subject": "We", "verb": "plan", "complement": "the day", "translation": "Nós planejamos o dia"},
+      {"subject": "I", "verb": "feed", "complement": "the cows", "translation": "Eu alimento as vacas"}
+    ],
+    "grammar_forms": {
+      "affirmative": "I drive the tractor",
+      "negative": "I don't drive the tractor",
+      "interrogative": "Do I drive the tractor?"
+    },
+    "he_she_it_rule": {"example": "He drives the tractor", "note": "Adiciona-se S para He/She/It"},
+    "vocabulary": [
+      {"word": "Farm", "translation": "Fazenda"},
+      {"word": "Tractor", "translation": "Trator"},
+      {"word": "Cow", "translation": "Vaca"},
+      {"word": "Barn", "translation": "Celeiro"},
+      {"word": "Work", "translation": "Trabalho"}
+    ]
+  },
+  {
+    "id": 2,
+    "level": "A1",
+    "title": "Rotina da manhã (acordar)",
+    "text_en": "I wake up early. I see the sun. I wash my face. I eat a simple breakfast. I drink water. I walk to the yard. I check the barn. I open the doors and windows. I breathe fresh air. I say hello to the cows. I listen to the birds. I carry my tools. I start my day. I plan the tasks. I work with care. I feel ready for a busy morning.",
+    "text_pt": "Eu acordo cedo. Eu vejo o sol. Eu lavo meu rosto. Eu como um café da manhã simples. Eu bebo água. Eu caminho até o pátio. Eu verifico o celeiro. Eu abro as portas e janelas. Eu respiro ar fresco. Eu digo olá às vacas. Eu escuto os pássaros. Eu carrego minhas ferramentas. Eu começo meu dia. Eu planejo as tarefas. Eu trabalho com cuidado. Eu me sinto pronto para uma manhã corrida.",
+    "explanation": "Present Simple descreve rotina diária: ações regulares e fatos simples (I wake up, I eat, I walk).",
+    "usage_table": [
+      {"phrase_en": "I wake up early", "phrase_pt": "Eu acordo cedo"},
+      {"phrase_en": "I eat a simple breakfast", "phrase_pt": "Eu como um café da manhã simples"},
+      {"phrase_en": "I check the barn", "phrase_pt": "Eu verifico o celeiro"},
+      {"phrase_en": "I plan the tasks", "phrase_pt": "Eu planejo as tarefas"}
+    ],
+    "structure_table": [
+      {"subject": "I", "verb": "wake", "complement": "up early", "translation": "Eu acordo cedo"},
+      {"subject": "I", "verb": "eat", "complement": "breakfast", "translation": "Eu como café da manhã"},
+      {"subject": "I", "verb": "walk", "complement": "to the yard", "translation": "Eu caminho até o pátio"},
+      {"subject": "I", "verb": "check", "complement": "the barn", "translation": "Eu verifico o celeiro"},
+      {"subject": "I", "verb": "start", "complement": "my day", "translation": "Eu começo meu dia"}
+    ],
+    "grammar_forms": {
+      "affirmative": "I check the barn",
+      "negative": "I don't check the barn",
+      "interrogative": "Do I check the barn?"
+    },
+    "he_she_it_rule": {"example": "He checks the barn", "note": "Adiciona-se S para He/She/It"},
+    "vocabulary": [
+      {"word": "Sun", "translation": "Sol"},
+      {"word": "Water", "translation": "Água"},
+      {"word": "Breakfast", "translation": "Café da manhã"},
+      {"word": "Barn", "translation": "Celeiro"},
+      {"word": "Tools", "translation": "Ferramentas"}
+    ]
+  },
+  {
+    "id": 3,
+    "level": "A1",
+    "title": "As ferramentas do galpão",
+    "text_en": "I walk into the shed. I see simple tools. I see a hammer, a bucket, and a rope. I clean the tools. I carry the bucket. I fix a small gate. I tie the rope to a post. I work slowly and safely. I put the tools in a box. I close the shed and smile. The tools help me every day. I use them with care. I keep the shed neat and ready.",
+    "text_pt": "Eu entro no galpão. Eu vejo ferramentas simples. Eu vejo um martelo, um balde e uma corda. Eu limpo as ferramentas. Eu carrego o balde. Eu conserto um portão pequeno. Eu amarro a corda em um poste. Eu trabalho devagar e com segurança. Eu coloco as ferramentas em uma caixa. Eu fecho o galpão e sorrio. As ferramentas me ajudam todos os dias. Eu as uso com cuidado. Eu mantenho o galpão organizado e pronto.",
+    "explanation": "Present Simple com vocabulário básico sobre ferramentas, usando frases curtas e ações diretas (I see, I clean, I fix).",
+    "usage_table": [
+      {"phrase_en": "I see simple tools", "phrase_pt": "Eu vejo ferramentas simples"},
+      {"phrase_en": "I clean the tools", "phrase_pt": "Eu limpo as ferramentas"},
+      {"phrase_en": "I fix a small gate", "phrase_pt": "Eu conserto um portão pequeno"},
+      {"phrase_en": "I keep the shed neat", "phrase_pt": "Eu mantenho o galpão organizado"}
+    ],
+    "structure_table": [
+      {"subject": "I", "verb": "see", "complement": "simple tools", "translation": "Eu vejo ferramentas simples"},
+      {"subject": "I", "verb": "clean", "complement": "the tools", "translation": "Eu limpo as ferramentas"},
+      {"subject": "I", "verb": "carry", "complement": "the bucket", "translation": "Eu carrego o balde"},
+      {"subject": "I", "verb": "fix", "complement": "a gate", "translation": "Eu conserto um portão"},
+      {"subject": "I", "verb": "close", "complement": "the shed", "translation": "Eu fecho o galpão"}
+    ],
+    "grammar_forms": {
+      "affirmative": "I fix the gate",
+      "negative": "I don't fix the gate",
+      "interrogative": "Do I fix the gate?"
+    },
+    "he_she_it_rule": {"example": "He fixes the gate", "note": "Adiciona-se S para He/She/It"},
+    "vocabulary": [
+      {"word": "Shed", "translation": "Galpão"},
+      {"word": "Tool", "translation": "Ferramenta"},
+      {"word": "Hammer", "translation": "Martelo"},
+      {"word": "Bucket", "translation": "Balde"},
+      {"word": "Rope", "translation": "Corda"}
+    ]
+  },
+  {
+    "id": 4,
+    "level": "A1",
+    "title": "Alimentando os animais",
+    "text_en": "I carry feed to the cows. I fill the troughs. I check the water. I clean the area. I talk softly to the animals. I see the calves. I give milk to a small calf. I move slowly and safely. I count the cows. I close the gate. I smile and feel calm. The animals eat and drink. They walk in the sun. I watch them and learn. I finish the task with care.",
+    "text_pt": "Eu levo ração para as vacas. Eu encho os cochos. Eu verifico a água. Eu limpo a área. Eu falo baixo com os animais. Eu vejo os bezerros. Eu dou leite para um bezerro pequeno. Eu me movo devagar e com segurança. Eu conto as vacas. Eu fecho o portão. Eu sorrio e me sinto calmo. Os animais comem e bebem. Eles caminham no sol. Eu observo e aprendo. Eu termino a tarefa com cuidado.",
+    "explanation": "Present Simple para ações regulares com animais da fazenda (I carry, I fill, I check).",
+    "usage_table": [
+      {"phrase_en": "I carry feed", "phrase_pt": "Eu levo ração"},
+      {"phrase_en": "I check the water", "phrase_pt": "Eu verifico a água"},
+      {"phrase_en": "I count the cows", "phrase_pt": "Eu conto as vacas"},
+      {"phrase_en": "I close the gate", "phrase_pt": "Eu fecho o portão"}
+    ],
+    "structure_table": [
+      {"subject": "I", "verb": "carry", "complement": "feed", "translation": "Eu levo ração"},
+      {"subject": "I", "verb": "fill", "complement": "the troughs", "translation": "Eu encho os cochos"},
+      {"subject": "I", "verb": "check", "complement": "the water", "translation": "Eu verifico a água"},
+      {"subject": "I", "verb": "count", "complement": "the cows", "translation": "Eu conto as vacas"},
+      {"subject": "I", "verb": "close", "complement": "the gate", "translation": "Eu fecho o portão"}
+    ],
+    "grammar_forms": {
+      "affirmative": "I feed the cows",
+      "negative": "I don't feed the cows",
+      "interrogative": "Do I feed the cows?"
+    },
+    "he_she_it_rule": {"example": "He feeds the cows", "note": "Adiciona-se S para He/She/It"},
+    "vocabulary": [
+      {"word": "Cow", "translation": "Vaca"},
+      {"word": "Calf", "translation": "Bezerro"},
+      {"word": "Feed", "translation": "Ração"},
+      {"word": "Trough", "translation": "Coxo"},
+      {"word": "Gate", "translation": "Portão"}
+    ]
+  },
+  {
+    "id": 5,
+    "level": "A1",
+    "title": "O trabalho no campo",
+    "text_en": "I walk to the field. I see the soil. I check the plants. I pull weeds. I carry a small bucket. I use water for the plants. I drive the tractor slowly. I follow a straight line. I watch the sun and the clouds. I rest for a minute. I continue the work. I keep the field clean. I learn with simple tasks. I finish the field work before lunch.",
+    "text_pt": "Eu caminho até o campo. Eu vejo o solo. Eu verifico as plantas. Eu tiro ervas daninhas. Eu carrego um balde pequeno. Eu uso água para as plantas. Eu dirijo o trator devagar. Eu sigo uma linha reta. Eu observo o sol e as nuvens. Eu descanso por um minuto. Eu continuo o trabalho. Eu mantenho o campo limpo. Eu aprendo com tarefas simples. Eu termino o trabalho no campo antes do almoço.",
+    "explanation": "Present Simple descreve ações simples no campo: observar, verificar, dirigir e manter (I check, I drive, I keep).",
+    "usage_table": [
+      {"phrase_en": "I walk to the field", "phrase_pt": "Eu caminho até o campo"},
+      {"phrase_en": "I check the plants", "phrase_pt": "Eu verifico as plantas"},
+      {"phrase_en": "I drive the tractor", "phrase_pt": "Eu dirijo o trator"},
+      {"phrase_en": "I keep the field clean", "phrase_pt": "Eu mantenho o campo limpo"}
+    ],
+    "structure_table": [
+      {"subject": "I", "verb": "see", "complement": "the soil", "translation": "Eu vejo o solo"},
+      {"subject": "I", "verb": "pull", "complement": "weeds", "translation": "Eu tiro ervas daninhas"},
+      {"subject": "I", "verb": "use", "complement": "water", "translation": "Eu uso água"},
+      {"subject": "I", "verb": "watch", "complement": "the sun", "translation": "Eu observo o sol"},
+      {"subject": "I", "verb": "finish", "complement": "the work", "translation": "Eu termino o trabalho"}
+    ],
+    "grammar_forms": {
+      "affirmative": "I drive the tractor",
+      "negative": "I don't drive the tractor",
+      "interrogative": "Do I drive the tractor?"
+    },
+    "he_she_it_rule": {"example": "He drives in a straight line", "note": "Adiciona-se S para He/She/It"},
+    "vocabulary": [
+      {"word": "Field", "translation": "Campo"},
+      {"word": "Soil", "translation": "Solo"},
+      {"word": "Plant", "translation": "Planta"},
+      {"word": "Weed", "translation": "Erva daninha"},
+      {"word": "Line", "translation": "Linha"}
+    ]
+  },
+  {
+    "id": 6,
+    "level": "A1",
+    "title": "O almoço",
+    "text_en": "I stop for lunch. I wash my hands. I sit near the barn. I eat bread and fruit. I drink water. I rest and breathe. I talk to my family. We share simple food. We plan the next tasks. I feel calm and ready. I clean the table. I put the trash in a bag. I stand up and smile. I start work again after lunch.",
+    "text_pt": "Eu paro para o almoço. Eu lavo minhas mãos. Eu me sento perto do celeiro. Eu como pão e fruta. Eu bebo água. Eu descanso e respiro. Eu converso com minha família. Nós compartilhamos comida simples. Nós planejamos as próximas tarefas. Eu me sinto calmo e pronto. Eu limpo a mesa. Eu coloco o lixo em uma sacola. Eu me levanto e sorrio. Eu começo a trabalhar novamente após o almoço.",
+    "explanation": "Present Simple para hábitos do almoço com frases curtas e vocabulário básico (I eat, I drink, We plan).",
+    "usage_table": [
+      {"phrase_en": "I eat bread and fruit", "phrase_pt": "Eu como pão e fruta"},
+      {"phrase_en": "I drink water", "phrase_pt": "Eu bebo água"},
+      {"phrase_en": "We plan the next tasks", "phrase_pt": "Nós planejamos as próximas tarefas"},
+      {"phrase_en": "I start work again", "phrase_pt": "Eu começo a trabalhar novamente"}
+    ],
+    "structure_table": [
+      {"subject": "I", "verb": "wash", "complement": "my hands", "translation": "Eu lavo minhas mãos"},
+      {"subject": "I", "verb": "sit", "complement": "near the barn", "translation": "Eu me sento perto do celeiro"},
+      {"subject": "We", "verb": "share", "complement": "simple food", "translation": "Nós compartilhamos comida simples"},
+      {"subject": "I", "verb": "clean", "complement": "the table", "translation": "Eu limpo a mesa"},
+      {"subject": "I", "verb": "start", "complement": "work again", "translation": "Eu começo a trabalhar novamente"}
+    ],
+    "grammar_forms": {
+      "affirmative": "I eat lunch",
+      "negative": "I don't eat lunch",
+      "interrogative": "Do I eat lunch?"
+    },
+    "he_she_it_rule": {"example": "He eats bread", "note": "Adiciona-se S para He/She/It"},
+    "vocabulary": [
+      {"word": "Lunch", "translation": "Almoço"},
+      {"word": "Bread", "translation": "Pão"},
+      {"word": "Fruit", "translation": "Fruta"},
+      {"word": "Table", "translation": "Mesa"},
+      {"word": "Bag", "translation": "Sacola"}
+    ]
+  },
+  {
+    "id": 7,
+    "level": "A1",
+    "title": "Checando a água",
+    "text_en": "I walk to the water tank. I check the pipe. I see clean water. I fill a bucket. I carry it to the cows. I watch the animals drink. I clean the tank with a brush. I close the valve. I look for leaks. I fix a small hose. I feel safe and calm. The water helps the farm every day. I keep the water clean and ready.",
+    "text_pt": "Eu caminho até o tanque de água. Eu verifico o cano. Eu vejo água limpa. Eu encho um balde. Eu levo para as vacas. Eu observo os animais beberem. Eu limpo o tanque com uma escova. Eu fecho a válvula. Eu procuro vazamentos. Eu conserto uma mangueira pequena. Eu me sinto seguro e calmo. A água ajuda a fazenda todos os dias. Eu mantenho a água limpa e pronta.",
+    "explanation": "Present Simple para verificar e manter a água: ações simples e diretas (I check, I fill, I fix).",
+    "usage_table": [
+      {"phrase_en": "I check the pipe", "phrase_pt": "Eu verifico o cano"},
+      {"phrase_en": "I fill a bucket", "phrase_pt": "Eu encho um balde"},
+      {"phrase_en": "I fix a small hose", "phrase_pt": "Eu conserto uma mangueira pequena"},
+      {"phrase_en": "I keep the water clean", "phrase_pt": "Eu mantenho a água limpa"}
+    ],
+    "structure_table": [
+      {"subject": "I", "verb": "walk", "complement": "to the tank", "translation": "Eu caminho até o tanque"},
+      {"subject": "I", "verb": "carry", "complement": "the bucket", "translation": "Eu levo o balde"},
+      {"subject": "I", "verb": "watch", "complement": "the animals", "translation": "Eu observo os animais"},
+      {"subject": "I", "verb": "close", "complement": "the valve", "translation": "Eu fecho a válvula"},
+      {"subject": "I", "verb": "look", "complement": "for leaks", "translation": "Eu procuro vazamentos"}
+    ],
+    "grammar_forms": {
+      "affirmative": "I check the water",
+      "negative": "I don't check the water",
+      "interrogative": "Do I check the water?"
+    },
+    "he_she_it_rule": {"example": "He checks the tank", "note": "Adiciona-se S para He/She/It"},
+    "vocabulary": [
+      {"word": "Water", "translation": "Água"},
+      {"word": "Tank", "translation": "Tanque"},
+      {"word": "Pipe", "translation": "Cano"},
+      {"word": "Valve", "translation": "Válvula"},
+      {"word": "Brush", "translation": "Escova"}
+    ]
+  },
+  {
+    "id": 8,
+    "level": "A1",
+    "title": "Limpando o celeiro",
+    "text_en": "I open the barn. I sweep the floor. I clean the walls. I move hay to a corner. I carry a bucket and a brush. I wash a small area. I collect trash in a bag. I close the bag and tie it. I put tools in a box. I check the doors and windows. I keep the barn neat. I feel proud and calm. The barn looks clean and ready.",
+    "text_pt": "Eu abro o celeiro. Eu varro o chão. Eu limpo as paredes. Eu movo feno para um canto. Eu carrego um balde e uma escova. Eu lavo uma área pequena. Eu junto o lixo em uma sacola. Eu fecho a sacola e amarro. Eu coloco ferramentas em uma caixa. Eu verifico portas e janelas. Eu mantenho o celeiro arrumado. Eu me sinto orgulhoso e calmo. O celeiro fica limpo e pronto.",
+    "explanation": "Present Simple com ações de limpeza do celeiro, usando vocabulário simples e instruções diretas (I sweep, I clean, I wash).",
+    "usage_table": [
+      {"phrase_en": "I sweep the floor", "phrase_pt": "Eu varro o chão"},
+      {"phrase_en": "I collect trash in a bag", "phrase_pt": "Eu junto o lixo em uma sacola"},
+      {"phrase_en": "I keep the barn neat", "phrase_pt": "Eu mantenho o celeiro arrumado"},
+      {"phrase_en": "I check the doors", "phrase_pt": "Eu verifico as portas"}
+    ],
+    "structure_table": [
+      {"subject": "I", "verb": "open", "complement": "the barn", "translation": "Eu abro o celeiro"},
+      {"subject": "I", "verb": "move", "complement": "hay", "translation": "Eu movo feno"},
+      {"subject": "I", "verb": "wash", "complement": "a small area", "translation": "Eu lavo uma área pequena"},
+      {"subject": "I", "verb": "put", "complement": "tools in a box", "translation": "Eu coloco ferramentas em uma caixa"},
+      {"subject": "I", "verb": "close", "complement": "the bag", "translation": "Eu fecho a sacola"}
+    ],
+    "grammar_forms": {
+      "affirmative": "I clean the barn",
+      "negative": "I don't clean the barn",
+      "interrogative": "Do I clean the barn?"
+    },
+    "he_she_it_rule": {"example": "He cleans the barn", "note": "Adiciona-se S para He/She/It"},
+    "vocabulary": [
+      {"word": "Barn", "translation": "Celeiro"},
+      {"word": "Hay", "translation": "Feno"},
+      {"word": "Floor", "translation": "Chão"},
+      {"word": "Wall", "translation": "Parede"},
+      {"word": "Bag", "translation": "Sacola"}
+    ]
+  },
+  {
+    "id": 9,
+    "level": "A1",
+    "title": "O fim do dia",
+    "text_en": "I finish the work. I close the gates. I park the tractor. I put tools back in the shed. I check the animals again. I see the sun go down. I feel tired but happy. I drink water. I talk to my family. We share simple words. We smile and relax. I wash my hands and face. I rest near the barn. I say good night to the farm.",
+    "text_pt": "Eu termino o trabalho. Eu fecho os portões. Eu estaciono o trator. Eu guardo as ferramentas no galpão. Eu verifico os animais novamente. Eu vejo o sol descer. Eu me sinto cansado, mas feliz. Eu bebo água. Eu converso com minha família. Nós compartilhamos palavras simples. Nós sorrimos e relaxamos. Eu lavo minhas mãos e rosto. Eu descanso perto do celeiro. Eu digo boa noite para a fazenda.",
+    "explanation": "Present Simple descreve fechamento do dia com ações simples e repetidas (I finish, I park, I rest).",
+    "usage_table": [
+      {"phrase_en": "I close the gates", "phrase_pt": "Eu fecho os portões"},
+      {"phrase_en": "I park the tractor", "phrase_pt": "Eu estaciono o trator"},
+      {"phrase_en": "I wash my hands", "phrase_pt": "Eu lavo minhas mãos"},
+      {"phrase_en": "I say good night", "phrase_pt": "Eu digo boa noite"}
+    ],
+    "structure_table": [
+      {"subject": "I", "verb": "finish", "complement": "the work", "translation": "Eu termino o trabalho"},
+      {"subject": "I", "verb": "put", "complement": "tools back", "translation": "Eu guardo as ferramentas"},
+      {"subject": "I", "verb": "see", "complement": "the sun go down", "translation": "Eu vejo o sol descer"},
+      {"subject": "We", "verb": "share", "complement": "simple words", "translation": "Nós compartilhamos palavras simples"},
+      {"subject": "I", "verb": "rest", "complement": "near the barn", "translation": "Eu descanso perto do celeiro"}
+    ],
+    "grammar_forms": {
+      "affirmative": "I park the tractor",
+      "negative": "I don't park the tractor",
+      "interrogative": "Do I park the tractor?"
+    },
+    "he_she_it_rule": {"example": "He parks the tractor", "note": "Adiciona-se S para He/She/It"},
+    "vocabulary": [
+      {"word": "Gate", "translation": "Portão"},
+      {"word": "Park", "translation": "Estacionar"},
+      {"word": "Relax", "translation": "Relaxar"},
+      {"word": "Wash", "translation": "Lavar"},
+      {"word": "Night", "translation": "Noite"}
+    ]
+  },
+  {
+    "id": 10,
+    "level": "A1",
+    "title": "Planejando o amanhã",
+    "text_en": "I sit with my family. We plan tomorrow. We make a simple list. We write tasks for the field, the barn, and the animals. I check the tools. I clean the boots. I drink water. I feel calm and ready. I sleep early. I love my farm. I work with care every day. I learn new words and tasks. Tomorrow is a new day on Green Valley Farm.",
+    "text_pt": "Eu me sento com minha família. Nós planejamos o amanhã. Nós fazemos uma lista simples. Nós escrevemos tarefas para o campo, o celeiro e os animais. Eu verifico as ferramentas. Eu limpo as botas. Eu bebo água. Eu me sinto calmo e pronto. Eu durmo cedo. Eu amo minha fazenda. Eu trabalho com cuidado todos os dias. Eu aprendo novas palavras e tarefas. Amanhã é um novo dia na Fazenda Green Valley.",
+    "explanation": "Present Simple para planos simples e rotina diária. Usa estruturas básicas com sujeito + verbo + complemento (We plan, I check, I sleep).",
+    "usage_table": [
+      {"phrase_en": "We plan tomorrow", "phrase_pt": "Nós planejamos o amanhã"},
+      {"phrase_en": "We write tasks", "phrase_pt": "Nós escrevemos tarefas"},
+      {"phrase_en": "I clean the boots", "phrase_pt": "Eu limpo as botas"},
+      {"phrase_en": "I love my farm", "phrase_pt": "Eu amo minha fazenda"}
+    ],
+    "structure_table": [
+      {"subject": "We", "verb": "plan", "complement": "tomorrow", "translation": "Nós planejamos o amanhã"},
+      {"subject": "We", "verb": "write", "complement": "tasks", "translation": "Nós escrevemos tarefas"},
+      {"subject": "I", "verb": "check", "complement": "the tools", "translation": "Eu verifico as ferramentas"},
+      {"subject": "I", "verb": "sleep", "complement": "early", "translation": "Eu durmo cedo"},
+      {"subject": "I", "verb": "learn", "complement": "new words", "translation": "Eu aprendo novas palavras"}
+    ],
+    "grammar_forms": {
+      "affirmative": "I love my farm",
+      "negative": "I don't love my farm",
+      "interrogative": "Do I love my farm?"
+    },
+    "he_she_it_rule": {"example": "He loves his farm", "note": "Adiciona-se S para He/She/It"},
+    "vocabulary": [
+      {"word": "Plan", "translation": "Planejar"},
+      {"word": "List", "translation": "Lista"},
+      {"word": "Task", "translation": "Tarefa"},
+      {"word": "Boot", "translation": "Bota"},
+      {"word": "Farm", "translation": "Fazenda"}
+    ]
+  }
+]
