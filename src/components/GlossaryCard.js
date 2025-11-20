@@ -2,8 +2,8 @@ export function GlossaryCard(item) {
   if (!item) return '';
   const base = String(item.image||'').toLowerCase();
   const isPlaceholder = base.includes('placehold.co');
-  const q = encodeURIComponent(`${item.category||''}, ${item.term_en||''}`.trim());
-  const dyn = `https://source.unsplash.com/600x400/?agriculture,${q}`;
+  const keywords = [String(item.category||''), String(item.term_en||'')].map(s=>encodeURIComponent(s)).join(',');
+  const dyn = `https://source.unsplash.com/600x400/?agriculture,${keywords}`;
   const imgSrc = isPlaceholder ? dyn : (item.image||dyn);
 
   return `
@@ -14,7 +14,7 @@ export function GlossaryCard(item) {
         <div class="card-face card-front">
             <div class="lang-chip">EN</div>
             <div class="card-image">
-                <img src="${imgSrc}" alt="${item.term_en}" loading="lazy" decoding="async" />
+                <img src="${imgSrc}" alt="${item.term_en}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='/img/logoagroenglish.png'" />
             </div>
             <div class="card-header">
                 <div class="term-wrapper">
@@ -35,7 +35,7 @@ export function GlossaryCard(item) {
         <div class="card-face card-back">
             <div class="lang-chip">PT</div>
             <div class="card-image">
-                <img src="${imgSrc}" alt="${item.term_pt}" loading="lazy" decoding="async" />
+                <img src="${imgSrc}" alt="${item.term_pt}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='/img/logoagroenglish.png'" />
             </div>
             <div class="card-header">
                 <div class="term-wrapper">
