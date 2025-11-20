@@ -5,6 +5,9 @@ import { Settings } from './src/pages/Settings.js';
 import { Offline } from './src/pages/Offline.js';
 import { TextPage } from './src/pages/TextPage.js';
 import { PhraseCard } from './src/components/PhraseCard.js';
+import { Glossary } from './src/pages/Glossary.js';
+import vocabularyData from './src/data/vocabularyData.js';
+import { GlossaryCard } from './src/components/GlossaryCard.js';
 
 const state = {
   voiceName: localStorage.getItem('voiceName') || '',
@@ -191,6 +194,9 @@ function render() {
     const idx = Number(parts[3] || 1);
     view = TextPage(lvl, idx);
     pageInit = () => initTextPage(lvl, idx);
+  } else if (hash.startsWith('#/glossary')) {
+    view = Glossary();
+    pageInit = initGlossaryPage;
   } else if (hash.startsWith('#/settings')) {
     view = Settings({ state, setSetting });
   } else {
@@ -198,6 +204,50 @@ function render() {
   }
   app.innerHTML = Header() + view;
   pageInit();
+}
+
+function initGlossaryPage() {
+  const filterContainer = document.querySelector('.filter-container');
+  const grid = document.getElementById('glossary-grid');
+
+  if (filterContainer && grid) {
+    // Handle clicks on filter buttons
+    filterContainer.addEventListener('click', (e) => {
+      if (e.target.matches('.filter-btn')) {
+        const category = e.target.dataset.category;
+
+        // Update the active state on buttons
+        filterContainer.querySelector('.filter-btn.active').classList.remove('active');
+        e.target.classList.add('active');
+
+        // Filter the vocabulary data based on the selected category
+        const filteredData = category === 'All'
+          ? vocabularyData
+          : vocabularyData.filter(item => item.category === category);
+        
+        // Re-render the grid with the filtered cards
+        grid.innerHTML = filteredData.map(GlossaryCard).join('');
+      }
+    });
+
+    // Handle clicks on the grid for both flipping and speaking
+    grid.addEventListener('click', (e) => {
+      const speakButton = e.target.closest('.speak-btn');
+      if (speakButton) {
+        e.stopPropagation(); // Prevents the card from flipping
+        const termToSpeak = speakButton.dataset.term;
+        if (termToSpeak) {
+          speak(termToSpeak);
+        }
+        return;
+      }
+
+      const cardContainer = e.target.closest('.glossary-card-container');
+      if (cardContainer) {
+        cardContainer.querySelector('.glossary-card').classList.toggle('is-flipped');
+      }
+    });
+  }
 }
 
 function initHomePage() {
