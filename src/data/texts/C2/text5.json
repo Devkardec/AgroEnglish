@@ -1,161 +1,20 @@
 {
-    "title":  "Comprehensive Farm Management",
-    "title_pt":  "Gestão abrangente da fazenda",
-    "text":  "Sustainable livestock strategy. I work on Green Valley Farm, and every day is busy. Maintenance avoids breakdowns during harvest. Sprayer calibration prevents over application. Veterinary biosecurity keeps the herd healthy. We plan the day: planting, irrigation, and equipment checks. We record yields and monitor feed intake. I clean the barn after milking and store the tools. The tractor starts slowly; I drive carefully on the farm road. I talk to the team and assign tasks for the afternoon. We assess soil nutrients to optimize fertilization plans.",
-    "translation":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. A manutenÃ§Ã£o evita falhas durante a colheita. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos. NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. O trator liga devagar; eu dirijo com cuidado na estrada da fazenda. Eu converso com a equipe e distribuo as tarefas para a tarde. Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o.",
+    "title":  "Trade Compliance",
+    "title_pt":  "Conformidade Comercial",
+    "text":  "Exporting to the EU requires strict adherence to animal welfare legislation, notwithstanding higher production costs. Rarely do exemptions apply to intensive systems; therefore, compliance auditing has been intensified. Should directives be updated, we would promptly harmonize protocols to avoid sanctions. Transport time limits and stunning requirements are enforced uniformly, and lairage conditions are audited. Not only are documentation and labeling scrutinized, but supply‑chain attestations are also verified to preclude detentions.",
+    "translation":  "Exportar para a UE exige estrita observância da legislação de bem‑estar animal, a despeito de maiores custos de produção. Raramente isenções se aplicam a sistemas intensivos; portanto, a auditoria de conformidade foi intensificada. Caso as diretivas sejam atualizadas, harmonizaríamos prontamente os protocolos para evitar sanções. Limites de tempo de transporte e requisitos de insensibilização são aplicados de forma uniforme, e as condições de repouso são auditadas. Não apenas documentação e rotulagem são escrutinadas, como também atestações da cadeia de suprimentos são verificadas para evitar detenções.",
     "pairs":  [
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos.",
-                      "en":  "We plan the day: planting, irrigation, and equipment checks."
-                  },
-                  {
-                      "pt":  "NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o.",
-                      "en":  "We record yields and monitor feed intake."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "O trator liga devagar; eu dirijo com cuidado na estrada da fazenda.",
-                      "en":  "The tractor starts slowly; I drive carefully on the farm road."
-                  },
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  },
-                  {
-                      "pt":  "Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o.",
-                      "en":  "We assess soil nutrients to optimize fertilization plans."
-                  }
+                  { "pt": "Exportar para a UE exige observância estrita ao bem‑estar animal.", "en": "Exporting to the EU requires strict adherence to animal welfare." },
+                  { "pt": "Raramente isenções se aplicam a sistemas intensivos.", "en": "Rarely do exemptions apply to intensive systems." },
+                  { "pt": "Caso diretivas mudem, harmonizaremos protocolos para evitar sanções.", "en": "Should directives be updated, we would harmonize protocols to avoid sanctions." },
+                  { "pt": "Limites de transporte e insensibilização são aplicados.", "en": "Transport limits and stunning are enforced." },
+                  { "pt": "Condições de repouso são auditadas em plantas.", "en": "Lairage conditions are audited across plants." },
+                  { "pt": "Não apenas rotulagem, mas atestações são verificadas.", "en": "Not only labeling, but attestations are verified." },
+                  { "pt": "Harmonização evita sanções e atrasos.", "en": "Harmonization prevents sanctions and delays." },
+                  { "pt": "Conformidade é supervisionada por auditorias independentes.", "en": "Compliance is overseen by independent audits." },
+                  { "pt": "Caso documentação falhe, cargas podem ser detidas.", "en": "Should documentation lapse, consignments may be detained." },
+                  { "pt": "Relatórios de conformidade são atualizados periodicamente.", "en": "Compliance reports are updated periodically." }
               ],
-    "vocabulary":  [
-                       {
-                           "word":  "tractor",
-                           "meaning":  "trator"
-                       },
-                       {
-                           "word":  "cow",
-                           "meaning":  "vaca"
-                       },
-                       {
-                           "word":  "corn",
-                           "meaning":  "milho"
-                       },
-                       {
-                           "word":  "sprayer",
-                           "meaning":  "pulverizador"
-                       },
-                       {
-                           "word":  "harvest",
-                           "meaning":  "colheita"
-                       },
-                       {
-                           "word":  "irrigation",
-                           "meaning":  "irrigaÃ§Ã£o"
-                       },
-                       {
-                           "word":  "pasture",
-                           "meaning":  "pastagem"
-                       },
-                       {
-                           "word":  "greenhouse",
-                           "meaning":  "estufa"
-                       },
-                       {
-                           "word":  "veterinary",
-                           "meaning":  "veterinÃ¡ria"
-                       },
-                       {
-                           "word":  "safety",
-                           "meaning":  "seguranÃ§a"
-                       }
-                   ],
-    "grammar":  "Academic style: hedging and precise terminology.",
-    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
-    "exercises":  {
-                      "multiple_choice":  [
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we check every morning?",
-                                                  "options":  [
-                                                                  "Plants",
-                                                                  "Emails",
-                                                                  "Movies",
-                                                                  "Games"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Which machine is for spraying?",
-                                                  "options":  [
-                                                                  "Sprayer",
-                                                                  "Oven",
-                                                                  "Printer",
-                                                                  "Mixer"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What protects animals in cold weather?",
-                                                  "options":  [
-                                                                  "Barn",
-                                                                  "Laptop",
-                                                                  "Radio",
-                                                                  "Paint"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we rotate to improve forage?",
-                                                  "options":  [
-                                                                  "Pastures",
-                                                                  "Books",
-                                                                  "Rooms",
-                                                                  "Shoes"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Where do we grow plants with climate control?",
-                                                  "options":  [
-                                                                  "Greenhouse",
-                                                                  "Garage",
-                                                                  "Office",
-                                                                  "Kitchen"
-                                                              ]
-                                              }
-                                          ],
-                      "fill_in":  [
-                                      {
-                                          "sentence":  "We ____ the cows every morning.",
-                                          "answer":  "feed"
-                                      },
-                                      {
-                                          "sentence":  "Start the ____ carefully.",
-                                          "answer":  "tractor"
-                                      },
-                                      {
-                                          "sentence":  "Check the ____ for the animals.",
-                                          "answer":  "water"
-                                      }
-                                  ],
-                      "speaking":  "Repeat: Sustainable livestock strategy"
-                  }
+    "grammar":  "Inversions; Concession (notwithstanding); Formal conditionals (Should…); Passive voice; Legal‑economic register",
+    "verbs":  "adhere, harmonize, audit, update, avoid, impose, enforce, verify"
 }

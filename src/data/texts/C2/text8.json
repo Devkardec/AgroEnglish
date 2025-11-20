@@ -1,161 +1,20 @@
 {
-    "title":  "Daily Chores and Routines",
-    "title_pt":  "Tarefas e rotinas diárias",
-    "text":  "Advanced agronomy review. I check the crops to see if the plants are healthy. We sell fresh vegetables at the local market. The sun is low, and the soil is cool and soft. Sprayer calibration prevents over application. We apply rotational grazing protocols for pasture recovery. I clean the barn after milking and store the tools. In the morning, I wake up early and walk to the fields. Veterinary biosecurity keeps the herd healthy. In Canadian winter, we protect equipment from freezing. Maintenance avoids breakdowns during harvest.",
-    "translation":  "Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis. NÃ³s vendemos hortaliÃ§as frescas no mercado local. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. De manhÃ£, eu acordo cedo e caminho atÃ© os campos. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. No inverno canadense, protegemos os equipamentos contra o congelamento. A manutenÃ§Ã£o evita falhas durante a colheita.",
+    "title":  "Zoonotic Mitigation",
+    "title_pt":  "Mitigação Zoonótica",
+    "text":  "Mitigating the risk of zoonotic spillover requires a holistic 'One Health' approach involving veterinarians and ecologists. Rarely do siloed interventions yield durable outcomes; therefore, cross‑sector governance is mandated. Should surveillance thresholds be exceeded, emergency protocols would be activated under the compliance framework. Not only are case definitions standardized, but reporting cadence is also enforced across districts; consequently, data interoperability is improved. Syndromic surveillance and sentinel herds are integrated to preempt spillover routes.",
+    "translation":  "Mitigar o risco de transbordamento zoonótico requer uma abordagem holística de 'One Health' envolvendo veterinários e ecologistas. Raramente intervenções isoladas geram resultados duráveis; portanto, a governança intersetorial é mandatória. Caso limiares de vigilância sejam excedidos, protocolos de emergência seriam ativados sob a estrutura de conformidade. Não apenas definições de caso são padronizadas, como também a cadência de reporte é aplicada entre distritos; consequentemente, a interoperabilidade de dados é aprimorada. Vigilância sindrômica e rebanhos sentinela são integrados para prevenir rotas de transbordamento.",
     "pairs":  [
-                  {
-                      "pt":  "Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis.",
-                      "en":  "I check the crops to see if the plants are healthy."
-                  },
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
-                      "en":  "We apply rotational grazing protocols for pasture recovery."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  }
+                  { "pt": "Mitigar risco zoonótico requer 'One Health'.", "en": "Mitigating zoonotic risk requires 'One Health'." },
+                  { "pt": "Raramente intervenções isoladas geram resultados duráveis.", "en": "Rarely do siloed interventions yield durable outcomes." },
+                  { "pt": "Caso limiares sejam excedidos, ativaremos protocolos.", "en": "Should thresholds be exceeded, protocols would be activated." },
+                  { "pt": "Definições de caso são padronizadas.", "en": "Case definitions are standardized." },
+                  { "pt": "A cadência de reporte é aplicada entre distritos.", "en": "Reporting cadence is enforced across districts." },
+                  { "pt": "Interoperabilidade de dados é aprimorada.", "en": "Data interoperability is improved." },
+                  { "pt": "Vigilância sindrômica é integrada ao monitoramento.", "en": "Syndromic surveillance is integrated into monitoring." },
+                  { "pt": "Rebanhos sentinela preveem rotas de transbordamento.", "en": "Sentinel herds preempt spillover routes." },
+                  { "pt": "Governança intersetorial é mandatória.", "en": "Cross‑sector governance is mandated." },
+                  { "pt": "Conformidade guia protocolos de emergência.", "en": "Compliance guides emergency protocols." }
               ],
-    "vocabulary":  [
-                       {
-                           "word":  "tractor",
-                           "meaning":  "trator"
-                       },
-                       {
-                           "word":  "cow",
-                           "meaning":  "vaca"
-                       },
-                       {
-                           "word":  "corn",
-                           "meaning":  "milho"
-                       },
-                       {
-                           "word":  "sprayer",
-                           "meaning":  "pulverizador"
-                       },
-                       {
-                           "word":  "harvest",
-                           "meaning":  "colheita"
-                       },
-                       {
-                           "word":  "irrigation",
-                           "meaning":  "irrigaÃ§Ã£o"
-                       },
-                       {
-                           "word":  "pasture",
-                           "meaning":  "pastagem"
-                       },
-                       {
-                           "word":  "greenhouse",
-                           "meaning":  "estufa"
-                       },
-                       {
-                           "word":  "veterinary",
-                           "meaning":  "veterinÃ¡ria"
-                       },
-                       {
-                           "word":  "safety",
-                           "meaning":  "seguranÃ§a"
-                       }
-                   ],
-    "grammar":  "Academic style: hedging and precise terminology.",
-    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
-    "exercises":  {
-                      "multiple_choice":  [
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we check every morning?",
-                                                  "options":  [
-                                                                  "Plants",
-                                                                  "Emails",
-                                                                  "Movies",
-                                                                  "Games"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Which machine is for spraying?",
-                                                  "options":  [
-                                                                  "Sprayer",
-                                                                  "Oven",
-                                                                  "Printer",
-                                                                  "Mixer"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What protects animals in cold weather?",
-                                                  "options":  [
-                                                                  "Barn",
-                                                                  "Laptop",
-                                                                  "Radio",
-                                                                  "Paint"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we rotate to improve forage?",
-                                                  "options":  [
-                                                                  "Pastures",
-                                                                  "Books",
-                                                                  "Rooms",
-                                                                  "Shoes"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Where do we grow plants with climate control?",
-                                                  "options":  [
-                                                                  "Greenhouse",
-                                                                  "Garage",
-                                                                  "Office",
-                                                                  "Kitchen"
-                                                              ]
-                                              }
-                                          ],
-                      "fill_in":  [
-                                      {
-                                          "sentence":  "We ____ the cows every morning.",
-                                          "answer":  "feed"
-                                      },
-                                      {
-                                          "sentence":  "Start the ____ carefully.",
-                                          "answer":  "tractor"
-                                      },
-                                      {
-                                          "sentence":  "Check the ____ for the animals.",
-                                          "answer":  "water"
-                                      }
-                                  ],
-                      "speaking":  "Repeat: Advanced agronomy review"
-                  }
+    "grammar":  "Inversions; Formal conditionals (Should…); Passive voice; Scientific‑policy register",
+    "verbs":  "mitigate, mandate, activate, surveil, yield, govern, standardize, enforce, integrate"
 }

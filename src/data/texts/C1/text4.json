@@ -1,49 +1,19 @@
 {
-    "title":  "A Day on a High-Tech Farm",
-    "title_pt":  "Um dia em uma fazenda de alta tecnologia",
-    "text":  "Equipment reliability analysis. Telemetry from precision agriculture guides irrigation decisions. We sell fresh vegetables at the local market. Sprayer calibration prevents over application. In the morning, I wake up early and walk to the fields. I feed the cows and make sure they have clean water. I clean the barn after milking and store the tools. We record yields and monitor feed intake. We plan the day: planting, irrigation, and equipment checks. Veterinary biosecurity keeps the herd healthy. In Canadian winter, we protect equipment from freezing.",
-    "translation":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o. NÃ³s vendemos hortaliÃ§as frescas no mercado local. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. De manhÃ£, eu acordo cedo e caminho atÃ© os campos. Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o. NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. No inverno canadense, protegemos os equipamentos contra o congelamento.",
+    "title":  "Calibration Protocols",
+    "title_pt":  "Protocolos de Calibração",
+    "text":  "Calibration protocols have been established to reduce waste and improve uniformity. Application rates are controlled automatically by sensors; therefore, efficiency has increased across fields.",
+    "translation":  "Protocolos de calibração têm sido estabelecidos para reduzir desperdício e melhorar a uniformidade. As taxas de aplicação são controladas automaticamente por sensores; portanto, a eficiência tem aumentado nos talhões.",
     "pairs":  [
-                  {
-                      "pt":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o.",
-                      "en":  "Telemetry from precision agriculture guides irrigation decisions."
-                  },
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-                      "en":  "I feed the cows and make sure they have clean water."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o.",
-                      "en":  "We record yields and monitor feed intake."
-                  },
-                  {
-                      "pt":  "NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos.",
-                      "en":  "We plan the day: planting, irrigation, and equipment checks."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  }
+                  { "pt": "Protocolos de calibração têm sido estabelecidos.", "en": "Calibration protocols have been established." },
+                  { "pt": "As taxas de aplicação são controladas automaticamente.", "en": "Application rates are controlled automatically." },
+                  { "pt": "Portanto, a eficiência tem aumentado.", "en": "Therefore, efficiency has increased." },
+                  { "pt": "Os relatórios foram revisados pela gestão.", "en": "The reports have been reviewed by management." },
+                  { "pt": "Os bicos são inspecionados pelo técnico.", "en": "The nozzles are inspected by the technician." },
+                  { "pt": "Além disso, auditorias foram agendadas trimestralmente.", "en": "Furthermore, audits have been scheduled quarterly." },
+                  { "pt": "A cobertura é monitorada por sensores.", "en": "Coverage is monitored by sensors." },
+                  { "pt": "Entretanto, a deriva do vento foi observada em bordas.", "en": "However, wind drift has been observed on borders." },
+                  { "pt": "Portanto, ajustes de faixa foram implementados.", "en": "Therefore, banding adjustments have been implemented." },
+                  { "pt": "Os registros são armazenados no sistema.", "en": "The records are stored in the system." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Complex clauses: purpose and result; nominalization.",
+    "grammar":  "Present Perfect; Passive Voice; Formal connectors: However, Therefore, Furthermore",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

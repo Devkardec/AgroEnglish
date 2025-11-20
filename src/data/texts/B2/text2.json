@@ -1,49 +1,19 @@
 {
-    "title":  "Modern Farming Techniques",
-    "title_pt":  "Técnicas modernas de agricultura",
-    "text":  "Rotational grazing management. We apply rotational grazing protocols for pasture recovery. In Canadian winter, we protect equipment from freezing. Maintenance avoids breakdowns during harvest. We assess soil nutrients to optimize fertilization plans. Veterinary biosecurity keeps the herd healthy. I check the crops to see if the plants are healthy. Irrigation is scheduled to reduce water waste. Telemetry from precision agriculture guides irrigation decisions. I feed the cows and make sure they have clean water. I talk to the team and assign tasks for the afternoon.",
-    "translation":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem. No inverno canadense, protegemos os equipamentos contra o congelamento. A manutenÃ§Ã£o evita falhas durante a colheita. Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o. Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa. Eu converso com a equipe e distribuo as tarefas para a tarde.",
+    "title":  "Sprayer Calibration Report",
+    "title_pt":  "Relatório de calibração do pulverizador",
+    "text":  "The sprayer is calibrated by the technician. If the wind is strong, we will stop. The rate is controlled automatically by sensors; if I had a bigger tank, I would spray fewer trips.",
+    "translation":  "O pulverizador é calibrado pelo técnico. Se o vento estiver forte, nós vamos parar. A taxa é controlada automaticamente por sensores; se eu tivesse um tanque maior, faria menos viagens.",
     "pairs":  [
-                  {
-                      "pt":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
-                      "en":  "We apply rotational grazing protocols for pasture recovery."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  },
-                  {
-                      "pt":  "Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o.",
-                      "en":  "We assess soil nutrients to optimize fertilization plans."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis.",
-                      "en":  "I check the crops to see if the plants are healthy."
-                  },
-                  {
-                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o.",
-                      "en":  "Telemetry from precision agriculture guides irrigation decisions."
-                  },
-                  {
-                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-                      "en":  "I feed the cows and make sure they have clean water."
-                  },
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  }
+                  { "pt": "O pulverizador é calibrado pelo técnico.", "en": "The sprayer is calibrated by the technician." },
+                  { "pt": "Se o vento estiver forte, nós vamos parar.", "en": "If the wind is strong, we will stop." },
+                  { "pt": "A taxa é controlada automaticamente por sensores.", "en": "The rate is controlled automatically by sensors." },
+                  { "pt": "Se eu tivesse um tanque maior, faria menos viagens.", "en": "If I had a bigger tank, I would spray fewer trips." },
+                  { "pt": "Os bicos são limpos após o uso.", "en": "The nozzles are cleaned after use." },
+                  { "pt": "Se a pressão cair, nós vamos verificar a bomba.", "en": "If pressure drops, we will check the pump." },
+                  { "pt": "O mapa é carregado pelo software.", "en": "The map is loaded by the software." },
+                  { "pt": "Se o solo estiver úmido, nós vamos adiar a aplicação.", "en": "If the soil is wet, we will delay application." },
+                  { "pt": "A auditoria é salva no sistema.", "en": "The audit is saved in the system." },
+                  { "pt": "Se eu tivesse mais tempo, testaria todos os bicos.", "en": "If I had more time, I would test all nozzles." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Passive voice in technical procedures.",
+    "grammar":  "First Conditional; Second Conditional; Passive Voice",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

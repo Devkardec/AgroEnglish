@@ -1,0 +1,282 @@
+[
+  {
+    "id": 1,
+    "level": "C2",
+    "category": "Máquinas/Leis",
+    "title": "Autonomous Ethics",
+    "title_pt": "Ética na Automação",
+    "text_en": "The proliferation of autonomous robotics raises significant ethical questions regarding the displacement of the rural workforce. Rarely do we observe technological adoption without complex accountability debates; therefore, governance frameworks must be instituted. Should the regulations change, we would be compelled to revise liability clauses to ensure compliance.",
+    "text_pt": "A proliferação da robótica autônoma levanta questões éticas significativas quanto ao deslocamento da força de trabalho rural. Raramente observamos adoção tecnológica sem debates complexos sobre responsabilização; portanto, estruturas de governança devem ser instituídas. Caso os regulamentos mudem, seríamos compelidos a revisar cláusulas de responsabilidade para assegurar conformidade.",
+    "teaching_modules": {
+      "explanation": "Inversões (Rarely do we observe…), condicional formal (Should the regulations change…), vocabulário jurídico (framework, compliance, liability).",
+      "grammar_table": [
+        {"subject":"Rarely","verb":"do we observe","example":"Rarely do we observe adoption without accountability debates."},
+        {"subject":"Should","verb":"the regulations change","example":"Should the regulations change, clauses would be revised."},
+        {"subject":"Data","verb":"is governed","example":"Data is governed by an ethics framework."}
+      ],
+      "vocabulary": [
+        {"word":"Framework","translation":"Estrutura normativa"},
+        {"word":"Compliance","translation":"Conformidade"},
+        {"word":"Liability","translation":"Responsabilidade legal"},
+        {"word":"Paramount","translation":"Primordial"}
+      ],
+      "verbs_list": [
+        {"base":"observe","third_person":"observes","translation":"observar"},
+        {"base":"compel","third_person":"compels","translation":"compelir"},
+        {"base":"revise","third_person":"revises","translation":"revisar"}
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "level": "C2",
+    "category": "Máquinas/Leis",
+    "title": "Carbon Frameworks",
+    "title_pt": "Estruturas de Carbono",
+    "text_en": "Complying with international carbon sequestration frameworks is paramount for accessing the European market. Not only have verification protocols been strengthened, but penalties for non‑compliance have also intensified; therefore, mitigation strategies must be codified. Should thresholds be tightened, we would recalibrate monitoring to preclude infractions.",
+    "text_pt": "Cumprir estruturas internacionais de sequestro de carbono é primordial para acessar o mercado europeu. Não apenas os protocolos de verificação foram reforçados, como também as penalidades por não conformidade se intensificaram; portanto, estratégias de mitigação devem ser codificadas. Caso os limites sejam apertados, recalibraríamos o monitoramento para evitar infrações.",
+    "teaching_modules": {
+      "explanation": "Vocabulário erudito (paramount, mitigation), inversão com paralelismo (Not only … but also …) e condicional formal (Should thresholds be tightened…).",
+      "grammar_table": [
+        {"subject":"Not only","verb":"have protocols been strengthened","example":"Not only have protocols been strengthened, but penalties intensified."},
+        {"subject":"Should","verb":"thresholds be tightened","example":"Should thresholds be tightened, monitoring would be recalibrated."},
+        {"subject":"Compliance","verb":"is audited","example":"Compliance is audited annually."}
+      ],
+      "vocabulary": [
+        {"word":"Paramount","translation":"Primordial"},
+        {"word":"Mitigation","translation":"Mitigação"},
+        {"word":"Compliance","translation":"Conformidade"},
+        {"word":"Framework","translation":"Estrutura regulatória"}
+      ],
+      "verbs_list": [
+        {"base":"comply","third_person":"complies","translation":"cumprir"},
+        {"base":"recalibrate","third_person":"recalibrates","translation":"recalibrar"},
+        {"base":"codify","third_person":"codifies","translation":"codificar"}
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "level": "C2",
+    "category": "Máquinas/Leis",
+    "title": "Patent Litigation",
+    "title_pt": "Litígio de Patentes",
+    "text_en": "Intellectual property litigation concerning Genetically Modified Organisms has become increasingly complex. Rarely do courts render uniform judgments across jurisdictions; however, the aforementioned precedents inform licensing strategy. Should injunctions be granted, operations would be constrained pending adjudication.",
+    "text_pt": "Os litígios de propriedade intelectual relativos a Organismos Geneticamente Modificados tornaram‑se cada vez mais complexos. Raramente tribunais proferem decisões uniformes entre jurisdições; entretanto, os precedentes supracitados orientam a estratégia de licenciamento. Caso liminares sejam concedidas, as operações ficariam restritas até a decisão final.",
+    "teaching_modules": {
+      "explanation": "Estruturas jurídicas com inversão (Rarely do courts…), referência a precedentes (aforementioned precedents) e condicional formal (Should injunctions be granted…).",
+      "grammar_table": [
+        {"subject":"Rarely","verb":"do courts render","example":"Rarely do courts render uniform judgments."},
+        {"subject":"Aforementioned","verb":"precedes noun","example":"The aforementioned precedents inform strategy."},
+        {"subject":"Injunctions","verb":"are granted","example":"Injunctions are granted under strict criteria."}
+      ],
+      "vocabulary": [
+        {"word":"Aforementioned","translation":"Supracitado"},
+        {"word":"Litigation","translation":"Litígio"},
+        {"word":"Licensing","translation":"Licenciamento"},
+        {"word":"Jurisdiction","translation":"Jurisdição"}
+      ],
+      "verbs_list": [
+        {"base":"adjudicate","third_person":"adjudicates","translation":"adjudicar"},
+        {"base":"constrain","third_person":"constrains","translation":"restringir"},
+        {"base":"render","third_person":"renders","translation":"proferir (decisão)"}
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "level": "C2",
+    "category": "Máquinas/Leis",
+    "title": "Regenerative Science",
+    "title_pt": "Ciência Regenerativa",
+    "text_en": "We are scrutinizing microbiological interactions in the rhizosphere to enhance soil carbon capture potential. Not only have enzyme dynamics been mapped, but microbial consortia have also been optimized; therefore, field trials will quantify net sequestration. Should anomalies arise, protocols would be amended under the compliance framework.",
+    "text_pt": "Estamos examinando interações microbiológicas na rizosfera para ampliar o potencial de captura de carbono no solo. Não apenas as dinâmicas enzimáticas foram mapeadas, como também consórcios microbianos foram otimizados; portanto, ensaios de campo quantificarão o sequestro líquido. Caso surjam anomalias, os protocolos seriam emendados sob a estrutura de conformidade.",
+    "teaching_modules": {
+      "explanation": "Registro científico formal com paralelismo (Not only … but also …) e condicional protocolar (Should anomalies arise…).",
+      "grammar_table": [
+        {"subject":"Not only","verb":"have dynamics been mapped","example":"Not only have dynamics been mapped, but consortia optimized."},
+        {"subject":"Should","verb":"anomalies arise","example":"Should anomalies arise, protocols would be amended."},
+        {"subject":"Trials","verb":"will quantify","example":"Trials will quantify net sequestration."}
+      ],
+      "vocabulary": [
+        {"word":"Rhizosphere","translation":"Rizosfera"},
+        {"word":"Consortia","translation":"Consórcios"},
+        {"word":"Compliance","translation":"Conformidade"},
+        {"word":"Mitigation","translation":"Mitigação"}
+      ],
+      "verbs_list": [
+        {"base":"scrutinize","third_person":"scrutinizes","translation":"escrutinar"},
+        {"base":"amend","third_person":"amends","translation":"emendar"},
+        {"base":"quantify","third_person":"quantifies","translation":"quantificar"}
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "level": "C2",
+    "category": "Pecuária/Mercado",
+    "title": "Trade Compliance",
+    "title_pt": "Conformidade Comercial",
+    "text_en": "Exporting to the EU requires strict adherence to animal welfare legislation, notwithstanding higher production costs. Rarely do exemptions apply to intensive systems; therefore, compliance auditing has been intensified. Should directives be updated, we would promptly harmonize protocols to avoid sanctions.",
+    "text_pt": "Exportar para a UE exige estrita observância da legislação de bem‑estar animal, a despeito de maiores custos de produção. Raramente isenções se aplicam a sistemas intensivos; portanto, a auditoria de conformidade foi intensificada. Caso as diretivas sejam atualizadas, harmonizaríamos prontamente os protocolos para evitar sanções.",
+    "teaching_modules": {
+      "explanation": "Discurso jurídico com concessão (notwithstanding), inversão (Rarely do exemptions apply) e harmonização regulatória (harmonize protocols).",
+      "grammar_table": [
+        {"subject":"Rarely","verb":"do exemptions apply","example":"Rarely do exemptions apply to intensive systems."},
+        {"subject":"Should","verb":"directives be updated","example":"Should directives be updated, protocols would be harmonized."},
+        {"subject":"Auditing","verb":"has been intensified","example":"Auditing has been intensified across plants."}
+      ],
+      "vocabulary": [
+        {"word":"Compliance","translation":"Conformidade"},
+        {"word":"Notwithstanding","translation":"Não obstante"},
+        {"word":"Sanction","translation":"Sanção"},
+        {"word":"Directive","translation":"Diretiva"}
+      ],
+      "verbs_list": [
+        {"base":"adhere","third_person":"adheres","translation":"aderir"},
+        {"base":"harmonize","third_person":"harmonizes","translation":"harmonizar"},
+        {"base":"audit","third_person":"audits","translation":"auditar"}
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "level": "C2",
+    "category": "Pecuária/Mercado",
+    "title": "Blockchain Traceability",
+    "title_pt": "Rastreabilidade Blockchain",
+    "text_en": "Implementing blockchain guarantees the immutability of traceability data throughout the entire supply chain. Not only has provenance been secured, but dispute resolution has also been streamlined; therefore, compliance reporting is expedited. Should governance nodes fail, contingency protocols would be triggered to preserve integrity.",
+    "text_pt": "A implementação de blockchain garante a imutabilidade dos dados de rastreabilidade por toda a cadeia de suprimentos. Não apenas a procedência foi assegurada, como também a resolução de disputas foi simplificada; portanto, os relatórios de conformidade são acelerados. Caso nós de governança falhem, protocolos de contingência seriam acionados para preservar a integridade.",
+    "teaching_modules": {
+      "explanation": "Registro técnico com vocabulário de sistemas (immutability, provenance) e condicional de falha (Should nodes fail…).",
+      "grammar_table": [
+        {"subject":"Not only","verb":"has provenance been secured","example":"Not only has provenance been secured, but disputes streamlined."},
+        {"subject":"Should","verb":"nodes fail","example":"Should nodes fail, contingency would be triggered."},
+        {"subject":"Reporting","verb":"is expedited","example":"Compliance reporting is expedited."}
+      ],
+      "vocabulary": [
+        {"word":"Immutability","translation":"Imutabilidade"},
+        {"word":"Provenance","translation":"Procedência"},
+        {"word":"Integrity","translation":"Integridade"},
+        {"word":"Framework","translation":"Estrutura"}
+      ],
+      "verbs_list": [
+        {"base":"guarantee","third_person":"guarantees","translation":"garantir"},
+        {"base":"streamline","third_person":"streamlines","translation":"simplificar"},
+        {"base":"trigger","third_person":"triggers","translation":"acionar"}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "level": "C2",
+    "category": "Pecuária/Mercado",
+    "title": "Synthetic Paradigm",
+    "title_pt": "Paradigma Sintético",
+    "text_en": "The emergence of lab‑grown meat postulates a paradigm shift in the socio‑economic structure of livestock farming. Rarely do incumbent models adapt without regulatory recalibration; therefore, transitional frameworks are requisite. Should consumer acceptance falter, mitigation instruments would be deployed to stabilize markets.",
+    "text_pt": "O surgimento da carne cultivada em laboratório postula uma mudança de paradigma na estrutura socioeconômica da pecuária. Raramente modelos incumbentes se adaptam sem recalibração regulatória; portanto, estruturas de transição são necessárias. Caso a aceitação do consumidor fraqueje, instrumentos de mitigação seriam acionados para estabilizar mercados.",
+    "teaching_modules": {
+      "explanation": "Tom econômico‑jurídico com inversão (Rarely do incumbent models…), necessidade de frameworks de transição e mitigação de risco de demanda.",
+      "grammar_table": [
+        {"subject":"Rarely","verb":"do models adapt","example":"Rarely do models adapt without recalibration."},
+        {"subject":"Should","verb":"acceptance falter","example":"Should acceptance falter, instruments would be deployed."},
+        {"subject":"Frameworks","verb":"are requisite","example":"Transitional frameworks are requisite."}
+      ],
+      "vocabulary": [
+        {"word":"Paradigm","translation":"Paradigma"},
+        {"word":"Mitigation","translation":"Mitigação"},
+        {"word":"Framework","translation":"Estrutura"},
+        {"word":"Incumbent","translation":"Incumbente"}
+      ],
+      "verbs_list": [
+        {"base":"postulate","third_person":"postulates","translation":"postular"},
+        {"base":"stabilize","third_person":"stabilizes","translation":"estabilizar"},
+        {"base":"deploy","third_person":"deploys","translation":"implementar/acionar"}
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "level": "C2",
+    "category": "Veterinária/Ciência",
+    "title": "Zoonotic Mitigation",
+    "title_pt": "Mitigação Zoonótica",
+    "text_en": "Mitigating the risk of zoonotic spillover requires a holistic 'One Health' approach involving veterinarians and ecologists. Rarely do siloed interventions yield durable outcomes; therefore, cross‑sector governance is mandated. Should surveillance thresholds be exceeded, emergency protocols would be activated under the compliance framework.",
+    "text_pt": "Mitigar o risco de transbordamento zoonótico requer uma abordagem holística de 'One Health' envolvendo veterinários e ecologistas. Raramente intervenções isoladas geram resultados duráveis; portanto, a governança intersetorial é mandatória. Caso limiares de vigilância sejam excedidos, protocolos de emergência seriam ativados sob a estrutura de conformidade.",
+    "teaching_modules": {
+      "explanation": "Discurso científico‑político com foco em One Health, inversão (Rarely do siloed interventions…) e protocolo de emergência formal.",
+      "grammar_table": [
+        {"subject":"Rarely","verb":"do interventions yield","example":"Rarely do siloed interventions yield outcomes."},
+        {"subject":"Should","verb":"thresholds be exceeded","example":"Should thresholds be exceeded, protocols would be activated."},
+        {"subject":"Governance","verb":"is mandated","example":"Cross‑sector governance is mandated."}
+      ],
+      "vocabulary": [
+        {"word":"Spillover","translation":"Transbordamento"},
+        {"word":"Mandated","translation":"Mandatório"},
+        {"word":"Compliance","translation":"Conformidade"},
+        {"word":"Mitigation","translation":"Mitigação"}
+      ],
+      "verbs_list": [
+        {"base":"activate","third_person":"activates","translation":"ativar"},
+        {"base":"mandate","third_person":"mandates","translation":"tornar obrigatório"},
+        {"base":"surveil","third_person":"surveils","translation":"vigiar/monitorar"}
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "level": "C2",
+    "category": "Veterinária/Ciência",
+    "title": "AMR Stewardship",
+    "title_pt": "Gestão de AMR",
+    "text_en": "Antimicrobial resistance stewardship programs are mandatory to prevent the collapse of current therapeutic protocols. Not only has surveillance been expanded, but compliance auditing has also been intensified; therefore, reporting obligations have increased. Should breaches occur, sanctions would be imposed pursuant to the aforementioned guidelines.",
+    "text_pt": "Programas de gestão de resistência antimicrobiana são obrigatórios para evitar o colapso dos protocolos terapêuticos atuais. Não apenas a vigilância foi ampliada, como também a auditoria de conformidade foi intensificada; portanto, as obrigações de reporte aumentaram. Caso ocorram violações, sanções seriam impostas conforme as diretrizes supracitadas.",
+    "teaching_modules": {
+      "explanation": "Registro regulatório com paralelismo (Not only … but also …), referência normativa (aforementioned guidelines) e consequência sancionatória.",
+      "grammar_table": [
+        {"subject":"Not only","verb":"has surveillance been expanded","example":"Not only has surveillance been expanded, but auditing intensified."},
+        {"subject":"Breaches","verb":"would be imposed (sanctions)","example":"Should breaches occur, sanctions would be imposed."},
+        {"subject":"Programs","verb":"are mandatory","example":"Programs are mandatory under law."}
+      ],
+      "vocabulary": [
+        {"word":"Stewardship","translation":"Governança/gestão responsável"},
+        {"word":"Aforementioned","translation":"Supracitado"},
+        {"word":"Compliance","translation":"Conformidade"},
+        {"word":"Protocol","translation":"Protocolo"}
+      ],
+      "verbs_list": [
+        {"base":"impose","third_person":"imposes","translation":"impor"},
+        {"base":"expand","third_person":"expands","translation":"expandir"},
+        {"base":"report","third_person":"reports","translation":"reportar"}
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "level": "C2",
+    "category": "Veterinária/Ciência",
+    "title": "Genomic Editing",
+    "title_pt": "Edição Genômica",
+    "text_en": "CRISPR‑Cas9 technology offers unprecedented precision in disease resistance, albeit with significant regulatory hurdles. Rarely do ethical boards authorize deployments without exhaustive review; therefore, governance committees have instituted tiered compliance. Should the regulations change, we would be compelled to re‑submit dossiers under the updated framework.",
+    "text_pt": "A tecnologia CRISPR‑Cas9 oferece precisão sem precedentes em resistência a doenças, embora com obstáculos regulatórios significativos. Raramente conselhos de ética autorizam implementações sem revisão exaustiva; portanto, comitês de governança instituíram conformidade em níveis. Caso os regulamentos mudem, seríamos compelidos a reapresentar dossiês sob a estrutura atualizada.",
+    "teaching_modules": {
+      "explanation": "Tom sofisticado com concessão (albeit), inversão (Rarely do boards authorize…), e condicional jurídico (Should the regulations change…).",
+      "grammar_table": [
+        {"subject":"Rarely","verb":"do boards authorize","example":"Rarely do boards authorize deployments without review."},
+        {"subject":"Should","verb":"regulations change","example":"Should regulations change, dossiers would be re‑submitted."},
+        {"subject":"Technology","verb":"offers","example":"CRISPR‑Cas9 offers unprecedented precision."}
+      ],
+      "vocabulary": [
+        {"word":"Hurdle","translation":"Obstáculo"},
+        {"word":"Dossier","translation":"Dossiê"},
+        {"word":"Compliance","translation":"Conformidade"},
+        {"word":"Paramount","translation":"Primordial"}
+      ],
+      "verbs_list": [
+        {"base":"authorize","third_person":"authorizes","translation":"autorizar"},
+        {"base":"submit","third_person":"submits","translation":"submeter"},
+        {"base":"scrutinize","third_person":"scrutinizes","translation":"escrutinar"}
+      ]
+    }
+  }
+]

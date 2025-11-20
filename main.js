@@ -153,6 +153,32 @@ function annotateTextManual(str){
   const out = String(str||'');
   return out.replace(/<[^>]*>/g, '');
 }
+function highlightAction(en){
+  const txt = String(en||'').trim();
+  const words = txt.split(/\s+/);
+  function stripPunct(w){ const m = w.match(/[.,!?;:]+$/); return { base: w.replace(/[.,!?;:]+$/,''), trail: m?m[0]:'' }; }
+  const firstTwo = words.slice(0,2).join(' ');
+  let subjLen = 1;
+  if (/^the$/i.test(words[0]) && words.length>=2) subjLen = 2;
+  else if (/^(sprayer calibration|veterinary biosecurity|canadian winter)/i.test(firstTwo)) subjLen = 2;
+  const auxIdx = words.findIndex(w=>/^(do|does|don't|doesn't|did|will|can|should|must|may|is|are|am)$/i.test(w.replace(/[.,!?;:]+$/,'')));
+  if (auxIdx>=0) {
+    const aux = stripPunct(words[auxIdx]);
+    if (/^(is|are|am)$/i.test(aux.base)) {
+      const cls = /^is$/i.test(aux.base) ? 'verb-third' : 'verb-base';
+      words[auxIdx] = `<span class="verb ${cls}">${aux.base}</span>${aux.trail}`;
+    } else if (auxIdx+1 < words.length) {
+      const v = stripPunct(words[auxIdx+1]);
+      words[auxIdx+1] = `<span class="verb verb-base">${v.base}</span>${v.trail}`;
+    }
+  } else {
+    const vi = Math.min(subjLen, words.length-1);
+    const v = stripPunct(words[vi]);
+    const isThird = /(ies|es|s)$/i.test(v.base);
+    words[vi] = `<span class="verb ${isThird?'verb-third':'verb-base'}">${v.base}</span>${v.trail}`;
+  }
+  return words.join(' ');
+}
 
 function renderVerbsModule(data){
   const el = document.querySelector('#verbs');
@@ -160,7 +186,7 @@ function renderVerbsModule(data){
   const pairs = Array.isArray(data.pairs) ? data.pairs : [];
   const examples = pairs.filter(p=>/\b(prevents|keeps|rotates|drives)\b/i.test(p.en)).slice(0,4);
   if (!examples.length) return;
-  const cards = examples.map(p=>`<div class="card"><div class="line"><div class="en">${annotateTextManual(p.en)}</div><div class="pt">${fixPT(p.pt||'')}</div></div></div>`).join('');
+  const cards = examples.map(p=>`<div class="card"><div class="line"><div class="en">${highlightAction(p.en)}</div><div class="pt">${fixPT(p.pt||'')}</div></div></div>`).join('');
   el.insertAdjacentHTML('beforeend', `
     <details class="accordion">
       <summary class="section-title">Exemplos do texto (3ª pessoa)</summary>
@@ -503,6 +529,48 @@ function initLevelPage(level) {
       }).catch(()=>{
         textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
       });
+    } else if (level === 'C1') {
+      const p1 = '/src/data/texts/C1/c1_blocks.json';
+      const p2 = './src/data/texts/C1/c1_blocks.json';
+      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
+        const links = items.slice(0,10).map((data, i) => {
+          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
+          const ptHint = String((data && data.title_pt) || '').trim();
+          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+        }).join('');
+        textList.innerHTML = links;
+      }).catch(()=>{
+        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
+      });
+    } else if (level === 'B2') {
+      const p1 = '/src/data/texts/B2/b2_blocks.json';
+      const p2 = './src/data/texts/B2/b2_blocks.json';
+      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
+        const links = items.slice(0,10).map((data, i) => {
+          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
+          const ptHint = String((data && data.title_pt) || '').trim();
+          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+        }).join('');
+        textList.innerHTML = links;
+      }).catch(()=>{
+        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
+      });
+    } else if (level === 'C2') {
+      const p1 = '/src/data/texts/C2/c2_blocks.json';
+      const p2 = './src/data/texts/C2/c2_blocks.json';
+      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
+        const links = items.slice(0,10).map((data, i) => {
+          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
+          const ptHint = String((data && data.title_pt) || '').trim();
+          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+        }).join('');
+        textList.innerHTML = links;
+      }).catch(()=>{
+        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
+      });
     } else {
       const reqs = Array.from({ length: 10 }, (_, i) => fetch(`/src/data/texts/${level}/text${i + 1}.json`).then(r => r.json()).catch(()=>null));
       Promise.all(reqs).then(items => {
@@ -756,18 +824,21 @@ async function setupAudio(data) {
     const groupI = sentences.filter(s=>/^\s*i\b/i.test(s.en)).slice(0,4);
     const groupWe = sentences.filter(s=>/^\s*we\b/i.test(s.en)).slice(0,4);
     const groupIt = sentences.filter(s=>/^(the tractor|the greenhouse|veterinary biosecurity|irrigation)\b/i.test(s.en)).slice(0,4);
-    function tableRow(subj, arr){ return arr.map(s=>`<tr><td>${subj}</td><td>${annotateTextManual(s.en)}</td><td>${fixPT(s.pt||'')}</td></tr>`).join('') }
+    const groupIFallback = groupI.length ? groupI : [{ en: 'I drive the tractor.', pt: 'Eu dirijo o trator.' }, { en: 'I check the water.', pt: 'Eu verifico a água.' }];
+    const groupWeFallback = groupWe.length ? groupWe : [{ en: 'We check the water.', pt: 'Nós verificamos a água.' }, { en: 'We rotate pastures.', pt: 'Nós rotacionamos as pastagens.' }];
+    const groupItFallback = groupIt.length ? groupIt : [{ en: 'It runs well.', pt: 'Ele funciona bem.' }, { en: 'The soil is wet.', pt: 'O solo está úmido.' }];
+    function tableRow(subj, arr){ return arr.map(s=>`<tr><td>${subj}</td><td>${highlightAction(s.en)}</td><td>${fixPT(s.pt||'')}</td></tr>`).join('') }
     const conjTable = `
       <table style="width:100%;border-collapse:collapse">
         <thead><tr><th style="text-align:left">Sujeito</th><th style="text-align:left">Frase (EN)</th><th style="text-align:left">Tradução (PT)</th></tr></thead>
         <tbody>
-          ${tableRow('I', groupI)}
-          ${tableRow('We', groupWe)}
-          ${tableRow('It', groupIt)}
+          ${tableRow('I', groupIFallback)}
+          ${tableRow('We', groupWeFallback)}
+          ${tableRow('It', groupItFallback)}
         </tbody>
       </table>
     `;
-    const practice = [...groupI.slice(0,1), ...groupWe.slice(0,2), ...groupIt.slice(0,2)];
+    const practice = [...groupIFallback.slice(0,1), ...groupWeFallback.slice(0,2), ...groupItFallback.slice(0,2)];
     function buildPresentSimpleForms(en){
       const clean = String(en||'').trim().replace(/[.?!]+$/, '');
       const words = clean.split(/\s+/);
@@ -802,8 +873,8 @@ async function setupAudio(data) {
         interrogative: (qAux+' '+subject+' '+restWords.join(' ')+'?').trim()
       };
     }
-    const neg = (s)=>({ en: annotateTextManual(buildPresentSimpleForms(s.en).negative), pt: s.pt });
-    const ques = (s)=>({ en: annotateTextManual(buildPresentSimpleForms(s.en).interrogative), pt: s.pt });
+    const neg = (s)=>({ en: buildPresentSimpleForms(s.en).negative, pt: s.pt });
+    const ques = (s)=>({ en: buildPresentSimpleForms(s.en).interrogative, pt: s.pt });
     const aff = practice;
     const negs = aff.map(neg);
     const quess = aff.map(ques);
@@ -811,7 +882,7 @@ async function setupAudio(data) {
       <table style="width:100%;border-collapse:collapse">
         <thead><tr><th style="text-align:left">Afirmativa</th><th style="text-align:left">Negativa</th><th style="text-align:left">Pergunta</th></tr></thead>
         <tbody>
-          ${a.map((x,i)=>`<tr><td>${annotateTextManual(x.en)}</td><td>${b[i].en}</td><td>${c[i].en}</td></tr>`).join('')}
+          ${a.map((x,i)=>`<tr><td>${highlightAction(x.en)}</td><td>${highlightAction(b[i].en)}</td><td>${highlightAction(c[i].en)}</td></tr>`).join('')}
         </tbody>
       </table>
     ` }
@@ -826,21 +897,21 @@ async function setupAudio(data) {
     }
     const sThird = sentences.filter(s=> thirdSubject(s.en)).slice(0,5);
     let sTable = `
-      <table style="width:100%;border-collapse:collapse">
+      <table class="rule-table">
         <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
         <tbody>
-          ${sThird.map(s=>`<tr><td>He/She/It: +s</td><td>${annotateTextManual(s.en)}</td></tr>`).join('')}
-          ${groupWe.slice(0,3).map(s=>`<tr><td>I/You/We/They: base</td><td>${s.en}</td></tr>`).join('')}
+          ${sThird.map(s=>`<tr><td>He/She/It: +s</td><td>${highlightAction(s.en)}</td></tr>`).join('')}
+          ${groupWe.slice(0,3).map(s=>`<tr><td>I/You/We/They: base</td><td>${highlightAction(s.en)}</td></tr>`).join('')}
         </tbody>
       </table>
     `;
     if (data.he_she_it_rule && data.he_she_it_rule.example) {
       sTable = `
-        <table style="width:100%;border-collapse:collapse">
+        <table class="rule-table">
           <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
           <tbody>
-            <tr><td>He/She/It: +s</td><td>${annotateTextManual(data.he_she_it_rule.example)}</td></tr>
-            ${groupWe.slice(0,1).map(s=>`<tr><td>I/You/We/They: base</td><td>${s.en}</td></tr>`).join('')}
+            <tr><td>He/She/It: +s</td><td>${highlightAction(data.he_she_it_rule.example)}</td></tr>
+            ${groupWe.slice(0,1).map(s=>`<tr><td>I/You/We/They: base</td><td>${highlightAction(s.en)}</td></tr>`).join('')}
           </tbody>
         </table>
       `;
@@ -856,10 +927,10 @@ async function setupAudio(data) {
       if (!rows.length) return '';
       return `
         <div class="section-title" style="margin-top:12px">Formas do Present Simple (capítulo)</div>
-        <table style="width:100%;border-collapse:collapse">
+        <table class="forms-table">
           <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
           <tbody>
-            ${rows.map(r=>`<tr><td>${r.label}</td><td>${annotateTextManual(String(r.v))}</td></tr>`).join('')}
+            ${rows.map(r=>`<tr><td>${r.label}</td><td>${highlightAction(String(r.v))}</td></tr>`).join('')}
           </tbody>
         </table>
       `;
@@ -868,24 +939,27 @@ async function setupAudio(data) {
     const groupBe = (()=>{ const seen=new Set(); return sentences.filter(s=>/\b(is|are)\b/i.test(s.en)).filter(s=>{ if(seen.has(s.en)) return false; seen.add(s.en); return true }).slice(0,3) })();
     const baseSample = groupI[0] || groupWe[0] || sentences[0] || { en: 'I work on the farm.', pt: 'Eu trabalho na fazenda.' };
     const formsSample = buildPresentSimpleForms(baseSample.en);
-    function lineHtml(s){ return `<div class="line"><div class="en">${annotateTextManual(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div>` }
+    function lineHtml(s){ return `<div class="line"><div class="en">${highlightAction(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div>` }
     const routineLines = [...groupI.slice(0,2), ...groupWe.slice(0,1)];
     const thirdLines = (()=>{ const arr = sentences.filter(s=> thirdSubject(s.en)).slice(0,3); if(arr.length>=2) return arr; return [ { en: 'He drives the tractor.', pt: 'Ele dirige o trator.' }, { en: 'It runs well.', pt: 'Ele funciona bem.' } ]; })();
     function ptNeg(s){ let out = fixPT(String(s||'')).trim().replace(/[.?!]+$/,''); if(/^Eu\s/i.test(out)) return out.replace(/^Eu\s/i,'Eu não '); if(/^Nós\s/i.test(out)) return out.replace(/^Nós\s/i,'Nós não '); if(/^Ele\s/i.test(out)) return out.replace(/^Ele\s/i,'Ele não '); if(/^Ela\s/i.test(out)) return out.replace(/^Ela\s/i,'Ela não '); return 'Não '+out.toLowerCase(); }
     function ptQ(s){ let out = fixPT(String(s||'')).trim().replace(/[.]+$/,''); return out+'?'; }
     const negLine = { en: formsSample.negative, pt: ptNeg(baseSample.pt) };
     const qLine = { en: formsSample.interrogative, pt: ptQ(baseSample.pt) };
+    function negForThird(s){ const f = buildPresentSimpleForms(s.en); return { en: annotateTextManual(f.negative), pt: ptNeg(s.pt) }; }
+    function qForThird(s){ const f = buildPresentSimpleForms(s.en); return { en: annotateTextManual(f.interrogative), pt: ptQ(s.pt) }; }
+    function beNegSample(){ const b = groupBe[0] || { en:'The tractor is strong.', pt:'O trator é forte.' }; const en = String(b.en).replace(/\bis\s+/i,'is not '); let pt = fixPT(b.pt); pt = pt.replace(/\bé\b/,'não é').replace(/\bestá\b/,'não está'); if(!/não\s/.test(pt)) pt = 'Não '+pt.toLowerCase(); return { en: annotateTextManual(en), pt }; }
     const whenList = [
       `<div class="card"><div class="small"><strong>Rotina</strong></div>${(routineLines.length?routineLines:[{en:'I drive the tractor.',pt:'Eu dirijo o trator.'},{en:'We check the water.',pt:'Nós verificamos a água.'}]).map(lineHtml).join('')}</div>`,
       `<div class="card"><div class="small"><strong>He/She/It</strong></div>${thirdLines.map(lineHtml).join('')}</div>`,
       `<div class="card"><div class="small"><strong>Estados (be)</strong></div>${(groupBe.length?groupBe:[{en:'The tractor is strong.',pt:'O trator é forte.'},{en:'The soil is wet.',pt:'O solo está úmido.'}]).map(lineHtml).join('')}</div>`,
-      `<div class="card"><div class="small"><strong>Negativa</strong></div>${lineHtml({en:annotateTextManual(negLine.en), pt:negLine.pt})}</div>`,
-      `<div class="card"><div class="small"><strong>Pergunta</strong></div>${lineHtml({en:annotateTextManual(qLine.en), pt:qLine.pt})}</div>`
+      `<div class="card"><div class="small"><strong>Negativa</strong></div>${[negLine, negForThird(thirdLines[0]||{en:'He drives the tractor.',pt:'Ele dirige o trator.'}), beNegSample()].map(lineHtml).join('')}</div>`,
+      `<div class="card"><div class="small"><strong>Pergunta</strong></div>${[qLine, qForThird(thirdLines[0]||{en:'He drives the tractor.',pt:'Ele dirige o trator.'}), {en:'Is the tractor strong?', pt:'O trator é forte?'}].map(lineHtml).join('')}</div>`
     ].join('');
     el.innerHTML = `
       <div>${explainForBeginners(gRaw)}</div>
       <div class="section-title" style="margin-top:12px">Quando usar</div>
-      <div class="grid">${whenList}</div>
+      <div class="grid when-grid">${whenList}</div>
       <div class="section-title" style="margin-top:12px">Estrutura (Tradução)</div>
       <div>${conjTable}</div>
       <div class="section-title" style="margin-top:12px">Afirmativa/Negativa/Pergunta</div>
@@ -959,7 +1033,9 @@ async function setupAudio(data) {
     if (!el) return;
     const listStr = String(data.verbs||'');
     const m = listStr.split(':')[1] || listStr;
-    const baseVerbs = m.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
+    const baseVerbs = m.split(',')
+      .map(s=>s.trim().toLowerCase().replace(/[^a-z]+$/i,''))
+      .filter(Boolean);
     function thirdForm(v){ if(/(ch|sh|x|o)$/i.test(v)||v==='go') return v==='go'?'goes':v+'es'; if(/y$/i.test(v)) return v.replace(/y$/,'ies'); return v+'s'; }
     function pairFor(v){
       const map = {
@@ -1001,13 +1077,13 @@ async function setupAudio(data) {
     ];
     if (examples.length < 10) examples = examples.concat(fallback).slice(0,10);
     else examples = examples.slice(0,10);
-    const rows = examples.map(r=>`<tr><td>${annotateTextManual(r.en)}</td><td>${fixPT(r.pt)}</td></tr>`).join('');
+    const rows = examples.map(r=>`<tr><td>${highlightAction(r.en)}</td><td>${fixPT(r.pt)}</td></tr>`).join('');
     el.innerHTML = `
       <div class="card">
         <div><strong>O que é:</strong> verbo é ação do dia a dia. Use forma base com I/You/We/They. Em He/She/It acrescente s/es.</div>
       </div>
       <div class="section-title" style="margin-top:10px">Exemplos</div>
-      <table style="width:100%;border-collapse:collapse">
+      <table class="verbs-table">
         <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>

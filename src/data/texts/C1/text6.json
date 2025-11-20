@@ -1,49 +1,19 @@
 {
-    "title":  "Modern Agricultural Considerations",
-    "title_pt":  "Considerações agrícolas modernas",
-    "text":  "Herd health coordination. The tractor starts slowly; I drive carefully on the farm road. In Canadian winter, we protect equipment from freezing. Sprayer calibration prevents over application. We assess soil nutrients to optimize fertilization plans. I work on Green Valley Farm, and every day is busy. We use gloves and masks when handling chemicals. The greenhouse helps control temperature and humidity. We rotate pastures to improve forage quality. Irrigation is scheduled to reduce water waste. Veterinary biosecurity keeps the herd healthy.",
-    "translation":  "O trator liga devagar; eu dirijo com cuidado na estrada da fazenda. No inverno canadense, protegemos os equipamentos contra o congelamento. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos. A estufa ajuda a controlar a temperatura e a umidade. NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
+    "title":  "Feed Conversion Monitoring",
+    "title_pt":  "Monitoramento de Conversão Alimentar",
+    "text":  "Feed intake has been monitored to maximize weight gain, and automatic stations have dispensed rations according to plan. Furthermore, efficiency has increased in cooler barns; however, heat stress has reduced gains during summer weeks.",
+    "translation":  "A ingestão de ração tem sido monitorada para maximizar o ganho de peso, e estações automáticas têm dispensado rações conforme o plano. Além disso, a eficiência tem aumentado em celeiros mais frescos; entretanto, o estresse térmico tem reduzido os ganhos nas semanas de verão.",
     "pairs":  [
-                  {
-                      "pt":  "O trator liga devagar; eu dirijo com cuidado na estrada da fazenda.",
-                      "en":  "The tractor starts slowly; I drive carefully on the farm road."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o.",
-                      "en":  "We assess soil nutrients to optimize fertilization plans."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos.",
-                      "en":  "We use gloves and masks when handling chemicals."
-                  },
-                  {
-                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  }
+                  { "pt": "A ingestão de ração tem sido monitorada.", "en": "Feed intake has been monitored." },
+                  { "pt": "Estações automáticas têm dispensado rações conforme o plano.", "en": "Automatic stations have dispensed rations according to plan." },
+                  { "pt": "Além disso, a eficiência tem aumentado em celeiros mais frescos.", "en": "Furthermore, efficiency has increased in cooler barns." },
+                  { "pt": "Entretanto, o estresse térmico tem reduzido os ganhos.", "en": "However, heat stress has reduced gains." },
+                  { "pt": "Portanto, ajustes de ventilação foram programados.", "en": "Therefore, ventilation adjustments have been scheduled." },
+                  { "pt": "Os relatórios foram revisados pela gestão.", "en": "The reports have been reviewed by management." },
+                  { "pt": "As metas são controladas por KPIs.", "en": "The targets are controlled by KPIs." },
+                  { "pt": "Além disso, alertas automáticos foram ativados.", "en": "Furthermore, automatic alerts have been activated." },
+                  { "pt": "Os dados são exportados para auditoria.", "en": "The data is exported for audit." },
+                  { "pt": "Portanto, o plano alimentar foi otimizado.", "en": "Therefore, the feeding plan has been optimized." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Complex clauses: purpose and result; nominalization.",
+    "grammar":  "Present Perfect; Passive Voice; Formal connectors: However, Therefore, Furthermore",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

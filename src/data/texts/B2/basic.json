@@ -1,7 +1,12 @@
 [
-  { "en": "Implement rotational grazing to improve pasture health.", "pt": "Implemente pastejo rotativo para melhorar a saúde da pastagem." },
-  { "en": "Diagnose common bovine ailments accurately.", "pt": "Diagnostique com precisão doenças bovinas comuns." },
-  { "en": "Operate combine harvesters efficiently.", "pt": "Opere colheitadeiras com eficiência." },
-  { "en": "Follow Canadian farm safety regulations.", "pt": "Siga as regulamentações de segurança agrícola do Canadá." }
+  { "en": "If we use modern technology, we will work less and more efficiently.", "pt": "Se usarmos tecnologia moderna, trabalharemos menos e com mais eficiência." },
+  { "en": "The tractor is guided by GPS, and the route is controlled automatically.", "pt": "O trator é guiado por GPS, e a rota é controlada automaticamente." },
+  { "en": "If the soil is dry, sensors will turn on the water.", "pt": "Se o solo estiver seco, os sensores ligarão a água." },
+  { "en": "The field is monitored by drones, and data is collected in real time.", "pt": "O campo é monitorado por drones, e os dados são coletados em tempo real." },
+  { "en": "The cows are milked by robots now, so the process is more efficient.", "pt": "As vacas são ordenhadas por robôs agora, então o processo é mais eficiente." },
+  { "en": "If the barn is hot, the automatic fans will turn on to keep it cool.", "pt": "Se o celeiro estiver quente, os ventiladores automáticos ligarão para mantê-lo fresco." },
+  { "en": "The health data is sent to my phone by smart collars.", "pt": "Os dados de saúde são enviados para o meu telefone por coleiras inteligentes." },
+  { "en": "If the milk is bad, the robot will separate it and alert the team.", "pt": "Se o leite estiver ruim, o robô irá separá-lo e alertar a equipe." },
+  { "en": "The vaccine schedule is organized by the software and controlled by sensors.", "pt": "O cronograma de vacinas é organizado pelo software e controlado por sensores." },
+  { "en": "We are happy because production improved; if I had more budget, I would buy automatic sensors for every field.", "pt": "Estamos felizes porque a produção melhorou; se eu tivesse mais orçamento, eu compraria sensores automáticos para cada campo." }
 ]
-

@@ -1,161 +1,20 @@
 {
-    "title":  "A Day at Green Valley Farm",
-    "title_pt":  "Um dia na Fazenda Vale Verde",
-    "text":  "Advanced agronomy review. In the morning, I wake up early and walk to the fields. I talk to the team and assign tasks for the afternoon. I check the crops to see if the plants are healthy. The sun is low, and the soil is cool and soft. I clean the barn after milking and store the tools. We plan the day: planting, irrigation, and equipment checks. We record yields and monitor feed intake. Irrigation is scheduled to reduce water waste. Maintenance avoids breakdowns during harvest. I work on Green Valley Farm, and every day is busy.",
-    "translation":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos. Eu converso com a equipe e distribuo as tarefas para a tarde. Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos. NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. A manutenÃ§Ã£o evita falhas durante a colheita. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-    "pairs":  [
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  },
-                  {
-                      "pt":  "Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis.",
-                      "en":  "I check the crops to see if the plants are healthy."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos.",
-                      "en":  "We plan the day: planting, irrigation, and equipment checks."
-                  },
-                  {
-                      "pt":  "NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o.",
-                      "en":  "We record yields and monitor feed intake."
-                  },
-                  {
-                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  }
-              ],
-    "vocabulary":  [
-                       {
-                           "word":  "tractor",
-                           "meaning":  "trator"
-                       },
-                       {
-                           "word":  "cow",
-                           "meaning":  "vaca"
-                       },
-                       {
-                           "word":  "corn",
-                           "meaning":  "milho"
-                       },
-                       {
-                           "word":  "sprayer",
-                           "meaning":  "pulverizador"
-                       },
-                       {
-                           "word":  "harvest",
-                           "meaning":  "colheita"
-                       },
-                       {
-                           "word":  "irrigation",
-                           "meaning":  "irrigaÃ§Ã£o"
-                       },
-                       {
-                           "word":  "pasture",
-                           "meaning":  "pastagem"
-                       },
-                       {
-                           "word":  "greenhouse",
-                           "meaning":  "estufa"
-                       },
-                       {
-                           "word":  "veterinary",
-                           "meaning":  "veterinÃ¡ria"
-                       },
-                       {
-                           "word":  "safety",
-                           "meaning":  "seguranÃ§a"
-                       }
-                   ],
-    "grammar":  "Academic style: hedging and precise terminology.",
-    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
-    "exercises":  {
-                      "multiple_choice":  [
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we check every morning?",
-                                                  "options":  [
-                                                                  "Plants",
-                                                                  "Emails",
-                                                                  "Movies",
-                                                                  "Games"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Which machine is for spraying?",
-                                                  "options":  [
-                                                                  "Sprayer",
-                                                                  "Oven",
-                                                                  "Printer",
-                                                                  "Mixer"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What protects animals in cold weather?",
-                                                  "options":  [
-                                                                  "Barn",
-                                                                  "Laptop",
-                                                                  "Radio",
-                                                                  "Paint"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we rotate to improve forage?",
-                                                  "options":  [
-                                                                  "Pastures",
-                                                                  "Books",
-                                                                  "Rooms",
-                                                                  "Shoes"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Where do we grow plants with climate control?",
-                                                  "options":  [
-                                                                  "Greenhouse",
-                                                                  "Garage",
-                                                                  "Office",
-                                                                  "Kitchen"
-                                                              ]
-                                              }
-                                          ],
-                      "fill_in":  [
-                                      {
-                                          "sentence":  "We ____ the cows every morning.",
-                                          "answer":  "feed"
-                                      },
-                                      {
-                                          "sentence":  "Start the ____ carefully.",
-                                          "answer":  "tractor"
-                                      },
-                                      {
-                                          "sentence":  "Check the ____ for the animals.",
-                                          "answer":  "water"
-                                      }
-                                  ],
-                      "speaking":  "Repeat: Advanced agronomy review"
-                  }
+  "title": "Patent Litigation",
+  "title_pt": "Litígio de Patentes",
+  "text": "Intellectual property litigation concerning Genetically Modified Organisms has become increasingly complex. Rarely do courts render uniform judgments across jurisdictions; however, the aforementioned precedents inform licensing strategy. Should injunctions be granted, operations would be constrained pending adjudication. Not only do claim constructions diverge, but damages calculations also vary substantially across fora; therefore, risk models incorporate sensitivity analyses. Cross‑border licensing must comply with TRIPS and national biosafety statutes, under which enforcement is coordinated. Should venue be challenged, proceedings would be stayed pending determination of the motion.",
+  "translation": "O litígio de propriedade intelectual relativo a Organismos Geneticamente Modificados tornou‑se cada vez mais complexo. Raramente tribunais proferem decisões uniformes entre jurisdições; entretanto, os precedentes supracitados orientam a estratégia de licenciamento. Caso liminares sejam concedidas, as operações ficariam restritas até a adjudicação. Não apenas as interpretações de reivindicação divergem, como também os cálculos de danos variam substancialmente entre foros; portanto, modelos de risco incorporam análises de sensibilidade. O licenciamento transfronteiriço deve cumprir o TRIPS e estatutos nacionais de biossegurança, sob os quais a execução é coordenada. Caso a competência seja contestada, o processo seria suspenso até decisão da petição.",
+  "pairs": [
+    { "pt": "Raramente tribunais proferem decisões uniformes.", "en": "Rarely do courts render uniform judgments." },
+    { "pt": "Precedentes supracitados orientam a estratégia de licenciamento.", "en": "Aforementioned precedents inform licensing strategy." },
+    { "pt": "Caso liminares sejam concedidas, operações serão restringidas.", "en": "Should injunctions be granted, operations would be constrained." },
+    { "pt": "Não apenas construções de reivindicação divergem; danos variam.", "en": "Not only do claim constructions diverge, but damages vary." },
+    { "pt": "Modelos de risco incluem análises de sensibilidade.", "en": "Risk models include sensitivity analyses." },
+    { "pt": "Licenciamento transfronteiriço cumpre TRIPS e biossegurança.", "en": "Cross‑border licensing complies with TRIPS and biosafety." },
+    { "pt": "A execução é coordenada entre jurisdições.", "en": "Enforcement is coordinated across jurisdictions." },
+    { "pt": "Caso a competência seja contestada, o processo será suspenso.", "en": "Should venue be challenged, proceedings would be stayed." },
+    { "pt": "Descoberta é limitada por ordens de proteção.", "en": "Discovery is constrained by protective orders." },
+    { "pt": "A indenização segue parâmetros jurisprudenciais.", "en": "Damages follow jurisprudential parameters." }
+  ],
+  "grammar": "Inversions; Not only… but also…; Formal conditionals (Should…); Passive voice; Legal register",
+  "verbs": "adjudicate, constrain, render, inform, diverge, comply, coordinate, stay"
 }

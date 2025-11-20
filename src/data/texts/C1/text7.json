@@ -1,49 +1,19 @@
 {
-    "title":  "Tradition Meets Technology",
-    "title_pt":  "Tradição encontra tecnologia",
-    "text":  "Precision ag telemetry. We plan the day: planting, irrigation, and equipment checks. We rotate pastures to improve forage quality. In the morning, I wake up early and walk to the fields. I talk to the team and assign tasks for the afternoon. The greenhouse helps control temperature and humidity. The sun is low, and the soil is cool and soft. I feed the cows and make sure they have clean water. Telemetry from precision agriculture guides irrigation decisions. Irrigation is scheduled to reduce water waste. Farm safety rules are part of our routine.",
-    "translation":  "NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos. NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. De manhÃ£, eu acordo cedo e caminho atÃ© os campos. Eu converso com a equipe e distribuo as tarefas para a tarde. A estufa ajuda a controlar a temperatura e a umidade. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio. Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa. A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. As regras de seguranÃ§a rural fazem parte da nossa rotina.",
+    "title":  "Rotational Grazing Management",
+    "title_pt":  "Gestão de Pastejo Rotativo",
+    "text":  "Intensive rotational grazing has improved soil health; therefore, forage quality is significantly higher this year. Furthermore, stocking density has been optimized across paddocks.",
+    "translation":  "O pastejo rotativo intensivo tem melhorado a saúde do solo; portanto, a qualidade da forragem está significativamente maior neste ano. Além disso, a densidade de lotação tem sido otimizada entre os piquetes.",
     "pairs":  [
-                  {
-                      "pt":  "NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos.",
-                      "en":  "We plan the day: planting, irrigation, and equipment checks."
-                  },
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  },
-                  {
-                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  },
-                  {
-                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-                      "en":  "I feed the cows and make sure they have clean water."
-                  },
-                  {
-                      "pt":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o.",
-                      "en":  "Telemetry from precision agriculture guides irrigation decisions."
-                  },
-                  {
-                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "As regras de seguranÃ§a rural fazem parte da nossa rotina.",
-                      "en":  "Farm safety rules are part of our routine."
-                  }
+                  { "pt": "O pastejo rotativo intensivo tem melhorado a saúde do solo.", "en": "Intensive rotational grazing has improved soil health." },
+                  { "pt": "Portanto, a qualidade da forragem está significativamente maior.", "en": "Therefore, forage quality is significantly higher." },
+                  { "pt": "Além disso, a densidade de lotação tem sido otimizada.", "en": "Furthermore, stocking density has been optimized." },
+                  { "pt": "Os cronogramas são controlados por dados de sensores.", "en": "Schedules are controlled by sensor data." },
+                  { "pt": "As metas são definidas pelo painel de gestão.", "en": "The targets are defined by the management dashboard." },
+                  { "pt": "Os relatórios foram revisados pela equipe.", "en": "The reports have been reviewed by the team." },
+                  { "pt": "Entretanto, dois piquetes foram sinalizados para revisão.", "en": "However, two paddocks have been flagged for review." },
+                  { "pt": "Portanto, ajustes de rotação foram aprovados.", "en": "Therefore, rotation adjustments have been approved." },
+                  { "pt": "Os indicadores são atualizados semanalmente.", "en": "The indicators are updated weekly." },
+                  { "pt": "Além disso, metas de cobertura foram atingidas.", "en": "Furthermore, coverage targets have been achieved." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Complex clauses: purpose and result; nominalization.",
+    "grammar":  "Present Perfect; Passive Voice; Formal connectors: However, Therefore, Furthermore",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

@@ -1,49 +1,19 @@
 {
-    "title":  "The Business of Farming",
-    "title_pt":  "O negócio da agricultura",
-    "text":  "Irrigation scheduling. I talk to the team and assign tasks for the afternoon. I work on Green Valley Farm, and every day is busy. In Canadian winter, we protect equipment from freezing. Sprayer calibration prevents over application. We record yields and monitor feed intake. Veterinary biosecurity keeps the herd healthy. Farm safety rules are part of our routine. Maintenance avoids breakdowns during harvest. The tractor starts slowly; I drive carefully on the farm road. We sell fresh vegetables at the local market.",
-    "translation":  "Eu converso com a equipe e distribuo as tarefas para a tarde. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. No inverno canadense, protegemos os equipamentos contra o congelamento. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. As regras de seguranÃ§a rural fazem parte da nossa rotina. A manutenÃ§Ã£o evita falhas durante a colheita. O trator liga devagar; eu dirijo com cuidado na estrada da fazenda. NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
+    "title":  "Hormonal Protocol Compliance",
+    "title_pt":  "Conformidade de protocolos hormonais",
+    "text":  "The protocol is organized by the software, and doses are controlled automatically. If a cow is late, we will send an alert; if I had more staff, I would audit every step.",
+    "translation":  "O protocolo é organizado pelo software, e as doses são controladas automaticamente. Se uma vaca estiver atrasada, enviaremos um alerta; se eu tivesse mais equipe, auditava cada etapa.",
     "pairs":  [
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o.",
-                      "en":  "We record yields and monitor feed intake."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "As regras de seguranÃ§a rural fazem parte da nossa rotina.",
-                      "en":  "Farm safety rules are part of our routine."
-                  },
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  },
-                  {
-                      "pt":  "O trator liga devagar; eu dirijo com cuidado na estrada da fazenda.",
-                      "en":  "The tractor starts slowly; I drive carefully on the farm road."
-                  },
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  }
+                  { "pt": "O protocolo é organizado pelo software.", "en": "The protocol is organized by the software." },
+                  { "pt": "Se uma vaca estiver atrasada, enviaremos um alerta.", "en": "If a cow is late, we will send an alert." },
+                  { "pt": "As doses são controladas automaticamente.", "en": "The doses are controlled automatically." },
+                  { "pt": "Se eu tivesse mais equipe, auditava cada etapa.", "en": "If I had more staff, I would audit every step." },
+                  { "pt": "O cronograma é enviado para o telefone.", "en": "The schedule is sent to the phone." },
+                  { "pt": "Se a conformidade cair, treinaremos a equipe.", "en": "If compliance drops, we will train the team." },
+                  { "pt": "Os resultados são armazenados na nuvem.", "en": "The results are stored in the cloud." },
+                  { "pt": "Se aparecer um erro, corrigiremos o registro.", "en": "If a mismatch appears, we will correct it." },
+                  { "pt": "Os relatórios são revisados pelo veterinário.", "en": "The reports are reviewed by the vet." },
+                  { "pt": "Se eu tivesse mais tempo, simularia novos planos.", "en": "If I had more time, I would simulate new plans." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Passive voice in technical procedures.",
+    "grammar":  "First Conditional; Second Conditional; Passive Voice",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

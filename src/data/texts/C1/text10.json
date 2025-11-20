@@ -1,49 +1,19 @@
 {
-    "title":  "Modern Farming Practices",
-    "title_pt":  "Práticas agrícolas modernas",
-    "text":  "Soil nutrient assessment. Irrigation is scheduled to reduce water waste. We record yields and monitor feed intake. We rotate pastures to improve forage quality. The tractor starts slowly; I drive carefully on the farm road. We apply rotational grazing protocols for pasture recovery. Veterinary biosecurity keeps the herd healthy. We use gloves and masks when handling chemicals. We sell fresh vegetables at the local market. I work on Green Valley Farm, and every day is busy. Sprayer calibration prevents over application.",
-    "translation":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o. NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. O trator liga devagar; eu dirijo com cuidado na estrada da fazenda. Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos. NÃ³s vendemos hortaliÃ§as frescas no mercado local. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
+    "title":  "Sanitary Audit Results",
+    "title_pt":  "Resultados da Auditoria Sanitária",
+    "text":  "The farm has passed the international sanitary audit, demonstrating our commitment to quality and safety standards. However, minor findings have been addressed with corrective actions; therefore, certification has been confirmed.",
+    "translation":  "A fazenda passou na auditoria sanitária internacional, demonstrando nosso compromisso com padrões de qualidade e segurança. Entretanto, constatações menores foram tratadas com ações corretivas; portanto, a certificação foi confirmada.",
     "pairs":  [
-                  {
-                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o.",
-                      "en":  "We record yields and monitor feed intake."
-                  },
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "O trator liga devagar; eu dirijo com cuidado na estrada da fazenda.",
-                      "en":  "The tractor starts slowly; I drive carefully on the farm road."
-                  },
-                  {
-                      "pt":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
-                      "en":  "We apply rotational grazing protocols for pasture recovery."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos.",
-                      "en":  "We use gloves and masks when handling chemicals."
-                  },
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  }
+                  { "pt": "A fazenda passou na auditoria sanitária internacional.", "en": "The farm has passed the international sanitary audit." },
+                  { "pt": "O compromisso com qualidade e segurança foi demonstrado.", "en": "The commitment to quality and safety has been demonstrated." },
+                  { "pt": "Entretanto, constatações menores foram tratadas com ações corretivas.", "en": "However, minor findings have been addressed with corrective actions." },
+                  { "pt": "Portanto, a certificação foi confirmada.", "en": "Therefore, certification has been confirmed." },
+                  { "pt": "Os registros foram revisados pelos auditores.", "en": "The records have been reviewed by auditors." },
+                  { "pt": "Além disso, treinamentos foram atualizados.", "en": "Furthermore, trainings have been updated." },
+                  { "pt": "Os relatórios são arquivados no sistema.", "en": "The reports are archived in the system." },
+                  { "pt": "As ações corretivas foram documentadas.", "en": "Corrective actions have been documented." },
+                  { "pt": "Entretanto, duas recomendações permanecem em acompanhamento.", "en": "However, two recommendations remain under follow‑up." },
+                  { "pt": "Portanto, o plano de conformidade foi refinado.", "en": "Therefore, the compliance plan has been refined." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Complex clauses: purpose and result; nominalization.",
+    "grammar":  "Present Perfect; Passive Voice; Formal connectors: However, Therefore, Furthermore",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

@@ -1,49 +1,19 @@
 {
-    "title":  "Technology and Planning in Agriculture",
-    "title_pt":  "Tecnologia e planejamento na agricultura",
-    "text":  "Greenhouse climate control. We rotate pastures to improve forage quality. In the morning, I wake up early and walk to the fields. Irrigation is scheduled to reduce water waste. Sprayer calibration prevents over application. We plan the day: planting, irrigation, and equipment checks. Maintenance avoids breakdowns during harvest. We apply rotational grazing protocols for pasture recovery. Telemetry from precision agriculture guides irrigation decisions. In Canadian winter, we protect equipment from freezing. The greenhouse helps control temperature and humidity.",
-    "translation":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. De manhÃ£, eu acordo cedo e caminho atÃ© os campos. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos. A manutenÃ§Ã£o evita falhas durante a colheita. Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem. A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o. No inverno canadense, protegemos os equipamentos contra o congelamento. A estufa ajuda a controlar a temperatura e a umidade.",
+    "title":  "Parasite Resistance Trends",
+    "title_pt":  "Tendências de resistência a parasitas",
+    "text":  "Samples are analyzed by the lab, and rotation is controlled by the protocol. If resistance rises, we will change the drug; if I had more data, I would refine the plan.",
+    "translation":  "As amostras são analisadas pelo laboratório, e a rotação é controlada pelo protocolo. Se a resistência aumentar, mudaremos o medicamento; se eu tivesse mais dados, refinaria o plano.",
     "pairs":  [
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos.",
-                      "en":  "We plan the day: planting, irrigation, and equipment checks."
-                  },
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  },
-                  {
-                      "pt":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
-                      "en":  "We apply rotational grazing protocols for pasture recovery."
-                  },
-                  {
-                      "pt":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o.",
-                      "en":  "Telemetry from precision agriculture guides irrigation decisions."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  }
+                  { "pt": "As amostras são analisadas pelo laboratório.", "en": "The samples are analyzed by the lab." },
+                  { "pt": "Se a resistência aumentar, mudaremos o medicamento.", "en": "If resistance rises, we will change the drug." },
+                  { "pt": "A rotação é controlada pelo protocolo.", "en": "The rotation is controlled by the protocol." },
+                  { "pt": "Se eu tivesse mais dados, refinaria o plano.", "en": "If I had more data, I would refine the plan." },
+                  { "pt": "Os resultados são compartilhados com a equipe.", "en": "The results are shared with the team." },
+                  { "pt": "Se a pastagem estiver úmida, verificaremos caramujos.", "en": "If the pasture is wet, we will check for snails." },
+                  { "pt": "Os registros são atualizados mensalmente.", "en": "The records are updated monthly." },
+                  { "pt": "Se eu tivesse financiamento, testaria mais rebanhos.", "en": "If I had funding, I would test more herds." },
+                  { "pt": "Os mapas são gerados automaticamente.", "en": "The maps are generated automatically." },
+                  { "pt": "Se surgir um caso, isolaremos o grupo.", "en": "If a case appears, we will isolate the group." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Passive voice in technical procedures.",
+    "grammar":  "First Conditional; Second Conditional; Passive Voice",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

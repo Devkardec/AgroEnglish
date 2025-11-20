@@ -1,49 +1,19 @@
 {
-    "title":  "Daily Operations on the Farm",
-    "title_pt":  "Operações diárias na fazenda",
-    "text":  "Irrigation scheduling. We sell fresh vegetables at the local market. I clean the barn after milking and store the tools. We rotate pastures to improve forage quality. The greenhouse helps control temperature and humidity. I talk to the team and assign tasks for the afternoon. We use gloves and masks when handling chemicals. Veterinary biosecurity keeps the herd healthy. Sprayer calibration prevents over application. I check the crops to see if the plants are healthy. Maintenance avoids breakdowns during harvest.",
-    "translation":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. A estufa ajuda a controlar a temperatura e a umidade. Eu converso com a equipe e distribuo as tarefas para a tarde. Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis. A manutenÃ§Ã£o evita falhas durante a colheita.",
+    "title":  "Machinery Investment Summary",
+    "title_pt":  "Resumo de investimento em máquinas",
+    "text":  "The tractor is guided by GPS, and service is scheduled automatically. If we lease machines, we will reduce upfront cost; if I had more budget, I would buy an autonomous tractor.",
+    "translation":  "O trator é guiado por GPS, e a manutenção é programada automaticamente. Se alugarmos máquinas, reduziremos o custo inicial; se eu tivesse mais orçamento, compraria um trator autônomo.",
     "pairs":  [
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  },
-                  {
-                      "pt":  "Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos.",
-                      "en":  "We use gloves and masks when handling chemicals."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis.",
-                      "en":  "I check the crops to see if the plants are healthy."
-                  },
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  }
+                  { "pt": "O trator é guiado por GPS.", "en": "The tractor is guided by GPS." },
+                  { "pt": "Se alugarmos máquinas, reduziremos o custo inicial.", "en": "If we lease machines, we will reduce upfront cost." },
+                  { "pt": "O serviço é programado automaticamente.", "en": "The service is scheduled automatically." },
+                  { "pt": "Se eu tivesse mais orçamento, compraria um trator autônomo.", "en": "If I had more budget, I would buy an autonomous tractor." },
+                  { "pt": "O uso de combustível é monitorado por sensores.", "en": "The fuel use is monitored by sensors." },
+                  { "pt": "Se as quebras aumentarem, mudaremos a marca.", "en": "If breakdowns increase, we will change the brand." },
+                  { "pt": "A rota é controlada por software.", "en": "The route is controlled by software." },
+                  { "pt": "Se o campo for íngreme, ajustaremos a velocidade.", "en": "If the field is steep, we will adjust speed." },
+                  { "pt": "Os dados são armazenados na nuvem.", "en": "The data is stored in the cloud." },
+                  { "pt": "Se eu tivesse dois operadores, trabalharia à noite.", "en": "If I had two operators, I would run at night." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Passive voice in technical procedures.",
+    "grammar":  "First Conditional; Second Conditional; Passive Voice",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

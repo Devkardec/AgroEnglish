@@ -1,49 +1,19 @@
 {
-    "title":  "A Farmer's Daily Responsibilities",
-    "title_pt":  "Responsabilidades diárias de um agricultor",
-    "text":  "Feed formulation strategy. Sprayer calibration prevents over application. The greenhouse helps control temperature and humidity. I talk to the team and assign tasks for the afternoon. We use gloves and masks when handling chemicals. Farm safety rules are part of our routine. I clean the barn after milking and store the tools. I work on Green Valley Farm, and every day is busy. I feed the cows and make sure they have clean water. In the morning, I wake up early and walk to the fields. We apply rotational grazing protocols for pasture recovery.",
-    "translation":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. A estufa ajuda a controlar a temperatura e a umidade. Eu converso com a equipe e distribuo as tarefas para a tarde. Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos. As regras de seguranÃ§a rural fazem parte da nossa rotina. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa. De manhÃ£, eu acordo cedo e caminho atÃ© os campos. Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
+    "title":  "Biosecurity Protocols",
+    "title_pt":  "Protocolos de Biossegurança",
+    "text":  "Strict biosecurity protocols have been established to prevent pathogen entry. Access is controlled by software; furthermore, training programs have been updated to maintain adherence.",
+    "translation":  "Protocolos rigorosos de biossegurança têm sido estabelecidos para prevenir a entrada de patógenos. O acesso é controlado por software; além disso, programas de treinamento têm sido atualizados para manter a adesão.",
     "pairs":  [
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  },
-                  {
-                      "pt":  "Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos.",
-                      "en":  "We use gloves and masks when handling chemicals."
-                  },
-                  {
-                      "pt":  "As regras de seguranÃ§a rural fazem parte da nossa rotina.",
-                      "en":  "Farm safety rules are part of our routine."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-                      "en":  "I feed the cows and make sure they have clean water."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
-                      "en":  "We apply rotational grazing protocols for pasture recovery."
-                  }
+                  { "pt": "Protocolos rigorosos de biossegurança têm sido estabelecidos.", "en": "Strict biosecurity protocols have been established." },
+                  { "pt": "O acesso é controlado por software.", "en": "Access is controlled by software." },
+                  { "pt": "Além disso, programas de treinamento têm sido atualizados.", "en": "Furthermore, training programs have been updated." },
+                  { "pt": "As entradas são monitoradas por sensores.", "en": "Entry points are monitored by sensors." },
+                  { "pt": "Entretanto, lacunas de adesão foram detectadas.", "en": "However, adherence gaps have been detected." },
+                  { "pt": "Portanto, sessões extras foram agendadas.", "en": "Therefore, extra sessions have been scheduled." },
+                  { "pt": "Os relatórios foram revisados pelo comitê.", "en": "The reports have been reviewed by the committee." },
+                  { "pt": "As auditorias são realizadas trimestralmente.", "en": "Audits are performed quarterly." },
+                  { "pt": "As medidas são documentadas no sistema.", "en": "The measures are documented in the system." },
+                  { "pt": "Portanto, o risco de entrada foi minimizado.", "en": "Therefore, the ingress risk has been minimized." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Complex clauses: purpose and result; nominalization.",
+    "grammar":  "Present Perfect; Passive Voice; Formal connectors: However, Therefore, Furthermore",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

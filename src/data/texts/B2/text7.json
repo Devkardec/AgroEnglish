@@ -1,49 +1,19 @@
 {
-    "title":  "A Busy Day at the Farm",
-    "title_pt":  "Um dia corrido na fazenda",
-    "text":  "Rotational grazing management. I talk to the team and assign tasks for the afternoon. In Canadian winter, we protect equipment from freezing. In the morning, I wake up early and walk to the fields. I feed the cows and make sure they have clean water. Sprayer calibration prevents over application. We rotate pastures to improve forage quality. We plan the day: planting, irrigation, and equipment checks. The sun is low, and the soil is cool and soft. I work on Green Valley Farm, and every day is busy. We record yields and monitor feed intake.",
-    "translation":  "Eu converso com a equipe e distribuo as tarefas para a tarde. No inverno canadense, protegemos os equipamentos contra o congelamento. De manhÃ£, eu acordo cedo e caminho atÃ© os campos. Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o.",
+    "title":  "Profit per Animal Dashboard",
+    "title_pt":  "Painel de lucro por animal",
+    "text":  "Costs are recorded by the system, and revenue data is updated daily. If feed prices rise, we will adjust the budget; if I had more capital, I would expand the herd.",
+    "translation":  "Os custos são registrados pelo sistema, e os dados de receita são atualizados diariamente. Se os preços da ração subirem, ajustaremos o orçamento; se eu tivesse mais capital, ampliaria o rebanho.",
     "pairs":  [
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-                      "en":  "I feed the cows and make sure they have clean water."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos.",
-                      "en":  "We plan the day: planting, irrigation, and equipment checks."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o.",
-                      "en":  "We record yields and monitor feed intake."
-                  }
+                  { "pt": "Os custos são registrados pelo sistema.", "en": "The costs are recorded by the system." },
+                  { "pt": "Se os preços da ração subirem, ajustaremos o orçamento.", "en": "If feed prices rise, we will adjust the budget." },
+                  { "pt": "Os dados de receita são atualizados diariamente.", "en": "The revenue data is updated daily." },
+                  { "pt": "Se eu tivesse mais capital, ampliaria o rebanho.", "en": "If I had more capital, I would expand the herd." },
+                  { "pt": "As margens são calculadas automaticamente.", "en": "The margins are calculated automatically." },
+                  { "pt": "Se os ganhos caírem, revisaremos a ração.", "en": "If gains fall, we will review the ration." },
+                  { "pt": "Os alertas são disparados por baixo ROI.", "en": "The alerts are triggered by low ROI." },
+                  { "pt": "Se o mercado estiver volátil, faremos hedge.", "en": "If the market is volatile, we will hedge." },
+                  { "pt": "As metas são controladas por KPIs.", "en": "The targets are controlled by KPIs." },
+                  { "pt": "Se tivéssemos melhores preços, venderíamos na próxima semana.", "en": "If I had better prices, I would sell next week." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Passive voice in technical procedures.",
+    "grammar":  "First Conditional; Second Conditional; Passive Voice",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

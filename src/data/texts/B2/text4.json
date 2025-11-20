@@ -1,49 +1,19 @@
 {
-    "title":  "A Day in the Life at Green Valley Farm",
-    "title_pt":  "Um dia na vida na Fazenda Vale Verde",
-    "text":  "Greenhouse climate control. We rotate pastures to improve forage quality. The tractor starts slowly; I drive carefully on the farm road. I check the crops to see if the plants are healthy. We plan the day: planting, irrigation, and equipment checks. I work on Green Valley Farm, and every day is busy. Veterinary biosecurity keeps the herd healthy. We apply rotational grazing protocols for pasture recovery. I feed the cows and make sure they have clean water. We assess soil nutrients to optimize fertilization plans. The sun is low, and the soil is cool and soft.",
-    "translation":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. O trator liga devagar; eu dirijo com cuidado na estrada da fazenda. Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis. NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem. Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa. Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
+    "title":  "Data‑Driven Irrigation Plan",
+    "title_pt":  "Plano de irrigação orientado por dados",
+    "text":  "If the soil is dry, the water will turn on. The valves are controlled automatically, and moisture data is sent to the dashboard. If rain is forecast, we will pause irrigation.",
+    "translation":  "Se o solo estiver seco, a água ligará. As válvulas são controladas automaticamente, e os dados de umidade são enviados ao painel. Se houver previsão de chuva, nós pausaremos a irrigação.",
     "pairs":  [
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "O trator liga devagar; eu dirijo com cuidado na estrada da fazenda.",
-                      "en":  "The tractor starts slowly; I drive carefully on the farm road."
-                  },
-                  {
-                      "pt":  "Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis.",
-                      "en":  "I check the crops to see if the plants are healthy."
-                  },
-                  {
-                      "pt":  "NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos.",
-                      "en":  "We plan the day: planting, irrigation, and equipment checks."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
-                      "en":  "We apply rotational grazing protocols for pasture recovery."
-                  },
-                  {
-                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-                      "en":  "I feed the cows and make sure they have clean water."
-                  },
-                  {
-                      "pt":  "Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o.",
-                      "en":  "We assess soil nutrients to optimize fertilization plans."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  }
+                  { "pt": "Se o solo estiver seco, a água ligará.", "en": "If the soil is dry, the water will turn on." },
+                  { "pt": "As válvulas são controladas automaticamente.", "en": "The valves are controlled automatically." },
+                  { "pt": "Se houver previsão de chuva, nós pausaremos a irrigação.", "en": "If rain is forecast, we will pause irrigation." },
+                  { "pt": "Os dados de umidade são enviados ao painel.", "en": "The moisture data is sent to the dashboard." },
+                  { "pt": "Se eu tivesse mais sensores, cobriria o campo inferior.", "en": "If I had more sensors, I would cover the lower field." },
+                  { "pt": "O cronograma é atualizado pelo sistema.", "en": "The schedule is updated by the system." },
+                  { "pt": "Se o poço estiver baixo, reduziremos a vazão.", "en": "If the well is low, we will reduce the flow." },
+                  { "pt": "Os alertas são disparados por limites de umidade.", "en": "The alerts are triggered by thresholds." },
+                  { "pt": "Se eu tivesse mais orçamento, adicionaria uma bomba reserva.", "en": "If I had a bigger budget, I would add a backup pump." },
+                  { "pt": "O uso de água é registrado por medidores.", "en": "The water use is recorded by meters." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Passive voice in technical procedures.",
+    "grammar":  "First Conditional; Second Conditional; Passive Voice",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

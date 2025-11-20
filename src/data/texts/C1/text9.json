@@ -1,49 +1,19 @@
 {
-    "title":  "Maintenance and Technology in Farming",
-    "title_pt":  "Manutenção e tecnologia na agricultura",
-    "text":  "Equipment reliability analysis. Maintenance avoids breakdowns during harvest. I work on Green Valley Farm, and every day is busy. We sell fresh vegetables at the local market. The sun is low, and the soil is cool and soft. I clean the barn after milking and store the tools. In the morning, I wake up early and walk to the fields. The greenhouse helps control temperature and humidity. Farm safety rules are part of our routine. Telemetry from precision agriculture guides irrigation decisions. We use gloves and masks when handling chemicals.",
-    "translation":  "A manutenÃ§Ã£o evita falhas durante a colheita. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. NÃ³s vendemos hortaliÃ§as frescas no mercado local. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. De manhÃ£, eu acordo cedo e caminho atÃ© os campos. A estufa ajuda a controlar a temperatura e a umidade. As regras de seguranÃ§a rural fazem parte da nossa rotina. A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o. Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos.",
+    "title":  "Parasite Resistance Monitoring",
+    "title_pt":  "Monitoramento de Resistência a Parasitas",
+    "text":  "We have observed parasite resistance in specific cohorts. Therefore, active ingredients in the medication are being changed, and the rotation policy has been revised to restore efficacy.",
+    "translation":  "Nós temos observado resistência a parasitas em grupos específicos. Portanto, os princípios ativos do medicamento estão sendo alterados, e a política de rotação foi revisada para restaurar a eficácia.",
     "pairs":  [
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "As regras de seguranÃ§a rural fazem parte da nossa rotina.",
-                      "en":  "Farm safety rules are part of our routine."
-                  },
-                  {
-                      "pt":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o.",
-                      "en":  "Telemetry from precision agriculture guides irrigation decisions."
-                  },
-                  {
-                      "pt":  "Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos.",
-                      "en":  "We use gloves and masks when handling chemicals."
-                  }
+                  { "pt": "Nós temos observado resistência a parasitas.", "en": "We have observed parasite resistance." },
+                  { "pt": "Portanto, os princípios ativos estão sendo alterados.", "en": "Therefore, the active ingredients are being changed." },
+                  { "pt": "As amostras foram analisadas pelo laboratório.", "en": "The samples have been analyzed by the lab." },
+                  { "pt": "Além disso, a política de rotação foi revisada.", "en": "Furthermore, the rotation policy has been revised." },
+                  { "pt": "Os relatórios foram atualizados no sistema.", "en": "The reports have been updated in the system." },
+                  { "pt": "Entretanto, dois piquetes continuam críticos.", "en": "However, two paddocks remain critical." },
+                  { "pt": "Portanto, será aplicado novo protocolo.", "en": "Therefore, a new protocol will be applied." },
+                  { "pt": "Os alertas são gerados automaticamente.", "en": "The alerts are generated automatically." },
+                  { "pt": "As decisões foram documentadas pela equipe.", "en": "The decisions have been documented by the team." },
+                  { "pt": "Além disso, o acompanhamento será mensal.", "en": "Furthermore, monitoring will be monthly." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Complex clauses: purpose and result; nominalization.",
+    "grammar":  "Present Perfect; Passive Voice; Formal connectors: However, Therefore, Furthermore",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

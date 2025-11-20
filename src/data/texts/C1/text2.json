@@ -1,49 +1,19 @@
 {
-    "title":  "Technology in Modern Farming",
-    "title_pt":  "Tecnologia na agricultura moderna",
-    "text":  "Precision ag telemetry. We sell fresh vegetables at the local market. I clean the barn after milking and store the tools. I feed the cows and make sure they have clean water. Veterinary biosecurity keeps the herd healthy. The sun is low, and the soil is cool and soft. We use gloves and masks when handling chemicals. Telemetry from precision agriculture guides irrigation decisions. Farm safety rules are part of our routine. I work on Green Valley Farm, and every day is busy. In the morning, I wake up early and walk to the fields.",
-    "translation":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio. Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos. A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o. As regras de seguranÃ§a rural fazem parte da nossa rotina. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
+    "title":  "ROI Calculation",
+    "title_pt":  "Cálculo de ROI",
+    "text":  "The Return on Investment (ROI) for the new tractors is positive; therefore, we will approve the purchase of two more units. The proposal has been reviewed, and the payback period has been reduced. However, market volatility has been noted; therefore, a hedging plan has been approved.",
+    "translation":  "O Retorno sobre Investimento (ROI) dos novos tratores é positivo; portanto, aprovaremos a compra de mais duas unidades. A proposta foi revisada, e o prazo de retorno foi reduzido. Entretanto, a volatilidade do mercado foi observada; portanto, um plano de hedge foi aprovado.",
     "pairs":  [
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-                      "en":  "I feed the cows and make sure they have clean water."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  },
-                  {
-                      "pt":  "Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos.",
-                      "en":  "We use gloves and masks when handling chemicals."
-                  },
-                  {
-                      "pt":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o.",
-                      "en":  "Telemetry from precision agriculture guides irrigation decisions."
-                  },
-                  {
-                      "pt":  "As regras de seguranÃ§a rural fazem parte da nossa rotina.",
-                      "en":  "Farm safety rules are part of our routine."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  }
+                  { "pt": "O ROI dos novos tratores é positivo.", "en": "The ROI for the new tractors is positive." },
+                  { "pt": "Portanto, aprovaremos a compra de mais duas unidades.", "en": "Therefore, we will approve the purchase of two more units." },
+                  { "pt": "A proposta foi revisada pela diretoria.", "en": "The proposal has been reviewed by the board." },
+                  { "pt": "Os custos operacionais foram analisados.", "en": "Operating costs have been analyzed." },
+                  { "pt": "Além disso, o prazo de retorno foi reduzido.", "en": "Furthermore, the payback period has been reduced." },
+                  { "pt": "Os dados foram processados pelo software.", "en": "The data has been processed by the software." },
+                  { "pt": "Entretanto, a volatilidade do mercado foi observada.", "en": "However, market volatility has been observed." },
+                  { "pt": "Portanto, um plano de hedge foi aprovado.", "en": "Therefore, a hedging plan has been approved." },
+                  { "pt": "Os contratos de manutenção foram renegociados.", "en": "Maintenance contracts have been renegotiated." },
+                  { "pt": "O orçamento foi atualizado no sistema.", "en": "The budget has been updated in the system." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Complex clauses: purpose and result; nominalization.",
+    "grammar":  "Present Perfect; Passive Voice; Formal connectors: However, Therefore, Furthermore",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

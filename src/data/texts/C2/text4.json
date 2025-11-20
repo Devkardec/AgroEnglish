@@ -1,161 +1,20 @@
 {
-    "title":  "The Variety of Farm Work",
-    "title_pt":  "A variedade do trabalho rural",
-    "text":  "Veterinary diagnostic frameworks. The greenhouse helps control temperature and humidity. I check the crops to see if the plants are healthy. We sell fresh vegetables at the local market. We apply rotational grazing protocols for pasture recovery. We rotate pastures to improve forage quality. I talk to the team and assign tasks for the afternoon. The sun is low, and the soil is cool and soft. In the morning, I wake up early and walk to the fields. I clean the barn after milking and store the tools. Maintenance avoids breakdowns during harvest.",
-    "translation":  "A estufa ajuda a controlar a temperatura e a umidade. Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis. NÃ³s vendemos hortaliÃ§as frescas no mercado local. Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem. NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. Eu converso com a equipe e distribuo as tarefas para a tarde. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio. De manhÃ£, eu acordo cedo e caminho atÃ© os campos. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. A manutenÃ§Ã£o evita falhas durante a colheita.",
-    "pairs":  [
-                  {
-                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis.",
-                      "en":  "I check the crops to see if the plants are healthy."
-                  },
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  },
-                  {
-                      "pt":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
-                      "en":  "We apply rotational grazing protocols for pasture recovery."
-                  },
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  }
-              ],
-    "vocabulary":  [
-                       {
-                           "word":  "tractor",
-                           "meaning":  "trator"
-                       },
-                       {
-                           "word":  "cow",
-                           "meaning":  "vaca"
-                       },
-                       {
-                           "word":  "corn",
-                           "meaning":  "milho"
-                       },
-                       {
-                           "word":  "sprayer",
-                           "meaning":  "pulverizador"
-                       },
-                       {
-                           "word":  "harvest",
-                           "meaning":  "colheita"
-                       },
-                       {
-                           "word":  "irrigation",
-                           "meaning":  "irrigaÃ§Ã£o"
-                       },
-                       {
-                           "word":  "pasture",
-                           "meaning":  "pastagem"
-                       },
-                       {
-                           "word":  "greenhouse",
-                           "meaning":  "estufa"
-                       },
-                       {
-                           "word":  "veterinary",
-                           "meaning":  "veterinÃ¡ria"
-                       },
-                       {
-                           "word":  "safety",
-                           "meaning":  "seguranÃ§a"
-                       }
-                   ],
-    "grammar":  "Academic style: hedging and precise terminology.",
-    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
-    "exercises":  {
-                      "multiple_choice":  [
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we check every morning?",
-                                                  "options":  [
-                                                                  "Plants",
-                                                                  "Emails",
-                                                                  "Movies",
-                                                                  "Games"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Which machine is for spraying?",
-                                                  "options":  [
-                                                                  "Sprayer",
-                                                                  "Oven",
-                                                                  "Printer",
-                                                                  "Mixer"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What protects animals in cold weather?",
-                                                  "options":  [
-                                                                  "Barn",
-                                                                  "Laptop",
-                                                                  "Radio",
-                                                                  "Paint"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we rotate to improve forage?",
-                                                  "options":  [
-                                                                  "Pastures",
-                                                                  "Books",
-                                                                  "Rooms",
-                                                                  "Shoes"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Where do we grow plants with climate control?",
-                                                  "options":  [
-                                                                  "Greenhouse",
-                                                                  "Garage",
-                                                                  "Office",
-                                                                  "Kitchen"
-                                                              ]
-                                              }
-                                          ],
-                      "fill_in":  [
-                                      {
-                                          "sentence":  "We ____ the cows every morning.",
-                                          "answer":  "feed"
-                                      },
-                                      {
-                                          "sentence":  "Start the ____ carefully.",
-                                          "answer":  "tractor"
-                                      },
-                                      {
-                                          "sentence":  "Check the ____ for the animals.",
-                                          "answer":  "water"
-                                      }
-                                  ],
-                      "speaking":  "Repeat: Veterinary diagnostic frameworks"
-                  }
+  "title": "Regenerative Science",
+  "title_pt": "Ciência Regenerativa",
+  "text": "We are scrutinizing microbiological interactions in the rhizosphere to enhance soil carbon capture potential. Not only have enzyme kinetics and nutrient cycling pathways been mapped, but microbial consortia have also been optimized through metagenomic profiling and isotopic labeling; therefore, field trials will quantify net sequestration and co-benefits. Should anomalies arise, protocols would be amended under the compliance framework and MRV procedures aligned with ISO 14064 and 14001. Rarely do projects achieve permanence without transparent baselines, biogeochemical modeling, and leakage controls; hence, remediation clauses are codified and adaptive management is triggered. Should data integrity be contested, samples would be revalidated by independent laboratories and chain-of-custody documentation enforced.",
+  "translation": "Estamos examinando interações microbiológicas na rizosfera para ampliar o potencial de captura de carbono do solo. Não apenas cinéticas enzimáticas e vias de ciclagem de nutrientes foram mapeadas, como também consórcios microbianos foram otimizados por meio de perfis metagenômicos e rotulagem isotópica; portanto, ensaios de campo quantificarão o sequestro líquido e co-benefícios. Caso surjam anomalias, os protocolos seriam emendados sob a estrutura de conformidade e os procedimentos de MRV alinhados às ISO 14064 e 14001. Raramente projetos alcançam permanência sem linhas de base transparentes, modelagem biogeoquímica e controles de vazamento; por isso, cláusulas de remediação são codificadas e a gestão adaptativa é acionada. Caso a integridade dos dados seja contestada, amostras seriam revalidadas por laboratórios independentes e a cadeia de custódia seria aplicada.",
+  "pairs": [
+    { "pt": "Estamos examinando interações microbiológicas na rizosfera.", "en": "We are scrutinizing microbiological interactions in the rhizosphere." },
+    { "pt": "Não apenas cinéticas enzimáticas foram mapeadas; consórcios otimizados.", "en": "Not only have enzyme kinetics been mapped, but consortia optimized." },
+    { "pt": "Vias de ciclagem de nutrientes foram caracterizadas.", "en": "Nutrient cycling pathways have been characterized." },
+    { "pt": "Perfis metagenômicos e rotulagem isotópica foram utilizados.", "en": "Metagenomic profiling and isotopic labeling have been employed." },
+    { "pt": "Ensaios de campo quantificarão sequestro líquido e co-benefícios.", "en": "Field trials will quantify net sequestration and co-benefits." },
+    { "pt": "Caso surjam anomalias, protocolos serão emendados.", "en": "Should anomalies arise, protocols would be amended." },
+    { "pt": "Procedimentos de MRV alinham-se às ISO 14064 e 14001.", "en": "MRV procedures align with ISO 14064 and 14001." },
+    { "pt": "Raramente há permanência sem modelagem biogeoquímica.", "en": "Rarely is permanence achieved without biogeochemical modeling." },
+    { "pt": "Controles de vazamento são implementados e auditados.", "en": "Leakage controls are implemented and audited." },
+    { "pt": "Caso a integridade dos dados seja contestada, revalidaremos amostras.", "en": "Should data integrity be contested, samples would be revalidated." }
+  ],
+  "grammar": "Not only… but also…; Formal conditionals (Should…); Passive voice; Scientific register; Academic connectors",
+  "verbs": "scrutinize, optimize, quantify, amend, align, characterize, employ, achieve, implement, revalidate"
 }

@@ -1,49 +1,19 @@
 {
-    "title":  "Animal Care and Maintenance",
-    "title_pt":  "Cuidado com animais e manutenção",
-    "text":  "Biosecurity protocols. I feed the cows and make sure they have clean water. I clean the barn after milking and store the tools. In the morning, I wake up early and walk to the fields. We sell fresh vegetables at the local market. Veterinary biosecurity keeps the herd healthy. Irrigation is scheduled to reduce water waste. We record yields and monitor feed intake. We rotate pastures to improve forage quality. We use gloves and masks when handling chemicals. Sprayer calibration prevents over application.",
-    "translation":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. De manhÃ£, eu acordo cedo e caminho atÃ© os campos. NÃ³s vendemos hortaliÃ§as frescas no mercado local. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o. NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
+    "title":  "Pasture Management KPIs",
+    "title_pt":  "KPIs de gestão de pastagem",
+    "text":  "Paddocks are monitored by sensors, and the rotation is scheduled automatically. If growth slows, we will change the plan; if I had more land, I would reduce stocking density.",
+    "translation":  "Os piquetes são monitorados por sensores, e a rotação é programada automaticamente. Se o crescimento desacelerar, mudaremos o plano; se eu tivesse mais terra, reduziria a lotação.",
     "pairs":  [
-                  {
-                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-                      "en":  "I feed the cows and make sure they have clean water."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o.",
-                      "en":  "We record yields and monitor feed intake."
-                  },
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos.",
-                      "en":  "We use gloves and masks when handling chemicals."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  }
+                  { "pt": "Os piquetes são monitorados por sensores.", "en": "The paddocks are monitored by sensors." },
+                  { "pt": "Se o capim estiver alto, traremos o rebanho.", "en": "If grass is high, we will bring the herd." },
+                  { "pt": "A rotação é programada automaticamente.", "en": "The rotation is scheduled automatically." },
+                  { "pt": "Se eu tivesse mais terra, reduziria a lotação.", "en": "If I had more land, I would reduce stocking density." },
+                  { "pt": "Os dados são revisados toda semana.", "en": "The data is reviewed every week." },
+                  { "pt": "Se o crescimento desacelerar, mudaremos o plano.", "en": "If growth slows, we will change the plan." },
+                  { "pt": "As metas são controladas pelo painel.", "en": "The targets are controlled by the dashboard." },
+                  { "pt": "Se o portão estiver aberto, vamos consertá-lo agora.", "en": "If the gate is open, we will fix it now." },
+                  { "pt": "Os relatórios são enviados ao gestor.", "en": "The reports are sent to the manager." },
+                  { "pt": "Se eu tivesse mais tempo, mapearia cada piquete.", "en": "If I had more time, I would map every paddock." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Passive voice in technical procedures.",
+    "grammar":  "First Conditional; Second Conditional; Passive Voice",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

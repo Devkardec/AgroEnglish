@@ -1,49 +1,19 @@
 {
-    "title":  "Daily Farm and Herd Management",
-    "title_pt":  "Gestão diária da fazenda e do rebanho",
-    "text":  "Herd health coordination. Veterinary biosecurity keeps the herd healthy. I clean the barn after milking and store the tools. We plan the day: planting, irrigation, and equipment checks. The sun is low, and the soil is cool and soft. In Canadian winter, we protect equipment from freezing. I talk to the team and assign tasks for the afternoon. We apply rotational grazing protocols for pasture recovery. I feed the cows and make sure they have clean water. We sell fresh vegetables at the local market. We record yields and monitor feed intake.",
-    "translation":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio. No inverno canadense, protegemos os equipamentos contra o congelamento. Eu converso com a equipe e distribuo as tarefas para a tarde. Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem. Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa. NÃ³s vendemos hortaliÃ§as frescas no mercado local. NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o.",
+    "title":  "Yield Data Analysis",
+    "title_pt":  "Análise de Dados de Safra",
+    "text":  "We have analyzed the yield data from the last harvest. The data has been processed by the software and reviewed by management. However, variability has persisted in sandy plots; therefore, fertilizer plans and seeding rates will be refined.",
+    "translation":  "Nós temos analisado os dados de rendimento da última colheita. Os dados foram processados pelo software e revisados pela gestão. Entretanto, a variabilidade tem persistido em áreas arenosas; portanto, os planos de adubação e as taxas de semeadura serão refinados.",
     "pairs":  [
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos.",
-                      "en":  "We plan the day: planting, irrigation, and equipment checks."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  },
-                  {
-                      "pt":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
-                      "en":  "We apply rotational grazing protocols for pasture recovery."
-                  },
-                  {
-                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-                      "en":  "I feed the cows and make sure they have clean water."
-                  },
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  },
-                  {
-                      "pt":  "NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o.",
-                      "en":  "We record yields and monitor feed intake."
-                  }
+                  { "pt": "Nós temos analisado os dados de rendimento da última colheita.", "en": "We have analyzed the yield data from the last harvest." },
+                  { "pt": "Os dados foram processados pelo software.", "en": "The data has been processed by the software." },
+                  { "pt": "A eficiência tem aumentado em dez por cento.", "en": "Efficiency has increased by ten percent." },
+                  { "pt": "Entretanto, a variabilidade tem persistido em áreas arenosas.", "en": "However, variability has persisted in sandy plots." },
+                  { "pt": "Portanto, os planos de adubação serão ajustados.", "en": "Therefore, fertilizer plans will be adjusted." },
+                  { "pt": "O relatório foi revisado pela equipe de gestão.", "en": "The report has been reviewed by the management team." },
+                  { "pt": "Os mapas são gerados por ferramentas de GIS.", "en": "The maps are generated by GIS tools." },
+                  { "pt": "Além disso, métricas de benchmarking foram adicionadas ao painel.", "en": "Furthermore, benchmarking metrics have been added to the dashboard." },
+                  { "pt": "As metas são controladas pelo software de planejamento.", "en": "The targets are controlled by the planning software." },
+                  { "pt": "Portanto, a estratégia de insumos será refinada.", "en": "Therefore, the input strategy will be refined." }
               ],
     "vocabulary":  [
                        {
@@ -87,8 +57,8 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Complex clauses: purpose and result; nominalization.",
-    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
+    "grammar":  "Present Perfect; Passive Voice; Formal connectors: However, Therefore, Furthermore",
+    "verbs":  "Verbs used: analyze, process, review, adjust, optimize, generate, control, refine.",
     "exercises":  {
                       "multiple_choice":  [
                                               {

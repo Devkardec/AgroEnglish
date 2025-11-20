@@ -1,49 +1,19 @@
 {
-    "title":  "Precision Agriculture on Green Valley Farm",
-    "title_pt":  "Agricultura de precisão na Fazenda Vale Verde",
-    "text":  "Biosecurity protocols. Telemetry from precision agriculture guides irrigation decisions. We apply rotational grazing protocols for pasture recovery. We sell fresh vegetables at the local market. Maintenance avoids breakdowns during harvest. We assess soil nutrients to optimize fertilization plans. I clean the barn after milking and store the tools. I work on Green Valley Farm, and every day is busy. Sprayer calibration prevents over application. In Canadian winter, we protect equipment from freezing. In the morning, I wake up early and walk to the fields.",
-    "translation":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o. Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem. NÃ³s vendemos hortaliÃ§as frescas no mercado local. A manutenÃ§Ã£o evita falhas durante a colheita. Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. No inverno canadense, protegemos os equipamentos contra o congelamento. De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
+    "title":  "Yield and ROI Review",
+    "title_pt":  "Revisão de rendimento e ROI",
+    "text":  "If we use modern sensors, we will improve ROI. The yield data is analyzed automatically, and the report is sent to the manager. If costs rise, we will adjust the strategy; the targets are controlled by software.",
+    "translation":  "Se usarmos sensores modernos, melhoraremos o ROI. Os dados de rendimento são analisados automaticamente, e o relatório é enviado ao gestor. Se os custos aumentarem, ajustaremos a estratégia; as metas são controladas por software.",
     "pairs":  [
-                  {
-                      "pt":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o.",
-                      "en":  "Telemetry from precision agriculture guides irrigation decisions."
-                  },
-                  {
-                      "pt":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
-                      "en":  "We apply rotational grazing protocols for pasture recovery."
-                  },
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  },
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  },
-                  {
-                      "pt":  "Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o.",
-                      "en":  "We assess soil nutrients to optimize fertilization plans."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  }
+                  { "pt": "Se usarmos sensores modernos, trabalharemos menos e com mais eficiência.", "en": "If we use modern sensors, we will work less and more efficiently." },
+                  { "pt": "Os dados de rendimento são coletados automaticamente.", "en": "The yield data is collected automatically." },
+                  { "pt": "Se os custos aumentarem, ajustaremos a estratégia.", "en": "If costs rise, we will adjust the strategy." },
+                  { "pt": "O relatório é enviado ao gestor.", "en": "The report is sent to the manager." },
+                  { "pt": "Se eu tivesse mais orçamento, compraria sensores extras.", "en": "If I had more budget, I would buy extra sensors." },
+                  { "pt": "As metas são controladas por software.", "en": "The targets are controlled by software." },
+                  { "pt": "Se o campo tiver baixo rendimento, reduziremos os insumos.", "en": "If fields are low‑yield, we will reduce inputs." },
+                  { "pt": "Os resultados são compartilhados com a equipe.", "en": "The results are shared with the team." },
+                  { "pt": "Se testarmos duas taxas, veremos o melhor ROI.", "en": "If we test two rates, we will see the best ROI." },
+                  { "pt": "O plano é atualizado após cada colheita.", "en": "The plan is updated after each harvest." }
               ],
     "vocabulary":  [
                        {
@@ -87,8 +57,8 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Passive voice in technical procedures.",
-    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
+    "grammar":  "First Conditional; Second Conditional; Passive Voice",
+    "verbs":  "Verbs used: analyze, collect, send, control, adjust, share, reduce, update.",
     "exercises":  {
                       "multiple_choice":  [
                                               {

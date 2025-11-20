@@ -1,49 +1,19 @@
 {
-    "title":  "Farm Work and Safety",
-    "title_pt":  "Trabalho rural e segurança",
-    "text":  "Efficient combine operation. The tractor starts slowly; I drive carefully on the farm road. We use gloves and masks when handling chemicals. Maintenance avoids breakdowns during harvest. I feed the cows and make sure they have clean water. Irrigation is scheduled to reduce water waste. In Canadian winter, we protect equipment from freezing. The greenhouse helps control temperature and humidity. Farm safety rules are part of our routine. I work on Green Valley Farm, and every day is busy. The sun is low, and the soil is cool and soft.",
-    "translation":  "O trator liga devagar; eu dirijo com cuidado na estrada da fazenda. Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos. A manutenÃ§Ã£o evita falhas durante a colheita. Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. No inverno canadense, protegemos os equipamentos contra o congelamento. A estufa ajuda a controlar a temperatura e a umidade. As regras de seguranÃ§a rural fazem parte da nossa rotina. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
+    "title":  "Genetics and Conversion",
+    "title_pt":  "Genética e conversão",
+    "text":  "The cows are milked by robots now. If the barn is hot, the fans will turn on. Health and feed data is tracked automatically; if I had more budget, I would add more robots.",
+    "translation":  "As vacas são ordenhadas por robôs agora. Se o celeiro estiver quente, os ventiladores ligarão. Dados de saúde e alimentação são acompanhados automaticamente; se eu tivesse mais orçamento, adicionaria mais robôs.",
     "pairs":  [
-                  {
-                      "pt":  "O trator liga devagar; eu dirijo com cuidado na estrada da fazenda.",
-                      "en":  "The tractor starts slowly; I drive carefully on the farm road."
-                  },
-                  {
-                      "pt":  "Usamos luvas e mÃ¡scaras ao manusear produtos quÃ­micos.",
-                      "en":  "We use gloves and masks when handling chemicals."
-                  },
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  },
-                  {
-                      "pt":  "Eu alimento as vacas e garanto que elas tenham Ã¡gua limpa.",
-                      "en":  "I feed the cows and make sure they have clean water."
-                  },
-                  {
-                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "As regras de seguranÃ§a rural fazem parte da nossa rotina.",
-                      "en":  "Farm safety rules are part of our routine."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  }
+                  { "pt": "As vacas são ordenhadas por robôs agora.", "en": "The cows are milked by robots now." },
+                  { "pt": "Se o celeiro estiver quente, os ventiladores ligarão.", "en": "If the barn is hot, the fans will turn on." },
+                  { "pt": "Os dados de saúde são enviados para o meu telefone.", "en": "The health data is sent to my phone." },
+                  { "pt": "Se a ingestão cair, ajustaremos a ração.", "en": "If intake drops, we will adjust the ration." },
+                  { "pt": "Os dados de alimentação são acompanhados automaticamente.", "en": "The feed data is tracked automatically." },
+                  { "pt": "Se eu tivesse mais sombra, moveria o rebanho.", "en": "If I had more shade, I would move the herd." },
+                  { "pt": "O plano de reprodução é controlado por software.", "en": "The breeding plan is controlled by software." },
+                  { "pt": "Se a pastagem estiver baixa, rotacionaremos mais cedo.", "en": "If the pasture is short, we will rotate earlier." },
+                  { "pt": "Os bezerros são pesados pela balança.", "en": "The calves are weighed by the scale." },
+                  { "pt": "Se eu tivesse mais orçamento, adicionaria mais robôs.", "en": "If I had a larger budget, I would add more robots." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Passive voice in technical procedures.",
+    "grammar":  "First Conditional; Second Conditional; Passive Voice",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

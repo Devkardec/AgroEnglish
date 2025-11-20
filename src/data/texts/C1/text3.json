@@ -1,49 +1,19 @@
 {
-    "title":  "From Manual Labor to Precision Tech",
-    "title_pt":  "Do trabalho manual à tecnologia de precisão",
-    "text":  "Feed formulation strategy. In the morning, I wake up early and walk to the fields. I talk to the team and assign tasks for the afternoon. I clean the barn after milking and store the tools. The greenhouse helps control temperature and humidity. We rotate pastures to improve forage quality. Irrigation is scheduled to reduce water waste. We assess soil nutrients to optimize fertilization plans. The tractor starts slowly; I drive carefully on the farm road. Telemetry from precision agriculture guides irrigation decisions. Maintenance avoids breakdowns during harvest.",
-    "translation":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos. Eu converso com a equipe e distribuo as tarefas para a tarde. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. A estufa ajuda a controlar a temperatura e a umidade. NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o. O trator liga devagar; eu dirijo com cuidado na estrada da fazenda. A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o. A manutenÃ§Ã£o evita falhas durante a colheita.",
+    "title":  "Investment for Efficiency",
+    "title_pt":  "Investimento para Eficiência",
+    "text":  "We have invested in autonomous tractors to improve efficiency. Routes are guided by GPS, and fuel use has been optimized; however, maintenance costs have risen slightly, and contracts have been renegotiated.",
+    "translation":  "Nós temos investido em tratores autônomos para melhorar a eficiência. As rotas são guiadas por GPS, e o uso de combustível tem sido otimizado; entretanto, os custos de manutenção têm aumentado ligeiramente, e contratos têm sido renegociados.",
     "pairs":  [
-                  {
-                      "pt":  "De manhÃ£, eu acordo cedo e caminho atÃ© os campos.",
-                      "en":  "In the morning, I wake up early and walk to the fields."
-                  },
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "Avaliamos nutrientes do solo para otimizar planos de fertilizaÃ§Ã£o.",
-                      "en":  "We assess soil nutrients to optimize fertilization plans."
-                  },
-                  {
-                      "pt":  "O trator liga devagar; eu dirijo com cuidado na estrada da fazenda.",
-                      "en":  "The tractor starts slowly; I drive carefully on the farm road."
-                  },
-                  {
-                      "pt":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o.",
-                      "en":  "Telemetry from precision agriculture guides irrigation decisions."
-                  },
-                  {
-                      "pt":  "A manutenÃ§Ã£o evita falhas durante a colheita.",
-                      "en":  "Maintenance avoids breakdowns during harvest."
-                  }
+                  { "pt": "Nós temos investido em tratores autônomos para melhorar a eficiência.", "en": "We have invested in autonomous tractors to improve efficiency." },
+                  { "pt": "As rotas são guiadas por GPS.", "en": "The routes are guided by GPS." },
+                  { "pt": "O uso de combustível tem sido otimizado.", "en": "Fuel use has been optimized." },
+                  { "pt": "Entretanto, os custos de manutenção têm aumentado.", "en": "However, maintenance costs have risen." },
+                  { "pt": "Portanto, contratos foram renegociados.", "en": "Therefore, contracts have been renegotiated." },
+                  { "pt": "As inspeções são agendadas pelo software.", "en": "Inspections are scheduled by the software." },
+                  { "pt": "Além disso, indicadores de eficiência foram adicionados.", "en": "Furthermore, efficiency indicators have been added." },
+                  { "pt": "Os relatórios foram revisados pela diretoria.", "en": "The reports have been reviewed by the board." },
+                  { "pt": "As peças são encomendadas automaticamente.", "en": "The parts are ordered automatically." },
+                  { "pt": "Portanto, o plano de serviço foi otimizado.", "en": "Therefore, the service plan has been optimized." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Complex clauses: purpose and result; nominalization.",
+    "grammar":  "Present Perfect; Passive Voice; Formal connectors: However, Therefore, Furthermore",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [

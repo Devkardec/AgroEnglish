@@ -1,161 +1,20 @@
 {
-    "title":  "Life on the Farm",
-    "title_pt":  "Vida na fazenda",
-    "text":  "Cross-border biosecurity compliance. The greenhouse helps control temperature and humidity. I work on Green Valley Farm, and every day is busy. Veterinary biosecurity keeps the herd healthy. Sprayer calibration prevents over application. I check the crops to see if the plants are healthy. I clean the barn after milking and store the tools. The sun is low, and the soil is cool and soft. We rotate pastures to improve forage quality. We apply rotational grazing protocols for pasture recovery. We sell fresh vegetables at the local market.",
-    "translation":  "A estufa ajuda a controlar a temperatura e a umidade. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel. A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva. Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis. Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas. O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio. NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio. Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem. NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
+    "title":  "Blockchain Traceability",
+    "title_pt":  "Rastreabilidade Blockchain",
+    "text":  "Implementing blockchain guarantees the immutability of traceability data throughout the entire supply chain. Not only has provenance been secured, but dispute resolution has also been streamlined; therefore, compliance reporting is expedited. Should governance nodes fail, contingency protocols would be triggered to preserve integrity. Smart contracts codify handovers and non‑repudiation, while role‑based access minimizes unauthorized edits. Rarely do off‑chain reconciliations suffice without robust oracle design; hence, integrity checks and key‑rotation policies are instituted.",
+    "translation":  "A implementação de blockchain garante a imutabilidade dos dados de rastreabilidade por toda a cadeia de suprimentos. Não apenas a procedência foi assegurada, como também a resolução de disputas foi simplificada; portanto, os relatórios de conformidade são acelerados. Caso nós de governança falhem, protocolos de contingência seriam acionados para preservar a integridade. Contratos inteligentes codificam transferências e não repúdio, enquanto controle de acesso por papéis minimiza edições não autorizadas. Raramente reconciliações off‑chain são suficientes sem oráculos robustos; por isso, verificações de integridade e políticas de rotação de chaves são instituídas.",
     "pairs":  [
-                  {
-                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "A biosseguranÃ§a veterinÃ¡ria mantÃ©m o rebanho saudÃ¡vel.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "A calibraÃ§Ã£o do pulverizador evita aplicaÃ§Ã£o excessiva.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "Eu verifico as plantaÃ§Ãµes para ver se as plantas estÃ£o saudÃ¡veis.",
-                      "en":  "I check the crops to see if the plants are healthy."
-                  },
-                  {
-                      "pt":  "Eu limpo o celeiro apÃ³s a ordenha e guardo as ferramentas.",
-                      "en":  "I clean the barn after milking and store the tools."
-                  },
-                  {
-                      "pt":  "O sol estÃ¡ baixo, e o solo estÃ¡ fresco e macio.",
-                      "en":  "The sun is low, and the soil is cool and soft."
-                  },
-                  {
-                      "pt":  "NÃ³s rotacionamos as pastagens para melhorar a qualidade do forrageio.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
-                      "en":  "We apply rotational grazing protocols for pasture recovery."
-                  },
-                  {
-                      "pt":  "NÃ³s vendemos hortaliÃ§as frescas no mercado local.",
-                      "en":  "We sell fresh vegetables at the local market."
-                  }
+                  { "pt": "Blockchain garante imutabilidade dos dados.", "en": "Blockchain guarantees data immutability." },
+                  { "pt": "Não apenas a procedência foi assegurada; disputas simplificadas.", "en": "Not only has provenance been secured, but disputes streamlined." },
+                  { "pt": "Caso nós falhem, acionaremos contingência.", "en": "Should nodes fail, contingency would be triggered." },
+                  { "pt": "Contratos inteligentes codificam transferências e não repúdio.", "en": "Smart contracts codify handovers and non‑repudiation." },
+                  { "pt": "Acesso por papéis minimiza edições não autorizadas.", "en": "Role‑based access minimizes unauthorized edits." },
+                  { "pt": "Raramente reconciliações off‑chain bastam sem oráculos.", "en": "Rarely do off‑chain reconciliations suffice without oracles." },
+                  { "pt": "Verificações de integridade são instituídas.", "en": "Integrity checks are instituted." },
+                  { "pt": "Políticas de rotação de chaves preservam segurança.", "en": "Key‑rotation policies preserve security." },
+                  { "pt": "Relatórios são acelerados sob conformidade.", "en": "Reporting is expedited under compliance." },
+                  { "pt": "Governança de consórcio mantém consistência.", "en": "Consortium governance maintains consistency." }
               ],
-    "vocabulary":  [
-                       {
-                           "word":  "tractor",
-                           "meaning":  "trator"
-                       },
-                       {
-                           "word":  "cow",
-                           "meaning":  "vaca"
-                       },
-                       {
-                           "word":  "corn",
-                           "meaning":  "milho"
-                       },
-                       {
-                           "word":  "sprayer",
-                           "meaning":  "pulverizador"
-                       },
-                       {
-                           "word":  "harvest",
-                           "meaning":  "colheita"
-                       },
-                       {
-                           "word":  "irrigation",
-                           "meaning":  "irrigaÃ§Ã£o"
-                       },
-                       {
-                           "word":  "pasture",
-                           "meaning":  "pastagem"
-                       },
-                       {
-                           "word":  "greenhouse",
-                           "meaning":  "estufa"
-                       },
-                       {
-                           "word":  "veterinary",
-                           "meaning":  "veterinÃ¡ria"
-                       },
-                       {
-                           "word":  "safety",
-                           "meaning":  "seguranÃ§a"
-                       }
-                   ],
-    "grammar":  "Academic style: hedging and precise terminology.",
-    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
-    "exercises":  {
-                      "multiple_choice":  [
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we check every morning?",
-                                                  "options":  [
-                                                                  "Plants",
-                                                                  "Emails",
-                                                                  "Movies",
-                                                                  "Games"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Which machine is for spraying?",
-                                                  "options":  [
-                                                                  "Sprayer",
-                                                                  "Oven",
-                                                                  "Printer",
-                                                                  "Mixer"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What protects animals in cold weather?",
-                                                  "options":  [
-                                                                  "Barn",
-                                                                  "Laptop",
-                                                                  "Radio",
-                                                                  "Paint"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we rotate to improve forage?",
-                                                  "options":  [
-                                                                  "Pastures",
-                                                                  "Books",
-                                                                  "Rooms",
-                                                                  "Shoes"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Where do we grow plants with climate control?",
-                                                  "options":  [
-                                                                  "Greenhouse",
-                                                                  "Garage",
-                                                                  "Office",
-                                                                  "Kitchen"
-                                                              ]
-                                              }
-                                          ],
-                      "fill_in":  [
-                                      {
-                                          "sentence":  "We ____ the cows every morning.",
-                                          "answer":  "feed"
-                                      },
-                                      {
-                                          "sentence":  "Start the ____ carefully.",
-                                          "answer":  "tractor"
-                                      },
-                                      {
-                                          "sentence":  "Check the ____ for the animals.",
-                                          "answer":  "water"
-                                      }
-                                  ],
-                      "speaking":  "Repeat: Cross-border biosecurity compliance"
-                  }
+    "grammar":  "Not only… but also…; Formal conditionals (Should…); Passive voice; Systems vocabulary",
+    "verbs":  "guarantee, secure, streamline, trigger, preserve, expedite, codify, institute"
 }

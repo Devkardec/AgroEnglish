@@ -1,49 +1,19 @@
 {
-    "title":  "Daily Farm Management",
-    "title_pt":  "Gestão diária da fazenda",
-    "text":  "Efficient combine operation. I talk to the team and assign tasks for the afternoon. Irrigation is scheduled to reduce water waste. We record yields and monitor feed intake. I work on Green Valley Farm, and every day is busy. Telemetry from precision agriculture guides irrigation decisions. We plan the day: planting, irrigation, and equipment checks. Farm safety rules are part of our routine. The greenhouse helps control temperature and humidity. In Canadian winter, we protect equipment from freezing. We apply rotational grazing protocols for pasture recovery.",
-    "translation":  "Eu converso com a equipe e distribuo as tarefas para a tarde. A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua. NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o. Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos. A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o. NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos. As regras de seguranÃ§a rural fazem parte da nossa rotina. A estufa ajuda a controlar a temperatura e a umidade. No inverno canadense, protegemos os equipamentos contra o congelamento. Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
+    "title":  "Advanced Biosecurity Measures",
+    "title_pt":  "Medidas de biossegurança avançada",
+    "text":  "Entry points are monitored by sensors, and access is controlled by software. If a gate is open, we will send an alert; if I had more cameras, I would cover the loading area.",
+    "translation":  "Pontos de entrada são monitorados por sensores, e o acesso é controlado por software. Se um portão estiver aberto, enviaremos um alerta; se eu tivesse mais câmeras, cobriria a área de carregamento.",
     "pairs":  [
-                  {
-                      "pt":  "Eu converso com a equipe e distribuo as tarefas para a tarde.",
-                      "en":  "I talk to the team and assign tasks for the afternoon."
-                  },
-                  {
-                      "pt":  "A irrigaÃ§Ã£o Ã© programada para reduzir o desperdÃ­cio de Ã¡gua.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "NÃ³s registramos a produtividade e monitoramos a ingestÃ£o de raÃ§Ã£o.",
-                      "en":  "We record yields and monitor feed intake."
-                  },
-                  {
-                      "pt":  "Eu trabalho na Fazenda Vale Verde, e todos os dias sÃ£o corridos.",
-                      "en":  "I work on Green Valley Farm, and every day is busy."
-                  },
-                  {
-                      "pt":  "A telemetria da agricultura de precisÃ£o orienta decisÃµes de irrigaÃ§Ã£o.",
-                      "en":  "Telemetry from precision agriculture guides irrigation decisions."
-                  },
-                  {
-                      "pt":  "NÃ³s planejamos o dia: plantio, irrigaÃ§Ã£o e checagem dos equipamentos.",
-                      "en":  "We plan the day: planting, irrigation, and equipment checks."
-                  },
-                  {
-                      "pt":  "As regras de seguranÃ§a rural fazem parte da nossa rotina.",
-                      "en":  "Farm safety rules are part of our routine."
-                  },
-                  {
-                      "pt":  "A estufa ajuda a controlar a temperatura e a umidade.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "No inverno canadense, protegemos os equipamentos contra o congelamento.",
-                      "en":  "In Canadian winter, we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "Aplicamos protocolos de pastejo rotativo para recuperaÃ§Ã£o da pastagem.",
-                      "en":  "We apply rotational grazing protocols for pasture recovery."
-                  }
+                  { "pt": "Pontos de entrada são monitorados por sensores.", "en": "The entry points are monitored by sensors." },
+                  { "pt": "Se um portão estiver aberto, enviaremos um alerta.", "en": "If a gate is open, we will send an alert." },
+                  { "pt": "A limpeza é programada automaticamente.", "en": "The cleaning is scheduled automatically." },
+                  { "pt": "Se eu tivesse mais câmeras, cobriria a área de carregamento.", "en": "If I had more cameras, I would cover the loading area." },
+                  { "pt": "O acesso é controlado por software.", "en": "The access is controlled by software." },
+                  { "pt": "Se visitantes chegarem, verificaremos a lista.", "en": "If visitors arrive, we will check the list." },
+                  { "pt": "Os dados de treinamento são armazenados no sistema.", "en": "The training data is stored in the system." },
+                  { "pt": "Se um risco for detectado, interromperemos os movimentos.", "en": "If a risk is detected, we will stop movements." },
+                  { "pt": "As regras são revisadas trimestralmente.", "en": "The rules are reviewed quarterly." },
+                  { "pt": "Se eu tivesse mais tempo, auditava cada galpão.", "en": "If I had more time, I would audit each barn." }
               ],
     "vocabulary":  [
                        {
@@ -87,7 +57,7 @@
                            "meaning":  "seguranÃ§a"
                        }
                    ],
-    "grammar":  "Passive voice in technical procedures.",
+    "grammar":  "First Conditional; Second Conditional; Passive Voice",
     "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
     "exercises":  {
                       "multiple_choice":  [
