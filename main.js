@@ -503,31 +503,49 @@ function initTextPage(level, idx) {
   const backToTopBtn = document.querySelector('#backToTop');
   try { renderVoiceSelector(); } catch {}
 
-  function setupAudio() {
-    const rate = Number(localStorage.getItem('rate') || 1);
-    const pitch = Number(localStorage.getItem('pitch') || 1);
-    const voiceName = localStorage.getItem('voiceName') || '';
-    const getVoice = () =>
-      window.speechSynthesis.getVoices().find((v) => v.name === voiceName) ||
-      null;
+async function setupAudio(data) {
+  const rate = Number(localStorage.getItem('rate') || 1);
+  const pitch = Number(localStorage.getItem('pitch') || 1);
+  const voiceName = localStorage.getItem('voiceName') || '';
+  const getVoice = () =>
+    window.speechSynthesis.getVoices().find((v) => v.name === voiceName) ||
+    null;
 
-    let currentUtter = null;
-    function narrate(txt) { if (!txt) return; speak(txt); }
+  let hasMp3 = false;
+  const audio = new Audio();
+  audio.preload = 'none';
+  function narrate(txt) { if (!txt) return; speak(txt); }
 
-    document.querySelector('#play').addEventListener('click', () => {
+  const title = String(data && data.title || '').trim();
+  const level = (location.hash.split('/')[2] || '').trim();
+  const fileName = encodeURIComponent(`${title} · ${level}.mp3`);
+  const candidates = [`/audio/${fileName}`, `./audio/${fileName}`, `/src/audio/${fileName}`, `./src/audio/${fileName}`];
+  (async () => {
+    for (const url of candidates) {
+      try { const r = await fetch(url, { method: 'HEAD' }); if (r.ok) { audio.src = url; hasMp3 = true; break; } } catch {}
+    }
+  })();
+
+  document.querySelector('#play').addEventListener('click', () => {
+    if (hasMp3 && audio.src) {
+      audio.play();
+    } else {
       const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' ');
       narrate(enText);
+    }
+  });
+  const resumeBtn = document.querySelector('#resume');
+  if (resumeBtn) resumeBtn.addEventListener('click', () => { if (hasMp3 && audio.paused) { audio.play(); } else { window.speechSynthesis.resume(); } });
+  document.querySelector('#pause').addEventListener('click', () => { if (hasMp3) { audio.pause(); } else { window.speechSynthesis.pause(); } });
+  document.querySelector('#stop').addEventListener('click', () => { if (hasMp3) { try { audio.pause(); audio.currentTime = 0; } catch {} } else { window.speechSynthesis.cancel(); } });
+  document.querySelectorAll('[data-speed]').forEach((b) => {
+    b.addEventListener('click', () => {
+      const sp = Number(b.dataset.speed);
+      if (hasMp3) { audio.playbackRate = sp; }
+      localStorage.setItem('rate', sp);
     });
-    const resumeBtn = document.querySelector('#resume');
-    if (resumeBtn) resumeBtn.addEventListener('click', () => window.speechSynthesis.resume());
-    document.querySelector('#pause').addEventListener('click', () => window.speechSynthesis.pause());
-    document.querySelector('#stop').addEventListener('click', () => window.speechSynthesis.cancel());
-    document.querySelectorAll('[data-speed]').forEach((b) => {
-      b.addEventListener('click', () => {
-        localStorage.setItem('rate', b.dataset.speed);
-      });
-    });
-  }
+  });
+}
 
   function setupUI(data) {
     document.getElementById('title').textContent = data.title + ' · ' + level;
@@ -1104,7 +1122,7 @@ function initTextPage(level, idx) {
     .then((data) => {
       setupUI(data);
       renderLines(data);
-      setupAudio();
+      setupAudio(data);
       
       try { renderVocabulary(data); } catch (e) { console.error('Error in renderVocabulary:', e); }
       try { renderGrammar(data); } catch (e) { console.error('Error in renderGrammar:', e); }

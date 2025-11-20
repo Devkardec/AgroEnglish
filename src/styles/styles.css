@@ -256,7 +256,11 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
   z-index: 4;
 }
 .filter-btn:hover[data-pt]::after,
-.filter-btn:hover[data-pt]::before {
+.filter-btn:hover[data-pt]::before,
+.filter-btn:focus[data-pt]::after,
+.filter-btn:focus[data-pt]::before,
+.filter-btn:active[data-pt]::after,
+.filter-btn:active[data-pt]::before {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
