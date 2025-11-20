@@ -284,6 +284,31 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
   display: block;
 }
 
+.image-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.image-fallback.cat-irrigation {
+  background: linear-gradient(135deg, #c8e6ff, #a7d0f5);
+}
+.image-fallback.cat-machinery {
+  background: linear-gradient(135deg, #ffe5c8, #f7cfa7);
+}
+.image-fallback.cat-crops {
+  background: linear-gradient(135deg, #d9f7c8, #bfe9a7);
+}
+.image-fallback.cat-soil {
+  background: linear-gradient(135deg, #e9dfd1, #d2c2a9);
+}
+.image-fallback.cat-safety {
+  background: linear-gradient(135deg, #ffd6d6, #f5b7b7);
+}
+.image-fallback.cat-veterinary {
+  background: linear-gradient(135deg, #e3d6ff, #c6b7f5);
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;

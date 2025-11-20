@@ -1,10 +1,14 @@
 export function GlossaryCard(item) {
   if (!item) return '';
   const base = String(item.image||'').toLowerCase();
-  const isPlaceholder = base.includes('placehold.co');
-  const keywords = [String(item.category||''), String(item.term_en||'')].map(s=>encodeURIComponent(s)).join(',');
-  const dyn = `https://source.unsplash.com/600x400/?agriculture,${keywords}`;
-  const imgSrc = isPlaceholder ? dyn : (item.image||dyn);
+  const hasImage = !!item.image && !base.includes('placehold.co');
+  const cat = String(item.category||'').toLowerCase().replace(/\s+/g,'-');
+  const imageFront = hasImage
+    ? `<img src="${item.image}" alt="${item.term_en}" loading="lazy" decoding="async" onerror="this.onerror=null;this.remove()" />`
+    : `<div class="image-fallback cat-${cat}"></div>`;
+  const imageBack = hasImage
+    ? `<img src="${item.image}" alt="${item.term_pt}" loading="lazy" decoding="async" onerror="this.onerror=null;this.remove()" />`
+    : `<div class="image-fallback cat-${cat}"></div>`;
 
   return `
     <div class="glossary-card-container" data-id="${item.id}" tabindex="0" role="button" aria-label="Flip card / Virar card">
@@ -14,7 +18,7 @@ export function GlossaryCard(item) {
         <div class="card-face card-front">
             <div class="lang-chip">EN</div>
             <div class="card-image">
-                <img src="${imgSrc}" alt="${item.term_en}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='/img/logoagroenglish.png'" />
+                ${imageFront}
             </div>
             <div class="card-header">
                 <div class="term-wrapper">
@@ -35,7 +39,7 @@ export function GlossaryCard(item) {
         <div class="card-face card-back">
             <div class="lang-chip">PT</div>
             <div class="card-image">
-                <img src="${imgSrc}" alt="${item.term_pt}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='/img/logoagroenglish.png'" />
+                ${imageBack}
             </div>
             <div class="card-header">
                 <div class="term-wrapper">

@@ -120,6 +120,114 @@ const vocabularyData = [
     image: "https://placehold.co/400x250/0b2f6a/ffffff?text=Drip+Irrigation"
   }
   ,{
+    id: 21,
+    category: "Irrigation",
+    term_en: "Sprinkler Irrigation",
+    phonetic: "/ˈsprɪŋklər ˌɪrɪˈɡeɪʃən/",
+    definition_en: "A system that sprays water through pressurized pipes and nozzles to irrigate fields.",
+    example_en: "Sprinkler irrigation is effective for uniform coverage on pastures.",
+    term_pt: "Irrigação por aspersão",
+    definition_pt: "Sistema que pulveriza água por tubulações pressurizadas e bicos para irrigar áreas.",
+    example_pt: "A irrigação por aspersão é eficaz para cobertura uniforme em pastagens.",
+    image: ""
+  }
+  ,{
+    id: 22,
+    category: "Irrigation",
+    term_en: "Center Pivot",
+    phonetic: "/ˈsɛntər ˈpɪvət/",
+    definition_en: "Mechanized sprinkler system that rotates around a central pivot to irrigate circular fields.",
+    example_en: "The center pivot requires regular inspection of towers and gearboxes.",
+    term_pt: "Pivô central",
+    definition_pt: "Sistema mecanizado de aspersão que gira em torno de um pivô para irrigar campos circulares.",
+    example_pt: "O pivô central requer inspeção regular das torres e caixas de engrenagens.",
+    image: ""
+  }
+  ,{
+    id: 23,
+    category: "Irrigation",
+    term_en: "Fertigation",
+    phonetic: "/ˈfɜːrtɪɡeɪʃən/",
+    definition_en: "Applying fertilizers through an irrigation system for efficient nutrient delivery.",
+    example_en: "Fertigation with nitrate requires precise dosing to avoid leaching.",
+    term_pt: "Fertirrigação",
+    definition_pt: "Aplicação de fertilizantes pelo sistema de irrigação para entregar nutrientes com eficiência.",
+    example_pt: "A fertirrigação com nitrato requer dosagem precisa para evitar lixiviação.",
+    image: ""
+  }
+  ,{
+    id: 24,
+    category: "Irrigation",
+    term_en: "Emitter",
+    phonetic: "/ɪˈmɪtər/",
+    definition_en: "Device in drip lines that releases water at a controlled flow rate.",
+    example_en: "Check emitter flow to ensure plants receive the correct volume.",
+    term_pt: "Emissor",
+    definition_pt: "Dispositivo nas linhas de gotejamento que libera água com vazão controlada.",
+    example_pt: "Verifique a vazão do emissor para garantir o volume correto às plantas.",
+    image: ""
+  }
+  ,{
+    id: 25,
+    category: "Irrigation",
+    term_en: "Filter Screen",
+    phonetic: "/ˈfɪltər skriːn/",
+    definition_en: "Filtering element that removes particles from irrigation water to protect emitters.",
+    example_en: "Clean the filter screen regularly to prevent clogging.",
+    term_pt: "Tela filtrante",
+    definition_pt: "Elemento de filtragem que remove partículas da água para proteger emissores.",
+    example_pt: "Limpe a tela filtrante regularmente para prevenir obstruções.",
+    image: ""
+  }
+  ,{
+    id: 26,
+    category: "Irrigation",
+    term_en: "Pressure Regulator",
+    phonetic: "/ˈprɛʃər ˈrɛɡjəleɪtər/",
+    definition_en: "Device that stabilizes pressure to maintain consistent irrigation flow.",
+    example_en: "Install a pressure regulator to protect drip lines from surges.",
+    term_pt: "Regulador de pressão",
+    definition_pt: "Dispositivo que estabiliza a pressão para manter vazão consistente na irrigação.",
+    example_pt: "Instale um regulador de pressão para proteger as linhas de gotejamento contra picos.",
+    image: ""
+  }
+  ,{
+    id: 27,
+    category: "Irrigation",
+    term_en: "Flow Meter",
+    phonetic: "/floʊ ˈmiːtər/",
+    definition_en: "Instrument that measures the volume of water delivered by the system.",
+    example_en: "Use a flow meter to monitor irrigation application rates.",
+    term_pt: "Medidor de vazão",
+    definition_pt: "Instrumento que mede o volume de água fornecido pelo sistema.",
+    example_pt: "Use um medidor de vazão para monitorar as taxas de aplicação da irrigação.",
+    image: ""
+  }
+  ,{
+    id: 28,
+    category: "Irrigation",
+    term_en: "Valve Manifold",
+    phonetic: "/ˈvælv ˈmænɪˌfoʊld/",
+    definition_en: "Assembly of valves that controls flow to different irrigation zones.",
+    example_en: "Label each valve manifold to simplify maintenance.",
+    term_pt: "Manifold de válvulas",
+    definition_pt: "Conjunto de válvulas que controla o fluxo para diferentes zonas de irrigação.",
+    example_pt: "Identifique cada manifold de válvulas para facilitar a manutenção.",
+    image: ""
+  }
+  ,{
+    id: 29,
+    category: "Irrigation",
+    term_en: "Irrigation Scheduling",
+    phonetic: "/ˌɪrɪˈɡeɪʃən ˈskɛdʒʊlɪŋ/",
+    definition_en: "Planning irrigation timing and volume based on crop needs and soil moisture.",
+    example_en: "Irrigation scheduling with sensors optimizes water usage.",
+    term_pt: "Programação de irrigação",
+    definition_pt: "Planejamento de tempo e volume de irrigação com base na cultura e umidade do solo.",
+    example_pt: "A programação de irrigação com sensores otimiza o uso de água.",
+    image: ""
+  }
+  ,{
     id: 11,
     category: "Machinery",
     term_en: "Hydraulic Coupler",
