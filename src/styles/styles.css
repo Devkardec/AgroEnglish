@@ -117,7 +117,7 @@ input[type="range"] { width:100%; }
 .home-actions { margin-top:16px; display:flex; gap:10px; flex-wrap:wrap }
 
 .flash-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px }
-.flashcard { perspective:800px }
+.flashcard { perspective:800px; cursor:pointer }
 .flashcard-inner { position:relative; width:100%; min-height:140px; transform-style:preserve-3d; transition:transform .3s ease }
 .flashcard.flipped .flashcard-inner { transform:rotateY(180deg) }
 .flashcard-face { position:absolute; inset:0; border:1px solid #e5e9e7; border-radius:16px; background:var(--card); box-shadow:0 6px 20px rgba(0,0,0,0.06); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:14px; backface-visibility:hidden; text-align:center }

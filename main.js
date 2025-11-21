@@ -641,19 +641,13 @@ async function setupAudio(data) {
       .toLowerCase();
   }
   const fileName = encodeURIComponent(`${title} · ${level}.mp3`);
-  const alt1 = `${slugify(title)}_${level}.mp3`;
-  const alt2 = `text${idx}.mp3`;
-  const alt3 = `${level}_${idx}.mp3`;
-  const names = [fileName, alt1, alt2, alt3];
-  const candidates = [];
-  names.forEach(n=>{
-    candidates.push(`/audio/${n}`, `./audio/${n}`, `/src/audio/${n}`, `./src/audio/${n}`);
-    candidates.push(`/audio/${level}/${n}`, `./audio/${level}/${n}`, `/src/audio/${level}/${n}`, `./src/audio/${level}/${n}`);
-  });
+  const base = `./src/audio/${level}/`;
+  const url = base + fileName;
   (async () => {
-    for (const url of candidates) {
-      try { const r = await fetch(url, { method: 'HEAD' }); if (r.ok) { audio.src = url; hasMp3 = true; break; } } catch {}
-    }
+    try {
+      const r = await fetch(url, { method: 'HEAD' });
+      if (r.ok) { audio.src = url; hasMp3 = true; }
+    } catch {}
   })();
 
   document.querySelector('#play').addEventListener('click', () => {
@@ -744,9 +738,13 @@ async function setupAudio(data) {
     vocabEl.addEventListener('click', (e) => {
       const card = e.target.closest('.flashcard');
       if (!card) return;
-      const enText = card.dataset.en || '';
-      speak(enText);
+      const y = window.scrollY;
+      e.preventDefault();
+      e.stopPropagation();
       card.classList.toggle('flipped');
+      window.scrollTo(0, y);
+      const enText = card.dataset.en || '';
+      try { speak(enText) } catch {}
     });
   }
 
