@@ -53,6 +53,7 @@ export function TextPage(level, index) {
 
       <section id="tab-practice" class="card" style="display:none">
         <div class="section-title">Sala de Exercícios</div>
+        <div id="gameTop" style="margin-bottom:12px"></div>
         <div id="mc"></div>
         <div id="gExercises" style="margin-top:12px"></div>
         <div id="fill" style="margin-top:12px"></div>

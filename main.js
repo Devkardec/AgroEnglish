@@ -981,20 +981,14 @@ async function setupAudio(data) {
 
     const speechEx = document.getElementById('speechExamples');
     if (speechEx) speechEx.innerHTML = explainList;
-    const gEx = document.getElementById('gExercises');
-    function renderVerbFill(){ const items = [
-      { sentence: 'We ____ pastures to improve forage quality.', answer: 'rotate' },
-      { sentence: 'We ____ yields and monitor feed intake.', answer: 'record' },
-      { sentence: 'I ____ the tractor carefully.', answer: 'start' },
-      { sentence: 'I ____ cows and check plants.', answer: 'feed' },
-      { sentence: 'We ____ the greenhouse fans.', answer: 'check' },
-      { sentence: 'She ____ safety gloves.', answer: 'wears' }
-    ]; gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Complete com o verbo</div>`; const html = items.map((f,i)=>`<div class="card"><div>${i+1}. ${f.sentence.replace('____',`<input class="blank" data-gv="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`)}</div></div>`).join(''); gEx.innerHTML += `<div>${html}</div><div class="small" id="gVRes" style="margin-top:6px"></div><button class="btn" id="gVCheck" style="margin-top:8px">Checar</button>`; document.getElementById('gVCheck').addEventListener('click', ()=>{ const inputs = gEx.querySelectorAll('input.blank[data-gv]'); let c=0; inputs.forEach(inp=>{ const i=Number(inp.dataset.gv); const ok = (inp.value||'').trim().toLowerCase()===items[i].answer; if(ok) c++ }); document.getElementById('gVRes').textContent = c===inputs.length ? 'Acertou!' : 'Tente novamente.' }) }
-    function renderDoDoes(){ const items = [
-      { sentence: '[____] we water animals and fix tools?', answer: 'do' },
-      { sentence: '[____] the tractor need a safety check?', answer: 'does' },
-      { sentence: '[____] sprayer calibration prevent over application?', answer: 'does' }
-    ]; gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Complete com do/does</div>`; const html = items.map((f,i)=>`<div class="card"><div>${i+1}. ${f.sentence.replace('[____]',`<input class="blank" data-dd="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:80px" />`)}</div></div>`).join(''); gEx.innerHTML += `<div>${html}</div><div class="small" id="gDDRes" style="margin-top:6px"></div><button class="btn" id="gDDCheck" style="margin-top:8px">Checar</button>`; document.getElementById('gDDCheck').addEventListener('click', ()=>{ const inputs = gEx.querySelectorAll('input.blank[data-dd]'); let c=0; inputs.forEach(inp=>{ const i=Number(inp.dataset.dd); const ok = (inp.value||'').trim().toLowerCase()===items[i].answer; if(ok) c++ }); document.getElementById('gDDRes').textContent = c===inputs.length ? 'Acertou!' : 'Tente novamente.' }) }
+    let gEx = document.getElementById('gExercises');
+    if (gEx) {
+      gEx.innerHTML = '';
+      const fresh = gEx.cloneNode(false);
+      fresh.id = 'gExercises';
+      gEx.parentNode.replaceChild(fresh, gEx);
+      gEx = document.getElementById('gExercises');
+    }
     function renderClassify(){ const items = aff.map((a,i)=>({a:a.en,n:negs[i].en,q:quess[i].en})).slice(0,6).flatMap(x=>[ {txt:x.a, type:'Afirmativa'}, {txt:x.n, type:'Negativa'}, {txt:x.q, type:'Pergunta'} ]).sort(()=>Math.random()-0.5); gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Classifique</div>`; const html = items.map((it,i)=>`<div class="card"><div>${i+1}. ${it.txt}</div><div style="margin-top:6px"><button class="btn secondary" data-clf="${i}" data-type="Afirmativa">Afirmativa</button> <button class="btn secondary" data-clf="${i}" data-type="Negativa">Negativa</button> <button class="btn secondary" data-clf="${i}" data-type="Pergunta">Pergunta</button></div><div class="small" id="clf${i}" style="margin-top:6px"></div></div>`).join(''); gEx.innerHTML += `<div>${html}</div>`; gEx.addEventListener('click',(e)=>{ const t=e.target; if(!t.dataset.clf) return; const i=Number(t.dataset.clf); const res = document.getElementById('clf'+i); const chosen = t.dataset.type; const correct = items[i].type; res.textContent = chosen===correct ? 'Acertou!' : 'Tente novamente.' }) }
     function renderTransform(){ const items = aff.slice(0,6); gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Transforme</div>`; const html = items.map((s,i)=>`<div class="card"><div>${i+1}. ${s.en}</div><div style="margin-top:6px"><button class="btn secondary" data-showneg="${i}">Ver negativa</button> <button class="btn secondary" data-showq="${i}">Ver pergunta</button></div><div class="small" id="tr${i}" style="margin-top:6px"></div></div>`).join(''); gEx.innerHTML += `<div>${html}</div>`; gEx.addEventListener('click',(e)=>{ const t=e.target; if(t.dataset.showneg){ const i=Number(t.dataset.showneg); document.getElementById('tr'+i).textContent = negs[i].en; } if(t.dataset.showq){ const i=Number(t.dataset.showq); document.getElementById('tr'+i).textContent = quess[i].en; } }) }
     function renderOrdering(){ const parts = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean).slice(0,6); if(!parts.length) return; const shuffled = [...parts].sort(()=>Math.random()-0.5); gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Ordene as frases</div>`; const html = shuffled.map((s,i)=>`<div class="card"><div>${i+1}. <span id="ord${i}">${s}</span></div><div style="margin-top:6px"><button class="btn secondary" data-moveup="${i}">Subir</button> <button class="btn secondary" data-movedown="${i}">Descer</button></div></div>`).join(''); gEx.innerHTML += `<div>${html}</div><div class="small" id="ordRes" style="margin-top:6px"></div>`; const list = shuffled.map((s,i)=>({idx:i, txt:s})); gEx.addEventListener('click',(e)=>{ const t=e.target; if(t.dataset.moveup||t.dataset.movedown){ const i = Number(t.dataset.moveup||t.dataset.movedown); const j = t.dataset.moveup ? i-1 : i+1; if (j<0 || j>=list.length) return; const tmp = list[i]; list[i]=list[j]; list[j]=tmp; list.forEach((x,k)=>{ const el=document.getElementById('ord'+k); if(el) el.textContent = x.txt; }); const ok = list.map(x=>x.txt).join(' ')===(parts.join(' ')); document.getElementById('ordRes').textContent = ok ? 'Acertou!' : '' } }) }
@@ -1035,7 +1029,143 @@ async function setupAudio(data) {
       gEx.innerHTML += `<div class="section-title" style="margin-top:10px">Compreensão: Verdadeiro ou Falso</div>` + items.map((it,i)=>`<div class="card"><div>${i+1}. ${it.shown}</div><div style="margin-top:6px"><button class="btn secondary" data-tf="${i}" data-ans="true">Verdadeiro</button> <button class="btn secondary" data-tf="${i}" data-ans="false">Falso</button></div><div class="small" id="tfRes${i}" style="margin-top:6px"></div></div>`).join('');
       gEx.addEventListener('click',(e)=>{ const t=e.target; if(!t.dataset.tf) return; const i=Number(t.dataset.tf); const ans=(t.dataset.ans==='true'); const ok = ans === items[i].truth; const res=document.getElementById('tfRes'+i); if(res){ res.textContent = ok ? 'Acertou!' : 'Tente novamente.'; res.style.color = ok ? 'green' : 'red'; } });
     }
-    renderVerbFill(); renderDoDoes(); renderClassify(); renderTransform(); renderOrdering(); renderDictation(); renderMatchVocab(); renderTrueFalse();
+    function renderTextGame(){
+      const pairs = Array.isArray(data.pairs) ? data.pairs.slice(0,20) : [];
+      const vocab = Array.isArray(data.vocabulary) ? data.vocabulary.slice(0,20) : [];
+      const textParts = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
+      const levelTag = (location.hash.split('/')[2]||'').toUpperCase();
+      const titleTag = String(data.title||'').trim();
+      let qSrc = [];
+      if (pairs.length) {
+        const translations = pairs.map(p=>fixPT(p.pt)).filter(Boolean);
+        qSrc = pairs.map(p=>{
+          const correct = fixPT(p.pt);
+          const opts = [correct];
+          const distractors = translations.filter(t=> t!==correct);
+          while (opts.length<4 && distractors.length){
+            const pick = distractors.splice(Math.floor(Math.random()*distractors.length),1)[0];
+            if (pick && !opts.includes(pick)) opts.push(pick);
+          }
+          const shuffled = opts.sort(()=>Math.random()-0.5);
+          return { type:'tr', prompt:p.en, options:shuffled, answer:shuffled.indexOf(correct) };
+        });
+      } else if (vocab.length) {
+        const meanings = vocab.map(v=>v.meaning || v.translation || '').filter(Boolean);
+        qSrc = vocab.map(v=>{
+          const correct = v.meaning || v.translation || '';
+          const opts = [correct];
+          const distractors = meanings.filter(t=> t!==correct);
+          while (opts.length<4 && distractors.length){
+            const pick = distractors.splice(Math.floor(Math.random()*distractors.length),1)[0];
+            if (pick && !opts.includes(pick)) opts.push(pick);
+          }
+          const shuffled = opts.sort(()=>Math.random()-0.5);
+          return { type:'voc', prompt:(v.word || v.en || v.term || ''), options:shuffled, answer:shuffled.indexOf(correct) };
+        });
+      } else {
+        const parts = textParts.slice(0,10);
+        qSrc = parts.map(s=>{
+          const correct = s;
+          const opts = [correct, 'I drive the tractor.', 'We check the water.', 'He feeds the cows.'].sort(()=>Math.random()-0.5);
+          return { type:'sent', prompt:'Qual frase apareceu no texto?', options:opts, answer:opts.indexOf(correct) };
+        });
+      }
+      const auxItems = (()=>{
+        const items = [];
+        const pick = (textParts.length ? textParts : (pairs.map(p=>p.en)) ).slice(0,6);
+        pick.forEach(s=>{
+          const clean = String(s||'').trim();
+          const words = clean.split(/\s+/);
+          const subj = words[0]||'It';
+          const isBe = /^(is|are|am)$/i.test(words[1]||'');
+          if (isBe) return;
+          const needDoes = /^(he|she|it|the|a|an)$/i.test(subj);
+          const rest = clean.replace(/^\w+\s+/,'').replace(/[.?!]+$/,'');
+          const prompt = `Complete com do/does: [____] ${rest}?`;
+          const options = ['do','does'];
+          const answer = needDoes ? 1 : 0;
+          items.push({ type:'aux', prompt, options, answer });
+        });
+        return items.slice(0,5);
+      })();
+      const tfItems = (()=>{
+        const items = [];
+        const parts = textParts.slice(0,8);
+        const altWords = ['tractor','water','cow','milk','field','greenhouse','fence','storm','engine','seat','wheel'];
+        function makeFalse(s){ const w=s.split(/\s+/); for(let i=0;i<w.length;i++){ const k=w[i].toLowerCase().replace(/[^a-z]/gi,''); if(altWords.includes(k)){ const pick=altWords[(altWords.indexOf(k)+3)%altWords.length]; w[i]=pick[0].toUpperCase()+pick.slice(1)+( /[.,!?]$/.test(w[i])?w[i].match(/[.,!?]$/)[0]:'' ); break; } } return w.join(' '); }
+        parts.forEach((s,i)=>{ const truth = i%2===0; const shown = truth ? s : makeFalse(s); items.push({ type:'tf', prompt: shown, options:['Verdadeiro','Falso'], answer: truth?0:1 }); });
+        return items;
+      })();
+
+      const ordItems = (()=>{
+        const items = [];
+        const parts = textParts.slice(0,4);
+        parts.forEach(s=>{
+          const clean = String(s||'').trim().replace(/[.?!]+$/,'');
+          const words = clean.split(/\s+/);
+          if (words.length < 4) return;
+          const shuffled = [...words].sort(()=>Math.random()-0.5);
+          items.push({ type:'ord', prompt:'Ordene as palavras para formar a frase:', options: shuffled, answer: words });
+        });
+        return items;
+      })();
+
+      const negItems = (()=>{
+        const items = [];
+        const parts = textParts.slice(0,6);
+        parts.forEach(s=>{
+          const clean = String(s||'').trim();
+          const words = clean.split(/\s+/);
+          if (words.length < 2) return;
+          const subj = words[0];
+          const needDoesnt = /^(he|she|it|the|a|an)$/i.test(subj);
+          const rest = clean.replace(/^[^\s]+\s+/,'').replace(/[.?!]+$/,'');
+          items.push({ type:'neg', prompt:`Complete com don't/doesn't: [____] ${rest}.`, options:["don't","doesn't"], answer: needDoesnt?1:0 });
+        });
+        return items;
+      })();
+
+      const seqItems = (()=>{
+        const items = [];
+        const parts = textParts.slice(0,6).filter(Boolean);
+        if (parts.length >= 3){
+          for (let i=0;i<parts.length-2;i+=3){
+            const group = parts.slice(i,i+3);
+            if (group.length<3) break;
+            const cleaned = group.map(s=> String(s||'').trim().replace(/[.?!]+$/,''));
+            const shuffled = [...cleaned].sort(()=>Math.random()-0.5);
+            items.push({ type:'seq', prompt:'Ordene as sentenças (sequência lógica):', options: shuffled, answer: cleaned });
+          }
+        }
+        return items;
+      })();
+
+      function shuffle(arr){ return arr.sort(()=>Math.random()-0.5); }
+      qSrc = shuffle([...auxItems, ...negItems, ...tfItems, ...ordItems, ...seqItems, ...qSrc]).slice(0,25);
+      if (!qSrc.length) return;
+
+      let score = 0; let streak = 1; let lives = 3; let timeLeft = 60; let qi = 0; let timer = null; let playing = false; let hintsLeft = 2; let best = 0;
+      try { best = Number(localStorage.getItem('textSprintHiScore:'+levelTag)||0) } catch {}
+      const hud = `<div id="gameHUD" class="small" style="display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap"><div style="font-weight:600">${titleTag} · ${levelTag}</div><div>Pontuação <span id="gScore">0</span></div><div>Série x<span id="gStreak">1</span></div><div style="flex:1;min-width:160px"><div style="height:8px;background:#e6f1ec;border-radius:6px;overflow:hidden"><div id="gProg" style="width:0%;height:8px;background:linear-gradient(90deg,#0b3a1e,#36a269);transition:width .3s"></div></div></div><div>Tempo <span id="gTime">60</span>s</div><div>Vidas <span id="gLives">♥♥♥</span></div><div>Melhor <span id="gBest">${best}</span></div></div>`;
+
+      let gameEl = document.getElementById('gameTop') || gEx;
+      if (gameEl) {
+        const fresh = gameEl.cloneNode(false);
+        fresh.id = gameEl.id;
+        gameEl.parentNode.replaceChild(fresh, gameEl);
+        gameEl = document.getElementById(fresh.id);
+      }
+      gameEl.innerHTML = `<div class="card" style="background:linear-gradient(180deg,#f7fbf9,#ffffff);border:1px solid #cfe3d8;box-shadow:0 6px 20px rgba(11,58,30,0.08)"><div class="section-title">Game: Text Sprint</div><div>${hud}</div><div id="gameToolbar" style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn secondary" id="gameListen">Ouvir</button><button class="btn secondary" id="gameHint">Dica (2)</button><div id="gDiff" class="diff"><span class="small diff-label">Dificuldade</span><div class="diff-options"><button class="btn sm secondary" data-gdiff="easy">Fácil</button><button class="btn sm secondary" data-gdiff="normal">Normal</button><button class="btn sm secondary" data-gdiff="hard">Difícil</button></div></div></div><div id="gameQ" class="card" style="margin-top:8px;background:#ffffff;border:1px solid #dbe7e1;word-wrap:break-word"> </div><div id="gameOpts" style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px"></div><div id="gameOrdSeq" class="small" style="margin-top:6px"></div><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="gameStart">Start</button> <button class="btn secondary" id="gameStop">Stop</button><button class="btn sm secondary" id="gameResetOrd" style="display:none">Reset frase</button></div><div class="small" id="gameRes" style="margin-top:8px"></div></div>`;
+      function livesStr(n){ return Array.from({length:Math.max(0,n)},()=> '♥').join('') || '–'; }
+      function updateHUD(){ const s=document.getElementById('gScore'); const st=document.getElementById('gStreak'); const t=document.getElementById('gTime'); const l=document.getElementById('gLives'); const p=document.getElementById('gProg'); const b=document.getElementById('gBest'); if(s) s.textContent=String(score); if(st) st.textContent=String(streak); if(t) t.textContent=String(timeLeft); if(l) l.textContent=livesStr(lives); if(p) p.style.width = `${Math.round(((qi)/qSrc.length)*100)}%`; if(b) b.textContent = String(best); const hintBtn=document.getElementById('gameHint'); if(hintBtn) hintBtn.textContent = `Dica (${hintsLeft})`; }
+      function showQuestion(){ const q=qSrc[qi]; const qEl=document.getElementById('gameQ'); const oEl=document.getElementById('gameOpts'); const seqEl=document.getElementById('gameOrdSeq'); const resetBtn=document.getElementById('gameResetOrd'); if(!qEl||!oEl) return; if(q.type==='ord'){ qEl.innerHTML = 'Ordene as palavras para formar a frase:'; const words = q.options.map(w=>w); oEl.innerHTML = words.map((w,j)=>`<button class="btn secondary" data-gword="${j}">${w}</button>`).join(' '); q.user = []; if(seqEl) seqEl.textContent = ''; if(resetBtn) resetBtn.style.display='inline-block'; } else if(q.type==='seq'){ qEl.innerHTML = 'Ordene as sentenças (sequência lógica):'; const sents = q.options.map(w=>w); oEl.innerHTML = sents.map((w,j)=>`<button class="btn secondary" data-gsent="${j}">${w}</button>`).join(' '); q.user = []; if(seqEl) seqEl.textContent=''; if(resetBtn) resetBtn.style.display='inline-block'; } else { if(resetBtn) resetBtn.style.display='none'; qEl.innerHTML = q.type==='tr' ? `Tradução correta: "${q.prompt}"` : (q.type==='voc' ? `Qual é a tradução de "${q.prompt}"?` : (q.type==='tf' ? q.prompt : (q.type==='neg' ? q.prompt : q.prompt))); oEl.innerHTML = q.options.map((op,j)=>`<button class="btn" style="background:#0b3a1e;color:#fff" data-gopt="${j}">${op}</button>`).join(' '); if(seqEl) seqEl.textContent = ''; }
+      }
+      function next(){ qi++; updateHUD(); if(qi>=qSrc.length){ end('Parabéns! Concluiu todas as questões.'); return; } showQuestion(); }
+      function end(msg){ playing=false; clearInterval(timer); const r=document.getElementById('gameRes'); const stars = score>=180?3: score>=120?2: score>=60?1:0; try { if(score>best){ best=score; localStorage.setItem('textSprintHiScore:'+levelTag, String(best)); } } catch {} if(r){ r.innerHTML = `${msg} Pontuação: ${score}. ${'★'.repeat(stars)}${stars?'' : ''}`; r.style.color = 'green'; } updateHUD(); }
+      gameEl.addEventListener('click',(e)=>{ const t=e.target; if(t.id==='gameStart'){ if(playing) return; playing=true; score=0; streak=1; lives=3; timeLeft=60; hintsLeft=2; qi=0; updateHUD(); showQuestion(); clearInterval(timer); timer=setInterval(()=>{ timeLeft--; updateHUD(); if(timeLeft<=0) end('Tempo esgotado.'); },1000); } else if(t.id==='gameStop'){ end('Jogo encerrado.'); } else if(t.id==='gameListen'){ const q=qSrc[qi]; try { let say = ''; if(q.type==='tr'){ say = q.prompt; } else if(q.type==='voc'){ say = q.prompt; } else if(q.type==='aux'){ say = q.prompt.replace(/Complete com do\/does: \[____\]\s*/,'').replace(/\?$/,''); } else { say = q.prompt; } if (say) speak(say); } catch {} } else if(t.id==='gameHint'){ if(!playing || hintsLeft<=0) return; hintsLeft--; const oEl=document.getElementById('gameOpts'); const q=qSrc[qi]; const wrongIdx = [0,1,2,3].filter(i=> i!==q.answer).sort(()=>Math.random()-0.5).slice(0,2); wrongIdx.forEach(i=>{ const btn = oEl.querySelector(`[data-gopt="${i}"]`); if(btn){ btn.disabled = true; btn.style.opacity = '0.6'; } }); updateHUD(); } else if(t.id==='gameResetOrd'){ const q=qSrc[qi]; if(q.type==='ord' || q.type==='seq'){ q.user=[]; const seqEl=document.getElementById('gameOrdSeq'); if(seqEl) seqEl.textContent=''; const oEl=document.getElementById('gameOpts'); oEl.querySelectorAll('[data-gword],[data-gsent]').forEach(b=>{ b.disabled=false; b.style.opacity='1'; }); } } else if(t.dataset.gdiff!==undefined){ const mode=t.dataset.gdiff; if(mode==='easy'){ timeLeft=90; lives=4; } else if(mode==='hard'){ timeLeft=45; lives=2; } else { timeLeft=60; lives=3; } updateHUD(); } else if(t.dataset.gopt!==undefined){ if(!playing) return; const j=Number(t.dataset.gopt); const q=qSrc[qi]; const r=document.getElementById('gameRes'); if(q.type!=='ord' && q.type!=='seq'){ const ok = j===q.answer; if(ok){ score += 10*streak; streak = Math.min(streak+1,5); if(r){ r.textContent='Acertou!'; r.style.color='green'; } next(); } else { streak=1; lives--; if(r){ r.textContent='Tente novamente.'; r.style.color='red'; } if(lives<=0){ end('Acabaram as vidas.'); return; } updateHUD(); } } } else if(t.dataset.gword!==undefined){ if(!playing) return; const q=qSrc[qi]; const seqEl=document.getElementById('gameOrdSeq'); const idx = Number(t.dataset.gword); q.user = q.user || []; q.user.push(q.options[idx]); t.disabled=true; t.style.opacity='0.6'; if(seqEl){ seqEl.textContent = q.user.join(' '); } if(q.user.length === q.options.length){ const ok = q.user.join(' ') === q.answer.join(' '); const r=document.getElementById('gameRes'); if(ok){ score += 12*streak; streak = Math.min(streak+1,5); if(r){ r.textContent='Acertou!'; r.style.color='green'; } next(); } else { streak=1; lives--; if(r){ r.textContent='Tente novamente.'; r.style.color='red'; } if(lives<=0){ end('Acabaram as vidas.'); return; } updateHUD(); } } } else if(t.dataset.gsent!==undefined){ if(!playing) return; const q=qSrc[qi]; const seqEl=document.getElementById('gameOrdSeq'); const idx = Number(t.dataset.gsent); q.user = q.user || []; q.user.push(q.options[idx]); t.disabled=true; t.style.opacity='0.6'; if(seqEl){ seqEl.textContent = q.user.join('  |  '); } if(q.user.length === q.options.length){ const ok = q.user.join(' ') === q.answer.join(' '); const r=document.getElementById('gameRes'); if(ok){ score += 14*streak; streak = Math.min(streak+1,5); if(r){ r.textContent='Acertou!'; r.style.color='green'; } next(); } else { streak=1; lives--; if(r){ r.textContent='Tente novamente.'; r.style.color='red'; } if(lives<=0){ end('Acabaram as vidas.'); return; } updateHUD(); } } }
+      });
+    }
+    renderTextGame(); renderClassify(); renderTransform(); renderOrdering(); renderDictation(); renderMatchVocab(); renderTrueFalse();
   }
 
   function renderVerbs(data) {
@@ -1100,94 +1230,152 @@ async function setupAudio(data) {
     `;
   }
 
-  function renderMC(data) {
-    const mcEl = document.querySelector('#mc');
-    let src;
-
-    if (data && data.exercises && Array.isArray(data.exercises.multiple_choice) && data.exercises.multiple_choice.length) {
-        src = data.exercises.multiple_choice.map(q => {
-            const correctAnswer = q.options[q.answer];
-            const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
-            const newAnswer = shuffledOptions.indexOf(correctAnswer);
-            return {
-                question: q.question,
-                options: shuffledOptions,
-                answer: newAnswer
-            };
-        });
-    } else {
-        src = (() => {
-          const pairs = Array.isArray(data.pairs) ? data.pairs.slice(0,8) : [];
-          if (pairs.length) {
-            return pairs.map(p => {
-              const correctAnswer = fixPT(p.pt);
-              const options = [correctAnswer, 'Trator', 'Estufa', 'Segurança'].sort(() => Math.random() - 0.5);
-              const answer = options.indexOf(correctAnswer);
-              return { question: `Tradução correta: "${p.en}"`, options, answer };
-            });
-          }
-          const voc = Array.isArray(data.vocabulary) ? data.vocabulary : [];
-          const items = voc.slice(0,8);
-          return items.map((v)=>{
-            const correctAnswer = v.meaning;
-            const distractors = voc.map(v=>v.meaning).filter(Boolean).filter(m => m !== correctAnswer);
-            const opts = [correctAnswer];
-            while (opts.length<4 && distractors.length) {
-              const pick = distractors.splice(Math.floor(Math.random()*distractors.length), 1)[0];
-              if (!opts.includes(pick)) opts.push(pick);
-            }
-            const shuffledOpts = opts.sort(()=>Math.random()-0.5);
-            const answer = shuffledOpts.indexOf(correctAnswer);
-            return { question:`Qual é a tradução de "${v.word}"?`, options: shuffledOpts, answer };
-          });
-        })();
+  function buildExercises(data){
+    const pairs = Array.isArray(data.pairs) ? data.pairs : [];
+    const voc = Array.isArray(data.vocabulary) ? data.vocabulary : [];
+    const textParts = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
+    let mc = [];
+    if (pairs.length) {
+      mc = pairs.slice(0,8).map(p=>{
+        const correct = fixPT(p.pt);
+        const options = [correct, 'Trator', 'Estufa', 'Segurança'].sort(()=>Math.random()-0.5);
+        const answer = options.indexOf(correct);
+        return { question: `Tradução correta: "${p.en}"`, options, answer };
+      });
+    } else if (voc.length) {
+      const meanings = voc.map(v=> typeof v === 'string' ? '' : (v.meaning || v.translation || '')).filter(Boolean);
+      mc = voc.slice(0,8).map(v=>{
+        const correct = typeof v === 'string' ? v : (v.meaning || v.translation || '');
+        const opts = [correct];
+        const distractors = meanings.filter(m=> m && m!==correct);
+        while (opts.length<4 && distractors.length){
+          const pick = distractors.splice(Math.floor(Math.random()*distractors.length),1)[0];
+          if (pick && !opts.includes(pick)) opts.push(pick);
+        }
+        const shuffled = opts.sort(()=>Math.random()-0.5);
+        const answer = shuffled.indexOf(correct);
+        const word = typeof v === 'string' ? v : (v.word || v.en || v.term || '');
+        return { question: `Qual é a tradução de "${word}"?`, options: shuffled, answer };
+      });
+    } else if (textParts.length) {
+      mc = textParts.slice(0,5).map(s=>{
+        const correct = s;
+        const opts = [correct, 'I drive the tractor.', 'We check the water.', 'He feeds the cows.'].sort(()=>Math.random()-0.5);
+        const answer = opts.indexOf(correct);
+        return { question: 'Qual frase apareceu no texto?', options: opts, answer };
+      });
     }
 
-    mcEl.innerHTML = src.map((q,i)=>`
+    let fill = [];
+    if (pairs.length) {
+      const domain = /^(tractor|water|gloves|masks|record|monitor|feed|start|drive|check|clean|park|runs|engine|seat|wheel)$/i;
+      fill = pairs.slice(0,6).map(p=>{
+        const words = String(p.en||'').split(/\s+/);
+        const target = words.find(w=>domain.test(w.replace(/[.,]/g,''))) || words[1] || words[0] || '';
+        const rx = new RegExp(`\\b${target.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\b`,'i');
+        const blanked = String(p.en||'').replace(rx,'____');
+        return { sentence: blanked, answer: target.replace(/[.,]/g,'').toLowerCase() };
+      });
+    }
+    if (!fill.length && textParts.length) {
+      const verbsStr = String(data.verbs||'');
+      const vb = (verbsStr.includes(':') ? verbsStr.split(':')[1] : verbsStr).split(',').map(s=>s.trim()).filter(Boolean);
+      const buildFromVerbs = [];
+      for (let i=0;i<textParts.length;i++){
+        const s = textParts[i];
+        const rx = vb.length ? new RegExp(`\\b(${vb.join('|')})(es|s)?\\b`,'i') : null;
+        const m = rx ? s.match(rx) : null;
+        if (m){
+          const blanked = s.replace(rx,'____');
+          const ans = (m[0]||'').toLowerCase().replace(/[.,]/g,'');
+          buildFromVerbs.push({ sentence: blanked, answer: ans });
+        }
+        if (buildFromVerbs.length>=6) break;
+      }
+      fill = buildFromVerbs.length ? buildFromVerbs : textParts.slice(0,6).map(s=>{
+        const w = (s.split(/\s+/)[1]||s.split(/\s+/)[0]||'drive').replace(/[.,]/g,'');
+        const rx = new RegExp(`\\b${w}\\b`,'i');
+        const blanked = s.replace(rx,'____');
+        return { sentence: blanked, answer: w.toLowerCase() };
+      });
+    }
+
+    const speaking = `Repeat: ${data.title||''}`;
+    return { multiple_choice: mc, fill_in: fill, speaking };
+  }
+
+  function renderMC(data) {
+    let mcEl = document.querySelector('#mc');
+    if (mcEl) {
+      const fresh = mcEl.cloneNode(false);
+      fresh.id = 'mc';
+      mcEl.parentNode.replaceChild(fresh, mcEl);
+      mcEl = document.querySelector('#mc');
+    }
+    const exercises = (data && data.exercises && Array.isArray(data.exercises.multiple_choice)) ? data.exercises.multiple_choice : [];
+
+    if (!exercises.length) {
+        mcEl.innerHTML = '<div class="small">Sem questões de múltipla escolha disponíveis.</div>';
+        return;
+    }
+
+    const renderedQuestions = exercises.map(q => {
+        const correctAnswer = q.options[q.answer];
+        const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+        const newAnswerIndex = shuffledOptions.indexOf(correctAnswer);
+        return {
+            question: q.question,
+            options: shuffledOptions,
+            answer: newAnswerIndex
+        };
+    });
+
+    mcEl.innerHTML = renderedQuestions.map((q,i)=>`
       <div class="card">
         <div><strong>${i+1}. ${q.question}</strong></div>
         <div style="margin-top:6px">${q.options.map((op,j)=>`<button class="btn secondary" data-mc="${i}" data-idx="${j}">${op}</button>`).join(' ')}</div>
         <div class="small" id="mcRes${i}" style="margin-top:6px"></div>
       </div>
-    `).join('') || '<div class="small">Sem questões disponíveis.</div>';
+    `).join('');
 
     mcEl.addEventListener('click', (e) => {
       const t = e.target;
       if (!t.dataset.mc) return;
       const qi = Number(t.dataset.mc);
       const oi = Number(t.dataset.idx);
-      const ok = oi === src[qi].answer;
+      const ok = oi === renderedQuestions[qi].answer;
       const resEl = document.getElementById('mcRes' + qi);
-      resEl.textContent = ok ? 'Acertou!' : 'Tente novamente.';
-      resEl.style.color = ok ? 'green' : 'red';
+      if (resEl) {
+        resEl.textContent = ok ? 'Acertou!' : 'Tente novamente.';
+        resEl.style.color = ok ? 'green' : 'red';
+      }
     });
   }
 
   function renderFill(data) {
-    const fillEl = document.querySelector('#fill');
-    const src = (data && data.exercises && Array.isArray(data.exercises.fill_in) && data.exercises.fill_in.length) ? data.exercises.fill_in : (()=>{
-      const pairs = Array.isArray(data.pairs) ? data.pairs.slice(0,6) : [];
-      if (pairs.length) {
-        return pairs.map(p=>{
-          const words = p.en.split(' ');
-          const target = words.find(w=>/^(tractor|water|gloves|masks|record|monitor|feed|start)$/i.test(w)) || words[1] || words[0];
-          return { sentence: p.en.replace(target,'____'), answer: target.replace(/[.,]/g,'').toLowerCase() };
-        });
-      }
-      const textParts = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
-      const verbs = String(data.verbs||'').split(':')[1] || String(data.verbs||'');
-      const baseVerbs = verbs.split(',').map(s=>s.trim()).filter(Boolean);
-      const items = textParts.slice(0,6).map((s)=>{
-        const v = baseVerbs.find(vv=> new RegExp(`\b${vv}(s)?\b`,'i').test(s));
-        if (v) return { sentence: s.replace(new RegExp(`\b${v}(s)?\b`,'i'),'____'), answer: v.replace(/s$/,'') };
-        const w = (s.split(' ')[2]||'tractor');
-        return { sentence: s.replace(w,'____'), answer: w.replace(/[.,]/g,'').toLowerCase() };
-      });
-      return items;
-    })();
+    let fillEl = document.querySelector('#fill');
+    if (fillEl) {
+      const fresh = fillEl.cloneNode(false);
+      fresh.id = 'fill';
+      fillEl.parentNode.replaceChild(fresh, fillEl);
+      fillEl = document.querySelector('#fill');
+    }
+    const src = (data && data.exercises && Array.isArray(data.exercises.fill_in)) ? data.exercises.fill_in : [];
+    
+    if (!src.length) {
+        fillEl.innerHTML = '<div class="small">Sem itens para completar.</div>';
+        return;
+    }
+
     fillEl.innerHTML = src.map((f,i)=>`
       <div class="card"><div>${i+1}. ${f.sentence.replace('____',`<input class="blank" data-fill="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`)}</div></div>
-    `).join('') || '<div class="small">Sem itens para completar.</div>';
+    `).join('');
+
+    const checkBtn = document.querySelector('#checkFill');
+    if (checkBtn) {
+      const freshBtn = checkBtn.cloneNode(true);
+      checkBtn.parentNode.replaceChild(freshBtn, checkBtn);
+    }
     document.querySelector('#checkFill').addEventListener('click', () => {
       const inputs = fillEl.querySelectorAll('input.blank');
       let correctCount = 0;
@@ -1272,7 +1460,7 @@ async function setupAudio(data) {
     }
   }
 
-  function a1ToLegacy(item) {
+  function generateExercises(item, idx) {
     const tm = item.teaching_modules || {};
     const vocab = Array.isArray(tm.vocabulary)
       ? tm.vocabulary.map(v => ({ word: String(v.word||'').toLowerCase(), meaning: String(v.translation||'').toLowerCase() }))
@@ -1342,6 +1530,8 @@ async function setupAudio(data) {
     const grammarForms = (lvl === 'B1') ? null : (forms.affirmative ? forms : (item.grammar_forms || null));
 
     let mc = [];
+    const textSentences = String(item.text_en||'').split(/(?<=[.!?])\s+/).filter(Boolean);
+
     if (Array.isArray(vocab) && vocab.length) {
       const meanings = vocab.map(v=>v.meaning).filter(Boolean);
       mc = vocab.slice(0,5).map(v => {
@@ -1353,19 +1543,66 @@ async function setupAudio(data) {
           const pick = distractors.splice(pickIdx,1)[0];
           if (pick && !opts.includes(pick)) opts.push(pick);
         }
-        const shuffled = opts.sort(()=>Math.random()-0.5);
-        const answer = shuffled.indexOf(correct);
-        return { question: `Qual é a tradução de "${v.word}"?`, options: shuffled, answer };
+        return { question: `Qual é a tradução de "${v.word}"?`, options: opts, answer: opts.indexOf(correct) };
       });
-    } else {
-      const parts = String(item.text_en||'').split(/(?<=[.!?])\s+/).filter(Boolean).slice(0,5);
-      mc = parts.map(s => {
+    } else if (textSentences.length > 1) {
+      mc = textSentences.slice(0, 5).map((s, i) => {
         const correct = s;
-        const opts = [correct, 'I drive the tractor.', 'We check the water.', 'He feeds the cows.'].sort(()=>Math.random()-0.5);
-        const answer = opts.indexOf(correct);
-        return { question: 'Qual frase apareceu no texto?', options: opts, answer };
+        const distractors = textSentences.filter(ds => ds !== correct);
+        const opts = [correct];
+        while(opts.length < 4 && distractors.length > 0) {
+            const d = distractors.splice(Math.floor(Math.random() * distractors.length), 1)[0];
+            if(d) opts.push(d);
+        }
+        return { question: 'Qual frase apareceu no texto?', options: opts, answer: opts.indexOf(correct) };
       });
     }
+
+    let fillItems = [];
+    const textParts = String(item.text_en||'').split(/(?<=[.!?])\s+/).filter(Boolean);
+    const vb = Array.isArray(verbsBase) ? verbsBase : [];
+    if (vb.length) {
+      for (let i=0;i<textParts.length;i++) {
+        const s = textParts[i];
+        const rx = new RegExp(`\\b(${vb.join('|')})(es|s)?\\b`, 'i');
+        const m = s.match(rx);
+        if (m) {
+          const blanked = s.replace(rx,'____');
+          const ans = (m[0]||'').toLowerCase().replace(/[.,]/g,'');
+          fillItems.push({ sentence: blanked, answer: ans });
+          if (fillItems.length>=6) break;
+        }
+      }
+    }
+    
+    if (fillItems.length < 6) {
+        const stopWords = ['a','an','the','in','on','at','is','am','are','i','you','he','she','it','we','they','to','of','for','and','but','or'];
+        const parts = textParts.slice(0, 6 - fillItems.length);
+        for (let i=0;i<parts.length;i++) {
+            const s = parts[i];
+            const words = s.replace(/[.,!?]+$/, '').split(/\s+/);
+            let targetWord = null;
+            // Find a word that is not a stopword and is longer than 2 chars
+            for(const w of words) {
+                if(!stopWords.includes(w.toLowerCase()) && w.length > 2) {
+                    targetWord = w;
+                    break;
+                }
+            }
+            // Fallback to second word if no suitable word is found
+            if(!targetWord) {
+                targetWord = words.length > 1 ? words[1] : words[0];
+            }
+
+            if(targetWord){
+                const rx = new RegExp(`\\b${targetWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+                const blanked = s.replace(rx, '____');
+                fillItems.push({ sentence: blanked, answer: targetWord.toLowerCase() });
+            }
+        }
+    }
+
+    fillItems = fillItems.slice(0,6);
     return {
       title: item.title || `Texto ${idx}`,
       text: item.text_en || '',
@@ -1373,7 +1610,7 @@ async function setupAudio(data) {
       vocabulary: vocab,
       grammar: grammarText,
       verbs: verbsStr,
-      exercises: { multiple_choice: mc, fill_in: [], speaking: `Repeat: ${item.title||''}` },
+      exercises: { multiple_choice: mc, fill_in: fillItems, speaking: `Repeat: ${item.title||''}` },
       he_she_it_rule: heSheItExample ? { example: heSheItExample } : (item.he_she_it_rule || null),
       grammar_forms: grammarForms,
       usage_table: item.usage_table || null,
@@ -1387,7 +1624,7 @@ async function setupAudio(data) {
       return (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json())))
         .then(items => {
           const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
-          return a1ToLegacy(item);
+          return generateExercises(item, idx);
         });
     }
     if (level === 'A2') {
@@ -1396,7 +1633,7 @@ async function setupAudio(data) {
       return (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json())))
         .then(items => {
           const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
-          return a1ToLegacy(item);
+          return generateExercises(item, idx);
         });
     }
     if (level === 'B1') {
@@ -1405,13 +1642,14 @@ async function setupAudio(data) {
       return (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json())))
         .then(items => {
           const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
-          return a1ToLegacy(item);
+          return generateExercises(item, idx);
         });
     }
     return fetch(path1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(path2).then(r=>r.json()));
   }
   fetchText()
     .then((data) => {
+      
       setupUI(data);
       renderLines(data);
       setupAudio(data);
