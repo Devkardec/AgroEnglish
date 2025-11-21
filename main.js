@@ -628,6 +628,8 @@ async function setupAudio(data) {
   let hasMp3 = false;
   const audio = new Audio();
   audio.preload = 'none';
+  const audioStatusEl = document.getElementById('audioStatus');
+  function renderAudioStatus(){ if(audioStatusEl) audioStatusEl.textContent = hasMp3 ? 'Áudio disponível' : 'Voz sintética'; }
   function narrate(txt) { if (!txt) return; speak(txt); }
 
   const title = String(data && data.title || '').trim();
@@ -644,10 +646,11 @@ async function setupAudio(data) {
   const fileName = encodeURIComponent(`${title} · ${level}.mp3`);
   const base = `./src/audio/${level}/`;
   const url = base + fileName;
+  renderAudioStatus();
   (async () => {
     try {
       const r = await fetch(url, { method: 'HEAD' });
-      if (r.ok) { audio.src = url; hasMp3 = true; }
+      if (r.ok) { audio.src = url; hasMp3 = true; renderAudioStatus(); }
     } catch {}
   })();
 

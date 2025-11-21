@@ -39,6 +39,7 @@ export function TextPage(level, index) {
           <button class="btn secondary" data-speed="1">1x</button>
           <button class="btn secondary" data-speed="1.5">1.5x</button>
           <button class="btn" id="toggleTr">Mostrar/Ocultar tradução</button>
+          <span id="audioStatus" class="small" style="align-self:center"></span>
         </div>
         <div id="lines" class="lines" style="margin-top:8px"></div>
 
