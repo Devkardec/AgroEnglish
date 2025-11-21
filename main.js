@@ -768,14 +768,14 @@ async function setupAudio(data) {
                   Ex.: <strong>I drive</strong> · <strong>He drive<span style="color:#c2132a;font-weight:800">s</span></strong>.
                 </li>
                 <li><strong>Negativa:</strong> 
-                  <span style="color:#123b7a;font-weight:800">don't</span> para I/You/We/They · 
-                  <span style="color:#123b7a;font-weight:800">doesn't</span> para He/She/It. 
-                  Ex.: <strong>We <span style="color:#123b7a">don't</span> check</strong> · 
-                  <strong>He <span style="color:#123b7a">doesn't</span> check</strong>.
+                  <span style="font-weight:800">don't</span> para I/You/We/They · 
+                  <span style="font-weight:800">doesn't</span> para He/She/It. 
+                  Ex.: <strong>We <span style="font-weight:800">don't</span> check</strong> · 
+                  <strong>He <span style="font-weight:800">doesn't</span> check</strong>.
                 </li>
                 <li><strong>Pergunta:</strong> 
-                  <span style="color:#123b7a;font-weight:800">Do</span> (I/You/We/They) · 
-                  <span style="color:#123b7a;font-weight:800">Does</span> (He/She/It) + verbo base. 
+                  <span style="font-weight:800">Do</span> (I/You/We/They) · 
+                  <span style="font-weight:800">Does</span> (He/She/It) + verbo base. 
                   Ex.: <strong>Do you work?</strong> · <strong>Does he drive?</strong>
                 </li>
                 <li><strong>Exemplos agro curtos:</strong> 

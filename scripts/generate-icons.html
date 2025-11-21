@@ -5,35 +5,51 @@
 </head>
 <body>
   <h1>Icon Generator</h1>
-  <p>Open the console to see the generated icons.</p>
+  <p>Selecione a imagem do seu logo para gerar ícones em vários tamanhos.</p>
+  <input type="file" id="file" accept="image/*" />
+  <div id="links" style="margin-top:12px"></div>
 
   <script>
-    const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-      <rect width="256" height="256" rx="48" fill="#0a7c52"/>
-      <g fill="#ffffff" font-family="Arial, sans-serif" font-weight="700">
-        <text x="50%" y="48%" font-size="92" text-anchor="middle">AE</text>
-        <text x="50%" y="78%" font-size="28" text-anchor="middle">AgroEnglish</text>
-      </g>
-    </svg>`;
+    const sizes = [192, 512];
+    const input = document.getElementById('file');
+    const links = document.getElementById('links');
 
-    const sizes = [48, 72, 96, 128, 144, 152, 192, 384, 512];
-
-    const img = new Image();
-    img.onload = () => {
-      sizes.forEach(size => {
-        const canvas = document.createElement('canvas');
-        canvas.width = size;
-        canvas.height = size;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, size, size);
-        const dataUrl = canvas.toDataURL('image/png');
-        const a = document.createElement('a');
-        a.href = dataUrl;
-        a.download = `icon-${size}x${size}.png`;
-        a.click();
-      });
-    };
-    img.src = 'data:image/svg+xml;base64,' + btoa(svgContent);
+    input.addEventListener('change', () => {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          links.innerHTML = '';
+          sizes.forEach(size => {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#0b3a1e';
+            ctx.fillRect(0,0,size,size);
+            // Draw centered and cover
+            const scale = Math.max(size / img.width, size / img.height);
+            const w = img.width * scale;
+            const h = img.height * scale;
+            const x = (size - w) / 2;
+            const y = (size - h) / 2;
+            ctx.drawImage(img, x, y, w, h);
+            const dataUrl = canvas.toDataURL('image/png');
+            const a = document.createElement('a');
+            a.href = dataUrl;
+            a.download = `icon-${size}.png`;
+            a.textContent = `Baixar icon-${size}.png`;
+            a.style.display = 'inline-block';
+            a.style.marginRight = '8px';
+            links.appendChild(a);
+          });
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
   </script>
 </body>
 </html>

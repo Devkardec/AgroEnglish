@@ -5,19 +5,27 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0B2F6A",
-  "theme_color": "#0b2f6a",
+  "background_color": "#0b3a1e",
+  "theme_color": "#0f6a3a",
   "description": "PWA para inglês técnico rural: agricultura, pecuária, veterinária, máquinas e rotinas de fazenda.",
   "icons": [
     {
-      "src": "/public/icons/icon1.png",
+      "src": "/public/icons/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "/public/icons/incon2.png",
+      "src": "/public/icons/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/public/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
