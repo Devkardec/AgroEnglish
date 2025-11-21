@@ -1,5 +1,5 @@
 // It's recommended to update the cache name when you update the app.
-const CACHE = 'agroenglish-pro-v5';
+const CACHE = 'agroenglish-pro-v7';
 
 const PRECACHE = [
   '/',
@@ -18,8 +18,6 @@ const PRECACHE = [
   '/src/components/GlossaryCard.js',
   '/src/data/vocabularyData.js',
   '/public/manifest.json',
-  '/public/icons/icon.svg',
-  '/public/icons/icon-maskable.svg',
   '/src/data/texts/A1/basic.json',
   '/src/data/texts/A2/basic.json',
   '/src/data/texts/B1/basic.json',
