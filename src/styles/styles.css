@@ -1,6 +1,9 @@
 :root { --green:#0b2f6a; --green2:#c2132a; --blue:#123b7a; --bg:#f8f9fc; --card:#ffffff; --text:#0c1a2b; --muted:#6b778b; --size-xl:30px; --size-lg:18px; --size-md:15px; --size-sm:13px; --size-xs:12px }
 * { box-sizing: border-box; }
 html,body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, Arial, sans-serif; font-size:var(--size-md) }
+/* Acessibilidade: link para pular para o conteúdo */
+.skip-link { position:absolute; left:-999px; top:-999px; background:#fff; color:#000; padding:8px 12px; border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,0.06); z-index:1000 }
+.skip-link:focus { left:12px; top:12px }
 header { background:linear-gradient(90deg, var(--green), var(--green2)); color:#fff; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:10 }
 nav a { color:#fff; margin-right:12px; text-decoration:none; font-weight:600; }
 nav a.active { text-decoration:underline; }
