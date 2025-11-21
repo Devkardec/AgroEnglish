@@ -8,6 +8,7 @@ import { PhraseCard } from './src/components/PhraseCard.js';
 import { Glossary } from './src/pages/Glossary.js';
 import vocabularyData from './src/data/vocabularyData.js';
 import { GlossaryCard } from './src/components/GlossaryCard.js';
+import { Footer } from './src/components/Footer.js';
 
 const state = {
   voiceName: localStorage.getItem('voiceName') || '',
@@ -227,7 +228,7 @@ function render() {
   } else {
     view = Offline();
   }
-  app.innerHTML = Header() + view;
+  app.innerHTML = Header() + view + Footer();
   pageInit();
 }
 

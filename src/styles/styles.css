@@ -588,3 +588,12 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
 .forms-table th, .forms-table td, .rule-table th, .rule-table td { padding:6px 0; vertical-align:top }
 .forms-table th:first-child, .forms-table td:first-child, .rule-table th:first-child, .rule-table td:first-child { width:40% }
 .forms-table th:last-child, .forms-table td:last-child, .rule-table th:last-child, .rule-table td:last-child { width:60% }
+.app-footer { margin-top:20px; background:radial-gradient(circle at 50% 50%, #0f6a3a 0%, #0b3a1e 60%, #061c10 100%); color:#fff; border-top:1px solid #0b3a1e }
+.app-footer .container { max-width:1200px; margin:0 auto; padding:10px 14px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:12px }
+.app-footer .center-group { display:flex; align-items:center; justify-content:center; gap:8px; text-align:center }
+.app-footer .copy { font-size:13px; opacity:.95 }
+.app-footer .brand { filter:drop-shadow(0 4px 12px rgba(0,0,0,0.15)); max-width:110px; height:auto }
+.app-footer .social { display:flex; gap:8px }
+.app-footer .social .icon { color:#fff; display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:999px; background:rgba(255,255,255,0.12) }
+.app-footer .social .icon:hover { background:rgba(255,255,255,0.2) }
+@media (max-width:600px){ .app-footer .container { grid-template-columns:1fr; justify-items:center } .app-footer .social { margin-top:8px } }
