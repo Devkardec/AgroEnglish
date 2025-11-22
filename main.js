@@ -186,6 +186,71 @@ function highlightAction(en){
   return words.join(' ');
 }
 
+function parseSVC(en){
+  const txt = String(en||'').trim();
+  const baseTxt = txt.replace(/[.?!]+$/,'');
+  const words = baseTxt.split(/\s+/);
+  const firstTwo = words.slice(0,2).join(' ');
+  let subjLen = 1;
+  if (/^the$/i.test(words[0]) && words.length>=2) subjLen = 2;
+  else if (/^(sprayer calibration|veterinary biosecurity|canadian winter|the tractor|the soil)/i.test(firstTwo)) subjLen = 2;
+  const auxIdx = words.findIndex(w=>/^(do|does|don't|doesn't|did|will|can|should|must|may|is|are|am)$/i.test(w.replace(/[.,!?;:]+$/,'')));
+  let verbIdx = subjLen;
+  let verb = words[verbIdx]||'';
+  if (auxIdx>=0){
+    const auxWord = words[auxIdx].replace(/[.,!?;:]+$/,'');
+    if (/^(is|are|am)$/i.test(auxWord)) { verbIdx = auxIdx; verb = auxWord; }
+    else if (auxIdx+1 < words.length) { verbIdx = auxIdx+1; verb = words[verbIdx].replace(/[.,!?;:]+$/,''); }
+  } else {
+    verb = (words[verbIdx]||'').replace(/[.,!?;:]+$/,'');
+  }
+  const subject = words.slice(0, subjLen).join(' ');
+  const complement = words.slice(verbIdx+1).join(' ');
+  return { subject, verb, complement };
+}
+
+function svcExplain(en){
+  const p = parseSVC(en);
+  const comp = p.complement ? p.complement : '-';
+  return `<div class="small" style="margin-top:4px">Sujeito: <strong>${p.subject}</strong> · Verbo: <strong>${p.verb}</strong> · Complemento: <strong>${comp}</strong></div>`;
+}
+
+function colorVerbToken(token){
+  const t = String(token||'');
+  const isThird = /(ies|es|s)$/i.test(t);
+  const cls = isThird ? 'verb-third' : 'verb-base';
+  return `<span class="verb ${cls}">${t}</span>`;
+}
+
+function findAux(en){
+  const words = String(en||'').trim().split(/\s+/);
+  const idx = words.findIndex(w=>/^(do|does|did|will|can|should|must|may|don't|doesn't|didn't|is|are|am)$/i.test(w.replace(/[.,!?;:]+$/,'')));
+  if (idx<0) return null;
+  const base = words[idx].replace(/[.,!?;:]+$/,'');
+  let cls = 'grammar-aux';
+  if (/^(don't|doesn't|didn't)$/i.test(base)) cls = 'grammar-neg';
+  if (/^(is|are|am)$/i.test(base)) cls = /^is$/i.test(base)? 'verb-third' : 'verb-base';
+  return { base, cls };
+}
+
+function guidedCard(en, pt){
+  const p = parseSVC(en);
+  const aux = findAux(en);
+  const passo2 = aux
+    ? `<div style="margin-top:4px">Passo 2: Auxiliar → <span class="${aux.cls}">${aux.base}</span> + Verbo → ${colorVerbToken(p.verb)}</div>`
+    : `<div style="margin-top:4px">Passo 2: Verbo → ${colorVerbToken(p.verb)}</div>`;
+  const steps = [`<div>Passo 1: Sujeito → <strong>${p.subject}</strong></div>`, passo2, `<div style="margin-top:4px">Passo 3: Complemento → <strong>${p.complement||'-'}</strong></div>`].join('');
+  return `
+    <div class="card">
+      <div class="small"><strong>Exemplo guiado</strong></div>
+      ${steps}
+      <div style="margin-top:8px">Frase final: ${highlightAction(en)}</div>
+      ${svcExplain(en)}
+      <div class="small" style="margin-top:4px">Tradução: ${fixPT(pt||'')}</div>
+    </div>
+  `;
+}
+
 function renderVerbsModule(data){
   const el = document.querySelector('#verbs');
   if (!el) return;
@@ -424,7 +489,8 @@ function initLevelPage(level) {
     .then(list => {
       const container = document.getElementById('phrases');
       if (container) {
-        container.innerHTML = list.map((p, i) => PhraseCard(p, i)).join('');
+        const shown = Array.isArray(list) ? list.slice(0, 10) : [];
+        container.innerHTML = shown.map((p, i) => PhraseCard(p, i)).join('');
         setupRecording(container);
       }
     })
@@ -789,75 +855,20 @@ async function setupAudio(data) {
     const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : String(data.text||'').split(/(?<=[.!?])\s+/).map((s,i)=>({en:s, pt:String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT)[i]||''}));
     const gRaw = String(data.grammar||'');
     function explainForBeginners(v){
-      const k = String(v||'').toLowerCase();
-      if (k.includes('present simple')) {
-        return `
-          <div class="card">
-            <div class="small">
-              <ul style="margin:0;padding-left:18px;line-height:1.6">
-                <li><strong>Uso:</strong> rotina da fazenda com verbos de ação: work, drive, check, feed.</li>
-                <li><strong>Forma direta:</strong> diga quem faz + verbo base. 
-                  He/She/It ganha 
-                  <span class="grammar-suffix">s</span> no verbo.
-                  Ex.: <strong>I drive</strong> · <strong>He drive<span class="grammar-suffix">s</span></strong>.
-                </li>
-                <li><strong>Negativa:</strong> 
-                  <span class="grammar-neg">don't</span> para I/You/We/They · 
-                  <span class="grammar-neg">doesn't</span> para He/She/It. 
-                  Ex.: <strong>We <span class="grammar-neg">don't</span> check</strong> · 
-                  <strong>He <span class="grammar-neg">doesn't</span> check</strong>.
-                </li>
-                <li><strong>Pergunta:</strong> 
-                  <span class="grammar-q">Do</span> (I/You/We/They) · 
-                  <span class="grammar-q">Does</span> (He/She/It) + verbo base. 
-                  Ex.: <strong>Do you work?</strong> · <strong>Does he drive?</strong>
-                </li>
-                <li><strong>Exemplos agro curtos:</strong> 
-                  <strong>I drive</strong> the tractor · 
-                  <strong>She drive<span class="grammar-suffix">s</span></strong> the tractor. 
-                  <strong>We check</strong> water · 
-                  <strong>Sprayer calibration prevent<span class="grammar-suffix">s</span></strong> over application.
-                </li>
-              </ul>
-            </div>
-          </div>
-        `;
-      }
-      if (k.includes('past simple')) {
-        return `
-          <div class="card">
-            <div class="small">
-              <div><strong>O que é:</strong> tempo para eventos concluídos no passado.</div>
-              <div style="margin-top:6px"><strong>Como formar:</strong> verbo no passado (<em>worked</em>, <em>checked</em>). Irregulares mudam forma (<em>went</em>).</div>
-              <div style="margin-top:6px"><strong>Negativa:</strong> <span class="grammar-neg">did not (didn't)</span> + verbo base.</div>
-              <div style="margin-top:6px"><strong>Pergunta:</strong> <span class="grammar-q">Did</span> + sujeito + verbo base?</div>
-            </div>
-          </div>
-        `;
-      }
-      if (k.includes('passive')) {
-        return `
-          <div class="card">
-            <div class="small">
-              <div><strong>Ideia:</strong> foca na ação, não em quem a faz.</div>
-              <div style="margin-top:6px"><strong>Estrutura:</strong> <em>be</em> + particípio (<em>is checked</em>, <em>was calibrated</em>).</div>
-            </div>
-          </div>
-        `;
-      }
-      if (k.includes('modals')) {
-        return `
-          <div class="card">
-            <div class="small">
-              <div><strong>Função:</strong> dar conselho, obrigação ou possibilidade.</div>
-              <div style="margin-top:6px"><strong>Exemplos:</strong> <span class="grammar-aux">should</span>, <span class="grammar-aux">must</span>, <span class="grammar-aux">can</span>, <span class="grammar-aux">may</span>.</div>
-            </div>
-          </div>
-        `;
-      }
       return `
         <div class="card">
-          <div class="small">Explicação básica: foque em sujeito + verbo + complemento e observe exemplos.</div>
+          <div class="small">
+            <ul style="margin:0;padding-left:18px;line-height:1.6">
+              <li><strong>O que é:</strong> tempo para falar de rotinas, fatos e horários fixos.</li>
+              <li><strong>Quando usar:</strong> atividades diárias, verdades gerais e agendas.</li>
+              <li><strong>Forma direta:</strong> sujeito + verbo base. He/She/It ganha <span class="grammar-suffix">s</span> no verbo. Ex.: <strong>I drive</strong> · <strong>He drive<span class="grammar-suffix">s</span></strong>.</li>
+              <li><strong>Como montar frase:</strong> sujeito + verbo + complemento. Ex.: <strong>We</strong> (sujeito) <strong>check</strong> (verbo) <strong>the water</strong> (complemento).</li>
+              <li><strong>Passo a passo:</strong> 1) sujeito; 2) verbo base; 3) complemento; 4) He/She/It em afirmativa: <span class="grammar-suffix">+s</span>.</li>
+              <li><strong>Negativa:</strong> <span class="grammar-neg">don't</span> (I/You/We/They) · <span class="grammar-neg">doesn't</span> (He/She/It). Verbo na base: <strong>He <span class="grammar-neg">doesn't</span> drive</strong>.</li>
+              <li><strong>Pergunta:</strong> <span class="grammar-q">Do</span> (I/You/We/They) · <span class="grammar-q">Does</span> (He/She/It) + base. Ex.: <strong>Do you work?</strong> · <strong>Does he drive?</strong>. Respostas curtas: <strong>Yes, he <span class="grammar-aux">does</span></strong> · <strong>No, we <span class="grammar-neg">don't</span></strong>.</li>
+              <li><strong>Exemplos agro curtos:</strong> <strong>I drive</strong> the tractor · <strong>She drive<span class="grammar-suffix">s</span></strong> the tractor · <strong>We check</strong> water.</li>
+            </ul>
+          </div>
         </div>
       `;
     }
@@ -867,7 +878,7 @@ async function setupAudio(data) {
     const groupIFallback = groupI.length ? groupI : [{ en: 'I drive the tractor.', pt: 'Eu dirijo o trator.' }, { en: 'I check the water.', pt: 'Eu verifico a água.' }];
     const groupWeFallback = groupWe.length ? groupWe : [{ en: 'We check the water.', pt: 'Nós verificamos a água.' }, { en: 'We rotate pastures.', pt: 'Nós rotacionamos as pastagens.' }];
     const groupItFallback = groupIt.length ? groupIt : [{ en: 'It runs well.', pt: 'Ele funciona bem.' }, { en: 'The soil is wet.', pt: 'O solo está úmido.' }];
-    function tableRow(subj, arr){ return arr.map(s=>`<tr><td>${subj}</td><td>${highlightAction(s.en)}</td><td>${fixPT(s.pt||'')}</td></tr>`).join('') }
+    function tableRow(subj, arr){ return arr.map(s=>`<tr><td>${subj}</td><td>${highlightAction(s.en)}${svcExplain(s.en)}</td><td>${fixPT(s.pt||'')}</td></tr>`).join('') }
     const conjTable = `
       <table style="width:100%;border-collapse:collapse">
         <thead><tr><th style="text-align:left">Sujeito</th><th style="text-align:left">Frase (EN)</th><th style="text-align:left">Tradução (PT)</th></tr></thead>
@@ -922,7 +933,7 @@ async function setupAudio(data) {
       <table style="width:100%;border-collapse:collapse">
         <thead><tr><th style="text-align:left">Afirmativa</th><th style="text-align:left">Negativa</th><th style="text-align:left">Pergunta</th></tr></thead>
         <tbody>
-          ${a.map((x,i)=>`<tr><td>${highlightAction(x.en)}</td><td>${highlightAction(b[i].en)}</td><td>${highlightAction(c[i].en)}</td></tr>`).join('')}
+          ${a.map((x,i)=>`<tr><td>${highlightAction(x.en)}${svcExplain(x.en)}</td><td>${highlightAction(b[i].en)}${svcExplain(b[i].en)}</td><td>${highlightAction(c[i].en)}${svcExplain(c[i].en)}</td></tr>`).join('')}
         </tbody>
       </table>
     ` }
@@ -970,17 +981,43 @@ async function setupAudio(data) {
         <table class="forms-table">
           <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
           <tbody>
-            ${rows.map(r=>`<tr><td>${r.label}</td><td>${highlightAction(String(r.v))}</td></tr>`).join('')}
+            ${rows.map(r=>{ const ex = String(r.v); return `<tr><td>${r.label}</td><td>${highlightAction(ex)}${svcExplain(ex)}</td></tr>` }).join('')}
           </tbody>
         </table>
+        <div class="card" style="margin-top:8px"><div class="small">
+          <div><strong>Afirmativa:</strong> Sujeito + verbo base (+<span class="grammar-suffix">s</span> para He/She/It) + complemento.</div>
+          <div style="margin-top:6px"><strong>Negativa:</strong> Sujeito + <span class="grammar-neg">don't/doesn't</span> + verbo base + complemento. Use <span class="grammar-neg">doesn't</span> com He/She/It.</div>
+          <div style="margin-top:6px"><strong>Pergunta:</strong> <span class="grammar-q">Do/Does</span> + sujeito + verbo base + complemento? Respostas curtas: <strong>Yes, I <span class="grammar-aux">do</span></strong> · <strong>No, he <span class="grammar-neg">doesn't</span></strong>.</div>
+        </div></div>
       `;
     }
     const explainList = aff.map(s=>`<div class="card"><div class="line"><div class="en">${annotateTextManual(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div><div class="small" style="margin-top:6px">Presente simples: rotina agrícola.</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${s.en}">Ouvir Áudio</button></div></div>`).join('');
-    const groupBe = (()=>{ const seen=new Set(); return sentences.filter(s=>/\b(is|are)\b/i.test(s.en)).filter(s=>{ if(seen.has(s.en)) return false; seen.add(s.en); return true }).slice(0,3) })();
+    const groupBe = (()=>{
+      const seen=new Set();
+      const base = sentences.filter(s=>/\b(is|are)\b/i.test(s.en)).filter(s=>{ if(seen.has(s.en)) return false; seen.add(s.en); return true }).slice(0,3);
+      const fallback = [
+        { en:'My name is John.', pt:'Meu nome é John.' },
+        { en:'The tractor is strong.', pt:'O trator é forte.' },
+        { en:'The soil is wet.', pt:'O solo está úmido.' }
+      ];
+      const out = [...base];
+      for (const f of fallback){ if(out.length<3) out.push(f); }
+      return out.slice(0,3);
+    })();
     const baseSample = groupI[0] || groupWe[0] || sentences[0] || { en: 'I work on the farm.', pt: 'Eu trabalho na fazenda.' };
     const formsSample = buildPresentSimpleForms(baseSample.en);
     function lineHtml(s){ return `<div class="line"><div class="en">${highlightAction(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div>` }
-    const routineLines = [...groupI.slice(0,2), ...groupWe.slice(0,1)];
+    const routineLines = (()=>{
+      const base = [...groupI.slice(0,2), ...groupWe.slice(0,1)];
+      const fallback = [
+        { en: 'I drive the tractor.', pt: 'Eu dirijo o trator.' },
+        { en: 'We check the water.', pt: 'Nós verificamos a água.' },
+        { en: 'We clean the barn.', pt: 'Nós limpamos o celeiro.' }
+      ];
+      const out = [...base];
+      for (const f of fallback){ if(out.length<3) out.push(f); }
+      return out.slice(0,3);
+    })();
     const thirdLines = (()=>{ const arr = sentences.filter(s=> thirdSubject(s.en)).slice(0,3); if(arr.length>=2) return arr; return [ { en: 'He drives the tractor.', pt: 'Ele dirige o trator.' }, { en: 'It runs well.', pt: 'Ele funciona bem.' } ]; })();
     function ptNeg(s){ let out = fixPT(String(s||'')).trim().replace(/[.?!]+$/,''); if(/^Eu\s/i.test(out)) return out.replace(/^Eu\s/i,'Eu não '); if(/^Nós\s/i.test(out)) return out.replace(/^Nós\s/i,'Nós não '); if(/^Ele\s/i.test(out)) return out.replace(/^Ele\s/i,'Ele não '); if(/^Ela\s/i.test(out)) return out.replace(/^Ela\s/i,'Ela não '); return 'Não '+out.toLowerCase(); }
     function ptQ(s){ let out = fixPT(String(s||'')).trim().replace(/[.]+$/,''); return out+'?'; }
@@ -990,23 +1027,55 @@ async function setupAudio(data) {
     function qForThird(s){ const f = buildPresentSimpleForms(s.en); return { en: annotateTextManual(f.interrogative), pt: ptQ(s.pt) }; }
     function beNegSample(){ const b = groupBe[0] || { en:'The tractor is strong.', pt:'O trator é forte.' }; const en = String(b.en).replace(/\bis\s+/i,'is not '); let pt = fixPT(b.pt); pt = pt.replace(/\bé\b/,'não é').replace(/\bestá\b/,'não está'); if(!/não\s/.test(pt)) pt = 'Não '+pt.toLowerCase(); return { en: annotateTextManual(en), pt }; }
     const whenList = [
-      `<div class="card"><div class="small"><strong>Rotina</strong></div>${(routineLines.length?routineLines:[{en:'I drive the tractor.',pt:'Eu dirijo o trator.'},{en:'We check the water.',pt:'Nós verificamos a água.'}]).map(lineHtml).join('')}</div>`,
+      `<div class="card"><div class="small"><strong>Rotina</strong></div>${(routineLines.length?routineLines:[{en:'I drive the tractor.',pt:'Eu dirijo o trator.'},{en:'We check the water.',pt:'Nós verificamos a água.'},{en:'We clean the barn.',pt:'Nós limpamos o celeiro.'}]).map(lineHtml).join('')}</div>`,
       `<div class="card"><div class="small"><strong>He/She/It</strong></div>${thirdLines.map(lineHtml).join('')}</div>`,
       `<div class="card"><div class="small"><strong>Estados (be)</strong></div>${(groupBe.length?groupBe:[{en:'The tractor is strong.',pt:'O trator é forte.'},{en:'The soil is wet.',pt:'O solo está úmido.'}]).map(lineHtml).join('')}</div>`,
       `<div class="card"><div class="small"><strong>Negativa</strong></div>${[negLine, negForThird(thirdLines[0]||{en:'He drives the tractor.',pt:'Ele dirige o trator.'}), beNegSample()].map(lineHtml).join('')}</div>`,
-      `<div class="card"><div class="small"><strong>Pergunta</strong></div>${[qLine, qForThird(thirdLines[0]||{en:'He drives the tractor.',pt:'Ele dirige o trator.'}), {en:'Is the tractor strong?', pt:'O trator é forte?'}].map(lineHtml).join('')}</div>`
+      `<div class="card"><div class="small"><strong>Pergunta</strong></div>${[qLine, qForThird(thirdLines[0]||{en:'He drives the tractor.',pt:'Ele dirige o trator.'}), {en:'Is the tractor strong?', pt:'O trator é forte?'}].map(lineHtml).join('')}</div>`,
+      `<div class="card"><div class="small"><strong>Afirmativa</strong></div>${aff.slice(0,3).map(lineHtml).join('')}</div>`
     ].join('');
+    const guidedSamples = [
+      baseSample,
+      { en: 'We check the water.', pt: 'Nós verificamos a água.' },
+      thirdLines[0] || { en: 'He drives the tractor.', pt: 'Ele dirige o trator.' },
+      negLine,
+      qLine,
+      negForThird(thirdLines[0] || { en: 'He drives the tractor.', pt: 'Ele dirige o trator.' }),
+      qForThird(thirdLines[0] || { en: 'He drives the tractor.', pt: 'Ele dirige o trator.' }),
+      { en: 'We clean the barn.', pt: 'Nós limpamos o celeiro.' },
+      { en: 'Does he drive the tractor?', pt: 'Ele dirige o trator?' }
+    ];
+    const guidedList = guidedSamples.map(s=> guidedCard(s.en, s.pt)).join('');
     el.innerHTML = `
       <div>${explainForBeginners(gRaw)}</div>
       <div class="section-title" style="margin-top:12px">Quando usar</div>
       <div class="grid when-grid">${whenList}</div>
       <div class="section-title" style="margin-top:12px">Estrutura (Tradução)</div>
       <div>${conjTable}</div>
+      <div class="card" style="margin-top:8px"><div class="small">
+        <div><strong>Como identificar:</strong> Em EN, sujeito (quem faz) + verbo (ação) + complemento (detalhe). Em PT, a ordem costuma ser igual.</div>
+        <div style="margin-top:6px">Ex.: <strong>We</strong> (sujeito) <strong>check</strong> (verbo) <strong>the water</strong> (complemento) ↔ <strong>Nós</strong> <strong>verificamos</strong> <strong>a água</strong>.</div>
+        <div style="margin-top:6px"><strong>Dica de tradução:</strong> pense primeiro no sujeito, depois diga a ação, por fim o complemento. Para He/She/It em afirmativa, lembre do <span class="grammar-suffix">+s</span>.</div>
+      </div></div>
+      <div class="section-title" style="margin-top:12px">Passo a passo guiado</div>
+      <div class="grid when-grid">${guidedList}</div>
       <div class="section-title" style="margin-top:12px">Afirmativa/Negativa/Pergunta</div>
       <div>${table3(aff,negs,quess)}</div>
       ${renderFormsFromChapter()}
       <div class="section-title" style="margin-top:12px">Regra He/She/It (+s)</div>
       <div>${sTable}</div>
+      <div class="card" style="margin-top:8px"><div class="small">
+        <div><strong>Quando aplica:</strong> afirmativas com <strong>He/She/It</strong>.</div>
+        <div style="margin-top:6px"><strong>Padrões:</strong> <em>study</em> → <em>stud<span class="grammar-suffix">ies</span></em>; <em>watch</em> → <em>watch<span class="grammar-suffix">es</span></em>; <em>go</em> → <em>go<span class="grammar-suffix">es</span></em>.</div>
+        <div style="margin-top:6px"><strong>Importante:</strong> na negativa e pergunta com <span class="grammar-q">Does</span>/<span class="grammar-neg">doesn't</span>, o verbo fica na base: <em><span class="grammar-q">Does</span> she work?</em> · <em>He <span class="grammar-neg">doesn't</span> work</em>.</div>
+        <div style="margin-top:6px"><strong>Aplicação:</strong> pense no sujeito; se for He/She/It e for afirmativa, aplique +<span class="grammar-suffix">s</span>.</div>
+      </div></div>
+      <div class="section-title" style="margin-top:12px">Forma (Uso)</div>
+      <div class="card" style="margin-top:8px"><div class="small">
+        <div><strong>Rotina:</strong> descreva o que acontece todo dia. Ex.: <em>We check the water every morning.</em></div>
+        <div style="margin-top:6px"><strong>Fatos gerais:</strong> verdades estáveis. Ex.: <em>Cows produce milk.</em></div>
+        <div style="margin-top:6px"><strong>Horários:</strong> eventos programados. Ex.: <em>The tractor service starts at 8am.</em></div>
+      </div></div>
     `;
 
     const speechEx = document.getElementById('speechExamples');
@@ -1225,13 +1294,13 @@ async function setupAudio(data) {
       if (map[v]) return map[v];
       const t = thirdForm(v);
       const ptBaseMap = {
-        work:'trabalhamos', drive:'dirigimos', check:'verificamos', feed:'alimentamos', start:'ligamos', clean:'limpamos', give:'damos', watch:'observamos', put:'colocamos', carry:'carregamos', look:'olhamos', help:'ajudamos'
+        work:'trabalhamos', drive:'dirigimos', check:'verificamos', feed:'alimentamos', start:'ligamos', clean:'limpamos', give:'damos', watch:'observamos', put:'colocamos', carry:'carregamos', look:'olhamos', help:'ajudamos', read:'lemos', adjust:'ajustamos', monitor:'monitoramos', operate:'operamos', record:'registramos', assess:'avaliamos', coordinate:'coordenamos'
       };
       const ptThirdMap = {
-        work:'trabalha', drive:'dirige', check:'verifica', feed:'alimenta', start:'liga', clean:'limpa', give:'dá', watch:'observa', put:'coloca', carry:'carrega', look:'olha', help:'ajuda'
+        work:'trabalha', drive:'dirige', check:'verifica', feed:'alimenta', start:'liga', clean:'limpa', give:'dá', watch:'observa', put:'coloca', carry:'carrega', look:'olha', help:'ajuda', read:'lê', adjust:'ajusta', monitor:'monitora', operate:'opera', record:'registra', assess:'avalia', coordinate:'coordena'
       };
-      const ptBase = ptBaseMap[v] || `${v}`;
-      const ptThird = ptThirdMap[v] || `${t}`;
+      const ptBase = ptBaseMap[v] || 'fazemos';
+      const ptThird = ptThirdMap[v] || 'faz';
       return [{en:`We ${v} on the farm.`, pt:`Nós ${ptBase} na fazenda.`},{en:`He ${t} tools.`, pt:`Ele ${ptThird} as ferramentas.`}];
     }
     let examples = [];
