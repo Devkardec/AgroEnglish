@@ -5,8 +5,8 @@
     "category": "Máquinas/Leis",
     "title": "Autonomous Ethics",
     "title_pt": "Ética na Automação",
-    "text_en": "The proliferation of autonomous robotics raises significant ethical questions regarding the displacement of the rural workforce. Rarely do we observe technological adoption without complex accountability debates; therefore, governance frameworks must be instituted. Should the regulations change, we would be compelled to revise liability clauses to ensure compliance.",
-    "text_pt": "A proliferação da robótica autônoma levanta questões éticas significativas quanto ao deslocamento da força de trabalho rural. Raramente observamos adoção tecnológica sem debates complexos sobre responsabilização; portanto, estruturas de governança devem ser instituídas. Caso os regulamentos mudem, seríamos compelidos a revisar cláusulas de responsabilidade para assegurar conformidade.",
+    "text_en": "The proliferation of autonomous robotics raises ethical questions about rural workforce displacement. Rarely do we observe adoption without accountability debates; therefore, governance frameworks must be instituted.",
+    "text_pt": "A proliferação da robótica autônoma levanta questões éticas sobre o deslocamento da força de trabalho rural. Raramente observamos adoção sem debates de responsabilização; portanto, estruturas de governança devem ser instituídas.",
     "teaching_modules": {
       "explanation": "Inversões (Rarely do we observe…), condicional formal (Should the regulations change…), vocabulário jurídico (framework, compliance, liability).",
       "grammar_table": [
@@ -278,5 +278,14 @@
         {"base":"scrutinize","third_person":"scrutinizes","translation":"escrutinar"}
       ]
     }
+  },
+  {
+    "id": 11,
+    "level": "C2",
+    "category": "Máquinas/Leis",
+    "title": "Export Strategy and FX Hedge",
+    "title_pt": "Estratégia de exportação e hedge cambial",
+    "text_en": "A cooperative signs a forward export contract for 1,000 tons at $480/t. Logistics include ocean freight at $22/t, port handling at $8/t, insurance at 0.6% of cargo value, and a 2% export tax. The cooperative hedges 70% of USD exposure via futures, locking FX at R$5.05/USD.",
+    "text_pt": "Uma cooperativa firma um contrato futuro de exportação de 1.000 toneladas a $480/t. A logística inclui frete marítimo a $22/t, operações portuárias a $8/t, seguro a 0,6% do valor da carga e imposto de exportação de 2%. A cooperativa faz hedge de 70% da exposição em USD via futuros, travando o câmbio em R$5,05/USD."
   }
 ]

@@ -24,6 +24,12 @@ const PRECACHE = [
   '/src/data/texts/B2/basic.json',
   '/src/data/texts/C1/basic.json',
   '/src/data/texts/C2/basic.json',
+  '/src/data/texts/A1/a1_blocks.json',
+  '/src/data/texts/A2/a2_blocks.json',
+  '/src/data/texts/B1/b1_blocks.json',
+  '/src/data/texts/B2/b2_blocks.json',
+  '/src/data/texts/C1/c1_blocks.json',
+  '/src/data/texts/C2/c2_blocks.json',
 ];
 
 self.addEventListener('install', (e) => {

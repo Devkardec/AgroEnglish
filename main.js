@@ -351,7 +351,7 @@ function initGlossaryPage() {
   }
 }
 
-function initHomePage() {
+async function initHomePage() {
   const lvls = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
   const preload = document.getElementById('preload');
   const cont = document.getElementById('continueCta');
@@ -359,10 +359,29 @@ function initHomePage() {
   const last = prog.lastLevel;
   const idx = last ? (prog[last]||1) : 1;
   if (cont) cont.setAttribute('href', last ? `#/text/${last}/${idx}` : '#/text/A1/1');
-  const percent = last ? Math.round(((idx-1)/10)*100) : 0;
+  async function getLevelCount(level){
+    const map = {
+      A1: ['/src/data/texts/A1/a1_blocks.json','./src/data/texts/A1/a1_blocks.json'],
+      A2: ['/src/data/texts/A2/a2_blocks.json','./src/data/texts/A2/a2_blocks.json'],
+      B1: ['/src/data/texts/B1/b1_blocks.json','./src/data/texts/B1/b1_blocks.json'],
+      B2: ['/src/data/texts/B2/b2_blocks.json','./src/data/texts/B2/b2_blocks.json'],
+      C1: ['/src/data/texts/C1/c1_blocks.json','./src/data/texts/C1/c1_blocks.json'],
+      C2: ['/src/data/texts/C2/c2_blocks.json','./src/data/texts/C2/c2_blocks.json']
+    };
+    const p = map[level];
+    try {
+      const r = await fetch(p[0]); if (r.ok) { const items = await r.json(); return Array.isArray(items)? items.length : 10; }
+    } catch {}
+    try {
+      const r = await fetch(p[1]); const items = await r.json(); return Array.isArray(items)? items.length : 10;
+    } catch {}
+    return 10;
+  }
+  const lastTotal = last ? await getLevelCount(last) : 10;
+  const percent = last ? Math.round(((idx-1)/lastTotal)*100) : 0;
   const badge = document.getElementById('progressBadge');
   if (badge) badge.textContent = `Progresso ${percent}%`;
-  lvls.forEach(l=>{ const b=document.getElementById(`badge-${l}`); if(b){ const n=prog[l]||0; b.textContent = `${n}/10` } });
+  for (const l of lvls){ const b=document.getElementById(`badge-${l}`); if(b){ const n=prog[l]||0; const total = await getLevelCount(l); b.textContent = `${n}/${total}` } }
 
   const tipEl = document.getElementById('dailyTip');
   const tipSpeak = document.getElementById('dailyTipSpeak');
@@ -378,7 +397,7 @@ function initHomePage() {
     preload.addEventListener('click', async () => {
       const filesToCache = [];
       for (const l of lvls) {
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 11; i++) {
           filesToCache.push(`/src/data/texts/${l}/text${i}.json`);
         }
       }
@@ -492,11 +511,12 @@ function initLevelPage(level) {
       const p1 = '/src/data/texts/A1/a1_blocks.json';
       const p2 = './src/data/texts/A1/a1_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const links = items.slice(0,10).map((data, i) => {
+        const total = Array.isArray(items) ? items.length : 10;
+        const links = items.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -506,11 +526,12 @@ function initLevelPage(level) {
       const p1 = '/src/data/texts/A2/a2_blocks.json';
       const p2 = './src/data/texts/A2/a2_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const links = items.slice(0,10).map((data, i) => {
+        const total = Array.isArray(items) ? items.length : 10;
+        const links = items.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -520,11 +541,12 @@ function initLevelPage(level) {
       const p1 = '/src/data/texts/B1/b1_blocks.json';
       const p2 = './src/data/texts/B1/b1_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const links = items.slice(0,10).map((data, i) => {
+        const total = Array.isArray(items) ? items.length : 10;
+        const links = items.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -534,11 +556,12 @@ function initLevelPage(level) {
       const p1 = '/src/data/texts/C1/c1_blocks.json';
       const p2 = './src/data/texts/C1/c1_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const links = items.slice(0,10).map((data, i) => {
+        const total = Array.isArray(items) ? items.length : 10;
+        const links = items.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -548,11 +571,12 @@ function initLevelPage(level) {
       const p1 = '/src/data/texts/B2/b2_blocks.json';
       const p2 = './src/data/texts/B2/b2_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const links = items.slice(0,10).map((data, i) => {
+        const total = Array.isArray(items) ? items.length : 10;
+        const links = items.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -562,11 +586,12 @@ function initLevelPage(level) {
       const p1 = '/src/data/texts/C2/c2_blocks.json';
       const p2 = './src/data/texts/C2/c2_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const links = items.slice(0,10).map((data, i) => {
+        const total = Array.isArray(items) ? items.length : 10;
+        const links = items.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
+          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -1898,6 +1923,26 @@ async function setupAudio(data) {
       prog[level] = Math.max(Number(prog[level] || 1), idx);
       prog.lastLevel = level;
       localStorage.setItem('progress', JSON.stringify(prog));
+
+      (async () => {
+        const map = {
+          A1: ['/src/data/texts/A1/a1_blocks.json','./src/data/texts/A1/a1_blocks.json'],
+          A2: ['/src/data/texts/A2/a2_blocks.json','./src/data/texts/A2/a2_blocks.json'],
+          B1: ['/src/data/texts/B1/b1_blocks.json','./src/data/texts/B1/b1_blocks.json'],
+          B2: ['/src/data/texts/B2/b2_blocks.json','./src/data/texts/B2/b2_blocks.json'],
+          C1: ['/src/data/texts/C1/c1_blocks.json','./src/data/texts/C1/c1_blocks.json'],
+          C2: ['/src/data/texts/C2/c2_blocks.json','./src/data/texts/C2/c2_blocks.json']
+        };
+        let total = 10;
+        try { const r = await fetch(map[level][0]); if (r.ok) { const arr = await r.json(); total = Array.isArray(arr)? arr.length : 10; } } catch {}
+        if (total === 10) { try { const r = await fetch(map[level][1]); const arr = await r.json(); total = Array.isArray(arr)? arr.length : 10; } catch {} }
+        const bar = document.getElementById('levelBar');
+        if (bar) bar.style.width = Math.min(100, ((idx - 1) / total) * 100) + '%';
+        const label = document.getElementById('progressLabel');
+        if (label) label.textContent = `Progresso ${idx - 1}/${total}`;
+        const nextBtn = document.getElementById('nextBtn');
+        if (nextBtn) nextBtn.setAttribute('href', `#/text/${level}/${Math.min(total, idx + 1)}`);
+      })();
     })
     .catch(() => {
       if (!linesEl || !linesEl.innerHTML || !linesEl.innerHTML.trim()) {
@@ -1905,9 +1950,20 @@ async function setupAudio(data) {
       }
     });
 
-  document.getElementById('nextBtn').addEventListener('click', () => {
+  document.getElementById('nextBtn').addEventListener('click', async () => {
     const prog = JSON.parse(localStorage.getItem('progress') || '{}');
-    prog[level] = Math.min(10, idx + 1);
+    const map = {
+      A1: ['/src/data/texts/A1/a1_blocks.json','./src/data/texts/A1/a1_blocks.json'],
+      A2: ['/src/data/texts/A2/a2_blocks.json','./src/data/texts/A2/a2_blocks.json'],
+      B1: ['/src/data/texts/B1/b1_blocks.json','./src/data/texts/B1/b1_blocks.json'],
+      B2: ['/src/data/texts/B2/b2_blocks.json','./src/data/texts/B2/b2_blocks.json'],
+      C1: ['/src/data/texts/C1/c1_blocks.json','./src/data/texts/C1/c1_blocks.json'],
+      C2: ['/src/data/texts/C2/c2_blocks.json','./src/data/texts/C2/c2_blocks.json']
+    };
+    let total = 10;
+    try { const r = await fetch(map[level][0]); if (r.ok) { const arr = await r.json(); total = Array.isArray(arr)? arr.length : 10; } } catch {}
+    if (total === 10) { try { const r = await fetch(map[level][1]); const arr = await r.json(); total = Array.isArray(arr)? arr.length : 10; } catch {} }
+    prog[level] = Math.min(total, idx + 1);
     prog.lastLevel = level;
     localStorage.setItem('progress', JSON.stringify(prog));
   });

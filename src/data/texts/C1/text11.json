@@ -1,172 +1,22 @@
 {
-    "title":  "Comprehensive Farm Management",
-    "text":  "Herd health coordination. In winter we protect equipment from freezing. The greenhouse helps control temperature and humidity. We interpret telemetry from precision agriculture systems. We start work before sunrise during harvest. Veterinary biosecurity keeps the herd healthy. Farm safety rules are part of our routine. We design protocols for herd health management. Irrigation is scheduled to reduce water waste. We record yields and monitor feed intake. Sprayer calibration prevents over application. We rotate pastures to improve forage quality. We assess soil nutrients for fertilization plans. The tractor needs a safety check before operation.",
-    "translation":  "In inverno we protect equipment from freezing. The estufa helps control temperature and humidity. We interpret telemetry from precision agriculture systems. We start work before sunrise during colheita. Veterinary biosecurity keeps the herd healthy. fazenda seguranÃ§a rules are part of our routine. We design protocols for herd health management. irrigaÃ§Ã£o is scheduled to reduce water waste. We record yields and monitor alimentar intake. pulverizador calibration prevents over application. We rotate pastagems to improve forage quality. We assess soil nutrients for fertilization plans. The trator needs a seguranÃ§a check before operation.",
-    "pairs":  [
-                  {
-                      "pt":  "In inverno we protect equipment from freezing.",
-                      "en":  "In winter we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "The estufa helps control temperature and humidity.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "We interpret telemetry from precision agriculture systems.",
-                      "en":  "We interpret telemetry from precision agriculture systems."
-                  },
-                  {
-                      "pt":  "We start work before sunrise during colheita.",
-                      "en":  "We start work before sunrise during harvest."
-                  },
-                  {
-                      "pt":  "Veterinary biosecurity keeps the herd healthy.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "fazenda seguranÃ§a rules are part of our routine.",
-                      "en":  "Farm safety rules are part of our routine."
-                  },
-                  {
-                      "pt":  "We design protocols for herd health management.",
-                      "en":  "We design protocols for herd health management."
-                  },
-                  {
-                      "pt":  "irrigaÃ§Ã£o is scheduled to reduce water waste.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "We record yields and monitor alimentar intake.",
-                      "en":  "We record yields and monitor feed intake."
-                  },
-                  {
-                      "pt":  "pulverizador calibration prevents over application.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "We rotate pastagems to improve forage quality.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "We assess soil nutrients for fertilization plans.",
-                      "en":  "We assess soil nutrients for fertilization plans."
-                  },
-                  {
-                      "pt":  "The trator needs a seguranÃ§a check before operation.",
-                      "en":  "The tractor needs a safety check before operation."
-                  }
-              ],
-    "vocabulary":  [
-                       {
-                           "word":  "tractor",
-                           "meaning":  "trator"
-                       },
-                       {
-                           "word":  "cow",
-                           "meaning":  "vaca"
-                       },
-                       {
-                           "word":  "corn",
-                           "meaning":  "milho"
-                       },
-                       {
-                           "word":  "sprayer",
-                           "meaning":  "pulverizador"
-                       },
-                       {
-                           "word":  "harvest",
-                           "meaning":  "colheita"
-                       },
-                       {
-                           "word":  "irrigation",
-                           "meaning":  "irrigaÃ§Ã£o"
-                       },
-                       {
-                           "word":  "pasture",
-                           "meaning":  "pastagem"
-                       },
-                       {
-                           "word":  "greenhouse",
-                           "meaning":  "estufa"
-                       },
-                       {
-                           "word":  "veterinary",
-                           "meaning":  "veterinÃ¡ria"
-                       },
-                       {
-                           "word":  "safety",
-                           "meaning":  "seguranÃ§a"
-                       }
-                   ],
-    "grammar":  "Complex clauses: purpose and result; nominalization.",
-    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
-    "exercises":  {
-                      "multiple_choice":  [
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we check every morning?",
-                                                  "options":  [
-                                                                  "Plants",
-                                                                  "Emails",
-                                                                  "Movies",
-                                                                  "Games"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Which machine is for spraying?",
-                                                  "options":  [
-                                                                  "Sprayer",
-                                                                  "Oven",
-                                                                  "Printer",
-                                                                  "Mixer"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What protects animals in cold weather?",
-                                                  "options":  [
-                                                                  "Barn",
-                                                                  "Laptop",
-                                                                  "Radio",
-                                                                  "Paint"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we rotate to improve forage?",
-                                                  "options":  [
-                                                                  "Pastures",
-                                                                  "Books",
-                                                                  "Rooms",
-                                                                  "Shoes"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Where do we grow plants with climate control?",
-                                                  "options":  [
-                                                                  "Greenhouse",
-                                                                  "Garage",
-                                                                  "Office",
-                                                                  "Kitchen"
-                                                              ]
-                                              }
-                                          ],
-                      "fill_in":  [
-                                      {
-                                          "sentence":  "We ____ the cows every morning.",
-                                          "answer":  "feed"
-                                      },
-                                      {
-                                          "sentence":  "Start the ____ carefully.",
-                                          "answer":  "tractor"
-                                      },
-                                      {
-                                          "sentence":  "Check the ____ for the animals.",
-                                          "answer":  "water"
-                                      }
-                                  ],
-                      "speaking":  "Repeat: Herd health coordination"
-                  }
+  "title": "Technical Analysis: Productivity and Costs",
+  "title_pt": "Análise técnica: produtividade e custos",
+  "text": "A soybean field spans 120 hectares with a forecast yield of 3.6 t/ha, totaling 432 tons. The cash price is $510/t, implying gross revenue of $220,320. Variable costs per hectare include fertilizer at $140/ha, seed at $70/ha, pesticide at $55/ha, fuel at $35/ha, and labor at $28/ha. Total variable cost per hectare is $328/ha; across 120 ha, that is $39,360. Irrigation during a dry spell consumes 5,000 m³ of water, equal to 5,000,000 liters, and the sprayer is calibrated at 200 L/ha. Moisture at delivery is targeted at 13%; loads above 13.5% incur drying fees. The breakeven price is total variable cost divided by total tons: $39,360 / 432 ≈ $91.11/t.",
+  "translation": "Um campo de soja ocupa 120 hectares com produtividade prevista de 3,6 t/ha, totalizando 432 toneladas. O preço à vista é $510/t, implicando receita bruta de $220.320. Os custos variáveis por hectare incluem fertilizante a $140/ha, semente a $70/ha, pesticida a $55/ha, combustível a $35/ha e mão de obra a $28/ha. O custo variável total por hectare é $328/ha; em 120 ha, isso é $39.360. A irrigação durante um período seco consome 5.000 m³ de água, equivalente a 5.000.000 de litros, e o pulverizador é calibrado em 200 L/ha. A umidade na entrega é alvo de 13%; cargas acima de 13,5% incorrem em taxas de secagem. O preço de equilíbrio é o custo variável total dividido pelas toneladas totais: $39.360 / 432 ≈ $91,11/t.",
+  "vocabulary": [
+    { "word": "Forecast", "meaning": "previsão" },
+    { "word": "Gross revenue", "meaning": "receita bruta" },
+    { "word": "Variable cost", "meaning": "custo variável" },
+    { "word": "Sprayer", "meaning": "pulverizador" },
+    { "word": "Calibrated", "meaning": "calibrado" },
+    { "word": "Moisture", "meaning": "umidade" },
+    { "word": "Drying fees", "meaning": "taxas de secagem" },
+    { "word": "Breakeven price", "meaning": "preço de equilíbrio" },
+    { "word": "Contribution margin", "meaning": "margem de contribuição" },
+    { "word": "Hectare", "meaning": "hectare" },
+    { "word": "Ton", "meaning": "tonelada" },
+    { "word": "Per hectare", "meaning": "por hectare" }
+  ],
+  "grammar": "Technical reporting; Passive Voice; Calculations and unit language",
+  "verbs": "forecast, imply, include, consume, calibrate, target, incur"
 }

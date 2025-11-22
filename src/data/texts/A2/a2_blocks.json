@@ -216,6 +216,44 @@
     }
   },
   {
+    "id": 11,
+    "level": "A2",
+    "category": "Agribusiness",
+    "title": "Farm Routine: Measures and Money",
+    "title_pt": "Rotina da fazenda: medidas e dinheiro",
+    "text_en": "Paulo works on a small farm. In the morning, he usually waters 0.5 hectares of vegetables and uses 100 liters of water. Now he is buying 20 liters of diesel at $1.20 per liter. He feeds the chickens 12 kilograms of feed and collects 36 eggs. He sells 8 kilograms of tomatoes at $2.00 per kg and 5 kilograms of lettuce at $1.50 per kg. He spends $24 on diesel and earns $23.50 from sales.",
+    "text_pt": "Paulo trabalha em uma pequena fazenda. De manhã, ele geralmente irriga 0,5 hectares de hortaliças e usa 100 litros de água. Agora ele está comprando 20 litros de diesel a $1,20 por litro. Ele alimenta as galinhas com 12 quilogramas de ração e coleta 36 ovos. Ele vende 8 quilogramas de tomates a $2,00 por kg e 5 quilogramas de alface a $1,50 por kg. Ele gasta $24 com diesel e ganha $23,50 nas vendas.",
+    "teaching_modules": {
+      "explanation": "Rotina com 'usually' (Present Simple) e ação atual com Present Continuous (He is buying…).",
+      "grammar_table": [
+        {"subject": "He", "verb": "Usually waters", "example": "He usually waters 0.5 hectares."},
+        {"subject": "He", "verb": "Is buying", "example": "He is buying 20 liters of diesel now."}
+      ],
+      "vocabulary": [
+        {"word": "Hectare", "translation": "Hectare"},
+        {"word": "Liter", "translation": "Litro"},
+        {"word": "Diesel", "translation": "Diesel"},
+        {"word": "Feed", "translation": "Ração"},
+        {"word": "Egg", "translation": "Ovo"},
+        {"word": "Tomato", "translation": "Tomate"},
+        {"word": "Lettuce", "translation": "Alface"},
+        {"word": "Price", "translation": "Preço"},
+        {"word": "Spend", "translation": "Gastar"},
+        {"word": "Earn", "translation": "Ganhar"},
+        {"word": "Budget", "translation": "Orçamento"},
+        {"word": "Sell", "translation": "Vender"}
+      ],
+      "verbs_list": [
+        {"base": "Water", "third_person": "Waters", "translation": "Irrigar"},
+        {"base": "Feed", "third_person": "Feeds", "translation": "Alimentar"},
+        {"base": "Buy", "third_person": "Buys", "translation": "Comprar"},
+        {"base": "Sell", "third_person": "Sells", "translation": "Vender"},
+        {"base": "Measure", "third_person": "Measures", "translation": "Medir"},
+        {"base": "Collect", "third_person": "Collects", "translation": "Coletar"}
+      ]
+    }
+  },
+  {
     "id": 9,
     "level": "A2",
     "category": "Veterinary",

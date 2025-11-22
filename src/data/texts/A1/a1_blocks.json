@@ -216,6 +216,43 @@
     }
   },
   {
+    "id": 11,
+    "level": "A1",
+    "category": "Agribusiness",
+    "title": "Farm Shop: Numbers and Sales",
+    "title_pt": "Loja da fazenda: números e vendas",
+    "text_en": "Ana works at the farm shop. Today she counts products and money. She has 50 eggs, 20 liters of milk, and 5 kilograms of cheese. Each egg costs $0.20. Milk is $1.50 per liter. Cheese is $4 per kilogram. She sells 10 eggs and 5 liters of milk. She earns $9.50 today. She writes the numbers in a notebook.",
+    "text_pt": "Ana trabalha na loja da fazenda. Hoje ela conta produtos e dinheiro. Ela tem 50 ovos, 20 litros de leite e 5 quilogramas de queijo. Cada ovo custa $0,20. O leite é $1,50 por litro. O queijo é $4 por quilograma. Ela vende 10 ovos e 5 litros de leite. Ela ganha $9,50 hoje. Ela escreve os números em um caderno.",
+    "teaching_modules": {
+      "explanation": "Present Simple com frases curtas sobre números, preços e medidas.",
+      "grammar_table": [
+        {"subject": "I (Eu)", "verb": "Count", "example": "I count the money."},
+        {"subject": "It (Produto)", "verb": "Costs", "example": "It costs one dollar and fifty cents."}
+      ],
+      "vocabulary": [
+        {"word": "Egg", "translation": "Ovo"},
+        {"word": "Milk", "translation": "Leite"},
+        {"word": "Liter", "translation": "Litro"},
+        {"word": "Cheese", "translation": "Queijo"},
+        {"word": "Kilogram", "translation": "Quilograma"},
+        {"word": "Price", "translation": "Preço"},
+        {"word": "Cost", "translation": "Custo"},
+        {"word": "Sell", "translation": "Vender"},
+        {"word": "Buy", "translation": "Comprar"},
+        {"word": "Money", "translation": "Dinheiro"},
+        {"word": "Notebook", "translation": "Caderno"},
+        {"word": "Farm shop", "translation": "Loja da fazenda"}
+      ],
+      "verbs_list": [
+        {"base": "Count", "third_person": "Counts", "translation": "Contar"},
+        {"base": "Sell", "third_person": "Sells", "translation": "Vender"},
+        {"base": "Buy", "third_person": "Buys", "translation": "Comprar"},
+        {"base": "Write", "third_person": "Writes", "translation": "Escrever"},
+        {"base": "Earn", "third_person": "Earns", "translation": "Ganhar"}
+      ]
+    }
+  },
+  {
     "id": 9,
     "level": "A1",
     "category": "Veterinary",

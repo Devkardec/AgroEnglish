@@ -8,7 +8,7 @@ export function TextPage(level, index) {
             100,
             ((index - 1) / 10) * 100
           )}%"></div></div>
-          <div class="small">Progresso ${index - 1}/10</div>
+          <div class="small" id="progressLabel">Progresso ${index - 1}/10</div>
         </div>
       </div>
 

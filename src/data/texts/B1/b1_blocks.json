@@ -4,7 +4,7 @@
     "level": "B1",
     "category": "Máquinas/Campo",
     "title": "The Big Storm",
-  "title_pt": "A Grande Tempestade",
+    "title_pt": "A Grande Tempestade",
     "text_en": "Yesterday was a hard day. We had a big storm last night. The wind was very strong and the roof shook. The rain did not stop for hours, so the yard flooded. I stayed inside the house and watched the sky. I was worried about the animals and the farm because the noise was loud. In the morning, I walked outside to check the damage. I saw broken branches, wet soil, and a bent gate. I took photos and wrote notes for the team.",
     "text_pt": "Ontem foi um dia difícil. Tivemos uma grande tempestade ontem à noite. O vento estava muito forte e o telhado balançou. A chuva não parou por horas, então o pátio alagou. Eu fiquei dentro de casa e observei o céu. Eu estava preocupado com os animais e a fazenda porque o barulho era alto. De manhã, caminhei para fora para verificar o estrago. Eu vi galhos quebrados, solo molhado e um portão torto. Eu tirei fotos e escrevi notas para a equipe.",
     "teaching_modules": {
@@ -81,6 +81,42 @@
         {"base": "Try", "past": "Tried", "translation": "Tentar/Tentou"},
         {"base": "Come", "past": "Came", "translation": "Vir/Vieram/Veio"},
         {"base": "See", "past": "Saw", "translation": "Ver/Viu"}
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "level": "B1",
+    "category": "Colheita/Negócio",
+    "title": "Harvest Day: Comparing Yields",
+    "title_pt": "Dia de colheita: comparando rendimentos",
+    "text_en": "It was harvest day on Carla’s farm. Field A was 5 hectares and Field B was 7 hectares. The combine harvested 12 tons from Field A and 15 tons from Field B. Yesterday, Field A produced only 10 tons, so today was better. The buyer offered $180 per ton for corn. Carla scheduled two trucks with a 20‑ton capacity each. After loading 27 tons, the second truck left half full. Carla preferred to sell all today to avoid storage costs.",
+    "text_pt": "Foi dia de colheita na fazenda da Carla. O Talhão A tinha 5 hectares e o Talhão B tinha 7 hectares. A colheitadeira colheu 12 toneladas do Talhão A e 15 toneladas do Talhão B. Ontem, o Talhão A produziu apenas 10 toneladas, então hoje foi melhor. O comprador ofereceu $180 por tonelada de milho. Carla agendou dois caminhões com capacidade de 20 toneladas cada. Após carregar 27 toneladas, o segundo caminhão saiu pela metade. Carla preferiu vender tudo hoje para evitar custos de armazenamento.",
+    "teaching_modules": {
+      "explanation": "Past Simple em narrativa de trabalho real, com comparações e números (hectares, toneladas, preços).",
+      "grammar_table": [
+        {"subject": "Field A", "verb": "was", "example": "Field A was 5 hectares."},
+        {"subject": "The combine", "verb": "harvested", "example": "The combine harvested 12 tons."},
+        {"subject": "The buyer", "verb": "offered", "example": "The buyer offered $180 per ton."}
+      ],
+      "vocabulary": [
+        {"word": "Harvest", "translation": "Colheita"},
+        {"word": "Combine", "translation": "Colheitadeira"},
+        {"word": "Yield", "translation": "Rendimento"},
+        {"word": "Hectare", "translation": "Hectare"},
+        {"word": "Ton", "translation": "Tonelada"},
+        {"word": "Buyer", "translation": "Comprador"},
+        {"word": "Price", "translation": "Preço"},
+        {"word": "Truck", "translation": "Caminhão"},
+        {"word": "Capacity", "translation": "Capacidade"},
+        {"word": "Storage", "translation": "Armazenamento"}
+      ],
+      "verbs_list": [
+        {"base": "Harvest", "past": "Harvested", "translation": "Colher/Colheu"},
+        {"base": "Compare", "past": "Compared", "translation": "Comparar/Comparou"},
+        {"base": "Schedule", "past": "Scheduled", "translation": "Agendar/Agendou"},
+        {"base": "Load", "past": "Loaded", "translation": "Carregar/Carregou"},
+        {"base": "Sell", "past": "Sold", "translation": "Vender/Vendeu"}
       ]
     }
   },
