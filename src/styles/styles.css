@@ -17,7 +17,7 @@ nav a.active { text-decoration:underline; }
 .btn { background:linear-gradient(90deg, var(--green), var(--green2)); color:#fff; border:none; border-radius:12px; padding:12px 18px; cursor:pointer; font-size:var(--size-md) }
 .btn.secondary { background:linear-gradient(90deg, #0f6a3a, #0b3a1e); color:#fff }
 .btn.sm { padding:6px 10px; font-size:var(--size-sm); border-radius:10px }
-.section-title { margin:8px 0 12px; font-size:var(--size-lg); font-weight:800; color:var(--green); display:flex; align-items:center; gap:8px }
+.section-title { margin:8px 0 12px; font-size:var(--size-lg); font-weight:600; color:var(--green); display:flex; align-items:center; gap:8px }
 .section-title::before { content:''; width:10px; height:10px; border-radius:50%; background:linear-gradient(90deg, var(--green), var(--green2)) }
 .card .section-title { margin-top:0 }
 .small { font-size:var(--size-sm); color:var(--muted); }
@@ -60,7 +60,7 @@ input[type="range"] { width:100%; }
 
 .lines { margin-top:12px }
 .line { padding:6px 0; border-bottom:1px solid #e5e9e7 }
-.line .en { font-weight:800; color:var(--green); font-size:var(--size-md); letter-spacing:.2px }
+.line .en { font-weight:600; color:var(--green); font-size:var(--size-md); letter-spacing:.1px }
 .line .pt { font-size:var(--size-sm); color:var(--muted) }
 .card .line:last-child { border-bottom:0 }
 .card .small { margin-bottom:6px }
@@ -85,7 +85,7 @@ input[type="range"] { width:100%; }
 .levels-grid { margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px }
 .level-card { background:var(--card); border:1px solid #e5e9e7; border-radius:16px; padding:14px; display:flex; align-items:center; justify-content:space-between; transition:transform .2s ease, box-shadow .2s ease; text-decoration:none; position:relative }
 .level-card:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.08) }
-.level-card .title { font-weight:700; color:var(--green) }
+.level-card .title { font-weight:600; color:var(--green) }
 
 /* Centered cards for text selection list */
 .levels-grid .level-card { flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:6px }
@@ -147,7 +147,7 @@ input[type="range"] { width:100%; }
 .flashcard.flipped .flashcard-inner { transform:rotateY(180deg) }
 .flashcard-face { position:absolute; inset:0; border:1px solid #e5e9e7; border-radius:16px; background:var(--card); box-shadow:0 6px 20px rgba(0,0,0,0.06); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:14px; backface-visibility:hidden; text-align:center }
 .flashcard-face.back { transform:rotateY(180deg) }
-.flashcard .word { font-weight:800; font-size:var(--size-md); color:var(--green); margin-bottom:8px }
+.flashcard .word { font-weight:600; font-size:var(--size-md); color:var(--green); margin-bottom:8px }
 .flashcard .meaning { font-size:16px; color:var(--text); margin-bottom:10px }
 .flashcard .actions { display:flex; gap:8px }
 
@@ -156,7 +156,7 @@ input[type="range"] { width:100%; }
 .app-header .nav a { color:#fff; margin-right:12px; text-decoration:none; font-weight:600; border-radius:8px; padding:6px 8px }
 .app-header .nav a:hover { background:rgba(255,255,255,0.14) }
 .app-header .nav a.active { background:rgba(255,255,255,0.18) }
-.app-header .nav .continue { background:#fff; color:var(--green); font-weight:700 }
+.app-header .nav .continue { background:#fff; color:var(--green); font-weight:600 }
 .app-header .nav .theme { margin-left:8px }
 
 .level-hero { position:relative; padding:24px; border-radius:16px; background:radial-gradient(circle at 50% 50%, #0f6a3a 0%, #0b3a1e 60%, #061c10 100%); color:#fff; box-shadow:0 8px 24px rgba(0,0,0,0.12) }
@@ -194,7 +194,9 @@ details.accordion > div { margin-top:8px }
 .selector .option.active { background:linear-gradient(90deg, #eef7ff, #e9f6f1); border-color:var(--green) }
 
 /* Grammar highlighting */
-.grammar-aux { color:#123b7a; font-weight:800 }
+.grammar-aux { color: var(--green); font-weight:800 }
+.grammar-q { color: var(--green); font-weight:800 }
+.grammar-neg { color:#c2132a; font-weight:800 }
 .grammar-suffix { color:#c2132a; font-weight:800 }
 
 /* Tabs UX */
@@ -255,7 +257,7 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
 
 .glossary-page h2 {
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--green);
   margin-bottom: 4px;
 }
@@ -436,7 +438,7 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
 
 .term-wrapper h3 {
   font-size: var(--size-lg);
-  font-weight: 800;
+  font-weight: 600;
   margin: 0;
   color: var(--green);
 }
@@ -496,7 +498,7 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
   padding: 4px 10px;
   border-radius: 999px;
   font-size: var(--size-xs);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .lang-chip {

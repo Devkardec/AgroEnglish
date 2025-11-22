@@ -165,10 +165,15 @@ function highlightAction(en){
   const auxIdx = words.findIndex(w=>/^(do|does|don't|doesn't|did|will|can|should|must|may|is|are|am)$/i.test(w.replace(/[.,!?;:]+$/,'')));
   if (auxIdx>=0) {
     const aux = stripPunct(words[auxIdx]);
-    if (/^(is|are|am)$/i.test(aux.base)) {
+    if (/^(don't|doesn't|didn't)$/i.test(aux.base)) {
+      words[auxIdx] = `<span class="grammar-neg">${aux.base}</span>${aux.trail}`;
+    } else if (/^(do|does|did|will|can|should|must|may)$/i.test(aux.base)) {
+      words[auxIdx] = `<span class="grammar-aux">${aux.base}</span>${aux.trail}`;
+    } else if (/^(is|are|am)$/i.test(aux.base)) {
       const cls = /^is$/i.test(aux.base) ? 'verb-third' : 'verb-base';
       words[auxIdx] = `<span class="verb ${cls}">${aux.base}</span>${aux.trail}`;
-    } else if (auxIdx+1 < words.length) {
+    }
+    if (auxIdx+1 < words.length) {
       const v = stripPunct(words[auxIdx+1]);
       words[auxIdx+1] = `<span class="verb verb-base">${v.base}</span>${v.trail}`;
     }
@@ -792,26 +797,26 @@ async function setupAudio(data) {
               <ul style="margin:0;padding-left:18px;line-height:1.6">
                 <li><strong>Uso:</strong> rotina da fazenda com verbos de ação: work, drive, check, feed.</li>
                 <li><strong>Forma direta:</strong> diga quem faz + verbo base. 
-                  <span style="color:#c2132a;font-weight:800">He/She/It</span> ganha 
-                  <span style="color:#c2132a;font-weight:800">s</span> no verbo.
-                  Ex.: <strong>I drive</strong> · <strong>He drive<span style="color:#c2132a;font-weight:800">s</span></strong>.
+                  He/She/It ganha 
+                  <span class="grammar-suffix">s</span> no verbo.
+                  Ex.: <strong>I drive</strong> · <strong>He drive<span class="grammar-suffix">s</span></strong>.
                 </li>
                 <li><strong>Negativa:</strong> 
-                  <span style="font-weight:800">don't</span> para I/You/We/They · 
-                  <span style="font-weight:800">doesn't</span> para He/She/It. 
-                  Ex.: <strong>We <span style="font-weight:800">don't</span> check</strong> · 
-                  <strong>He <span style="font-weight:800">doesn't</span> check</strong>.
+                  <span class="grammar-neg">don't</span> para I/You/We/They · 
+                  <span class="grammar-neg">doesn't</span> para He/She/It. 
+                  Ex.: <strong>We <span class="grammar-neg">don't</span> check</strong> · 
+                  <strong>He <span class="grammar-neg">doesn't</span> check</strong>.
                 </li>
                 <li><strong>Pergunta:</strong> 
-                  <span style="font-weight:800">Do</span> (I/You/We/They) · 
-                  <span style="font-weight:800">Does</span> (He/She/It) + verbo base. 
+                  <span class="grammar-q">Do</span> (I/You/We/They) · 
+                  <span class="grammar-q">Does</span> (He/She/It) + verbo base. 
                   Ex.: <strong>Do you work?</strong> · <strong>Does he drive?</strong>
                 </li>
                 <li><strong>Exemplos agro curtos:</strong> 
                   <strong>I drive</strong> the tractor · 
-                  <strong>She drive<span style="color:#c2132a;font-weight:800">s</span></strong> the tractor. 
+                  <strong>She drive<span class="grammar-suffix">s</span></strong> the tractor. 
                   <strong>We check</strong> water · 
-                  <strong>Sprayer calibration prevent<span style="color:#c2132a;font-weight:800">s</span></strong> over application.
+                  <strong>Sprayer calibration prevent<span class="grammar-suffix">s</span></strong> over application.
                 </li>
               </ul>
             </div>
@@ -824,8 +829,8 @@ async function setupAudio(data) {
             <div class="small">
               <div><strong>O que é:</strong> tempo para eventos concluídos no passado.</div>
               <div style="margin-top:6px"><strong>Como formar:</strong> verbo no passado (<em>worked</em>, <em>checked</em>). Irregulares mudam forma (<em>went</em>).</div>
-              <div style="margin-top:6px"><strong>Negativa:</strong> <em>did not (didn't)</em> + verbo base.</div>
-              <div style="margin-top:6px"><strong>Pergunta:</strong> <em>Did</em> + sujeito + verbo base?</div>
+              <div style="margin-top:6px"><strong>Negativa:</strong> <span class="grammar-neg">did not (didn't)</span> + verbo base.</div>
+              <div style="margin-top:6px"><strong>Pergunta:</strong> <span class="grammar-q">Did</span> + sujeito + verbo base?</div>
             </div>
           </div>
         `;
@@ -845,7 +850,7 @@ async function setupAudio(data) {
           <div class="card">
             <div class="small">
               <div><strong>Função:</strong> dar conselho, obrigação ou possibilidade.</div>
-              <div style="margin-top:6px"><strong>Exemplos:</strong> <em>should</em>, <em>must</em>, <em>can</em>, <em>may</em>.</div>
+              <div style="margin-top:6px"><strong>Exemplos:</strong> <span class="grammar-aux">should</span>, <span class="grammar-aux">must</span>, <span class="grammar-aux">can</span>, <span class="grammar-aux">may</span>.</div>
             </div>
           </div>
         `;
