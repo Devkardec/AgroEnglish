@@ -17,6 +17,7 @@ nav a.active { text-decoration:underline; }
 .btn { background:linear-gradient(90deg, var(--green), var(--green2)); color:#fff; border:none; border-radius:12px; padding:12px 18px; cursor:pointer; font-size:var(--size-md) }
 .btn.secondary { background:linear-gradient(90deg, #0f6a3a, #0b3a1e); color:#fff }
 .btn.sm { padding:6px 10px; font-size:var(--size-sm); border-radius:10px }
+.btn.danger { background:linear-gradient(90deg, #c2132a, #8a0f1f); color:#fff }
 .section-title { margin:8px 0 12px; font-size:var(--size-lg); font-weight:600; color:var(--green); display:flex; align-items:center; gap:8px }
 .section-title::before { content:''; width:10px; height:10px; border-radius:50%; background:linear-gradient(90deg, var(--green), var(--green2)) }
 .card .section-title { margin-top:0 }
@@ -179,6 +180,11 @@ input[type="range"] { width:100%; }
 .pron-card .text { font-size:14px; color:var(--text) }
 .meter { height:8px; background:#e5e9e7; border-radius:8px; overflow:hidden; margin-top:8px }
 .meter span { display:block; height:100%; width:0; background:linear-gradient(90deg, var(--green), var(--green2)) }
+.compare-badges { display:flex; gap:8px; flex-wrap:wrap }
+.metric-badge { display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:#eef3fb; border:1px solid #d6e1f5; font-weight:600; font-size:var(--size-sm); color:var(--text) }
+.metric-badge .dot { width:8px; height:8px; border-radius:50%; display:inline-block }
+.metric-badge.orig .dot { background:#0b2f6a }
+.metric-badge.mine .dot { background:#0f6a3a }
 details.accordion { border:none }
 details.accordion > summary { cursor:pointer; display:flex; align-items:center; justify-content:space-between; background:#eef3fb; border:1px solid #d6e1f5; border-radius:12px; padding:12px 14px; font-weight:800 }
 details.accordion > summary::after { content:'\25B8'; color:var(--muted); transition:transform .2s ease }

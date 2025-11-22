@@ -1866,6 +1866,124 @@ async function setupAudio(data) {
         });
       }
 
+      const fullTextEl = document.getElementById('fullSpeechText');
+      const fullOrigAudio = document.getElementById('fullOrigAudio');
+      const fullMyAudio = document.getElementById('fullMyAudio');
+      const btnFullPlayOrig = document.getElementById('fullPlayOrig');
+      const btnFullRecord = document.getElementById('fullRecord');
+      const btnFullStop = document.getElementById('fullStop');
+      const btnFullPlayMine = document.getElementById('fullPlayMine');
+      const btnFullDownload = document.getElementById('fullDownload');
+      const btnFullCompare = document.getElementById('fullCompare');
+      const compareResultEl = document.getElementById('fullCompareResult');
+      const fullRecordDefaultLabel = btnFullRecord ? btnFullRecord.textContent : 'Gravar minha narração';
+      let hasFullMp3 = false;
+      let fullMediaRecorder;
+      let fullMediaStream;
+      let fullRecordedChunks = [];
+      let fullRecordedBlob = null;
+      let fullRecTimer = null;
+      let fullRecStart = 0;
+
+      if (fullTextEl) {
+        const enText = sentences.join(' ');
+        const ptText = ptSentences.join(' ');
+        fullTextEl.innerHTML = `<div class="line"><div class="en">${enText}</div><div class="pt">${ptText}</div></div>`;
+      }
+
+      (async () => {
+        try {
+          const lvl = String(level).trim();
+          const title = String(data && (data.uiTitle || data.title) || '').trim();
+          const fileName = encodeURIComponent(`${title} · ${lvl}.mp3`);
+          const url = `./src/audio/${lvl}/${fileName}`;
+          const r = await fetch(url, { method: 'HEAD' });
+          if (r.ok && fullOrigAudio) { fullOrigAudio.src = url; fullOrigAudio.style.display='block'; hasFullMp3 = true; }
+        } catch {}
+      })();
+
+      function speakFull(){ const txt = sentences.join(' '); speak(txt); }
+      function stopInput(){
+        try { if (fullMediaRecorder && fullMediaRecorder.state !== 'inactive') fullMediaRecorder.stop() } catch {}
+        try { if (fullMediaStream) fullMediaStream.getTracks().forEach(t=>t.stop()) } catch {}
+        if (fullRecTimer) { clearInterval(fullRecTimer); fullRecTimer = null; }
+        if (btnFullRecord) { btnFullRecord.disabled = false; btnFullRecord.textContent = fullRecordDefaultLabel; }
+        if (btnFullStop) btnFullStop.disabled = true;
+      }
+      if (btnFullPlayOrig) btnFullPlayOrig.addEventListener('click', ()=>{ if (hasFullMp3 && fullOrigAudio && fullOrigAudio.src) { fullOrigAudio.currentTime=0; fullOrigAudio.play(); } else { speakFull() } });
+      if (btnFullRecord) btnFullRecord.addEventListener('click', ()=>{
+        fullRecordedChunks = [];
+        navigator.mediaDevices.getUserMedia({ audio:true }).then(stream=>{
+          fullMediaStream = stream;
+          fullMediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+          const meter = document.getElementById('recMeter');
+          const bar = meter ? meter.querySelector('span') : null;
+          try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const src = ctx.createMediaStreamSource(stream);
+            const analyser = ctx.createAnalyser();
+            analyser.fftSize = 256;
+            const dataArr = new Uint8Array(analyser.frequencyBinCount);
+            src.connect(analyser);
+            let run = true;
+            const loop = ()=>{ if (!run) return; analyser.getByteTimeDomainData(dataArr); let sum=0; for(let j=0;j<dataArr.length;j++) sum += Math.abs(dataArr[j]-128); const vol = Math.min(100, Math.round((sum/dataArr.length)/1.5)); if (bar) bar.style.width = vol+'%'; requestAnimationFrame(loop); };
+            loop();
+            fullMediaRecorder.addEventListener('stop', ()=>{ run=false; if (bar) bar.style.width='0%' });
+          } catch {}
+          fullMediaRecorder.ondataavailable = e=>{ if (e.data && e.data.size>0) fullRecordedChunks.push(e.data) };
+          fullMediaRecorder.onstop = ()=>{
+            fullRecordedBlob = new Blob(fullRecordedChunks, { type:'audio/webm' });
+            const url = URL.createObjectURL(fullRecordedBlob);
+            if (fullMyAudio) { fullMyAudio.src = url; fullMyAudio.style.display='block'; }
+            if (fullRecTimer) { clearInterval(fullRecTimer); fullRecTimer = null; }
+            if (btnFullRecord) { btnFullRecord.disabled = false; btnFullRecord.textContent = fullRecordDefaultLabel; }
+            if (btnFullStop) btnFullStop.disabled = true;
+          };
+          fullRecStart = Date.now();
+          if (btnFullRecord) { btnFullRecord.disabled = true; btnFullRecord.textContent = 'Gravando 00:00'; }
+          if (btnFullStop) btnFullStop.disabled = false;
+          const fmt = (ms)=>{ const s = Math.floor(ms/1000); const m = Math.floor(s/60); const sec = s%60; return String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0'); };
+          fullRecTimer = setInterval(()=>{ if (btnFullRecord) btnFullRecord.textContent = 'Gravando '+fmt(Date.now()-fullRecStart); }, 500);
+          fullMediaRecorder.start();
+        }).catch(()=>{});
+      });
+      if (btnFullStop) btnFullStop.addEventListener('click', ()=> stopInput());
+      if (btnFullPlayMine) btnFullPlayMine.addEventListener('click', ()=>{ if (fullMyAudio && fullMyAudio.src) { fullMyAudio.currentTime=0; fullMyAudio.play(); } });
+      if (btnFullDownload) btnFullDownload.addEventListener('click', ()=>{
+        if (!fullRecordedBlob) return;
+        const a = document.createElement('a');
+        const url = URL.createObjectURL(fullRecordedBlob);
+        a.href = url;
+        const lvl = String(level).trim();
+        const title = String(data && (data.uiTitle || data.title) || '').trim();
+        a.download = `${title} · ${lvl} · minha-narracao.webm`;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(()=>{ document.body.removeChild(a); URL.revokeObjectURL(url); }, 1000);
+      });
+      if (btnFullCompare) btnFullCompare.addEventListener('click', ()=>{
+        if (hasFullMp3 && fullOrigAudio && fullOrigAudio.src) {
+          fullOrigAudio.currentTime=0; fullOrigAudio.play(); fullOrigAudio.onended = ()=>{ if (fullMyAudio && fullMyAudio.src) fullMyAudio.play() };
+        } else {
+          const u = new SpeechSynthesisUtterance(sentences.join(' '));
+          const voice = getVoice(); if (voice) u.voice = voice; u.rate = Number(localStorage.getItem('rate')||state.rate); u.pitch = Number(localStorage.getItem('pitch')||state.pitch);
+          u.onend = ()=>{ if (fullMyAudio && fullMyAudio.src) fullMyAudio.play() };
+          window.speechSynthesis.cancel(); window.speechSynthesis.speak(u);
+        }
+        try {
+          const words = sentences.join(' ').trim().split(/\s+/).length;
+          let origDur = (fullOrigAudio && !isNaN(fullOrigAudio.duration) && fullOrigAudio.duration>0) ? fullOrigAudio.duration : null;
+          let myDur = (fullMyAudio && !isNaN(fullMyAudio.duration) && fullMyAudio.duration>0) ? fullMyAudio.duration : null;
+          if (!origDur && !hasFullMp3) { origDur = null; }
+          const myWpm = myDur ? Math.round((words / myDur) * 60) : null;
+          const origWpm = origDur ? Math.round((words / origDur) * 60) : null;
+          const parts = [];
+          if (origDur) parts.push(`<span class="metric-badge orig"><span class="dot"></span>Original: ${Math.round(origDur)}s${origWpm?` · ${origWpm} WPM`:''}</span>`);
+          if (myDur) parts.push(`<span class="metric-badge mine"><span class="dot"></span>Minha: ${Math.round(myDur)}s${myWpm?` · ${myWpm} WPM`:''}</span>`);
+          if (compareResultEl) compareResultEl.innerHTML = `<div class="compare-badges">${parts.join(' ')}</div>`;
+        } catch {}
+      });
+
       const openPronModal = document.getElementById('openPronModal');
       const pronModal = document.getElementById('pronModal');
       const closePronModal = document.getElementById('closePronModal');

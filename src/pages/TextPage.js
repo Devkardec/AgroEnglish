@@ -66,6 +66,20 @@ export function TextPage(level, index) {
         <div class="small">Prática ativa de pronúncia.</div>
         <div class="section-title" style="margin-top:12px">Treinar pronúncia</div>
         <div id="pronList" class="pron-grid"></div>
+        <div class="section-title" style="margin-top:12px">Narrar texto completo</div>
+        <div id="fullSpeechText" class="lines" style="margin-top:8px"></div>
+        <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto">
+          <button class="btn sm" id="fullPlayOrig" style="white-space:nowrap">Ouvir narração original</button>
+          <button class="btn danger sm" id="fullRecord" style="white-space:nowrap">Gravar minha narração</button>
+          <button class="btn secondary sm" id="fullStop" style="white-space:nowrap">Parar</button>
+          <button class="btn secondary sm" id="fullPlayMine" style="white-space:nowrap">Ouvir minha narração</button>
+          <button class="btn secondary sm" id="fullDownload" style="white-space:nowrap">Baixar minha narração</button>
+          <button class="btn secondary sm" id="fullCompare" style="white-space:nowrap">Comparar</button>
+        </div>
+        <div id="recMeter" class="meter" style="margin-top:8px"><span style="display:block;height:6px;background:var(--primary);width:0%"></span></div>
+        <audio id="fullOrigAudio" style="display:none;width:100%;margin-top:8px" controls></audio>
+        <audio id="fullMyAudio" style="display:none;width:100%;margin-top:6px" controls></audio>
+        <div id="fullCompareResult" class="small" style="margin-top:6px"></div>
       </section>
 
       <div style="margin-top:16px;display:flex;gap:8px">
