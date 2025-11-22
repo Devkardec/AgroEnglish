@@ -587,7 +587,8 @@ function initLevelPage(level) {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
+          const id = (data && data.id) ? Number(data.id) : (i+1);
+          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -602,7 +603,8 @@ function initLevelPage(level) {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
+          const id = (data && data.id) ? Number(data.id) : (i+1);
+          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -617,7 +619,8 @@ function initLevelPage(level) {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
+          const id = (data && data.id) ? Number(data.id) : (i+1);
+          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -632,7 +635,8 @@ function initLevelPage(level) {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
+          const id = (data && data.id) ? Number(data.id) : (i+1);
+          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -647,7 +651,8 @@ function initLevelPage(level) {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
+          const id = (data && data.id) ? Number(data.id) : (i+1);
+          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -662,7 +667,8 @@ function initLevelPage(level) {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/${total}</span></a>`;
+          const id = (data && data.id) ? Number(data.id) : (i+1);
+          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
         }).join('');
         textList.innerHTML = links;
       }).catch(()=>{
@@ -728,7 +734,7 @@ async function setupAudio(data) {
   function renderAudioStatus(){ if(audioStatusEl) audioStatusEl.textContent = hasMp3 ? 'Áudio disponível' : 'Voz sintética'; }
   function narrate(txt) { if (!txt) return; speak(txt); }
 
-  const title = String(data && data.title || '').trim();
+  const title = String(data && (data.uiTitle || data.title) || '').trim();
   const level = (location.hash.split('/')[2] || '').trim();
   const idx = Number((location.hash.split('/')[3] || '1').trim());
   function slugify(s){
@@ -1742,9 +1748,23 @@ async function setupAudio(data) {
     return fetch(path1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(path2).then(r=>r.json()));
   }
   fetchText()
-    .then((data) => {
-      
+    .then(async (data) => {
+      let uiTitle = '';
+      try {
+        const lvl = String(level).toUpperCase();
+        const blocksName = `${lvl.toLowerCase()}_blocks.json`;
+        const bp1 = `/src/data/texts/${lvl}/${blocksName}`;
+        const bp2 = `./src/data/texts/${lvl}/${blocksName}`;
+        const items = await (fetch(bp1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(bp2).then(r=> r.json())));
+        const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
+        uiTitle = String(item.title||'');
+      } catch {}
+      if (uiTitle) { data.uiTitle = uiTitle; }
+
       setupUI(data);
+      if (uiTitle) {
+        try { document.getElementById('title').textContent = uiTitle + ' · ' + level; } catch {}
+      }
       renderLines(data);
       setupAudio(data);
       

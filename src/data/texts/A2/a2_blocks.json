@@ -305,6 +305,34 @@
         {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"},
         {"base": "Dry", "third_person": "Dries", "translation": "Secar"}
       ]
+  }
+ },
+  {
+    "id": 12,
+    "level": "A2",
+    "category": "Rotina/Horários",
+    "title": "Daily Schedule and Address",
+    "title_pt": "Agenda diária e endereço",
+    "text_en": "We usually start at 6:30 at 125 Green Road. Today, we are meeting the vet at 9:30 at 18 Oak Street. We often finish at 17:00, but we are checking the schedule now. The gate is open, and we are walking to the barn at 6:40.",
+    "text_pt": "Nós geralmente começamos às 6:30 na Rua Green, 125. Hoje, nós estamos encontrando o veterinário às 9:30 na Rua Oak, 18. Nós geralmente terminamos às 17:00, mas estamos conferindo a programação agora. O portão está aberto e estamos caminhando para o celeiro às 6:40.",
+    "teaching_modules": {
+      "explanation": "Present Simple com advérbios de frequência (usually/often) e Present Continuous para ações do momento (are meeting/are walking).",
+      "grammar_table": [
+        {"subject": "We", "verb": "start", "example": "We usually start at 6:30."},
+        {"subject": "We", "verb": "are meeting", "example": "We are meeting the vet at 9:30."}
+      ],
+      "vocabulary": [
+        {"word": "Address", "translation": "Endereço"},
+        {"word": "Schedule", "translation": "Programação"},
+        {"word": "Gate", "translation": "Portão"},
+        {"word": "Street", "translation": "Rua"}
+      ],
+      "verbs_list": [
+        {"base": "start", "third_person": "starts", "translation": "começar"},
+        {"base": "meet", "third_person": "meets", "translation": "encontrar"},
+        {"base": "walk", "third_person": "walks", "translation": "caminhar"},
+        {"base": "check", "third_person": "checks", "translation": "conferir"}
+      ]
     }
   }
 ]

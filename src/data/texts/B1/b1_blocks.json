@@ -314,6 +314,34 @@
         {"base": "Drink", "past": "Drank", "translation": "Beber/Bebeu"},
         {"base": "Eat", "past": "Ate", "translation": "Comer/Comeu"}
       ]
+  }
+ },
+  {
+    "id": 12,
+    "level": "B1",
+    "category": "Rotina/Horários",
+    "title": "Yesterday's Schedule and Address",
+    "title_pt": "Horários e endereço de ontem",
+    "text_en": "Yesterday, we started at 6:30 at 125 Green Road. We arrived at the gate at 6:40 and walked to the barn. At 9:30, we met the vet at 18 Oak Street. We checked the address, updated the schedule, and finished at 17:00.",
+    "text_pt": "Ontem, nós começamos às 6:30 na Rua Green, 125. Nós chegamos ao portão às 6:40 e caminhamos até o celeiro. Às 9:30, nós encontramos o veterinário na Rua Oak, 18. Nós conferimos o endereço, atualizamos a programação e terminamos às 17:00.",
+    "teaching_modules": {
+      "explanation": "Past Simple com tempos e locais: started, arrived, met, checked, finished.",
+      "grammar_table": [
+        {"subject": "We", "verb": "started", "example": "We started at 6:30."},
+        {"subject": "We", "verb": "met", "example": "We met the vet at 9:30."}
+      ],
+      "vocabulary": [
+        {"word": "Address", "translation": "Endereço"},
+        {"word": "Schedule", "translation": "Programação"},
+        {"word": "Gate", "translation": "Portão"}
+      ],
+      "verbs_list": [
+        {"base": "start", "past": "started", "translation": "começar"},
+        {"base": "arrive", "past": "arrived", "translation": "chegar"},
+        {"base": "meet", "past": "met", "translation": "encontrar"},
+        {"base": "check", "past": "checked", "translation": "conferir"},
+        {"base": "finish", "past": "finished", "translation": "terminar"}
+      ]
     }
   }
 ]

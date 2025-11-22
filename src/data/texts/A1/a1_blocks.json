@@ -304,6 +304,38 @@
         {"base": "Read", "third_person": "Reads", "translation": "Ler"},
         {"base": "Give", "third_person": "Gives", "translation": "Dar"}
       ]
+  }
+ },
+  {
+    "id": 12,
+    "level": "A1",
+    "category": "Rotina/Endereço",
+    "title": "Farm Hours and Address",
+    "title_pt": "Horários e endereço da fazenda",
+    "text_en": "I start work at 7:00 at 125 Green Road. I open the gate at 7:05 and walk to the barn at 7:10. The farm address is 125 Green Road, Oak Valley. I check the water at 7:20. I drive to Field 3 at 8:00. I meet the vet at 9:30 at 18 Oak Street. I write the schedule and finish at 17:00.",
+    "text_pt": "Eu começo a trabalhar às 7:00 na Rua Green, 125. Eu abro o portão às 7:05 e caminho até o celeiro às 7:10. O endereço da fazenda é Rua Green, 125, Vale do Carvalho. Eu verifico a água às 7:20. Eu dirijo até o Talhão 3 às 8:00. Eu encontro o veterinário às 9:30 na Rua Oak, 18. Eu escrevo a programação e termino às 17:00.",
+    "teaching_modules": {
+      "explanation": "Present Simple com horários e endereço. He/She/It usa verbo com s. Foco em rotina com horas.",
+      "grammar_table": [
+        {"subject": "I", "verb": "start", "example": "I start at 7:00."},
+        {"subject": "It (address)", "verb": "is", "example": "The farm address is 125 Green Road."}
+      ],
+      "vocabulary": [
+        {"word": "Address", "translation": "Endereço"},
+        {"word": "Schedule", "translation": "Programação"},
+        {"word": "Gate", "translation": "Portão"},
+        {"word": "Street", "translation": "Rua"},
+        {"word": "Road", "translation": "Estrada"}
+      ],
+      "verbs_list": [
+        {"base": "start", "third_person": "starts", "translation": "começar"},
+        {"base": "open", "third_person": "opens", "translation": "abrir"},
+        {"base": "walk", "third_person": "walks", "translation": "caminhar"},
+        {"base": "check", "third_person": "checks", "translation": "verificar"},
+        {"base": "drive", "third_person": "drives", "translation": "dirigir"},
+        {"base": "meet", "third_person": "meets", "translation": "encontrar"},
+        {"base": "finish", "third_person": "finishes", "translation": "terminar"}
+      ]
     }
   }
 ]

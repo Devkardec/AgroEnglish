@@ -287,5 +287,14 @@
     "title_pt": "Estratégia de exportação e hedge cambial",
     "text_en": "A cooperative signs a forward export contract for 1,000 tons at $480/t. Logistics include ocean freight at $22/t, port handling at $8/t, insurance at 0.6% of cargo value, and a 2% export tax. The cooperative hedges 70% of USD exposure via futures, locking FX at R$5.05/USD.",
     "text_pt": "Uma cooperativa firma um contrato futuro de exportação de 1.000 toneladas a $480/t. A logística inclui frete marítimo a $22/t, operações portuárias a $8/t, seguro a 0,6% do valor da carga e imposto de exportação de 2%. A cooperativa faz hedge de 70% da exposição em USD via futuros, travando o câmbio em R$5,05/USD."
+  },
+  {
+    "id": 12,
+    "level": "C2",
+    "category": "Gestão/Agenda",
+    "title": "Temporal and Spatial Specification",
+    "title_pt": "Especificação temporal e espacial",
+    "text_en": "Operations commence at 07:00 at 125 Green Road, and the compliance briefing at 18 Oak Street is scheduled for 09:30. Precise timekeeping and address specification mitigate ambiguity; therefore, dispatch errors are precluded. Should deviations occur, corrective measures are instituted under the governance framework.",
+    "text_pt": "As operações começam às 07:00 na Rua Green, 125, e a reunião de conformidade na Rua Oak, 18 está marcada para 09:30. A especificação precisa de horário e endereço mitiga ambiguidade; portanto, erros de despacho são evitados. Caso ocorram desvios, medidas corretivas são instituídas sob a estrutura de governança."
   }
 ]
