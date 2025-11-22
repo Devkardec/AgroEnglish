@@ -818,10 +818,7 @@ async function setupAudio(data) {
       const pt = String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT);
       items = en.map((s,i)=>({ en: s, pt: pt[i]||'' }));
     }
-    const width = vocabEl.clientWidth || 980;
-    const cols = Math.max(1, Math.floor(width / 200));
-    const rows = window.innerWidth < 640 ? 2 : 3;
-    const max = Math.min(items.length, cols * rows);
+    const max = Math.min(items.length, 10);
     const shown = items.slice(0, max);
     vocabEl.innerHTML = shown.map(it => `
       <div class="flashcard" data-en="${it.en.replace(/"/g,'&quot;')}">
@@ -838,11 +835,9 @@ async function setupAudio(data) {
     vocabEl.addEventListener('click', (e) => {
       const card = e.target.closest('.flashcard');
       if (!card) return;
-      const y = window.scrollY;
       e.preventDefault();
       e.stopPropagation();
       card.classList.toggle('flipped');
-      window.scrollTo(0, y);
       const enText = card.dataset.en || '';
       try { speak(enText) } catch {}
     });
