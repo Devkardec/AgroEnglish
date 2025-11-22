@@ -1,5 +1,5 @@
 // It's recommended to update the cache name when you update the app.
-const CACHE = 'agroenglish-pro-v9';
+const CACHE = 'agroenglish-pro-v11';
 
 const PRECACHE = [
   '/',

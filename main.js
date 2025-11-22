@@ -483,98 +483,6 @@ async function initHomePage() {
 }
 
 function initLevelPage(level) {
-  const path = `/src/data/texts/${level}/basic.json`;
-  fetch(path)
-    .then(r => r.json())
-    .then(list => {
-      const container = document.getElementById('phrases');
-      if (container) {
-        const shown = Array.isArray(list) ? list.slice(0, 10) : [];
-        container.innerHTML = shown.map((p, i) => PhraseCard(p, i)).join('');
-        setupRecording(container);
-      }
-    })
-    .catch(() => {
-      const container = document.getElementById('phrases');
-      if (container) {
-        container.innerHTML = '<div class="card">Sem dados offline para este nível.</div>';
-      }
-    });
-
-  function setupRecording(container) {
-    let mediaRecorder;
-    let recordedChunks = [];
-    let mediaStream;
-
-    container.addEventListener('click', async (event) => {
-      const target = event.target;
-      const action = target.dataset.action;
-      const index = target.dataset.index;
-
-      if (!action || index === null) return;
-
-      const card = target.closest(`[data-phrase-card="${index}"]`);
-      if (!card) return;
-
-      const recordBtn = card.querySelector('.record-btn');
-      const stopBtn = card.querySelector('.stop-btn');
-      const playRecBtn = card.querySelector('.play-rec-btn');
-      const audioPlayer = card.querySelector('.audio-player');
-      const statusEl = card.querySelector('.status');
-
-      const setStatus = (msg) => {
-        if (statusEl) statusEl.textContent = msg;
-      };
-
-      if (action === 'record') {
-        try {
-          mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-          recordedChunks = [];
-          mediaRecorder = new MediaRecorder(mediaStream);
-
-          mediaRecorder.ondataavailable = (e) => {
-            if (e.data.size > 0) {
-              recordedChunks.push(e.data);
-            }
-          };
-
-          mediaRecorder.onstop = () => {
-            const blob = new Blob(recordedChunks, { type: 'audio/webm' });
-            const audioUrl = URL.createObjectURL(blob);
-            audioPlayer.src = audioUrl;
-            setStatus('Gravação concluída.');
-            stopBtn.style.display = 'none';
-            playRecBtn.style.display = 'inline-block';
-            recordBtn.style.display = 'inline-block';
-          };
-
-          mediaRecorder.start();
-          setStatus('Gravando...');
-          recordBtn.style.display = 'none';
-          stopBtn.style.display = 'inline-block';
-          playRecBtn.style.display = 'none';
-          audioPlayer.style.display = 'none';
-
-        } catch (err) {
-          setStatus('Permissão para microfone negada.');
-          console.error('Error accessing microphone:', err);
-        }
-      } else if (action === 'stop') {
-        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-          mediaRecorder.stop();
-        }
-        if (mediaStream) {
-          mediaStream.getTracks().forEach(track => track.stop());
-        }
-        setStatus('Parando gravação...');
-      } else if (action === 'play-rec') {
-        if (audioPlayer.src) {
-          audioPlayer.style.display = 'block';
-          audioPlayer.play();
-        }
-      }
-    });
-  }
 
   const textList = document.getElementById('textList');
   if (textList) {
@@ -820,8 +728,13 @@ async function setupAudio(data) {
     if (pairList) {
       items = pairList.map(p => ({ en: p.en, pt: fixPT(p.pt) }));
     } else {
-      const en = String(data.text||'').split(/(?<=[.!?])\s+/);
-      const pt = String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT);
+      function normalizeForSplit(str){
+        const s = String(str||'');
+        const addSpace = s.replace(/([.!?])(\S)/g, '$1 $2');
+        return addSpace;
+      }
+      const en = normalizeForSplit(data.text).split(/(?<=[.!?])\s+/);
+      const pt = normalizeForSplit(data.translation).split(/(?<=[.!?])\s+/).map(fixPT);
       items = en.map((s,i)=>({ en: s, pt: pt[i]||'' }));
     }
     const max = Math.min(items.length, 10);
@@ -1739,6 +1652,33 @@ async function setupAudio(data) {
     if (level === 'B1') {
       const p1 = '/src/data/texts/B1/b1_blocks.json';
       const p2 = './src/data/texts/B1/b1_blocks.json';
+      return (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json())))
+        .then(items => {
+          const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
+          return generateExercises(item, idx);
+        });
+    }
+    if (level === 'B2') {
+      const p1 = '/src/data/texts/B2/b2_blocks.json';
+      const p2 = './src/data/texts/B2/b2_blocks.json';
+      return (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json())))
+        .then(items => {
+          const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
+          return generateExercises(item, idx);
+        });
+    }
+    if (level === 'C1') {
+      const p1 = '/src/data/texts/C1/c1_blocks.json';
+      const p2 = './src/data/texts/C1/c1_blocks.json';
+      return (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json())))
+        .then(items => {
+          const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
+          return generateExercises(item, idx);
+        });
+    }
+    if (level === 'C2') {
+      const p1 = '/src/data/texts/C2/c2_blocks.json';
+      const p2 = './src/data/texts/C2/c2_blocks.json';
       return (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json())))
         .then(items => {
           const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};

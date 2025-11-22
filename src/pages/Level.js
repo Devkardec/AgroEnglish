@@ -1,4 +1,4 @@
-import { PhraseCard } from '../components/PhraseCard.js'
+ 
 
 function pathFor(level) {
   return `/src/data/texts/${level}/basic.json`
@@ -20,8 +20,7 @@ export function Level(level) {
         <div class="section-title">Escolha o texto</div>
         <div id="textList" class="levels-grid"></div>
       </section>
-      <div id="phrases" class="grid"></div>
-      <div class="small" style="margin-top:8px">Toque em Speak para ouvir com voz nativa.</div>
+      
       
       <section class="card" style="margin-top:16px">
         <div class="section-title" style="text-align:center">Navegar por níveis</div>
