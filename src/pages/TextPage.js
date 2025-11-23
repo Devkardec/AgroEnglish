@@ -52,7 +52,6 @@ export function TextPage(level, index) {
           <div class="player-track">
             <input id="playerSeek" class="player-seek" type="range" min="0" max="100" step="0.1" value="0" />
             <span id="playerTime" class="small player-time">00:00 / 00:00</span>
-            <span id="audioStatus" class="small" style="margin-left:8px"></span>
           </div>
         </div>
         <div id="lines" class="lines" style="margin-top:8px"></div>

@@ -700,7 +700,7 @@ async function setupAudio(data) {
   const audio = new Audio();
   audio.preload = 'none';
   const audioStatusEl = document.getElementById('audioStatus');
-  function renderAudioStatus(){ if(audioStatusEl) audioStatusEl.textContent = hasMp3 ? 'Áudio disponível' : 'Voz sintética'; }
+  function renderAudioStatus(){ if(audioStatusEl) audioStatusEl.style.display = 'none'; }
   function narrate(txt) { if (!txt) return; speak(txt); }
 
   const title = String(data && (data.uiTitle || data.title) || '').trim();
@@ -841,12 +841,12 @@ async function setupAudio(data) {
             <ul style="margin:0;padding-left:18px;line-height:1.6">
               <li><strong>O que é:</strong> tempo para falar de rotinas, fatos e horários fixos.</li>
               <li><strong>Quando usar:</strong> atividades diárias, verdades gerais e agendas.</li>
-              <li><strong>Forma direta:</strong> sujeito + verbo base. He/She/It ganha <span class="grammar-suffix">s</span> no verbo. Ex.: <strong>I drive</strong> · <strong>He drive<span class="grammar-suffix">s</span></strong>.</li>
-              <li><strong>Como montar frase:</strong> sujeito + verbo + complemento. Ex.: <strong>We</strong> (sujeito) <strong>check</strong> (verbo) <strong>the water</strong> (complemento).</li>
+              <li><strong>Forma direta:</strong> sujeito + verbo base. He/She/It ganha <span class="grammar-suffix">s</span> no verbo. Ex.: <strong>I <span class="verb verb-base">drive</span></strong> · <strong>He <span class="verb verb-third">drives</span></strong>.</li>
+              <li><strong>Como montar frase:</strong> sujeito + verbo + complemento. Ex.: <strong>We</strong> (sujeito) <strong><span class="verb verb-base">check</span></strong> (verbo) <strong>the water</strong> (complemento).</li>
               <li><strong>Passo a passo:</strong> 1) sujeito; 2) verbo base; 3) complemento; 4) He/She/It em afirmativa: <span class="grammar-suffix">+s</span>.</li>
-              <li><strong>Negativa:</strong> <span class="grammar-neg">don't</span> (I/You/We/They) · <span class="grammar-neg">doesn't</span> (He/She/It). Verbo na base: <strong>He <span class="grammar-neg">doesn't</span> drive</strong>.</li>
-              <li><strong>Pergunta:</strong> <span class="grammar-q">Do</span> (I/You/We/They) · <span class="grammar-q">Does</span> (He/She/It) + base. Ex.: <strong>Do you work?</strong> · <strong>Does he drive?</strong>. Respostas curtas: <strong>Yes, he <span class="grammar-aux">does</span></strong> · <strong>No, we <span class="grammar-neg">don't</span></strong>.</li>
-              <li><strong>Exemplos agro curtos:</strong> <strong>I drive</strong> the tractor · <strong>She drive<span class="grammar-suffix">s</span></strong> the tractor · <strong>We check</strong> water.</li>
+              <li><strong>Negativa:</strong> <span class="grammar-neg">don't</span> (I/You/We/They) · <span class="grammar-neg">doesn't</span> (He/She/It). Verbo na base: <strong>He <span class="grammar-neg">doesn't</span> <span class="verb verb-base">drive</span></strong>.</li>
+              <li><strong>Pergunta:</strong> <span class="grammar-q">Do</span> (I/You/We/They) · <span class="grammar-q">Does</span> (He/She/It) + base. Ex.: <strong>Do you <span class="verb verb-base">work</span>?</strong> · <strong>Does he <span class="verb verb-base">drive</span>?</strong>. Respostas curtas: <strong>Yes, he <span class="grammar-aux">does</span></strong> · <strong>No, we <span class="grammar-neg">don't</span></strong>.</li>
+              <li><strong>Exemplos agro curtos:</strong> <strong>I <span class="verb verb-base">drive</span></strong> the tractor · <strong>She <span class="verb verb-third">drives</span></strong> the tractor · <strong>We <span class="verb verb-base">check</span></strong> water.</li>
             </ul>
           </div>
         </div>

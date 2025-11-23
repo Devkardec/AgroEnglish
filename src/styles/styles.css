@@ -1,4 +1,4 @@
-:root { --green:#0f6a3a; --green2:#0b3a1e; --blue:#123b7a; --bg:#f8f9fc; --card:#ffffff; --text:#0c1a2b; --muted:#6b778b; --size-xl:30px; --size-lg:18px; --size-md:15px; --size-sm:13px; --size-xs:12px }
+:root { --green:#0a7f42; --green2:#085232; --blue:#1e3a8a; --red:#c2132a; --bg:#f8f9fc; --card:#ffffff; --text:#0c1a2b; --muted:#6b778b; --size-xl:30px; --size-lg:18px; --size-md:15px; --size-sm:13px; --size-xs:12px }
 * { box-sizing: border-box; }
 html,body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, Arial, sans-serif; font-size:var(--size-md) }
 /* Acessibilidade: link para pular para o conteúdo */
@@ -82,7 +82,7 @@ input[type="range"] { width:100%; }
 /* Destaque de verbo (ação) */
 .verb { font-weight:800 }
 .verb-base { color: var(--blue) }
-.verb-third { color: var(--green2) }
+.verb-third { color: var(--green) }
 
 .hero { position:relative; padding:40px 24px; border-radius:20px; background:radial-gradient(circle at 50% 50%, #0f6a3a 0%, #0b3a1e 60%, #061c10 100%); color:#fff; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.12) }
 .hero h1 { font-size:var(--size-xl); margin:0 0 8px 0; line-height:1.1 }
@@ -214,8 +214,8 @@ details.accordion > div { margin-top:8px }
 /* Grammar highlighting */
 .grammar-aux { color: var(--green); font-weight:800 }
 .grammar-q { color: var(--green); font-weight:800 }
-.grammar-neg { color:#c2132a; font-weight:800 }
-.grammar-suffix { color:#c2132a; font-weight:800 }
+.grammar-neg { color: var(--red); font-weight:800 }
+.grammar-suffix { color: var(--red); font-weight:800 }
 
 /* Tabs UX */
 button[data-tab] { transition: background-color .15s ease, box-shadow .15s ease, color .15s ease }
