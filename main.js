@@ -238,13 +238,23 @@ function splitOnConnectorsPT(sentence){
 
 function buildAudioUrls(lvl, title){
   const base = `./src/audio/${lvl}/`;
-  const names = [
-    `${title} · ${lvl}.mp3`,
-    `${title.replace(/[’']/g,'')} · ${lvl}.mp3`,
-    `${title} - ${lvl}.mp3`,
-    `${title}.mp3`
-  ];
-  return names.map(n => base + encodeURIComponent(n));
+  const t0 = String(title||'');
+  const t1 = t0.replace(/[’']/g,'');
+  const t2 = t0.replace(/[:]/g,'');
+  const t3 = t0.replace(/[·]/g,'-').replace(/\s+-\s+/g,' - ');
+  const candidates = Array.from(new Set([
+    `${t0} · ${lvl}.mp3`,
+    `${t1} · ${lvl}.mp3`,
+    `${t2} · ${lvl}.mp3`,
+    `${t0} - ${lvl}.mp3`,
+    `${t1} - ${lvl}.mp3`,
+    `${t2} - ${lvl}.mp3`,
+    `${t3} - ${lvl}.mp3`,
+    `${t0}.mp3`,
+    `${t1}.mp3`,
+    `${t2}.mp3`
+  ]));
+  return candidates.map(n => base + encodeURIComponent(n));
 }
 
 async function findBaseVideoUrl(lvl){
@@ -2053,11 +2063,21 @@ async function setupAudio(data) {
         fullTextEl.innerHTML = `<div class="line"><div class="en">${enText}</div><div class="pt">${ptText}</div></div>`;
       }
 
-      (async () => {
+      (function tryLoadFullAudio(){
         const lvl = String(level).trim();
         const title = String(data && (data.uiTitle || data.title) || '').trim();
-        const url = await findAudioUrl(lvl, title);
-        if (url && fullOrigAudio) { fullOrigAudio.src = url; fullOrigAudio.style.display='block'; hasFullMp3 = true; }
+        const urls = buildAudioUrls(lvl, title);
+        let i = 0;
+        function attempt(){
+          if (!fullOrigAudio) return;
+          if (i >= urls.length) { hasFullMp3 = false; return; }
+          fullOrigAudio.src = urls[i];
+          fullOrigAudio.load();
+        }
+        function onLoaded(){ hasFullMp3 = true; fullOrigAudio.style.display='block'; fullOrigAudio.removeEventListener('loadedmetadata', onLoaded); fullOrigAudio.removeEventListener('error', onError); }
+        function onError(){ i++; attempt(); }
+        if (fullOrigAudio) { fullOrigAudio.addEventListener('loadedmetadata', onLoaded); fullOrigAudio.addEventListener('error', onError); }
+        attempt();
       })();
 
       function speakFull(){ const txt = sentences.join(' '); speak(txt); }

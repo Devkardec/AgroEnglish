@@ -64,8 +64,11 @@ self.addEventListener('fetch', (e) => {
     caches.match(req).then((cached) => {
       const fetchPromise = fetch(req)
         .then((res) => {
-          const clone = res.clone();
-          caches.open(CACHE).then((c) => c.put(req, clone));
+          const isCacheable = res && res.status === 200 && res.type === 'basic' && !req.headers.get('range');
+          if (isCacheable) {
+            const clone = res.clone();
+            caches.open(CACHE).then((c) => c.put(req, clone));
+          }
           return res;
         })
         .catch(() => cached);
