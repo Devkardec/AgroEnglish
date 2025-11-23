@@ -18,6 +18,68 @@
 <body>
   <a href="#app" class="skip-link">Pular para conteúdo</a>
   <div id="app"></div>
+  <div id="auth-gate" style="position:fixed;inset:0;background:rgba(245,245,245,0.98);z-index:9999;display:none">
+    <div style="max-width:520px;margin:40px auto;padding:16px">
+      <div style="font-size:22px;font-weight:600;margin-bottom:10px">Autenticação</div>
+      <div style="background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);padding:16px">
+        <div style="display:flex;gap:8px;margin-bottom:10px">
+          <button id="gate-tab-login" class="ae-btn" style="padding:8px 12px;border:1px solid #ddd;border-radius:8px;background:#f5f5f5">Login</button>
+          <button id="gate-tab-register" class="ae-btn" style="padding:8px 12px;border:1px solid #ddd;border-radius:8px;background:#fff">Cadastro</button>
+        </div>
+        <div id="gate-login" style="display:block">
+          <label>E-mail</label>
+          <input id="gate-login-email" type="email" class="ae-input" placeholder="seu@email.com" style="width:100%;margin:6px 0 10px;border:1px solid #ddd;border-radius:8px;padding:10px">
+          <label>Senha</label>
+          <input id="gate-login-password" type="password" class="ae-input" placeholder="••••••••" style="width:100%;margin:6px 0 10px;border:1px solid #ddd;border-radius:8px;padding:10px">
+          <button id="gate-login-submit" class="ae-btn ae-btn-primary" style="width:100%;padding:10px;border-radius:8px;background:#0f6a3a;color:#fff">Entrar</button>
+          <div id="gate-login-msg" style="margin-top:8px;font-size:13px;color:#c62828"></div>
+        </div>
+        <div id="gate-register" style="display:none">
+          <label>E-mail</label>
+          <input id="gate-register-email" type="email" class="ae-input" placeholder="seu@email.com" style="width:100%;margin:6px 0 10px;border:1px solid #ddd;border-radius:8px;padding:10px">
+          <label>Senha</label>
+          <input id="gate-register-password" type="password" class="ae-input" placeholder="Crie uma senha" style="width:100%;margin:6px 0 10px;border:1px solid #ddd;border-radius:8px;padding:10px">
+          <button id="gate-register-submit" class="ae-btn ae-btn-primary" style="width:100%;padding:10px;border-radius:8px;background:#0f6a3a;color:#fff">Criar conta</button>
+          <div id="gate-register-msg" style="margin-top:8px;font-size:13px;color:#c62828"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+    import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+    const firebaseConfig = {
+      apiKey: "AIzaSyBmdB2Ut1XJkEShUrEqZYOBTUTPw8sxE-4",
+      authDomain: "agroenglish-c9c18.firebaseapp.com",
+      projectId: "agroenglish-c9c18",
+      storageBucket: "agroenglish-c9c18.firebasestorage.app",
+      messagingSenderId: "828217135226",
+      appId: "1:828217135226:web:82f8c9d16657c4db1c2bc3"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    setPersistence(auth, browserLocalPersistence).catch(()=>{});
+    const gate = document.getElementById('auth-gate');
+    const tabLogin = document.getElementById('gate-tab-login');
+    const tabReg = document.getElementById('gate-tab-register');
+    const vLogin = document.getElementById('gate-login');
+    const vReg = document.getElementById('gate-register');
+    const loginEmail = document.getElementById('gate-login-email');
+    const loginPass = document.getElementById('gate-login-password');
+    const loginBtn = document.getElementById('gate-login-submit');
+    const loginMsg = document.getElementById('gate-login-msg');
+    const regEmail = document.getElementById('gate-register-email');
+    const regPass = document.getElementById('gate-register-password');
+    const regBtn = document.getElementById('gate-register-submit');
+    const regMsg = document.getElementById('gate-register-msg');
+    function show(v){ vLogin.style.display = v==='login' ? 'block' : 'none'; vReg.style.display = v==='register' ? 'block' : 'none'; }
+    tabLogin.addEventListener('click', ()=>{ show('login'); tabLogin.style.background='#f5f5f5'; tabReg.style.background='#fff'; });
+    tabReg.addEventListener('click', ()=>{ show('register'); tabReg.style.background='#f5f5f5'; tabLogin.style.background='#fff'; });
+    function errMsg(el, code){ const map={ 'auth/invalid-credential':'E-mail ou senha inválidos.', 'auth/invalid-email':'E-mail inválido.', 'auth/user-not-found':'Usuário não encontrado.', 'auth/wrong-password':'Senha incorreta.', 'default':'Ocorreu um erro.' }; el.textContent = map[code] || map.default; }
+    loginBtn.addEventListener('click', async (e)=>{ e.preventDefault(); loginMsg.textContent=''; loginBtn.disabled=true; try { await signInWithEmailAndPassword(auth, String(loginEmail.value||'').trim(), String(loginPass.value||'')); } catch(err){ errMsg(loginMsg, String(err && err.code || 'default')); } loginBtn.disabled=false; });
+    regBtn.addEventListener('click', async (e)=>{ e.preventDefault(); regMsg.textContent=''; regBtn.disabled=true; try { await createUserWithEmailAndPassword(auth, String(regEmail.value||'').trim(), String(regPass.value||'')); } catch(err){ errMsg(regMsg, String(err && err.code || 'default')); } regBtn.disabled=false; });
+    onAuthStateChanged(auth, (user)=>{ gate.style.display = user && user.uid ? 'none' : 'block'; });
+  </script>
   <script type="module" src="./main.js"></script>
   <noscript>Este aplicativo requer JavaScript.</noscript>
   <style>body{min-height:100vh}</style>

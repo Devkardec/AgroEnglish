@@ -47,15 +47,7 @@
       </div>
     </div>
 
-    <div id="dashboard" class="bg-white rounded-lg shadow p-4 mt-6 hidden">
-      <div class="flex items-center justify-between mb-3">
-        <div>
-          <div id="user-id" class="text-sm text-gray-600"></div>
-        </div>
-        <button id="logout" class="px-3 py-2 bg-gray-800 hover:bg-gray-900 text-white rounded">Sair</button>
-      </div>
-      <div class="text-sm text-gray-500">Você está autenticado. Use o PWA normalmente.</div>
-    </div>
+    
   </div>
 
   <script type="module">
@@ -74,7 +66,6 @@
     const app = initializeApp(firebaseConfig)
     const auth = getAuth(app)
     setPersistence(auth, browserLocalPersistence).catch(()=>{})
-    signOut(auth).catch(()=>{})
 
     const tabLogin = document.getElementById('tab-login')
     const tabRegister = document.getElementById('tab-register')
@@ -89,17 +80,11 @@
     const registerSubmit = document.getElementById('register-submit')
     const registerMsg = document.getElementById('register-msg')
     const authSection = document.getElementById('auth-section')
-    const dashboard = document.getElementById('dashboard')
-    const userIdEl = document.getElementById('user-id')
-    const logoutBtn = document.getElementById('logout')
     const installHint = document.getElementById('installHint')
 
     let unsub = null
 
-    const qs = new URLSearchParams(location.search)
-    if (qs.get('logout') === '1' || qs.get('login') === '1') {
-      try { await signOut(auth) } catch {}
-    }
+    
 
     tabLogin.addEventListener('click', () => {
       tabLogin.classList.add('bg-gray-100')
@@ -142,19 +127,15 @@
       registerSubmit.disabled = false
     })
 
-    logoutBtn.addEventListener('click', async () => { try { await signOut(auth) } catch {} })
+    
 
     
 
     onAuthStateChanged(auth, (user) => {
       if (user && user.uid) {
-        authSection.classList.add('hidden')
-        dashboard.classList.remove('hidden')
-        userIdEl.textContent = 'UID: ' + user.uid
+        location.href = './index.html'
       } else {
-        dashboard.classList.add('hidden')
         authSection.classList.remove('hidden')
-        userIdEl.textContent = ''
       }
     })
 
