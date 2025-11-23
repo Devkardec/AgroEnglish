@@ -57,6 +57,9 @@ export function TextPage(level, index) {
         <div id="lines" class="lines" style="margin-top:8px"></div>
 
         <div class="section-title" style="margin-top:12px">Explicação e Estrutura</div>
+        <div id="grammarVideo" style="margin-top:8px">
+          <video id="lessonVideo" controls preload="metadata" playsinline style="width:100%;border-radius:12px;display:none"></video>
+        </div>
         <div id="grammar"></div>
         <div class="section-title" style="margin-top:12px">Vocabulário</div>
         <div id="vocab" class="flash-grid"></div>

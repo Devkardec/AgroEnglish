@@ -205,6 +205,21 @@ async function findAudioUrl(lvl, title){
   return null;
 }
 
+async function findBaseVideoUrl(lvl){
+  const base = `./src/video/Base do Inglês/`;
+  const variants = [
+    'Base do Inglês.mp4',
+    `${lvl}.mp4`,
+    `${lvl} - Base.mp4`
+  ];
+  for (const name of variants) {
+    const fileName = encodeURIComponent(name);
+    const url = base + fileName;
+    try { const r = await fetch(url, { method:'HEAD' }); if (r.ok) return url; } catch {}
+  }
+  return null;
+}
+
 function annotateTextManual(str){
   const out = String(str||'');
   return out.replace(/<[^>]*>/g, '');
@@ -1307,6 +1322,16 @@ async function setupAudio(data) {
         <tbody>${rows}</tbody>
       </table>
     `;
+
+    (async () => {
+      const wrap = document.getElementById('grammarVideo');
+      const vid = document.getElementById('lessonVideo');
+      if (String(level) === 'A1' && Number(idx) === 1) {
+        const url = await findBaseVideoUrl(level);
+        if (vid && url) { vid.src = url; vid.style.display = 'block'; if (wrap) wrap.style.display = 'block'; }
+        else if (wrap) { wrap.style.display = 'none'; }
+      } else if (wrap) { wrap.style.display = 'none'; }
+    })();
   }
 
   function buildExercises(data){
