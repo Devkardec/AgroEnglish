@@ -57,7 +57,7 @@ function loadVoices() {
     const m = listStr.split(':')[1] || listStr;
     const baseVerbs = m.split(',').map(s=>s.trim()).filter(Boolean);
     const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
-    const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : String(data.text||'').split(/(?<=[.!?])\s+/).map((s,i)=>({en:s, pt:String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT)[i]||''}));
+    const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : splitSentences(String(data.text||'')).map((s,i)=>({en:s, pt: splitSentences(fixPT(String(data.translation||'')))[i]||''}));
     function findSentenceWith(v){ return sentences.find(s=> new RegExp(`\b${v}(s)?\b`,'i').test(s.en)) }
     function buildExample(v){
         const s = findSentenceWith(v);
@@ -121,7 +121,7 @@ export function speak(text) {
     return chooseBestEnglishVoice(v);
   };
   const voice = state.voices.find(v => v.name === state.voiceName) || pick();
-  const chunks = String(text).split(/(?<=[.!?])\s+/);
+  const chunks = splitSentences(text);
   window.speechSynthesis.cancel();
   (function speakNext(i){
     if (i>=chunks.length) return;
@@ -148,6 +148,34 @@ function fixPT(s) {
   let out = s;
   for (const k in map) { out = out.split(k).join(map[k]); }
   return out;
+}
+
+function normalizeForSplit(str){
+  const s = String(str||'');
+  return s.replace(/([.!?])(?!\d)(\S)/g, '$1 $2');
+}
+
+function splitSentences(str){
+  const s = normalizeForSplit(str);
+  const out = [];
+  let cur = '';
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i];
+    cur += ch;
+    if (ch === '.' || ch === '!' || ch === '?') {
+      const prev = s[i - 1] || '';
+      const next = s[i + 1] || '';
+      const isDecimal = /\d/.test(prev) && /\d/.test(next);
+      if (!isDecimal) {
+        let j = i + 1;
+        while (j < s.length && /\s/.test(s[j])) { cur += s[j]; i = j; j++; }
+        out.push(cur.trim());
+        cur = '';
+      }
+    }
+  }
+  if (cur.trim()) out.push(cur.trim());
+  return out.filter(Boolean);
 }
 
 function annotateTextManual(str){
@@ -734,13 +762,8 @@ async function setupAudio(data) {
     if (pairList) {
       items = pairList.map(p => ({ en: p.en, pt: fixPT(p.pt) }));
     } else {
-      function normalizeForSplit(str){
-        const s = String(str||'');
-        const addSpace = s.replace(/([.!?])(\S)/g, '$1 $2');
-        return addSpace;
-      }
-      const en = normalizeForSplit(data.text).split(/(?<=[.!?])\s+/);
-      const pt = normalizeForSplit(data.translation).split(/(?<=[.!?])\s+/).map(fixPT);
+      const en = splitSentences(String(data.text||''));
+      const pt = splitSentences(fixPT(String(data.translation||'')));
       items = en.map((s,i)=>({ en: s, pt: pt[i]||'' }));
     }
     const max = Math.min(items.length, 10);
@@ -1465,11 +1488,11 @@ async function setupAudio(data) {
     try {
       const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
       if (pairs.length) {
-      linesEl.innerHTML = pairs.map(p=>`<div class="line"><div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div></div>`).join('');
+        linesEl.innerHTML = pairs.map(p=>`<div class="line"><div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div></div>`).join('');
         return;
       }
-      const en = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
-      const pt = String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT);
+      const en = splitSentences(String(data.text||''));
+      const pt = splitSentences(fixPT(String(data.translation||'')));
       linesEl.innerHTML = en.map((s,i)=>`<div class="line"><div class="en">${s}</div><div class="pt">${pt[i]||''}</div></div>`).join('');
       if (!linesEl.innerHTML) {
         linesEl.innerHTML = '<div class="small">Texto indisponível.</div>';
@@ -1549,7 +1572,7 @@ async function setupAudio(data) {
     const grammarForms = (lvl === 'B1') ? null : (forms.affirmative ? forms : (item.grammar_forms || null));
 
     let mc = [];
-    const textSentences = String(item.text_en||'').split(/(?<=[.!?])\s+/).filter(Boolean);
+    const textSentences = splitSentences(String(item.text_en||''));
 
     if (Array.isArray(vocab) && vocab.length) {
       const meanings = vocab.map(v=>v.meaning).filter(Boolean);
@@ -1578,7 +1601,7 @@ async function setupAudio(data) {
     }
 
     let fillItems = [];
-    const textParts = String(item.text_en||'').split(/(?<=[.!?])\s+/).filter(Boolean);
+    const textParts = splitSentences(String(item.text_en||''));
     const vb = Array.isArray(verbsBase) ? verbsBase : [];
     if (vb.length) {
       for (let i=0;i<textParts.length;i++) {
