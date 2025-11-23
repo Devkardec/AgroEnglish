@@ -7,9 +7,9 @@ export function TextPage(level, index) {
           <div style="min-width:180px">
             <div class="progress"><div class="bar" id="levelBar" style="width:${Math.min(
               100,
-              ((index - 1) / 10) * 100
+              ((index - 1) / 12) * 100
             )}%"></div></div>
-            <div class="small" id="progressLabel">Progresso ${index - 1}/10</div>
+            <div class="small" id="progressLabel">Progresso ${index - 1}/12</div>
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@ export function TextPage(level, index) {
           index - 1
         )}">Anterior</a>
         <a class="btn secondary" id="nextBtn" href="#/text/${level}/${Math.min(
-          10,
+          12,
           index + 1
         )}">Próximo texto</a>
       </div>

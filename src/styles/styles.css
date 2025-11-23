@@ -156,14 +156,14 @@ input[type="range"] { width:100%; }
 
 .home-actions { margin-top:16px; display:flex; gap:10px; flex-wrap:wrap }
 
-.flash-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px }
+.flash-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px }
 .flashcard { perspective:800px; cursor:pointer }
-.flashcard-inner { position:relative; width:100%; min-height:140px; transform-style:preserve-3d; transition:transform .3s ease }
+.flashcard-inner { position:relative; width:100%; min-height:180px; transform-style:preserve-3d; transition:transform .3s ease }
 .flashcard.flipped .flashcard-inner { transform:rotateY(180deg) }
-.flashcard-face { position:absolute; inset:0; border:1px solid #e5e9e7; border-radius:16px; background:var(--card); box-shadow:0 6px 20px rgba(0,0,0,0.06); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:14px; backface-visibility:hidden; text-align:center }
+.flashcard-face { position:absolute; inset:0; border:1px solid #e5e9e7; border-radius:16px; background:var(--card); box-shadow:0 6px 20px rgba(0,0,0,0.06); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:14px; backface-visibility:hidden; text-align:center; overflow:hidden }
 .flashcard-face.back { transform:rotateY(180deg) }
-.flashcard .word { font-weight:600; font-size:var(--size-md); color:var(--green); margin-bottom:8px }
-.flashcard .meaning { font-size:16px; color:var(--text); margin-bottom:10px }
+.flashcard .word { font-weight:600; font-size:15px; color:var(--green); margin-bottom:8px; overflow-wrap:anywhere; word-break:break-word; hyphens:auto; line-height:1.35; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; max-height:4.2em; overflow:hidden }
+.flashcard .meaning { font-size:14px; color:var(--text); margin-bottom:10px; overflow-wrap:anywhere; word-break:break-word; hyphens:auto; line-height:1.35; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; max-height:4.2em; overflow:hidden }
 .flashcard .actions { display:flex; gap:8px }
 
 .app-header { background:linear-gradient(90deg, var(--green), var(--green2)); color:#fff; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:10; box-shadow:0 8px 24px rgba(0,0,0,0.12) }
@@ -287,7 +287,7 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
   .btn.sm { padding:6px 8px; font-size:12px }
   .section-title { font-size:20px }
   .features { grid-template-columns:repeat(auto-fit,minmax(160px,1fr)) }
-  .flash-grid { grid-template-columns:repeat(auto-fit,minmax(140px,1fr)) }
+  .flash-grid { grid-template-columns:repeat(auto-fit,minmax(160px,1fr)) }
   .levels-grid { grid-template-columns:repeat(auto-fit,minmax(120px,1fr)) }
 }
 .card details.accordion > summary { background:transparent; border:0; padding:0; border-radius:0 }

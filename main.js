@@ -818,8 +818,19 @@ async function setupAudio(data) {
       const pt = splitSentences(fixPT(String(data.translation||'')));
       items = en.map((s,i)=>({ en: s, pt: pt[i]||'' }));
     }
-    const max = Math.min(items.length, 10);
-    const shown = items.slice(0, max);
+    const desired = 10;
+    let shown = items.slice(0, desired);
+    const fallback = [
+      { en:'I work on a farm.', pt:'Eu trabalho numa fazenda.' },
+      { en:'I drive a red tractor.', pt:'Eu dirijo um trator vermelho.' },
+      { en:'We check the water.', pt:'Nós verificamos a água.' }
+    ];
+    let i = 0;
+    while (shown.length < desired) {
+      const src = items[i % items.length] || fallback[i % fallback.length];
+      shown.push(src);
+      i++;
+    }
     vocabEl.innerHTML = shown.map(it => `
       <div class="flashcard" data-en="${it.en.replace(/"/g,'&quot;')}">
         <div class="flashcard-inner">
