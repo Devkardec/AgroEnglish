@@ -10,6 +10,7 @@ export function Home() {
           <a class="btn" id="continueCta">Continuar</a>
           <a class="btn secondary" href="#/level/A1">Começar no A1</a>
           <span class="pill" id="progressBadge">Progresso 0%</span>
+          <button class="btn" id="openAuth" style="margin-left:auto">Entrar/Cadastrar</button>
         </div>
         
       </section>

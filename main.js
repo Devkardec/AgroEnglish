@@ -220,6 +220,56 @@ async function findBaseVideoUrl(lvl){
   return null;
 }
 
+function openAuthModal(){ const m=document.getElementById('authModal'); if(m){ m.style.display='flex'; m.setAttribute('aria-hidden','false'); } }
+function closeAuthModal(){
+  let signed = localStorage.getItem('agro_signed')==='true';
+  try { if (window.getAuth) { const auth = window.getAuth(); signed = !!auth.currentUser; } } catch {}
+  if (!signed) return; // bloqueia fechar se não estiver autenticado
+  const m=document.getElementById('authModal'); if(m){ m.style.display='none'; m.setAttribute('aria-hidden','true'); }
+}
+function initAuthModal(){
+  const openBtn = document.getElementById('openAuth');
+  const closeBtn = document.getElementById('authClose');
+  const tabsWrap = document.querySelector('.auth-tabs');
+  const tabs = document.querySelectorAll('.auth-tabs button');
+  const loginForm = document.getElementById('loginForm');
+  const signupForm = document.getElementById('signupForm');
+  const msgEl = document.getElementById('authMessage');
+  const closeEl = document.getElementById('authClose');
+  function setMode(mode){
+    if (mode==='login'){ loginForm.hidden=false; signupForm.hidden=true; tabs.forEach(x=>x.classList.toggle('active', x.getAttribute('data-auth-tab')==='login')); }
+    else { loginForm.hidden=true; signupForm.hidden=false; tabs.forEach(x=>x.classList.toggle('active', x.getAttribute('data-auth-tab')==='signup')); }
+  }
+  if (openBtn) openBtn.addEventListener('click', ()=>{
+    let signed = localStorage.getItem('agro_signed')==='true';
+    try { if (window.getAuth) { const auth = window.getAuth(); signed = !!auth.currentUser; } } catch {}
+    if (signed) { if (tabsWrap) tabsWrap.style.display='flex'; setMode('login'); }
+    else { if (tabsWrap) tabsWrap.style.display='none'; setMode('signup'); }
+    if (!signed && closeEl) closeEl.style.display = 'none'; else if (closeEl) closeEl.style.display = 'block';
+    openAuthModal();
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeAuthModal);
+  tabs.forEach(b=> b.addEventListener('click', ()=>{ tabs.forEach(x=>x.classList.remove('active')); b.classList.add('active'); const tab=b.getAttribute('data-auth-tab'); if(tab==='login'){ loginForm.hidden=false; signupForm.hidden=true; } else { loginForm.hidden=true; signupForm.hidden=false; } }));
+  if (loginForm) loginForm.addEventListener('submit', async (e)=>{ e.preventDefault(); msgEl.textContent=''; const email=document.getElementById('loginEmail').value.trim(); const pass=document.getElementById('loginPass').value.trim(); try { const flow = await import('./src/firebase-flow.js'); const res = await flow.handleLogin(email, pass); if (res.success) { localStorage.setItem('agro_signed','true'); closeAuthModal(); } else { msgEl.textContent = res.message; } } catch(err){ msgEl.textContent='Erro ao entrar. Verifique os dados.'; } });
+  if (signupForm) signupForm.addEventListener('submit', async (e)=>{ e.preventDefault(); msgEl.textContent=''; const name=document.getElementById('signupName').value.trim(); const email=document.getElementById('signupEmail').value.trim(); const pass=document.getElementById('signupPass').value.trim(); try { const flow = await import('./src/firebase-flow.js'); const res = await flow.handleRegister(email, pass, name); if (res.success) { if (tabsWrap) tabsWrap.style.display='flex'; document.getElementById('loginEmail').value = email; setMode('login'); msgEl.textContent='Conta criada! Faça login para começar.'; } else { msgEl.textContent = res.message; } } catch(err){ msgEl.textContent='Erro ao cadastrar. Tente novamente.'; } });
+}
+
+function promptSignupIfNeeded(){
+  let signed = localStorage.getItem('agro_signed')==='true';
+  try { if (window.getAuth) { const auth = window.getAuth(); signed = !!auth.currentUser; } } catch {}
+  if (!signed) {
+    const tabsWrap = document.querySelector('.auth-tabs');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const closeEl = document.getElementById('authClose');
+    if (tabsWrap) tabsWrap.style.display='none';
+    if (loginForm) loginForm.hidden = true;
+    if (signupForm) signupForm.hidden = false;
+    if (closeEl) closeEl.style.display = 'none';
+    openAuthModal();
+  }
+}
+
 function annotateTextManual(str){
   const out = String(str||'');
   return out.replace(/<[^>]*>/g, '');
@@ -370,6 +420,8 @@ function render() {
   }
   app.innerHTML = Header() + view + Footer();
   pageInit();
+  initAuthModal();
+  promptSignupIfNeeded();
 }
 
 function initGlossaryPage() {
@@ -550,6 +602,8 @@ async function initHomePage() {
       alert('Curso baixado para uso offline.');
     });
   }
+  initAuthModal();
+  promptSignupIfNeeded();
 }
 
 function initLevelPage(level) {

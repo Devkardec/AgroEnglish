@@ -79,6 +79,25 @@ input[type="range"] { width:100%; }
 .player-seek::-webkit-slider-thumb { appearance:none; width:14px; height:14px; border-radius:50%; background:var(--green) }
 .player-time { min-width:120px; text-align:right }
 
+.ae-auth-overlay { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:9999 }
+.ae-auth-backdrop { position:absolute; inset:0; background:linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('/img/capaH2a.png') center/cover no-repeat; filter:saturate(110%) }
+.ae-auth-card { position:relative; z-index:1; width:min(560px, 92vw); background:#ffffff; border-radius:22px; box-shadow:0 18px 50px rgba(0,0,0,0.22); padding:22px; border:1px solid #e5e9e7 }
+.ae-auth-header { display:flex; align-items:flex-start; gap:12px; margin-bottom:6px }
+.ae-auth-icon { width:40px; height:40px; border-radius:50%; background:#34D399; display:flex; align-items:center; justify-content:center }
+.ae-auth-icon-svg { width:22px; height:22px; fill:#1A5430 }
+.ae-auth-title { font-weight:800; color:#1A5430; font-size:18px }
+.ae-auth-sub { color:#6b778b; font-size:13px }
+.ae-auth-toggle { display:flex; gap:8px; margin:12px 0 }
+.ae-btn { border-radius:999px; padding:8px 14px; font-weight:700; cursor:pointer }
+.ae-btn-primary { background:#1A5430; color:#fff; border:1px solid #1A5430 }
+.ae-btn-primary:hover { background:#164728 }
+.ae-btn-outline { background:#fff; color:#1A5430; border:1px solid #1A5430 }
+.ae-btn-outline:hover { background:#e9f6f1 }
+.ae-auth-form { display:flex; flex-direction:column; gap:10px; margin-top:8px }
+.ae-input { border:1px solid #cfd7d3; border-radius:12px; padding:10px; font-size:14px }
+.ae-input:focus { outline:none; box-shadow:0 0 0 3px rgba(52,211,153,0.35) }
+.ae-auth-feedback { margin-top:8px; color:#c2132a; font-size:13px }
+
 /* Destaque de verbo (ação) */
 .verb { font-weight:800 }
 .verb-base { color: var(--blue) }

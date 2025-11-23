@@ -18,6 +18,75 @@
 <body>
   <a href="#app" class="skip-link">Pular para conteúdo</a>
   <div id="app"></div>
+  <script type="module">
+    window.__firebase_config = {
+      apiKey: "AIzaSyAkQN2chf3xs_8Hyd9h0fwyr6icYVhozuI",
+      authDomain: "agro-english.firebaseapp.com",
+      projectId: "agro-english",
+      storageBucket: "agro-english.firebasestorage.app",
+      messagingSenderId: "687436545346",
+      appId: "1:687436545346:web:ff3357434fc0bf4d6adcdb",
+      measurementId: "G-9EVX23VD4X"
+    };
+  </script>
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js';
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+    const firebaseConfig = {
+      apiKey: "AIzaSyAkQN2chf3xs_8Hyd9h0fwyr6icYVhozuI",
+      authDomain: "agro-english.firebaseapp.com",
+      projectId: "agro-english",
+      storageBucket: "agro-english.firebasestorage.app",
+      messagingSenderId: "687436545346",
+      appId: "1:687436545346:web:ff3357434fc0bf4d6adcdb",
+      measurementId: "G-9EVX23VD4X"
+    };
+    const app = initializeApp(firebaseConfig);
+    getAnalytics(app);
+    const auth = getAuth(app);
+    window.getAuth = getAuth;
+    window.onAuthStateChanged = onAuthStateChanged;
+    window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+    window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+    window.updateProfile = updateProfile;
+    onAuthStateChanged(auth, (user) => {
+      try { localStorage.setItem('agro_signed', user ? 'true' : 'false'); } catch {}
+    });
+  </script>
+  <div id="auth-modal" class="ae-auth-overlay" aria-hidden="true" style="display:none">
+    <div class="ae-auth-backdrop"></div>
+    <div class="ae-auth-card">
+      <div class="ae-auth-header">
+        <div class="ae-auth-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" class="ae-auth-icon-svg"><path d="M12 2l3 5 5 3-5 3-3 5-3-5-5-3 5-3 3-5z"></path></svg>
+        </div>
+        <div class="ae-auth-title">AgroEnglish Pro</div>
+        <div class="ae-auth-sub">Estude com foco no agro: narração, vocabulário e prática diária.</div>
+      </div>
+      <div class="ae-auth-toggle">
+        <button class="ae-btn ae-btn-outline" type="button" data-view="login">Entrar</button>
+        <button class="ae-btn ae-btn-primary" type="button" data-view="register">Criar conta</button>
+      </div>
+      <form id="login-form" class="ae-auth-form" hidden>
+        <label for="login-email">E-mail</label>
+        <input id="login-email" type="email" class="ae-input" placeholder="seu@email.com" required>
+        <label for="login-password">Senha</label>
+        <input id="login-password" type="password" class="ae-input" placeholder="••••••••" required>
+        <button class="ae-btn ae-btn-primary" id="login-submit" type="submit">Entrar</button>
+      </form>
+      <form id="register-form" class="ae-auth-form">
+        <label for="register-name">Nome</label>
+        <input id="register-name" type="text" class="ae-input" placeholder="Seu nome" required>
+        <label for="register-email">E-mail</label>
+        <input id="register-email" type="email" class="ae-input" placeholder="seu@email.com" required>
+        <label for="register-password">Senha</label>
+        <input id="register-password" type="password" class="ae-input" placeholder="Crie uma senha" required>
+        <button class="ae-btn ae-btn-primary" id="register-submit" type="submit">Criar conta</button>
+      </form>
+      <div id="feedback-message" class="ae-auth-feedback"></div>
+    </div>
+  </div>
   <script type="module" src="./main.js"></script>
   <noscript>Este aplicativo requer JavaScript.</noscript>
   <style>body{min-height:100vh}</style>
