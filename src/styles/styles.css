@@ -189,7 +189,7 @@ input[type="range"] { width:100%; }
 /* Hide user badge and logout button on small devices in landscape to avoid overlaying hero image */
 @media (orientation: landscape) and (max-width: 900px) {
   .hero .cta #userBadge, .hero .cta [data-action="signout"] { display: none !important; }
-  .app-header .nav { display: none !important; }
+  .app-header { display: none !important; }
 }
 
 .toast { position:fixed; left:12px; top:12px; z-index:10000; background:#fff; color:#0b3a1e; border-radius:12px; padding:10px 12px; box-shadow:0 10px 24px rgba(0,0,0,.12); border:1px solid #e5e7eb; opacity:0; transform:translateY(-8px); transition:opacity .18s ease, transform .18s ease }
