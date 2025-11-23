@@ -3,12 +3,14 @@ export function TextPage(level, index) {
     <main class="main">
       <div style="display:flex;align-items:center;justify-content:space-between">
         <h2 id="title">Texto ${index} · ${level}</h2>
-        <div style="min-width:180px">
-          <div class="progress"><div class="bar" id="levelBar" style="width:${Math.min(
-            100,
-            ((index - 1) / 10) * 100
-          )}%"></div></div>
-          <div class="small" id="progressLabel">Progresso ${index - 1}/10</div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="min-width:180px">
+            <div class="progress"><div class="bar" id="levelBar" style="width:${Math.min(
+              100,
+              ((index - 1) / 10) * 100
+            )}%"></div></div>
+            <div class="small" id="progressLabel">Progresso ${index - 1}/10</div>
+          </div>
         </div>
       </div>
 

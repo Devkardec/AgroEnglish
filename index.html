@@ -93,6 +93,8 @@
       }
     });
     window.userSignOut = async function(){ try { await signOut(auth); gate.style.display='block'; } catch {} }
+    window.getUserInfo = function(){ const u = auth.currentUser; return u ? { uid: u.uid, email: u.email||'', displayName: u.displayName||'' } : null }
+    window.updateDisplayName = async function(name){ try { if (auth.currentUser) { await updateProfile(auth.currentUser, { displayName: String(name||'').trim() }); try { localStorage.setItem('userName', String(name||'').trim()) } catch {} } } catch {} }
   </script>
   <script type="module" src="./main.js"></script>
   <noscript>Este aplicativo requer JavaScript.</noscript>

@@ -10,6 +10,16 @@ export function Home() {
           <a class="btn" id="continueCta">Continuar</a>
           <a class="btn secondary" href="#/level/A1">Começar no A1</a>
           <span class="pill" id="progressBadge">Progresso 0%</span>
+          <div id="userBadge" class="user-badge-inline">
+            <button id="userBadgeBtn" class="user-badge-btn" data-action="user-menu-toggle">
+              <div class="avatar">${(localStorage.getItem('userName')||'A').slice(0,1).toUpperCase()}</div>
+              <div class="name">Olá${(localStorage.getItem('userName')||'').trim()?`, ${(localStorage.getItem('userName')||'').trim()}`:''}</div>
+            </button>
+            <div id="userMenu" class="user-menu">
+              <button class="btn danger" data-action="signout" style="width:100%;text-align:left;padding:8px;border-radius:8px">Sair</button>
+            </div>
+          </div>
+          <button class="btn danger" data-action="signout">Sair</button>
         </div>
         
       </section>
