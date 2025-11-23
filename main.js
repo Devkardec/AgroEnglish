@@ -124,11 +124,12 @@ export function speak(text) {
   const chunks = splitSentences(text);
   window.speechSynthesis.cancel();
   (function speakNext(i){
-    if (i>=chunks.length) return;
+    if (i>=chunks.length) { try { setActiveSentence(-1) } catch {} ; return; }
     const u = new SpeechSynthesisUtterance(chunks[i]);
     if (voice) u.voice = voice;
     u.rate = Number(localStorage.getItem('rate')||state.rate);
     u.pitch = Number(localStorage.getItem('pitch')||state.pitch);
+    try { setActiveSentence(i) } catch {}
     u.onend = () => speakNext(i+1);
     window.speechSynthesis.speak(u);
   })(0);
@@ -138,6 +139,13 @@ function getVoice(){
   const v = state.voices;
   const pref = v.find(x=> x.name === state.voiceName);
   return pref || v[0] || null;
+}
+
+function setActiveSentence(i){
+  try {
+    const nodes = document.querySelectorAll('#lines .line');
+    nodes.forEach((el, idx) => el.classList.toggle('active', idx === i));
+  } catch {}
 }
 
 function fixPT(s) {
@@ -176,6 +184,25 @@ function splitSentences(str){
   }
   if (cur.trim()) out.push(cur.trim());
   return out.filter(Boolean);
+}
+
+async function findAudioUrl(lvl, title){
+  const base = `./src/audio/${lvl}/`;
+  const variants = [
+    `${title} · ${lvl}.mp3`,
+    `${title.replace(/[’']/g,'')} · ${lvl}.mp3`,
+    `${title} - ${lvl}.mp3`,
+    `${title}.mp3`
+  ];
+  for (const name of variants) {
+    const fileName = encodeURIComponent(name);
+    const url = base + fileName;
+    try {
+      const r = await fetch(url, { method: 'HEAD' });
+      if (r.ok) return url;
+    } catch {}
+  }
+  return null;
 }
 
 function annotateTextManual(str){
@@ -679,44 +706,54 @@ async function setupAudio(data) {
   const title = String(data && (data.uiTitle || data.title) || '').trim();
   const level = (location.hash.split('/')[2] || '').trim();
   const idx = Number((location.hash.split('/')[3] || '1').trim());
-  function slugify(s){
-    return String(s||'')
-      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-      .replace(/[^a-z0-9]+/gi,'_')
-      .replace(/_+/g,'_')
-      .replace(/^_|_$/g,'')
-      .toLowerCase();
-  }
-  const fileName = encodeURIComponent(`${title} · ${level}.mp3`);
-  const base = `./src/audio/${level}/`;
-  const url = base + fileName;
   renderAudioStatus();
   (async () => {
-    try {
-      const r = await fetch(url, { method: 'HEAD' });
-      if (r.ok) { audio.src = url; hasMp3 = true; renderAudioStatus(); }
-    } catch {}
+    const url = await findAudioUrl(level, title);
+    if (url) { audio.src = url; hasMp3 = true; renderAudioStatus(); }
   })();
 
-  document.querySelector('#play').addEventListener('click', () => {
-    if (hasMp3 && audio.src) {
-      audio.play();
-    } else {
-      const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' ');
-      narrate(enText);
-    }
+  const playBtn = document.getElementById('playerPlay');
+  const pauseBtn = document.getElementById('playerPause');
+  const stopBtn = document.getElementById('playerStop');
+  const backBtn = document.getElementById('playerBack');
+  const fwdBtn = document.getElementById('playerFwd');
+  const prevSentBtn = document.getElementById('playerPrevSent');
+  const nextSentBtn = document.getElementById('playerNextSent');
+  const rateSel = document.getElementById('playerRate');
+  const volRange = document.getElementById('playerVol');
+  const seekRange = document.getElementById('playerSeek');
+  const timeEl = document.getElementById('playerTime');
+  const sentEl = document.getElementById('playerSent');
+
+  function fmt(t){ if(!isFinite(t)||t<=0) return '00:00'; const m=Math.floor(t/60); const s=Math.floor(t%60); return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); }
+  function setSeekEnabled(v){ if(seekRange) seekRange.disabled = !v; if(backBtn) backBtn.disabled = !v; if(fwdBtn) fwdBtn.disabled = !v; }
+  setSeekEnabled(false);
+  const savedRate = Number(localStorage.getItem('rate')||1);
+  if (rateSel) rateSel.value = String(savedRate);
+
+  const sentences = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent.trim()).filter(Boolean);
+  let curSentIdx = 0;
+  let boundaries = [];
+  function updateSentLabel(){ if (sentEl) sentEl.textContent = `${Math.min(curSentIdx+1, sentences.length)}/${sentences.length||0}`; }
+  updateSentLabel();
+  function computeBoundaries(){ if (!hasMp3 || !isFinite(audio.duration) || audio.duration<=0) { boundaries = []; return; } const lens = sentences.map(s=>s.split(/\s+/).length||1); const total = lens.reduce((a,b)=>a+b,0)||1; let acc=0; boundaries=[0]; for(let i=0;i<lens.length;i++){ acc += lens[i]; boundaries.push((acc/total)*audio.duration); } }
+  function seekToSentence(i){ curSentIdx = Math.max(0, Math.min(sentences.length-1, i)); updateSentLabel(); setActiveSentence(curSentIdx); if (hasMp3 && boundaries.length===sentences.length+1) { try { audio.currentTime = boundaries[curSentIdx]; audio.play(); } catch{} } else { try { window.speechSynthesis.cancel(); } catch{} const s = sentences[curSentIdx]||''; narrate(s); } }
+
+  if (playBtn) playBtn.addEventListener('click', () => {
+    if (hasMp3 && audio.src) { audio.play(); }
+    else { const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' '); narrate(enText); }
   });
-  const resumeBtn = document.querySelector('#resume');
-  if (resumeBtn) resumeBtn.addEventListener('click', () => { if (hasMp3 && audio.paused) { audio.play(); } else { window.speechSynthesis.resume(); } });
-  document.querySelector('#pause').addEventListener('click', () => { if (hasMp3) { audio.pause(); } else { window.speechSynthesis.pause(); } });
-  document.querySelector('#stop').addEventListener('click', () => { if (hasMp3) { try { audio.pause(); audio.currentTime = 0; } catch {} } else { window.speechSynthesis.cancel(); } });
-  document.querySelectorAll('[data-speed]').forEach((b) => {
-    b.addEventListener('click', () => {
-      const sp = Number(b.dataset.speed);
-      if (hasMp3) { audio.playbackRate = sp; }
-      localStorage.setItem('rate', sp);
-    });
-  });
+  if (pauseBtn) pauseBtn.addEventListener('click', () => { if (hasMp3) { audio.pause(); } else { window.speechSynthesis.pause(); } });
+  if (stopBtn) stopBtn.addEventListener('click', () => { if (hasMp3) { try { audio.pause(); audio.currentTime = 0; } catch{} } else { window.speechSynthesis.cancel(); } try { setActiveSentence(-1) } catch {} });
+  if (backBtn) backBtn.addEventListener('click', () => { if (!hasMp3) return; try { audio.currentTime = Math.max(0, audio.currentTime - 10); } catch{} });
+  if (fwdBtn) fwdBtn.addEventListener('click', () => { if (!hasMp3) return; try { audio.currentTime = Math.min(audio.duration||audio.currentTime+10, audio.currentTime + 10); } catch{} });
+  if (prevSentBtn) prevSentBtn.addEventListener('click', () => seekToSentence(curSentIdx-1));
+  if (nextSentBtn) nextSentBtn.addEventListener('click', () => seekToSentence(curSentIdx+1));
+  if (rateSel) rateSel.addEventListener('change', () => { const sp = Number(rateSel.value||1); if (hasMp3) audio.playbackRate = sp; localStorage.setItem('rate', sp); });
+  if (volRange) volRange.addEventListener('input', () => { if (hasMp3) { audio.volume = Number(volRange.value||1); } });
+  if (seekRange) seekRange.addEventListener('input', () => { if (!hasMp3) return; const p = Number(seekRange.value||0)/100; if (isFinite(audio.duration) && audio.duration>0) audio.currentTime = p * audio.duration; });
+  audio.addEventListener('loadedmetadata', () => { setSeekEnabled(true); if (timeEl) timeEl.textContent = fmt(0)+' / '+fmt(audio.duration||0); const sp = Number(rateSel && rateSel.value || savedRate || 1); audio.playbackRate = sp; computeBoundaries(); updateSentLabel(); setActiveSentence(0); });
+  audio.addEventListener('timeupdate', () => { if (!hasMp3) return; const d = audio.duration||0; const c = audio.currentTime||0; if (seekRange && isFinite(d) && d>0) seekRange.value = String((c/d)*100); if (timeEl) timeEl.textContent = fmt(c)+' / '+fmt(d); if (boundaries.length===sentences.length+1) { for(let i=0;i<sentences.length;i++){ if (c>=boundaries[i] && c<boundaries[i+1]) { if (curSentIdx!==i) { curSentIdx=i; updateSentLabel(); setActiveSentence(curSentIdx); } break; } } } });
 }
 
   function setupUI(data) {
@@ -1921,14 +1958,10 @@ async function setupAudio(data) {
       }
 
       (async () => {
-        try {
-          const lvl = String(level).trim();
-          const title = String(data && (data.uiTitle || data.title) || '').trim();
-          const fileName = encodeURIComponent(`${title} · ${lvl}.mp3`);
-          const url = `./src/audio/${lvl}/${fileName}`;
-          const r = await fetch(url, { method: 'HEAD' });
-          if (r.ok && fullOrigAudio) { fullOrigAudio.src = url; fullOrigAudio.style.display='block'; hasFullMp3 = true; }
-        } catch {}
+        const lvl = String(level).trim();
+        const title = String(data && (data.uiTitle || data.title) || '').trim();
+        const url = await findAudioUrl(lvl, title);
+        if (url && fullOrigAudio) { fullOrigAudio.src = url; fullOrigAudio.style.display='block'; hasFullMp3 = true; }
       })();
 
       function speakFull(){ const txt = sentences.join(' '); speak(txt); }

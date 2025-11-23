@@ -61,11 +61,23 @@ input[type="range"] { width:100%; }
 
 .lines { margin-top:12px }
 .line { padding:6px 0; border-bottom:1px solid #e5e9e7 }
+.line.active { background:#f2fbf4; border-left:3px solid var(--green); padding-left:8px }
 .line .en { font-weight:600; color:var(--green); font-size:var(--size-md); letter-spacing:.1px }
 .line .pt { font-size:var(--size-sm); color:var(--muted) }
 .card .line:last-child { border-bottom:0 }
 .card .small { margin-bottom:6px }
 .lines.hide-pt .pt { display:none }
+
+.player { display:flex; flex-direction:column; gap:8px; background:#ffffff; border:1px solid #e5e9e7; border-radius:12px; padding:10px }
+.player-controls { display:flex; align-items:center; gap:8px; flex-wrap:wrap }
+.player-btn { background:linear-gradient(90deg, var(--green), var(--green2)); color:#fff; border:none; border-radius:10px; padding:8px 12px; cursor:pointer; font-size:14px }
+.player-btn svg { width:18px; height:18px; fill:#fff; display:block }
+.player-rate { border:1px solid #cfd7d3; border-radius:10px; padding:6px 8px; background:#fff }
+.player-vol { width:120px }
+.player-track { display:flex; align-items:center; gap:8px }
+.player-seek { flex:1; appearance:none; height:6px; border-radius:6px; background:#e5e9e7 }
+.player-seek::-webkit-slider-thumb { appearance:none; width:14px; height:14px; border-radius:50%; background:var(--green) }
+.player-time { min-width:120px; text-align:right }
 
 /* Destaque de verbo (ação) */
 .verb { font-weight:800 }

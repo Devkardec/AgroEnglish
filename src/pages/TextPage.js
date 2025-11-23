@@ -30,16 +30,30 @@ export function TextPage(level, index) {
             </div>
           </details>
         </div>
-        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn" id="play">Play</button>
-          <button class="btn" id="resume">Resume</button>
-          <button class="btn" id="pause">Pause</button>
-          <button class="btn" id="stop">Stop</button>
-          <button class="btn secondary" data-speed="0.5">0.5x</button>
-          <button class="btn secondary" data-speed="1">1x</button>
-          <button class="btn secondary" data-speed="1.5">1.5x</button>
-          <button class="btn" id="toggleTr">Mostrar/Ocultar tradução</button>
-          <span id="audioStatus" class="small" style="align-self:center"></span>
+        <div class="player" style="margin-top:8px">
+          <div class="player-controls">
+            <button class="player-btn" id="playerBack" title="Voltar 10s"><svg viewBox="0 0 24 24"><path d="M11 18l-8-6 8-6v12zm10 0l-8-6 8-6v12z"/></svg></button>
+            <button class="player-btn" id="playerPlay" title="Play/Pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"/></svg></button>
+            <button class="player-btn" id="playerPause" title="Pausar"><svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
+            <button class="player-btn" id="playerStop" title="Parar"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg></button>
+            <button class="player-btn" id="playerFwd" title="Avançar 10s"><svg viewBox="0 0 24 24"><path d="M5 6l8 6-8 6V6zm10 0l8 6-8 6V6z"/></svg></button>
+            <button class="player-btn" id="playerPrevSent" title="Frase anterior"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3 6l9 6V6l-9 6z"/></svg></button>
+            <button class="player-btn" id="playerNextSent" title="Próxima frase"><svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 18l9-6-9-6v12z"/></svg></button>
+            <span id="playerSent" class="small" style="min-width:64px;text-align:center">0/0</span>
+            <select id="playerRate" class="player-rate" title="Velocidade">
+              <option value="0.75">0.75x</option>
+              <option value="1">1x</option>
+              <option value="1.25">1.25x</option>
+              <option value="1.5">1.5x</option>
+            </select>
+            <input id="playerVol" class="player-vol" type="range" min="0" max="1" step="0.05" value="1" title="Volume" />
+            <button class="btn" id="toggleTr" style="margin-left:auto">Mostrar/Ocultar tradução</button>
+          </div>
+          <div class="player-track">
+            <input id="playerSeek" class="player-seek" type="range" min="0" max="100" step="0.1" value="0" />
+            <span id="playerTime" class="small player-time">00:00 / 00:00</span>
+            <span id="audioStatus" class="small" style="margin-left:8px"></span>
+          </div>
         </div>
         <div id="lines" class="lines" style="margin-top:8px"></div>
 
