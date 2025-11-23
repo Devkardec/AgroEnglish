@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgroEnglish Auth PWA</title>
+  <link rel="icon" href="./public/icons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./public/icons/apple-touch-icon.png">
+  <link rel="manifest" href="./public/manifest.json">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50">
+  <div class="max-w-xl mx-auto p-6">
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="text-2xl font-semibold text-gray-900">Autenticação</h1>
+      <span id="installHint" class="text-xs text-gray-500"></span>
+    </div>
+
+    <div id="auth-section" class="bg-white rounded-lg shadow p-4">
+      <div class="flex gap-2 mb-4">
+        <button id="tab-login" class="px-3 py-2 rounded border bg-gray-100 hover:bg-gray-200">Login</button>
+        <button id="tab-register" class="px-3 py-2 rounded border hover:bg-gray-200">Cadastro</button>
+      </div>
+      <div id="login-form" class="space-y-3">
+        <div>
+          <label class="block text-sm">E-mail</label>
+          <input id="login-email" type="email" class="mt-1 w-full border rounded px-3 py-2 focus:ring-2 focus:ring-emerald-500" placeholder="seu@email.com">
+        </div>
+        <div>
+          <label class="block text-sm">Senha</label>
+          <input id="login-password" type="password" class="mt-1 w-full border rounded px-3 py-2 focus:ring-2 focus:ring-emerald-500" placeholder="••••••••">
+        </div>
+        <button id="login-submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded py-2">Entrar</button>
+        <div id="login-msg" class="text-sm"></div>
+      </div>
+      <div id="register-form" class="space-y-3 hidden">
+        <div>
+          <label class="block text-sm">E-mail</label>
+          <input id="register-email" type="email" class="mt-1 w-full border rounded px-3 py-2 focus:ring-2 focus:ring-emerald-500" placeholder="seu@email.com">
+        </div>
+        <div>
+          <label class="block text-sm">Senha</label>
+          <input id="register-password" type="password" class="mt-1 w-full border rounded px-3 py-2 focus:ring-2 focus:ring-emerald-500" placeholder="Crie uma senha">
+        </div>
+        <button id="register-submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded py-2">Criar conta</button>
+        <div id="register-msg" class="text-sm"></div>
+      </div>
+    </div>
+
+    <div id="dashboard" class="bg-white rounded-lg shadow p-4 mt-6 hidden">
+      <div class="flex items-center justify-between mb-3">
+        <div>
+          <div id="user-id" class="text-sm text-gray-600"></div>
+        </div>
+        <button id="logout" class="px-3 py-2 bg-gray-800 hover:bg-gray-900 text-white rounded">Sair</button>
+      </div>
+      <div class="text-sm text-gray-500">Você está autenticado. Use o PWA normalmente.</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js'
+    import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js'
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBmdB2Ut1XJkEShUrEqZYOBTUTPw8sxE-4",
+      authDomain: "agroenglish-c9c18.firebaseapp.com",
+      projectId: "agroenglish-c9c18",
+      storageBucket: "agroenglish-c9c18.firebasestorage.app",
+      messagingSenderId: "828217135226",
+      appId: "1:828217135226:web:82f8c9d16657c4db1c2bc3"
+    }
+
+    const app = initializeApp(firebaseConfig)
+    const auth = getAuth(app)
+    setPersistence(auth, browserLocalPersistence).catch(()=>{})
+    signOut(auth).catch(()=>{})
+
+    const tabLogin = document.getElementById('tab-login')
+    const tabRegister = document.getElementById('tab-register')
+    const loginForm = document.getElementById('login-form')
+    const registerForm = document.getElementById('register-form')
+    const loginEmail = document.getElementById('login-email')
+    const loginPassword = document.getElementById('login-password')
+    const loginSubmit = document.getElementById('login-submit')
+    const loginMsg = document.getElementById('login-msg')
+    const registerEmail = document.getElementById('register-email')
+    const registerPassword = document.getElementById('register-password')
+    const registerSubmit = document.getElementById('register-submit')
+    const registerMsg = document.getElementById('register-msg')
+    const authSection = document.getElementById('auth-section')
+    const dashboard = document.getElementById('dashboard')
+    const userIdEl = document.getElementById('user-id')
+    const logoutBtn = document.getElementById('logout')
+    const installHint = document.getElementById('installHint')
+
+    let unsub = null
+
+    const qs = new URLSearchParams(location.search)
+    if (qs.get('logout') === '1' || qs.get('login') === '1') {
+      try { await signOut(auth) } catch {}
+    }
+
+    tabLogin.addEventListener('click', () => {
+      tabLogin.classList.add('bg-gray-100')
+      tabRegister.classList.remove('bg-gray-100')
+      loginForm.classList.remove('hidden')
+      registerForm.classList.add('hidden')
+    })
+    tabRegister.addEventListener('click', () => {
+      tabRegister.classList.add('bg-gray-100')
+      tabLogin.classList.remove('bg-gray-100')
+      registerForm.classList.remove('hidden')
+      loginForm.classList.add('hidden')
+    })
+
+    function showError(el, code) {
+      const map = {
+        'auth/invalid-credential': 'E-mail ou senha inválidos.',
+        'auth/invalid-email': 'E-mail inválido.',
+        'auth/user-not-found': 'Usuário não encontrado.',
+        'auth/wrong-password': 'Senha incorreta.',
+        'default': 'Ocorreu um erro. Tente novamente.'
+      }
+      el.className = 'text-sm text-red-600'
+      el.textContent = map[code] || map.default
+    }
+
+    loginSubmit.addEventListener('click', async (e) => {
+      e.preventDefault()
+      loginMsg.textContent = ''
+      loginSubmit.disabled = true
+      try { await signInWithEmailAndPassword(auth, String(loginEmail.value||'').trim(), String(loginPassword.value||'')) } catch (err) { showError(loginMsg, String(err && err.code || 'default')) }
+      loginSubmit.disabled = false
+    })
+
+    registerSubmit.addEventListener('click', async (e) => {
+      e.preventDefault()
+      registerMsg.textContent = ''
+      registerSubmit.disabled = true
+      try { await createUserWithEmailAndPassword(auth, String(registerEmail.value||'').trim(), String(registerPassword.value||'')) } catch (err) { showError(registerMsg, String(err && err.code || 'default')) }
+      registerSubmit.disabled = false
+    })
+
+    logoutBtn.addEventListener('click', async () => { try { await signOut(auth) } catch {} })
+
+    
+
+    onAuthStateChanged(auth, (user) => {
+      if (user && user.uid) {
+        authSection.classList.add('hidden')
+        dashboard.classList.remove('hidden')
+        userIdEl.textContent = 'UID: ' + user.uid
+      } else {
+        dashboard.classList.add('hidden')
+        authSection.classList.remove('hidden')
+        userIdEl.textContent = ''
+      }
+    })
+
+    let deferredPrompt = null
+    window.addEventListener('beforeinstallprompt', (e) => { deferredPrompt = e; installHint.textContent = 'Instale como app no menu do navegador.' })
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js').catch(()=>{})
+    }
+  </script>
+</body>
+</html>
