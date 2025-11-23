@@ -13,8 +13,7 @@ export function Home() {
           <div class="user-actions">
             <div id="userBadge" class="user-badge-inline">
               <button id="userBadgeBtn" class="user-badge-btn" data-action="user-menu-toggle">
-                <div class="avatar">${(localStorage.getItem('userName')||'A').slice(0,1).toUpperCase()}</div>
-                <div class="name">Olá${(localStorage.getItem('userName')||'').trim()?`, ${(localStorage.getItem('userName')||'').trim()}`:''}</div>
+                <div class="name">Hello${(localStorage.getItem('userName')||'').trim()?`, ${(localStorage.getItem('userName')||'').trim()}`:''}</div>
               </button>
               <div id="userMenu" class="user-menu">
                 <button class="btn danger" data-action="signout" style="width:100%;text-align:left;padding:8px;border-radius:8px">Sair</button>

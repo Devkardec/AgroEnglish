@@ -49,7 +49,7 @@ export function TextPage(level, index) {
               <option value="1.5">1.5x</option>
             </select>
             <input id="playerVol" class="player-vol" type="range" min="0" max="1" step="0.05" value="1" title="Volume" />
-            <button class="btn" id="toggleTr" style="margin-left:auto">Mostrar/Ocultar tradução</button>
+            <button class="btn" id="toggleTr" style="align-self:center;margin:8px auto">Mostrar/Ocultar tradução</button>
           </div>
           <div class="player-track">
             <input id="playerSeek" class="player-seek" type="range" min="0" max="100" step="0.1" value="0" />
