@@ -491,7 +491,8 @@ function initLevelPage(level) {
       const p2 = './src/data/texts/A1/a1_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
         const total = Array.isArray(items) ? items.length : 10;
-        const links = items.map((data, i) => {
+        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
+        const links = list.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
@@ -507,7 +508,8 @@ function initLevelPage(level) {
       const p2 = './src/data/texts/A2/a2_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
         const total = Array.isArray(items) ? items.length : 10;
-        const links = items.map((data, i) => {
+        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
+        const links = list.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
@@ -523,7 +525,8 @@ function initLevelPage(level) {
       const p2 = './src/data/texts/B1/b1_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
         const total = Array.isArray(items) ? items.length : 10;
-        const links = items.map((data, i) => {
+        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
+        const links = list.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
@@ -539,7 +542,8 @@ function initLevelPage(level) {
       const p2 = './src/data/texts/C1/c1_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
         const total = Array.isArray(items) ? items.length : 10;
-        const links = items.map((data, i) => {
+        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
+        const links = list.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
@@ -555,7 +559,8 @@ function initLevelPage(level) {
       const p2 = './src/data/texts/B2/b2_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
         const total = Array.isArray(items) ? items.length : 10;
-        const links = items.map((data, i) => {
+        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
+        const links = list.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
@@ -571,7 +576,8 @@ function initLevelPage(level) {
       const p2 = './src/data/texts/C2/c2_blocks.json';
       (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
         const total = Array.isArray(items) ? items.length : 10;
-        const links = items.map((data, i) => {
+        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
+        const links = list.map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
           const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
