@@ -88,6 +88,8 @@ input[type="range"] { width:100%; }
 .hero h1 { font-size:var(--size-xl); margin:0 0 8px 0; line-height:1.1 }
 .hero p { margin:0; opacity:.95 }
 .hero .cta { margin-top:18px; display:flex; gap:10px; flex-wrap:wrap }
+.hero .cta { align-items:center }
+.user-actions { display:flex; align-items:center; gap:10px }
 .pill { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.16); color:#fff; border:1px solid rgba(255,255,255,0.25); padding:10px 14px; border-radius:999px; }
 .hero svg { position:absolute; right:-20px; bottom:-20px; width:240px; height:240px; opacity:.25 }
 
@@ -184,6 +186,9 @@ input[type="range"] { width:100%; }
   .user-badge-btn .avatar { width:24px; height:24px }
   .user-badge-btn .name { display:inline }
   .user-menu { min-width:140px }
+  .hero .cta { justify-content:center }
+  .user-actions { flex-direction:column; align-items:center; width:100% }
+  .user-badge-inline { margin-left:0 }
 }
 
 /* Hide user badge and logout button on small devices in landscape to avoid overlaying hero image */
