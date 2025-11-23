@@ -2263,6 +2263,16 @@ document.addEventListener('click', e => {
     setSetting('theme', next);
     document.documentElement.dataset.theme = next;
   }
+  if (t && t.dataset && t.dataset.action === 'user-menu-toggle') {
+    const menu = document.getElementById('userMenu');
+    if (menu) { menu.style.display = menu.style.display==='none' ? 'block' : 'none'; }
+  }
+  if (t && t.dataset && t.dataset.action === 'signout') {
+    if (window.userSignOut) { window.userSignOut(); }
+  }
+  const uMenu = document.getElementById('userMenu');
+  const badgeBtn = document.getElementById('userBadgeBtn');
+  if (uMenu && uMenu.style.display==='block' && t !== badgeBtn && !t.closest('#userMenu')) { uMenu.style.display='none'; }
 });
 
 if ('serviceWorker' in navigator) {

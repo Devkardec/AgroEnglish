@@ -35,6 +35,10 @@
       </div>
       <div id="register-form" class="space-y-3 hidden">
         <div>
+          <label class="block text-sm">Nome</label>
+          <input id="register-name" type="text" class="mt-1 w-full border rounded px-3 py-2 focus:ring-2 focus:ring-emerald-500" placeholder="Seu nome">
+        </div>
+        <div>
           <label class="block text-sm">E-mail</label>
           <input id="register-email" type="email" class="mt-1 w-full border rounded px-3 py-2 focus:ring-2 focus:ring-emerald-500" placeholder="seu@email.com">
         </div>
@@ -52,7 +56,7 @@
 
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js'
-    import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js'
+    import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, setPersistence, browserLocalPersistence, updateProfile } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js'
 
     const firebaseConfig = {
       apiKey: "AIzaSyBmdB2Ut1XJkEShUrEqZYOBTUTPw8sxE-4",
@@ -79,6 +83,7 @@
     const registerPassword = document.getElementById('register-password')
     const registerSubmit = document.getElementById('register-submit')
     const registerMsg = document.getElementById('register-msg')
+    const registerName = document.getElementById('register-name')
     const authSection = document.getElementById('auth-section')
     const installHint = document.getElementById('installHint')
 
@@ -111,11 +116,13 @@
       el.textContent = map[code] || map.default
     }
 
+    function toast(msg){ try { const el=document.createElement('div'); el.textContent=String(msg||''); el.style.cssText='position:fixed;left:12px;top:12px;z-index:10000;background:#fff;color:#0b3a1e;border-radius:12px;padding:10px 12px;box-shadow:0 10px 24px rgba(0,0,0,.12);border:1px solid #e5e7eb;opacity:0;transform:translateY(-8px);transition:opacity .18s ease, transform .18s ease'; document.body.appendChild(el); requestAnimationFrame(()=>{ el.style.opacity='1'; el.style.transform='translateY(0)' }); setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateY(-8px)'; setTimeout(()=>{ try { el.remove() } catch {} },200) },2500) } catch {} }
+
     loginSubmit.addEventListener('click', async (e) => {
       e.preventDefault()
       loginMsg.textContent = ''
       loginSubmit.disabled = true
-      try { await signInWithEmailAndPassword(auth, String(loginEmail.value||'').trim(), String(loginPassword.value||'')) } catch (err) { showError(loginMsg, String(err && err.code || 'default')) }
+      try { await signInWithEmailAndPassword(auth, String(loginEmail.value||'').trim(), String(loginPassword.value||'')); toast('Login feito com sucesso') } catch (err) { showError(loginMsg, String(err && err.code || 'default')) }
       loginSubmit.disabled = false
     })
 
@@ -123,7 +130,14 @@
       e.preventDefault()
       registerMsg.textContent = ''
       registerSubmit.disabled = true
-      try { await createUserWithEmailAndPassword(auth, String(registerEmail.value||'').trim(), String(registerPassword.value||'')) } catch (err) { showError(registerMsg, String(err && err.code || 'default')) }
+      const nm = String(registerName.value||'').trim()
+      if (!nm || nm.length<2){ registerMsg.className='text-sm text-red-600'; registerMsg.textContent='Informe seu nome'; registerSubmit.disabled=false; try { registerName.focus() } catch {} ; return }
+      try {
+        await createUserWithEmailAndPassword(auth, String(registerEmail.value||'').trim(), String(registerPassword.value||''))
+        const name = nm
+        if (auth.currentUser && name) { try { await updateProfile(auth.currentUser, { displayName: name }) } catch {} ; try { localStorage.setItem('userName', name) } catch {} }
+        toast('Cadastro feito com sucesso')
+      } catch (err) { showError(registerMsg, String(err && err.code || 'default')) }
       registerSubmit.disabled = false
     })
 
@@ -133,6 +147,8 @@
 
     onAuthStateChanged(auth, (user) => {
       if (user && user.uid) {
+        const name = (user.displayName || (user.email||'').split('@')[0] || '').trim()
+        try { localStorage.setItem('userName', name) } catch {}
         location.href = './index.html'
       } else {
         authSection.classList.remove('hidden')

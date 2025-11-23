@@ -35,6 +35,8 @@
           <div id="gate-login-msg" style="margin-top:8px;font-size:13px;color:#c62828"></div>
         </div>
         <div id="gate-register" style="display:none">
+          <label>Nome</label>
+          <input id="gate-register-name" type="text" class="ae-input" placeholder="Seu nome" style="width:100%;margin:6px 0 10px;border:1px solid #ddd;border-radius:8px;padding:10px">
           <label>E-mail</label>
           <input id="gate-register-email" type="email" class="ae-input" placeholder="seu@email.com" style="width:100%;margin:6px 0 10px;border:1px solid #ddd;border-radius:8px;padding:10px">
           <label>Senha</label>
@@ -47,7 +49,7 @@
   </div>
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-    import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+    import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserLocalPersistence, updateProfile, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
     const firebaseConfig = {
       apiKey: "AIzaSyBmdB2Ut1XJkEShUrEqZYOBTUTPw8sxE-4",
       authDomain: "agroenglish-c9c18.firebaseapp.com",
@@ -72,13 +74,25 @@
     const regPass = document.getElementById('gate-register-password');
     const regBtn = document.getElementById('gate-register-submit');
     const regMsg = document.getElementById('gate-register-msg');
+    const regName = document.getElementById('gate-register-name');
+    function showToast(msg,type){ try { const el=document.createElement('div'); el.className='toast '+(type==='error'?'toast-error':'toast-success'); el.textContent=String(msg||''); document.body.appendChild(el); setTimeout(()=>{ el.classList.add('show') },10); setTimeout(()=>{ el.classList.remove('show'); setTimeout(()=>{ el.remove() },200) },2500); } catch {} }
     function show(v){ vLogin.style.display = v==='login' ? 'block' : 'none'; vReg.style.display = v==='register' ? 'block' : 'none'; }
     tabLogin.addEventListener('click', ()=>{ show('login'); tabLogin.style.background='#f5f5f5'; tabReg.style.background='#fff'; });
     tabReg.addEventListener('click', ()=>{ show('register'); tabReg.style.background='#f5f5f5'; tabLogin.style.background='#fff'; });
     function errMsg(el, code){ const map={ 'auth/invalid-credential':'E-mail ou senha inválidos.', 'auth/invalid-email':'E-mail inválido.', 'auth/user-not-found':'Usuário não encontrado.', 'auth/wrong-password':'Senha incorreta.', 'default':'Ocorreu um erro.' }; el.textContent = map[code] || map.default; }
-    loginBtn.addEventListener('click', async (e)=>{ e.preventDefault(); loginMsg.textContent=''; loginBtn.disabled=true; try { await signInWithEmailAndPassword(auth, String(loginEmail.value||'').trim(), String(loginPass.value||'')); } catch(err){ errMsg(loginMsg, String(err && err.code || 'default')); } loginBtn.disabled=false; });
-    regBtn.addEventListener('click', async (e)=>{ e.preventDefault(); regMsg.textContent=''; regBtn.disabled=true; try { await createUserWithEmailAndPassword(auth, String(regEmail.value||'').trim(), String(regPass.value||'')); } catch(err){ errMsg(regMsg, String(err && err.code || 'default')); } regBtn.disabled=false; });
-    onAuthStateChanged(auth, (user)=>{ gate.style.display = user && user.uid ? 'none' : 'block'; });
+    loginBtn.addEventListener('click', async (e)=>{ e.preventDefault(); loginMsg.textContent=''; loginBtn.disabled=true; try { await signInWithEmailAndPassword(auth, String(loginEmail.value||'').trim(), String(loginPass.value||'')); showToast('Login feito com sucesso','success'); } catch(err){ errMsg(loginMsg, String(err && err.code || 'default')); } loginBtn.disabled=false; });
+    regBtn.addEventListener('click', async (e)=>{ e.preventDefault(); regMsg.textContent=''; regBtn.disabled=true; const name=String(regName.value||'').trim(); if (!name || name.length<2){ regMsg.textContent='Informe seu nome'; regBtn.disabled=false; try { regName.focus() } catch {} ; return; } try { await createUserWithEmailAndPassword(auth, String(regEmail.value||'').trim(), String(regPass.value||'')); if (auth.currentUser) { try { await updateProfile(auth.currentUser, { displayName: name }) } catch {} } showToast('Cadastro feito com sucesso','success'); } catch(err){ errMsg(regMsg, String(err && err.code || 'default')); } regBtn.disabled=false; });
+    onAuthStateChanged(auth, (user)=>{
+      if (user && user.uid) {
+        const name = (user.displayName || (user.email||'').split('@')[0] || '').trim()
+        try { localStorage.setItem('userName', name) } catch {}
+        gate.style.display = 'none'
+        try { window.dispatchEvent(new Event('hashchange')) } catch {}
+      } else {
+        gate.style.display = 'block'
+      }
+    });
+    window.userSignOut = async function(){ try { await signOut(auth); gate.style.display='block'; } catch {} }
   </script>
   <script type="module" src="./main.js"></script>
   <noscript>Este aplicativo requer JavaScript.</noscript>
