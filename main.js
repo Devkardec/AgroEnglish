@@ -236,23 +236,15 @@ function splitOnConnectorsPT(sentence){
   return parts.filter(Boolean);
 }
 
-async function findAudioUrl(lvl, title){
+function buildAudioUrls(lvl, title){
   const base = `./src/audio/${lvl}/`;
-  const variants = [
+  const names = [
     `${title} · ${lvl}.mp3`,
     `${title.replace(/[’']/g,'')} · ${lvl}.mp3`,
     `${title} - ${lvl}.mp3`,
     `${title}.mp3`
   ];
-  for (const name of variants) {
-    const fileName = encodeURIComponent(name);
-    const url = base + fileName;
-    try {
-      const r = await fetch(url, { method: 'HEAD' });
-      if (r.ok) return url;
-    } catch {}
-  }
-  return null;
+  return names.map(n => base + encodeURIComponent(n));
 }
 
 async function findBaseVideoUrl(lvl){
@@ -772,9 +764,17 @@ async function setupAudio(data) {
   const level = (location.hash.split('/')[2] || '').trim();
   const idx = Number((location.hash.split('/')[3] || '1').trim());
   renderAudioStatus();
-  (async () => {
-    const url = await findAudioUrl(level, title);
-    if (url) { audio.src = url; hasMp3 = true; renderAudioStatus(); }
+  (function tryLoadAudio(){
+    const urls = buildAudioUrls(level, title);
+    let i = 0;
+    function attempt(){
+      if (i >= urls.length) { hasMp3 = false; renderAudioStatus(); return; }
+      audio.src = urls[i];
+      audio.load();
+    }
+    audio.addEventListener('loadedmetadata', function onLoaded(){ hasMp3 = true; renderAudioStatus(); audio.removeEventListener('loadedmetadata', onLoaded); });
+    audio.addEventListener('error', function onError(){ i++; attempt(); });
+    attempt();
   })();
 
   const playBtn = document.getElementById('playerPlay');
