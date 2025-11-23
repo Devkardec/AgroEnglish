@@ -186,6 +186,56 @@ function splitSentences(str){
   return out.filter(Boolean);
 }
 
+function splitOnConnectorsEN(sentence){
+  const s = String(sentence||'').trim();
+  if (!s) return [];
+  const re = /\b(and|but|so|then|because|therefore|however|meanwhile|after|before|while)\b/gi;
+  const matches = [];
+  let m;
+  while ((m = re.exec(s)) !== null) matches.push({ index: m.index, text: m[0] });
+  if (!matches.length) return [s];
+  const parts = [];
+  let prevEnd = 0;
+  for (let i = 0; i < matches.length; i++) {
+    const head = s.slice(prevEnd, matches[i].index).trim();
+    if (head) parts.push(/[.!?]$/.test(head) ? head : (head + '.'));
+    const segEnd = (i + 1 < matches.length) ? matches[i+1].index : s.length;
+    const connSeg = s.slice(matches[i].index, segEnd).trim();
+    if (connSeg) parts.push(connSeg);
+    prevEnd = segEnd;
+  }
+  if (prevEnd < s.length) {
+    const tail = s.slice(prevEnd).trim();
+    if (tail) parts.push(tail);
+  }
+  return parts.filter(Boolean);
+}
+
+function splitOnConnectorsPT(sentence){
+  const s = String(sentence||'').trim();
+  if (!s) return [];
+  const re = /\b(e|mas|então|porque|portanto|porém|enquanto|depois|antes)\b/gi;
+  const matches = [];
+  let m;
+  while ((m = re.exec(s)) !== null) matches.push({ index: m.index, text: m[0] });
+  if (!matches.length) return [s];
+  const parts = [];
+  let prevEnd = 0;
+  for (let i = 0; i < matches.length; i++) {
+    const head = s.slice(prevEnd, matches[i].index).trim();
+    if (head) parts.push(/[.!?]$/.test(head) ? head : (head + '.'));
+    const segEnd = (i + 1 < matches.length) ? matches[i+1].index : s.length;
+    const connSeg = s.slice(matches[i].index, segEnd).trim();
+    if (connSeg) parts.push(connSeg);
+    prevEnd = segEnd;
+  }
+  if (prevEnd < s.length) {
+    const tail = s.slice(prevEnd).trim();
+    if (tail) parts.push(tail);
+  }
+  return parts.filter(Boolean);
+}
+
 async function findAudioUrl(lvl, title){
   const base = `./src/audio/${lvl}/`;
   const variants = [
@@ -1564,9 +1614,19 @@ async function setupAudio(data) {
         linesEl.innerHTML = pairs.map(p=>`<div class="line"><div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div></div>`).join('');
         return;
       }
-      const en = splitSentences(String(data.text||''));
-      const pt = splitSentences(fixPT(String(data.translation||'')));
-      linesEl.innerHTML = en.map((s,i)=>`<div class="line"><div class="en">${s}</div><div class="pt">${pt[i]||''}</div></div>`).join('');
+      const enBase = splitSentences(String(data.text||''));
+      const ptBase = splitSentences(fixPT(String(data.translation||'')));
+      const lvl = (location.hash.split('/')[2]||'').toUpperCase();
+      const curIdx = Number((location.hash.split('/')[3]||'1').trim());
+      const needsMoreLines = ['A2','B1','B2','C1','C2'].includes(lvl) && (curIdx===11 || curIdx===12);
+      let en = enBase;
+      let pt = ptBase;
+      if (needsMoreLines) {
+        en = enBase.flatMap(s=> splitOnConnectorsEN(s));
+        pt = ptBase.flatMap(s=> splitOnConnectorsPT(s));
+      }
+      const len = Math.max(en.length, pt.length);
+      linesEl.innerHTML = Array.from({length: len}, (_,i)=>`<div class="line"><div class="en">${en[i]||''}</div><div class="pt">${pt[i]||''}</div></div>`).join('');
       if (!linesEl.innerHTML) {
         linesEl.innerHTML = '<div class="small">Texto indisponível.</div>';
       }
