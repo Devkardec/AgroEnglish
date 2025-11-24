@@ -9,8 +9,8 @@ nav a { color:#fff; margin-right:12px; text-decoration:none; font-weight:600; }
 nav a.active { text-decoration:underline; }
 .main { padding:16px; max-width:980px; margin:0 auto; }
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
-.when-grid { grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
-.when-grid .card { min-height:160px; display:flex; flex-direction:column; gap:6px }
+.when-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); align-items:start; gap:12px }
+.when-grid .card { min-height:auto; display:flex; flex-direction:column; gap:6px }
 .when-grid .card .line { border-bottom:1px solid #e5e9e7 }
 .when-grid .small { font-weight:700; color:var(--text) }
 .card { border:1px solid #e5e9e7; border-radius:16px; padding:14px; background:var(--card); box-shadow:0 6px 20px rgba(0,0,0,0.06) }
@@ -62,7 +62,7 @@ input[type="range"] { width:100%; }
 .lines { margin-top:12px }
 .line { padding:6px 0; border-bottom:1px solid #e5e9e7 }
 .line.active { background:#f2fbf4; border-left:3px solid var(--green); padding-left:8px }
-.line .en { font-weight:600; color:var(--green); font-size:var(--size-md); letter-spacing:.1px }
+.line .en { font-weight:600; color:var(--text); font-size:var(--size-md); letter-spacing:.1px }
 .line .pt { font-size:var(--size-sm); color:var(--muted) }
 .card .line:last-child { border-bottom:0 }
 .card .small { margin-bottom:6px }
@@ -249,6 +249,11 @@ details.accordion > div { margin-top:8px }
 .grammar-q { color: var(--green); font-weight:800 }
 .grammar-neg { color: var(--red); font-weight:800 }
 .grammar-suffix { color: var(--red); font-weight:800 }
+
+/* Sentence type coloring */
+.sent-aff { color: var(--green) }
+.sent-neg { color: var(--red) }
+.sent-q { color: var(--blue) }
 
 /* Tabs UX */
 button[data-tab] { transition: background-color .15s ease, box-shadow .15s ease, color .15s ease }

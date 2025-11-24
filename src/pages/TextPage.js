@@ -74,6 +74,8 @@ export function TextPage(level, index) {
         <div id="gameTop" style="margin-bottom:12px"></div>
         <div id="mc"></div>
         <div id="gExercises" style="margin-top:12px"></div>
+        <div class="section-title" style="margin-top:12px">Exercícios A1 (capítulo)</div>
+        <div id="a1ex" style="margin-top:8px"></div>
         <div id="fill" style="margin-top:12px"></div>
         <button class="btn" id="checkFill" style="margin-top:8px">Checar</button>
         <div id="fillResult" class="small" style="margin-top:6px"></div>

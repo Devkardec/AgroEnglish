@@ -2,27 +2,34 @@
   {
     "id": 1,
     "level": "A1",
-    "category": "Machines",
-    "title": "John's Red Tractor",
-    "title_pt": "O trator vermelho do John",
-    "text_en": "My name is John. I work on a farm. I drive a red tractor. The tractor is strong. I point to the wheel. The wheel turns fast. I check the engine. It runs well. I clean the seat. I park near the barn. I lock the brake. I wave to my friend. I love my tractor.",
-    "text_pt": "Meu nome é John. Eu trabalho numa fazenda. Eu dirijo um trator vermelho. O trator é forte. Eu aponto para a roda. A roda gira rápido. Eu verifico o motor. Ele funciona bem. Eu limpo o assento. Eu estaciono perto do celeiro. Eu travo o freio. Eu aceno para meu amigo. Eu amo meu trator.",
+    "category": "Routine",
+    "title": "Morning Routine on the Farm",
+    "title_pt": "Rotina da manhã na fazenda",
+    "text_en": "Every morning, I walk to the farm. I check the cows and the chickens. I open the barn and clean a small area. I fill the water buckets and put feed in the trough. I look at the fence and the gate. The sun is strong today, but the wind is cool. We start early and keep the farm clean.",
+    "text_pt": "Toda manhã, eu caminho até a fazenda. Eu verifico as vacas e as galinhas. Eu abro o galpão e limpo uma área pequena. Eu encho os baldes de água e coloco ração no cocho. Eu olho a cerca e o portão. O sol está forte hoje, mas o vento está fresco. Nós começamos cedo e mantemos a fazenda limpa.",
     "teaching_modules": {
-      "explanation": "Usamos Present Simple com frases curtas. Para 'I' usamos o verbo base (I drive). Para 'It' o verbo ganha 's' (It runs).",
+      "explanation": "Present Simple para rotina: I/We + verbo base. Ações diárias e simples.",
       "grammar_table": [
-        {"subject": "I (Eu)", "verb": "Drive", "example": "I drive the tractor"},
-        {"subject": "It (Ele/Coisa)", "verb": "Runs", "example": "It runs well"}
+        {"subject": "I (Eu)", "verb": "work", "example": "I work on the farm."},
+        {"subject": "He/She/It", "verb": "checks", "example": "He checks the cows."}
       ],
       "vocabulary": [
-        {"word": "Tractor", "translation": "Trator"},
-        {"word": "Wheel", "translation": "Roda"},
-        {"word": "Engine", "translation": "Motor"},
-        {"word": "Seat", "translation": "Assento"}
+        {"word": "morning", "translation": "manhã"},
+        {"word": "farm", "translation": "fazenda"},
+        {"word": "cow", "translation": "vaca"},
+        {"word": "chicken", "translation": "galinha"},
+        {"word": "barn", "translation": "galpão"},
+        {"word": "bucket", "translation": "balde"},
+        {"word": "feed", "translation": "ração"},
+        {"word": "trough", "translation": "cocho"},
+        {"word": "fence", "translation": "cerca"},
+        {"word": "gate", "translation": "portão"}
       ],
       "verbs_list": [
-        {"base": "Work", "third_person": "Works", "translation": "Trabalhar"},
-        {"base": "Drive", "third_person": "Drives", "translation": "Dirigir"},
-        {"base": "Check", "third_person": "Checks", "translation": "Checar"}
+        {"base": "check", "third_person": "checks", "translation": "verificar"},
+        {"base": "clean", "third_person": "cleans", "translation": "limpar"},
+        {"base": "fill", "third_person": "fills", "translation": "encher"},
+        {"base": "start", "third_person": "starts", "translation": "começar"}
       ]
     }
   },
@@ -30,107 +37,119 @@
     "id": 2,
     "level": "A1",
     "category": "Machines",
-    "title": "Working the Soil",
-    "title_pt": "Trabalhando o solo",
-    "text_en": "I start the tractor. I drive slowly. I see the soil. The soil is brown. I turn the earth. I follow a straight line. I watch the sun. I feel the wind. I keep my hands on the wheel. I stop and check the field. I adjust the seat. I check a small map. I finish the work.",
-    "text_pt": "Eu ligo o trator. Eu dirijo devagar. Eu vejo o solo. O solo é marrom. Eu viro a terra. Eu sigo uma linha reta. Eu observo o sol. Eu sinto o vento. Eu mantenho as mãos na roda. Eu paro e verifico o campo. Eu ajusto o assento. Eu confiro um pequeno mapa. Eu termino o trabalho.",
+    "title": "The Tractor at Work",
+    "title_pt": "O trator no trabalho",
+    "text_en": "João drives the tractor. He checks the oil and the tires. The tractor carries hay to the barn. It makes a loud sound, but it is strong. He moves slowly near the gate. He uses a helmet and gloves. The team waits and helps. The tractor stops next to the barn, and João smiles.",
+    "text_pt": "João dirige o trator. Ele verifica o óleo e os pneus. O trator leva feno para o galpão. Ele faz um som alto, mas é forte. Ele se move devagar perto do portão. Ele usa capacete e luvas. A equipe espera e ajuda. O trator para ao lado do galpão, e João sorri.",
     "teaching_modules": {
-      "explanation": "Present Simple descreve rotina: I start, I drive, I see. Para 'It' ou 'The soil', o verbo ganha 's' (The soil looks soft).",
+      "explanation": "He/She/It adiciona -s no verbo: He drives, He checks. It carries/makes/stops.",
       "grammar_table": [
-        {"subject": "I (Eu)", "verb": "Start", "example": "I start the tractor"},
-        {"subject": "It (Solo)", "verb": "Looks", "example": "It looks brown"}
+        {"subject": "He (Ele)", "verb": "drives", "example": "He drives the tractor."},
+        {"subject": "It (Tractor)", "verb": "carries", "example": "It carries hay."}
       ],
       "vocabulary": [
-        {"word": "Soil", "translation": "Solo"},
-        {"word": "Field", "translation": "Campo"},
-        {"word": "Line", "translation": "Linha"},
-        {"word": "Earth", "translation": "Terra"}
+        {"word": "tractor", "translation": "trator"},
+        {"word": "oil", "translation": "óleo"},
+        {"word": "tire", "translation": "pneu"},
+        {"word": "hay", "translation": "feno"},
+        {"word": "helmet", "translation": "capacete"},
+        {"word": "gloves", "translation": "luvas"},
+        {"word": "gate", "translation": "portão"}
       ],
       "verbs_list": [
-        {"base": "Start", "third_person": "Starts", "translation": "Ligar/Iniciar"},
-        {"base": "Drive", "third_person": "Drives", "translation": "Dirigir"},
-        {"base": "Turn", "third_person": "Turns", "translation": "Virar"}
+        {"base": "drive", "third_person": "drives", "translation": "dirigir"},
+        {"base": "check", "third_person": "checks", "translation": "verificar"},
+        {"base": "carry", "third_person": "carries", "translation": "levar"}
       ]
     }
   },
   {
     "id": 3,
     "level": "A1",
-    "category": "Machines",
-    "title": "Planting Corn Seeds",
-    "title_pt": "Plantando sementes de milho",
-    "text_en": "I carry corn seeds. I walk to the field. I open a small bag. I put seeds in the soil. I use my hands. I make short rows. I drink water and rest. I check the rows. The sun is warm. I cover the seeds with soil. I carry the bag back. I smile at the rows. I feel happy and calm.",
-    "text_pt": "Eu levo sementes de milho. Eu caminho até o campo. Eu abro uma sacola pequena. Eu coloco sementes no solo. Eu uso minhas mãos. Eu faço fileiras curtas. Eu bebo água e descanso. Eu verifico as fileiras. O sol está quente. Eu cubro as sementes com solo. Eu levo a sacola de volta. Eu sorrio para as fileiras. Eu me sinto feliz e calmo.",
+    "category": "Livestock Feed",
+    "title": "Water and Feed",
+    "title_pt": "Água e ração",
+    "text_en": "Today we feed the cows and the sheep. We fill the troughs with clean water. We put feed in the bins. Check the water level. Add more if it is low. Keep the buckets clean. Do not waste feed. Work calmly and help the animals. The cows eat, and the sheep drink. The farm is quiet.",
+    "text_pt": "Hoje nós alimentamos as vacas e as ovelhas. Enchemos os cochos com água limpa. Colocamos ração nas caixas. Verifique o nível de água. Adicione mais se estiver baixo. Mantenha os baldes limpos. Não desperdice ração. Trabalhe com calma e ajude os animais. As vacas comem, e as ovelhas bebem. A fazenda está tranquila.",
     "teaching_modules": {
-      "explanation": "Frases curtas em Present Simple: I carry, I put, I check. Em 3ª pessoa, o verbo ganha 's' (The sun warms the field).",
+      "explanation": "Imperativo para instruções: Check, Add, Keep. Frases curtas e diretas.",
       "grammar_table": [
-        {"subject": "I (Eu)", "verb": "Put", "example": "I put seeds in the soil"},
-        {"subject": "It (Sol)", "verb": "Warms", "example": "It warms the field"}
+        {"subject": "(Imperativo)", "verb": "Check", "example": "Check the water."},
+        {"subject": "(Imperativo negativo)", "verb": "Do not", "example": "Do not waste feed."}
       ],
       "vocabulary": [
-        {"word": "Seeds", "translation": "Sementes"},
-        {"word": "Corn", "translation": "Milho"},
-        {"word": "Row", "translation": "Fileira"},
-        {"word": "Bag", "translation": "Sacola"}
+        {"word": "feed", "translation": "ração"},
+        {"word": "trough", "translation": "cocho"},
+        {"word": "bucket", "translation": "balde"},
+        {"word": "bin", "translation": "caixa"},
+        {"word": "level", "translation": "nível"}
       ],
       "verbs_list": [
-        {"base": "Carry", "third_person": "Carries", "translation": "Carregar"},
-        {"base": "Put", "third_person": "Puts", "translation": "Colocar"},
-        {"base": "Check", "third_person": "Checks", "translation": "Checar"}
+        {"base": "fill", "third_person": "fills", "translation": "encher"},
+        {"base": "add", "third_person": "adds", "translation": "adicionar"},
+        {"base": "keep", "third_person": "keeps", "translation": "manter"}
       ]
     }
   },
   {
     "id": 4,
     "level": "A1",
-    "category": "Machines",
-    "title": "Rain Helps Plants Grow",
-    "title_pt": "A chuva ajuda as plantas a crescer",
-    "text_en": "Rain falls on the field. I watch the plants. The rain gives water. The water helps the plants grow. I walk and check the soil. The soil is wet. I see green leaves. I wait and smile. I open the gate slowly. I take a photo of the field. I write the weather in a notebook. The plants grow every day.",
-    "text_pt": "A chuva cai no campo. Eu observo as plantas. A chuva dá água. A água ajuda as plantas a crescer. Eu caminho e verifico o solo. O solo está úmido. Eu vejo folhas verdes. Eu espero e sorrio. Eu abro o portão devagar. Eu tiro uma foto do campo. Eu escrevo o clima em um caderno. As plantas crescem todos os dias.",
+    "category": "Barn",
+    "title": "Inside the Barn",
+    "title_pt": "Dentro do galpão",
+    "text_en": "There is a big barn on the farm. There are cows inside. There is clean straw on the floor. There are buckets next to the door. There is a small light over the gate. There are tools on the wall. The barn is clean today. We work in the barn and keep everything simple.",
+    "text_pt": "Há um galpão grande na fazenda. Há vacas dentro. Há palha limpa no chão. Há baldes ao lado da porta. Há uma luz pequena acima do portão. Há ferramentas na parede. O galpão está limpo hoje. Nós trabalhamos no galpão e mantemos tudo simples.",
     "teaching_modules": {
-      "explanation": "Present Simple para fatos simples: Rain falls, Water helps. Para 'Rain/Water/It' o verbo leva 's' (It helps).",
+      "explanation": "There is (singular) e There are (plural) para dizer que algo existe.",
       "grammar_table": [
-        {"subject": "I (Eu)", "verb": "Watch", "example": "I watch the plants"},
-        {"subject": "It (Chuva/Água)", "verb": "Helps", "example": "It helps the plants"}
+        {"subject": "There is", "verb": "-", "example": "There is a barn."},
+        {"subject": "There are", "verb": "-", "example": "There are cows."}
       ],
       "vocabulary": [
-        {"word": "Rain", "translation": "Chuva"},
-        {"word": "Water", "translation": "Água"},
-        {"word": "Leaf", "translation": "Folha"},
-        {"word": "Wet", "translation": "Úmido"}
+        {"word": "barn", "translation": "galpão"},
+        {"word": "straw", "translation": "palha"},
+        {"word": "floor", "translation": "chão"},
+        {"word": "bucket", "translation": "balde"},
+        {"word": "door", "translation": "porta"},
+        {"word": "light", "translation": "luz"},
+        {"word": "gate", "translation": "portão"},
+        {"word": "tool", "translation": "ferramenta"},
+        {"word": "wall", "translation": "parede"}
       ],
       "verbs_list": [
-        {"base": "Fall", "third_person": "Falls", "translation": "Cair"},
-        {"base": "Help", "third_person": "Helps", "translation": "Ajudar"},
-        {"base": "Grow", "third_person": "Grows", "translation": "Crescer"}
+        {"base": "work", "third_person": "works", "translation": "trabalhar"},
+        {"base": "keep", "third_person": "keeps", "translation": "manter"}
       ]
     }
   },
   {
     "id": 5,
     "level": "A1",
-    "category": "Livestock",
-    "title": "Cows and a Calf in the Barn",
-    "title_pt": "Vacas e um bezerro no celeiro",
-    "text_en": "I walk into the barn. I see cows and a small calf. I carry a bucket of milk. I give milk to the calf. The cow watches and stays calm. I clean the floor. I check the water. I close the gate. I hang the bucket. I pet the calf gently. I turn off the light. I feel safe and happy.",
-    "text_pt": "Eu entro no celeiro. Eu vejo vacas e um bezerro pequeno. Eu carrego um balde de leite. Eu dou leite ao bezerro. A vaca observa e fica calma. Eu limpo o chão. Eu verifico a água. Eu fecho o portão. Eu penduro o balde. Eu faço carinho no bezerro com cuidado. Eu apago a luz. Eu me sinto seguro e feliz.",
+    "category": "Pasture",
+    "title": "In the Pasture",
+    "title_pt": "No pasto",
+    "text_en": "The cows are in the field. The water tank is next to the fence. The salt block is on a small stand. The dog waits under the tree. We walk along the path and check the grass. The gate is near the road. We work in the morning and keep the field safe and clean.",
+    "text_pt": "As vacas estão no campo. A caixa d’água fica ao lado da cerca. O bloco de sal está sobre um suporte pequeno. O cachorro espera embaixo da árvore. Nós caminhamos pela trilha e verificamos o capim. O portão fica perto da estrada. Trabalhamos de manhã e mantemos o campo seguro e limpo.",
     "teaching_modules": {
-      "explanation": "Rotina em Present Simple: I see, I give, I clean. Para 'The cow/It' o verbo ganha 's' (It stays calm).",
+      "explanation": "Preposições básicas indicam posição: in, on, under, next to, near.",
       "grammar_table": [
-        {"subject": "I (Eu)", "verb": "Give", "example": "I give milk to the calf"},
-        {"subject": "It (Vaca/Bezerro)", "verb": "Stays", "example": "It stays calm"}
+        {"subject": "The tank", "verb": "is next to", "example": "The tank is next to the fence."},
+        {"subject": "The dog", "verb": "is under", "example": "The dog is under the tree."}
       ],
       "vocabulary": [
-        {"word": "Barn", "translation": "Celeiro"},
-        {"word": "Cow", "translation": "Vaca"},
-        {"word": "Calf", "translation": "Bezerro"},
-        {"word": "Gate", "translation": "Portão"}
+        {"word": "field", "translation": "campo"},
+        {"word": "tank", "translation": "caixa d’água"},
+        {"word": "fence", "translation": "cerca"},
+        {"word": "salt block", "translation": "bloco de sal"},
+        {"word": "stand", "translation": "suporte"},
+        {"word": "path", "translation": "trilha"},
+        {"word": "grass", "translation": "capim"},
+        {"word": "road", "translation": "estrada"}
       ],
       "verbs_list": [
-        {"base": "Walk", "third_person": "Walks", "translation": "Caminhar"},
-        {"base": "Give", "third_person": "Gives", "translation": "Dar"},
-        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"}
+        {"base": "wait", "third_person": "waits", "translation": "esperar"},
+        {"base": "walk", "third_person": "walks", "translation": "caminhar"},
+        {"base": "check", "third_person": "checks", "translation": "verificar"}
       ]
     }
   },
@@ -138,203 +157,199 @@
     "id": 6,
     "level": "A1",
     "category": "Livestock",
-    "title": "Feeding the Chickens",
-    "title_pt": "Alimentando as galinhas",
-    "text_en": "I walk to the chickens. I carry a bag of feed. I throw feed on the ground. The chickens eat and cluck. I check the eggs. I see two eggs. I clean the nest. I close the door. I wash my hands. I put the bag away. I smile and feel calm.",
-    "text_pt": "Eu caminho até as galinhas. Eu carrego uma sacola de ração. Eu jogo ração no chão. As galinhas comem e cacarejam. Eu verifico os ovos. Eu vejo dois ovos. Eu limpo o ninho. Eu fecho a porta. Eu lavo minhas mãos. Eu guardo a sacola. Eu sorrio e me sinto calmo.",
+    "title": "Animals Can...",
+    "title_pt": "Os animais podem…",
+    "text_en": "Cows can run slowly. Horses can jump over small poles. Chickens can peck and eat grain. Sheep can walk together and follow the dog. The animals can drink clean water. They can rest in the shade. We can help them every day. The farm is calm, and the animals feel safe.",
+    "text_pt": "As vacas podem correr devagar. Os cavalos podem pular sobre barras pequenas. As galinhas podem bicar e comer grãos. As ovelhas podem andar juntas e seguir o cachorro. Os animais podem beber água limpa. Eles podem descansar na sombra. Nós podemos ajudar todos os dias. A fazenda é calma, e os animais se sentem seguros.",
     "teaching_modules": {
-      "explanation": "Frases curtas em Present Simple: I carry, I throw, I check. Para 'It' ou 'The hen' usamos 's' (It eats).",
+      "explanation": "Can + verbo mostra habilidade. Não muda com I/you/he/she/it.",
       "grammar_table": [
-        {"subject": "I (Eu)", "verb": "Check", "example": "I check the eggs"},
-        {"subject": "It (Galinhas/Galinha)", "verb": "Eats", "example": "It eats feed"}
+        {"subject": "Cows", "verb": "can run", "example": "Cows can run."},
+        {"subject": "Horses", "verb": "can jump", "example": "Horses can jump."}
       ],
       "vocabulary": [
-        {"word": "Chicken", "translation": "Galinha"},
-        {"word": "Feed", "translation": "Ração"},
-        {"word": "Egg", "translation": "Ovo"},
-        {"word": "Nest", "translation": "Ninho"}
+        {"word": "run", "translation": "correr"},
+        {"word": "jump", "translation": "pular"},
+        {"word": "peck", "translation": "bicar"},
+        {"word": "grain", "translation": "grão"},
+        {"word": "shade", "translation": "sombra"}
       ],
       "verbs_list": [
-        {"base": "Carry", "third_person": "Carries", "translation": "Carregar"},
-        {"base": "Throw", "third_person": "Throws", "translation": "Jogar"},
-        {"base": "Check", "third_person": "Checks", "translation": "Checar"}
+        {"base": "run", "third_person": "runs", "translation": "correr"},
+        {"base": "jump", "third_person": "jumps", "translation": "pular"},
+        {"base": "follow", "third_person": "follows", "translation": "seguir"}
       ]
     }
   },
   {
     "id": 7,
     "level": "A1",
-    "category": "Livestock",
-    "title": "Cleaning the Pig Pen",
-    "title_pt": "Limpando o chiqueiro",
-    "text_en": "I walk to the pig pen. I see pigs in the mud. I carry a bucket and a brush. I clean the floor. I move mud to a corner. I wash a small area. I rinse the brush. I hang the bucket. I open a window. I feel safe and calm. The pig pen looks neat.",
-    "text_pt": "Eu caminho até o chiqueiro. Eu vejo porcos na lama. Eu carrego um balde e uma escova. Eu limpo o chão. Eu empurro a lama para um canto. Eu lavo uma área pequena. Eu enxáguo a escova. Eu penduro o balde. Eu abro uma janela. Eu me sinto seguro e calmo. O chiqueiro fica organizado.",
+    "category": "Tools",
+    "title": "Daily Tools",
+    "title_pt": "Ferramentas do dia",
+    "text_en": "We need simple tools today. Do we use the shovel for the soil? Does the rake help with the hay? Do you carry the bucket to the gate? Does this small tool fit in the box? We work with care and ask clear questions. The tools are basic, and the job is simple.",
+    "text_pt": "Precisamos de ferramentas simples hoje. Usamos a pá para o solo? O ancinho ajuda com o feno? Você leva o balde até o portão? Esta ferramenta pequena cabe na caixa? Trabalhamos com cuidado e fazemos perguntas claras. As ferramentas são básicas, e o trabalho é simples.",
     "teaching_modules": {
-      "explanation": "Present Simple para limpeza: I clean, I move, I wash. Para 'It' o verbo ganha 's' (It looks neat).",
+      "explanation": "Perguntas: Do + sujeito + verbo; Does para he/she/it. Verbo fica básico.",
       "grammar_table": [
-        {"subject": "I (Eu)", "verb": "Clean", "example": "I clean the floor"},
-        {"subject": "It (Chiqueiro)", "verb": "Looks", "example": "It looks neat"}
+        {"subject": "We", "verb": "do + use", "example": "Do we use the shovel?"},
+        {"subject": "It (tool)", "verb": "does + fit", "example": "Does it fit in the box?"}
       ],
       "vocabulary": [
-        {"word": "Pig", "translation": "Porco"},
-        {"word": "Mud", "translation": "Lama"},
-        {"word": "Bucket", "translation": "Balde"},
-        {"word": "Brush", "translation": "Escova"}
+        {"word": "tool", "translation": "ferramenta"},
+        {"word": "shovel", "translation": "pá"},
+        {"word": "rake", "translation": "ancinho"},
+        {"word": "bucket", "translation": "balde"},
+        {"word": "box", "translation": "caixa"},
+        {"word": "soil", "translation": "solo"},
+        {"word": "hay", "translation": "feno"}
       ],
       "verbs_list": [
-        {"base": "See", "third_person": "Sees", "translation": "Ver"},
-        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"},
-        {"base": "Wash", "third_person": "Washes", "translation": "Lavar"}
+        {"base": "use", "third_person": "uses", "translation": "usar"},
+        {"base": "carry", "third_person": "carries", "translation": "carregar"},
+        {"base": "fit", "third_person": "fits", "translation": "caber"}
       ]
     }
   },
   {
     "id": 8,
     "level": "A1",
-    "category": "Veterinary",
-    "title": "The Vet Visits the Farm",
-    "title_pt": "O veterinário visita a fazenda",
-    "text_en": "The vet visits our farm. I greet the vet. The vet checks a cow. The vet helps and smiles. I carry tools and water. I clean the area. I listen to simple advice. I point to a list. The vet writes notes. We schedule a next visit. I feel calm and safe.",
-    "text_pt": "O veterinário visita nossa fazenda. Eu cumprimento o veterinário. O veterinário examina uma vaca. O veterinário ajuda e sorri. Eu carrego ferramentas e água. Eu limpo a área. Eu escuto conselhos simples. Eu aponto para uma lista. O veterinário escreve notas. Nós marcamos uma próxima visita. Eu me sinto calmo e seguro.",
+    "category": "Teamwork",
+    "title": "Farm Teamwork",
+    "title_pt": "A equipe na fazenda",
+    "text_en": "Our team works together every day. We plan, but we do not rush. João does not push the animals. We do not leave tools on the ground. Ana does not forget the water. We help each other and speak clearly. The farm is safe when the team is calm and organized.",
+    "text_pt": "Nossa equipe trabalha junta todos os dias. Planejamos, mas não corremos. João não empurra os animais. Nós não deixamos ferramentas no chão. Ana não esquece a água. Ajudamos uns aos outros e falamos com clareza. A fazenda é segura quando a equipe está calma e organizada.",
     "teaching_modules": {
-      "explanation": "Present Simple em ações simples: The vet visits, checks, helps. Em 3ª pessoa, o verbo ganha 's'.",
+      "explanation": "Negativa: do not (don’t) e does not (doesn’t). Verbo fica básico.",
       "grammar_table": [
-        {"subject": "I (Eu)", "verb": "Greet", "example": "I greet the vet"},
-        {"subject": "He/She (Vet)", "verb": "Visits", "example": "He visits the farm"}
+        {"subject": "We", "verb": "do not + rush", "example": "We do not rush."},
+        {"subject": "He/She", "verb": "does not + push", "example": "He does not push the animals."}
       ],
       "vocabulary": [
-        {"word": "Vet", "translation": "Veterinário"},
-        {"word": "Advice", "translation": "Conselho"},
-        {"word": "Tools", "translation": "Ferramentas"},
-        {"word": "Cow", "translation": "Vaca"}
+        {"word": "team", "translation": "equipe"},
+        {"word": "together", "translation": "juntos"},
+        {"word": "rush", "translation": "correr/pressa"},
+        {"word": "push", "translation": "empurrar"},
+        {"word": "ground", "translation": "chão"},
+        {"word": "forget", "translation": "esquecer"}
       ],
       "verbs_list": [
-        {"base": "Visit", "third_person": "Visits", "translation": "Visitar"},
-        {"base": "Check", "third_person": "Checks", "translation": "Examinar"},
-        {"base": "Help", "third_person": "Helps", "translation": "Ajudar"}
-      ]
-    }
-  },
-  {
-    "id": 11,
-    "level": "A1",
-    "category": "Agribusiness",
-    "title": "Farm Shop: Numbers and Sales",
-    "title_pt": "Loja da fazenda: números e vendas",
-    "text_en": "Ana works at the farm shop. Today she counts products and money. She has 50 eggs, 20 liters of milk, and 5 kilograms of cheese. Each egg costs $0.20. Milk is $1.50 per liter. Cheese is $4 per kilogram. She sells 10 eggs and 5 liters of milk. She earns $9.50 today. She writes the numbers in a notebook.",
-    "text_pt": "Ana trabalha na loja da fazenda. Hoje ela conta produtos e dinheiro. Ela tem 50 ovos, 20 litros de leite e 5 quilogramas de queijo. Cada ovo custa $0,20. O leite é $1,50 por litro. O queijo é $4 por quilograma. Ela vende 10 ovos e 5 litros de leite. Ela ganha $9,50 hoje. Ela escreve os números em um caderno.",
-    "teaching_modules": {
-      "explanation": "Present Simple com frases curtas sobre números, preços e medidas.",
-      "grammar_table": [
-        {"subject": "I (Eu)", "verb": "Count", "example": "I count the money."},
-        {"subject": "It (Produto)", "verb": "Costs", "example": "It costs one dollar and fifty cents."}
-      ],
-      "vocabulary": [
-        {"word": "Egg", "translation": "Ovo"},
-        {"word": "Milk", "translation": "Leite"},
-        {"word": "Liter", "translation": "Litro"},
-        {"word": "Cheese", "translation": "Queijo"},
-        {"word": "Kilogram", "translation": "Quilograma"},
-        {"word": "Price", "translation": "Preço"},
-        {"word": "Cost", "translation": "Custo"},
-        {"word": "Sell", "translation": "Vender"},
-        {"word": "Buy", "translation": "Comprar"},
-        {"word": "Money", "translation": "Dinheiro"},
-        {"word": "Notebook", "translation": "Caderno"},
-        {"word": "Farm shop", "translation": "Loja da fazenda"}
-      ],
-      "verbs_list": [
-        {"base": "Count", "third_person": "Counts", "translation": "Contar"},
-        {"base": "Sell", "third_person": "Sells", "translation": "Vender"},
-        {"base": "Buy", "third_person": "Buys", "translation": "Comprar"},
-        {"base": "Write", "third_person": "Writes", "translation": "Escrever"},
-        {"base": "Earn", "third_person": "Earns", "translation": "Ganhar"}
+        {"base": "work", "third_person": "works", "translation": "trabalhar"},
+        {"base": "help", "third_person": "helps", "translation": "ajudar"},
+        {"base": "speak", "third_person": "speaks", "translation": "falar"}
       ]
     }
   },
   {
     "id": 9,
     "level": "A1",
-    "category": "Veterinary",
-    "title": "Happy or Sad Animal",
-    "title_pt": "Animal feliz ou triste",
-    "text_en": "I look at the animal. I see the eyes and the face. The animal looks happy. The ears are up. I feel calm. I give water. I talk softly. Sometimes the animal looks sad. The ears are down. I help and clean the area. I call the vet if it looks sad. I open the gate for air. I watch the animal again.",
-    "text_pt": "Eu olho para o animal. Eu vejo os olhos e o rosto. O animal parece feliz. As orelhas estão para cima. Eu me sinto calmo. Eu dou água. Eu falo baixo. Às vezes o animal parece triste. As orelhas estão para baixo. Eu ajudo e limpo a área. Eu chamo o veterinário se ele parece triste. Eu abro o portão para entrar ar. Eu observo o animal novamente.",
+    "category": "Weather",
+    "title": "A Day on the Farm",
+    "title_pt": "O dia na fazenda",
+    "text_en": "In the morning, the sky is clear. The wind is light, and the sun is warm. Today we work in the field and clean the barn in the afternoon. We drink water and rest in the shade. The day is simple and good. The animals eat, and the team works calmly.",
+    "text_pt": "De manhã, o céu está limpo. O vento é leve, e o sol é morno. Hoje trabalhamos no campo e limpamos o galpão à tarde. Nós bebemos água e descansamos na sombra. O dia é simples e bom. Os animais comem, e a equipe trabalha com calma.",
     "teaching_modules": {
-      "explanation": "Present Simple para estados e ações curtas: The animal looks, I give, I talk. 'It' usa verbo com 's' (It looks).",
+      "explanation": "Expressões de tempo: in the morning/afternoon, today, every day com present simple.",
       "grammar_table": [
-        {"subject": "I (Eu)", "verb": "Give", "example": "I give water"},
-        {"subject": "It (Animal)", "verb": "Looks", "example": "It looks happy"}
+        {"subject": "We", "verb": "work", "example": "In the morning, we work."},
+        {"subject": "We", "verb": "clean", "example": "In the afternoon, we clean the barn."}
       ],
       "vocabulary": [
-        {"word": "Happy", "translation": "Feliz"},
-        {"word": "Sad", "translation": "Triste"},
-        {"word": "Eyes", "translation": "Olhos"},
-        {"word": "Ears", "translation": "Orelhas"}
+        {"word": "sky", "translation": "céu"},
+        {"word": "clear", "translation": "limpo"},
+        {"word": "wind", "translation": "vento"},
+        {"word": "warm", "translation": "morno"},
+        {"word": "afternoon", "translation": "tarde"},
+        {"word": "shade", "translation": "sombra"}
       ],
       "verbs_list": [
-        {"base": "Look", "third_person": "Looks", "translation": "Olhar/Parecer"},
-        {"base": "Talk", "third_person": "Talks", "translation": "Falar"},
-        {"base": "Help", "third_person": "Helps", "translation": "Ajudar"}
+        {"base": "work", "third_person": "works", "translation": "trabalhar"},
+        {"base": "clean", "third_person": "cleans", "translation": "limpar"},
+        {"base": "rest", "third_person": "rests", "translation": "descansar"}
       ]
     }
   },
   {
     "id": 10,
     "level": "A1",
-    "category": "Veterinary",
-    "title": "Simple Medicine for the Calf",
-    "title_pt": "Remédio simples para o bezerro",
-    "text_en": "I carry simple medicine. I walk to the calf. I read a small label. I give medicine with care. The calf drinks and stays calm. I check the time. I write the dose on paper. I store the bottle. I wash my hands. I clean the table and smile. I feel happy. The calf looks healthy.",
-    "text_pt": "Eu levo remédio simples. Eu caminho até o bezerro. Eu leio um rótulo pequeno. Eu dou o remédio com cuidado. O bezerro bebe e fica calmo. Eu verifico a hora. Eu escrevo a dose no papel. Eu guardo o frasco. Eu lavo minhas mãos. Eu limpo a mesa e sorrio. Eu me sinto feliz. O bezerro parece saudável.",
+    "category": "Worker Routine",
+    "title": "A Workday",
+    "title_pt": "Um dia de trabalho",
+    "text_en": "Carlos starts early. He walks to the farm and checks the gate. He feeds the chickens and cleans the small pen. He carries a bucket and fills it with water. He talks to the team and plans the tasks. He finishes the morning work and smiles. The routine is simple and clear.",
+    "text_pt": "Carlos começa cedo. Ele caminha até a fazenda e verifica o portão. Ele alimenta as galinhas e limpa o cercado pequeno. Ele carrega um balde e o enche com água. Ele conversa com a equipe e planeja as tarefas. Ele termina o trabalho da manhã e sorri. A rotina é simples e clara.",
     "teaching_modules": {
-      "explanation": "Present Simple para passos simples: I read, I give, I write. Em 3ª pessoa, o verbo ganha 's' (It looks healthy).",
+      "explanation": "He/She/It adiciona -s no verbo: He starts, He walks, He checks.",
       "grammar_table": [
-        {"subject": "I (Eu)", "verb": "Give", "example": "I give medicine"},
-        {"subject": "It (Bezerro)", "verb": "Looks", "example": "It looks healthy"}
+        {"subject": "He (Ele)", "verb": "starts", "example": "He starts early."},
+        {"subject": "He (Ele)", "verb": "checks", "example": "He checks the gate."}
       ],
       "vocabulary": [
-        {"word": "Medicine", "translation": "Remédio"},
-        {"word": "Label", "translation": "Rótulo"},
-        {"word": "Dose", "translation": "Dose"},
-        {"word": "Paper", "translation": "Papel"}
-      ],
-      "verbs_list": [
-        {"base": "Carry", "third_person": "Carries", "translation": "Carregar"},
-        {"base": "Read", "third_person": "Reads", "translation": "Ler"},
-        {"base": "Give", "third_person": "Gives", "translation": "Dar"}
-      ]
-  }
- },
-  {
-    "id": 12,
-    "level": "A1",
-    "category": "Rotina/Endereço",
-    "title": "Farm Hours and Address",
-    "title_pt": "Horários e endereço da fazenda",
-    "text_en": "I start work at 7:00 at 125 Green Road. I open the gate at 7:05 and walk to the barn at 7:10. The farm address is 125 Green Road, Oak Valley. I check the water at 7:20. I drive to Field 3 at 8:00. I meet the vet at 9:30 at 18 Oak Street. I write the schedule and finish at 17:00.",
-    "text_pt": "Eu começo a trabalhar às 7:00 na Rua Green, 125. Eu abro o portão às 7:05 e caminho até o celeiro às 7:10. O endereço da fazenda é Rua Green, 125, Vale do Carvalho. Eu verifico a água às 7:20. Eu dirijo até o Talhão 3 às 8:00. Eu encontro o veterinário às 9:30 na Rua Oak, 18. Eu escrevo a programação e termino às 17:00.",
-    "teaching_modules": {
-      "explanation": "Present Simple com horários e endereço. He/She/It usa verbo com s. Foco em rotina com horas.",
-      "grammar_table": [
-        {"subject": "I", "verb": "start", "example": "I start at 7:00."},
-        {"subject": "It (address)", "verb": "is", "example": "The farm address is 125 Green Road."}
-      ],
-      "vocabulary": [
-        {"word": "Address", "translation": "Endereço"},
-        {"word": "Schedule", "translation": "Programação"},
-        {"word": "Gate", "translation": "Portão"},
-        {"word": "Street", "translation": "Rua"},
-        {"word": "Road", "translation": "Estrada"}
+        {"word": "start", "translation": "começar"},
+        {"word": "gate", "translation": "portão"},
+        {"word": "pen", "translation": "cercado"},
+        {"word": "bucket", "translation": "balde"},
+        {"word": "task", "translation": "tarefa"}
       ],
       "verbs_list": [
         {"base": "start", "third_person": "starts", "translation": "começar"},
-        {"base": "open", "third_person": "opens", "translation": "abrir"},
-        {"base": "walk", "third_person": "walks", "translation": "caminhar"},
         {"base": "check", "third_person": "checks", "translation": "verificar"},
-        {"base": "drive", "third_person": "drives", "translation": "dirigir"},
-        {"base": "meet", "third_person": "meets", "translation": "encontrar"},
-        {"base": "finish", "third_person": "finishes", "translation": "terminar"}
+        {"base": "feed", "third_person": "feeds", "translation": "alimentar"}
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "level": "A1",
+    "category": "Hygiene",
+    "title": "Farm Cleaning",
+    "title_pt": "Limpeza da fazenda",
+    "text_en": "Clean the barn floor. Wash the buckets. Keep the tools in the box. Sweep the small area near the gate. Throw garbage in the bin. Use water well. Work slowly and make the place clean. The animals need a clean space. The team helps and checks the work.",
+    "text_pt": "Limpe o chão do galpão. Lave os baldes. Mantenha as ferramentas na caixa. Varra a área pequena perto do portão. Jogue o lixo na lixeira. Use a água bem. Trabalhe devagar e deixe o lugar limpo. Os animais precisam de um espaço limpo. A equipe ajuda e verifica o trabalho.",
+    "teaching_modules": {
+      "explanation": "Imperativo para instruções: Clean, Wash, Keep. Negativo usa Do not.",
+      "grammar_table": [
+        {"subject": "(Imperativo)", "verb": "Clean", "example": "Clean the floor."},
+        {"subject": "(Imperativo negativo)", "verb": "Do not", "example": "Do not waste water."}
+      ],
+      "vocabulary": [
+        {"word": "clean", "translation": "limpo/limpar"},
+        {"word": "wash", "translation": "lavar"},
+        {"word": "sweep", "translation": "varrer"},
+        {"word": "garbage", "translation": "lixo"},
+        {"word": "bin", "translation": "lixeira"}
+      ],
+      "verbs_list": [
+        {"base": "clean", "third_person": "cleans", "translation": "limpar"},
+        {"base": "wash", "third_person": "washes", "translation": "lavar"},
+        {"base": "keep", "third_person": "keeps", "translation": "manter"}
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "level": "A1",
+    "category": "Safety",
+    "title": "Safety First",
+    "title_pt": "Segurança primeiro",
+    "text_en": "Wear gloves and a helmet. Do not run near the animals. Check the gate before you enter. Stay next to the team. Keep tools away from the ground. Do not touch the wire. Walk slowly and look around. Today we work with care. The farm is safe when we follow simple rules.",
+    "text_pt": "Use luvas e capacete. Não corra perto dos animais. Verifique o portão antes de entrar. Fique ao lado da equipe. Mantenha as ferramentas longe do chão. Não toque no fio. Ande devagar e olhe ao redor. Hoje trabalhamos com cuidado. A fazenda é segura quando seguimos regras simples.",
+    "teaching_modules": {
+      "explanation": "Imperativo para regras: Wear, Check, Stay. Negativo: Do not.",
+      "grammar_table": [
+        {"subject": "(Imperativo)", "verb": "Wear", "example": "Wear gloves."},
+        {"subject": "(Imperativo negativo)", "verb": "Do not", "example": "Do not touch the wire."}
+      ],
+      "vocabulary": [
+        {"word": "gloves", "translation": "luvas"},
+        {"word": "helmet", "translation": "capacete"},
+        {"word": "wire", "translation": "fio"},
+        {"word": "rules", "translation": "regras"},
+        {"word": "safe", "translation": "seguro"}
+      ],
+      "verbs_list": [
+        {"base": "wear", "third_person": "wears", "translation": "usar"},
+        {"base": "check", "third_person": "checks", "translation": "verificar"},
+        {"base": "stay", "third_person": "stays", "translation": "ficar"}
       ]
     }
   }

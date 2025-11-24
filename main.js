@@ -337,6 +337,13 @@ function svcExplain(en){
   return `<div class="small" style="margin-top:4px">Sujeito: <strong>${p.subject}</strong> · Verbo: <strong>${p.verb}</strong> · Complemento: <strong>${comp}</strong></div>`;
 }
 
+function sentenceType(en){
+  const s = String(en||'').trim();
+  if (/\?\s*$/.test(s)) return 'q';
+  if (/\b(don't|doesn't|is not|are not|am not|cannot|can't|isn't|aren't|no)\b/i.test(s)) return 'neg';
+  return 'aff';
+}
+
 function colorVerbToken(token){
   const t = String(token||'');
   const isThird = /(ies|es|s)$/i.test(t);
@@ -366,7 +373,7 @@ function guidedCard(en, pt){
     <div class="card">
       <div class="small"><strong>Exemplo guiado</strong></div>
       ${steps}
-      <div style="margin-top:8px">Frase final: ${highlightAction(en)}</div>
+      <div style="margin-top:8px">Frase final: <span class="sent-${sentenceType(en)}">${highlightAction(en)}</span></div>
       ${svcExplain(en)}
       <div class="small" style="margin-top:4px">Tradução: ${fixPT(pt||'')}</div>
     </div>
@@ -878,19 +885,28 @@ async function setupAudio(data) {
       const pt = splitSentences(fixPT(String(data.translation||'')));
       items = en.map((s,i)=>({ en: s, pt: pt[i]||'' }));
     }
-    const desired = 10;
-    let shown = items.slice(0, desired);
-    const fallback = [
-      { en:'I work on a farm.', pt:'Eu trabalho numa fazenda.' },
-      { en:'I drive a red tractor.', pt:'Eu dirijo um trator vermelho.' },
-      { en:'We check the water.', pt:'Nós verificamos a água.' }
-    ];
-    let i = 0;
-    while (shown.length < desired) {
-      const src = items[i % items.length] || fallback[i % fallback.length];
-      shown.push(src);
-      i++;
+    function expandToTen(list){
+      let out = list.slice(0);
+      if (out.length >= 10) return out.slice(0,10);
+      // Try splitting by connectors to generate more cards from the same sentences
+      for (let i=0; i<list.length && out.length<10; i++){
+        const eParts = splitOnConnectorsEN(list[i].en);
+        const pParts = splitOnConnectorsPT(list[i].pt);
+        const n = Math.max(eParts.length, pParts.length);
+        for (let k=0;k<n && out.length<10;k++){
+          const enSeg = eParts[k] || list[i].en;
+          const ptSeg = pParts[k] || list[i].pt;
+          // skip identical original
+          if (enSeg === list[i].en && ptSeg === list[i].pt) continue;
+          out.push({ en: enSeg, pt: ptSeg });
+        }
+      }
+      // If still less than 10, duplicate early items to reach exactly 10
+      let j = 0;
+      while (out.length < 10 && out.length && j < 20){ out.push(out[j % out.length]); j++; }
+      return out.slice(0,10);
     }
+    const shown = expandToTen(items);
     vocabEl.innerHTML = shown.map(it => `
       <div class="flashcard" data-en="${it.en.replace(/"/g,'&quot;')}">
         <div class="flashcard-inner">
@@ -924,38 +940,26 @@ async function setupAudio(data) {
       return `
         <div class="card">
           <div class="small">
-            <ul style="margin:0;padding-left:18px;line-height:1.6">
-              <li><strong>O que é:</strong> tempo para falar de rotinas, fatos e horários fixos.</li>
-              <li><strong>Quando usar:</strong> atividades diárias, verdades gerais e agendas.</li>
-              <li><strong>Forma direta:</strong> sujeito + verbo base. He/She/It ganha <span class="grammar-suffix">s</span> no verbo. Ex.: <strong>I <span class="verb verb-base">drive</span></strong> · <strong>He <span class="verb verb-third">drives</span></strong>.</li>
-              <li><strong>Como montar frase:</strong> sujeito + verbo + complemento. Ex.: <strong>We</strong> (sujeito) <strong><span class="verb verb-base">check</span></strong> (verbo) <strong>the water</strong> (complemento).</li>
-              <li><strong>Passo a passo:</strong> 1) sujeito; 2) verbo base; 3) complemento; 4) He/She/It em afirmativa: <span class="grammar-suffix">+s</span>.</li>
-              <li><strong>Negativa:</strong> <span class="grammar-neg">don't</span> (I/You/We/They) · <span class="grammar-neg">doesn't</span> (He/She/It). Verbo na base: <strong>He <span class="grammar-neg">doesn't</span> <span class="verb verb-base">drive</span></strong>.</li>
-              <li><strong>Pergunta:</strong> <span class="grammar-q">Do</span> (I/You/We/They) · <span class="grammar-q">Does</span> (He/She/It) + base. Ex.: <strong>Do you <span class="verb verb-base">work</span>?</strong> · <strong>Does he <span class="verb verb-base">drive</span>?</strong>. Respostas curtas: <strong>Yes, he <span class="grammar-aux">does</span></strong> · <strong>No, we <span class="grammar-neg">don't</span></strong>.</li>
-              <li><strong>Exemplos agro curtos:</strong> <strong>I <span class="verb verb-base">drive</span></strong> the tractor · <strong>She <span class="verb verb-third">drives</span></strong> the tractor · <strong>We <span class="verb verb-base">check</span></strong> water.</li>
-            </ul>
+            <div><strong>Explicação:</strong> ${v}</div>
           </div>
         </div>
       `;
     }
     const groupI = sentences.filter(s=>/^\s*i\b/i.test(s.en)).slice(0,4);
     const groupWe = sentences.filter(s=>/^\s*we\b/i.test(s.en)).slice(0,4);
-    const groupIt = sentences.filter(s=>/^(the tractor|the greenhouse|veterinary biosecurity|irrigation)\b/i.test(s.en)).slice(0,4);
-    const groupIFallback = groupI.length ? groupI : [{ en: 'I drive the tractor.', pt: 'Eu dirijo o trator.' }, { en: 'I check the water.', pt: 'Eu verifico a água.' }];
-    const groupWeFallback = groupWe.length ? groupWe : [{ en: 'We check the water.', pt: 'Nós verificamos a água.' }, { en: 'We rotate pastures.', pt: 'Nós rotacionamos as pastagens.' }];
-    const groupItFallback = groupIt.length ? groupIt : [{ en: 'It runs well.', pt: 'Ele funciona bem.' }, { en: 'The soil is wet.', pt: 'O solo está úmido.' }];
-    function tableRow(subj, arr){ return arr.map(s=>`<tr><td>${subj}</td><td>${highlightAction(s.en)}${svcExplain(s.en)}</td><td>${fixPT(s.pt||'')}</td></tr>`).join('') }
+    const groupIt = sentences.filter(s=>/^\s*(it|the\s)/i.test(s.en)).slice(0,4);
+    function tableRow(subj, arr){ return arr.map(s=>`<tr><td>${subj}</td><td class="sent-${sentenceType(s.en)}">${highlightAction(s.en)}${svcExplain(s.en)}</td><td>${fixPT(s.pt||'')}</td></tr>`).join('') }
     const conjTable = `
       <table style="width:100%;border-collapse:collapse">
         <thead><tr><th style="text-align:left">Sujeito</th><th style="text-align:left">Frase (EN)</th><th style="text-align:left">Tradução (PT)</th></tr></thead>
         <tbody>
-          ${tableRow('I', groupIFallback)}
-          ${tableRow('We', groupWeFallback)}
-          ${tableRow('It', groupItFallback)}
+          ${tableRow('I', groupI)}
+          ${tableRow('We', groupWe)}
+          ${tableRow('It/The', groupIt)}
         </tbody>
       </table>
     `;
-    const practice = [...groupIFallback.slice(0,1), ...groupWeFallback.slice(0,2), ...groupItFallback.slice(0,2)];
+    const practice = [...groupI.slice(0,1), ...groupWe.slice(0,2), ...groupIt.slice(0,2)];
     function buildPresentSimpleForms(en){
       const clean = String(en||'').trim().replace(/[.?!]+$/, '');
       const words = clean.split(/\s+/);
@@ -999,7 +1003,7 @@ async function setupAudio(data) {
       <table style="width:100%;border-collapse:collapse">
         <thead><tr><th style="text-align:left">Afirmativa</th><th style="text-align:left">Negativa</th><th style="text-align:left">Pergunta</th></tr></thead>
         <tbody>
-          ${a.map((x,i)=>`<tr><td>${highlightAction(x.en)}${svcExplain(x.en)}</td><td>${highlightAction(b[i].en)}${svcExplain(b[i].en)}</td><td>${highlightAction(c[i].en)}${svcExplain(c[i].en)}</td></tr>`).join('')}
+          ${a.map((x,i)=>`<tr><td class="sent-aff">${highlightAction(x.en)}${svcExplain(x.en)}</td><td class="sent-neg">${highlightAction(b[i].en)}${svcExplain(b[i].en)}</td><td class="sent-q">${highlightAction(c[i].en)}${svcExplain(c[i].en)}</td></tr>`).join('')}
         </tbody>
       </table>
     ` }
@@ -1017,8 +1021,8 @@ async function setupAudio(data) {
       <table class="rule-table">
         <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
         <tbody>
-          ${sThird.map(s=>`<tr><td>He/She/It: +s</td><td>${highlightAction(s.en)}</td></tr>`).join('')}
-          ${groupWe.slice(0,3).map(s=>`<tr><td>I/You/We/They: base</td><td>${highlightAction(s.en)}</td></tr>`).join('')}
+          ${sThird.map(s=>`<tr><td>He/She/It: +s</td><td class="sent-${sentenceType(s.en)}">${highlightAction(s.en)}</td></tr>`).join('')}
+          ${groupWe.slice(0,3).map(s=>`<tr><td>I/You/We/They: base</td><td class="sent-${sentenceType(s.en)}">${highlightAction(s.en)}</td></tr>`).join('')}
         </tbody>
       </table>
     `;
@@ -1027,8 +1031,8 @@ async function setupAudio(data) {
         <table class="rule-table">
           <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
           <tbody>
-            <tr><td>He/She/It: +s</td><td>${highlightAction(data.he_she_it_rule.example)}</td></tr>
-            ${groupWe.slice(0,1).map(s=>`<tr><td>I/You/We/They: base</td><td>${highlightAction(s.en)}</td></tr>`).join('')}
+            <tr><td>He/She/It: +s</td><td class="sent-${sentenceType(data.he_she_it_rule.example)}">${highlightAction(data.he_she_it_rule.example)}</td></tr>
+            ${groupWe.slice(0,1).map(s=>`<tr><td>I/You/We/They: base</td><td class="sent-${sentenceType(s.en)}">${highlightAction(s.en)}</td></tr>`).join('')}
           </tbody>
         </table>
       `;
@@ -1047,7 +1051,7 @@ async function setupAudio(data) {
         <table class="forms-table">
           <thead><tr><th style="text-align:left">Forma</th><th style="text-align:left">Exemplo</th></tr></thead>
           <tbody>
-            ${rows.map(r=>{ const ex = String(r.v); return `<tr><td>${r.label}</td><td>${highlightAction(ex)}${svcExplain(ex)}</td></tr>` }).join('')}
+            ${rows.map(r=>{ const ex = String(r.v); const cls = r.label.startsWith('Af')?'sent-aff':(r.label.startsWith('Ne')?'sent-neg':'sent-q'); return `<tr><td>${r.label}</td><td class="${cls}">${highlightAction(ex)}${svcExplain(ex)}</td></tr>` }).join('')}
           </tbody>
         </table>
         <div class="card" style="margin-top:8px"><div class="small">
@@ -1057,60 +1061,33 @@ async function setupAudio(data) {
         </div></div>
       `;
     }
-    const explainList = aff.map(s=>`<div class="card"><div class="line"><div class="en">${annotateTextManual(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div><div class="small" style="margin-top:6px">Presente simples: rotina agrícola.</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${s.en}">Ouvir Áudio</button></div></div>`).join('');
+    const explainList = aff.map(s=>`<div class="card"><div class="line"><div class="en sent-${sentenceType(s.en)}">${annotateTextManual(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div><div class="small" style="margin-top:6px">Presente simples: rotina agrícola.</div><div style="margin-top:8px"><button class="btn secondary" data-action="speak" data-text="${s.en}">Ouvir Áudio</button></div></div>`).join('');
     const groupBe = (()=>{
       const seen=new Set();
       const base = sentences.filter(s=>/\b(is|are)\b/i.test(s.en)).filter(s=>{ if(seen.has(s.en)) return false; seen.add(s.en); return true }).slice(0,3);
-      const fallback = [
-        { en:'My name is John.', pt:'Meu nome é John.' },
-        { en:'The tractor is strong.', pt:'O trator é forte.' },
-        { en:'The soil is wet.', pt:'O solo está úmido.' }
-      ];
-      const out = [...base];
-      for (const f of fallback){ if(out.length<3) out.push(f); }
-      return out.slice(0,3);
+      return base;
     })();
     const baseSample = groupI[0] || groupWe[0] || sentences[0] || { en: 'I work on the farm.', pt: 'Eu trabalho na fazenda.' };
     const formsSample = buildPresentSimpleForms(baseSample.en);
-    function lineHtml(s){ return `<div class="line"><div class="en">${highlightAction(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div>` }
-    const routineLines = (()=>{
-      const base = [...groupI.slice(0,2), ...groupWe.slice(0,1)];
-      const fallback = [
-        { en: 'I drive the tractor.', pt: 'Eu dirijo o trator.' },
-        { en: 'We check the water.', pt: 'Nós verificamos a água.' },
-        { en: 'We clean the barn.', pt: 'Nós limpamos o celeiro.' }
-      ];
-      const out = [...base];
-      for (const f of fallback){ if(out.length<3) out.push(f); }
-      return out.slice(0,3);
-    })();
-    const thirdLines = (()=>{ const arr = sentences.filter(s=> thirdSubject(s.en)).slice(0,3); if(arr.length>=2) return arr; return [ { en: 'He drives the tractor.', pt: 'Ele dirige o trator.' }, { en: 'It runs well.', pt: 'Ele funciona bem.' } ]; })();
+    function lineHtml(s){ return `<div class="line"><div class="en sent-${sentenceType(s.en)}">${highlightAction(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div>` }
+    const routineLines = (()=>{ const base = [...groupI.slice(0,2), ...groupWe.slice(0,1)]; return base.slice(0,3); })();
+    const thirdLines = (()=>{ return sentences.filter(s=> thirdSubject(s.en)).slice(0,3); })();
     function ptNeg(s){ let out = fixPT(String(s||'')).trim().replace(/[.?!]+$/,''); if(/^Eu\s/i.test(out)) return out.replace(/^Eu\s/i,'Eu não '); if(/^Nós\s/i.test(out)) return out.replace(/^Nós\s/i,'Nós não '); if(/^Ele\s/i.test(out)) return out.replace(/^Ele\s/i,'Ele não '); if(/^Ela\s/i.test(out)) return out.replace(/^Ela\s/i,'Ela não '); return 'Não '+out.toLowerCase(); }
     function ptQ(s){ let out = fixPT(String(s||'')).trim().replace(/[.]+$/,''); return out+'?'; }
     const negLine = { en: formsSample.negative, pt: ptNeg(baseSample.pt) };
     const qLine = { en: formsSample.interrogative, pt: ptQ(baseSample.pt) };
     function negForThird(s){ const f = buildPresentSimpleForms(s.en); return { en: annotateTextManual(f.negative), pt: ptNeg(s.pt) }; }
     function qForThird(s){ const f = buildPresentSimpleForms(s.en); return { en: annotateTextManual(f.interrogative), pt: ptQ(s.pt) }; }
-    function beNegSample(){ const b = groupBe[0] || { en:'The tractor is strong.', pt:'O trator é forte.' }; const en = String(b.en).replace(/\bis\s+/i,'is not '); let pt = fixPT(b.pt); pt = pt.replace(/\bé\b/,'não é').replace(/\bestá\b/,'não está'); if(!/não\s/.test(pt)) pt = 'Não '+pt.toLowerCase(); return { en: annotateTextManual(en), pt }; }
-    const whenList = [
-      `<div class="card"><div class="small"><strong>Rotina</strong></div>${(routineLines.length?routineLines:[{en:'I drive the tractor.',pt:'Eu dirijo o trator.'},{en:'We check the water.',pt:'Nós verificamos a água.'},{en:'We clean the barn.',pt:'Nós limpamos o celeiro.'}]).map(lineHtml).join('')}</div>`,
-      `<div class="card"><div class="small"><strong>He/She/It</strong></div>${thirdLines.map(lineHtml).join('')}</div>`,
-      `<div class="card"><div class="small"><strong>Estados (be)</strong></div>${(groupBe.length?groupBe:[{en:'The tractor is strong.',pt:'O trator é forte.'},{en:'The soil is wet.',pt:'O solo está úmido.'}]).map(lineHtml).join('')}</div>`,
-      `<div class="card"><div class="small"><strong>Negativa</strong></div>${[negLine, negForThird(thirdLines[0]||{en:'He drives the tractor.',pt:'Ele dirige o trator.'}), beNegSample()].map(lineHtml).join('')}</div>`,
-      `<div class="card"><div class="small"><strong>Pergunta</strong></div>${[qLine, qForThird(thirdLines[0]||{en:'He drives the tractor.',pt:'Ele dirige o trator.'}), {en:'Is the tractor strong?', pt:'O trator é forte?'}].map(lineHtml).join('')}</div>`,
-      `<div class="card"><div class="small"><strong>Afirmativa</strong></div>${aff.slice(0,3).map(lineHtml).join('')}</div>`
-    ].join('');
-    const guidedSamples = [
-      baseSample,
-      { en: 'We check the water.', pt: 'Nós verificamos a água.' },
-      thirdLines[0] || { en: 'He drives the tractor.', pt: 'Ele dirige o trator.' },
-      negLine,
-      qLine,
-      negForThird(thirdLines[0] || { en: 'He drives the tractor.', pt: 'Ele dirige o trator.' }),
-      qForThird(thirdLines[0] || { en: 'He drives the tractor.', pt: 'Ele dirige o trator.' }),
-      { en: 'We clean the barn.', pt: 'Nós limpamos o celeiro.' },
-      { en: 'Does he drive the tractor?', pt: 'Ele dirige o trator?' }
-    ];
+    function beNegSample(){ if(!groupBe.length) return null; const b = groupBe[0]; const en = String(b.en).replace(/\bis\s+/i,'is not '); let pt = fixPT(b.pt); pt = pt.replace(/\bé\b/,'não é').replace(/\bestá\b/,'não está'); if(!/não\s/.test(pt)) pt = 'Não '+pt.toLowerCase(); return { en: annotateTextManual(en), pt }; }
+    const negThird = thirdLines[0] ? negForThird(thirdLines[0]) : null;
+    const qThird = thirdLines[0] ? qForThird(thirdLines[0]) : null;
+    const beNeg = beNegSample();
+    const affCard = aff.length ? `<div class="card"><div class="small"><strong>Afirmativa</strong></div>${aff.slice(0,3).map(lineHtml).join('')}</div>` : '';
+    const negCard = negs.length ? `<div class="card"><div class="small"><strong>Negativa</strong></div>${negs.slice(0,3).map(lineHtml).join('')}</div>` : '';
+    const qCard = quess.length ? `<div class="card"><div class="small"><strong>Pergunta</strong></div>${quess.slice(0,3).map(lineHtml).join('')}</div>` : '';
+    const whenCards = [affCard, negCard, qCard].filter(Boolean);
+    const whenList = whenCards.join('');
+    const guidedSamples = [baseSample, qLine, negLine].filter(Boolean);
     const guidedList = guidedSamples.map(s=> guidedCard(s.en, s.pt)).join('');
     el.innerHTML = `
       <div>${explainForBeginners(gRaw)}</div>
@@ -1130,18 +1107,8 @@ async function setupAudio(data) {
       ${renderFormsFromChapter()}
       <div class="section-title" style="margin-top:12px">Regra He/She/It (+s)</div>
       <div>${sTable}</div>
-      <div class="card" style="margin-top:8px"><div class="small">
-        <div><strong>Quando aplica:</strong> afirmativas com <strong>He/She/It</strong>.</div>
-        <div style="margin-top:6px"><strong>Padrões:</strong> <em>study</em> → <em>stud<span class="grammar-suffix">ies</span></em>; <em>watch</em> → <em>watch<span class="grammar-suffix">es</span></em>; <em>go</em> → <em>go<span class="grammar-suffix">es</span></em>.</div>
-        <div style="margin-top:6px"><strong>Importante:</strong> na negativa e pergunta com <span class="grammar-q">Does</span>/<span class="grammar-neg">doesn't</span>, o verbo fica na base: <em><span class="grammar-q">Does</span> she work?</em> · <em>He <span class="grammar-neg">doesn't</span> work</em>.</div>
-        <div style="margin-top:6px"><strong>Aplicação:</strong> pense no sujeito; se for He/She/It e for afirmativa, aplique +<span class="grammar-suffix">s</span>.</div>
-      </div></div>
       <div class="section-title" style="margin-top:12px">Forma (Uso)</div>
-      <div class="card" style="margin-top:8px"><div class="small">
-        <div><strong>Rotina:</strong> descreva o que acontece todo dia. Ex.: <em>We check the water every morning.</em></div>
-        <div style="margin-top:6px"><strong>Fatos gerais:</strong> verdades estáveis. Ex.: <em>Cows produce milk.</em></div>
-        <div style="margin-top:6px"><strong>Horários:</strong> eventos programados. Ex.: <em>The tractor service starts at 8am.</em></div>
-      </div></div>
+      <div class="card" style="margin-top:8px"><div class="small">${sentences.slice(0,3).map(s=>lineHtml(s)).join('')}</div></div>
     `;
 
     const speechEx = document.getElementById('speechExamples');
@@ -1336,53 +1303,28 @@ async function setupAudio(data) {
   function renderVerbs(data) {
     const el = document.querySelector('#verbs');
     if (!el) return;
+    const textParts = String(data.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
+    const trParts = String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT).filter(Boolean);
     const listStr = String(data.verbs||'');
     const m = listStr.split(':')[1] || listStr;
-    const baseVerbs = m.split(',')
-      .map(s=>s.trim().toLowerCase().replace(/[^a-z]+$/i,''))
-      .filter(Boolean);
+    const baseVerbs = m.split(',').map(s=>s.trim().toLowerCase().replace(/[^a-z]+$/i,'')).filter(Boolean);
     function thirdForm(v){ if(/(ch|sh|x|o)$/i.test(v)||v==='go') return v==='go'?'goes':v+'es'; if(/y$/i.test(v)) return v.replace(/y$/,'ies'); return v+'s'; }
-    function pairFor(v){
-      const map = {
-        work: [{en:'I work on the farm.', pt:'Eu trabalho na fazenda.'},{en:'He works on the farm.', pt:'Ele trabalha na fazenda.'}],
-        drive: [{en:'I drive the tractor.', pt:'Eu dirijo o trator.'},{en:'He drives the tractor.', pt:'Ele dirige o trator.'}],
-        check: [{en:'We check the water.', pt:'Nós verificamos a água.'},{en:'The vet checks the cow.', pt:'O veterinário examina a vaca.'}],
-        feed: [{en:'We feed the chickens.', pt:'Nós alimentamos as galinhas.'},{en:'He feeds the chickens.', pt:'Ele alimenta as galinhas.'}],
-        start: [{en:'I start the engine.', pt:'Eu ligo o motor.'},{en:'It starts quickly.', pt:'Ele liga rápido.'}],
-        clean: [{en:'I clean the barn.', pt:'Eu limpo o celeiro.'},{en:'She cleans the barn.', pt:'Ela limpa o celeiro.'}],
-        give: [{en:'I give water.', pt:'Eu dou água.'},{en:'He gives water.', pt:'Ele dá água.'}],
-        watch: [{en:'I watch the plants.', pt:'Eu observo as plantas.'},{en:'She watches the plants.', pt:'Ela observa as plantas.'}],
-        put: [{en:'I put seeds in the soil.', pt:'Eu coloco sementes no solo.'},{en:'He puts seeds in the soil.', pt:'Ele coloca sementes no solo.'}],
-        carry: [{en:'I carry a bucket.', pt:'Eu carrego um balde.'},{en:'She carries a bucket.', pt:'Ela carrega um balde.'}],
-        look: [{en:'We look at the field.', pt:'Nós olhamos o campo.'},{en:'It looks healthy.', pt:'Ele parece saudável.'}],
-        help: [{en:'We help the calf.', pt:'Nós ajudamos o bezerro.'},{en:'It helps the plants.', pt:'Ele ajuda as plantas.'}]
-      };
-      if (map[v]) return map[v];
+    function findExamplesForVerb(v){
       const t = thirdForm(v);
-      const ptBaseMap = {
-        work:'trabalhamos', drive:'dirigimos', check:'verificamos', feed:'alimentamos', start:'ligamos', clean:'limpamos', give:'damos', watch:'observamos', put:'colocamos', carry:'carregamos', look:'olhamos', help:'ajudamos', read:'lemos', adjust:'ajustamos', monitor:'monitoramos', operate:'operamos', record:'registramos', assess:'avaliamos', coordinate:'coordenamos'
-      };
-      const ptThirdMap = {
-        work:'trabalha', drive:'dirige', check:'verifica', feed:'alimenta', start:'liga', clean:'limpa', give:'dá', watch:'observa', put:'coloca', carry:'carrega', look:'olha', help:'ajuda', read:'lê', adjust:'ajusta', monitor:'monitora', operate:'opera', record:'registra', assess:'avalia', coordinate:'coordena'
-      };
-      const ptBase = ptBaseMap[v] || 'fazemos';
-      const ptThird = ptThirdMap[v] || 'faz';
-      return [{en:`We ${v} on the farm.`, pt:`Nós ${ptBase} na fazenda.`},{en:`He ${t} tools.`, pt:`Ele ${ptThird} as ferramentas.`}];
+      const rx = new RegExp(`\\b(${v}|${t})\\b`,'i');
+      const out = [];
+      for (let i=0;i<textParts.length;i++){
+        const s = textParts[i];
+        if (rx.test(s)) { out.push({ en: s, pt: trParts[i]||'' }); }
+        if (out.length>=2) break;
+      }
+      return out;
     }
     let examples = [];
-    baseVerbs.forEach(v=>{ const p = pairFor(v); examples.push(...p); });
-    // dedupe by EN
+    baseVerbs.forEach(v=>{ examples.push(...findExamplesForVerb(v)); });
     const seen = new Set();
-    examples = examples.filter(r=>{ if(seen.has(r.en)) return false; seen.add(r.en); return true; });
-    const fallback = [
-      {en:'I drive the tractor.', pt:'Eu dirijo o trator.'},
-      {en:'He drives the tractor.', pt:'Ele dirige o trator.'},
-      {en:'We check the water.', pt:'Nós verificamos a água.'},
-      {en:'It looks healthy.', pt:'Ele parece saudável.'}
-    ];
-    if (examples.length < 10) examples = examples.concat(fallback).slice(0,10);
-    else examples = examples.slice(0,10);
-    const rows = examples.map(r=>`<tr><td>${highlightAction(r.en)}</td><td>${fixPT(r.pt)}</td></tr>`).join('');
+    examples = examples.filter(r=>{ const k=r.en; if(seen.has(k)) return false; seen.add(k); return true; }).slice(0,10);
+    const rows = examples.map(r=>`<tr><td class="sent-${sentenceType(r.en)}">${highlightAction(r.en)}</td><td>${fixPT(r.pt)}</td></tr>`).join('');
     el.innerHTML = `
       <div class="card">
         <div><strong>O que é:</strong> verbo é ação do dia a dia. Use forma base com I/You/We/They. Em He/She/It acrescente s/es.</div>
@@ -1788,6 +1730,68 @@ async function setupAudio(data) {
     }
 
     fillItems = fillItems.slice(0,6);
+    function buildA1Exercises(){
+      const enParts = splitSentences(String(item.text_en||''));
+      const ptParts = splitSentences(fixPT(String(item.text_pt||'')));
+      const complete = (function(){
+        const vb = Array.isArray(verbsBase) ? verbsBase : [];
+        const out = [];
+        for (let i=0;i<enParts.length;i++){
+          const s = enParts[i];
+          const rx = vb.length ? new RegExp(`\\b(${vb.join('|')})(es|s)?\\b`,'i') : null;
+          const m = rx ? s.match(rx) : null;
+          let target = '';
+          let blanked = s;
+          if (m){ target = (m[0]||'').replace(/[.,!?]/g,''); blanked = s.replace(rx,'____'); }
+          else {
+            const words = s.replace(/[.,!?]+$/,'').split(/\s+/);
+            target = words[1] || words[0] || '';
+            const rx2 = new RegExp(`\\b${target.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')}\\b`,'i');
+            blanked = s.replace(rx2,'____');
+          }
+          if (target) out.push({ prompt: blanked, answer: String(target).toLowerCase() });
+          if (out.length>=5) break;
+        }
+        return out;
+      })();
+      function formsFor(s){
+        const f = (function(ex){
+          const clean = String(ex||'').trim().replace(/[.?!]+$/,'');
+          if (!clean) return { affirmative:'',negative:'',interrogative:'' };
+          const words = clean.split(/\s+/);
+          let subject = words[0];
+          if (/^(the|a|an)$/i.test(words[0]) && words.length>=2) subject = words[0]+' '+words[1];
+          const subjEsc = subject.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&');
+          let rest = clean.replace(new RegExp('^'+subjEsc+'\\s+'),'');
+          const first = (rest.split(/\s+/)[0]||'').toLowerCase();
+          const isThird = /^(he|she|it)$/i.test(subject) || /^(the|a|an)\b/i.test(subject);
+          if (first==='is'){
+            const tail = rest.replace(/^is\s+/i,'');
+            return { affirmative: clean, negative: subject+' is not '+tail, interrogative: 'Is '+subject+' '+tail+'?' };
+          }
+          function baseVerb(w){ if (/^goes$/i.test(w)) return 'go'; if (/ies$/i.test(w)) return w.replace(/ies$/i,'y'); if (/(ch|sh|x|o|ss|zz)$/i.test(w.replace(/es$/i,'')) && /es$/i.test(w)) return w.replace(/es$/i,''); if (/s$/i.test(w)) return w.replace(/s$/i,''); return w; }
+          const base = baseVerb(first);
+          const restWords = rest.split(/\s+/); if (restWords.length) restWords[0] = base;
+          const negAux = isThird ? "doesn't" : "don't"; const qAux = isThird ? 'Does' : 'Do';
+          return { affirmative: clean, negative: (subject+' '+negAux+' '+base+' '+restWords.slice(1).join(' ')).trim(), interrogative: (qAux+' '+subject+' '+restWords.join(' ')+'?').trim() };
+        })(s);
+        return { base: annotateTextManual(s), negative: annotateTextManual(f.negative), interrogative: annotateTextManual(f.interrogative) };
+      }
+      const neg = []; const ques = [];
+      for (let i=0;i<enParts.length && (neg.length<3 || ques.length<3); i++){
+        const f = formsFor(enParts[i]);
+        if (neg.length<3 && f.negative) neg.push({ base: f.base, result: f.negative });
+        if (ques.length<3 && f.interrogative) ques.push({ base: f.base, result: f.interrogative });
+      }
+      const trShort = [];
+      for (let i=0;i<Math.min(3,enParts.length); i++){
+        trShort.push({ en: annotateTextManual(enParts[i]), pt: fixPT(ptParts[i]||'') });
+      }
+      const repeat = enParts.slice(0,5).map(s=>({ en: annotateTextManual(s) }));
+      const narration = enParts.slice(0);
+      return { complete, negative: neg, question: ques, translation_short: trShort, repetition_phrases: repeat, narration_sentences: narration };
+    }
+    const a1ex = buildA1Exercises();
     return {
       title: item.title || `Texto ${idx}`,
       text: item.text_en || '',
@@ -1796,6 +1800,7 @@ async function setupAudio(data) {
       grammar: grammarText,
       verbs: verbsStr,
       exercises: { multiple_choice: mc, fill_in: fillItems, speaking: `Repeat: ${item.title||''}` },
+      a1_exercises: a1ex,
       he_she_it_rule: heSheItExample ? { example: heSheItExample } : (item.he_she_it_rule || null),
       grammar_forms: grammarForms,
       usage_table: item.usage_table || null,
@@ -1885,6 +1890,52 @@ async function setupAudio(data) {
       try { renderVerbs(data); } catch (e) { console.error('Error in renderVerbs:', e); }
       try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
       try { renderFill(data); } catch (e) { console.error('Error in renderFill:', e); }
+      try {
+        const el = document.getElementById('a1ex');
+        if (el) {
+          const ex = data.a1_exercises || {};
+          const comp = Array.isArray(ex.complete) ? ex.complete : [];
+          const neg = Array.isArray(ex.negative) ? ex.negative : [];
+          const ques = Array.isArray(ex.question) ? ex.question : [];
+          const tr = Array.isArray(ex.translation_short) ? ex.translation_short : [];
+          const rep = Array.isArray(ex.repetition_phrases) ? ex.repetition_phrases : [];
+          const nar = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : [];
+          const compHtml = comp.length ? comp.map((f,i)=>`<div class="card"><div>${i+1}. ${f.prompt.replace('____',`<input class="blank" data-a1c="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`)}</div></div>`).join('') : '<div class="small">Sem itens de completar.</div>';
+          const negHtml = neg.length ? neg.map((r,i)=>`<div class="card"><div>${i+1}. ${r.base}</div><div style="margin-top:6px"><button class="btn secondary" data-a1neg="${i}">Ver negativa</button></div><div class="small" id="a1neg${i}" style="margin-top:6px"></div></div>`).join('') : '';
+          const qHtml = ques.length ? ques.map((r,i)=>`<div class="card"><div>${i+1}. ${r.base}</div><div style="margin-top:6px"><button class="btn secondary" data-a1q="${i}">Ver pergunta</button></div><div class="small" id="a1q${i}" style="margin-top:6px"></div></div>`).join('') : '';
+          const trHtml = tr.length ? tr.map((r,i)=>`<div class="card"><div>${i+1}. ${r.en}</div><div style="margin-top:6px"><button class="btn secondary" data-a1tr="${i}">Ver tradução</button></div><div class="small" id="a1tr${i}" style="margin-top:6px"></div></div>`).join('') : '';
+          const repHtml = rep.length ? rep.map((r,i)=>`<div class="card"><div>${i+1}. ${r.en}</div><div style="margin-top:6px"><button class="btn secondary" data-a1rep="${i}">Ouvir</button></div></div>`).join('') : '';
+          const narHtml = nar.length ? `<div class="line"><div class="en">${nar.join(' ')}</div><div class="pt">${fixPT(String(data.translation||''))}</div></div>` : '';
+          el.innerHTML = `
+            <div class="section-title">Complete (5 itens)</div>
+            ${compHtml}
+            <button class="btn" id="checkA1Complete" style="margin-top:8px">Checar</button>
+            <div id="a1CompleteRes" class="small" style="margin-top:6px"></div>
+            <div class="section-title" style="margin-top:12px">Transforme para negativa (3 itens)</div>
+            ${negHtml || '<div class="small">Sem itens de negativa.</div>'}
+            <div class="section-title" style="margin-top:12px">Transforme para pergunta (3 itens)</div>
+            ${qHtml || '<div class="small">Sem itens de pergunta.</div>'}
+            <div class="section-title" style="margin-top:12px">Tradução curta (3 itens)</div>
+            ${trHtml || '<div class="small">Sem itens de tradução.</div>'}
+            <div class="section-title" style="margin-top:12px">Frases para repetição (5 itens)</div>
+            ${repHtml || '<div class="small">Sem frases de repetição.</div>'}
+          `;
+          const btn = document.getElementById('checkA1Complete');
+          if (btn) btn.addEventListener('click', ()=>{
+            const inputs = el.querySelectorAll('input.blank');
+            let ok=0;
+            inputs.forEach(inp=>{ const i=Number(inp.dataset.a1c||-1); const ans=(comp[i]&&comp[i].answer||'').toLowerCase(); const said=(inp.value||'').trim().toLowerCase(); if(said===ans){ ok++; inp.style.borderColor='green' } else { inp.style.borderColor='red' } });
+            const res=document.getElementById('a1CompleteRes'); if(res){ if(ok===inputs.length){ res.textContent='Parabéns, você acertou tudo!'; res.style.color='green' } else { res.textContent=`Você acertou ${ok} de ${inputs.length}. Tente novamente.`; res.style.color='red' } }
+          });
+          el.addEventListener('click',(e)=>{
+            const t=e.target;
+            if(t.dataset.a1neg!==undefined){ const i=Number(t.dataset.a1neg); const r=document.getElementById('a1neg'+i); if(r) r.innerHTML = `<span class="sent-neg">${(neg[i] && neg[i].result) || ''}</span>`; }
+            if(t.dataset.a1q!==undefined){ const i=Number(t.dataset.a1q); const r=document.getElementById('a1q'+i); if(r) r.innerHTML = `<span class="sent-q">${(ques[i] && ques[i].result) || ''}</span>`; }
+            if(t.dataset.a1tr!==undefined){ const i=Number(t.dataset.a1tr); const r=document.getElementById('a1tr'+i); if(r) r.textContent = tr[i] && tr[i].pt || ''; }
+            if(t.dataset.a1rep!==undefined){ const i=Number(t.dataset.a1rep); try { speak(rep[i] && rep[i].en || '') } catch {} }
+          });
+        }
+      } catch (e) { console.error('Error in renderA1Exercises:', e); }
 
       const speakPromptEl = document.querySelector('#speakPrompt');
       if (speakPromptEl) {
