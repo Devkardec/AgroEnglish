@@ -64,6 +64,7 @@ input[type="range"] { width:100%; }
 .line.active { background:#f2fbf4; border-left:3px solid var(--green); padding-left:8px }
 .line .en { font-weight:600; color:var(--text); font-size:var(--size-md); letter-spacing:.1px }
 .line .pt { font-size:var(--size-sm); color:var(--muted) }
+.line .phon { font-size:var(--size-sm); color:var(--text); font-style:italic }
 .card .line:last-child { border-bottom:0 }
 .card .small { margin-bottom:6px }
 .lines.hide-pt .pt { display:none }

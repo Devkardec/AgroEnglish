@@ -5,31 +5,31 @@
     "category": "Routine",
     "title": "Morning Routine on the Farm",
     "title_pt": "Rotina da manhã na fazenda",
-    "text_en": "Every morning, I walk to the farm. I check the cows and the chickens. I open the barn and clean a small area. I fill the water buckets and put feed in the trough. I look at the fence and the gate. The sun is strong today, but the wind is cool. We start early and keep the farm clean.",
-    "text_pt": "Toda manhã, eu caminho até a fazenda. Eu verifico as vacas e as galinhas. Eu abro o galpão e limpo uma área pequena. Eu encho os baldes de água e coloco ração no cocho. Eu olho a cerca e o portão. O sol está forte hoje, mas o vento está fresco. Nós começamos cedo e mantemos a fazenda limpa.",
+    "text_en": "I am at the farm in the morning. The barn is open. The cows are calm, and the chickens are near the gate. The sun is strong, but the wind is cool. The fence is safe, and the field is clean. We are ready to work and keep the farm clean.",
+    "text_pt": "Eu estou na fazenda pela manhã. O galpão está aberto. As vacas estão calmas e as galinhas estão perto do portão. O sol está forte, mas o vento está fresco. A cerca está segura e o campo está limpo. Nós estamos prontos para trabalhar e manter a fazenda limpa.",
     "teaching_modules": {
-      "explanation": "Present Simple para rotina: I/We + verbo base. Ações diárias e simples.",
+      "explanation": "Verbo to be (am/is/are) para estados e localização simples.",
       "grammar_table": [
-        {"subject": "I (Eu)", "verb": "work", "example": "I work on the farm."},
-        {"subject": "He/She/It", "verb": "checks", "example": "He checks the cows."}
+        {"subject": "I", "verb": "am", "example": "I am at the farm."},
+        {"subject": "The barn", "verb": "is", "example": "The barn is open."},
+        {"subject": "The cows", "verb": "are", "example": "The cows are calm."}
       ],
       "vocabulary": [
         {"word": "morning", "translation": "manhã"},
         {"word": "farm", "translation": "fazenda"},
+        {"word": "barn", "translation": "galpão"},
         {"word": "cow", "translation": "vaca"},
         {"word": "chicken", "translation": "galinha"},
-        {"word": "barn", "translation": "galpão"},
-        {"word": "bucket", "translation": "balde"},
-        {"word": "feed", "translation": "ração"},
-        {"word": "trough", "translation": "cocho"},
+        {"word": "gate", "translation": "portão"},
         {"word": "fence", "translation": "cerca"},
-        {"word": "gate", "translation": "portão"}
+        {"word": "field", "translation": "campo"},
+        {"word": "sun", "translation": "sol"},
+        {"word": "wind", "translation": "vento"}
       ],
       "verbs_list": [
-        {"base": "check", "third_person": "checks", "translation": "verificar"},
+        {"base": "work", "third_person": "works", "translation": "trabalhar"},
         {"base": "clean", "third_person": "cleans", "translation": "limpar"},
-        {"base": "fill", "third_person": "fills", "translation": "encher"},
-        {"base": "start", "third_person": "starts", "translation": "começar"}
+        {"base": "keep", "third_person": "keeps", "translation": "manter"}
       ]
     }
   },
@@ -303,8 +303,8 @@
     "category": "Hygiene",
     "title": "Farm Cleaning",
     "title_pt": "Limpeza da fazenda",
-    "text_en": "Clean the barn floor. Wash the buckets. Keep the tools in the box. Sweep the small area near the gate. Throw garbage in the bin. Use water well. Work slowly and make the place clean. The animals need a clean space. The team helps and checks the work.",
-    "text_pt": "Limpe o chão do galpão. Lave os baldes. Mantenha as ferramentas na caixa. Varra a área pequena perto do portão. Jogue o lixo na lixeira. Use a água bem. Trabalhe devagar e deixe o lugar limpo. Os animais precisam de um espaço limpo. A equipe ajuda e verifica o trabalho.",
+    "text_en": "Clean the barn floor. Wash the buckets. Keep the tools in the box. Sweep the small area near the gate. Throw garbage in the bin. Use water well. Work slowly and make the place clean. The animals need a clean space. The team helps and checks the work. The barn is clean at the end.",
+    "text_pt": "Limpe o chão do galpão. Lave os baldes. Mantenha as ferramentas na caixa. Varra a área pequena perto do portão. Jogue o lixo na lixeira. Use a água bem. Trabalhe devagar e deixe o lugar limpo. Os animais precisam de um espaço limpo. A equipe ajuda e verifica o trabalho. O galpão está limpo no final.",
     "teaching_modules": {
       "explanation": "Imperativo para instruções: Clean, Wash, Keep. Negativo usa Do not.",
       "grammar_table": [

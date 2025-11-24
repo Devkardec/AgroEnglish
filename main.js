@@ -257,19 +257,40 @@ function buildAudioUrls(lvl, title){
   return candidates.map(n => base + encodeURIComponent(n));
 }
 
-async function findBaseVideoUrl(lvl){
-  const base = `./src/video/Base do Inglês/`;
-  const variants = [
-    'Base do Inglês.mp4',
-    `${lvl}.mp4`,
-    `${lvl} - Base.mp4`
+function baseVideoCandidates(lvl){
+  const names = [
+    'Base do Inglês.mp4', 'Base do Ingles.mp4',
+    `${lvl}.mp4`, `${lvl} - Base.mp4`, `${lvl}_Base.mp4`, 'Base.mp4'
   ];
-  for (const name of variants) {
-    const fileName = encodeURIComponent(name);
-    const url = base + fileName;
-    try { const r = await fetch(url, { method:'HEAD' }); if (r.ok) return url; } catch {}
+  const roots = ['./public/video/', './src/video/'];
+  const folders = ['', 'Base do Inglês/', 'Base do Ingles/'];
+  const urls = [];
+  for (const root of roots){
+    for (const folder of folders){
+      for (const name of names){
+        const u = root + encodeURIComponent(folder).replace(/%2F/g,'/') + encodeURIComponent(name);
+        urls.push(u);
+      }
+    }
   }
-  return null;
+  return Array.from(new Set(urls));
+}
+
+async function tryLoadVideo(vid, urls){
+  for (const u of urls){
+    const ok = await new Promise(resolve => {
+      let done = false;
+      function cleanup(){ vid.removeEventListener('loadedmetadata', onok); vid.removeEventListener('error', onerr); }
+      function onok(){ if(done) return; done=true; cleanup(); resolve(true); }
+      function onerr(){ if(done) return; done=true; cleanup(); resolve(false); }
+      vid.addEventListener('loadedmetadata', onok, { once:true });
+      vid.addEventListener('error', onerr, { once:true });
+      vid.src = u; vid.load();
+      setTimeout(()=>{ if(!done){ cleanup(); resolve(false); } }, 1500);
+    });
+    if (ok) return true;
+  }
+  return false;
 }
 
 function annotateTextManual(str){
@@ -936,11 +957,14 @@ async function setupAudio(data) {
     const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
     const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : String(data.text||'').split(/(?<=[.!?])\s+/).map((s,i)=>({en:s, pt:String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT)[i]||''}));
     const gRaw = String(data.grammar||'');
+    const gHead = (String(level).toUpperCase()==='A1' ? 'Present simple with farm routines.' : gRaw);
     function explainForBeginners(v){
       return `
         <div class="card">
           <div class="small">
             <div><strong>Explicação:</strong> ${v}</div>
+            <div style="margin-top:6px"><strong>O que é:</strong> verbo é ação do dia a dia. Use forma base com <em>I/You/We/They</em>. Em <em>He/She/It</em> acrescente <span class="grammar-suffix">s/es</span>.</div>
+            <div style="margin-top:6px"><strong>Verbo to be:</strong> <em>am/is/are</em> para estado, localização e identificação. Afirmativa: <em>I am</em>, <em>He/She/It is</em>, <em>We/You/They are</em>. Negativa: <em>am not</em>/<em>is not</em>/<em>are not</em>. Pergunta: <em>Am I...?</em> · <em>Is he...?</em> · <em>Are they...?</em></div>
           </div>
         </div>
       `;
@@ -1082,6 +1106,26 @@ async function setupAudio(data) {
     const negThird = thirdLines[0] ? negForThird(thirdLines[0]) : null;
     const qThird = thirdLines[0] ? qForThird(thirdLines[0]) : null;
     const beNeg = beNegSample();
+    function beNegLine(en){ return String(en).replace(/\bis\b/i,'is not').replace(/\bare\b/i,'are not').replace(/\bam\b/i,'am not'); }
+    function beQuestionLine(en){
+      let t = String(en||'').trim().replace(/[.]+$/,'');
+      if (/\bam\b/i.test(t) && /^\s*i\b/i.test(t)) t = t.replace(/^\s*i\s+am\s+/i,'Am I ');
+      else if (/\bis\b/i.test(t)) t = t.replace(/^\s*(.+?)\s+is\s+/i,'Is $1 ');
+      else if (/\bare\b/i.test(t)) t = t.replace(/^\s*(.+?)\s+are\s+/i,'Are $1 ');
+      if (!/\?\s*$/.test(t)) t = t + '?';
+      return t;
+    }
+    const beAffRows = groupBe.map(s=>({ en: annotateTextManual(s.en), pt: fixPT(s.pt||'') }));
+    const beNegRows = groupBe.map(s=>({ en: annotateTextManual(beNegLine(s.en)), pt: ptNeg(s.pt||'') }));
+    const beQRows = groupBe.map(s=>({ en: annotateTextManual(beQuestionLine(s.en)), pt: ptQ(s.pt||'') }));
+    function beTable(a,b,c){ return `
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr><th style="text-align:left">Afirmativa</th><th style="text-align:left">Negativa</th><th style="text-align:left">Pergunta</th></tr></thead>
+        <tbody>
+          ${a.map((x,i)=>`<tr><td class="sent-aff">${x.en}${svcExplain(x.en)}</td><td class="sent-neg">${b[i].en}${svcExplain(b[i].en)}</td><td class="sent-q">${c[i].en}${svcExplain(c[i].en)}</td></tr>`).join('')}
+        </tbody>
+      </table>
+    ` }
     const affCard = aff.length ? `<div class="card"><div class="small"><strong>Afirmativa</strong></div>${aff.slice(0,3).map(lineHtml).join('')}</div>` : '';
     const negCard = negs.length ? `<div class="card"><div class="small"><strong>Negativa</strong></div>${negs.slice(0,3).map(lineHtml).join('')}</div>` : '';
     const qCard = quess.length ? `<div class="card"><div class="small"><strong>Pergunta</strong></div>${quess.slice(0,3).map(lineHtml).join('')}</div>` : '';
@@ -1089,8 +1133,12 @@ async function setupAudio(data) {
     const whenList = whenCards.join('');
     const guidedSamples = [baseSample, qLine, negLine].filter(Boolean);
     const guidedList = guidedSamples.map(s=> guidedCard(s.en, s.pt)).join('');
+    const beSection = groupBe.length ? (`
+      <div class="section-title" style="margin-top:12px">Verb to be (A1)</div>
+      ${beTable(beAffRows, beNegRows, beQRows)}
+    `) : '';
     el.innerHTML = `
-      <div>${explainForBeginners(gRaw)}</div>
+      <div>${explainForBeginners(gHead)}</div>
       <div class="section-title" style="margin-top:12px">Quando usar</div>
       <div class="grid when-grid">${whenList}</div>
       <div class="section-title" style="margin-top:12px">Estrutura (Tradução)</div>
@@ -1107,9 +1155,12 @@ async function setupAudio(data) {
       ${renderFormsFromChapter()}
       <div class="section-title" style="margin-top:12px">Regra He/She/It (+s)</div>
       <div>${sTable}</div>
+      ${beSection}
       <div class="section-title" style="margin-top:12px">Forma (Uso)</div>
       <div class="card" style="margin-top:8px"><div class="small">${sentences.slice(0,3).map(s=>lineHtml(s)).join('')}</div></div>
     `;
+
+    
 
     const speechEx = document.getElementById('speechExamples');
     if (speechEx) speechEx.innerHTML = explainList;
@@ -1340,9 +1391,16 @@ async function setupAudio(data) {
       const wrap = document.getElementById('grammarVideo');
       const vid = document.getElementById('lessonVideo');
       if (String(level) === 'A1' && Number(idx) === 1) {
-        const url = await findBaseVideoUrl(level);
-        if (vid && url) { vid.src = url; vid.style.display = 'block'; if (wrap) wrap.style.display = 'block'; }
-        else if (wrap) { wrap.style.display = 'none'; }
+        if (vid && wrap) {
+          const url = encodeURI('./public/video/Base do Inglês/Base do Inglês.mp4');
+          vid.src = url;
+          vid.style.display = 'block';
+          wrap.style.display = 'block';
+          vid.addEventListener('error', ()=>{
+            wrap.innerHTML = '<div class="small">Vídeo não encontrado. Caminho esperado: <code>public/video/Base do Inglês/Base do Inglês.mp4</code>.</div>';
+            vid.style.display = 'none';
+          }, { once:true });
+        }
       } else if (wrap) { wrap.style.display = 'none'; }
     })();
   }
@@ -1561,9 +1619,40 @@ async function setupAudio(data) {
 
   function renderLines(data){
     try {
+      function phoneticBR(en){
+        const dict = {
+          'i':'Ai','you':'iú','we':'uí','they':'dêi','he':'rí','she':'xí','it':'ít',
+          'am':'ém','is':'íz','are':'ár',
+          'at':'ét','the':'dâ','a':'â','an':'ân','in':'in','on':'ón','under':'ândâr','next':'nékst','to':'tú',
+          'farm':'fárm','barn':'bárn','pasture':'péstcher','field':'fíld','gate':'gueit','fence':'fêns',
+          'cow':'cáu','cows':'cáuz','chicken':'tchí-ken','chickens':'tchí-kens','sheep':'xíp','horse':'hórs','horses':'hórsiz',
+          'water':'uóter','feed':'fíid','trough':'tróf','bucket':'bâkit','tools':'túuls','box':'bóks',
+          'morning':'mór-ning','today':'tudêi','clean':'clín','ready':'rédi','work':'uârk','keep':'kíip','check':'tchék','open':'óupen','near':'nír','safe':'sêif',
+          'sun':'sãn','wind':'uínd','strong':'stróng','cool':'cúl'
+        };
+        function mapWord(w){
+          const raw = String(w||'');
+          const clean = raw.replace(/[^A-Za-z'-]/g,'');
+          if (!clean) return raw;
+          const lw = clean.toLowerCase();
+          if (dict[lw]) return dict[lw];
+          let t = clean;
+          t = t.replace(/tion\b/i,'tchân');
+          t = t.replace(/ing\b/i,'ín');
+          t = t.replace(/^th/i,'d');
+          t = t.replace(/oo/i,'ú');
+          t = t.replace(/ea/i,'í');
+          t = t.replace(/ar/i,'ár');
+          t = t.replace(/er\b/i,'âr');
+          t = t.replace(/ai/i,'ei');
+          return t;
+        }
+        const parts = String(en||'').split(/(\s+|[.,!?;:])/);
+        return parts.map(p=>/^[A-Za-z'-]+$/.test(p)?mapWord(p):p).join('').replace(/\s+/g,' ').trim();
+      }
       const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
       if (pairs.length) {
-        linesEl.innerHTML = pairs.map(p=>`<div class="line"><div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div></div>`).join('');
+        linesEl.innerHTML = pairs.map(p=>`<div class="line"><div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div><div class="phon">${phoneticBR(p.en)}</div></div>`).join('');
         return;
       }
       const enBase = splitSentences(String(data.text||''));
@@ -1578,7 +1667,7 @@ async function setupAudio(data) {
         pt = ptBase.flatMap(s=> splitOnConnectorsPT(s));
       }
       const len = Math.max(en.length, pt.length);
-      linesEl.innerHTML = Array.from({length: len}, (_,i)=>`<div class="line"><div class="en">${en[i]||''}</div><div class="pt">${pt[i]||''}</div></div>`).join('');
+      linesEl.innerHTML = Array.from({length: len}, (_,i)=>`<div class="line"><div class="en">${en[i]||''}</div><div class="pt">${pt[i]||''}</div><div class="phon">${phoneticBR(en[i]||'')}</div></div>`).join('');
       if (!linesEl.innerHTML) {
         linesEl.innerHTML = '<div class="small">Texto indisponível.</div>';
       }
@@ -1887,7 +1976,7 @@ async function setupAudio(data) {
       
       try { renderVocabulary(data); } catch (e) { console.error('Error in renderVocabulary:', e); }
       try { renderGrammar(data); } catch (e) { console.error('Error in renderGrammar:', e); }
-      try { renderVerbs(data); } catch (e) { console.error('Error in renderVerbs:', e); }
+      try { const vEl = document.querySelector('#verbs'); if (vEl) vEl.remove(); } catch {}
       try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
       try { renderFill(data); } catch (e) { console.error('Error in renderFill:', e); }
       try {
