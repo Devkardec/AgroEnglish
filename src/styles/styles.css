@@ -1,4 +1,4 @@
-:root { --green:#0a7f42; --green2:#085232; --blue:#1e3a8a; --red:#c2132a; --bg:#f8f9fc; --card:#ffffff; --text:#0c1a2b; --muted:#6b778b; --size-xl:30px; --size-lg:18px; --size-md:15px; --size-sm:13px; --size-xs:12px }
+:root { --green:#0a7f42; --green2:#085232; --blue:#1e3a8a; --red:#c2132a; --bg:#f8f9fc; --card:#ffffff; --text:#0c1a2b; --muted:#000000; --size-xl:30px; --size-lg:18px; --size-md:15px; --size-sm:13px; --size-xs:12px }
 * { box-sizing: border-box; }
 html,body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, Arial, sans-serif; font-size:var(--size-md) }
 /* Acessibilidade: link para pular para o conteúdo */

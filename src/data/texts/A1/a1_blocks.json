@@ -33,7 +33,7 @@
       {"word":"day","translation":"dia"}
     ],
     "teaching_modules": {
-      "explanation": "Verbo to be (am/is/are) para estados e localização simples.",
+      "explanation": "Verbo to be (am/is/are) para estados, identidade e localização.",
       "grammar_table": [
         {"subject": "I", "verb": "am", "example": "I am at the farm."},
         {"subject": "The barn", "verb": "is", "example": "The barn is open."},
@@ -56,7 +56,30 @@
         {"base": "clean", "third_person": "cleans", "translation": "limpar"},
         {"base": "keep", "third_person": "keeps", "translation": "manter"}
       ]
-    }
+    },
+    "forma_uso": {
+      "identity": {
+        "title": "Identidade (Quem você é)",
+        "explain": "Apresenta nome e profissão.",
+        "examples": ["I am Paul.", "I am a farmer."]
+      },
+      "location": {
+        "title": "Localização (Onde você está)",
+        "explain": "Mostra o lugar de pessoas ou coisas.",
+        "examples": ["I am at the farm.", "My sister is here."]
+      },
+      "description": {
+        "title": "Descrição e Estado (Como as coisas são/estão)",
+        "explain": "Usa adjetivos para características e sentimentos.",
+        "examples": ["The barn is big.", "She is happy.", "The cows are calm."]
+      }
+    },
+    "golden_tip": "Em português falamos 'Eu tenho 20 anos' ou 'Eu tenho fome', mas em inglês usamos o verbo To Be: 'I am 20.' e 'I am hungry.'",
+    "summary_map": [
+      {"person": "I", "verb": "am"},
+      {"person": "She / He / It", "verb": "is"},
+      {"person": "You / We / They", "verb": "are"}
+    ]
   },
   {
     "id": 2,

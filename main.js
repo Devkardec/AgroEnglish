@@ -334,11 +334,14 @@ function parseSVC(en){
   const baseTxt = txt.replace(/[.?!]+$/,'');
   const words = baseTxt.split(/\s+/);
   const firstTwo = words.slice(0,2).join(' ');
-  let subjLen = 1;
-  if (/^the$/i.test(words[0]) && words.length>=2) subjLen = 2;
-  else if (/^(sprayer calibration|veterinary biosecurity|canadian winter|the tractor|the soil)/i.test(firstTwo)) subjLen = 2;
   const auxIdx = words.findIndex(w=>/^(do|does|don't|doesn't|did|will|can|should|must|may|is|are|am)$/i.test(w.replace(/[.,!?;:]+$/,'')));
-  let verbIdx = subjLen;
+  let subjStart = 0;
+  let subjLen = 1;
+  if (auxIdx===0) { subjStart = 1; }
+  const candidate = words[subjStart]||'';
+  if (/^the$/i.test(candidate) && words.length>=subjStart+2) subjLen = 2;
+  else if (/^(sprayer calibration|veterinary biosecurity|canadian winter|the tractor|the soil)/i.test(firstTwo)) subjLen = 2;
+  let verbIdx = subjStart+subjLen;
   let verb = words[verbIdx]||'';
   if (auxIdx>=0){
     const auxWord = words[auxIdx].replace(/[.,!?;:]+$/,'');
@@ -347,7 +350,7 @@ function parseSVC(en){
   } else {
     verb = (words[verbIdx]||'').replace(/[.,!?;:]+$/,'');
   }
-  const subject = words.slice(0, subjLen).join(' ');
+  const subject = words.slice(subjStart, subjStart+subjLen).join(' ');
   const complement = words.slice(verbIdx+1).join(' ');
   return { subject, verb, complement };
 }
@@ -386,10 +389,17 @@ function findAux(en){
 function guidedCard(en, pt){
   const p = parseSVC(en);
   const aux = findAux(en);
-  const passo2 = aux
-    ? `<div style="margin-top:4px">Passo 2: Auxiliar → <span class="${aux.cls}">${aux.base}</span> + Verbo → ${colorVerbToken(p.verb)}</div>`
-    : `<div style="margin-top:4px">Passo 2: Verbo → ${colorVerbToken(p.verb)}</div>`;
-  const steps = [`<div>Passo 1: Sujeito → <strong>${p.subject}</strong></div>`, passo2, `<div style="margin-top:4px">Passo 3: Complemento → <strong>${p.complement||'-'}</strong></div>`].join('');
+  const levelTagNow = (location.hash.split('/')[2]||'').toUpperCase();
+  const curIdxNow = Number((location.hash.split('/')[3]||'1'));
+  const isA1Lesson1 = (levelTagNow==='A1' && curIdxNow<=3);
+  const isQ = /\?\s*$/.test(String(en||''));
+  const isBeAux = aux && /^(is|are|am)$/i.test(aux.base);
+  const steps = (isA1Lesson1)
+    ? (isQ && isBeAux
+        ? [`<div>Passo 1: Ache o verbo → <strong>${aux.base}</strong></div>`,`<div style="margin-top:4px">Passo 2: Mova para o início</div>`,`<div style="margin-top:4px">Passo 3: Adicione a interrogação</div>`].join('')
+        : (function(){ const passo2 = `<div style="margin-top:4px">Passo 2: Verbo → <strong>${isBeAux?aux.base:p.verb}</strong></div>`; return [`<div>Passo 1: Sujeito → <strong>${p.subject}</strong></div>`, passo2, `<div style="margin-top:4px">Passo 3: Complemento → <strong>${p.complement||'-'}</strong></div>`].join('') })()
+      )
+    : (function(){ const passo2 = aux ? `<div style="margin-top:4px">Passo 2: Auxiliar → <span class="${aux.cls}">${aux.base}</span> + Verbo → ${colorVerbToken(p.verb)}</div>` : `<div style="margin-top:4px">Passo 2: Verbo → ${colorVerbToken(p.verb)}</div>`; return [`<div>Passo 1: Sujeito → <strong>${p.subject}</strong></div>`, passo2, `<div style="margin-top:4px">Passo 3: Complemento → <strong>${p.complement||'-'}</strong></div>`].join('') })();
   return `
     <div class="card">
       <div class="small"><strong>Exemplo guiado</strong></div>
@@ -895,13 +905,30 @@ async function setupAudio(data) {
     });
   }
 
-  function renderVocabulary(data) {
-    const vocabEl = document.querySelector('#vocab');
-    const pairList = Array.isArray(data.pairs) && data.pairs.length ? data.pairs : null;
-    let items;
-    if (pairList) {
-      items = pairList.map(p => ({ en: p.en, pt: fixPT(p.pt) }));
-    } else {
+function renderVocabulary(data) {
+  const vocabEl = document.querySelector('#vocab');
+  const levelTag = (location.hash.split('/')[2]||'').toUpperCase();
+  const curIdx = Number((location.hash.split('/')[3]||'1'));
+  if (levelTag==='A1' && curIdx===1) {
+    vocabEl.innerHTML = `
+      <div class="card">
+        <ul>
+          <li><strong>Farmer:</strong> Fazendeiro</li>
+          <li><strong>Barn:</strong> Celeiro/Galpão</li>
+          <li><strong>Cows:</strong> Vacas</li>
+          <li><strong>Wind:</strong> Vento</li>
+          <li><strong>Ready:</strong> Pronto</li>
+          <li><strong>Happy:</strong> Feliz</li>
+        </ul>
+      </div>
+    `;
+    return;
+  }
+  const pairList = Array.isArray(data.pairs) && data.pairs.length ? data.pairs : null;
+  let items;
+  if (pairList) {
+    items = pairList.map(p => ({ en: p.en, pt: fixPT(p.pt) }));
+  } else {
       const en = splitSentences(String(data.text||''));
       const pt = splitSentences(fixPT(String(data.translation||'')));
       items = en.map((s,i)=>({ en: s, pt: pt[i]||'' }));
@@ -1063,7 +1090,7 @@ async function setupAudio(data) {
     `;
   }
 
-  function renderGrammar(data) {
+function renderGrammar(data) {
     const el = document.querySelector('#grammar');
     if (!el) return;
     const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
@@ -1072,17 +1099,22 @@ async function setupAudio(data) {
     const levelTag = (location.hash.split('/')[2]||'').toUpperCase();
     const curIdx = Number((location.hash.split('/')[3]||'1'));
     const gHead = (levelTag==='A1' && curIdx===1) ? 'Present simple with farm routines.' : (gRaw || '');
-    function explainForBeginners(v){
-      return `
-        <div class="card">
-          <div class="small">
-            <div><strong>Explicação:</strong> ${v}</div>
-            <div style="margin-top:6px"><strong>O que é:</strong> verbo é ação do dia a dia. Use forma base com <em>I/You/We/They</em>. Em <em>He/She/It</em> acrescente <span class="grammar-suffix">s/es</span>.</div>
-            <div style="margin-top:6px"><strong>Verbo to be:</strong> <em>am/is/are</em> para estado, localização e identificação. Afirmativa: <em>I am</em>, <em>He/She/It is</em>, <em>We/You/They are</em>. Negativa: <em>am not</em>/<em>is not</em>/<em>are not</em>. Pergunta: <em>Am I...?</em> · <em>Is he...?</em> · <em>Are they...?</em></div>
-          </div>
+  function explainForBeginners(v){
+    const levelTagNow = (location.hash.split('/')[2]||'').toUpperCase();
+    const curIdxNow = Number((location.hash.split('/')[3]||'1'));
+    const isA1BeMode = (levelTagNow==='A1' && curIdxNow<=3);
+    const coreBe = `<div style=\"margin-top:6px\"><strong>O que é:</strong> O Verbo To Be significa <em>ser</em> ou <em>estar</em>. Ele é especial e <strong>não usa</strong> auxiliares como <em>Do</em> ou <em>Don't</em>. Ele muda de forma sozinho: I <span style=\"color:#1e40af;font-weight:bold;\">am</span> · You <span style=\"color:#1e40af;font-weight:bold;\">are</span> · He/She/It <span style=\"color:#1e40af;font-weight:bold;\">is</span> · We/You/They <span style=\"color:#1e40af;font-weight:bold;\">are</span>.</div>`;
+    const defaultPS = `<div style=\"margin-top:6px\"><strong>O que é:</strong> verbo é ação do dia a dia. Use forma base com <em>I/You/We/They</em>. Em <em>He/She/It</em> acrescente <span class=\"grammar-suffix\">s/es</span>.</div>`;
+    return `
+      <div class=\"card\">
+        <div class=\"small\">
+          <div><strong>Explicação:</strong> ${v}</div>
+          ${isA1BeMode ? coreBe : defaultPS}
+          <div style=\"margin-top:6px\"><strong>Verbo to be:</strong> <span style=\"color:#1e40af;font-weight:bold;\">am</span>/<span style=\"color:#1e40af;font-weight:bold;\">is</span>/<span style=\"color:#1e40af;font-weight:bold;\">are</span> para estado, localização e identificação. Afirmativa: I <span style=\"color:#1e40af;font-weight:bold;\">am</span>, He/She/It <span style=\"color:#1e40af;font-weight:bold;\">is</span>, We/You/They <span style=\"color:#1e40af;font-weight:bold;\">are</span>. Negativa: <span style=\"color:#1e40af;font-weight:bold;\">am</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span> / <span style=\"color:#1e40af;font-weight:bold;\">is</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span> / <span style=\"color:#1e40af;font-weight:bold;\">are</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span>. Pergunta: <span style=\"color:#1e40af;font-weight:bold;\">Am</span> I...<span style=\"color:#dc2626;font-weight:bold;\">?</span> · <span style=\"color:#1e40af;font-weight:bold;\">Is</span> he...<span style=\"color:#dc2626;font-weight:bold;\">?</span> · <span style=\"color:#1e40af;font-weight:bold;\">Are</span> they...<span style=\"color:#dc2626;font-weight:bold;\">?</span></div>
         </div>
-      `;
-    }
+      </div>
+    `;
+  }
     const groupI = sentences.filter(s=>/^\s*i\b/i.test(s.en)).slice(0,4);
     const groupWe = sentences.filter(s=>/^\s*we\b/i.test(s.en)).slice(0,4);
     const groupIt = sentences.filter(s=>/^\s*(it|the\s)/i.test(s.en)).slice(0,4);
@@ -1103,7 +1135,7 @@ async function setupAudio(data) {
       const words = clean.split(/\s+/);
       const firstTwo = words.slice(0,2).join(' ');
       let subject;
-      if (/^the\b/i.test(clean) && words.length>=2) subject = words[0]+' '+words[1];
+      if (/^(the|a|an|my|your|his|her|our|their|this|that|these|those)$/i.test(words[0]) && words.length>=2) subject = words[0]+' '+words[1];
       else if (/^(sprayer calibration|veterinary biosecurity|canadian winter)/i.test(firstTwo)) subject = firstTwo;
       else subject = words[0];
       const subjEsc = subject.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
@@ -1113,6 +1145,14 @@ async function setupAudio(data) {
       if (v==='is'){
         const tail = rest.replace(/^is\s+/i,'');
         return { affirmative: clean, negative: subject+' is not '+tail, interrogative: 'Is '+subject+' '+tail+'?' };
+      }
+      if (v==='am'){
+        const tail = rest.replace(/^am\s+/i,'');
+        return { affirmative: clean, negative: subject+' am not '+tail, interrogative: 'Am '+subject+' '+tail+'?' };
+      }
+      if (v==='are'){
+        const tail = rest.replace(/^are\s+/i,'');
+        return { affirmative: clean, negative: subject+' are not '+tail, interrogative: 'Are '+subject+' '+tail+'?' };
       }
       function baseVerb(w){
         if (/^goes$/i.test(w)) return 'go';
@@ -1205,7 +1245,9 @@ async function setupAudio(data) {
       const base = sentences.filter(s=>/\b(is|are)\b/i.test(s.en)).filter(s=>{ if(seen.has(s.en)) return false; seen.add(s.en); return true }).slice(0,3);
       return base;
     })();
-    const baseSample = groupI[0] || groupWe[0] || sentences[0] || { en: 'I work on the farm.', pt: 'Eu trabalho na fazenda.' };
+    const baseSample = (levelTag==='A1' && curIdx===1)
+      ? (groupBe[0] || { en: 'I am Paul.', pt: 'Eu sou Paul.' })
+      : (groupI[0] || groupWe[0] || sentences[0] || { en: 'I work on the farm.', pt: 'Eu trabalho na fazenda.' });
     const formsSample = buildPresentSimpleForms(baseSample.en);
     function lineHtml(s){ return `<div class="line"><div class="en sent-${sentenceType(s.en)}">${highlightAction(s.en)}</div><div class="pt">${fixPT(s.pt||'')}</div></div>` }
     const routineLines = (()=>{ const base = [...groupI.slice(0,2), ...groupWe.slice(0,1)]; return base.slice(0,3); })();
@@ -1229,20 +1271,30 @@ async function setupAudio(data) {
       if (!/\?\s*$/.test(t)) t = t + '?';
       return t;
     }
+    function colorBeTokens(t){
+      let s = String(t||'');
+      s = s.replace(/\b(am|is|are)\b/gi, (m)=>`<span style="color:#1e40af;font-weight:bold;">${m}</span>`);
+      s = s.replace(/\bnot\b/gi, `<span style="color:#dc2626;font-weight:bold;">not</span>`);
+      s = s.replace(/\?$/,'<span style="color:#dc2626;font-weight:bold;">?</span>');
+      return s;
+    }
     const beAffRows = groupBe.map(s=>({ en: annotateTextManual(s.en), pt: fixPT(s.pt||'') }));
     const beNegRows = groupBe.map(s=>({ en: annotateTextManual(beNegLine(s.en)), pt: ptNeg(s.pt||'') }));
     const beQRows = groupBe.map(s=>({ en: annotateTextManual(beQuestionLine(s.en)), pt: ptQ(s.pt||'') }));
     function beTable(a,b,c){ return `
       <table style="width:100%;border-collapse:collapse">
-        <thead><tr><th style="text-align:left">Afirmativa</th><th style="text-align:left">Negativa</th><th style="text-align:left">Pergunta</th></tr></thead>
+        <thead><tr><th style="text-align:left;color:#15803d">Afirmativa</th><th style="text-align:left">Negativa</th><th style="text-align:left">Pergunta</th></tr></thead>
         <tbody>
-          ${a.map((x,i)=>`<tr><td class="sent-aff">${x.en}${svcExplain(x.en)}</td><td class="sent-neg">${b[i].en}${svcExplain(b[i].en)}</td><td class="sent-q">${c[i].en}${svcExplain(c[i].en)}</td></tr>`).join('')}
+          ${a.map((x,i)=>`<tr><td class="sent-aff">${colorBeTokens(x.en)}${svcExplain(x.en)}</td><td class="sent-neg">${colorBeTokens(b[i].en)}${svcExplain(b[i].en)}</td><td class="sent-q">${colorBeTokens(c[i].en)}${svcExplain(c[i].en)}</td></tr>`).join('')}
         </tbody>
       </table>
     ` }
-    const affCard = aff.length ? `<div class="card"><div class="small"><strong>Afirmativa</strong></div>${aff.slice(0,3).map(lineHtml).join('')}</div>` : '';
-    const negCard = negs.length ? `<div class="card"><div class="small"><strong>Negativa</strong></div>${negs.slice(0,3).map(lineHtml).join('')}</div>` : '';
-    const qCard = quess.length ? `<div class="card"><div class="small"><strong>Pergunta</strong></div>${quess.slice(0,3).map(lineHtml).join('')}</div>` : '';
+    const levelTag2 = (location.hash.split('/')[2]||'').toUpperCase();
+    const curIdx2 = Number((location.hash.split('/')[3]||'1'));
+    const isA1BeMode = (levelTag2==='A1' && curIdx2<=3);
+    const affCard = (aff.length && !isA1BeMode) ? `<div class=\"card\"><div class=\"small\"><strong>Afirmativa</strong></div>${aff.slice(0,3).map(lineHtml).join('')}</div>` : '';
+    const negCard = (negs.length && !isA1BeMode) ? `<div class=\"card\"><div class=\"small\"><strong>Negativa</strong></div>${negs.slice(0,3).map(lineHtml).join('')}</div>` : '';
+    const qCard = (quess.length && !isA1BeMode) ? `<div class=\"card\"><div class=\"small\"><strong>Pergunta</strong></div>${quess.slice(0,3).map(lineHtml).join('')}</div>` : '';
     const whenCards = [affCard, negCard, qCard].filter(Boolean);
     const whenList = whenCards.join('');
     const guidedSamples = [baseSample, qLine, negLine].filter(Boolean);
@@ -1251,27 +1303,96 @@ async function setupAudio(data) {
       <div class="section-title" style="margin-top:12px">Verb to be (A1)</div>
       ${beTable(beAffRows, beNegRows, beQRows)}
     `) : '';
+    function beTableTarget(){
+      function norm(x){ return String(x||'').trim().replace(/[.!?]+$/,'').toLowerCase(); }
+      const find = (t)=> sentences.find(s=> norm(s.en) === norm(t)) || null;
+      const b1 = find('The barn is open');
+      const w1 = { en: 'We are ready', pt: '' };
+      const s1 = find('She is happy');
+      const affs = [ b1 ? { en:b1.en, pt:b1.pt } : { en:'The barn is open.', pt:'' }, w1, s1 ? { en:s1.en, pt:s1.pt } : { en:'She is happy.', pt:'' } ];
+      const negs2 = affs.map(x=>({ en: beNegLine(x.en), pt: '' }));
+      const qs2 = affs.map(x=>({ en: beQuestionLine(x.en), pt: '' }));
+      return beTable(affs, negs2, qs2);
+    }
+    const formaUso = data.forma_uso || null;
+    const goldenTip = String(data.golden_tip||'').trim();
+    const summaryMap = Array.isArray(data.summary_map) ? data.summary_map : [];
+    let formaUsoHtml = '';
+    if (formaUso) {
+      function block(b){ if(!b) return ''; const exs = Array.isArray(b.examples)? b.examples.slice(0,3):[]; return `<div class=\"card\"><div class=\"small\"><strong>${b.title||''}</strong> ${b.explain||''}<div style=\"margin-top:6px\">${exs.map(x=>`<div>${x}</div>`).join('')}</div></div></div>` }
+      formaUsoHtml = `
+        <div class=\"section-title\" style=\"margin-top:12px\">Forma e Uso · To Be</div>
+        ${block(formaUso.identity)}
+        ${block(formaUso.location)}
+        ${block(formaUso.description)}
+      `;
+    }
+  const tipHtml = goldenTip ? `<div class=\"card\" style=\"margin-top:8px\"><div class=\"small\"><strong>Dica de Ouro:</strong> ${goldenTip}</div></div>` : '';
+  const summaryHtml = summaryMap.length ? (`
+      <div class=\"section-title\" style=\"margin-top:12px\">Tabela Resumo</div>
+      <table style=\"width:100%;border-collapse:collapse\">
+        <thead><tr><th style=\"text-align:left\">Pessoa</th><th style=\"text-align:left\">Verbo</th></tr></thead>
+        <tbody>
+          ${summaryMap.map(r=>`<tr><td>${r.person}</td><td>${r.verb}</td></tr>`).join('')}
+        </tbody>
+      </table>
+    `) : '';
+    const expEstruturaHtml = isA1BeMode ? `
+      <div class=\"section-title\" style=\"margin-top:12px\">Explicação e Estrutura</div>
+      <div class=\"card\"><div class=\"small\">
+        <h3>1. O Verbo To Be (Ser/Estar)</h3>
+        <p>Neste texto, o verbo To Be é usado de 3 formas principais:</p>
+        <ul>
+          <li><strong>Identidade (Quem é):</strong> \"I <span style=\"color:#1e40af;font-weight:bold;\">am</span> Paul\", \"I <span style=\"color:#1e40af;font-weight:bold;\">am</span> a farmer\".</li>
+          <li><strong>Localização (Onde está):</strong> \"I <span style=\"color:#1e40af;font-weight:bold;\">am</span> at the farm\", \"My sister <span style=\"color:#1e40af;font-weight:bold;\">is</span> here\".</li>
+          <li><strong>Descrição (Como é/está):</strong> \"The barn <span style=\"color:#1e40af;font-weight:bold;\">is</span> open\", \"The cows <span style=\"color:#1e40af;font-weight:bold;\">are</span> calm\".</li>
+        </ul>
+        <blockquote style=\"background-color:#fef9c3;border:1px solid #f59e0b;border-radius:6px;padding:8px\"><strong>Dica:</strong> Em inglês, usamos o verbo To Be para falar a idade (Ex: \"I <span style=\"color:#1e40af;font-weight:bold;\">am</span> 20 years old\"), diferente do português (\"Eu tenho\").</blockquote>
+        <h3>2. Como usar (Regras)</h3>
+        <p>O Verbo To Be é especial. Ele <strong>NÃO</strong> usa auxiliares como \"Do\" ou \"Don't\".</p>
+        <ul>
+          <li><strong>Afirmativa:</strong> Sujeito + Verbo (Ex: She <span style=\"color:#1e40af;font-weight:bold;\">is</span> happy).</li>
+          <li><strong>Negativa:</strong> Adicione <span style=\"color:#dc2626;font-weight:bold;\">NOT</span> depois do verbo (Ex: She <span style=\"color:#1e40af;font-weight:bold;\">is</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span> happy).</li>
+          <li><strong>Interrogativa:</strong> Inverta a ordem (Ex: <span style=\"color:#1e40af;font-weight:bold;\">Is</span> she happy<span style=\"color:#dc2626;font-weight:bold;\">?</span>).</li>
+        </ul>
+        <h3>3. Tabela de Exemplos</h3>
+        <table style=\"width:100%;border-collapse:collapse\">
+          <thead><tr><th style=\"text-align:left\">Afirmativa</th><th style=\"text-align:left\">Negativa</th><th style=\"text-align:left\">Interrogativa</th></tr></thead>
+          <tbody>
+            <tr><td>I <span style=\"color:#1e40af;font-weight:bold;\">am</span> a farmer.</td><td>I <span style=\"color:#1e40af;font-weight:bold;\">am</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span> a farmer.</td><td><span style=\"color:#1e40af;font-weight:bold;\">Am</span> I a farmer<span style=\"color:#dc2626;font-weight:bold;\">?</span></td></tr>
+            <tr><td>The barn <span style=\"color:#1e40af;font-weight:bold;\">is</span> open.</td><td>The barn <span style=\"color:#1e40af;font-weight:bold;\">is</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span> open.</td><td><span style=\"color:#1e40af;font-weight:bold;\">Is</span> the barn open<span style=\"color:#dc2626;font-weight:bold;\">?</span></td></tr>
+            <tr><td>We <span style=\"color:#1e40af;font-weight:bold;\">are</span> ready.</td><td>We <span style=\"color:#1e40af;font-weight:bold;\">are</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span> ready.</td><td><span style=\"color:#1e40af;font-weight:bold;\">Are</span> we ready<span style=\"color:#dc2626;font-weight:bold;\">?</span></td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    ` : '';
     el.innerHTML = `
       <div>${explainForBeginners(gHead)}</div>
-      <div class="section-title" style="margin-top:12px">Quando usar</div>
-      <div class="grid when-grid">${whenList}</div>
+      ${expEstruturaHtml}
+      ${isA1BeMode ? '' : `<div class="section-title" style="margin-top:12px">Quando usar</div><div class="grid when-grid">${whenList}</div>`}
       <div class="section-title" style="margin-top:12px">Estrutura (Tradução)</div>
       <div>${conjTable}</div>
       <div class="card" style="margin-top:8px"><div class="small">
         <div><strong>Como identificar:</strong> Em EN, sujeito (quem faz) + verbo (ação) + complemento (detalhe). Em PT, a ordem costuma ser igual.</div>
         <div style="margin-top:6px">Ex.: <strong>We</strong> (sujeito) <strong>check</strong> (verbo) <strong>the water</strong> (complemento) ↔ <strong>Nós</strong> <strong>verificamos</strong> <strong>a água</strong>.</div>
-        <div style="margin-top:6px"><strong>Dica de tradução:</strong> pense primeiro no sujeito, depois diga a ação, por fim o complemento. Para He/She/It em afirmativa, lembre do <span class="grammar-suffix">+s</span>.</div>
+        <div style="margin-top:6px"><strong>Dica de tradução:</strong> pense primeiro no sujeito, depois diga a ação, por fim o complemento.</div>
       </div></div>
       <div class="section-title" style="margin-top:12px">Passo a passo guiado</div>
-      <div class="grid when-grid">${guidedList}</div>
-      <div class="section-title" style="margin-top:12px">Afirmativa/Negativa/Pergunta</div>
-      <div>${table3(aff,negs,quess)}</div>
-      ${renderFormsFromChapter()}
-      <div class="section-title" style="margin-top:12px">Regra He/She/It (+s)</div>
-      <div>${sTable}</div>
+      ${(levelTag2==='A1' && curIdx2<=3) ? (`
+        <div class="card"><div class="small"><strong>Exemplo guiado</strong></div>
+          <div>Frase Original: "My sister is here."</div>
+          <div style="margin-top:6px">Passo 1: Ache o verbo (<strong>is</strong>).</div>
+          <div style="margin-top:6px">Passo 2: Mova para o início (<strong>Is</strong>).</div>
+          <div style="margin-top:6px">Resultado: "<strong>Is</strong> my sister here?"</div>
+        </div>
+      `) : `<div class="grid when-grid">${guidedList}</div>`}
+      ${isA1BeMode ? `<div class=\"section-title\" style=\"margin-top:12px\">Afirmativa/Negativa/Pergunta (To Be)</div><div>${beTableTarget()}</div>` : `<div class=\"section-title\" style=\"margin-top:12px\">Afirmativa/Negativa/Pergunta</div><div>${table3(aff,negs,quess)}</div>`}
+      ${isA1BeMode ? '' : renderFormsFromChapter()}
+      ${isA1BeMode ? '' : `<div class="section-title" style="margin-top:12px">Regra He/She/It (+s)</div><div>${sTable}</div>`}
       ${beSection}
-      <div class="section-title" style="margin-top:12px">Forma (Uso)</div>
-      <div class="card" style="margin-top:8px"><div class="small">${sentences.slice(0,3).map(s=>lineHtml(s)).join('')}</div></div>
+      ${formaUsoHtml}
+      ${tipHtml}
+      ${summaryHtml}
     `;
 
     
@@ -1854,6 +1975,14 @@ async function setupAudio(data) {
         const tail = rest.replace(/^is\s+/i,'');
         return { affirmative: clean, negative: subject + ' is not ' + tail, interrogative: 'Is ' + subject + ' ' + tail + '?' };
       }
+      if (first === 'am') {
+        const tail = rest.replace(/^am\s+/i,'');
+        return { affirmative: clean, negative: subject + ' am not ' + tail, interrogative: 'Am ' + subject + ' ' + tail + '?' };
+      }
+      if (first === 'are') {
+        const tail = rest.replace(/^are\s+/i,'');
+        return { affirmative: clean, negative: subject + ' are not ' + tail, interrogative: 'Are ' + subject + ' ' + tail + '?' };
+      }
       function baseVerb(w){
         if (/^goes$/i.test(w)) return 'go';
         if (/ies$/i.test(w)) return w.replace(/ies$/i,'y');
@@ -2009,6 +2138,14 @@ async function setupAudio(data) {
             const tail = rest.replace(/^is\s+/i,'');
             return { affirmative: clean, negative: subject+' is not '+tail, interrogative: 'Is '+subject+' '+tail+'?' };
           }
+          if (first==='am'){
+            const tail = rest.replace(/^am\s+/i,'');
+            return { affirmative: clean, negative: subject+' am not '+tail, interrogative: 'Am '+subject+' '+tail+'?' };
+          }
+          if (first==='are'){
+            const tail = rest.replace(/^are\s+/i,'');
+            return { affirmative: clean, negative: subject+' are not '+tail, interrogative: 'Are '+subject+' '+tail+'?' };
+          }
           function baseVerb(w){ if (/^goes$/i.test(w)) return 'go'; if (/ies$/i.test(w)) return w.replace(/ies$/i,'y'); if (/(ch|sh|x|o|ss|zz)$/i.test(w.replace(/es$/i,'')) && /es$/i.test(w)) return w.replace(/es$/i,''); if (/s$/i.test(w)) return w.replace(/s$/i,''); return w; }
           const base = baseVerb(first);
           const restWords = rest.split(/\s+/); if (restWords.length) restWords[0] = base;
@@ -2032,21 +2169,24 @@ async function setupAudio(data) {
       return { complete, negative: neg, question: ques, translation_short: trShort, repetition_phrases: repeat, narration_sentences: narration };
     }
     const a1ex = buildA1Exercises();
-    return {
-      title: item.title || `Texto ${idx}`,
-      text: item.text_en || '',
-      translation: item.text_pt || '',
-      vocabulary: vocab,
-      grammar: grammarText,
-      verbs: verbsStr,
-      exercises: { multiple_choice: mc, fill_in: fillItems, speaking: `Repeat: ${item.title||''}` },
-      a1_exercises: a1ex,
-      he_she_it_rule: heSheItExample ? { example: heSheItExample } : (item.he_she_it_rule || null),
-      grammar_forms: grammarForms,
-      usage_table: item.usage_table || null,
-      structure_table: item.structure_table || null,
-      vocabulary_table: item.vocabulary_table || null
-    };
+      return {
+        title: item.title || `Texto ${idx}`,
+        text: item.text_en || '',
+        translation: item.text_pt || '',
+        vocabulary: vocab,
+        grammar: grammarText,
+        verbs: verbsStr,
+        exercises: { multiple_choice: mc, fill_in: fillItems, speaking: `Repeat: ${item.title||''}` },
+        a1_exercises: a1ex,
+        he_she_it_rule: heSheItExample ? { example: heSheItExample } : (item.he_she_it_rule || null),
+        grammar_forms: grammarForms,
+        usage_table: item.usage_table || null,
+        structure_table: item.structure_table || null,
+        vocabulary_table: item.vocabulary_table || null,
+        forma_uso: item.forma_uso || null,
+        golden_tip: item.golden_tip || '',
+        summary_map: item.summary_map || null
+      };
   }
   function fetchText() {
     if (level === 'A1') {
@@ -2908,6 +3048,13 @@ async function setupAudio(data) {
               <div style="margin-top:6px">3. We <label><input type="radio" name="mc3" value="need"> need</label> <label><input type="radio" name="mc3" value="needs"> needs</label> water. <span class="small" id="mc3r"></span></div>
               <div style="margin-top:8px"><button class="btn" id="checkMC">Checar</button></div>
             </div>
+            <div class="section-title" style="margin-top:12px">Como fazer perguntas? (Passo a Passo)</div>
+            <div class="card">
+              <div>Para transformar "The cows are calm" em pergunta:</div>
+              <div style="margin-top:6px">1. Identifique o verbo (<strong>Are</strong>).</div>
+              <div style="margin-top:6px">2. Mova ele para o início da frase.</div>
+              <div style="margin-top:6px">3. Resultado: "<strong>Are</strong> the cows calm?"</div>
+            </div>
             <div class="section-title" style="margin-top:12px">Tradução simples (3 itens)</div>
             <div class="card">
               <div>1. Nós conferimos os bebedouros/tanques. <span class="small" id="tr31"></span></div>
@@ -3003,9 +3150,9 @@ async function setupAudio(data) {
           });
           const wBtn = document.getElementById('checkW5');
           if (wBtn) wBtn.addEventListener('click', ()=>{
-            const v1 = (document.getElementById('w51')||{}).value||''; const r1 = document.getElementById('w51r'); if (r1) { const ok = /^(hot|strong)$/i.test(v1.trim()); r1.textContent = ok?'Correto':'Sugestão: hot/strong'; r1.style.color = ok?'green':'#555'; }
-            const v2 = (document.getElementById('w52')||{}).value||''; const r2 = document.getElementById('w52r'); if (r2) { const ok = /^(raining|heavy)$/i.test(v2.trim()); r2.textContent = ok?'Correto':'Sugestão: raining/heavy'; r2.style.color = ok?'green':'#555'; }
-            const v3 = (document.getElementById('w53')||{}).value||''; const r3 = document.getElementById('w53r'); if (r3) { const ok = /^dark\s+clouds$/i.test(v3.trim()); r3.textContent = ok?'Correto':'Sugestão: dark clouds'; r3.style.color = ok?'green':'#555'; }
+            const v1 = (document.getElementById('w51')||{}).value||''; const r1 = document.getElementById('w51r'); if (r1) { const ok = /^(hot|strong)$/i.test(v1.trim()); r1.textContent = ok?'Correto':'Sugestão: hot/strong'; r1.style.color = ok?'green':'black'; }
+            const v2 = (document.getElementById('w52')||{}).value||''; const r2 = document.getElementById('w52r'); if (r2) { const ok = /^(raining|heavy)$/i.test(v2.trim()); r2.textContent = ok?'Correto':'Sugestão: raining/heavy'; r2.style.color = ok?'green':'black'; }
+            const v3 = (document.getElementById('w53')||{}).value||''; const r3 = document.getElementById('w53r'); if (r3) { const ok = /^dark\s+clouds$/i.test(v3.trim()); r3.textContent = ok?'Correto':'Sugestão: dark clouds'; r3.style.color = ok?'green':'black'; }
           });
           const showWC5 = document.getElementById('showWC5');
           if (showWC5) showWC5.addEventListener('click', ()=>{
@@ -3015,9 +3162,9 @@ async function setupAudio(data) {
           });
           const stBtn6 = document.getElementById('checkST6');
           if (stBtn6) stBtn6.addEventListener('click', ()=>{
-            const a1 = (document.getElementById('st61')||{}).value||''; const r1 = document.getElementById('st61r'); if (r1) { const ok=/^there\s+are$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Use: There are'; r1.style.color = ok?'green':'#555'; }
-            const a2 = (document.getElementById('st62')||{}).value||''; const r2 = document.getElementById('st62r'); if (r2) { const ok=/^there\s+is$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Use: There is'; r2.style.color = ok?'green':'#555'; }
-            const a3 = (document.getElementById('st63')||{}).value||''; const r3 = document.getElementById('st63r'); if (r3) { const ok=/^there\s+are$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Use: There are'; r3.style.color = ok?'green':'#555'; }
+            const a1 = (document.getElementById('st61')||{}).value||''; const r1 = document.getElementById('st61r'); if (r1) { const ok=/^there\s+are$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Use: There are'; r1.style.color = ok?'green':'black'; }
+            const a2 = (document.getElementById('st62')||{}).value||''; const r2 = document.getElementById('st62r'); if (r2) { const ok=/^there\s+is$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Use: There is'; r2.style.color = ok?'green':'black'; }
+            const a3 = (document.getElementById('st63')||{}).value||''; const r3 = document.getElementById('st63r'); if (r3) { const ok=/^there\s+are$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Use: There are'; r3.style.color = ok?'green':'black'; }
           });
           const smBtn6 = document.getElementById('showSM6');
           if (smBtn6) smBtn6.addEventListener('click', ()=>{
@@ -3027,9 +3174,9 @@ async function setupAudio(data) {
           });
           const pBtn7 = document.getElementById('checkP7');
           if (pBtn7) pBtn7.addEventListener('click', ()=>{
-            const a1 = document.querySelector('input[name="p71"]:checked'); const r1 = document.getElementById('p71r'); if (r1) { if (a1 && a1.value==='in') { r1.textContent='Correto'; r1.style.color='green' } else { r1.textContent='In = dentro'; r1.style.color='#555' } }
-            const a2 = document.querySelector('input[name="p72"]:checked'); const r2 = document.getElementById('p72r'); if (r2) { if (a2 && a2.value==='on') { r2.textContent='Correto'; r2.style.color='green' } else { r2.textContent='On = sobre a superfície'; r2.style.color='#555' } }
-            const a3 = document.querySelector('input[name="p73"]:checked'); const r3 = document.getElementById('p73r'); if (r3) { if (a3 && a3.value==='under') { r3.textContent='Correto'; r3.style.color='green' } else { r3.textContent='Under = embaixo'; r3.style.color='#555' } }
+            const a1 = document.querySelector('input[name="p71"]:checked'); const r1 = document.getElementById('p71r'); if (r1) { if (a1 && a1.value==='in') { r1.textContent='Correto'; r1.style.color='green' } else { r1.textContent='In = dentro'; r1.style.color='black' } }
+            const a2 = document.querySelector('input[name="p72"]:checked'); const r2 = document.getElementById('p72r'); if (r2) { if (a2 && a2.value==='on') { r2.textContent='Correto'; r2.style.color='green' } else { r2.textContent='On = sobre a superfície'; r2.style.color='black' } }
+            const a3 = document.querySelector('input[name="p73"]:checked'); const r3 = document.getElementById('p73r'); if (r3) { if (a3 && a3.value==='under') { r3.textContent='Correto'; r3.style.color='green' } else { r3.textContent='Under = embaixo'; r3.style.color='black' } }
           });
           const showTR7 = document.getElementById('showTR7');
           if (showTR7) showTR7.addEventListener('click', ()=>{
@@ -3429,9 +3576,9 @@ async function setupAudio(data) {
           })();
           const wwBtn1 = document.getElementById('checkWW1');
           if (wwBtn1) wwBtn1.addEventListener('click', ()=>{
-            const a1 = (document.getElementById('ww11')||{}).value||''; const r1 = document.getElementById('ww11r'); if (r1) { const ok=/^was$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Use: was'; r1.style.color = ok?'green':'#555'; }
-            const a2 = (document.getElementById('ww12')||{}).value||''; const r2 = document.getElementById('ww12r'); if (r2) { const ok=/^were$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Use: were'; r2.style.color = ok?'green':'#555'; }
-            const a3 = (document.getElementById('ww13')||{}).value||''; const r3 = document.getElementById('ww13r'); if (r3) { const ok=/^was$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Use: was'; r3.style.color = ok?'green':'#555'; }
+            const a1 = (document.getElementById('ww11')||{}).value||''; const r1 = document.getElementById('ww11r'); if (r1) { const ok=/^was$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Use: was'; r1.style.color = ok?'green':'black'; }
+            const a2 = (document.getElementById('ww12')||{}).value||''; const r2 = document.getElementById('ww12r'); if (r2) { const ok=/^were$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Use: were'; r2.style.color = ok?'green':'black'; }
+            const a3 = (document.getElementById('ww13')||{}).value||''; const r3 = document.getElementById('ww13r'); if (r3) { const ok=/^was$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Use: was'; r3.style.color = ok?'green':'black'; }
           });
           const showTP1 = document.getElementById('showTP1');
           if (showTP1) showTP1.addEventListener('click', ()=>{
@@ -3465,9 +3612,9 @@ async function setupAudio(data) {
           });
           const ivBtn3 = document.getElementById('checkIV3');
           if (ivBtn3) ivBtn3.addEventListener('click', ()=>{
-            const a1 = (document.getElementById('iv31')||{}).value||''; const r1 = document.getElementById('iv31r'); if (r1) { const ok=/^bought$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Sugestão: bought'; r1.style.color = ok?'green':'#555'; }
-            const a2 = (document.getElementById('iv32')||{}).value||''; const r2 = document.getElementById('iv32r'); if (r2) { const ok=/^went$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Sugestão: went'; r2.style.color = ok?'green':'#555'; }
-            const a3 = (document.getElementById('iv33')||{}).value||''; const r3 = document.getElementById('iv33r'); if (r3) { const ok=/^broke$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Sugestão: broke'; r3.style.color = ok?'green':'#555'; }
+            const a1 = (document.getElementById('iv31')||{}).value||''; const r1 = document.getElementById('iv31r'); if (r1) { const ok=/^bought$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Sugestão: bought'; r1.style.color = ok?'green':'black'; }
+            const a2 = (document.getElementById('iv32')||{}).value||''; const r2 = document.getElementById('iv32r'); if (r2) { const ok=/^went$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Sugestão: went'; r2.style.color = ok?'green':'black'; }
+            const a3 = (document.getElementById('iv33')||{}).value||''; const r3 = document.getElementById('iv33r'); if (r3) { const ok=/^broke$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Sugestão: broke'; r3.style.color = ok?'green':'black'; }
           });
           const showMAP3 = document.getElementById('showMAP3');
           if (showMAP3) showMAP3.addEventListener('click', ()=>{
@@ -3489,9 +3636,9 @@ async function setupAudio(data) {
           });
           const compBtn5 = document.getElementById('checkCOMP5');
           if (compBtn5) compBtn5.addEventListener('click', ()=>{
-            const a1 = (document.getElementById('comp51')||{}).value||''; const r1 = document.getElementById('comp51r'); if (r1) { const ok=/^faster$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Sugestão: faster'; r1.style.color = ok?'green':'#555'; }
-            const a2 = (document.getElementById('comp52')||{}).value||''; const r2 = document.getElementById('comp52r'); if (r2) { const ok=/^heavier$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Sugestão: heavier'; r2.style.color = ok?'green':'#555'; }
-            const a3 = (document.getElementById('comp53')||{}).value||''; const r3 = document.getElementById('comp53r'); if (r3) { const ok=/^calmer$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Sugestão: calmer'; r3.style.color = ok?'green':'#555'; }
+            const a1 = (document.getElementById('comp51')||{}).value||''; const r1 = document.getElementById('comp51r'); if (r1) { const ok=/^faster$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Sugestão: faster'; r1.style.color = ok?'green':'black'; }
+            const a2 = (document.getElementById('comp52')||{}).value||''; const r2 = document.getElementById('comp52r'); if (r2) { const ok=/^heavier$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Sugestão: heavier'; r2.style.color = ok?'green':'black'; }
+            const a3 = (document.getElementById('comp53')||{}).value||''; const r3 = document.getElementById('comp53r'); if (r3) { const ok=/^calmer$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Sugestão: calmer'; r3.style.color = ok?'green':'black'; }
           });
           const showLOG5 = document.getElementById('showLOG5');
           if (showLOG5) showLOG5.addEventListener('click', ()=>{
