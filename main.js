@@ -1028,6 +1028,18 @@ async function setupAudio(data) {
           'cargo':'cár-gôu','delay':'di-lêi','invoice':'ín-vóiss','approved':'â-prúvd','regarding':'ri-gár-din'
           ,
           'break down':'brêik dáun','put off':'pút óf','look into':'lúk ín-tú','carry out':'ké-ri áut','run out of':'rân áut óv','keep up':'kíp âp','hydraulic pump':'rai-dró-lik pâmp','valves':'vélvz','hydraulic fluid':'rai-dró-lik flú-id','schedule':'ské-dju-l'
+          ,
+          'inventory':'in-vén-tô-ri','forklift':'fórk-líft','insurance':'in-xú-râns','pests':'pésts','accounting':'a-cáun-tin'
+          ,
+          'rust':'râst','fungicide':'fân-ji-sáid','delayed':'di-lêid','forecast':'fór-cást','profit':'pró-fit','acted':'ék-tid','would have':'wú-dav','would\'ve':'wú-dav','hadn\'t':'réd-nt'
+          ,
+          'bulk':'bâlk','upfront':'âp-frônt','payment terms':'pêi-mênt târms','net 30':'nét thâ-rí-di','premium':'prí-mi-am','discount':'dís-cáunt','reduction':'ri-dâk-xân','meet halfway':'mít réf-uêi','deal':'díal','work something out':'uârk sâm-thin áut','over budget':'ôu-vâr bâ-djit'
+          ,
+          'meeting minutes':'mí-tin mín-nâts','shift':'shíft','release the budget':'ri-lís dê bân-djit','postpone':'pós-pôun'
+          ,
+          'contamination':'côn-tâ-mi-nêi-xân','leak':'lík','circumstances':'sâr-câm-stên-siz','prevented':'pri-vén-tid','protocol':'prô-tô-cól','incident':'ín-si-dênt','extinguished':'êks-tín-güisht','valve':'vélv','water supply':'uó-ter sâ-plái','closed':'clôuzd'
+          ,
+          'strategic investment':'stra-tí-djik in-vés-ti-mên','efficiency':'ê-fí-xan-si','ROI':'ár-ôu-áí','pay for itself':'pêi fór it-sélf','competitive edge':'com-pé-ti-tiv édj','recommend':'ré-co-ménd','propose':'prô-pôuz','analyze':'é-na-láiz','furthermore':'fâr-dâr-mór','consequently':'cón-si-quent-li','electricity bills':'e-lék-trí-si ti bîls','therefore':'dér-fór'
         };
     const w = String(str||'').toLowerCase();
     if (dict[w]) return dict[w];
@@ -2328,6 +2340,102 @@ async function setupAudio(data) {
               <div style="margin-top:8px"><button class="btn" id="showEM6">Ver respostas</button></div>
             </div>
             ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===7 ? `
+            <div class="section-title" style="margin-top:12px">Una frases com vírgulas (3 itens)</div>
+            <div class="card">
+              <div>1. The boss is here. He is old. → <span class="small" id="rc71"></span></div>
+              <div style="margin-top:6px">2. The red tractor is expensive. It was imported from the USA. → <span class="small" id="rc72"></span></div>
+              <div style="margin-top:6px">3. Silo 3 is full. We stored soybeans there. → <span class="small" id="rc73"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showRC7">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Corrija o erro do THAT (3 itens)</div>
+            <div class="card">
+              <div>1. The car, that is blue, is mine → <span class="small" id="th71"></span></div>
+              <div style="margin-top:6px">2. Mr. Jones, that manages logistics, is on leave → <span class="small" id="th72"></span></div>
+              <div style="margin-top:6px">3. The barn, that is old, needs insurance → <span class="small" id="th73"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showTH7">Ver correções</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===8 ? `
+            <div class="section-title" style="margin-top:12px">Conecte causa e efeito no passado (3 itens)</div>
+            <div class="card">
+              <div>1. I didn't study → <span class="small" id="tc81"></span></div>
+              <div style="margin-top:6px">2. We applied fungicide late → <span class="small" id="tc82"></span></div>
+              <div style="margin-top:6px">3. The manager didn't check the forecast → <span class="small" id="tc83"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showTC8">Ver exemplos</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Crie frases "Se tivéssemos..." (3 itens)</div>
+            <div class="card">
+              <div>1. Tractor without oil → <span class="small" id="sf81"></span></div>
+              <div style="margin-top:6px">2. Prices dropped in March → <span class="small" id="sf82"></span></div>
+              <div style="margin-top:6px">3. Application delayed → <span class="small" id="sf83"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showSF8">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===9 ? `
+            <div class="section-title" style="margin-top:12px">Toma lá, dá cá (3 trocas)</div>
+            <div class="card">
+              <div>1. If you lower the price, we ___ the order → <span class="small" id="ng91"></span></div>
+              <div style="margin-top:6px">2. If we pay upfront, can you ___ a discount? → <span class="small" id="ng92"></span></div>
+              <div style="margin-top:6px">3. If we buy in bulk, you ___ 10% → <span class="small" id="ng93"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showNG9">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Recuse educadamente (3 itens)</div>
+            <div class="card">
+              <div>1. Oferta cara → <span class="small" id="pr91"></span></div>
+              <div style="margin-top:6px">2. Termos ruins → <span class="small" id="pr92"></span></div>
+              <div style="margin-top:6px">3. Precisamos do meio termo → <span class="small" id="pr93"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showPR9">Ver exemplos</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===10 ? `
+            <div class="section-title" style="margin-top:12px">Reescreva com reporting verbs (3 itens)</div>
+            <div class="card">
+              <div>1. "Let's buy a new truck" → <span class="small" id="rv101"></span></div>
+              <div style="margin-top:6px">2. "We should vaccinate the calves now" → <span class="small" id="rv102"></span></div>
+              <div style="margin-top:6px">3. "I hit the fence" → <span class="small" id="rv103"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showRV10">Ver reescritas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Escolha o padrão correto (3 itens)</div>
+            <div class="card">
+              <div>1. She agreed [helping / to help] the logistics team → <span class="small" id="ch101"></span></div>
+              <div style="margin-top:6px">2. They decided [to postpone / postponing] the planting → <span class="small" id="ch102"></span></div>
+              <div style="margin-top:6px">3. He denied [driving / to drive] too fast → <span class="small" id="ch103"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showCH10">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===11 ? `
+            <div class="section-title" style="margin-top:12px">Transforme ativa → passiva com modais (3 itens)</div>
+            <div class="card">
+              <div>1. We must clean the tank → <span class="small" id="pm111"></span></div>
+              <div style="margin-top:6px">2. They should move the animals → <span class="small" id="pm112"></span></div>
+              <div style="margin-top:6px">3. We can solve the issue → <span class="small" id="pm113"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showPM11">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Ordens de segurança (3 itens)</div>
+            <div class="card">
+              <div>1. The fire ___ immediately → <span class="small" id="sc111"></span></div>
+              <div style="margin-top:6px">2. Contaminated water ___ for irrigation → <span class="small" id="sc112"></span></div>
+              <div style="margin-top:6px">3. The main valve ___ right now → <span class="small" id="sc113"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showSC11">Ver exemplos</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===12 ? `
+            <div class="section-title" style="margin-top:12px">Complete com conectivos formais (3 itens)</div>
+            <div class="card">
+              <div>1. The machine is fast; ___, it is cheap → <span class="small" id="co121"></span></div>
+              <div style="margin-top:6px">2. The system wastes energy; ___, we must upgrade → <span class="small" id="co122"></span></div>
+              <div style="margin-top:6px">3. We will save 30%; ___, ROI will be fast → <span class="small" id="co123"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showCO12">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Argumentos de venda (3 itens)</div>
+            <div class="card">
+              <div>1. We should buy this because it will bring ___ → <span class="small" id="sa121"></span></div>
+              <div style="margin-top:6px">2. We should upgrade because it will give ___ → <span class="small" id="sa122"></span></div>
+              <div style="margin-top:6px">3. We should invest because it will ___ in two years → <span class="small" id="sa123"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showSA12">Ver exemplos</button></div>
+            </div>
+            ` : ''}
             ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===6 ? `
             <div class="section-title" style="margin-top:12px">Complete com There is / There are</div>
             <div class="card">
@@ -3166,6 +3274,78 @@ async function setupAudio(data) {
             const s1 = document.getElementById('em61'); if (s1) { s1.textContent = 'broke down' }
             const s2 = document.getElementById('em62'); if (s2) { s2.textContent = 'running out of' }
             const s3 = document.getElementById('em63'); if (s3) { s3.textContent = 'keep up' }
+          });
+          const showRC7 = document.getElementById('showRC7');
+          if (showRC7) showRC7.addEventListener('click', ()=>{
+            const r1 = document.getElementById('rc71'); if (r1) { r1.textContent = 'The boss, who is old, is here.' }
+            const r2 = document.getElementById('rc72'); if (r2) { r2.textContent = 'The red tractor, which was imported from the USA, is expensive.' }
+            const r3 = document.getElementById('rc73'); if (r3) { r3.textContent = 'Silo 3, where we stored soybeans, is full.' }
+          });
+          const showTH7 = document.getElementById('showTH7');
+          if (showTH7) showTH7.addEventListener('click', ()=>{
+            const t1 = document.getElementById('th71'); if (t1) { t1.textContent = 'The car, which is blue, is mine.' }
+            const t2 = document.getElementById('th72'); if (t2) { t2.textContent = 'Mr. Jones, who manages logistics, is on leave.' }
+            const t3 = document.getElementById('th73'); if (t3) { t3.textContent = 'The barn, which is old, needs insurance.' }
+          });
+          const showTC8 = document.getElementById('showTC8');
+          if (showTC8) showTC8.addEventListener('click', ()=>{
+            const t1 = document.getElementById('tc81'); if (t1) { t1.textContent = 'If I had studied, I would not have failed.' }
+            const t2 = document.getElementById('tc82'); if (t2) { t2.textContent = 'If we had applied earlier, we would have saved the plants.' }
+            const t3 = document.getElementById('tc83'); if (t3) { t3.textContent = 'If the manager had checked the forecast, he would not have delayed the application.' }
+          });
+          const showSF8 = document.getElementById('showSF8');
+          if (showSF8) showSF8.addEventListener('click', ()=>{
+            const s1 = document.getElementById('sf81'); if (s1) { s1.textContent = "If we had checked the oil, we wouldn't have broken down." }
+            const s2 = document.getElementById('sf82'); if (s2) { s2.textContent = 'If prices had not dropped, we would have made a higher profit.' }
+            const s3 = document.getElementById('sf83'); if (s3) { s3.textContent = 'If we had acted faster, the results would have been better.' }
+          });
+          const showNG9 = document.getElementById('showNG9');
+          if (showNG9) showNG9.addEventListener('click', ()=>{
+            const n1 = document.getElementById('ng91'); if (n1) { n1.textContent = 'will increase' }
+            const n2 = document.getElementById('ng92'); if (n2) { n2.textContent = 'offer' }
+            const n3 = document.getElementById('ng93'); if (n3) { n3.textContent = 'can give' }
+          });
+          const showPR9B2 = document.getElementById('showPR9');
+          if (showPR9B2) showPR9B2.addEventListener('click', ()=>{
+            const p1 = document.getElementById('pr91'); if (p1) { p1.textContent = "I'm afraid that is over our budget." }
+            const p2 = document.getElementById('pr92'); if (p2) { p2.textContent = 'I appreciate it, but the payment terms are not feasible.' }
+            const p3 = document.getElementById('pr93'); if (p3) { p3.textContent = 'Could you meet us halfway?' }
+          });
+          const showRV10 = document.getElementById('showRV10');
+          if (showRV10) showRV10.addEventListener('click', ()=>{
+            const r1 = document.getElementById('rv101'); if (r1) { r1.textContent = 'He suggested buying a new truck.' }
+            const r2 = document.getElementById('rv102'); if (r2) { r2.textContent = 'He insisted on vaccinating the calves now.' }
+            const r3 = document.getElementById('rv103'); if (r3) { r3.textContent = 'He admitted hitting the fence.' }
+          });
+          const showCH10 = document.getElementById('showCH10');
+          if (showCH10) showCH10.addEventListener('click', ()=>{
+            const c1 = document.getElementById('ch101'); if (c1) { c1.textContent = 'to help' }
+            const c2 = document.getElementById('ch102'); if (c2) { c2.textContent = 'to postpone' }
+            const c3 = document.getElementById('ch103'); if (c3) { c3.textContent = 'driving' }
+          });
+          const showPM11 = document.getElementById('showPM11');
+          if (showPM11) showPM11.addEventListener('click', ()=>{
+            const p1 = document.getElementById('pm111'); if (p1) { p1.textContent = 'The tank must be cleaned.' }
+            const p2 = document.getElementById('pm112'); if (p2) { p2.textContent = 'The animals should be moved.' }
+            const p3 = document.getElementById('pm113'); if (p3) { p3.textContent = 'The issue can be solved.' }
+          });
+          const showSC11 = document.getElementById('showSC11');
+          if (showSC11) showSC11.addEventListener('click', ()=>{
+            const s1 = document.getElementById('sc111'); if (s1) { s1.textContent = 'must be extinguished' }
+            const s2 = document.getElementById('sc112'); if (s2) { s2.textContent = 'cannot be used' }
+            const s3 = document.getElementById('sc113'); if (s3) { s3.textContent = 'must be closed' }
+          });
+          const showCO12 = document.getElementById('showCO12');
+          if (showCO12) showCO12.addEventListener('click', ()=>{
+            const c1 = document.getElementById('co121'); if (c1) { c1.textContent = 'furthermore' }
+            const c2 = document.getElementById('co122'); if (c2) { c2.textContent = 'therefore' }
+            const c3 = document.getElementById('co123'); if (c3) { c3.textContent = 'consequently' }
+          });
+          const showSA12 = document.getElementById('showSA12');
+          if (showSA12) showSA12.addEventListener('click', ()=>{
+            const s1 = document.getElementById('sa121'); if (s1) { s1.textContent = 'more profit' }
+            const s2 = document.getElementById('sa122'); if (s2) { s2.textContent = 'a competitive edge' }
+            const s3 = document.getElementById('sa123'); if (s3) { s3.textContent = 'pay for itself' }
           });
           const showINT12 = document.getElementById('showINT12');
           if (showINT12) showINT12.addEventListener('click', ()=>{
