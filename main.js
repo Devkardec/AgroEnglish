@@ -334,19 +334,23 @@ function parseSVC(en){
   const baseTxt = txt.replace(/[.?!]+$/,'');
   const words = baseTxt.split(/\s+/);
   const firstTwo = words.slice(0,2).join(' ');
-  const auxIdx = words.findIndex(w=>/^(do|does|don't|doesn't|did|will|can|should|must|may|is|are|am)$/i.test(w.replace(/[.,!?;:]+$/,'')));
+  const auxIdx = words.findIndex(w=>{ const t=w.replace(/[.,!?;:]+$/,''); if (/^(AM|PM)$/i.test(t)) return false; return /^(do|does|don't|doesn't|did|will|can|should|must|may|is|are|am)$/i.test(t); });
   let subjStart = 0;
   let subjLen = 1;
   if (auxIdx===0) { subjStart = 1; }
   const candidate = words[subjStart]||'';
-  if (/^the$/i.test(candidate) && words.length>=subjStart+2) subjLen = 2;
-  else if (/^(sprayer calibration|veterinary biosecurity|canadian winter|the tractor|the soil)/i.test(firstTwo)) subjLen = 2;
+  if (/^the$/i.test(candidate)) {
+    const adj = (words[subjStart+1]||'').toLowerCase();
+    const noun = words[subjStart+2];
+    const isAdj = /^(small|big|young|old|green|strong|healthy|safe|white|brown|black)$/i.test(adj);
+    if (isAdj && noun) subjLen = 3; else if (words.length>=subjStart+2) subjLen = 2;
+  } else if (/^(sprayer calibration|veterinary biosecurity|canadian winter|the tractor|the soil)/i.test(firstTwo)) subjLen = 2;
   let verbIdx = subjStart+subjLen;
   let verb = words[verbIdx]||'';
   if (auxIdx>=0){
     const auxWord = words[auxIdx].replace(/[.,!?;:]+$/,'');
     if (/^(is|are|am)$/i.test(auxWord)) { verbIdx = auxIdx; verb = auxWord; }
-    else if (auxIdx+1 < words.length) { verbIdx = auxIdx+1; verb = words[verbIdx].replace(/[.,!?;:]+$/,''); }
+    else { const cand = Math.max(auxIdx+1, subjStart+subjLen); verbIdx = Math.min(cand, words.length-1); verb = (words[verbIdx]||'').replace(/[.,!?;:]+$/,''); }
   } else {
     verb = (words[verbIdx]||'').replace(/[.,!?;:]+$/,'');
   }
@@ -358,6 +362,11 @@ function parseSVC(en){
 function svcExplain(en){
   const p = parseSVC(en);
   const comp = p.complement ? p.complement : '-';
+  const aux = findAux(en);
+  const isBe = aux && /^(is|are|am)$/i.test(aux.base);
+  if (aux && !isBe) {
+    return `<div class="small" style="margin-top:4px">Auxiliar: <strong>${aux.base}</strong> | Sujeito: <strong>${p.subject}</strong> | Verbo: <strong>${p.verb}</strong> | Complemento: <strong>${comp}</strong></div>`;
+  }
   return `<div class="small" style="margin-top:4px">Sujeito: <strong>${p.subject}</strong> · Verbo: <strong>${p.verb}</strong> · Complemento: <strong>${comp}</strong></div>`;
 }
 
@@ -377,7 +386,7 @@ function colorVerbToken(token){
 
 function findAux(en){
   const words = String(en||'').trim().split(/\s+/);
-  const idx = words.findIndex(w=>/^(do|does|did|will|can|should|must|may|don't|doesn't|didn't|is|are|am)$/i.test(w.replace(/[.,!?;:]+$/,'')));
+  const idx = words.findIndex(w=>{ const t=w.replace(/[.,!?;:]+$/,''); if (/^(AM|PM)$/i.test(t)) return false; return /^(do|does|did|will|can|should|must|may|don't|doesn't|didn't|is|are|am)$/i.test(t); });
   if (idx<0) return null;
   const base = words[idx].replace(/[.,!?;:]+$/,'');
   let cls = 'grammar-aux';
@@ -391,7 +400,7 @@ function guidedCard(en, pt){
   const aux = findAux(en);
   const levelTagNow = (location.hash.split('/')[2]||'').toUpperCase();
   const curIdxNow = Number((location.hash.split('/')[3]||'1'));
-  const isA1Lesson1 = (levelTagNow==='A1' && curIdxNow<=3);
+  const isA1Lesson1 = (levelTagNow==='A1' && curIdxNow===1);
   const isQ = /\?\s*$/.test(String(en||''));
   const isBeAux = aux && /^(is|are|am)$/i.test(aux.base);
   const steps = (isA1Lesson1)
@@ -924,6 +933,25 @@ function renderVocabulary(data) {
     `;
     return;
   }
+  if (levelTag==='A1' && curIdx===2) {
+    vocabEl.innerHTML = `
+      <div class="card">
+        <ul>
+          <li><strong>Livestock:</strong> Pecuária/Gado</li>
+          <li><strong>Bull:</strong> Touro</li>
+          <li><strong>Injury:</strong> Lesão</li>
+          <li><strong>Veterinarian:</strong> Veterinária</li>
+          <li><strong>Medical kit:</strong> Kit médico</li>
+          <li><strong>Medicine:</strong> Remédio</li>
+          <li><strong>Body:</strong> Corpo</li>
+          <li><strong>Leg:</strong> Perna</li>
+          <li><strong>Safe:</strong> Seguro</li>
+          <li><strong>Healthy:</strong> Saudável</li>
+        </ul>
+      </div>
+    `;
+    return;
+  }
   const pairList = Array.isArray(data.pairs) && data.pairs.length ? data.pairs : null;
   let items;
   if (pairList) {
@@ -1102,15 +1130,17 @@ function renderGrammar(data) {
   function explainForBeginners(v){
     const levelTagNow = (location.hash.split('/')[2]||'').toUpperCase();
     const curIdxNow = Number((location.hash.split('/')[3]||'1'));
-    const isA1BeMode = (levelTagNow==='A1' && curIdxNow<=3);
+    const isA1BeMode = (levelTagNow==='A1' && curIdxNow===1);
+    const isA1HaveModeNow = (levelTagNow==='A1' && curIdxNow===2);
     const coreBe = `<div style=\"margin-top:6px\"><strong>O que é:</strong> O Verbo To Be significa <em>ser</em> ou <em>estar</em>. Ele é especial e <strong>não usa</strong> auxiliares como <em>Do</em> ou <em>Don't</em>. Ele muda de forma sozinho: I <span style=\"color:#1e40af;font-weight:bold;\">am</span> · You <span style=\"color:#1e40af;font-weight:bold;\">are</span> · He/She/It <span style=\"color:#1e40af;font-weight:bold;\">is</span> · We/You/They <span style=\"color:#1e40af;font-weight:bold;\">are</span>.</div>`;
+    const coreHave = `<div style=\"margin-top:6px\"><strong>O que é:</strong> O Verbo <em>To Have</em> significa <strong>ter</strong> (posse) ou expressar <strong>características</strong> físicas. <strong>Regra:</strong> <span style=\"color:#1e40af;font-weight:bold;\">have</span> com I/You/We/They · <span style=\"color:#1e40af;font-weight:bold;\">has</span> com He/She/It.</div>`;
     const defaultPS = `<div style=\"margin-top:6px\"><strong>O que é:</strong> verbo é ação do dia a dia. Use forma base com <em>I/You/We/They</em>. Em <em>He/She/It</em> acrescente <span class=\"grammar-suffix\">s/es</span>.</div>`;
     return `
       <div class=\"card\">
         <div class=\"small\">
           <div><strong>Explicação:</strong> ${v}</div>
-          ${isA1BeMode ? coreBe : defaultPS}
-          <div style=\"margin-top:6px\"><strong>Verbo to be:</strong> <span style=\"color:#1e40af;font-weight:bold;\">am</span>/<span style=\"color:#1e40af;font-weight:bold;\">is</span>/<span style=\"color:#1e40af;font-weight:bold;\">are</span> para estado, localização e identificação. Afirmativa: I <span style=\"color:#1e40af;font-weight:bold;\">am</span>, He/She/It <span style=\"color:#1e40af;font-weight:bold;\">is</span>, We/You/They <span style=\"color:#1e40af;font-weight:bold;\">are</span>. Negativa: <span style=\"color:#1e40af;font-weight:bold;\">am</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span> / <span style=\"color:#1e40af;font-weight:bold;\">is</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span> / <span style=\"color:#1e40af;font-weight:bold;\">are</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span>. Pergunta: <span style=\"color:#1e40af;font-weight:bold;\">Am</span> I...<span style=\"color:#dc2626;font-weight:bold;\">?</span> · <span style=\"color:#1e40af;font-weight:bold;\">Is</span> he...<span style=\"color:#dc2626;font-weight:bold;\">?</span> · <span style=\"color:#1e40af;font-weight:bold;\">Are</span> they...<span style=\"color:#dc2626;font-weight:bold;\">?</span></div>
+          ${isA1BeMode ? coreBe : (isA1HaveModeNow ? coreHave : defaultPS)}
+          ${isA1BeMode ? `<div style=\"margin-top:6px\"><strong>Verbo to be:</strong> <span style=\"color:#1e40af;font-weight:bold;\">am</span>/<span style=\"color:#1e40af;font-weight:bold;\">is</span>/<span style=\"color:#1e40af;font-weight:bold;\">are</span> para estado, localização e identificação. Afirmativa: I <span style=\"color:#1e40af;font-weight:bold;\">am</span>, He/She/It <span style=\"color:#1e40af;font-weight:bold;\">is</span>, We/You/They <span style=\"color:#1e40af;font-weight:bold;\">are</span>. Negativa: <span style=\"color:#1e40af;font-weight:bold;\">am</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span> / <span style=\"color:#1e40af;font-weight:bold;\">is</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span> / <span style=\"color:#1e40af;font-weight:bold;\">are</span> <span style=\"color:#dc2626;font-weight:bold;\">not</span>. Pergunta: <span style=\"color:#1e40af;font-weight:bold;\">Am</span> I...<span style=\"color:#dc2626;font-weight:bold;\">?</span> · <span style=\"color:#1e40af;font-weight:bold;\">Is</span> he...<span style=\"color:#dc2626;font-weight:bold;\">?</span> · <span style=\"color:#1e40af;font-weight:bold;\">Are</span> they...<span style=\"color:#dc2626;font-weight:bold;\">?</span></div>` : ''}
         </div>
       </div>
     `;
@@ -1135,13 +1165,22 @@ function renderGrammar(data) {
       const words = clean.split(/\s+/);
       const firstTwo = words.slice(0,2).join(' ');
       let subject;
-      if (/^(the|a|an|my|your|his|her|our|their|this|that|these|those)$/i.test(words[0]) && words.length>=2) subject = words[0]+' '+words[1];
+      if (/^(the|a|an|my|your|his|her|our|their|this|that|these|those)$/i.test(words[0]) && words.length>=2) {
+        const adj = (words[1]||'').toLowerCase();
+        const noun = words[2];
+        const isAdj = /^(small|big|young|old|green|strong|healthy|safe|white|brown|black)$/i.test(adj);
+        subject = (isAdj && noun) ? (words[0]+' '+words[1]+' '+words[2]) : (words[0]+' '+words[1]);
+      }
       else if (/^(sprayer calibration|veterinary biosecurity|canadian winter)/i.test(firstTwo)) subject = firstTwo;
       else subject = words[0];
       const subjEsc = subject.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
       let rest = clean.replace(new RegExp('^'+subjEsc+'\\s+'),'');
       let v = (rest.split(/\s+/)[0]||'').toLowerCase();
-      const isThird = /^(he|she|it)$/i.test(subject) || /^the\s/i.test(subject) || /^(sprayer calibration|veterinary biosecurity|canadian winter)/i.test(subject);
+      const subjLower = subject.toLowerCase();
+      const secondWord = (subject.split(/\s+/)[1]||'').toLowerCase();
+      const pluralPronoun = /^(we|you|they)\b/.test(subjLower);
+      const pluralNoun = /\b(cows|animals|tools|buckets|hammers|calves|people|children|workers|hands)\b/.test(secondWord) || /s$/.test(secondWord);
+      const isThird = !pluralPronoun && !pluralNoun && ( /^(he|she|it)\b/.test(subjLower) || /^the\s/.test(subjLower) || /^(sprayer calibration|veterinary biosecurity|canadian winter)/i.test(subject) );
       if (v==='is'){
         const tail = rest.replace(/^is\s+/i,'');
         return { affirmative: clean, negative: subject+' is not '+tail, interrogative: 'Is '+subject+' '+tail+'?' };
@@ -1155,6 +1194,7 @@ function renderGrammar(data) {
         return { affirmative: clean, negative: subject+' are not '+tail, interrogative: 'Are '+subject+' '+tail+'?' };
       }
       function baseVerb(w){
+        if (/^has$/i.test(w)) return 'have';
         if (/^goes$/i.test(w)) return 'go';
         if (/ies$/i.test(w)) return w.replace(/ies$/i,'y');
         if (/(ch|sh|x|o|ss|zz)$/i.test(w.replace(/es$/i,'')) && /es$/i.test(w)) return w.replace(/es$/i,'');
@@ -1291,10 +1331,12 @@ function renderGrammar(data) {
     ` }
     const levelTag2 = (location.hash.split('/')[2]||'').toUpperCase();
     const curIdx2 = Number((location.hash.split('/')[3]||'1'));
-    const isA1BeMode = (levelTag2==='A1' && curIdx2<=3);
-    const affCard = (aff.length && !isA1BeMode) ? `<div class=\"card\"><div class=\"small\"><strong>Afirmativa</strong></div>${aff.slice(0,3).map(lineHtml).join('')}</div>` : '';
-    const negCard = (negs.length && !isA1BeMode) ? `<div class=\"card\"><div class=\"small\"><strong>Negativa</strong></div>${negs.slice(0,3).map(lineHtml).join('')}</div>` : '';
-    const qCard = (quess.length && !isA1BeMode) ? `<div class=\"card\"><div class=\"small\"><strong>Pergunta</strong></div>${quess.slice(0,3).map(lineHtml).join('')}</div>` : '';
+    const isA1BeMode = (levelTag2==='A1' && curIdx2===1);
+    const isA1HaveMode = (levelTag2==='A1' && curIdx2===2);
+    const isA1PSMode = (levelTag2==='A1' && curIdx2===3);
+    const affCard = (aff.length && !(isA1BeMode||isA1HaveMode)) ? `<div class=\"card\"><div class=\"small\"><strong>Afirmativa</strong></div>${aff.slice(0,3).map(lineHtml).join('')}</div>` : '';
+    const negCard = (negs.length && !(isA1BeMode||isA1HaveMode)) ? `<div class=\"card\"><div class=\"small\"><strong>Negativa</strong></div>${negs.slice(0,3).map(lineHtml).join('')}</div>` : '';
+    const qCard = (quess.length && !(isA1BeMode||isA1HaveMode)) ? `<div class=\"card\"><div class=\"small\"><strong>Pergunta</strong></div>${quess.slice(0,3).map(lineHtml).join('')}</div>` : '';
     const whenCards = [affCard, negCard, qCard].filter(Boolean);
     const whenList = whenCards.join('');
     const guidedSamples = [baseSample, qLine, negLine].filter(Boolean);
@@ -1314,14 +1356,39 @@ function renderGrammar(data) {
       const qs2 = affs.map(x=>({ en: beQuestionLine(x.en), pt: '' }));
       return beTable(affs, negs2, qs2);
     }
+    function haveTableTarget(){
+      const affs = [
+        { en: 'The bull has a strong body', pt: '' },
+        { en: 'We have safe animals', pt: '' }
+      ];
+      function haveNegLine(en){
+        const t = String(en||'');
+        const lower = t.toLowerCase();
+        const isPlural = /^\s*we\b/.test(lower) || /^\s*they\b/.test(lower) || /^\s*the\s+.+s\b/.test(lower) || /\b(cows|animals|calves|people|children|workers|hands)\b/.test(lower);
+        if (/has\s+/i.test(t)) return t.replace(/^\s*(.+?)\s+has\s+/i, `$1 ${isPlural?"don't":"doesn't"} have `);
+        return t.replace(/^\s*(.+?)\s+have\s+/i, `$1 ${isPlural?"don't":"doesn't"} have `);
+      }
+      function haveQuestionLine(en){
+        const t = String(en||'');
+        const lower = t.toLowerCase();
+        const isPlural = /^\s*we\b/.test(lower) || /^\s*they\b/.test(lower) || /^\s*the\s+.+s\b/.test(lower) || /\b(cows|animals|calves|people|children|workers|hands)\b/.test(lower);
+        const aux = isPlural ? 'Do ' : 'Does ';
+        if (/has\s+/i.test(t)) return aux + t.replace(/^\s*(.+?)\s+has\s+/i,'$1 have ') + '?';
+        return aux + t.replace(/^\s*(.+?)\s+have\s+/i,'$1 have ') + '?';
+      }
+      const b = affs.map(x=>({ en: haveNegLine(x.en), pt: '' }));
+      const c = affs.map(x=>({ en: haveQuestionLine(x.en), pt: '' }));
+      return table3(affs, b, c);
+    }
     const formaUso = data.forma_uso || null;
     const goldenTip = String(data.golden_tip||'').trim();
     const summaryMap = Array.isArray(data.summary_map) ? data.summary_map : [];
     let formaUsoHtml = '';
     if (formaUso) {
       function block(b){ if(!b) return ''; const exs = Array.isArray(b.examples)? b.examples.slice(0,3):[]; return `<div class=\"card\"><div class=\"small\"><strong>${b.title||''}</strong> ${b.explain||''}<div style=\"margin-top:6px\">${exs.map(x=>`<div>${x}</div>`).join('')}</div></div></div>` }
+      const fuTitle = isA1HaveMode ? 'Forma e Uso · To Have' : 'Forma e Uso · To Be';
       formaUsoHtml = `
-        <div class=\"section-title\" style=\"margin-top:12px\">Forma e Uso · To Be</div>
+        <div class=\"section-title\" style=\"margin-top:12px\">${fuTitle}</div>
         ${block(formaUso.identity)}
         ${block(formaUso.location)}
         ${block(formaUso.description)}
@@ -1365,31 +1432,97 @@ function renderGrammar(data) {
           </tbody>
         </table>
       </div></div>
-    ` : '';
+    ` : (isA1HaveMode ? `
+      <div class=\"section-title\" style=\"margin-top:12px\">Explicação e Estrutura</div>
+      <div class=\"card\"><div class=\"small\">
+        <h3>1. O Poder do Verbo \"To Have\" (Ter)</h3>
+        <p>Nesta lição, aprendemos um dos verbos mais importantes do inglês. Usamos ele para duas coisas principais:</p>
+        <ul>
+          <li><strong>Posse (Coisas que você tem):</strong> <em>\"I <span style=\"color:#1e40af;font-weight:bold;\">have</span> a farm\"</em> ↔ Eu tenho uma fazenda. <em>\"She <span style=\"color:#1e40af;font-weight:bold;\">has</span> a medical kit\"</em> ↔ Ela tem um kit médico.</li>
+          <li><strong>Características (Como algo é):</strong> <em>\"The bull <span style=\"color:#1e40af;font-weight:bold;\">has</span> a strong body\"</em> ↔ O touro tem um corpo forte.</li>
+        </ul>
+        <h3>2. O Segredo do \"S\" (HAVE vs HAS)</h3>
+        <p>Muitos alunos confundem, mas a regra é simples. O inglês adora colocar a letra <strong>S</strong> para Ele (He), Ela (She) ou Isso/Animal (It).</p>
+        <ul>
+          <li><strong>Eu/Nós/Eles (I, We, They):</strong> usam <span style=\"color:#1e40af;font-weight:bold;\">HAVE</span>.</li>
+          <li><strong>Ele/Ela/Isso (He, She, It):</strong> usam <span style=\"color:#1e40af;font-weight:bold;\">HAS</span>.</li>
+        </ul>
+        <blockquote class=\"small\"><strong>Dica Visual:</strong> Pense que o <strong>S</strong> é de \"Singular\" ou \"Solo\" (uma pessoa só).</blockquote>
+        <h3>3. Cuidado! O \"Has\" é tímido</h3>
+        <p>Quando fazemos uma <strong>Pergunta</strong> ou <strong>Negativa</strong>, o <em>has</em> perde a força e volta a ser <em>have</em>.</p>
+        <ul>
+          <li><strong>Afirmativa:</strong> The bull <span style=\"color:#1e40af;font-weight:bold;\">has</span>...</li>
+          <li><strong>Pergunta:</strong> <span style=\"color:#1e40af;font-weight:bold;\">Does</span> the bull <span style=\"color:#1e40af;font-weight:bold;\">have</span>...<span style=\"color:#dc2626;font-weight:bold;\">?</span> (O auxiliar <em>does</em> já tem o S, então o verbo volta ao normal.)</li>
+          <li><strong>Negativa:</strong> The bull <span style=\"color:#dc2626;font-weight:bold;\">doesn't</span> <span style=\"color:#1e40af;font-weight:bold;\">have</span>...</li>
+        </ul>
+      </div></div>
+    ` : (isA1PSMode ? `
+      <div class=\"section-title\" style=\"margin-top:12px\">Explicação e Estrutura</div>
+      <div class=\"card\"><div class=\"small\">
+        <h3>1. Rotina e Ações (Present Simple)</h3>
+        <p>Nesta aula, saímos do \"Ser/Estar\" e \"Ter\" para falar de <strong>AÇÃO</strong>.</p>
+        <p>Usamos o <em>Present Simple</em> para descrever o que acontece todo dia na fazenda:</p>
+        <ul>
+          <li><em>We <strong>start</strong> work</em> (Nós começamos).</li>
+          <li><em>They <strong>eat</strong> grass</em> (Eles comem).</li>
+        </ul>
+        <h3>2. A Regra de Ouro (O \"S\" da 3ª Pessoa)</h3>
+        <p>Quando quem faz a ação é uma pessoa só (Ele, Ela ou Isso/Animal), o verbo ganha um <strong>S</strong> no final.</p>
+        <ul>
+          <li><strong>Eu/Nós/Eles:</strong> Verbo normal. Ex.: <em>The cows <strong>walk</strong></em>.</li>
+          <li><strong>Ele/Ela/O Bezerro:</strong> Verbo + S. Ex.: <em>The calf <strong>walks</strong></em>.</li>
+        </ul>
+        <blockquote class=\"small\"><strong>Atenção:</strong> Isso não é plural! É apenas a conjugação correta para <em>He/She/It</em>.</blockquote>
+        <h3>3. O Mistério do \"S\" que some</h3>
+        <p>Nas perguntas e negativas, usamos os auxiliares <strong>DO</strong> e <strong>DOES</strong>.</p>
+        <ul>
+          <li>Para <strong>I/We/They</strong> → <strong>DO / DON'T</strong>.</li>
+          <li>Para <strong>He/She/It</strong> → <strong>DOES / DOESN'T</strong>.</li>
+        </ul>
+        <p><strong>Importante:</strong> Quando usamos <em>Does</em> ou <em>Doesn't</em>, o verbo principal perde o \"S\" e volta ao normal.</p>
+        <ul>
+          <li>Ex.: <em><strong>Does</strong> the calf <strong>drink</strong> milk?</em> (O \"S\" está no <em>Does</em>, não no <em>Drink</em>).</li>
+        </ul>
+      </div></div>
+    ` : ''));
     el.innerHTML = `
       <div>${explainForBeginners(gHead)}</div>
       ${expEstruturaHtml}
-      ${isA1BeMode ? '' : `<div class="section-title" style="margin-top:12px">Quando usar</div><div class="grid when-grid">${whenList}</div>`}
+      ${(isA1BeMode||isA1HaveMode) ? '' : `<div class="section-title" style="margin-top:12px">Quando usar</div><div class="grid when-grid">${whenList}</div>`}
+      ${isA1PSMode ? `
+      <div class="section-title" style="margin-top:12px">Tradução simples</div>
+      <div class="card"><div class="small">
+        ${practice.slice(0,5).map(s=>`<div>${fixPT(s.pt||'')}</div>`).join('')}
+      </div></div>
+      ` : `
       <div class="section-title" style="margin-top:12px">Estrutura (Tradução)</div>
+      ${isA1HaveMode ? `<div class="small" style="margin-bottom:6px">Observe como a ordem das palavras em inglês é muito parecida com o português: Sujeito + Verbo + O que ele tem.</div>` : ''}
       <div>${conjTable}</div>
       <div class="card" style="margin-top:8px"><div class="small">
         <div><strong>Como identificar:</strong> Em EN, sujeito (quem faz) + verbo (ação) + complemento (detalhe). Em PT, a ordem costuma ser igual.</div>
         <div style="margin-top:6px">Ex.: <strong>We</strong> (sujeito) <strong>check</strong> (verbo) <strong>the water</strong> (complemento) ↔ <strong>Nós</strong> <strong>verificamos</strong> <strong>a água</strong>.</div>
         <div style="margin-top:6px"><strong>Dica de tradução:</strong> pense primeiro no sujeito, depois diga a ação, por fim o complemento.</div>
       </div></div>
+      `}
       <div class="section-title" style="margin-top:12px">Passo a passo guiado</div>
-      ${(levelTag2==='A1' && curIdx2<=3) ? (`
+      ${(levelTag2==='A1' && curIdx2===1) ? (`
         <div class="card"><div class="small"><strong>Exemplo guiado</strong></div>
           <div>Frase Original: "My sister is here."</div>
           <div style="margin-top:6px">Passo 1: Ache o verbo (<strong>is</strong>).</div>
           <div style="margin-top:6px">Passo 2: Mova para o início (<strong>Is</strong>).</div>
           <div style="margin-top:6px">Resultado: "<strong>Is</strong> my sister here?"</div>
         </div>
+      `) : (levelTag2==='A1' && curIdx2===2) ? (`
+        <div class="card"><div class="small"><strong>Como saber se uso HAVE ou HAS?</strong></div>
+          <div>Passo 1: Olhe o sujeito. É <strong>He/She/It</strong>?</div>
+          <div style="margin-top:6px">Passo 2: Se <strong>SIM</strong> → use <strong>HAS</strong>. Ex.: She <strong>has</strong> a kit.</div>
+          <div style="margin-top:6px">Passo 3: Se <strong>NÃO</strong> → use <strong>HAVE</strong>. Ex.: We <strong>have</strong> cows.</div>
+        </div>
       `) : `<div class="grid when-grid">${guidedList}</div>`}
-      ${isA1BeMode ? `<div class=\"section-title\" style=\"margin-top:12px\">Afirmativa/Negativa/Pergunta (To Be)</div><div>${beTableTarget()}</div>` : `<div class=\"section-title\" style=\"margin-top:12px\">Afirmativa/Negativa/Pergunta</div><div>${table3(aff,negs,quess)}</div>`}
-      ${isA1BeMode ? '' : renderFormsFromChapter()}
-      ${isA1BeMode ? '' : `<div class="section-title" style="margin-top:12px">Regra He/She/It (+s)</div><div>${sTable}</div>`}
-      ${beSection}
+      ${isA1BeMode ? `<div class=\"section-title\" style=\"margin-top:12px\">Afirmativa/Negativa/Pergunta (To Be)</div><div>${beTableTarget()}</div>` : (isA1HaveMode ? `<div class=\"section-title\" style=\"margin-top:12px\">Afirmativa/Negativa/Pergunta (To Have)</div><div>${haveTableTarget()}</div>` : `<div class=\"section-title\" style=\"margin-top:12px\">Afirmativa/Negativa/Pergunta</div><div>${table3(aff,negs,quess)}</div>`)}
+      ${(isA1BeMode||isA1HaveMode||isA1PSMode) ? '' : renderFormsFromChapter()}
+      ${(isA1BeMode||isA1HaveMode) ? '' : `<div class="section-title" style="margin-top:12px">Regra He/She/It (+s)</div><div>${sTable}</div>`}
+      ${(isA1BeMode ? beSection : '')}
       ${formaUsoHtml}
       ${tipHtml}
       ${summaryHtml}
