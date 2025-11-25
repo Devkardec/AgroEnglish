@@ -8,6 +8,7 @@ export function Level(level) {
   const isA1 = String(level||'').toUpperCase()==='A1';
   const isA2 = String(level||'').toUpperCase()==='A2';
   const isB1 = String(level||'').toUpperCase()==='B1';
+  const isB2 = String(level||'').toUpperCase()==='B2';
   const hero = isA1 ? `
       <section class="level-hero">
         <h2 class="title">Módulo A1 - Fundamentos do Campo</h2>
@@ -64,6 +65,26 @@ export function Level(level) {
         </div>
         <p class="desc" style="margin-top:8px">São 12 lições estratégicas para você se tornar um profissional que pensa e propõe soluções.</p>
         <p class="desc">Vamos avançar?</p>
+        <div class="actions" style="margin-top:10px">
+          <a class="btn" href="#/text/${level}/1">Começar</a>
+        </div>
+      </section>
+  ` : isB2 ? `
+      <section class="level-hero">
+        <h2 class="title">Módulo B2 - Supervisão e Liderança</h2>
+        <p class="desc">Bem-vindo ao Nível Profissional!</p>
+        <p class="desc">Chegamos ao nível onde a liderança acontece. No B2, você deixará de apenas relatar problemas para começar a negociar soluções, gerenciar crises e liderar equipes. O foco é sofisticação e estratégia.</p>
+        <div class="card" style="margin-top:8px">
+          <div class="section-title" style="margin-bottom:6px">O que você vai dominar:</div>
+          <div class="small" style="line-height:1.6">
+            ✅ Argumentação: Defender seu ponto de vista (Conectivos de contraste: However, Although).<br>
+            ✅ Gestão: Delegar tarefas e fazer com que os outros trabalhem (Causative Form).<br>
+            ✅ Investigação: Deduzir o que causou um acidente ou falha (Modals of Deduction).<br>
+            ✅ Planejamento Avançado: Metas de longo prazo (Future Perfect: "Até outubro, teremos terminado").
+          </div>
+        </div>
+        <p class="desc" style="margin-top:8px">São 12 lições avançadas para quem quer assumir cargos de chefia ou negociar diretamente com americanos.</p>
+        <p class="desc">Vamos liderar?</p>
         <div class="actions" style="margin-top:10px">
           <a class="btn" href="#/text/${level}/1">Começar</a>
         </div>

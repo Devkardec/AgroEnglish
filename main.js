@@ -1014,6 +1014,20 @@ async function setupAudio(data) {
           'progress':'pró-gres','speed up':'spíid âp','brakes':'brêiks','meeting':'míi-ting','said':'séd','told':'tóuld'
           ,
           'ready to go':'ré-di tú gôu','leaks':'líks','floor':'flór','hope':'hôup','operator':'óu-pe-rêi-târ','map':'mép'
+          ,
+          'tillage':'tí-lêdj','no-till farming':'nôu-tíl fár-min','soil erosion':'sóil i-rôu-jan','moisture retention':'móis-tchâr ri-tén-xân','undeniable':'ân-di-nái-a-bol','transition':'trán-zí-xân'
+          ,
+          'outsource':'áut-sórs','contractor':'cón-trék-tôr','ensure':'ên-xûr','serviced':'sér-vis-t'
+          ,
+          'roof':'rúf','painted':'pêin-ted','installed':'íns-tóld','reports':'ri-pórts'
+          ,
+          'irrigation logs':'i-rri-gêi-xân lógs','mild':'máiold','nutrient deficiency':'nú-tri-ent di-fí-xen-si','growth stage':'grôuth stêidj','roots':'rúts','nitrogen':'nái-tro-djén','fungus':'fân-gâs','underground':'ân-dâr-gráund','stolen':'stôu-lân'
+          ,
+          'tight schedule':'táit skéd-jul','weather holds':'ué-dâr rôulds','noon':'núun','goals':'gôuls','by':'bái','finished':'fí-nisht','upgraded':'âp-grêi-did','implemented':'ím-ple-mén-tid'
+          ,
+          'cargo':'cár-gôu','delay':'di-lêi','invoice':'ín-vóiss','approved':'â-prúvd','regarding':'ri-gár-din'
+          ,
+          'break down':'brêik dáun','put off':'pút óf','look into':'lúk ín-tú','carry out':'ké-ri áut','run out of':'rân áut óv','keep up':'kíp âp','hydraulic pump':'rai-dró-lik pâmp','valves':'vélvz','hydraulic fluid':'rai-dró-lik flú-id','schedule':'ské-dju-l'
         };
     const w = String(str||'').toLowerCase();
     if (dict[w]) return dict[w];
@@ -2218,6 +2232,102 @@ async function setupAudio(data) {
               <div style="margin-top:8px"><button class="btn" id="showCF12">Ver exemplos</button></div>
             </div>
             ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===1 ? `
+            <div class="section-title" style="margin-top:12px">Reescreva trocando Although → Despite (3 itens)</div>
+            <div class="card">
+              <div>1. Although it is traditional, conventional tillage causes erosion. → <span class="small" id="cd11"></span></div>
+              <div style="margin-top:6px">2. Although no-till is challenging, the benefits are undeniable. → <span class="small" id="cd12"></span></div>
+              <div style="margin-top:6px">3. Although the machinery is expensive, we save money on fuel. → <span class="small" id="cd13"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showCD1">Ver reescritas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Complete argumentos técnicos (3 itens)</div>
+            <div class="card">
+              <div>1. Despite the high price, the tractor is ___ → <span class="small" id="ag11"></span></div>
+              <div style="margin-top:6px">2. Despite the initial challenge, the long-term plan is ___ → <span class="small" id="ag12"></span></div>
+              <div style="margin-top:6px">3. Despite lower first-year yield, soil management is ___ → <span class="small" id="ag13"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showAG1">Ver exemplos</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===2 ? `
+            <div class="section-title" style="margin-top:12px">Transforme Do → Have/Get done (3 itens)</div>
+            <div class="card">
+              <div>1. I cut the grass → <span class="small" id="ca21"></span></div>
+              <div style="margin-top:6px">2. We test the soil → <span class="small" id="ca22"></span></div>
+              <div style="margin-top:6px">3. They fix the pump → <span class="small" id="ca23"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showCA2">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Situações de gestão (3 itens)</div>
+            <div class="card">
+              <div>1. Telhado com vazamento → <span class="small" id="mg21"></span></div>
+              <div style="margin-top:6px">2. Relatórios pendentes → <span class="small" id="mg22"></span></div>
+              <div style="margin-top:6px">3. Cerca antiga quebrada → <span class="small" id="mg23"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showMG2">Ver exemplos</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===3 ? `
+            <div class="section-title" style="margin-top:12px">Situações de mistério (3 deduções)</div>
+            <div class="card">
+              <div>1. Tank vazio, sem vazamento → <span class="small" id="md31"></span></div>
+              <div style="margin-top:6px">2. Log de irrigação regular, plantas secas → <span class="small" id="md32"></span></div>
+              <div style="margin-top:6px">3. Temperatura amena, folhas amareladas → <span class="small" id="md33"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showMD3">Ver deduções</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Tradução: descartar hipóteses (3 itens)</div>
+            <div class="card">
+              <div>1. Não pode ter sido falta de água → <span class="small" id="nh31"></span></div>
+              <div style="margin-top:6px">2. Não pode ter sido a temperatura → <span class="small" id="nh32"></span></div>
+              <div style="margin-top:6px">3. Não pode ter sido o clima → <span class="small" id="nh33"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showNH3">Ver traduções</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===4 ? `
+            <div class="section-title" style="margin-top:12px">Timeline 2030 (3 previsões)</div>
+            <div class="card">
+              <div>1. By 2030, we [finish] ___ the expansion → <span class="small" id="tl41"></span></div>
+              <div style="margin-top:6px">2. By 2030, they [upgrade] ___ the irrigation system → <span class="small" id="tl42"></span></div>
+              <div style="margin-top:6px">3. By 2030, the team [implement] ___ precision agriculture → <span class="small" id="tl43"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showTL4">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Complete com BY ou IN (3 itens)</div>
+            <div class="card">
+              <div>1. We will start ___ June → <span class="small" id="bi41"></span></div>
+              <div style="margin-top:6px">2. We will have finished ___ next Friday → <span class="small" id="bi42"></span></div>
+              <div style="margin-top:6px">3. The reports will be ready ___ the afternoon → <span class="small" id="bi43"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showBI4">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===5 ? `
+            <div class="section-title" style="margin-top:12px">Transforme Direta → Indireta (3 itens)</div>
+            <div class="card">
+              <div>1. Where is the boss? → <span class="small" id="iq51"></span></div>
+              <div style="margin-top:6px">2. What time does the truck arrive? → <span class="small" id="iq52"></span></div>
+              <div style="margin-top:6px">3. Is the invoice approved? → <span class="small" id="iq53"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showIQ5">Ver reescritas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Escolha a frase de e-mail (3 itens)</div>
+            <div class="card">
+              <div>1. [Where is the cargo? / Could you tell me where the cargo is?] → <span class="small" id="em51"></span></div>
+              <div style="margin-top:6px">2. [Is it approved? / Do you know if it is approved?] → <span class="small" id="em52"></span></div>
+              <div style="margin-top:6px">3. [What time is the truck? / Do you know what time the truck arrives?] → <span class="small" id="em53"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showEM5">Ver opções</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='B2' && Number((location.hash.split('/')[3]||'1'))===6 ? `
+            <div class="section-title" style="margin-top:12px">Substitua formal → phrasal verb (3 itens)</div>
+            <div class="card">
+              <div>1. Please [investigate] ___ the noise → <span class="small" id="pv61"></span></div>
+              <div style="margin-top:6px">2. Do not [postpone] ___ the repair → <span class="small" id="pv62"></span></div>
+              <div style="margin-top:6px">3. We must [perform] ___ a full inspection → <span class="small" id="pv63"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showPV6">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Situações de emergência (3 itens)</div>
+            <div class="card">
+              <div>1. The tractor ___ this morning → <span class="small" id="em61"></span></div>
+              <div style="margin-top:6px">2. We are ___ diesel → <span class="small" id="em62"></span></div>
+              <div style="margin-top:6px">3. We must ___ with the schedule → <span class="small" id="em63"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showEM6">Ver respostas</button></div>
+            </div>
+            ` : ''}
             ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===6 ? `
             <div class="section-title" style="margin-top:12px">Complete com There is / There are</div>
             <div class="card">
@@ -2984,6 +3094,78 @@ async function setupAudio(data) {
             const c1 = document.getElementById('cf121'); if (c1) { c1.textContent = "The tank is full, isn't it?" }
             const c2 = document.getElementById('cf122'); if (c2) { c2.textContent = "The floor is clean, isn't it?" }
             const c3 = document.getElementById('cf123'); if (c3) { c3.textContent = "The operator has the map, doesn't he?" }
+          });
+          const showCD1 = document.getElementById('showCD1');
+          if (showCD1) showCD1.addEventListener('click', ()=>{
+            const s1 = document.getElementById('cd11'); if (s1) { s1.textContent = 'Despite tradition, conventional tillage causes erosion.' }
+            const s2 = document.getElementById('cd12'); if (s2) { s2.textContent = 'Despite the challenge, the benefits are undeniable.' }
+            const s3 = document.getElementById('cd13'); if (s3) { s3.textContent = 'Despite the cost, we save money on fuel.' }
+          });
+          const showAG1 = document.getElementById('showAG1');
+          if (showAG1) showAG1.addEventListener('click', ()=>{
+            const a1 = document.getElementById('ag11'); if (a1) { a1.textContent = 'efficient' }
+            const a2 = document.getElementById('ag12'); if (a2) { a2.textContent = 'viable' }
+            const a3 = document.getElementById('ag13'); if (a3) { a3.textContent = 'more sustainable' }
+          });
+          const showCA2 = document.getElementById('showCA2');
+          if (showCA2) showCA2.addEventListener('click', ()=>{
+            const c1 = document.getElementById('ca21'); if (c1) { c1.textContent = 'I had the grass cut.' }
+            const c2 = document.getElementById('ca22'); if (c2) { c2.textContent = 'We got the soil tested.' }
+            const c3 = document.getElementById('ca23'); if (c3) { c3.textContent = 'They had the pump fixed.' }
+          });
+          const showMG2 = document.getElementById('showMG2');
+          if (showMG2) showMG2.addEventListener('click', ()=>{
+            const m1 = document.getElementById('mg21'); if (m1) { m1.textContent = 'Have the roof repaired.' }
+            const m2 = document.getElementById('mg22'); if (m2) { m2.textContent = 'Have the reports sent by Friday.' }
+            const m3 = document.getElementById('mg23'); if (m3) { m3.textContent = 'Get the fence replaced.' }
+          });
+          const showMD3 = document.getElementById('showMD3');
+          if (showMD3) showMD3.addEventListener('click', ()=>{
+            const d1 = document.getElementById('md31'); if (d1) { d1.textContent = 'Someone must have stolen the fuel.' }
+            const d2 = document.getElementById('md32'); if (d2) { d2.textContent = "It can't have been lack of irrigation; the pump might have failed." }
+            const d3 = document.getElementById('md33'); if (d3) { d3.textContent = 'It must have been a nutrient deficiency.' }
+          });
+          const showNH3 = document.getElementById('showNH3');
+          if (showNH3) showNH3.addEventListener('click', ()=>{
+            const n1 = document.getElementById('nh31'); if (n1) { n1.textContent = "It can't have been a lack of water." }
+            const n2 = document.getElementById('nh32'); if (n2) { n2.textContent = "It can't have been the temperature." }
+            const n3 = document.getElementById('nh33'); if (n3) { n3.textContent = "It can't have been the weather." }
+          });
+          const showTL4 = document.getElementById('showTL4');
+          if (showTL4) showTL4.addEventListener('click', ()=>{
+            const t1 = document.getElementById('tl41'); if (t1) { t1.textContent = 'will have finished' }
+            const t2 = document.getElementById('tl42'); if (t2) { t2.textContent = 'will have upgraded' }
+            const t3 = document.getElementById('tl43'); if (t3) { t3.textContent = 'will have implemented' }
+          });
+          const showBI4 = document.getElementById('showBI4');
+          if (showBI4) showBI4.addEventListener('click', ()=>{
+            const b1 = document.getElementById('bi41'); if (b1) { b1.textContent = 'in' }
+            const b2 = document.getElementById('bi42'); if (b2) { b2.textContent = 'by' }
+            const b3 = document.getElementById('bi43'); if (b3) { b3.textContent = 'by' }
+          });
+          const showIQ5 = document.getElementById('showIQ5');
+          if (showIQ5) showIQ5.addEventListener('click', ()=>{
+            const i1 = document.getElementById('iq51'); if (i1) { i1.textContent = 'Do you know where the boss is?' }
+            const i2 = document.getElementById('iq52'); if (i2) { i2.textContent = 'Could you tell me what time the truck arrives?' }
+            const i3 = document.getElementById('iq53'); if (i3) { i3.textContent = 'Do you know if the invoice is approved?' }
+          });
+          const showEM5 = document.getElementById('showEM5');
+          if (showEM5) showEM5.addEventListener('click', ()=>{
+            const e1 = document.getElementById('em51'); if (e1) { e1.textContent = 'Could you tell me where the cargo is?' }
+            const e2 = document.getElementById('em52'); if (e2) { e2.textContent = 'Do you know if it is approved?' }
+            const e3 = document.getElementById('em53'); if (e3) { e3.textContent = 'Do you know what time the truck arrives?' }
+          });
+          const showPV6 = document.getElementById('showPV6');
+          if (showPV6) showPV6.addEventListener('click', ()=>{
+            const p1 = document.getElementById('pv61'); if (p1) { p1.textContent = 'look into' }
+            const p2 = document.getElementById('pv62'); if (p2) { p2.textContent = 'put off' }
+            const p3 = document.getElementById('pv63'); if (p3) { p3.textContent = 'carry out' }
+          });
+          const showEM6 = document.getElementById('showEM6');
+          if (showEM6) showEM6.addEventListener('click', ()=>{
+            const s1 = document.getElementById('em61'); if (s1) { s1.textContent = 'broke down' }
+            const s2 = document.getElementById('em62'); if (s2) { s2.textContent = 'running out of' }
+            const s3 = document.getElementById('em63'); if (s3) { s3.textContent = 'keep up' }
           });
           const showINT12 = document.getElementById('showINT12');
           if (showINT12) showINT12.addEventListener('click', ()=>{
