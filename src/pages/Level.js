@@ -10,6 +10,7 @@ export function Level(level) {
   const isB1 = String(level||'').toUpperCase()==='B1';
   const isB2 = String(level||'').toUpperCase()==='B2';
   const isC1 = String(level||'').toUpperCase()==='C1';
+  const isC2 = String(level||'').toUpperCase()==='C2';
   const hero = isA1 ? `
       <section class="level-hero">
         <h2 class="title">Módulo A1 - Fundamentos do Campo</h2>
@@ -106,6 +107,26 @@ export function Level(level) {
         </div>
         <p class="desc" style="margin-top:8px">São 12 lições densas para transformar você em um especialista internacional.</p>
         <p class="desc">Vamos para o laboratório?</p>
+        <div class="actions" style="margin-top:10px">
+          <a class="btn" href="#/text/${level}/1">Começar</a>
+        </div>
+      </section>
+  ` : isC2 ? `
+      <section class="level-hero">
+        <h2 class="title">Módulo C2 - Maestria e Fluência Nativa</h2>
+        <p class="desc">Bem-vindo ao Nível Nativo!</p>
+        <p class="desc">No C1, você aprendeu a ciência. No C2, você aprende a alma do campo. Este módulo foca nas sutilezas que os livros tradicionais não ensinam: expressões rurais idiomáticas, humor, ironia e a capacidade de negociar com elegância absoluta. O objetivo é que você soe tão natural que esqueçam que você é estrangeiro.</p>
+        <div class="card" style="margin-top:8px">
+          <div class="section-title" style="margin-bottom:6px">O que você vai dominar:</div>
+          <div class="small" style="line-height:1.6">
+            ✅ Idioms do Campo: Expressões como "Don't count your chickens" ou "Buy the farm".<br>
+            ✅ Ironia e Humor: Entender quando o "Sim" na verdade quer dizer "Não".<br>
+            ✅ Inglês Literário: Ler narrativas complexas e histórias do agronegócio.<br>
+            ✅ Negociação Sutil: A arte de persuadir sem parecer que está vendendo.
+          </div>
+        </div>
+        <p class="desc" style="margin-top:8px">São 12 lições finais para você zerar o jogo do inglês agrícola.</p>
+        <p class="desc">Vamos fechar com chave de ouro?</p>
         <div class="actions" style="margin-top:10px">
           <a class="btn" href="#/text/${level}/1">Começar</a>
         </div>

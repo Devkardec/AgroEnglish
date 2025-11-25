@@ -1019,6 +1019,8 @@ async function setupAudio(data) {
           ,
           'outsource':'áut-sórs','contractor':'cón-trék-tôr','ensure':'ên-xûr','serviced':'sér-vis-t'
           ,
+          'cornerstone':'cór-nâr-stôn','marbling':'már-blin','hereditary':'ri-ré-di-téri','mitigate':'mí-ti-gueit','traits':'trêits','genome':'djí-nôm'
+          ,
           'roof':'rúf','painted':'pêin-ted','installed':'íns-tóld','reports':'ri-pórts'
           ,
           'irrigation logs':'i-rri-gêi-xân lógs','mild':'máiold','nutrient deficiency':'nú-tri-ent di-fí-xen-si','growth stage':'grôuth stêidj','roots':'rúts','nitrogen':'nái-tro-djén','fungus':'fân-gâs','underground':'ân-dâr-gráund','stolen':'stôu-lân'
@@ -1880,17 +1882,18 @@ async function setupAudio(data) {
     const forms = buildForms(baseExample);
 
     const lvl = String(item.level||'').toUpperCase();
-    const grammarText = (lvl === 'B1')
-      ? 'Past simple narrative with cause/result (because/so). Future (will/going to) for plans.'
-      : (lvl === 'A2'
-        ? 'Present simple + present continuous (routine vs now).'
-        : (lvl === 'B2'
-          ? 'Procedures, passive voice, sequences, and technical reporting.'
-          : (lvl === 'C1'
-            ? 'Advanced management language, complex clauses, and precise modality.'
-            : (lvl === 'C2'
-              ? 'Academic/report style, compliance wording, and controlled terminology.'
-              : 'Present simple with farm routines.'))));
+    const grammarText = item.grammar ? String(item.grammar)
+      : (lvl === 'B1'
+        ? 'Past simple narrative with cause/result (because/so). Future (will/going to) for plans.'
+        : (lvl === 'A2'
+          ? 'Present simple + present continuous (routine vs now).'
+          : (lvl === 'B2'
+            ? 'Procedures, passive voice, sequences, and technical reporting.'
+            : (lvl === 'C1'
+              ? 'Advanced management language, complex clauses, and precise modality.'
+              : (lvl === 'C2'
+                ? 'Academic/report style, compliance wording, and controlled terminology.'
+                : 'Present simple with farm routines.')))));
     const grammarForms = (lvl === 'B1') ? null : (forms.affirmative ? forms : (item.grammar_forms || null));
 
     let mc = [];
@@ -2041,7 +2044,8 @@ async function setupAudio(data) {
       he_she_it_rule: heSheItExample ? { example: heSheItExample } : (item.he_she_it_rule || null),
       grammar_forms: grammarForms,
       usage_table: item.usage_table || null,
-      structure_table: item.structure_table || null
+      structure_table: item.structure_table || null,
+      vocabulary_table: item.vocabulary_table || null
     };
   }
   function fetchText() {
@@ -2164,7 +2168,23 @@ async function setupAudio(data) {
               <div style="margin-top:6px">3. The cows ___ calm.</div>
             </div>
             ` : ''}
-            ${String(level).toUpperCase()==='B1' && Number((location.hash.split('/')[3]||'1'))===8 ? `
+            ${String(level).toUpperCase()==='C1' && Number((location.hash.split('/')[3]||'1'))===1 ? `
+            <div class="section-title" style="margin-top:12px">Transforme Ativa → Passiva Impessoal (3 itens)</div>
+            <div class="card">
+              <div>1. Researchers think that feed conversion is improving → <span class="small" id="ip11"></span></div>
+              <div style="margin-top:6px">2. Scientists estimate that demand will double → <span class="small" id="ip12"></span></div>
+              <div style="margin-top:6px">3. Reports say that gene editing eliminates diseases → <span class="small" id="ip13"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showIP1C1">Ver reescritas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Reescreva com sujeito + passiva + to‑infinitive (3 itens)</div>
+            <div class="card">
+              <div>1. It is said that the bull is strong → <span class="small" id="to11"></span></div>
+              <div style="margin-top:6px">2. It is believed that precise breeding mitigates impact → <span class="small" id="to12"></span></div>
+              <div style="margin-top:6px">3. It is acknowledged that genetic selection is the cornerstone → <span class="small" id="to13"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showTO1C1">Ver respostas</button></div>
+            </div>
+            ` : ''}
+          ${String(level).toUpperCase()==='B1' && Number((location.hash.split('/')[3]||'1'))===8 ? `
             <div class="section-title" style="margin-top:12px">Complete com JUST / ALREADY / YET (3 itens)</div>
             <div class="card">
               <div>1. I have ___ finished checking the tanks. <span class="small" id="jy81"></span></div>
@@ -3418,6 +3438,18 @@ async function setupAudio(data) {
             const t1 = document.getElementById('tp11'); if (t1) { t1.textContent = 'It was cold.' }
             const t2 = document.getElementById('tp12'); if (t2) { t2.textContent = 'The cows were hungry.' }
             const t3 = document.getElementById('tp13'); if (t3) { t3.textContent = 'We were tired.' }
+          });
+          const showIP1C1 = document.getElementById('showIP1C1');
+          if (showIP1C1) showIP1C1.addEventListener('click', ()=>{
+            const r1 = document.getElementById('ip11'); if (r1) { r1.textContent = 'It is thought that feed conversion is improving.' }
+            const r2 = document.getElementById('ip12'); if (r2) { r2.textContent = 'It is estimated that demand will double.' }
+            const r3 = document.getElementById('ip13'); if (r3) { r3.textContent = 'It has been reported that gene editing eliminates diseases.' }
+          });
+          const showTO1C1 = document.getElementById('showTO1C1');
+          if (showTO1C1) showTO1C1.addEventListener('click', ()=>{
+            const k1 = document.getElementById('to11'); if (k1) { k1.textContent = 'The bull is said to be strong.' }
+            const k2 = document.getElementById('to12'); if (k2) { k2.textContent = 'Precise breeding is believed to mitigate impact.' }
+            const k3 = document.getElementById('to13'); if (k3) { k3.textContent = 'Genetic selection is acknowledged to be the cornerstone.' }
           });
           const showED2 = document.getElementById('showED2');
           if (showED2) showED2.addEventListener('click', ()=>{

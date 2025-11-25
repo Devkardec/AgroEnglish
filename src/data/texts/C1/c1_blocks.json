@@ -1,14 +1,226 @@
 [
-  { "id": 1, "level": "C1", "category": "Máquinas/Campo", "title": "Yield Analysis", "title_pt": "Análise de Rendimento", "text_en": "We have analyzed the yield data from the last harvest. The results indicate a 10% increase in efficiency due to the new machinery. However, variability has persisted in sandy plots; therefore, input strategy will be refined.", "text_pt": "Nós temos analisado os dados de rendimento da última colheita. Os resultados indicam um aumento de 10% na eficiência devido às novas máquinas. Entretanto, a variabilidade tem persistido em áreas arenosas; portanto, a estratégia de insumos será refinada." },
-  { "id": 2, "level": "C1", "category": "Máquinas/Campo", "title": "ROI Calculation", "title_pt": "Cálculo de ROI", "text_en": "The Return on Investment (ROI) for the new tractors is positive; therefore, we will approve the purchase of two more units. The proposal has been reviewed, and the payback period has been reduced.", "text_pt": "O Retorno sobre Investimento (ROI) dos novos tratores é positivo; portanto, aprovaremos a compra de mais duas unidades. A proposta foi revisada, e o prazo de retorno foi reduzido." },
-  { "id": 3, "level": "C1", "category": "Máquinas/Campo", "title": "Precision Strategy", "title_pt": "Estratégia de Precisão", "text_en": "Variable rate application has been implemented. However, we still need to calibrate the sensors for better accuracy; therefore, a field audit has been scheduled.", "text_pt": "A aplicação em taxa variável foi implementada. Entretanto, ainda precisamos calibrar os sensores para melhor precisão; portanto, uma auditoria de campo foi agendada." },
-  { "id": 4, "level": "C1", "category": "Máquinas/Campo", "title": "Predictive Maintenance", "title_pt": "Manutenção Preditiva", "text_en": "The software predicts engine failures before they happen. Furthermore, maintenance is scheduled automatically to avoid downtime; therefore, the service plan has been optimized.", "text_pt": "O software prevê falhas de motor antes que ocorram. Além disso, a manutenção é agendada automaticamente para evitar paradas; portanto, o plano de serviço foi otimizado." },
-  { "id": 5, "level": "C1", "category": "Pecuária", "title": "Genetic Improvement", "title_pt": "Melhoramento Genético", "text_en": "We have selected bulls with superior genetics to improve the herd's feed conversion ratio. The selection criteria have been validated by performance data.", "text_pt": "Nós temos selecionado touros com genética superior para melhorar a taxa de conversão alimentar do rebanho. Os critérios de seleção foram validados por dados de desempenho." },
-  { "id": 6, "level": "C1", "category": "Pecuária", "title": "Profitability", "title_pt": "Lucratividade", "text_en": "The profit margin per animal has stabilized. We are analyzing the cost of feed to optimize the budget; however, contracts have been renegotiated to mitigate volatility.", "text_pt": "A margem de lucro por animal tem se estabilizado. Estamos analisando o custo da ração para otimizar o orçamento; entretanto, contratos foram renegociados para mitigar a volatilidade." },
-  { "id": 7, "level": "C1", "category": "Pecuária", "title": "Pasture Management", "title_pt": "Gestão de Pasto", "text_en": "Intensive rotational grazing has improved soil health; therefore, forage quality is significantly higher this year. Furthermore, stocking density has been optimized across paddocks.", "text_pt": "O pastejo rotativo intensivo tem melhorado a saúde do solo; portanto, a qualidade da forragem está significativamente maior neste ano. Além disso, a densidade de lotação tem sido otimizada entre os piquetes." },
-  { "id": 8, "level": "C1", "category": "Veterinária", "title": "Biosecurity Protocols", "title_pt": "Protocolos de Biossegurança", "text_en": "Strict biosecurity protocols have been established to prevent pathogen entry. Access is controlled by software; furthermore, training programs have been updated to maintain adherence.", "text_pt": "Protocolos rigorosos de biossegurança têm sido estabelecidos para prevenir a entrada de patógenos. O acesso é controlado por software; além disso, programas de treinamento têm sido atualizados para manter a adesão." },
-  { "id": 9, "level": "C1", "category": "Veterinária", "title": "Resistance Analysis", "title_pt": "Análise de Resistência", "text_en": "We have observed parasite resistance in specific cohorts. Therefore, active ingredients in the medication are being changed, and the rotation policy has been revised.", "text_pt": "Nós temos observado resistência a parasitas em grupos específicos. Portanto, os princípios ativos do medicamento estão sendo alterados, e a política de rotação foi revisada." },
-  { "id": 10, "level": "C1", "category": "Veterinária", "title": "Compliance Audit", "title_pt": "Auditoria de Conformidade", "text_en": "The farm has passed the international sanitary audit, demonstrating our commitment to quality and safety standards. However, minor findings have been addressed with corrective actions; therefore, certification has been confirmed.", "text_pt": "A fazenda passou na auditoria sanitária internacional, demonstrando nosso compromisso com padrões de qualidade e segurança. Entretanto, constatações menores foram tratadas com ações corretivas; portanto, a certificação foi confirmada." }
-  ,{ "id": 11, "level": "C1", "category": "Gestão/Técnico", "title": "Technical Analysis: Productivity and Costs", "title_pt": "Análise técnica: produtividade e custos", "text_en": "A soybean field spans 120 hectares with a forecast yield of 3.6 t/ha (432 tons). Cash price is $510/t and variable costs total $328/ha, summing $39,360 across 120 ha. Irrigation uses 5,000 m³ of water and sprayer calibration is 200 L/ha. Breakeven ≈ $39,360 / 432 = $91.11/t.", "text_pt": "Um campo de soja ocupa 120 hectares com produtividade prevista de 3,6 t/ha (432 toneladas). O preço à vista é $510/t e os custos variáveis somam $328/ha, totalizando $39.360 em 120 ha. A irrigação usa 5.000 m³ de água e a calibração do pulverizador é 200 L/ha. Ponto de equilíbrio ≈ $39.360 / 432 = $91,11/t." }
-  ,{ "id": 12, "level": "C1", "category": "Gestão/Agenda", "title": "Addresses and Timetables", "title_pt": "Endereços e horários", "text_en": "By 07:00, operations are scheduled at 125 Green Road; however, delivery arrives at 07:20 due to traffic. Therefore, the team adjusts the timetable and reallocates tasks. The meeting at 18 Oak Street starts at 09:30, and addresses are verified in the log to preclude confusion.", "text_pt": "Às 07:00, as operações estão programadas na Rua Green, 125; porém, a entrega chega às 07:20 devido ao trânsito. Portanto, a equipe ajusta o cronograma e realoca tarefas. A reunião na Rua Oak, 18 começa às 09:30, e os endereços são verificados no registro para evitar confusão." }
+  { "id": 1, "level": "C1", "category": "Pesquisa/Genética", "title": "Genetic Selection and Breeding (The Impersonal Passive)", "title_pt": "Seleção Genética e Reprodução (Passiva Impessoal)", "text_en": "It is widely acknowledged that genetic selection is the cornerstone of modern livestock productivity. It is estimated that the global demand for protein will double by 2050, necessitating more efficient breeds. The Angus genome is said to possess superior traits regarding marbling and feed conversion. Furthermore, it has been reported that certain hereditary diseases can be eliminated through gene editing. It is believed that these advancements will mitigate the environmental impact of farming. Therefore, precise breeding is considered to be the most effective tool for sustainability.", "text_pt": "É amplamente reconhecido que a seleção genética é a pedra angular da produtividade pecuária moderna. Estima-se que a demanda global por proteína dobrará até 2050, exigindo raças mais eficientes. Diz-se que o genoma Angus possui características superiores quanto ao marmoreio e à conversão alimentar. Ademais, tem sido relatado que certas doenças hereditárias podem ser eliminadas por edição gênica. Acredita-se que esses avanços mitigarão o impacto ambiental da agricultura. Portanto, considera-se que a reprodução precisa é a ferramenta mais eficaz para a sustentabilidade.", "grammar": "Passiva Impessoal (Voz da Ciência):\nEstrutura 1 — It is + [believed/estimated/said/thought/reported] + that + oração.\nEx.: It is estimated that demand will double.\nEstrutura 2 — Subject + is/are + [said/believed/acknowledged/considered] + to + infinitive.\nEx.: The genome is said to possess superior traits; Genetic selection is acknowledged to be the cornerstone.\nObjetivo: remover subjetividade e dar tom científico em relatórios, papers e apresentações.", "vocabulary_table": [
+    { "word": "cornerstone", "translation": "pedra angular/base" },
+    { "word": "marbling", "translation": "marmoreio" },
+    { "word": "hereditary", "translation": "hereditário" },
+    { "word": "mitigate", "translation": "mitigar/reduzir danos" },
+    { "word": "traits", "translation": "características/traços genéticos" },
+    { "word": "genome", "translation": "genoma" }
+  ] },
+  { "id": 2, "level": "C1", "category": "Gestão/Dados", "title": "Precision Agriculture: Data-Driven Decisions (Nominalization)", "title_pt": "Agricultura de Precisão: Decisões Orientadas por Dados (Nominalização)", "text_en": "The rapid adoption of precision agriculture technologies has revolutionized farm management. The integration of satellite imagery and soil sensors allows for the maximization of crop yields. Prior to this implementation, the reliance on manual estimation led to significant inefficiency. However, the analysis of big data requires robust connectivity. The accuracy of autonomous machinery depends on the reliability of the GPS signal. Consequently, the digitization of the rural sector is not merely a trend, but a necessity for economic survival.", "text_pt": "A rápida adoção de tecnologias de agricultura de precisão revolucionou a gestão agrícola. A integração de imagética de satélite e sensores de solo possibilita a maximização dos rendimentos das culturas. Antes dessa implementação, a dependência de estimativas manuais levou a significativa ineficiência. Todavia, a análise de big data requer conectividade robusta. A precisão da maquinaria autônoma depende da confiabilidade do sinal de GPS. Consequentemente, a digitalização do setor rural não é meramente uma tendência, mas uma necessidade para a sobrevivência econômica.", "grammar": "Nominalização (estilo acadêmico): transformar verbos/adjetivos em substantivos para focar processos e resultados. Aumenta densidade informativa e neutraliza o agente. Exemplos: adopt → adoption; rely → reliance; accurate → accuracy; digitize → digitization. Preferir estruturas como ‘The reliance on…’ em vez de ‘We rely on…’ quando o foco é o conceito, não quem faz.", "vocabulary_table": [
+    { "word": "revolutionized", "translation": "revolucionou" },
+    { "word": "imagery", "translation": "imagética/imagens" },
+    { "word": "robust", "translation": "robusto/forte" },
+    { "word": "connectivity", "translation": "conectividade" },
+    { "word": "merely", "translation": "meramente/apenas" }
+  ], "exercises": {
+    "multiple_choice": [
+      { "question": "The __________ of soil sensors improved decision‑making.", "options": ["integration", "integrative", "integrate"], "answer": 0 },
+      { "question": "Yield __________ depends on precise input management.", "options": ["maximization", "maximize", "maximal"], "answer": 0 },
+      { "question": "Prior to system rollout, manual __________ caused delays.", "options": ["estimation", "estimate", "estimative"], "answer": 0 }
+    ],
+    "fill_in": [
+      { "sentence": "The ____ of satellite imagery and soil sensors is effective.", "answer": "integration" },
+      { "sentence": "The ____ on broadband for field map transfer is critical.", "answer": "reliance" },
+      { "sentence": "The ____ of autonomous tractors under clear‑sky conditions is high.", "answer": "accuracy" }
+    ],
+    "speaking": "Repeat: Precision Agriculture — Nominalization"
+  } },
+  { "id": 3, "level": "C1", "category": "Epidemiologia/Veterinária", "title": "Epidemiology and Disease Control (Inversion for Emphasis)", "title_pt": "Epidemiologia e Controle de Doenças (Inversão para Ênfase)", "text_en": "The recent outbreak of Avian Influenza requires immediate attention. Rarely have we encountered a pathogen with such high transmission rates. Not only does the virus affect poultry, but it also poses a risk to wild birds. Under no circumstances should biosecurity protocols be relaxed during this period. Little did we know that the migration patterns would accelerate the spread. Seldom do local vaccines provide full immunity against this specific strain. Only by implementing strict quarantine zones can we contain the infection.", "text_pt": "O recente surto de Influenza Aviária requer atenção imediata. Raramente nos deparamos com um patógeno com taxas de transmissão tão elevadas. O vírus não apenas afeta aves de granja, mas também representa risco para aves silvestres. Sob nenhuma circunstância os protocolos de biossegurança devem ser flexibilizados nesse período. Mal sabíamos que os padrões de migração acelerariam a disseminação. Raramente as vacinas locais fornecem imunidade plena contra esta cepa específica. Somente com a implementação de zonas estritas de quarentena podemos conter a infecção.", "grammar": "Inversion with Negative Adverbials: iniciar com advérbios negativos/restritivos (Rarely, Never, Seldom, Little, Under no circumstances, Not only) inverte a ordem: Advérbio + auxiliar + sujeito + verbo principal. Ex.: Normal: We have rarely encountered… → Inversão: Rarely have we encountered…; Normal: We should never relax protocols. → Inversão: Under no circumstances should we relax protocols. Uso: dar ênfase, formalidade e urgência em textos técnicos.", "vocabulary_table": [
+    { "word": "pathogen", "translation": "patógeno" },
+    { "word": "transmission rates", "translation": "taxas de transmissão" },
+    { "word": "poultry", "translation": "aves de granja" },
+    { "word": "strain", "translation": "cepa/variante do vírus" },
+    { "word": "contain", "translation": "conter/represar" },
+    { "word": "biosecurity", "translation": "biossegurança/biosseguridade" }
+  ], "exercises": {
+    "multiple_choice": [
+      { "question": "Escolha a inversão correta: We rarely observe full immunity.", "options": ["Rarely we observe full immunity.", "Rarely do we observe full immunity.", "Rarely we do observe full immunity."], "answer": 1 },
+      { "question": "Complete: ____ should we relax protocols during an outbreak.", "options": ["Under no circumstances", "Not only", "Little"], "answer": 0 },
+      { "question": "Not only... but also: The virus affects poultry and risks wild birds.", "options": ["Not only the virus affects poultry, but also it risks wild birds.", "Not only does the virus affect poultry, but it also poses a risk to wild birds.", "Not only the virus does affect poultry, but also it poses a risk to wild birds."], "answer": 1 }
+    ],
+    "fill_in": [
+      { "sentence": "_____ did we know that migration patterns would accelerate the spread.", "answer": "Little" },
+      { "sentence": "_____ do local vaccines provide full immunity against this specific strain.", "answer": "Seldom" },
+      { "sentence": "Only by expanding testing _____ we identify asymptomatic cases.", "answer": "can" }
+    ],
+    "speaking": "Repeat: Inversion — disease control"
+  } },
+  { "id": 4, "level": "C1", "category": "Clima/Sustentabilidade", "title": "Climate Change Mitigation (Advanced Connectors)", "title_pt": "Mitigação das Mudanças Climáticas (Conectivos Avançados)", "text_en": "The impact of global warming on agriculture is undeniable, albeit some skepticism remains in certain political circles. Notwithstanding the high cost of green technology, the transition to renewable energy is imperative. We must implement carbon sequestration techniques, thereby reducing our environmental footprint. The rainfall patterns have shifted drastically; hence, traditional irrigation methods are becoming obsolete. Some crops are resilient, whereas others are highly vulnerable to heat stress. We aim to achieve carbon neutrality by 2030, thus ensuring the long-term viability of the sector.", "text_pt": "O impacto do aquecimento global na agricultura é inegável, conquanto algum ceticismo permaneça em certos círculos políticos. Não obstante o alto custo das tecnologias verdes, a transição para energia renovável é imperativa. Devemos implementar técnicas de sequestro de carbono, reduzindo, com isso, nossa pegada ambiental. Os padrões de precipitação deslocaram-se drasticamente; por conseguinte, métodos tradicionais de irrigação estão tornando-se obsoletos. Algumas culturas são resilientes, ao passo que outras são altamente vulneráveis ao estresse térmico. Almejamos alcançar a neutralidade de carbono até 2030, garantindo, assim, a viabilidade de longo prazo do setor.", "grammar": "Advanced connectors (registro alto): \n- Albeit = embora/conquanto; usado antes de adjetivos ou segmentos curtos (Undeniable, albeit controversial).\n- Notwithstanding = apesar de/não obstante; tom formal.\n- Hence/Thus = portanto/por conseguinte; conclusão lógica.\n- Thereby = com isso/deste modo; indica o meio (by doing that).\n- Whereas = ao passo que/enquanto; contraste direto.\nUso: elevar a coesão e o tom acadêmico; substitui conectores básicos (so, but, although) por escolhas mais precisas.", "vocabulary_table": [
+    { "word": "mitigation", "translation": "mitigação" },
+    { "word": "carbon sequestration", "translation": "sequestro de carbono" },
+    { "word": "environmental footprint", "translation": "pegada ambiental" },
+    { "word": "obsolete", "translation": "obsoleto" },
+    { "word": "viability", "translation": "viabilidade" },
+    { "word": "skepticism", "translation": "ceticismo" }
+  ], "exercises": {
+    "multiple_choice": [
+      { "question": "_____ the high upfront cost, adoption proceeds.", "options": ["Notwithstanding", "Albeit", "Whereas"], "answer": 0 },
+      { "question": "Undeniable, _____ controversial in rural debates.", "options": ["albeit", "thus", "hence"], "answer": 0 },
+      { "question": "Some farmers favor solar, _____ others prefer biogas.", "options": ["whereas", "thereby", "thus"], "answer": 0 }
+    ],
+    "fill_in": [
+      { "sentence": "We implemented carbon sequestration, _____ reducing our footprint.", "answer": "thereby" },
+      { "sentence": "Rainfall patterns shifted; _____ traditional irrigation is becoming obsolete.", "answer": "hence" },
+      { "sentence": "Energy prices rose sharply; _____ adoption of efficiency measures accelerated.", "answer": "thus" }
+    ],
+    "speaking": "Repeat: Advanced connectors — climate mitigation"
+  } },
+  { "id": 5, "level": "C1", "category": "Política/Regulação", "title": "The GMO Debate: Policy and Regulation (The Subjunctive)", "title_pt": "O Debate sobre OGM: Política e Regulação (Subjuntivo)", "text_en": "The controversy surrounding Genetically Modified Organisms (GMOs) demands rigor from regulatory bodies. It is essential that the public understand the difference between transgenics and gene editing. Consumer advocacy groups insist that the government label all GMO products clearly. However, scientists recommend that the legislation be based on scientific consensus, not fear. It is vital that a stakeholder review the biosafety protocols annually. We propose that the ban on resistant seeds be lifted immediately to ensure food security.", "text_pt": "A controvérsia em torno dos Organismos Geneticamente Modificados (OGMs) exige rigor por parte dos órgãos reguladores. É essencial que o público entenda a diferença entre transgênicos e edição gênica. Grupos de defesa do consumidor insistem que o governo rotule claramente todos os produtos OGM. Contudo, cientistas recomendam que a legislação seja baseada em consenso científico, não em medo. É vital que uma parte interessada revise os protocolos de biossegurança anualmente. Propomos que a proibição sobre sementes resistentes seja suspensa imediatamente para garantir a segurança alimentar.", "grammar": "Mandative Subjunctive: após expressões de importância (It is essential/vital/crucial that...) e verbos de ordem/sugestão (insist/recommend/demand/propose that...), use a forma base do verbo (sem to, sem -s, sem -ing). Exemplos: It is essential that the public understand...; recommend that the legislation be...; propose that the ban be lifted (passiva no subjuntivo).", "vocabulary_table": [
+    { "word": "regulatory bodies", "translation": "órgãos reguladores" },
+    { "word": "stakeholder", "translation": "parte interessada/envolvido" },
+    { "word": "biosafety", "translation": "biossegurança" },
+    { "word": "consensus", "translation": "consenso" },
+    { "word": "food security", "translation": "segurança alimentar" },
+    { "word": "lift the ban", "translation": "suspender/levantar a proibição" }
+  ], "exercises": {
+    "multiple_choice": [
+      { "question": "Choose the correct form: I recommend that she ____ to the hearing.", "options": ["go", "goes", "to go"], "answer": 0 },
+      { "question": "Choose the correct form: It is essential that the public ____ the difference.", "options": ["understand", "understands", "to understand"], "answer": 0 },
+      { "question": "Choose the correct form: We propose that the ban ____ immediately.", "options": ["be lifted", "is lifted", "to be lifted"], "answer": 0 }
+    ],
+    "fill_in": [
+      { "sentence": "It is crucial that he ___ present.", "answer": "be" },
+      { "sentence": "It is vital that the committee ___ neutral and independent.", "answer": "be" },
+      { "sentence": "They insist that the protocol ___ updated annually.", "answer": "be" }
+    ],
+    "speaking": "Repeat: Mandative Subjunctive — GMO policy"
+  } },
+  { "id": 6, "level": "C1", "category": "Logística/Gestão", "title": "Global Supply Chains and Logistics (Mixed Conditionals)", "title_pt": "Cadeias Globais de Suprimento e Logística (Condicionais Mistos)", "text_en": "The resilience of our global supply chain is being tested. If we had diversified our suppliers five years ago, we would not be facing these severe shortages today. Currently, our logistics are in chaos. If the port were not congested, our cargo would have arrived last week. We relied too heavily on a single region. If we had established a local warehouse, our distribution would be much faster now. Moving forward, we must analyze these strategic failures. If we were more proactive regarding risk management, we would have avoided this financial loss.", "text_pt": "A resiliência de nossa cadeia global de suprimentos está sendo testada. Se tivéssemos diversificado nossos fornecedores há cinco anos, não estaríamos enfrentando essas severas escassezes hoje. Atualmente, nossa logística está em caos. Se o porto não estivesse congestionado, nossa carga teria chegado na semana passada. Confiamos excessivamente em uma única região. Se tivéssemos estabelecido um armazém local, nossa distribuição seria muito mais rápida agora. Daqui em diante, precisamos analisar essas falhas estratégicas. Se fôssemos mais proativos quanto à gestão de risco, teríamos evitado esta perda financeira.", "grammar": "Mixed Conditionals (condicionais mistos): \n- Passado → Presente: If + Past Perfect (had done) ... would + base (estado atual). Ex.: If we had diversified, we would not be facing… \n- Presente (estado) → Passado: If + Simple Past (were) ... would have + participle (resultado passado). Ex.: If we were proactive, we would have avoided… \n- Presente → Passado (situação atual contrafactual): If the port were not congested, our cargo would have arrived last week. Objetivo: relacionar decisões passadas e estados presentes a impactos em tempos distintos.", "vocabulary_table": [
+    { "word": "supply chain", "translation": "cadeia de suprimentos" },
+    { "word": "shortages", "translation": "escassezes/falta de produto" },
+    { "word": "congested", "translation": "congestionado" },
+    { "word": "warehouse", "translation": "armazém" },
+    { "word": "risk management", "translation": "gestão de risco" },
+    { "word": "proactive", "translation": "proativo" }
+  ], "exercises": {
+    "multiple_choice": [
+      { "question": "Choose the correct mixed conditional: If we ____ a local warehouse, distribution ____ much faster now.", "options": ["had established / would be", "established / would have been", "had establish / will be"], "answer": 0 },
+      { "question": "If the port ____ congested, our cargo ____ last week.", "options": ["were not / would have arrived", "was not / would arrive", "had not been / would arrive"], "answer": 0 },
+      { "question": "If we ____ suppliers earlier, we ____ these shortages today.", "options": ["had diversified / would not be facing", "diversified / would not face", "were diversifying / wouldn't have faced"], "answer": 0 }
+    ],
+    "fill_in": [
+      { "sentence": "If I ___ insurance, I ___ bankrupt.", "answer": "had bought / would not be" },
+      { "sentence": "If we ___ more proactive, we ___ this financial loss.", "answer": "were / would have avoided" },
+      { "sentence": "If the hub ___ optimized, deliveries ___ on schedule.", "answer": "had been / would be" }
+    ],
+    "speaking": "Repeat: Mixed conditionals — logistics"
+  } },
+  { "id": 7, "level": "C1", "category": "Pesquisa/Estatística", "title": "Analyzing Research Data (Correlation vs. Causation)", "title_pt": "Análise de Dados de Pesquisa (Correlação vs. Causalidade)", "text_en": "The preliminary analysis of the field trial reveals interesting patterns. We observed a strong correlation between soil pH levels and the proliferation of fungi. However, correlation does not imply causation. We must gather more empirical evidence to prove that acidity triggers the disease. The data from Plot B appears to be an anomaly; the results are inconsistent with the trend. This outlier might be due to a calibration error in the sensors. Unless the results are statistically significant, we cannot validate the hypothesis. We must isolate the variables to avoid false conclusions.", "text_pt": "A análise preliminar do experimento de campo revela padrões interessantes. Observamos uma forte correlação entre os níveis de pH do solo e a proliferação de fungos. Contudo, correlação não implica causalidade. Precisamos coletar mais evidências empíricas para provar que a acidez desencadeia a doença. Os dados do Talhão B parecem ser uma anomalia; os resultados são inconsistentes com a tendência. Esse ponto fora da curva (outlier) pode decorrer de um erro de calibração nos sensores. A menos que os resultados sejam estatisticamente significativos, não podemos validar a hipótese. Devemos isolar as variáveis para evitar conclusões falsas.", "grammar": "Scientific Precision: preferência por linguagem cautelosa e precisa ao analisar dados. Usar appears to be, might be, suggests, indicates em vez de afirmações categóricas sem evidência. Regras: não confundir correlação com causalidade; identificar outliers e anomalias; exigir significância estatística antes de validar a hipótese; isolar variáveis para reduzir vieses.", "vocabulary_table": [
+    { "word": "correlation", "translation": "correlação" },
+    { "word": "causation", "translation": "causalidade" },
+    { "word": "empirical", "translation": "empírico" },
+    { "word": "anomaly", "translation": "anomalia" },
+    { "word": "outlier", "translation": "ponto fora da curva/valor discrepante" },
+    { "word": "statistically significant", "translation": "estatisticamente significativo/relevante" },
+    { "word": "hypothesis", "translation": "hipótese" }
+  ], "exercises": {
+    "multiple_choice": [
+      { "question": "O galo canta e o sol nasce: isso é ____.", "options": ["correlation", "causation"], "answer": 0 },
+      { "question": "Aplicou‑se fungicida e a incidência caiu em ensaio controlado: isso indica ____.", "options": ["causation", "correlation"], "answer": 0 },
+      { "question": "Regiões com pH baixo têm mais fungos, sem controle de variáveis: isso é ____.", "options": ["correlation", "causation"], "answer": 0 }
+    ],
+    "fill_in": [
+      { "sentence": "Precisamos de evidência _____ antes de aceitar a conclusão.", "answer": "empirical" },
+      { "sentence": "O Talhão B é um _____ e deve ser investigado.", "answer": "outlier" },
+      { "sentence": "Nossa _____ será testada quando obtivermos significância estatística.", "answer": "hypothesis" }
+    ],
+    "speaking": "Repeat: Correlation vs. Causation — research precision"
+  } },
+  { "id": 8, "level": "C1", "category": "Pesquisa/Clínico", "title": "Scientific Trials: The Art of Caution (Hedging)", "title_pt": "Ensaios Científicos: A Arte da Cautela (Hedging)", "text_en": "The preliminary results of the vaccine trial are promising, though not definitive. The data suggests a strong correlation between the dosage and immunity levels. It appears that the new compound may reduce mortality rates by up to 20%. However, it is plausible that environmental factors also played a role. The findings indicate a positive trend, yet further research is required to confirm efficiency. We cannot rule out the possibility of minor side effects. Presumably, this innovation could become a standard treatment next year.", "text_pt": "Os resultados preliminares do ensaio da vacina são promissores, embora não definitivos. Os dados sugerem uma forte correlação entre a dosagem e os níveis de imunidade. Parece que o novo composto pode reduzir as taxas de mortalidade em até 20%. Entretanto, é plausível que fatores ambientais também tenham desempenhado um papel. As descobertas indicam uma tendência positiva, porém pesquisas adicionais são necessárias para confirmar a eficácia. Não podemos descartar a possibilidade de efeitos colaterais leves. Presumivelmente, essa inovação poderia tornar‑se um tratamento padrão no próximo ano.", "grammar": "Hedging (linguagem cautelosa): evitar certezas absolutas em ciência. Preferir verbs of appearance (suggest, indicate, appear/seem), modais de possibilidade (may, might, could) e advérbios de dúvida (presumably, arguably, plausible). Usar expressões de proteção como cannot rule out e preliminary results. Objetivo: apresentar conclusões com rigor sem prometer além da evidência.", "vocabulary_table": [
+    { "word": "trial", "translation": "ensaio/teste clínico" },
+    { "word": "definitive", "translation": "definitivo" },
+    { "word": "compound", "translation": "composto químico" },
+    { "word": "mortality rates", "translation": "taxas de mortalidade" },
+    { "word": "rule out", "translation": "descartar/eliminar hipótese" }
+  ], "exercises": {
+    "multiple_choice": [
+      { "question": "Transforme para linguagem cautelosa: This ____ X.", "options": ["suggests", "proves"], "answer": 0 },
+      { "question": "Escolha a opção mais acadêmica: It [is / appears to be] a virus.", "options": ["is", "appears to be"], "answer": 1 },
+      { "question": "Selecione o modal adequado: The compound [will / may] reduce mortality.", "options": ["will", "may"], "answer": 1 }
+    ],
+    "fill_in": [
+      { "sentence": "It ____ that the compound reduces mortality.", "answer": "appears" },
+      { "sentence": "We cannot ____ out minor side effects.", "answer": "rule" },
+      { "sentence": "Results are ____; further research is required.", "answer": "preliminary" }
+    ],
+    "speaking": "Repeat: Hedging — scientific trials"
+  } },
+  { "id": 9, "level": "C1", "category": "Biotecnologia/Genética", "title": "Biotech Innovations: CRISPR & Gene Editing (Participle Clauses)", "title_pt": "Inovações em Biotecnologia: CRISPR e Edição Gênica (Orações Reduzidas)", "text_en": "Hailed as the most significant breakthrough of the century, CRISPR-Cas9 has redefined genetic engineering. Functioning like molecular scissors, this tool allows scientists to edit DNA sequences with unprecedented precision. Applied to agriculture, the technique creates drought-resistant crops without introducing foreign DNA. Facing strict regulatory hurdles, researchers are nonetheless optimistic about the future. Developed by Doudna and Charpentier, the method is surprisingly cost-effective. Compared to traditional transgenics, gene editing is faster and less invasive.", "text_pt": "Aclamado como o avanço mais significativo do século, o CRISPR-Cas9 redefiniu a engenharia genética. Funcionando como tesouras moleculares, essa ferramenta permite aos cientistas editar sequências de DNA com precisão sem precedentes. Aplicada à agricultura, a técnica cria culturas resistentes à seca sem introduzir DNA exógeno. Enfrentando rigorosas barreiras regulatórias, os pesquisadores permanecem otimistas quanto ao futuro. Desenvolvido por Doudna e Charpentier, o método apresenta custo-benefício surpreendentemente favorável. Comparada aos transgênicos tradicionais, a edição gênica é mais rápida e menos invasiva.", "grammar": "Participle Clauses (orações reduzidas): reduzir cláusulas relativas para estilo conciso. \n- Present participle (‑ing): sentido ativo (o sujeito faz). Ex.: Functioning like scissors… (The tool, which functions…). \n- Past participle (‑ed): sentido passivo (o sujeito sofre). Ex.: Applied to agriculture… (The technique, which is applied…). \n- Posição inicial: muito comum para dar contexto. Regra: remover which is/which was/who does e ajustar pontuação. Dica: garantir que o particípio modifique corretamente o sujeito seguinte (evitar dangling modifier).", "vocabulary_table": [
+    { "word": "hailed", "translation": "aclamado/celebrado" },
+    { "word": "breakthrough", "translation": "avanço/descoberta importante" },
+    { "word": "unprecedented", "translation": "sem precedentes" },
+    { "word": "hurdles", "translation": "obstáculos/barreiras" },
+    { "word": "foreign DNA", "translation": "DNA exógeno/estrangeiro" },
+    { "word": "cost‑effective", "translation": "custo‑benefício favorável" }
+  ], "exercises": {
+    "multiple_choice": [
+      { "question": "Choose the best reduction (Active vs Passive): (Which functions like sensors) → ____ like sensors, the module improves accuracy.", "options": ["Functioning", "Functioned"], "answer": 0 },
+      { "question": "(Which is calibrated monthly) → ____ monthly, the device shows stable readings.", "options": ["Calibrating", "Calibrated"], "answer": 1 },
+      { "question": "(Which was developed at UC Berkeley) → ____ at UC Berkeley, the assay gained traction.", "options": ["Developing", "Developed"], "answer": 1 }
+    ],
+    "fill_in": [
+      { "sentence": "The scientist, who was working late, found the cure → ____ late, the scientist found the cure.", "answer": "Working" },
+      { "sentence": "The protocol, which is approved by the board, enters phase II → ____ by the board, the protocol enters phase II.", "answer": "Approved" },
+      { "sentence": "The method, which was compared to PCR, showed higher specificity → ____ to PCR, the method showed higher specificity.", "answer": "Compared" }
+  ], "speaking": "Repeat: Participle clauses — gene editing"
+  } },
+  { "id": 10, "level": "C1", "category": "Economia/Mercado", "title": "Economic Forecasts: Commodities and Trends (Advanced Future Forms)", "title_pt": "Projeções Econômicas: Commodities e Tendências (Futuro Avançado)", "text_en": "The agricultural commodities market is currently experiencing high volatility. Due to the recent drought, soybean prices are bound to rise in the next quarter. Experts believe we are on the verge of a supply crisis in the corn sector. However, the wheat harvest is set to break records this year, which might stabilize inflation. The new trade agreement is due to be signed on Monday, impacting tariffs. Some analysts argue that the sector is on the brink of a technological disruption. Consequently, investors are likely to shift their focus to sustainable assets.", "text_pt": "O mercado de commodities agrícolas enfrenta alta volatilidade. Em razão da recente seca, os preços da soja tendem inevitavelmente a subir no próximo trimestre. Especialistas acreditam que estamos à beira de uma crise de oferta no setor do milho. Entretanto, a colheita de trigo está prestes a bater recordes neste ano, o que pode estabilizar a inflação. O novo acordo comercial deve ser assinado na segunda‑feira, impactando tarifas. Alguns analistas argumentam que o setor está à beira de uma disrupção tecnológica. Consequentemente, investidores provavelmente deslocarão seu foco para ativos sustentáveis.", "grammar": "Advanced Future Forms: alternativas ao will para precisão jornalística/analítica. \n- Be bound to: inevitabilidade/certeza lógica (Prices are bound to rise). \n- Be set to: prontidão/tendência forte (Harvest is set to break records). \n- Be on the verge/brink of: iminência (Sector is on the brink of disruption). \n- Be due to: agendamento formal (Agreement is due to be signed). \n- Be likely to: probabilidade (Investors are likely to shift). Objetivo: aumentar nuance e credibilidade em previsões.", "vocabulary_table": [
+    { "word": "volatility", "translation": "volatilidade" },
+    { "word": "commodities", "translation": "commodities/matérias‑primas" },
+    { "word": "tariff", "translation": "tarifa" },
+    { "word": "inflation", "translation": "inflação" },
+    { "word": "disruption", "translation": "disrupção/ruptura" },
+    { "word": "assets", "translation": "ativos" }
+  ], "exercises": {
+    "multiple_choice": [
+      { "question": "Substitua will: It ____ happen given current constraints.", "options": ["is bound to", "will", "is due to"], "answer": 0 },
+      { "question": "Agenda formal: The report ____ be signed on Tuesday.", "options": ["is due to", "is set to", "is on the brink of"], "answer": 0 },
+      { "question": "Iminência dramática: The sector ____ a major disruption.", "options": ["is on the brink of", "is bound to", "is due to"], "answer": 0 }
+    ],
+    "fill_in": [
+      { "sentence": "Economy ___ collapse, policymakers prepare safeguards.", "answer": "on the verge of" },
+      { "sentence": "Tariffs ___ be reduced next quarter, pending approval.", "answer": "are set to" },
+      { "sentence": "The agreement ___ be signed Monday, affecting trade flows.", "answer": "is due to" }
+    ],
+    "speaking": "Repeat: Advanced future forms — commodities"
+  } }
+  ,{ "id": 11, "level": "C1", "category": "Negócios/Futuro", "title": "The Future of Agribusiness (Cleft Sentences for Emphasis)", "title_pt": "O Futuro do Agronegócio (Orações de Realce)", "text_en": "As we look to the horizon, what matters most is sustainability. It is technology that is reshaping the rural landscape, not just policy. What we are witnessing is a paradigm shift from quantity to quality. It is the small producer who often faces the biggest challenges in this transition. What drives this change is the consumer's demand for transparency. It was only after the climate crisis that the industry truly woke up. All we need now is the courage to innovate.", "text_pt": "Ao olharmos para o horizonte, o que mais importa é a sustentabilidade. É a tecnologia que está remodelando o cenário rural, não apenas a política. O que estamos testemunhando é uma mudança de paradigma da quantidade para a qualidade. É o pequeno produtor quem frequentemente enfrenta os maiores desafios nessa transição. O que impulsiona essa mudança é a demanda do consumidor por transparência. Foi somente após a crise climática que a indústria realmente acordou. Tudo o que precisamos agora é coragem para inovar.", "grammar": "Cleft Sentences (orações de realce): destacar um elemento crucial para ênfase retórica. \n- It‑clefts: It is/was + foco + that/who + cláusula (It is technology that is reshaping…). \n- Wh‑clefts: What + cláusula + is/was + foco (What matters most is sustainability). \n- All‑clefts: All + sujeito + verbo + is + foco (All we need is courage). Uso: corrigir narrativas, enfatizar contraste e direcionar o holofote em debates/palestras.", "vocabulary_table": [
+    { "word": "paradigm shift", "translation": "mudança de paradigma" },
+    { "word": "landscape", "translation": "cenário/paisagem" },
+    { "word": "transparency", "translation": "transparência" },
+    { "word": "reshaping", "translation": "remodelando" },
+    { "word": "woke up", "translation": "acordou/despertou (sentido figurado)" }
+  ], "exercises": {
+    "multiple_choice": [
+      { "question": "Transform: Money drives the market.", "options": ["It is money that drives the market.", "Money is driving the market."], "answer": 0 },
+      { "question": "Transform: Sustainability matters most.", "options": ["What matters most is sustainability.", "It is sustainability matters most."], "answer": 0 },
+      { "question": "Transform: Policy triggered the change.", "options": ["It was policy that triggered the change.", "What triggered the change is policy that."], "answer": 0 }
+    ],
+    "fill_in": [
+      { "sentence": "___ matters most is sustainability.", "answer": "What" },
+      { "sentence": "___ is technology that is reshaping the landscape.", "answer": "It" },
+      { "sentence": "___ was only after the crisis that action followed.", "answer": "It" }
+    ],
+    "speaking": "Repeat: Cleft sentences — agribusiness future"
+  } }
+  ,{ "id": 12, "level": "C1", "category": "Tese/Conclusão", "title": "The Final Thesis: Integrated Agribusiness Solutions (Cohesion & Coherence)", "title_pt": "Tese Final: Soluções Integradas para o Agronegócio (Coesão & Coerência)", "text_en": "The integration of precision agriculture and biotechnology constitutes a paradigm shift in global food security. While the adoption of genetically edited crops is often met with skepticism, empirical data suggests a significant reduction in pesticide use. Not only does this innovation lower operational costs, but it also mitigates environmental degradation. Notwithstanding these benefits, ethical concerns regarding biodiversity cannot be ruled out. It is essential that regulatory frameworks evolve to address these challenges. Ultimately, what determines the success of this transition is the synergy between policy, science, and public trust.", "text_pt": "A integração da agricultura de precisão com a biotecnologia constitui uma mudança de paradigma na segurança alimentar global. Embora a adoção de culturas geneticamente editadas seja frequentemente recebida com ceticismo, dados empíricos sugerem uma redução significativa no uso de pesticidas. Não apenas essa inovação reduz custos operacionais, como também mitiga a degradação ambiental. Não obstante esses benefícios, preocupações éticas quanto à biodiversidade não podem ser descartadas. É essencial que os marcos regulatórios evoluam para enfrentar esses desafios. Em última análise, o que determina o sucesso dessa transição é a sinergia entre política, ciência e confiança pública.", "grammar": "Cohesion & Coherence (revisão C1): construir parágrafos com ligações lógicas e estilo acadêmico. \n- Nominalization: integration, adoption, degradation para densidade informativa. \n- Hedging: suggests, cannot be ruled out para cautela científica. \n- Inversion: Not only does… but also… para ênfase contrastiva. \n- Advanced connectors: While, Notwithstanding, Ultimately para relação e fechamento. \n- Cleft: What determines… is… para foco retórico. \n- Subjunctive: It is essential that frameworks evolve. Objetivo: texto sólido com progressão temática, conflito e conclusão forte.", "vocabulary_table": [
+    { "word": "paradigm shift", "translation": "mudança de paradigma" },
+    { "word": "frameworks", "translation": "estruturas/marcos regulatórios" },
+    { "word": "synergy", "translation": "sinergia" },
+    { "word": "skepticism", "translation": "ceticismo" },
+    { "word": "constitutes", "translation": "constitui/representa" }
+  ], "exercises": {
+    "multiple_choice": [
+      { "question": "Escolha o conector de conclusão mais adequado: ____, the transition relies on public trust.", "options": ["Ultimately", "Whereas", "Notwithstanding"], "answer": 0 },
+      { "question": "Reescrita acadêmica: 'GM crops cut pesticides.'", "options": ["The adoption of genetically edited crops reduces pesticide use.", "GM crops cut pesticides a lot."], "answer": 0 },
+      { "question": "Ênfase: 'Policy drives trust.'", "options": ["It is policy that drives trust.", "Policy drives trust."], "answer": 0 }
+    ],
+    "fill_in": [
+      { "sentence": "____, regulatory frameworks must evolve to address these challenges.", "answer": "Ultimately" },
+      { "sentence": "____ these benefits, ethical concerns cannot be ruled out.", "answer": "Notwithstanding" },
+      { "sentence": "Data suggests reductions; ____, costs decrease as well.", "answer": "thus" }
+    ],
+    "speaking": "Repeat: Cohesion & coherence — final thesis"
+  } }
 ]

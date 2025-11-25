@@ -2,299 +2,962 @@
   {
     "id": 1,
     "level": "C2",
-    "category": "Máquinas/Leis",
-    "title": "Autonomous Ethics",
-    "title_pt": "Ética na Automação",
-    "text_en": "The proliferation of autonomous robotics raises ethical questions about rural workforce displacement. Rarely do we observe adoption without accountability debates; therefore, governance frameworks must be instituted.",
-    "text_pt": "A proliferação da robótica autônoma levanta questões éticas sobre o deslocamento da força de trabalho rural. Raramente observamos adoção sem debates de responsabilização; portanto, estruturas de governança devem ser instituídas.",
-    "teaching_modules": {
-      "explanation": "Inversões (Rarely do we observe…), condicional formal (Should the regulations change…), vocabulário jurídico (framework, compliance, liability).",
-      "grammar_table": [
-        {"subject":"Rarely","verb":"do we observe","example":"Rarely do we observe adoption without accountability debates."},
-        {"subject":"Should","verb":"the regulations change","example":"Should the regulations change, clauses would be revised."},
-        {"subject":"Data","verb":"is governed","example":"Data is governed by an ethics framework."}
+    "category": "Cultura/Idioms",
+    "title": "Rural Wisdom: Idioms in Business",
+    "title_pt": "Sabedoria Rural: Idioms nos Negócios",
+    "text_en": "In negotiation and strategy, rural idioms carry precise pragmatics. Don’t count your chickens before they hatch — projections are not revenue. Make hay while the sun shines — act decisively when the window is open. Don’t put all your eggs in one basket — diversify risk. We were barking up the wrong tree last quarter — the solution was elsewhere. Closing the barn door after the horse has bolted teaches timing: mitigation is not prevention. The cream rises to the top — merit and performance become visible under pressure. A tough row to hoe remains ahead — execution will be demanding despite consensus. In boardrooms, such idioms compress complex meaning, soften tone, and signal native fluency.",
+    "text_pt": "Em negociação e estratégia, idioms rurais carregam pragmática precisa. Não conte com os frangos antes de nascerem — projeção não é receita. Aproveite a janela quando ela existe — aja com decisão no momento certo. Não coloque todos os ovos na mesma cesta — diversifique o risco. Estávamos procurando no lugar errado no último trimestre — a solução estava em outro ponto. Fechar a porta do celeiro depois que o cavalo fugiu ensina timing: mitigação não é prevenção. O melhor se destaca — mérito e desempenho aparecem sob pressão. Ainda há uma ‘pedreira’ pela frente — a execução será exigente apesar do consenso. Em conselhos, esses idioms condensam sentido complexo, suavizam o tom e sinalizam fluência nativa.",
+    "grammar": "Análise de falante nativo: idioms funcionam como atos de fala compactos que codificam conselho (Make hay…), cautela (Don’t count your chickens…), gestão de risco (eggs in one basket), correção de rota (bark up the wrong tree) e avaliação (cream rises…). Registro: profissional, mas idiomático; objetivo: precisão pragmática sem literalismo.",
+    "vocabulary_table": [
+      {"word":"Don’t count your chickens before they hatch","translation":"Não conte com resultados antes de acontecerem"},
+      {"word":"Make hay while the sun shines","translation":"Aproveite a oportunidade enquanto ela existe"},
+      {"word":"Don’t put all your eggs in one basket","translation":"Não concentre todo o risco em um só lugar"},
+      {"word":"Bark up the wrong tree","translation":"Procurar solução no lugar errado / foco equivocado"},
+      {"word":"Close the barn door after the horse has bolted","translation":"Agir tarde demais (mitigação após o dano)"},
+      {"word":"The cream rises to the top","translation":"O melhor se destaca / excelência sob pressão"},
+      {"word":"A tough row to hoe","translation":"Tarefa difícil / grande desafio pela frente"},
+      {"word":"Make a mountain out of a molehill","translation":"Fazer tempestade em copo d’água"}
+    ],
+    "usage_table": [
+      {"expression":"Don’t count your chickens before they hatch","literal":"Não conte os frangos antes de nascerem","real":"Não trate projeções como receita; espere confirmação"},
+      {"expression":"Make hay while the sun shines","literal":"Fazer feno enquanto há sol","real":"Aproveite a janela favorável para agir rápido"},
+      {"expression":"Don’t put all your eggs in one basket","literal":"Não coloque todos os ovos em uma cesta","real":"Diversifique; evite concentração de risco"},
+      {"expression":"Bark up the wrong tree","literal":"Ladrar para a árvore errada","real":"Buscar solução no lugar errado; alvo equivocado"},
+      {"expression":"Close the barn door after the horse has bolted","literal":"Fechar o celeiro após o cavalo fugir","real":"Mitigar depois do dano; tarde demais para prevenir"},
+      {"expression":"The cream rises to the top","literal":"A nata sobe para o topo","real":"Excelência aparece naturalmente sob pressão"},
+      {"expression":"A tough row to hoe","literal":"Uma fileira difícil de capinar","real":"Execução exigente; desafio operacional significativo"}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 1,
+          "question": "O investidor pede para considerar lucro futuro como garantido antes da assinatura. Qual idiom corrige a postura?",
+          "options": [
+            "Make hay while the sun shines",
+            "Don’t count your chickens before they hatch",
+            "Bark up the wrong tree",
+            "The cream rises to the top"
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Há uma janela curta de clima perfeito para colher. Que idiom orienta ação imediata?",
+          "options": [
+            "Make hay while the sun shines",
+            "Close the barn door after the horse has bolted",
+            "A tough row to hoe",
+            "Don’t put all your eggs in one basket"
+          ]
+        },
+        {
+          "answer": 3,
+          "question": "O plano focou em um canal errado por meses. Qual idiom descreve esse erro de foco?",
+          "options": [
+            "The cream rises to the top",
+            "Make a mountain out of a molehill",
+            "Don’t count your chickens before they hatch",
+            "Bark up the wrong tree"
+          ]
+        }
       ],
-      "vocabulary": [
-        {"word":"Framework","translation":"Estrutura normativa"},
-        {"word":"Compliance","translation":"Conformidade"},
-        {"word":"Liability","translation":"Responsabilidade legal"},
-        {"word":"Paramount","translation":"Primordial"}
+      "fill_in": [
+        {"sentence": "Diversifique: não ___ your eggs in one basket.", "answer": "put all"},
+        {"sentence": "Aja rápido na janela certa: ___ hay while the sun shines.", "answer": "make"},
+        {"sentence": "Agimos tarde demais: we ___ the barn door after the horse had bolted.", "answer": "closed"}
       ],
-      "verbs_list": [
-        {"base":"observe","third_person":"observes","translation":"observar"},
-        {"base":"compel","third_person":"compels","translation":"compelir"},
-        {"base":"revise","third_person":"revises","translation":"revisar"}
-      ]
+      "speaking": "Repeat: Rural idioms in business"
     }
   },
   {
     "id": 2,
     "level": "C2",
-    "category": "Máquinas/Leis",
-    "title": "Carbon Frameworks",
-    "title_pt": "Estruturas de Carbono",
-    "text_en": "Complying with international carbon sequestration frameworks is paramount for accessing the European market. Not only have verification protocols been strengthened, but penalties for non‑compliance have also intensified; therefore, mitigation strategies must be codified. Should thresholds be tightened, we would recalibrate monitoring to preclude infractions.",
-    "text_pt": "Cumprir estruturas internacionais de sequestro de carbono é primordial para acessar o mercado europeu. Não apenas os protocolos de verificação foram reforçados, como também as penalidades por não conformidade se intensificaram; portanto, estratégias de mitigação devem ser codificadas. Caso os limites sejam apertados, recalibraríamos o monitoramento para evitar infrações.",
-    "teaching_modules": {
-      "explanation": "Vocabulário erudito (paramount, mitigation), inversão com paralelismo (Not only … but also …) e condicional formal (Should thresholds be tightened…).",
-      "grammar_table": [
-        {"subject":"Not only","verb":"have protocols been strengthened","example":"Not only have protocols been strengthened, but penalties intensified."},
-        {"subject":"Should","verb":"thresholds be tightened","example":"Should thresholds be tightened, monitoring would be recalibrated."},
-        {"subject":"Compliance","verb":"is audited","example":"Compliance is audited annually."}
+    "category": "Cultura/Pragmática",
+    "title": "Reading Between the Lines (Implicit Meaning & Softeners)",
+    "title_pt": "Lendo nas Entrelinhas (Sentido Implícito e Suavizadores)",
+    "text_en": "- So, what do you think of my new irrigation plan?\n- Well, it is certainly an original approach.\n- Does that mean you like it?\n- Let's say it presents a few challenges. Ideally, we would have more time to test it.\n- But can we start next month?\n- I'm afraid that might be a bit difficult.\n- Why? Is it the cost?\n- With all due respect, I think we should table this discussion for now.\n- Okay. I will wait for your call.\n- Yes, don't call us, we'll call you.",
+    "text_pt": "- E então, o que você acha do meu novo plano de irrigação?\n- Bem… é uma ideia bem diferente.\n- Isso quer dizer que você gostou?\n- Digamos que tem alguns pontos complicados. Idealmente, teríamos mais tempo para testar.\n- Mas dá para começar mês que vem?\n- Receio que seja um pouco difícil.\n- Por quê? É o custo?\n- Com todo respeito, acho melhor deixarmos este assunto parado por agora.\n- Certo. Vou esperar sua ligação.\n- Sim… não nos ligue; nós é que ligamos para você.",
+    "grammar": "Pragmática e eufemismos em alta gestão: o falante sinaliza rejeição sem conflito explícito. Códigos: original (estranho/arriscado), challenging/a bit difficult (não vai acontecer), table this discussion (adiar indefinidamente), don't call us, we'll call you (negação definitiva), ideally (o cenário real é o oposto do desejado). Cultura: saving face — proteger a imagem do interlocutor ao negar, mantendo civilidade e clareza implícita.",
+    "vocabulary_table": [
+      {"word":"original","translation":"eufemismo para estranho/arriscado"},
+      {"word":"presents a few challenges","translation":"não vai acontecer no formato proposto"},
+      {"word":"ideally","translation":"na prática, não (condição irreal)"},
+      {"word":"a bit difficult","translation":"impraticável"},
+      {"word":"with all due respect","translation":"marcador de discordância educada"},
+      {"word":"table this discussion","translation":"matar o assunto (adiar indefinidamente)"},
+      {"word":"don't call us, we'll call you","translation":"rejeição definitiva (não haverá retorno)"}
+    ],
+    "usage_table": [
+      {"expression":"It is certainly an original approach","literal":"é original","real":"é estranho/arriscado (não aprovado)"},
+      {"expression":"It presents a few challenges","literal":"tem desafios","real":"não vai acontecer do jeito proposto"},
+      {"expression":"Ideally, we would have more time","literal":"idealmente","real":"na realidade, não vamos fazer agora"},
+      {"expression":"I’m afraid that might be a bit difficult","literal":"pode ser difícil","real":"impossível no prazo/escopo"},
+      {"expression":"We should table this discussion","literal":"adiar a discussão","real":"encerrar sem previsão de retomada"},
+      {"expression":"Don’t call us, we’ll call you","literal":"não nos ligue","real":"é um não definitivo"}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 2,
+          "question": "Escolha a suavização adequada para: 'I hate this proposal.'",
+          "options": [
+            "This proposal is perfect.",
+            "This proposal is not bad at all.",
+            "This is not exactly what I had in mind.",
+            "This is the best option we have."
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "Suavize: 'We will never approve this next month.'",
+          "options": [
+            "We will approve it next month.",
+            "I'm afraid that might be a bit difficult next month.",
+            "We are thrilled to start next month.",
+            "We must sign it next week."
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Suavize: 'Your plan is strange and risky.'",
+          "options": [
+            "It is certainly an original approach.",
+            "Your plan is perfect.",
+            "Your plan is cheap and fast.",
+            "We agree with everything."
+          ]
+        },
+        {
+          "answer": 3,
+          "question": "'I hear what you say' normalmente significa…",
+          "options": [
+            "Concordo plenamente.",
+            "Você está certo e vamos mudar.",
+            "Preciso de mais dados para decidir.",
+            "Eu discordo e não vou mudar de ideia."
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "'Ideally, we would have more time' comunica…",
+          "options": [
+            "Vamos começar hoje.",
+            "Na prática, não teremos tempo; não faremos agora.",
+            "O plano está aprovado.",
+            "O custo foi reduzido pela metade."
+          ]
+        },
+        {
+          "answer": 2,
+          "question": "'With all due respect, we should table this discussion' significa…",
+          "options": [
+            "Vamos aprofundar o tema agora.",
+            "Vamos marcar para amanhã sem falta.",
+            "Encerrar o assunto sem previsão de retomada.",
+            "Aprovar imediatamente."
+          ]
+        }
       ],
-      "vocabulary": [
-        {"word":"Paramount","translation":"Primordial"},
-        {"word":"Mitigation","translation":"Mitigação"},
-        {"word":"Compliance","translation":"Conformidade"},
-        {"word":"Framework","translation":"Estrutura regulatória"}
+      "fill_in": [
+        {"sentence": "Sinalize discordância educada: With all due ___,", "answer": "respect"},
+        {"sentence": "Rejeição definitiva: Don't ___ us, we'll call you.", "answer": "call"},
+        {"sentence": "Suavize o 'não': I'm ___ that might be a bit difficult.", "answer": "afraid"}
       ],
-      "verbs_list": [
-        {"base":"comply","third_person":"complies","translation":"cumprir"},
-        {"base":"recalibrate","third_person":"recalibrates","translation":"recalibrar"},
-        {"base":"codify","third_person":"codifies","translation":"codificar"}
-      ]
+      "speaking": "Repeat: Pragmatics and euphemisms in boardroom English"
     }
   },
   {
     "id": 3,
     "level": "C2",
-    "category": "Máquinas/Leis",
-    "title": "Patent Litigation",
-    "title_pt": "Litígio de Patentes",
-    "text_en": "Intellectual property litigation concerning Genetically Modified Organisms has become increasingly complex. Rarely do courts render uniform judgments across jurisdictions; however, the aforementioned precedents inform licensing strategy. Should injunctions be granted, operations would be constrained pending adjudication.",
-    "text_pt": "Os litígios de propriedade intelectual relativos a Organismos Geneticamente Modificados tornaram‑se cada vez mais complexos. Raramente tribunais proferem decisões uniformes entre jurisdições; entretanto, os precedentes supracitados orientam a estratégia de licenciamento. Caso liminares sejam concedidas, as operações ficariam restritas até a decisão final.",
-    "teaching_modules": {
-      "explanation": "Estruturas jurídicas com inversão (Rarely do courts…), referência a precedentes (aforementioned precedents) e condicional formal (Should injunctions be granted…).",
-      "grammar_table": [
-        {"subject":"Rarely","verb":"do courts render","example":"Rarely do courts render uniform judgments."},
-        {"subject":"Aforementioned","verb":"precedes noun","example":"The aforementioned precedents inform strategy."},
-        {"subject":"Injunctions","verb":"are granted","example":"Injunctions are granted under strict criteria."}
+    "category": "Cultura/Dialeto",
+    "title": "Barn Talk: Slang and Informal Speech (Colloquialisms)",
+    "title_pt": "Fala de Celeiro: Gírias e Informalidades (Coloquialismos)",
+    "text_en": "- Hey, Bubba. You fixin' to head out?\n- Yeah, I'm beat. I've been bustin' my back all day.\n- Did that grease monkey fix the tractor yet?\n- Nope. He said the engine is kaput. It ain't gonna run no more.\n- Well, I reckon we need a new one.\n- Tell the boss to stop being stingy and pony up the cash.\n- Yeah, right. He's tight as bark on a tree.\n- Anyway, I'm gonna hit the hay. Holler if you need anything.",
+    "text_pt": "- E aí, Bubba. Tá tô pra cair fora?\n- Tô acabado. Rachei o lombo o dia inteiro.\n- E o mão‑de‑graxa já consertou o trator?\n- Nada. Disse que o motor tá kaput. Num vai rodar mais não.\n- Pois é, acho que a gente precisa de outro.\n- Fala pro patrão largar de mão de vaca e desembolsar a grana.\n- Sei… ele é mais duro que casca de árvore.\n- Enfim, vou capotar. Dá um grito se precisar de algo.",
+    "grammar": "O Inglês da Roça: gramática não‑padrão (ain't, duplas negativas, elisões) é plenamente correta dentro do dialeto. 'Ain't' substitui am/is/are/has/have not; duplas negativas (ain't gonna run no more) reforçam negação. Competência C2 exige compreensão e code switching: entenda e use no contexto de camaradagem e trabalho pesado, evite em settings formais.",
+    "vocabulary_table": [
+      {"word":"fixin' to","translation":"prestes a / tô pra (going to)"},
+      {"word":"ain't","translation":"forma não‑padrão de 'não' (am/is/are/has/have not)"},
+      {"word":"reckon","translation":"achar/supor (I think/I guess)"},
+      {"word":"grease monkey","translation":"mecânico (mão‑de‑graxa; informal)"},
+      {"word":"hit the hay","translation":"ir dormir / capotar"},
+      {"word":"pony up","translation":"desembolsar / pagar"},
+      {"word":"holler","translation":"gritar/chamar (give me a call)"},
+      {"word":"tight as bark on a tree","translation":"muito pão‑duro (mais duro que casca de árvore)"},
+      {"word":"kaput","translation":"quebrado / fim da linha"},
+      {"word":"bustin' my back","translation":"ralar o lombo / trabalhar pesado"},
+      {"word":"beat","translation":"acabado/exausto"}
+    ],
+    "usage_table": [
+      {"slang":"fixin' to","standard":"going to","pt":"prestes a / tô pra"},
+      {"slang":"ain't","standard":"am/is/are/has/have not","pt":"não / num"},
+      {"slang":"reckon","standard":"think/guess","pt":"acho/suponho"},
+      {"slang":"grease monkey","standard":"mechanic","pt":"mecânico (mão‑de‑graxa)"},
+      {"slang":"hit the hay","standard":"go to sleep","pt":"ir dormir / capotar"},
+      {"slang":"pony up","standard":"pay (money)","pt":"desembolsar / pagar"},
+      {"slang":"holler","standard":"call/shout","pt":"dar um grito / chamar"},
+      {"slang":"tight as bark on a tree","standard":"very stingy","pt":"muito pão‑duro"},
+      {"slang":"kaput","standard":"broken/dead","pt":"quebrado / não funciona"},
+      {"slang":"bustin' my back","standard":"work very hard","pt":"ralar o lombo / trabalhar pesado"},
+      {"slang":"beat","standard":"exhausted","pt":"acabado / exausto"}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 0,
+          "question": "Formal → Caipira: 'I am going to sleep.'",
+          "options": [
+            "I'm fixin' to hit the hay.",
+            "I shall retire.",
+            "I will rest now.",
+            "I am sleeping."
+          ]
+        },
+        {
+          "answer": 3,
+          "question": "Formal → Caipira: 'Please call me if you need anything.'",
+          "options": [
+            "Call me immediately.",
+            "Ring me tomorrow.",
+            "Give me a buzz tonight.",
+            "Holler if you need anything."
+          ]
+        },
+        {
+          "answer": 2,
+          "question": "Formal → Caipira: 'He should pay for the new tractor.'",
+          "options": [
+            "He ought to finance the purchase.",
+            "He has to approve funding.",
+            "He should pony up for the new tractor.",
+            "He needs a quote."
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "Adequação: Você pode falar assim na reunião com o banco?",
+          "options": [
+            "SIM",
+            "NÃO"
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Adequação: Você pode falar assim no bar com os peões?",
+          "options": [
+            "SIM",
+            "NÃO"
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "Adequação: Você pode escrever assim em e‑mail formal para cliente europeu?",
+          "options": [
+            "SIM",
+            "NÃO"
+          ]
+        }
       ],
-      "vocabulary": [
-        {"word":"Aforementioned","translation":"Supracitado"},
-        {"word":"Litigation","translation":"Litígio"},
-        {"word":"Licensing","translation":"Licenciamento"},
-        {"word":"Jurisdiction","translation":"Jurisdição"}
-      ],
-      "verbs_list": [
-        {"base":"adjudicate","third_person":"adjudicates","translation":"adjudicar"},
-        {"base":"constrain","third_person":"constrains","translation":"restringir"},
-        {"base":"render","third_person":"renders","translation":"proferir (decisão)"}
-      ]
+      "speaking": "Repeat: Rural slang and code switching"
     }
   },
   {
     "id": 4,
     "level": "C2",
-    "category": "Máquinas/Leis",
-    "title": "Regenerative Science",
-    "title_pt": "Ciência Regenerativa",
-    "text_en": "We are scrutinizing microbiological interactions in the rhizosphere to enhance soil carbon capture potential. Not only have enzyme dynamics been mapped, but microbial consortia have also been optimized; therefore, field trials will quantify net sequestration. Should anomalies arise, protocols would be amended under the compliance framework.",
-    "text_pt": "Estamos examinando interações microbiológicas na rizosfera para ampliar o potencial de captura de carbono no solo. Não apenas as dinâmicas enzimáticas foram mapeadas, como também consórcios microbianos foram otimizados; portanto, ensaios de campo quantificarão o sequestro líquido. Caso surjam anomalias, os protocolos seriam emendados sob a estrutura de conformidade.",
-    "teaching_modules": {
-      "explanation": "Registro científico formal com paralelismo (Not only … but also …) e condicional protocolar (Should anomalies arise…).",
-      "grammar_table": [
-        {"subject":"Not only","verb":"have dynamics been mapped","example":"Not only have dynamics been mapped, but consortia optimized."},
-        {"subject":"Should","verb":"anomalies arise","example":"Should anomalies arise, protocols would be amended."},
-        {"subject":"Trials","verb":"will quantify","example":"Trials will quantify net sequestration."}
+    "category": "Cultura/Narrativa",
+    "title": "The Great Storm: The Art of Storytelling",
+    "title_pt": "A Grande Tempestade: A Arte de Contar Histórias",
+    "text_en": "It was a sweltering afternoon in July. We had been harvesting wheat since dawn, and exhaustion was setting in. Suddenly, the sky turned a bruised purple. Little did we know that a tornado was forming just miles away. No sooner had I shut down the combine engine than the siren began to wail. The wind was howling like a banshee. We were just about to run for the shelter when I saw the old barn door flapping. Had I not run back to secure it, we would have lost all the equipment stored inside. It was the most terrifying twenty minutes of my life, but we lived to tell the tale.",
+    "text_pt": "Era uma tarde sufocante de julho. Nós vínhamos colhendo trigo desde o amanhecer, e o cansaço já nos dobrava. De repente, o céu ficou de um roxo de hematoma. Mal sabíamos nós que um tornado se formava a poucos quilômetros dali. Mal eu havia desligado a colheitadeira, a sirene começou a uivar. O vento gritava como um espírito do folclore. Estávamos prestes a correr para o abrigo quando vi a velha porta do celeiro batendo ao vento. Se eu não tivesse voltado para travá‑la, teríamos perdido todo o equipamento guardado. Foram os vinte minutos mais assustadores da minha vida, mas sobrevivemos para contar a história.",
+    "grammar": "O Contador de Histórias: como controlar ritmo e impacto. Past Perfect Continuous (had been harvesting) dá pano de fundo prolongado antes do evento central. Inversões narrativas aceleram a ação e criam urgência: Little did we know (suspense irônico), No sooner had … than … (evento imediato), Had I not … (condicional invertida com contraste dramático). Future in the past (were just about to) sinaliza intenção interrompida. Objetivo: alternar tensões e respirações para manter o leitor dentro da cena.",
+    "vocabulary_table": [
+      {"word":"sweltering","translation":"sufocante de quente"},
+      {"word":"bruised purple","translation":"roxo de hematoma (céu arroxeado)"},
+      {"word":"wailing","translation":"uivando/gemendo (sirene)"},
+      {"word":"flapping","translation":"batendo com o vento"},
+      {"word":"banshee","translation":"espírito que grita (metáfora sonora)"},
+      {"word":"had been harvesting","translation":"past perfect continuous (vinha colhendo)"},
+      {"word":"Little did we know","translation":"inversão narrativa (mal sabíamos nós)"},
+      {"word":"No sooner had … than …","translation":"mal eu tinha … quando … (urgência)"},
+      {"word":"Had I not","translation":"condicional invertida (se eu não tivesse)"},
+      {"word":"were just about to","translation":"future in the past (estávamos prestes a)"}
+    ],
+    "usage_table": [
+      {"structure":"Past Perfect Continuous","pattern":"had been + -ing","effect":"pano de fundo prolongado"},
+      {"structure":"Narrative Inversion","pattern":"Little did + subject + verb","effect":"suspense/ironia dramática"},
+      {"structure":"Immediate sequence","pattern":"No sooner had + clause + than + clause","effect":"aceleração do ritmo"},
+      {"structure":"Counterfactual rescue","pattern":"Had + subject + not + verb","effect":"contraste e tensão"},
+      {"structure":"Future in the past","pattern":"was/were just about to","effect":"intenção interrompida"}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 0,
+          "question": "Dramatize: 'I arrived and it rained.'",
+          "options": [
+            "No sooner had I arrived than it rained.",
+            "I arrived, then it rained.",
+            "When I arrived, it rained.",
+            "After I arrived, it rained."
+          ]
+        },
+        {
+          "answer": 2,
+          "question": "Dramatize: 'We finished and the power failed.'",
+          "options": [
+            "We finished and the power failed.",
+            "We were finishing when the power failed.",
+            "No sooner had we finished than the power failed.",
+            "As soon as we finished, the power failed."
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "Dramatize: 'He opened the gate and the bull ran.'",
+          "options": [
+            "No sooner had he opened the gate than the bull ran.",
+            "Had he not opened the gate, the bull wouldn’t have run.",
+            "He opened the gate and the bull ran.",
+            "He had opened the gate and the bull ran."
+          ]
+        }
       ],
-      "vocabulary": [
-        {"word":"Rhizosphere","translation":"Rizosfera"},
-        {"word":"Consortia","translation":"Consórcios"},
-        {"word":"Compliance","translation":"Conformidade"},
-        {"word":"Mitigation","translation":"Mitigação"}
+      "fill_in": [
+        {"sentence": "Little did I ___ that a tornado was forming.", "answer": "know"},
+        {"sentence": "No sooner ___ I shut down the engine than the siren began to wail.", "answer": "had"},
+        {"sentence": "We were just about ___ run for the shelter when…", "answer": "to"}
       ],
-      "verbs_list": [
-        {"base":"scrutinize","third_person":"scrutinizes","translation":"escrutinar"},
-        {"base":"amend","third_person":"amends","translation":"emendar"},
-        {"base":"quantify","third_person":"quantifies","translation":"quantificar"}
-      ]
+      "speaking": "Repeat: Narrative inversion and dramatic pacing"
     }
   },
   {
     "id": 5,
     "level": "C2",
-    "category": "Pecuária/Mercado",
-    "title": "Trade Compliance",
-    "title_pt": "Conformidade Comercial",
-    "text_en": "Exporting to the EU requires strict adherence to animal welfare legislation, notwithstanding higher production costs. Rarely do exemptions apply to intensive systems; therefore, compliance auditing has been intensified. Should directives be updated, we would promptly harmonize protocols to avoid sanctions.",
-    "text_pt": "Exportar para a UE exige estrita observância da legislação de bem‑estar animal, a despeito de maiores custos de produção. Raramente isenções se aplicam a sistemas intensivos; portanto, a auditoria de conformidade foi intensificada. Caso as diretivas sejam atualizadas, harmonizaríamos prontamente os protocolos para evitar sanções.",
-    "teaching_modules": {
-      "explanation": "Discurso jurídico com concessão (notwithstanding), inversão (Rarely do exemptions apply) e harmonização regulatória (harmonize protocols).",
-      "grammar_table": [
-        {"subject":"Rarely","verb":"do exemptions apply","example":"Rarely do exemptions apply to intensive systems."},
-        {"subject":"Should","verb":"directives be updated","example":"Should directives be updated, protocols would be harmonized."},
-        {"subject":"Auditing","verb":"has been intensified","example":"Auditing has been intensified across plants."}
+    "category": "Cultura/Ironia",
+    "title": "Irony and Sarcasm: Workplace Banter",
+    "title_pt": "Ironia e Sarcasmo: Brincadeiras no Trabalho",
+    "text_en": "(Scene: A tractor is stuck deep in the mud. The supervisor arrives.)\n- Oh, look at that. The tractor is sunk to the axles. Brilliant job, Steve. Really outstanding.\n- It was an accident, boss. The ground was soft.\n- Yeah, I bet the mud just jumped right in front of the tires. It came out of nowhere, right?\n- Can you help me pull it out with the truck?\n- Oh, I would love to. I have nothing better to do on a Sunday morning than fix your mess. It is literally my dream come true.\n- Are you being serious?\n- Totally. Can't you see the smile on my face? Don't strain yourself watching me work.",
+    "text_pt": "(Cena: Um trator atolado fundo na lama. O supervisor chega.)\n- Olha só… o trator afundado até o eixo. Que bela porcaria, Steve. Realmente 'sensacional'.\n- Foi acidente, chefe. O terreno estava mole.\n- Aham… aposto que a lama 'pulou' bem na frente do pneu. Surgiu do nada, né?\n- Consegue me ajudar a puxar com o caminhão?\n- Ah, eu 'adoraria'. Não tenho nada melhor pra fazer num domingo de manhã do que arrumar sua bagunça. É literalmente 'o sonho da minha vida'.\n- Você tá falando sério?\n- 'Totalmente'. Não tá vendo o meu 'sorriso'? E não se esforça demais me olhando trabalhar, viu?",
+    "grammar": "Detector de sarcasmo (C2): ironia verbal por antiphrasis (elogio para criticar), concordância falsa (mock agreement) e exagero óbvio (under/overstatement). Sinais: contexto ruim + palavras ótimas ('dream come true') + tom seco/monótono = sarcasmo. Cultura: banter disciplina sem gritar; leia pelo tom e pela situação.",
+    "vocabulary_table": [
+      {"word":"brilliant job","translation":"sarcasmo: serviço terrível"},
+      {"word":"really outstanding","translation":"sarcasmo: desastroso"},
+      {"word":"the mud jumped…","translation":"concordância falsa para ridicularizar"},
+      {"word":"I would love to","translation":"eu odiaria / zero vontade"},
+      {"word":"nothing better to do","translation":"ironia: tenho mil coisas (vou perder tempo)"},
+      {"word":"my dream come true","translation":"exagero: pesadelo/aborrecimento"},
+      {"word":"totally","translation":"tom seco: óbvio que não"},
+      {"word":"don't strain yourself","translation":"não se esforce (ironia: você nem ajuda)"}
+    ],
+    "usage_table": [
+      {"said":"Brilliant job, Steve.","real":"Que bela porcaria você fez."},
+      {"said":"Really outstanding.","real":"Desastroso."},
+      {"said":"The mud jumped right in front of the tires.","real":"Você errou; não foi 'a lama' que causou."},
+      {"said":"I would love to.","real":"Eu detesto ter que fazer isso."},
+      {"said":"Nothing better to do on a Sunday morning.","real":"Tenho coisas melhores; estou sendo irônico."},
+      {"said":"My dream come true.","real":"Irritante; exatamente o oposto de um sonho."},
+      {"said":"Totally.","real":"Não, é sarcasmo."},
+      {"said":"Don't strain yourself.","real":"Não faça nada; crítica de preguiça."}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 0,
+          "question": "Churrasco debaixo de chuva: escolha a resposta sarcástica.",
+          "options": [
+            "Great weather we're having!",
+            "The weather is terrible.",
+            "It is raining heavily.",
+            "We should cancel the barbecue."
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "Entrega atrasada em 3 horas: resposta sarcástica.",
+          "options": [
+            "The delivery is late.",
+            "Fantastic service!",
+            "Please be faster next time.",
+            "We will complain to support."
+          ]
+        },
+        {
+          "answer": 2,
+          "question": "Computador travou e perdeu o relatório: resposta sarcástica.",
+          "options": [
+            "The computer crashed.",
+            "This is inconvenient.",
+            "Wonderful! Exactly what I needed today.",
+            "I will restart now."
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "Classifique: 'My dream come true.' (no contexto de trabalho chato)",
+          "options": [
+            "Literal",
+            "Sarcástico"
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "Classifique: 'Brilliant job.' (trator atolado)",
+          "options": [
+            "Literal",
+            "Sarcástico"
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Classifique: 'Please, pull the truck around.'",
+          "options": [
+            "Literal",
+            "Sarcástico"
+          ]
+        }
       ],
-      "vocabulary": [
-        {"word":"Compliance","translation":"Conformidade"},
-        {"word":"Notwithstanding","translation":"Não obstante"},
-        {"word":"Sanction","translation":"Sanção"},
-        {"word":"Directive","translation":"Diretiva"}
-      ],
-      "verbs_list": [
-        {"base":"adhere","third_person":"adheres","translation":"aderir"},
-        {"base":"harmonize","third_person":"harmonizes","translation":"harmonizar"},
-        {"base":"audit","third_person":"audits","translation":"auditar"}
-      ]
+      "speaking": "Repeat: Verbal irony, mock agreement, overstatement"
     }
   },
   {
     "id": 6,
     "level": "C2",
-    "category": "Pecuária/Mercado",
-    "title": "Blockchain Traceability",
-    "title_pt": "Rastreabilidade Blockchain",
-    "text_en": "Implementing blockchain guarantees the immutability of traceability data throughout the entire supply chain. Not only has provenance been secured, but dispute resolution has also been streamlined; therefore, compliance reporting is expedited. Should governance nodes fail, contingency protocols would be triggered to preserve integrity.",
-    "text_pt": "A implementação de blockchain garante a imutabilidade dos dados de rastreabilidade por toda a cadeia de suprimentos. Não apenas a procedência foi assegurada, como também a resolução de disputas foi simplificada; portanto, os relatórios de conformidade são acelerados. Caso nós de governança falhem, protocolos de contingência seriam acionados para preservar a integridade.",
-    "teaching_modules": {
-      "explanation": "Registro técnico com vocabulário de sistemas (immutability, provenance) e condicional de falha (Should nodes fail…).",
-      "grammar_table": [
-        {"subject":"Not only","verb":"has provenance been secured","example":"Not only has provenance been secured, but disputes streamlined."},
-        {"subject":"Should","verb":"nodes fail","example":"Should nodes fail, contingency would be triggered."},
-        {"subject":"Reporting","verb":"is expedited","example":"Compliance reporting is expedited."}
+    "category": "Gestão/Sintaxe",
+    "title": "Logistics and Repair: Syntactic Precision (Separable vs Inseparable Phrasal Verbs)",
+    "title_pt": "Logística e Reparos: Precisão Sintática (Phrasal Verbs)",
+    "text_en": "- We need to set up the new irrigation system.\n- Did you set it up already?\n- No, we ran into a few problems with the software.\n- You should call off the installation until we fix this.\n- I can't call it off now; the team is here.\n- Well, we have to come up with a solution fast.\n- I won't put up with any more delays.\n- Let's go over the manual one more time.\n- Don't let me down, Steve. Sort it out immediately.",
+    "text_pt": "- Precisamos configurar o novo sistema de irrigação.\n- Você já montou isso? (set **it** up)\n- Não, esbarramos em alguns problemas com o software (ran **into**).\n- Você deveria cancelar a instalação até corrigirmos isso (call **off**).\n- Eu não posso cancelar **isso** agora; a equipe já está aqui (call **it** off).\n- Bom, temos que apresentar uma solução rápido (come **up with**).\n- Eu não vou tolerar mais atrasos (put **up with**).\n- Vamos revisar o manual mais uma vez (go **over**).\n- Não me decepcione, Steve. Resolva isso imediatamente (sort **it** **out**).",
+    "grammar": "Sintaxe de phrasal verbs (C2): separáveis aceitam objeto entre verbo e partícula e, com pronome, é obrigatório (set **it** up, call **them** off). Inseparáveis nunca mudam ordem (run **into** problems, go **over** the manual). Três partes são inseparáveis: o objeto vem após a sequência completa (come **up with** a plan; put **up with** it; sort **it** **out** é separável em duas partículas, mantendo pronome entre base e primeira partícula). Regra de ouro: pronome sempre no meio nos separáveis; jamais entre partículas dos inseparáveis/três‑partes.",
+    "vocabulary_table": [
+      {"word":"set up","translation":"configurar/montar (separável: set it up)"},
+      {"word":"call off","translation":"cancelar (separável: call it off)"},
+      {"word":"let down","translation":"decepcionar (separável: let me down)"},
+      {"word":"sort out","translation":"resolver/organizar (separável: sort it out)"},
+      {"word":"run into","translation":"esbarrar/ter (inseparável)"},
+      {"word":"go over","translation":"revisar (inseparável)"},
+      {"word":"come up with","translation":"apresentar/propor (três partes; inseparável)"},
+      {"word":"put up with","translation":"tolerar/aturar (três partes; inseparável)"}
+    ],
+    "usage_table": [
+      {"phrasal":"set up","type":"separável","correct":"set it up","incorrect":"set up it"},
+      {"phrasal":"call off","type":"separável","correct":"call them off","incorrect":"call off them"},
+      {"phrasal":"let down","type":"separável","correct":"let me down","incorrect":"let down me"},
+      {"phrasal":"sort out","type":"separável","correct":"sort it out","incorrect":"sort out it"},
+      {"phrasal":"run into","type":"inseparável","correct":"run into problems","incorrect":"run problems into"},
+      {"phrasal":"go over","type":"inseparável","correct":"go over the manual","incorrect":"go the manual over"},
+      {"phrasal":"come up with","type":"três partes","correct":"come up with a plan","incorrect":"come a plan up with"},
+      {"phrasal":"put up with","type":"três partes","correct":"put up with it","incorrect":"put it up with"}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 1,
+          "question": "Escolha a ordem correta com pronome: call off + it",
+          "options": [
+            "Call off it",
+            "Call it off",
+            "Call it, off",
+            "Call off it now"
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Inseparável: run ___ problems",
+          "options": [
+            "into",
+            "on",
+            "over",
+            "up"
+          ]
+        },
+        {
+          "answer": 3,
+          "question": "Três partes: put ___ ___ delays",
+          "options": [
+            "off / with",
+            "it / up",
+            "over / with",
+            "up / with"
+          ]
+        }
       ],
-      "vocabulary": [
-        {"word":"Immutability","translation":"Imutabilidade"},
-        {"word":"Provenance","translation":"Procedência"},
-        {"word":"Integrity","translation":"Integridade"},
-        {"word":"Framework","translation":"Estrutura"}
+      "fill_in": [
+        {"sentence": "Set ___ up now.", "answer": "it"},
+        {"sentence": "Call ___ off today.", "answer": "it"},
+        {"sentence": "Don't let ___ down.", "answer": "me"}
       ],
-      "verbs_list": [
-        {"base":"guarantee","third_person":"guarantees","translation":"garantir"},
-        {"base":"streamline","third_person":"streamlines","translation":"simplificar"},
-        {"base":"trigger","third_person":"triggers","translation":"acionar"}
-      ]
+      "speaking": "Repeat: Separable vs inseparable phrasal verbs"
     }
   },
   {
     "id": 7,
     "level": "C2",
-    "category": "Pecuária/Mercado",
-    "title": "Synthetic Paradigm",
-    "title_pt": "Paradigma Sintético",
-    "text_en": "The emergence of lab‑grown meat postulates a paradigm shift in the socio‑economic structure of livestock farming. Rarely do incumbent models adapt without regulatory recalibration; therefore, transitional frameworks are requisite. Should consumer acceptance falter, mitigation instruments would be deployed to stabilize markets.",
-    "text_pt": "O surgimento da carne cultivada em laboratório postula uma mudança de paradigma na estrutura socioeconômica da pecuária. Raramente modelos incumbentes se adaptam sem recalibração regulatória; portanto, estruturas de transição são necessárias. Caso a aceitação do consumidor fraqueje, instrumentos de mitigação seriam acionados para estabilizar mercados.",
-    "teaching_modules": {
-      "explanation": "Tom econômico‑jurídico com inversão (Rarely do incumbent models…), necessidade de frameworks de transição e mitigação de risco de demanda.",
-      "grammar_table": [
-        {"subject":"Rarely","verb":"do models adapt","example":"Rarely do models adapt without recalibration."},
-        {"subject":"Should","verb":"acceptance falter","example":"Should acceptance falter, instruments would be deployed."},
-        {"subject":"Frameworks","verb":"are requisite","example":"Transitional frameworks are requisite."}
+    "category": "Cultura/Ética",
+    "title": "The Philosophy of Stewardship (Abstract Nouns)",
+    "title_pt": "A Filosofia da Mordomia (Substantivos Abstratos)",
+    "text_en": "Farming is more than a business; it is an exercise in stewardship. We are not the owners of this land, but mere guardians of a legacy. The exploitation of natural resources for short‑term gain betrays our moral obligation to future generations. True sustainability requires a balance between economic viability and ecological integrity. Our resilience in the face of climate adversity depends on this wisdom. Ultimately, the inheritance we leave behind is not measured in acres, but in the fertility of the soil and the dignity of our labor.",
+    "text_pt": "A agricultura é mais que negócio; é um exercício de mordomia — o dever de guarda e zelo responsável. Não somos donos desta terra, mas guardiões de um legado. A exploração de recursos naturais em busca de ganhos imediatos trai nossa obrigação moral com as gerações futuras. A verdadeira sustentabilidade exige equilíbrio entre viabilidade econômica e integridade ecológica. Nossa resiliência diante da adversidade climática depende dessa sabedoria. Em última análise, a herança que deixamos não se mede em hectares, mas na fertilidade do solo e na dignidade do nosso trabalho.",
+    "grammar": "O Filósofo Rural: substantivos abstratos elevam o discurso e posicionam liderança. 'Stewardship' codifica dever de guarda; 'exploitation' marca abuso; 'integrity' sinaliza moral/estrutura; 'resilience' estrutura a narrativa de superação; 'inheritance' olha para legado — além de dinheiro. Uso consciente desses termos diferencia um plantador de um líder setorial.",
+    "vocabulary_table": [
+      {"word":"stewardship","translation":"mordomia/zelo responsável (dever de guarda)"},
+      {"word":"exploitation","translation":"exploração/abuso (negativo)"},
+      {"word":"obligation","translation":"obrigação (dever moral)"},
+      {"word":"sustainability","translation":"sustentabilidade"},
+      {"word":"viability","translation":"viabilidade"},
+      {"word":"integrity","translation":"integridade (moral/estrutural)"},
+      {"word":"resilience","translation":"resiliência"},
+      {"word":"inheritance","translation":"herança/legado"},
+      {"word":"fertility","translation":"fertilidade"},
+      {"word":"dignity","translation":"dignidade"}
+    ],
+    "usage_table": [
+      {"term":"stewardship","definition":"dever de cuidar do que não é seu; responsabilidade intergeracional"},
+      {"term":"exploitation","definition":"uso predatório de recursos visando ganho imediato; oposto de cuidado"},
+      {"term":"integrity","definition":"coerência moral e estrutural; aquilo que mantém sistemas íntegros"},
+      {"term":"resilience","definition":"capacidade de absorver choque e se recuperar"},
+      {"term":"inheritance","definition":"legado em valores, cultura e condições do solo (não só dinheiro)"},
+      {"term":"sustainability","definition":"continuidade responsável: equilibrar economia e ecologia"},
+      {"term":"viability","definition":"condições econômicas que permitem existir sem colapso"},
+      {"term":"fertility","definition":"potência do solo para gerar vida"},
+      {"term":"dignity","definition":"valor do trabalho humano; respeito e honra no fazer"}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 0,
+          "question": "Proteger a água para futuras gerações é nossa moral _____.",
+          "options": [
+            "obligation",
+            "exploitation",
+            "viability",
+            "inheritance"
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Recuperar‑se após seca prolongada demonstra _____.",
+          "options": [
+            "resilience",
+            "integrity",
+            "fertility",
+            "dignity"
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Gerir a terra como guardião, não como dono, é _____.",
+          "options": [
+            "stewardship",
+            "sustainability",
+            "exploitation",
+            "viability"
+          ]
+        }
       ],
-      "vocabulary": [
-        {"word":"Paradigm","translation":"Paradigma"},
-        {"word":"Mitigation","translation":"Mitigação"},
-        {"word":"Framework","translation":"Estrutura"},
-        {"word":"Incumbent","translation":"Incumbente"}
+      "fill_in": [
+        {"sentence": "Without moral ____ , profit is empty.", "answer": "integrity"},
+        {"sentence": "True ____ balances economic viability and ecological integrity.", "answer": "sustainability"},
+        {"sentence": "Short‑term resource abuse is ____ of nature.", "answer": "exploitation"}
       ],
-      "verbs_list": [
-        {"base":"postulate","third_person":"postulates","translation":"postular"},
-        {"base":"stabilize","third_person":"stabilizes","translation":"estabilizar"},
-        {"base":"deploy","third_person":"deploys","translation":"implementar/acionar"}
-      ]
+      "speaking": "Create 3 sentences defending sustainability against exploitation: soil health, water stewardship, legacy/inheritance"
     }
   },
   {
     "id": 8,
     "level": "C2",
-    "category": "Veterinária/Ciência",
-    "title": "Zoonotic Mitigation",
-    "title_pt": "Mitigação Zoonótica",
-    "text_en": "Mitigating the risk of zoonotic spillover requires a holistic 'One Health' approach involving veterinarians and ecologists. Rarely do siloed interventions yield durable outcomes; therefore, cross‑sector governance is mandated. Should surveillance thresholds be exceeded, emergency protocols would be activated under the compliance framework.",
-    "text_pt": "Mitigar o risco de transbordamento zoonótico requer uma abordagem holística de 'One Health' envolvendo veterinários e ecologistas. Raramente intervenções isoladas geram resultados duráveis; portanto, a governança intersetorial é mandatória. Caso limiares de vigilância sejam excedidos, protocolos de emergência seriam ativados sob a estrutura de conformidade.",
-    "teaching_modules": {
-      "explanation": "Discurso científico‑político com foco em One Health, inversão (Rarely do siloed interventions…) e protocolo de emergência formal.",
-      "grammar_table": [
-        {"subject":"Rarely","verb":"do interventions yield","example":"Rarely do siloed interventions yield outcomes."},
-        {"subject":"Should","verb":"thresholds be exceeded","example":"Should thresholds be exceeded, protocols would be activated."},
-        {"subject":"Governance","verb":"is mandated","example":"Cross‑sector governance is mandated."}
+    "category": "Cultura/Jurídico",
+    "title": "Legal Contracts and Fine Print (Legalese)",
+    "title_pt": "Contratos e Letra Miúda (Linguagem Jurídica)",
+    "text_en": "THIS AGREEMENT is made between Green Valley Farms (hereinafter referred to as the 'Lessor') and AgTech Inc. (hereinafter the 'Lessee').\n1. Liability: The Lessee shall be held liable for any environmental damage caused by negligence.\n2. Termination: In the event of a material breach of these terms, this contract shall be rendered null and void with immediate effect.\n3. Binding Effect: This agreement is binding upon both parties and their respective successors.\n4. Dispute Resolution: Any disputes arising hereunder shall be settled by arbitration, not litigation.\nRead the fine print: Ignorance of the clauses is not a valid defense in a court of law.",
+    "text_pt": "ESTE CONTRATO é firmado entre Green Valley Farms (doravante denominada 'Locadora') e AgTech Inc. (doravante denominada 'Locatária').\n1. Responsabilidade: A Locatária será civilmente responsável (liable) por qualquer dano ambiental causado por negligência.\n2. Rescisão: Na hipótese de inadimplemento material (material breach) destas cláusulas, este contrato será declarado nulo e sem efeito (null and void), com eficácia imediata.\n3. Efeito Vinculante: Este instrumento é vinculante (binding) para ambas as partes e seus respectivos sucessores.\n4. Solução de Disputas: Quaisquer controvérsias oriundas deste instrumento (hereunder) serão resolvidas por arbitragem, e não por litígio judicial.\nLeia a letra miúda: ignorância das cláusulas não constitui defesa válida em juízo.",
+    "grammar": "O Advogado do Diabo: em contratos, 'shall' indica obrigação (mandatório), não futuro. 'Liable' implica responsabilidade legal com potencial sanção; 'binding' torna o instrumento obrigatório; 'null and void' extingue efeitos; 'material breach' qualifica quebra grave; 'hereinafter' define nome abreviado; 'hereunder' referencia disposições do próprio instrumento. Cultura: contratos são defensivos em ecossistemas litigiosos.",
+    "vocabulary_table": [
+      {"word":"hereinafter","translation":"doravante denominado"},
+      {"word":"liable","translation":"responsável legalmente (civil/penal)"},
+      {"word":"null and void","translation":"nulo e sem efeito"},
+      {"word":"binding","translation":"vinculante (obrigatório por lei)"},
+      {"word":"material breach","translation":"quebra contratual grave/substancial"},
+      {"word":"hereunder","translation":"sob este instrumento (abaixo disposto)"},
+      {"word":"fine print","translation":"letra miúda / cláusulas"},
+      {"word":"shall (contract)","translation":"dever/obrigação (não futuro)"}
+    ],
+    "usage_table": [
+      {"term":"hereinafter","simple":"from now on (naming)","legal":"doravante denominado"},
+      {"term":"liable","simple":"legally responsible","legal":"civilmente responsável; sujeito a sanção"},
+      {"term":"null and void","simple":"invalid; no effect","legal":"nulo e sem efeito"},
+      {"term":"binding","simple":"obligatory/enforceable","legal":"vinculante; gera obrigação"},
+      {"term":"material breach","simple":"serious contract violation","legal":"inadimplemento material"},
+      {"term":"hereunder","simple":"under this document","legal":"sob este instrumento"},
+      {"term":"shall","simple":"mandate in contracts","legal":"obriga a parte (não indica futuro)"}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 2,
+          "question": "Traduza para juridiquês: 'If you break the rule.'",
+          "options": [
+            "If you violate the rule.",
+            "Break the clause and pay.",
+            "In the event of a breach.",
+            "If there is any error."
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Traduza: 'This deal applies to both of us.'",
+          "options": [
+            "This agreement is binding upon both parties.",
+            "This agreement is nice for both parties.",
+            "This agreement is friendly to both parties.",
+            "This agreement is optional for both parties."
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "Traduza: 'We will cancel the contract if you violate it.'",
+          "options": [
+            "We shall stop the document for any mistake.",
+            "In the event of a material breach, this contract shall be rendered null and void.",
+            "If you breach, we may consider ending it someday.",
+            "If you breach, the agreement is not binding."
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Situação: Assinado por ambas as partes, sem cláusulas ilegais. O acordo é…",
+          "options": [
+            "Binding",
+            "Null"
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "Situação: Ocorre material breach grave. O contrato torna‑se…",
+          "options": [
+            "Binding",
+            "Null"
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "Situação: Cláusula contraria a lei (ilegalidade). O instrumento é…",
+          "options": [
+            "Binding",
+            "Null"
+          ]
+        }
       ],
-      "vocabulary": [
-        {"word":"Spillover","translation":"Transbordamento"},
-        {"word":"Mandated","translation":"Mandatório"},
-        {"word":"Compliance","translation":"Conformidade"},
-        {"word":"Mitigation","translation":"Mitigação"}
+      "fill_in": [
+        {"sentence": "(Hereinafter) Green Valley Farms is ___ referred to as the 'Lessor'.", "answer": "hereinafter"},
+        {"sentence": "Any disputes arising ___ shall be settled by arbitration.", "answer": "hereunder"},
+        {"sentence": "The Lessee shall be held ___ for environmental damage.", "answer": "liable"}
       ],
-      "verbs_list": [
-        {"base":"activate","third_person":"activates","translation":"ativar"},
-        {"base":"mandate","third_person":"mandates","translation":"tornar obrigatório"},
-        {"base":"surveil","third_person":"surveils","translation":"vigiar/monitorar"}
-      ]
+      "speaking": "Repeat: Legalese patterns (shall = obligation; binding; null and void)"
     }
   },
   {
     "id": 9,
     "level": "C2",
-    "category": "Veterinária/Ciência",
-    "title": "AMR Stewardship",
-    "title_pt": "Gestão de AMR",
-    "text_en": "Antimicrobial resistance stewardship programs are mandatory to prevent the collapse of current therapeutic protocols. Not only has surveillance been expanded, but compliance auditing has also been intensified; therefore, reporting obligations have increased. Should breaches occur, sanctions would be imposed pursuant to the aforementioned guidelines.",
-    "text_pt": "Programas de gestão de resistência antimicrobiana são obrigatórios para evitar o colapso dos protocolos terapêuticos atuais. Não apenas a vigilância foi ampliada, como também a auditoria de conformidade foi intensificada; portanto, as obrigações de reporte aumentaram. Caso ocorram violações, sanções seriam impostas conforme as diretrizes supracitadas.",
-    "teaching_modules": {
-      "explanation": "Registro regulatório com paralelismo (Not only … but also …), referência normativa (aforementioned guidelines) e consequência sancionatória.",
-      "grammar_table": [
-        {"subject":"Not only","verb":"has surveillance been expanded","example":"Not only has surveillance been expanded, but auditing intensified."},
-        {"subject":"Breaches","verb":"would be imposed (sanctions)","example":"Should breaches occur, sanctions would be imposed."},
-        {"subject":"Programs","verb":"are mandatory","example":"Programs are mandatory under law."}
+    "category": "Cultura/Retórica",
+    "title": "Media Training: Handling Hostile Questions",
+    "title_pt": "Treinamento de Mídia: Lidando com Perguntas Hostis",
+    "text_en": "(Scene: A press conference regarding environmental impact.)\n- Reporter: Your farm is accused of polluting the local river. Do you deny destroying the ecosystem?\n- Spokesperson: I appreciate you bringing this up, as it gives me a chance to clarify the facts.\n- Reporter: But the data shows increased nitrate levels!\n- Spokesperson: While I acknowledge the data exists, I would argue that the interpretation is flawed.\n- Reporter: So you are saying the scientists are lying?\n- Spokesperson: Far be it from me to criticize the experts. However, it is worth noting that the samples were taken upstream, not from our property.\n- Reporter: You are just dodging the question.\n- Spokesperson: Let me be crystal clear: We adhere to the strictest standards. Any suggestion to the contrary is simply unfounded.",
+    "text_pt": "(Cena: Coletiva de imprensa sobre impacto ambiental.)\n- Repórter: Sua fazenda é acusada de poluir o rio local. Você nega destruir o ecossistema?\n- Porta‑voz: Agradeço você trazer isso, pois me dá a oportunidade de esclarecer os fatos.\n- Repórter: Mas os dados mostram aumento de nitrato!\n- Porta‑voz: Embora eu reconheça que os dados existam, eu argumentaria que a interpretação é equivocada.\n- Repórter: Então você está dizendo que os cientistas estão mentindo?\n- Porta‑voz: Longe de mim criticar os especialistas. Porém, vale notar que as amostras foram coletadas rio acima, fora da nossa propriedade.\n- Repórter: Você está apenas desviando da pergunta.\n- Porta‑voz: Deixe‑me ser cristalino: seguimos os padrões mais rigorosos. Qualquer sugestão em sentido contrário é infundada.",
+    "grammar": "O Bombeiro: linguagem diplomática e defensiva para apagar incêndios. Softening: 'While I acknowledge X, I would argue Y' aceita premissa sem conceder conclusão. Bridging: 'It gives me a chance to clarify' usa o ataque como ponte para a mensagem‑chave. Correção elegante: 'Far be it from me to…' precede crítica educada. Assertividade limpa: 'Let me be crystal clear' fecha a resposta com firmeza sem agressão. Pivot: responder o que precisa ser dito sem parecer fuga.",
+    "vocabulary_table": [
+      {"word":"I appreciate you bringing this up","translation":"agradeço você trazer isso (ponte)"},
+      {"word":"clarify the facts","translation":"esclarecer os fatos"},
+      {"word":"While I acknowledge …, I would argue …","translation":"embora eu reconheça…, eu argumentaria…"},
+      {"word":"Far be it from me to …","translation":"longe de mim … (antes de criticar educadamente)"},
+      {"word":"It is worth noting that …","translation":"vale notar que …"},
+      {"word":"Let me be crystal clear","translation":"deixe‑me ser cristalino"},
+      {"word":"Any suggestion to the contrary","translation":"qualquer sugestão em sentido contrário"},
+      {"word":"pivot (technique)","translation":"mudar para sua mensagem sem parecer fugir"}
+    ],
+    "usage_table": [
+      {"attack":"You are lying.","response":"That is factually incorrect; let me clarify the facts."},
+      {"attack":"Do you deny destroying the ecosystem?","response":"I appreciate you bringing this up; while I acknowledge the data, I would argue the interpretation is flawed."},
+      {"attack":"You are dodging the question.","response":"Let me be crystal clear: we adhere to the strictest standards."},
+      {"attack":"Scientists are biased.","response":"Far be it from me to criticize the experts; it is worth noting the sampling context."},
+      {"attack":"Admit you polluted the river!","response":"It gives me a chance to clarify our compliance records and monitoring results."}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 2,
+          "question": "Suavize: 'You are lying.'",
+          "options": [
+            "You are wrong.",
+            "This is a lie.",
+            "That is factually incorrect.",
+            "Stop accusing us."
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Escolha a ponte (bridging):",
+          "options": [
+            "I appreciate you bringing this up; it gives me a chance to clarify the facts.",
+            "Answer the question first.",
+            "We refuse to comment.",
+            "You are biased."
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "Corrija sem brigar:",
+          "options": [
+            "Scientists are lying.",
+            "Far be it from me to criticize the experts; it is worth noting the sampling context.",
+            "This is nonsense.",
+            "Stop attacking us."
+          ]
+        },
+        {
+          "answer": 3,
+          "question": "Finalize com assertividade limpa:",
+          "options": [
+            "We won’t answer.",
+            "This is absurd.",
+            "You are dodging.",
+            "Let me be crystal clear: we adhere to the strictest standards."
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Estrutura de suavização correta:",
+          "options": [
+            "While I acknowledge X, I would argue Y.",
+            "While I argue X, I acknowledge Y.",
+            "I argue Y while you acknowledge X.",
+            "Acknowledge Y and argue X."
+          ]
+        },
+        {
+          "answer": 0,
+          "question": "Melhor ponte para sair da saia justa:",
+          "options": [
+            "It gives me a chance to clarify the facts.",
+            "No comment.",
+            "Answer my question.",
+            "This is irrelevant."
+          ]
+        }
       ],
-      "vocabulary": [
-        {"word":"Stewardship","translation":"Governança/gestão responsável"},
-        {"word":"Aforementioned","translation":"Supracitado"},
-        {"word":"Compliance","translation":"Conformidade"},
-        {"word":"Protocol","translation":"Protocolo"}
+      "fill_in": [
+        {"sentence": "While I ___ the data, I would ___ that the interpretation is flawed.", "answer": "acknowledge; argue"},
+        {"sentence": "Far be it ___ me to criticize the experts.", "answer": "from"},
+        {"sentence": "Let me be ___ clear: we adhere to the strictest standards.", "answer": "crystal"}
       ],
-      "verbs_list": [
-        {"base":"impose","third_person":"imposes","translation":"impor"},
-        {"base":"expand","third_person":"expands","translation":"expandir"},
-        {"base":"report","third_person":"reports","translation":"reportar"}
-      ]
+      "speaking": "Repeat: Bridging, softening disagreement, elegant correction, assertive close"
     }
   },
   {
     "id": 10,
     "level": "C2",
-    "category": "Veterinária/Ciência",
-    "title": "Genomic Editing",
-    "title_pt": "Edição Genômica",
-    "text_en": "CRISPR‑Cas9 technology offers unprecedented precision in disease resistance, albeit with significant regulatory hurdles. Rarely do ethical boards authorize deployments without exhaustive review; therefore, governance committees have instituted tiered compliance. Should the regulations change, we would be compelled to re‑submit dossiers under the updated framework.",
-    "text_pt": "A tecnologia CRISPR‑Cas9 oferece precisão sem precedentes em resistência a doenças, embora com obstáculos regulatórios significativos. Raramente conselhos de ética autorizam implementações sem revisão exaustiva; portanto, comitês de governança instituíram conformidade em níveis. Caso os regulamentos mudem, seríamos compelidos a reapresentar dossiês sob a estrutura atualizada.",
-    "teaching_modules": {
-      "explanation": "Tom sofisticado com concessão (albeit), inversão (Rarely do boards authorize…), e condicional jurídico (Should the regulations change…).",
-      "grammar_table": [
-        {"subject":"Rarely","verb":"do boards authorize","example":"Rarely do boards authorize deployments without review."},
-        {"subject":"Should","verb":"regulations change","example":"Should regulations change, dossiers would be re‑submitted."},
-        {"subject":"Technology","verb":"offers","example":"CRISPR‑Cas9 offers unprecedented precision."}
+    "category": "Cultura/Literário",
+    "title": "The Living Landscape (Adjective Order & Imagery)",
+    "title_pt": "Paisagem Viva (Ordem de Adjetivos e Imagética)",
+    "text_en": "The sun rose over the vast, undulating, emerald wheat fields. In the distance, a dilapidated, old, wooden barn stood silently against the horizon, a monument to a bygone era. The air was thick with the sweet, musky scent of damp earth and freshly cut hay. We drove our rusty, massive, American‑made pickup truck down the gravel road. The soil here is rich — a deep, crumbling, fertile loam that promises a bountiful harvest. As the light touched the crops, the landscape transformed into a shimmering, golden ocean. It was a breathtaking, serene, pastoral scene that no camera could truly capture.",
+    "text_pt": "O sol nasceu sobre os vastos, ondulados, esmeralda campos de trigo. Ao longe, um celeiro em ruínas, velho, de madeira permanecia em silêncio contra o horizonte — um monumento a uma era passada. O ar estava denso com o cheiro adocicado e almiscarado da terra úmida e do feno recém‑cortado. Descemos a estrada de cascalho na nossa caminhonete americana, enorme e enferrujada. O solo aqui é rico — um barro profundo, esfarelado e fértil que promete colheita generosa. À medida que a luz tocava as lavouras, a paisagem virava um oceano dourado, cintilante. Era uma cena pastoral, serena, de tirar o fôlego que câmera alguma conseguiria capturar.",
+    "grammar": "A Regra Invisível (OSASCOMP): ordem rígida de adjetivos em inglês — Opinion → Size → Age → Shape → Color → Origin → Material → Purpose. Trocar a ordem soa antinatural: 'wooden old barn' fere o padrão; correto: 'dilapidated (opinion) old (age) wooden (material) barn'. Em escrita descritiva, combine imagética sensorial com OSASCOMP para fluidez nativa.",
+    "vocabulary_table": [
+      {"word":"undulating","translation":"ondulado; que faz ondas"},
+      {"word":"dilapidated","translation":"em ruínas; caindo aos pedaços"},
+      {"word":"musky","translation":"almiscarado; cheiro terroso forte"},
+      {"word":"loam","translation":"barro/argiloso fértil (solo)"},
+      {"word":"shimmering","translation":"cintilante; tremeluzente"},
+      {"word":"breathtaking","translation":"de tirar o fôlego"},
+      {"word":"pastoral","translation":"campestre; bucólico"},
+      {"word":"emerald","translation":"esmeralda (cor)"},
+      {"word":"golden","translation":"dourado"},
+      {"word":"American‑made","translation":"de fabricação americana"}
+    ],
+    "usage_table": [
+      {"slot":"O (Opinion)","examples":"dilapidated, breathtaking, serene"},
+      {"slot":"S (Size)","examples":"massive"},
+      {"slot":"A (Age)","examples":"old, ancient, new"},
+      {"slot":"S (Shape)","examples":"undulating, round, long"},
+      {"slot":"C (Color)","examples":"emerald, golden, rusty"},
+      {"slot":"O (Origin)","examples":"American‑made, Brazilian, German"},
+      {"slot":"M (Material)","examples":"wooden, clay, steel"},
+      {"slot":"P (Purpose)","examples":"harvest‑ready, sleeping bag, tractor tire"}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 0,
+          "question": "[red / new / shiny / tractor] — escolha a ordem correta.",
+          "options": [
+            "A shiny new red tractor",
+            "A red shiny new tractor",
+            "A new red shiny tractor",
+            "A shiny red new tractor"
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "[wooden / dilapidated / old / barn] — ordem correta.",
+          "options": [
+            "An old wooden dilapidated barn",
+            "A dilapidated old wooden barn",
+            "A wooden dilapidated old barn",
+            "A dilapidated wooden old barn"
+          ]
+        },
+        {
+          "answer": 2,
+          "question": "[massive / American‑made / rusty / pickup truck] — ordem correta.",
+          "options": [
+            "An American‑made rusty massive pickup truck",
+            "A rusty American‑made massive pickup truck",
+            "A rusty massive American‑made pickup truck",
+            "A massive rusty American‑made pickup truck"
+          ]
+        }
       ],
-      "vocabulary": [
-        {"word":"Hurdle","translation":"Obstáculo"},
-        {"word":"Dossier","translation":"Dossiê"},
-        {"word":"Compliance","translation":"Conformidade"},
-        {"word":"Paramount","translation":"Primordial"}
+      "fill_in": [
+        {"sentence": "Complete com OSASCOMP: a ___ ___ ___ sunrise over the fields.", "answer": "breathtaking golden pastoral"},
+        {"sentence": "Write: a ___ ___ ___ barn (opinion/age/material).", "answer": "dilapidated old wooden"},
+        {"sentence": "Order: a ___ ___ ___ loam (shape/color/material).", "answer": "crumbling deep fertile"}
       ],
-      "verbs_list": [
-        {"base":"authorize","third_person":"authorizes","translation":"autorizar"},
-        {"base":"submit","third_person":"submits","translation":"submeter"},
-        {"base":"scrutinize","third_person":"scrutinizes","translation":"escrutinar"}
-      ]
+      "speaking": "Creative writing: descreva o pôr do sol na fazenda usando 3 adjetivos na ordem OSASCOMP (opinião → cor → origem/material, conforme contexto)."
     }
   },
   {
     "id": 11,
     "level": "C2",
-    "category": "Máquinas/Leis",
-    "title": "Export Strategy and FX Hedge",
-    "title_pt": "Estratégia de exportação e hedge cambial",
-    "text_en": "A cooperative signs a forward export contract for 1,000 tons at $480/t. Logistics include ocean freight at $22/t, port handling at $8/t, insurance at 0.6% of cargo value, and a 2% export tax. The cooperative hedges 70% of USD exposure via futures, locking FX at R$5.05/USD.",
-    "text_pt": "Uma cooperativa firma um contrato futuro de exportação de 1.000 toneladas a $480/t. A logística inclui frete marítimo a $22/t, operações portuárias a $8/t, seguro a 0,6% do valor da carga e imposto de exportação de 2%. A cooperativa faz hedge de 70% da exposição em USD via futuros, travando o câmbio em R$5,05/USD."
+    "category": "Cultura/Variante",
+    "title": "Global Agribusiness: Lost in Translation (US vs. UK vs. Aussie)",
+    "title_pt": "Agronegócio Global: Perdidos na Tradução (US vs UK vs AUS)",
+    "text_en": "I hired an Australian consultant to manage our logistics, and the linguistic confusion was immediate. I told him to drive the truck to the corn field. He looked at me confused and asked if I meant taking the 'lorry' to the 'maize paddock'. Later, I asked him to check the gas level in the pickup. He laughed and said he would check the 'petrol' in the 'ute'. When the harvester broke, I asked for a wrench. He handed me a spanner. It turns out that in the UK and Australia, a grain elevator is often just a silo, and the fall harvest is called autumn. We speak the same language, yet we are worlds apart.",
+    "text_pt": "Contratei um consultor australiano para cuidar da logística, e a confusão linguística foi imediata. Eu pedi que ele levasse o caminhão (truck) ao campo de milho (corn field). Ele, confuso, perguntou se eu queria levar o 'lorry' ao 'maize paddock'. Depois, pedi que conferisse o nível de 'gas' na caminhonete. Ele riu e disse que iria verificar o 'petrol' na 'ute'. Quando a colheitadeira quebrou, pedi uma 'wrench'. Ele me entregou uma 'spanner'. No Reino Unido e na Austrália, 'grain elevator' muitas vezes é apenas 'silo', e a colheita de 'fall' se chama 'autumn'. Falamos a mesma língua, mas vivemos em mundos diferentes.",
+    "grammar": "O Camaleão Linguístico (C2): adaptar vocabulário ao interlocutor e ao contexto. US vs UK vs AUS mudam termos comuns ('truck/lorry/ute', 'gas/petrol', 'corn/maize', 'field/paddock'). Em relatório científico, 'maize' é mais preciso; no mercado (CBOT), 'corn' é o termo. Competência C2: trocar o chip — com londrino, diga 'petrol'; com australiano, 'ute'; em documentos globais, ajuste para entendimento mútuo.",
+    "vocabulary_table": [
+      {"word":"truck (US)","translation":"caminhão (UK: lorry; AUS: ute para pickup)"},
+      {"word":"corn (US)","translation":"milho (UK/ciência: maize)"},
+      {"word":"field (US)","translation":"campo (UK/AUS: paddock)"},
+      {"word":"gas (US)","translation":"gasolina (UK: petrol)"},
+      {"word":"pickup truck (US)","translation":"caminhonete (AUS: ute)"},
+      {"word":"wrench (US)","translation":"chave (UK/AUS: spanner)"},
+      {"word":"fall (US)","translation":"outono (UK: autumn)"},
+      {"word":"grain elevator (US)","translation":"silo/complexo de armazenagem (UK/global: silo)"}
+    ],
+    "usage_table": [
+      {"us":"truck","uk":"lorry","aus":"ute (pickup)","pt":"caminhão/caminhonete"},
+      {"us":"corn","uk":"maize","aus":"maize","pt":"milho"},
+      {"us":"field","uk":"field/paddock","aus":"paddock","pt":"campo/pasto"},
+      {"us":"gas","uk":"petrol","aus":"petrol","pt":"gasolina"},
+      {"us":"pickup truck","uk":"pickup","aus":"ute","pt":"caminhonete"},
+      {"us":"wrench","uk":"spanner","aus":"spanner","pt":"chave"},
+      {"us":"fall","uk":"autumn","aus":"autumn","pt":"outono"},
+      {"us":"grain elevator","uk":"silo","aus":"silo","pt":"silo/armazenagem"}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 1,
+          "question": "Relatório científico (UK/EU): escolha o termo para milho.",
+          "options": [
+            "corn",
+            "maize",
+            "grain",
+            "cereal"
+          ]
+        },
+        {
+          "answer": 2,
+          "question": "Conversando em Londres: abastecer o carro. Qual palavra?",
+          "options": [
+            "gas",
+            "diesel",
+            "petrol",
+            "fuel"
+          ]
+        },
+        {
+          "answer": 3,
+          "question": "Equipe australiana: a caminhonete é chamada de…",
+          "options": [
+            "pickup",
+            "truck",
+            "lorry",
+            "ute"
+          ]
+        }
+      ],
+      "fill_in": [
+        {"sentence": "US→UK: Drive the ___ to the field (truck→?).", "answer": "lorry"},
+        {"sentence": "US→AUS: Check the ___ in the pickup (gas→?).", "answer": "petrol"},
+        {"sentence": "US→AUS: The pickup is called a ___.", "answer": "ute"}
+      ],
+      "speaking": "Switch terms in context: fale uma frase usando 'corn' (CBOT), outra usando 'maize' (paper científico), e uma com 'petrol' (UK)."
+    }
   },
   {
     "id": 12,
     "level": "C2",
-    "category": "Gestão/Agenda",
-    "title": "Temporal and Spatial Specification",
-    "title_pt": "Especificação temporal e espacial",
-    "text_en": "Operations commence at 07:00 at 125 Green Road, and the compliance briefing at 18 Oak Street is scheduled for 09:30. Precise timekeeping and address specification mitigate ambiguity; therefore, dispatch errors are precluded. Should deviations occur, corrective measures are instituted under the governance framework.",
-    "text_pt": "As operações começam às 07:00 na Rua Green, 125, e a reunião de conformidade na Rua Oak, 18 está marcada para 09:30. A especificação precisa de horário e endereço mitiga ambiguidade; portanto, erros de despacho são evitados. Caso ocorram desvios, medidas corretivas são instituídas sob a estrutura de governança."
+    "category": "Cultura/Encerramento",
+    "title": "The Legacy: Passing the Torch",
+    "title_pt": "O Legado: Passando a Tocha",
+    "text_en": "As the twilight deepens over these rolling hills, I find myself reflecting on the ephemeral nature of our toil. For forty years, I have weathered droughts that cracked the earth and floods that threatened to wash away our livelihood. Yet, through it all, the land remained — a silent witness to our perseverance. Now, the burden of stewardship falls upon your shoulders. Do not mistake this inheritance for mere capital; it is a living trust. Treat the soil with reverence, and it will sustain you. Treat it with greed, and it will turn to dust. My time as the custodian of this farm is drawing to a close. May your roots go deep, and may your harvest be bountiful long after I am gone.",
+    "text_pt": "Enquanto o crepúsculo se aprofunda sobre estas colinas onduladas, encontro‑me refletindo sobre a natureza efêmera da nossa labuta. Por quarenta anos, suportei secas que racharam a terra e cheias que ameaçaram levar nosso sustento. Ainda assim, através de tudo, a terra permaneceu — testemunha silenciosa da nossa perseverança. Agora, o peso da mordomia recai sobre seus ombros. Não confunda esta herança com mero capital; é um legado vivo. Trate o solo com reverência, e ele o sustentará. Trate‑o com ganância, e ele se tornará pó. Meu tempo como guardião desta fazenda se aproxima do fim. Que suas raízes se aprofundem, e que sua colheita seja generosa muito depois que eu me for.",
+    "grammar": "O Legado: linguagem literária e emotiva para momentos solenes — discursos de despedida, biografias, sucessão. Contraste moral (reverence vs greed) organiza o argumento e ensina ethos. Metáforas naturais e bíblicas (turn to dust, roots go deep) constroem gravidade. Vocabulário de peso (ephemeral, toil, livelihood, custodian) eleva o registro e cria densidade poética.",
+    "vocabulary_table": [
+      {"word":"ephemeral","translation":"efêmero; passageiro"},
+      {"word":"toil","translation":"labuta; trabalho árduo e doloroso"},
+      {"word":"weathered","translation":"suportou; resistiu (dificuldades/temporal)"},
+      {"word":"livelihood","translation":"meio de vida; sustento"},
+      {"word":"perseverance","translation":"perseverança"},
+      {"word":"burden","translation":"peso; encargo"},
+      {"word":"stewardship","translation":"mordomia; zelo responsável"},
+      {"word":"inheritance","translation":"herança; legado"},
+      {"word":"living trust","translation":"legado vivo; fideicomisso (metáfora)"},
+      {"word":"reverence","translation":"reverência; respeito profundo"},
+      {"word":"greed","translation":"ganância"},
+      {"word":"custodian","translation":"guardião; zelador"},
+      {"word":"roots go deep","translation":"raízes se aprofundam (metáfora de enraizamento)"}
+    ],
+    "usage_table": [
+      {"term":"Living Trust","weight":"alto","meaning":"legado vivo; responsabilidade contínua de cuidar e transmitir"},
+      {"term":"Custodian","weight":"alto","meaning":"guardião com dever moral; mais forte que 'manager'"},
+      {"term":"Ephemeral","weight":"médio","meaning":"passageiro; lembra urgência e finitude"},
+      {"term":"Toil","weight":"médio","meaning":"labuta dura; dignifica o trabalho"},
+      {"term":"Greed vs Reverence","weight":"alto","meaning":"contraste moral que instrui conduta e consequência"}
+    ],
+    "exercises": {
+      "multiple_choice": [
+        {
+          "answer": 3,
+          "question": "'Living Trust' comunica principalmente…",
+          "options": [
+            "Um fundo financeiro para herdeiros",
+            "Um inventário material a ser dividido",
+            "Um acordo legal de curto prazo",
+            "Um legado vivo e dever contínuo de cuidado"
+          ]
+        },
+        {
+          "answer": 2,
+          "question": "O contraste 'reverence vs greed' serve para…",
+          "options": [
+            "Criar humor",
+            "Descrever clima",
+            "Ensinar uma lição moral (ética do cuidado)",
+            "Definir um procedimento técnico"
+          ]
+        },
+        {
+          "answer": 1,
+          "question": "'Custodian' implica…",
+          "options": [
+            "Administrador neutro",
+            "Guardião com responsabilidade ética",
+            "Operador de máquinas",
+            "Consultor externo"
+          ]
+        }
+      ],
+      "speaking": "Escreva seu 'Voto de Compromisso' com a terra usando 3 palavras do texto (ex.: stewardship, reverence, inheritance). Responda: 1) O que significa para você 'passing the torch'? 2) Como evitar que a terra 'turn to dust'? 3) Onde suas 'roots go deep'?"
+    }
   }
 ]
