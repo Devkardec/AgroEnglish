@@ -1447,7 +1447,7 @@ function renderGrammar(data) {
           <li><strong>Eu/Nós/Eles (I, We, They):</strong> usam <span style=\"color:#1e40af;font-weight:bold;\">HAVE</span>.</li>
           <li><strong>Ele/Ela/Isso (He, She, It):</strong> usam <span style=\"color:#1e40af;font-weight:bold;\">HAS</span>.</li>
         </ul>
-        <blockquote class=\"small\"><strong>Dica Visual:</strong> Pense que o <strong>S</strong> é de \"Singular\" ou \"Solo\" (uma pessoa só).</blockquote>
+        <blockquote style=\"background-color:#fef9c3;border:1px solid #f59e0b;border-radius:6px;padding:8px\"><strong>Dica:</strong> He/She/It → <span style=\"color:#1e40af;font-weight:bold;\">HAS</span>. Em perguntas/negativas, o auxiliar <span style=\"color:#1e40af;font-weight:bold;\">Does</span>/<span style=\"color:#dc2626;font-weight:bold;\">Doesn't</span> aparece e o verbo volta para <span style=\"color:#1e40af;font-weight:bold;\">HAVE</span>.</blockquote>
         <h3>3. Cuidado! O \"Has\" é tímido</h3>
         <p>Quando fazemos uma <strong>Pergunta</strong> ou <strong>Negativa</strong>, o <em>has</em> perde a força e volta a ser <em>have</em>.</p>
         <ul>
@@ -1474,14 +1474,16 @@ function renderGrammar(data) {
         </ul>
         <blockquote class=\"small\"><strong>Atenção:</strong> Isso não é plural! É apenas a conjugação correta para <em>He/She/It</em>.</blockquote>
         <h3>3. O Mistério do \"S\" que some</h3>
-        <p>Nas perguntas e negativas, usamos os auxiliares <strong>DO</strong> e <strong>DOES</strong>.</p>
+        <p>Nas perguntas e negativas, usamos os auxiliares <span style=\"color:#1e40af;font-weight:bold;\">DO</span> e <span style=\"color:#1e40af;font-weight:bold;\">DOES</span>.</p>
         <ul>
-          <li>Para <strong>I/We/They</strong> → <strong>DO / DON'T</strong>.</li>
-          <li>Para <strong>He/She/It</strong> → <strong>DOES / DOESN'T</strong>.</li>
+          <li>Para <strong>I/We/They</strong> → <span style=\"color:#1e40af;font-weight:bold;\">DO</span> / <span style=\"color:#dc2626;font-weight:bold;\">DON'T</span>.</li>
+          <li>Para <strong>He/She/It</strong> → <span style=\"color:#1e40af;font-weight:bold;\">DOES</span> / <span style=\"color:#dc2626;font-weight:bold;\">DOESN'T</span>.</li>
         </ul>
-        <p><strong>Importante:</strong> Quando usamos <em>Does</em> ou <em>Doesn't</em>, o verbo principal perde o \"S\" e volta ao normal.</p>
+        <p><strong>Importante:</strong> Quando usamos <span style=\"color:#1e40af;font-weight:bold;\">Does</span> ou <span style=\"color:#dc2626;font-weight:bold;\">Doesn't</span>, o verbo principal perde o \"S\" e volta ao normal.</p>
         <ul>
-          <li>Ex.: <em><strong>Does</strong> the calf <strong>drink</strong> milk?</em> (O \"S\" está no <em>Does</em>, não no <em>Drink</em>).</li>
+          <li>Ex.: <em><span style=\"color:#1e40af;font-weight:bold;\">Does</span> the calf drink milk?</em> (O \"S\" está em <em>Does</em>, não em <em>drink</em>).</li>
+        </ul>
+        <blockquote style=\"background-color:#fef9c3;border:1px solid #f59e0b;border-radius:6px;padding:8px\"><strong>Dica:</strong> Afirmativa de 3ª pessoa: verbo + <strong>S</strong> → <em>The calf drink<strong>s</strong></em>. Em pergunta/negativa, o <strong>S</strong> vai para <span style=\"color:#1e40af;font-weight:bold;\">Does</span>/<span style=\"color:#dc2626;font-weight:bold;\">Doesn't</span> → <em><span style=\"color:#1e40af;font-weight:bold;\">Does</span> the calf drink?</em>.</blockquote>
         </ul>
       </div></div>
     ` : ''));
