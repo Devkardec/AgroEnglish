@@ -2,85 +2,150 @@
   {
     "id": 1,
     "level": "B1",
-    "category": "Máquinas/Campo",
-    "title": "The Big Storm",
-    "title_pt": "A Grande Tempestade",
-    "text_en": "Yesterday was a hard day. We had a big storm last night. The wind was very strong and the roof shook. The rain did not stop for hours, so the yard flooded. I stayed inside the house and watched the sky. I was worried about the animals and the farm because the noise was loud. In the morning, I walked outside to check the damage. I saw broken branches, wet soil, and a bent gate. I took photos and wrote notes for the team.",
-    "text_pt": "Ontem foi um dia difícil. Tivemos uma grande tempestade ontem à noite. O vento estava muito forte e o telhado balançou. A chuva não parou por horas, então o pátio alagou. Eu fiquei dentro de casa e observei o céu. Eu estava preocupado com os animais e a fazenda porque o barulho era alto. De manhã, caminhei para fora para verificar o estrago. Eu vi galhos quebrados, solo molhado e um portão torto. Eu tirei fotos e escrevi notas para a equipe.",
+    "category": "Troubleshooting & Safety",
+    "title": "Troubleshooting Protocols (First Conditional)",
+    "title_pt": "Protocolos de troubleshooting (Primeiro condicional)",
+    "text_en": "We need to be ready for problems during the harvest. If the red light turns on, stop the engine immediately. If the engine overheats, we will wait for it to cool down. If it rains heavily tomorrow, we will not harvest the soybeans. If you hear a strange noise, call the mechanic. Safety comes first. If we follow the protocols, we will finish the job safely.",
+    "text_pt": "Precisamos estar prontos para problemas durante a colheita. Se a luz vermelha acender, pare o motor imediatamente. Se o motor superaquecer, nós vamos esperar ele esfriar. Se chover forte amanhã, nós não vamos colher a soja. Se você ouvir um barulho estranho, chame o mecânico. A segurança vem em primeiro lugar. Se seguirmos os protocolos, nós vamos terminar o trabalho com segurança.",
+    "pairs": [
+      {"en":"We need to be ready for problems during the harvest.","pt":"Precisamos estar prontos para problemas durante a colheita."},
+      {"en":"If the red light turns on, stop the engine immediately.","pt":"Se a luz vermelha acender, pare o motor imediatamente."},
+      {"en":"If the engine overheats, we will wait for it to cool down.","pt":"Se o motor superaquecer, nós vamos esperar ele esfriar."},
+      {"en":"If it rains heavily tomorrow, we will not harvest the soybeans.","pt":"Se chover forte amanhã, nós não vamos colher a soja."},
+      {"en":"If you hear a strange noise, call the mechanic.","pt":"Se você ouvir um barulho estranho, chame o mecânico."},
+      {"en":"Safety comes first.","pt":"A segurança vem em primeiro lugar."},
+      {"en":"If we follow the protocols, we will finish the job safely.","pt":"Se seguirmos os protocolos, nós vamos terminar o trabalho com segurança."}
+    ],
+    "pairs": [
+      {"en":"If the warning light turns on, stop the machine.","pt":"Se a luz de aviso acender, pare a máquina."},
+      {"en":"If you smell fuel, shut off the engine and call the mechanic.","pt":"Se você sentir cheiro de combustível, desligue o motor e chame o mecânico."},
+      {"en":"If the temperature rises, check the cooling system and look for leaks.","pt":"Se a temperatura subir, confira o sistema de arrefecimento e procure vazamentos."},
+      {"en":"If the hydraulic hose is wet, use the emergency stop and wear protective gloves.","pt":"Se a mangueira hidráulica estiver molhada, use o botão de emergência e use luvas de proteção."},
+      {"en":"If the noise gets louder, reduce speed and inspect the belts.","pt":"Se o barulho aumentar, reduza a velocidade e inspecione as correias."},
+      {"en":"If the screen freezes, reset the panel and write a short report.","pt":"Se a tela travar, reinicie o painel e escreva um relatório curto."}
+    ],
+    "vocabulary_table": [
+      {"word":"turns on","translation":"acende/liga"},
+      {"word":"overheats","translation":"superaquece"},
+      {"word":"cool down","translation":"esfriar"},
+      {"word":"strange noise","translation":"barulho estranho"},
+      {"word":"protocols","translation":"protocolos"}
+    ],
+    "grammar": "First Conditional (condicional real): If + Present Simple (condição) → Imperativo/Will + base (resultado). Uso: situações reais e consequências prováveis. Em manual: 'If the red light turns on, stop the engine.'; Em planejamento: 'If it rains tomorrow, we will not harvest.'",
     "teaching_modules": {
-      "explanation": "Neste nível, focamos no PAST SIMPLE (Passado). Note verbos regulares com -ED (Stayed, Walked) e irregulares (Had, Was).",
+      "explanation": "Causa e efeito REAL: 'If' cria a condição real; o resultado vem como ação direta (imperativo) ou decisão (will).",
       "grammar_table": [
-        {"subject": "We", "verb": "Had", "example": "We had a storm (Irregular)"},
-        {"subject": "The wind", "verb": "Was", "example": "The wind was strong (Verb To Be Past)"},
-        {"subject": "I", "verb": "Walked", "example": "I walked outside (Regular -ED)"}
+        {"subject": "If + Present", "verb": "Imperative", "example": "If the red light turns on, stop the engine."},
+        {"subject": "If + Present", "verb": "will + base", "example": "If it rains heavily tomorrow, we will not harvest."}
       ],
       "vocabulary": [
-        {"word": "Yesterday", "translation": "Ontem"},
-        {"word": "Storm", "translation": "Tempestade"},
-        {"word": "Wind", "translation": "Vento"},
-        {"word": "Worried", "translation": "Preocupado"},
-        {"word": "Damage", "translation": "Estrago/Dano"}
+        {"word": "overheats", "translation": "superaquece"},
+        {"word": "cool down", "translation": "esfriar"},
+        {"word": "strange noise", "translation": "barulho estranho"}
       ],
       "verbs_list": [
-        {"base": "Have", "past": "Had", "translation": "Ter/Teve"},
-        {"base": "Be", "past": "Was/Were", "translation": "Ser/Era"},
-        {"base": "Walk", "past": "Walked", "translation": "Caminhar/Caminhou"}
+        {"base": "turn on", "third_person": "turns on", "translation": "ligar/acender"},
+        {"base": "overheat", "third_person": "overheats", "translation": "superaquecer"},
+        {"base": "wait", "third_person": "waits", "translation": "esperar"},
+        {"base": "cool", "third_person": "cools", "translation": "esfriar"},
+        {"base": "harvest", "third_person": "harvests", "translation": "colher"},
+        {"base": "hear", "third_person": "hears", "translation": "ouvir"},
+        {"base": "call", "third_person": "calls", "translation": "chamar/ligar"},
+        {"base": "finish", "third_person": "finishes", "translation": "terminar"}
       ]
     }
   },
   {
     "id": 2,
     "level": "B1",
-    "category": "Máquinas/Campo",
-    "title": "The Damage",
-  "title_pt": "O Estrago",
-    "text_en": "In the morning, John saw a broken fence and fallen trees. Because the posts broke, we closed the gate and stopped traffic. The road was blocked, so we moved tools back to the shed and covered the tractor. We checked the map and marked a dangerous area near the creek. We collected branches, swept water, and stacked wood. Yesterday's wind was strong near the hill, so we avoided that path.",
-    "text_pt": "De manhã, John viu uma cerca quebrada e árvores caídas. Porque os postes quebraram, nós fechamos o portão e interrompemos a passagem. A estrada estava bloqueada, então nós levamos as ferramentas de volta ao galpão e cobrimos o trator. Nós verificamos o mapa e marcamos uma área perigosa perto do riacho. Nós recolhemos galhos, varremos a água e empilhamos madeira. O vento de ontem foi forte perto da colina, então nós evitamos aquele caminho.",
+    "category": "Second Conditional",
+    "title": "Dreams and Improvements (Second Conditional)",
+    "title_pt": "Sonhos e melhorias (Segundo condicional)",
+    "text_en": "The farm is productive, but we need upgrades. If we had a bigger budget, we would buy a drone for monitoring. If I were the manager, I would invest in solar energy to save money. The old tractor is slow. If it were faster, we would finish early every day. If the corn price rose to 10 dollars, we would be rich. But for now, we work with what we have.",
+    "text_pt": "A fazenda é produtiva, mas precisamos de melhorias. Se nós tivéssemos um orçamento maior, nós compraríamos um drone para monitoramento. Se eu fosse o gerente, eu investiria em energia solar para economizar dinheiro. O trator antigo é lento. Se ele fosse mais rápido, nós terminaríamos cedo todos os dias. Se o preço do milho subisse para 10 dólares, nós seríamos ricos. Mas, por agora, trabalhamos com o que temos.",
+    "pairs": [
+      {"en":"The farm is productive, but we need upgrades.","pt":"A fazenda é produtiva, mas precisamos de melhorias."},
+      {"en":"If we had a bigger budget, we would buy a drone for monitoring.","pt":"Se nós tivéssemos um orçamento maior, nós compraríamos um drone para monitoramento."},
+      {"en":"If I were the manager, I would invest in solar energy to save money.","pt":"Se eu fosse o gerente, eu investiria em energia solar para economizar dinheiro."},
+      {"en":"The old tractor is slow. If it were faster, we would finish early every day.","pt":"O trator antigo é lento. Se ele fosse mais rápido, nós terminaríamos cedo todos os dias."},
+      {"en":"If the corn price rose to 10 dollars, we would be rich.","pt":"Se o preço do milho subisse para 10 dólares, nós seríamos ricos."},
+      {"en":"But for now, we work with what we have.","pt":"Mas, por agora, trabalhamos com o que temos."}
+    ],
+    "vocabulary_table": [
+      {"word":"budget","translation":"orçamento/verba"},
+      {"word":"upgrades","translation":"melhorias"},
+      {"word":"solar energy","translation":"energia solar"},
+      {"word":"rose","translation":"subiu (passado de rise)"},
+      {"word":"monitoring","translation":"monitoramento"}
+    ],
+    "grammar": "Second Conditional (irreal/hipotético): If + Past Simple (condição) → would + verbo (resultado). Uso: coisas que NÃO são verdade agora, mas imaginamos. Formal: 'If I were' / 'If it were' (em vez de 'was') para hipóteses. 'Would' marca o '-ia' do português: compraria, investiria.",
     "teaching_modules": {
-      "explanation": "Past Simple narra fatos concluídos (saw, broke, closed). Observe o uso de because/so para ligar causa e resultado.",
+      "explanation": "O mundo dos sonhos: situação irreal hoje, mas desejada. Estrutura: If + Past; would + verbo.",
       "grammar_table": [
-        {"subject": "John", "verb": "Saw", "example": "John saw a broken fence."},
-        {"subject": "Posts", "verb": "Broke", "example": "The posts broke in the storm."},
-        {"subject": "We", "verb": "Closed", "example": "We closed the gate because of the damage."}
+        {"subject": "If + Past", "verb": "would + base", "example": "If we had a bigger budget, we would buy a drone."},
+        {"subject": "Were (formal)", "verb": "If I were / it were", "example": "If I were the manager, I would invest in solar energy."},
+        {"subject": "Price", "verb": "rose", "example": "If the corn price rose, we would be rich."}
       ],
       "vocabulary": [
-        {"word": "Because", "translation": "Porque"},
-        {"word": "So", "translation": "Então"},
-        {"word": "Fence", "translation": "Cerca"},
-        {"word": "Shed", "translation": "Galpão"}
+        {"word": "budget", "translation": "orçamento"},
+        {"word": "upgrades", "translation": "melhorias"},
+        {"word": "solar energy", "translation": "energia solar"}
       ],
       "verbs_list": [
-        {"base": "See", "past": "Saw", "translation": "Ver/Viu"},
-        {"base": "Break", "past": "Broke", "translation": "Quebrar/Quebrou"},
-        {"base": "Close", "past": "Closed", "translation": "Fechar/Fechou"}
+        {"base": "rise", "past": "rose", "translation": "subir/subiu (preço)"},
+        {"base": "be", "past": "were", "translation": "ser/estar (hipótese)"},
+        {"base": "buy", "past": "bought", "translation": "comprar/comprou"},
+        {"base": "invest", "past": "invested", "translation": "investir/investiu"},
+        {"base": "finish", "past": "finished", "translation": "terminar/terminou"},
+        {"base": "monitor", "past": "monitored", "translation": "monitorar/monitorou"}
       ]
     }
   },
   {
     "id": 3,
     "level": "B1",
-    "category": "Máquinas/Campo",
-    "title": "The Broken Tractor",
-  "title_pt": "O Trator Quebrado",
-    "text_en": "John tried to start the tractor, but it did not work. Smoke came out of the engine and the light blinked. Because the battery was weak, the starter failed and the panel went dark. We opened the hood and saw a loose belt and wet cables. So we pushed the tractor into the barn, placed chocks, and stopped for safety. We wrote a report with time and symptoms.",
-    "text_pt": "John tentou ligar o trator, mas ele não funcionou. Fumaça saiu do motor e a luz piscou. Porque a bateria estava fraca, o motor de arranque falhou e o painel apagou. Nós abrimos o capô e vimos uma correia solta e cabos molhados. Então nós empurramos o trator para dentro do celeiro, colocamos calços e paramos por segurança. Nós escrevemos um relatório com horário e sintomas.",
+    "category": "Used To",
+    "title": "Changes in Farming (Habits with Used To)",
+    "title_pt": "Mudanças na agricultura (hábitos com Used To)",
+    "text_en": "This farm is very modern now, but it was different in the past. Ten years ago, we used to milk the cows by hand. Now we use robots. We used to work under the hot sun all day. Now the tractors have AC. We didn't use to have GPS for planting. It was harder to make straight lines. My father used to say that technology helps, but the eye of the owner is essential. Farming used to be slower, but now efficiency is the priority.",
+    "text_pt": "Esta fazenda é muito moderna agora, mas era diferente no passado. Há dez anos, nós costumávamos ordenhar as vacas à mão. Agora usamos robôs. Nós costumávamos trabalhar sob o sol quente o dia todo. Agora os tratores têm ar-condicionado. Nós não costumávamos ter GPS para o plantio. Era mais difícil fazer linhas retas. Meu pai costumava dizer que a tecnologia ajuda, mas o olho do dono é essencial. A agricultura costumava ser mais lenta, mas agora a eficiência é a prioridade.",
+    "pairs": [
+      {"en":"This farm is very modern now, but it was different in the past.","pt":"Esta fazenda é muito moderna agora, mas era diferente no passado."},
+      {"en":"Ten years ago, we used to milk the cows by hand.","pt":"Há dez anos, nós costumávamos ordenhar as vacas à mão."},
+      {"en":"Now we use robots.","pt":"Agora usamos robôs."},
+      {"en":"We used to work under the hot sun all day.","pt":"Nós costumávamos trabalhar sob o sol quente o dia todo."},
+      {"en":"Now the tractors have AC.","pt":"Agora os tratores têm ar-condicionado."},
+      {"en":"We didn't use to have GPS for planting.","pt":"Nós não costumávamos ter GPS para o plantio."},
+      {"en":"It was harder to make straight lines.","pt":"Era mais difícil fazer linhas retas."},
+      {"en":"My father used to say that technology helps, but the eye of the owner is essential.","pt":"Meu pai costumava dizer que a tecnologia ajuda, mas o olho do dono é essencial."},
+      {"en":"Farming used to be slower, but now efficiency is the priority.","pt":"A agricultura costumava ser mais lenta, mas agora a eficiência é a prioridade."}
+    ],
+    "vocabulary_table": [
+      {"word":"used to","translation":"costumava"},
+      {"word":"didn't use to","translation":"não costumava"},
+      {"word":"milk by hand","translation":"ordenhar à mão"},
+      {"word":"AC / air conditioning","translation":"ar condicionado"},
+      {"word":"straight lines","translation":"linhas retas"},
+      {"word":"efficiency","translation":"eficiência"},
+      {"word":"owner","translation":"dono"},
+      {"word":"robots","translation":"robôs"}
+    ],
+    "grammar": "Used to expressa hábito antigo que não acontece mais. Afirmativa: Sujeito + used to + verbo. Negativa: Sujeito + didn't use to + verbo (sem 'd'). Não é o verbo 'usar'; é expressão fixa. Serve para comparar passado vs. presente.",
     "teaching_modules": {
-      "explanation": "Past Simple com negativa (did not work) e verbos irregulares (came, saw). Because/so explicam falha e ação.",
+      "explanation": "O velho hábito: 'used to' = costumava; 'didn't use to' = não costumava. Use para hábitos antigos que mudaram.",
       "grammar_table": [
-        {"subject": "John", "verb": "Tried", "example": "John tried to start the tractor."},
-        {"subject": "It", "verb": "Did not work", "example": "It did not work after the storm."},
-        {"subject": "Smoke", "verb": "Came", "example": "Smoke came out of the engine."}
+        {"subject": "Affirmative", "verb": "used to + base", "example": "We used to milk the cows by hand."},
+        {"subject": "Negative", "verb": "didn't use to + base", "example": "We didn't use to have GPS for planting."},
+        {"subject": "Contrast", "verb": "past vs. now", "example": "Farming used to be slower, now efficiency is priority."}
       ],
       "vocabulary": [
-        {"word": "Battery", "translation": "Bateria"},
-        {"word": "Starter", "translation": "Motor de arranque"},
-        {"word": "Hood", "translation": "Capô"},
-        {"word": "Barn", "translation": "Celeiro"}
+        {"word": "milk by hand", "translation": "ordenhar à mão"},
+        {"word": "straight lines", "translation": "linhas retas"}
       ],
       "verbs_list": [
-        {"base": "Try", "past": "Tried", "translation": "Tentar/Tentou"},
-        {"base": "Come", "past": "Came", "translation": "Vir/Vieram/Veio"},
-        {"base": "See", "past": "Saw", "translation": "Ver/Viu"}
+        {"base": "milk", "past": "milked", "translation": "ordenhar"},
+        {"base": "work", "past": "worked", "translation": "trabalhar"},
+        {"base": "say", "past": "said", "translation": "dizer"}
       ]
     }
   },
@@ -123,224 +188,434 @@
   {
     "id": 4,
     "level": "B1",
-    "category": "Máquinas/Campo",
-    "title": "Calling Help",
-  "title_pt": "Chamando Ajuda",
-    "text_en": "John called the mechanic because we needed help after the storm. He answered and asked for photos and short videos. We sent pictures and described the metal noise. Because the road was muddy, we waited at the barn and kept the doors closed. So the team prepared tools, cleaned the workbench, and wrote a checklist for tomorrow.",
-    "text_pt": "John ligou para o mecânico porque nós precisávamos de ajuda após a tempestade. Ele atendeu e pediu fotos e vídeos curtos. Nós enviamos imagens e descrevemos o barulho metálico. Porque a estrada estava lamacenta, nós esperamos no celeiro e mantivemos as portas fechadas. Então a equipe preparou ferramentas, limpou a bancada e escreveu uma lista de verificação para amanhã.",
+    "category": "Passive Voice",
+    "title": "How the Farm Works (Processes with Passive Voice)",
+    "title_pt": "Como a fazenda funciona (processos com voz passiva)",
+    "text_en": "On this farm, everything follows a strict process. First, the cows are brought to the milking parlor. The udders are cleaned with iodine. Then, the milk is collected by automatic machines. After that, the milk is cooled in a large stainless steel tank. The samples are sent to the laboratory for quality tests. Finally, the product is sold to the dairy cooperative. High standards are maintained every day.",
+    "text_pt": "Nesta fazenda, tudo segue um processo rigoroso. Primeiro, as vacas são levadas para a sala de ordenha. Os úberes são limpos com iodo. Depois, o leite é coletado por máquinas automáticas. Em seguida, o leite é resfriado em um grande tanque de aço inoxidável. As amostras são enviadas ao laboratório para testes de qualidade. Por fim, o produto é vendido para a cooperativa de laticínios. Padrões elevados são mantidos todos os dias.",
+    "pairs": [
+      {"en":"On this farm, everything follows a strict process.","pt":"Nesta fazenda, tudo segue um processo rigoroso."},
+      {"en":"First, the cows are brought to the milking parlor.","pt":"Primeiro, as vacas são levadas para a sala de ordenha."},
+      {"en":"The udders are cleaned with iodine.","pt":"Os úberes são limpos com iodo."},
+      {"en":"Then, the milk is collected by automatic machines.","pt":"Depois, o leite é coletado por máquinas automáticas."},
+      {"en":"After that, the milk is cooled in a large stainless steel tank.","pt":"Em seguida, o leite é resfriado em um grande tanque de aço inoxidável."},
+      {"en":"The samples are sent to the laboratory for quality tests.","pt":"As amostras são enviadas ao laboratório para testes de qualidade."},
+      {"en":"Finally, the product is sold to the dairy cooperative.","pt":"Por fim, o produto é vendido para a cooperativa de laticínios."},
+      {"en":"High standards are maintained every day.","pt":"Padrões elevados são mantidos todos os dias."}
+    ],
+    "vocabulary_table": [
+      {"word":"milking parlor","translation":"sala de ordenha"},
+      {"word":"udders","translation":"úberes"},
+      {"word":"iodine","translation":"iodo"},
+      {"word":"stainless steel","translation":"aço inoxidável"},
+      {"word":"samples","translation":"amostras"},
+      {"word":"dairy cooperative","translation":"cooperativa de laticínios"}
+    ],
+    "grammar": "Voz passiva (Presente): Objeto + is/are + particípio passado. Foco no processo e no produto: 'Milk is collected' vs 'Machines collect milk'. Use a passiva quando o agente não é importante ou desconhecido.",
     "teaching_modules": {
-      "explanation": "Past Simple para ações comunicadas (called, answered, sent). Uso de because/so para justificar espera e preparação.",
+      "explanation": "O objeto é rei: destaque o que acontece com o produto/etapa. Estrutura: is/are + particípio.",
       "grammar_table": [
-        {"subject": "John", "verb": "Called", "example": "John called the mechanic yesterday."},
-        {"subject": "He", "verb": "Asked", "example": "He asked for photos."},
-        {"subject": "We", "verb": "Sent", "example": "We sent pictures to explain the problem."}
+        {"subject": "Cows", "verb": "are brought", "example": "The cows are brought to the milking parlor."},
+        {"subject": "Milk", "verb": "is collected / is cooled", "example": "The milk is collected and is cooled."},
+        {"subject": "Samples/Product", "verb": "are sent / is sold", "example": "The samples are sent; the product is sold."}
       ],
       "vocabulary": [
-        {"word": "Because", "translation": "Porque"},
-        {"word": "So", "translation": "Então"},
-        {"word": "Muddy", "translation": "Lamacento"},
-        {"word": "Checklist", "translation": "Lista de verificação"}
+        {"word": "milking parlor", "translation": "sala de ordenha"},
+        {"word": "stainless steel", "translation": "aço inoxidável"}
       ],
       "verbs_list": [
-        {"base": "Call", "past": "Called", "translation": "Ligar/Ligou"},
-        {"base": "Ask", "past": "Asked", "translation": "Pedir/Pediu"},
-        {"base": "Send", "past": "Sent", "translation": "Enviar/Enviou"}
+        {"base": "bring", "participle": "brought", "translation": "levar/trazer (passivo: são levadas)"},
+        {"base": "clean", "participle": "cleaned", "translation": "limpar (passivo: são limpos)"},
+        {"base": "collect", "participle": "collected", "translation": "coletar (passivo: é coletado)"},
+        {"base": "cool", "participle": "cooled", "translation": "resfriar (passivo: é resfriado)"},
+        {"base": "send", "participle": "sent", "translation": "enviar (passivo: são enviadas)"},
+        {"base": "sell", "participle": "sold", "translation": "vender (passivo: é vendido)"},
+        {"base": "maintain", "participle": "maintained", "translation": "manter (passivo: são mantidos)"}
       ]
     }
   },
   {
     "id": 5,
     "level": "B1",
-    "category": "Pecuária",
-    "title": "Cows Escaped",
-  "title_pt": "Fuga das Vacas",
-    "text_en": "The cows escaped because the fence fell in the storm. We saw tracks near the creek and counted the herd carefully. Two cows were missing, so we closed other gates and warned neighbors. We checked water lines and fixed a bent pipe. We marked the path with flags because visibility was poor.",
-    "text_pt": "As vacas fugiram porque a cerca caiu na tempestade. Nós vimos rastros perto do riacho e contamos o rebanho com cuidado. Duas vacas estavam faltando, então nós fechamos outros portões e avisamos os vizinhos. Nós checamos as linhas de água e consertamos um cano torto. Nós marcamos o caminho com bandeiras porque a visibilidade estava ruim.",
+    "category": "Passive Voice (Past)",
+    "title": "Maintenance History (Passive Voice - Past)",
+    "title_pt": "Histórico de manutenção (voz passiva - passado)",
+    "text_en": "Before we use the harvester, let's check the logbook. The full service was done last week. The engine oil was changed on Monday. The air filters were replaced on Tuesday. The tires were inspected, but they were not changed because they are new. The hydraulic system was tested by the specialist. The problem was solved quickly. The machine was returned to the field in perfect condition.",
+    "text_pt": "Antes de usarmos a colheitadeira, vamos verificar o caderno de registro (logbook). A revisão completa foi feita na semana passada. O óleo do motor foi trocado na segunda-feira. Os filtros de ar foram substituídos na terça-feira. Os pneus foram inspecionados, mas não foram trocados porque são novos. O sistema hidráulico foi testado pelo especialista. O problema foi resolvido rapidamente. A máquina foi devolvida ao campo em perfeitas condições.",
+    "pairs": [
+      {"en":"Before we use the harvester, let's check the logbook.","pt":"Antes de usarmos a colheitadeira, vamos verificar o caderno de registro (logbook)."},
+      {"en":"The full service was done last week.","pt":"A revisão completa foi feita na semana passada."},
+      {"en":"The engine oil was changed on Monday.","pt":"O óleo do motor foi trocado na segunda-feira."},
+      {"en":"The air filters were replaced on Tuesday.","pt":"Os filtros de ar foram substituídos na terça-feira."},
+      {"en":"The tires were inspected, but they were not changed because they are new.","pt":"Os pneus foram inspecionados, mas não foram trocados porque são novos."},
+      {"en":"The hydraulic system was tested by the specialist.","pt":"O sistema hidráulico foi testado pelo especialista."},
+      {"en":"The problem was solved quickly.","pt":"O problema foi resolvido rapidamente."},
+      {"en":"The machine was returned to the field in perfect condition.","pt":"A máquina foi devolvida ao campo em perfeitas condições."}
+    ],
+    "vocabulary_table": [
+      {"word":"logbook","translation":"caderno de registro/diário de bordo"},
+      {"word":"service","translation":"revisão/manutenção"},
+      {"word":"replaced","translation":"substituído"},
+      {"word":"inspected","translation":"inspecionado"},
+      {"word":"hydraulic system","translation":"sistema hidráulico"}
+    ],
+    "grammar": "Passiva no passado: Objeto + was/were + particípio passado. Singular usa 'was' (oil was changed); plural usa 'were' (filters were replaced). Foco no que foi feito (relatório de status), não em quem fez.",
     "teaching_modules": {
-      "explanation": "Past Simple para o incidente (escaped, fell, saw, counted). Because/so conectam causa e reação da equipe.",
+      "explanation": "O relatório feito: usar 'was/were' + particípio para descrever serviços concluídos.",
       "grammar_table": [
-        {"subject": "The cows", "verb": "Escaped", "example": "The cows escaped yesterday."},
-        {"subject": "The fence", "verb": "Fell", "example": "The fence fell in the storm."},
-        {"subject": "We", "verb": "Warned", "example": "We warned neighbors."}
+        {"subject": "Singular", "verb": "was + participle", "example": "The oil was changed."},
+        {"subject": "Plural", "verb": "were + participle", "example": "The filters were replaced."},
+        {"subject": "Status", "verb": "was/were + participle", "example": "The problem was solved; Tires were inspected."}
       ],
       "vocabulary": [
-        {"word": "Creek", "translation": "Riacho"},
-        {"word": "Track", "translation": "Rastro"},
-        {"word": "Gate", "translation": "Portão"},
-        {"word": "Neighbor", "translation": "Vizinho"}
+        {"word": "logbook", "translation": "caderno de registro"},
+        {"word": "hydraulic system", "translation": "sistema hidráulico"}
       ],
       "verbs_list": [
-        {"base": "Escape", "past": "Escaped", "translation": "Escapar/Escapou"},
-        {"base": "Count", "past": "Counted", "translation": "Contar/Contou"},
-        {"base": "Warn", "past": "Warned", "translation": "Avisar/Avisou"}
+        {"base": "do", "participle": "done", "translation": "fazer (feito)"},
+        {"base": "change", "participle": "changed", "translation": "trocar (trocado)"},
+        {"base": "replace", "participle": "replaced", "translation": "substituir (substituído)"},
+        {"base": "inspect", "participle": "inspected", "translation": "inspecionar (inspecionado)"},
+        {"base": "test", "participle": "tested", "translation": "testar (testado)"},
+        {"base": "solve", "participle": "solved", "translation": "resolver (resolvido)"},
+        {"base": "return", "participle": "returned", "translation": "devolver (devolvido)"}
       ]
     }
   },
   {
     "id": 6,
     "level": "B1",
-    "category": "Pecuária",
-    "title": "The Search",
-  "title_pt": "A Busca",
-    "text_en": "John searched for the animals in the rain and carried a small lamp. He walked across fields and hills and called each cow by name. Because the mud was deep, he moved slowly and rested twice. He found the herd far from home, so we guided them back with ropes and corn. We closed the paddock and checked the count again.",
-    "text_pt": "John procurou os animais na chuva e carregou uma pequena lanterna. Ele caminhou por campos e colinas e chamou cada vaca pelo nome. Porque a lama estava profunda, ele se moveu devagar e descansou duas vezes. Ele encontrou o rebanho longe de casa, então nós os guiamos de volta com cordas e milho. Nós fechamos o piquete e conferimos a contagem novamente.",
+    "category": "Relative Clauses",
+    "title": "Identifying Specifics (Relative Clauses)",
+    "title_pt": "Identificando específicos (orações relativas)",
+    "text_en": "We have 500 cows, so identification is critical. The cow which has the red tag is the sick one. The medication that is on the shelf is for her. Please call the veterinarian who visited us last week. He is the only professional who understands this virus. Also, check the fence which is near the river. The employee that fixes fences is on vacation, so you must do it.",
+    "text_pt": "Nós temos 500 vacas, então a identificação é crítica. A vaca que tem o brinco vermelho é a doente. O medicamento que está na prateleira é para ela. Por favor, chame o veterinário que nos visitou na semana passada. Ele é o único profissional que entende este vírus. Além disso, verifique a cerca que está perto do rio. O funcionário que conserta cercas está de férias, então você deve fazer isso.",
+    "pairs": [
+      {"en":"We have 500 cows, so identification is critical.","pt":"Nós temos 500 vacas, então a identificação é crítica."},
+      {"en":"The cow which has the red tag is the sick one.","pt":"A vaca que tem o brinco vermelho é a doente."},
+      {"en":"The medication that is on the shelf is for her.","pt":"O medicamento que está na prateleira é para ela."},
+      {"en":"Please call the veterinarian who visited us last week.","pt":"Por favor, chame o veterinário que nos visitou na semana passada."},
+      {"en":"He is the only professional who understands this virus.","pt":"Ele é o único profissional que entende este vírus."},
+      {"en":"Also, check the fence which is near the river.","pt":"Além disso, verifique a cerca que está perto do rio."},
+      {"en":"The employee that fixes fences is on vacation, so you must do it.","pt":"O funcionário que conserta cercas está de férias, então você deve fazer isso."}
+    ],
+    "vocabulary_table": [
+      {"word":"tag","translation":"brinco de identificação/etiqueta"},
+      {"word":"shelf","translation":"prateleira"},
+      {"word":"virus","translation":"vírus"},
+      {"word":"vacation","translation":"férias"},
+      {"word":"critical","translation":"crítico"}
+    ],
+    "grammar": "Relative Clauses: WHO para pessoas (the vet who…); WHICH para coisas/animais (the cow which…); THAT pode substituir WHO/WHICH em frases definidoras (the cow that…, the man that…). Servem para apontar e identificar com precisão.",
     "teaching_modules": {
-      "explanation": "Past Simple de ação contínua no passado (searched, walked, moved, found). Because/so estruturam dificuldade e solução.",
+      "explanation": "O dedo que aponta: use who/which/that para especificar exatamente quem/qual item.",
       "grammar_table": [
-        {"subject": "John", "verb": "Searched", "example": "John searched for the animals."},
-        {"subject": "He", "verb": "Moved", "example": "He moved slowly because of the mud."},
-        {"subject": "We", "verb": "Guided", "example": "We guided the herd back."}
+        {"subject": "WHO", "verb": "pessoas", "example": "The veterinarian who visited us…"},
+        {"subject": "WHICH", "verb": "coisas/animais", "example": "The fence which is near the river."},
+        {"subject": "THAT", "verb": "coringa", "example": "The cow that has the red tag."}
       ],
       "vocabulary": [
-        {"word": "Mud", "translation": "Lama"},
-        {"word": "Hill", "translation": "Colina"},
-        {"word": "Rope", "translation": "Corda"},
-        {"word": "Herd", "translation": "Rebanho"}
+        {"word": "tag", "translation": "brinco/etiqueta"},
+        {"word": "shelf", "translation": "prateleira"}
       ],
       "verbs_list": [
-        {"base": "Search", "past": "Searched", "translation": "Procurar/Procurou"},
-        {"base": "Move", "past": "Moved", "translation": "Mover/Moveu"},
-        {"base": "Find", "past": "Found", "translation": "Encontrar/Encontrou"}
+        {"base": "fix", "third_person": "fixes", "translation": "consertar"},
+        {"base": "visit", "third_person": "visits", "translation": "visitar"},
+        {"base": "understand", "third_person": "understands", "translation": "entender"}
       ]
     }
   },
   {
     "id": 7,
     "level": "B1",
-    "category": "Pecuária",
-    "title": "Power Cut",
-  "title_pt": "Sem Luz",
-    "text_en": "The power cut happened last night during the storm. The milk tank stopped, so the milk spoiled and smelled sour. We checked the log because the alarms did not ring and the screen froze. We reset the panel, tested the backup socket, and cleaned the room. We wrote a short report for tomorrow.",
-    "text_pt": "A queda de energia aconteceu ontem à noite durante a tempestade. O tanque de leite parou, então o leite estragou e ficou com cheiro azedo. Nós verificamos o registro porque os alarmes não tocaram e a tela travou. Nós reiniciamos o painel, testamos a tomada de reserva e limpamos a sala. Nós escrevemos um relatório curto para amanhã.",
+    "category": "Present Perfect",
+    "title": "Professional Experience (Present Perfect)",
+    "title_pt": "Experiência profissional (Present Perfect)",
+    "text_en": "Have you ever operated a John Deere harvester? Yes, I have operated one many times. Have you ever worked with Angus cattle? No, I have never worked with Angus, only with Nelore. My brother has visited farms in the USA. He has seen incredible technology there. We have learned a lot over the years. Experience is as important as education.",
+    "text_pt": "Você já operou uma colheitadeira John Deere? Sim, eu já operei uma muitas vezes. Você já trabalhou com gado Angus? Não, eu nunca trabalhei com Angus, apenas com Nelore. Meu irmão já visitou fazendas nos EUA. Ele já viu tecnologia incrível lá. Nós já aprendemos muito ao longo dos anos. Experiência é tão importante quanto formação.",
+    "pairs": [
+      {"en":"Have you ever operated a John Deere harvester?","pt":"Você já operou uma colheitadeira John Deere?"},
+      {"en":"Yes, I have operated one many times.","pt":"Sim, eu já operei uma muitas vezes."},
+      {"en":"Have you ever worked with Angus cattle?","pt":"Você já trabalhou com gado Angus?"},
+      {"en":"No, I have never worked with Angus, only with Nelore.","pt":"Não, eu nunca trabalhei com Angus, apenas com Nelore."},
+      {"en":"My brother has visited farms in the USA.","pt":"Meu irmão já visitou fazendas nos EUA."},
+      {"en":"He has seen incredible technology there.","pt":"Ele já viu tecnologia incrível lá."},
+      {"en":"We have learned a lot over the years.","pt":"Nós já aprendemos muito ao longo dos anos."},
+      {"en":"Experience is as important as education.","pt":"Experiência é tão importante quanto formação."}
+    ],
+    "vocabulary_table": [
+      {"word":"operated","translation":"operado"},
+      {"word":"worked","translation":"trabalhado"},
+      {"word":"visited","translation":"visitado"},
+      {"word":"seen","translation":"visto"},
+      {"word":"learned","translation":"aprendido"},
+      {"word":"education","translation":"formação/estudo"},
+      {"word":"John Deere","translation":"John Deere"},
+      {"word":"Angus","translation":"Angus"},
+      {"word":"Nelore","translation":"Nelore"},
+      {"word":"USA","translation":"EUA"}
+    ],
+    "grammar": "Present Perfect (experiência): Sujeito + have/has + particípio. Uso: experiências de vida sem data específica (ever/never). Se tiver data (ontem, 1990), use Past Simple. Palavras-chave: ever (alguma vez?), never (nunca).",
     "teaching_modules": {
-      "explanation": "Past Simple para o evento e as ações corretivas (happened, stopped, checked, reset, cleaned). Uso de negativa com did not.",
+      "explanation": "Currículo falado: relate experiências na vida com have/has + particípio. Diferencie de Past Simple quando houver data.",
       "grammar_table": [
-        {"subject": "The power", "verb": "Cut/Happened", "example": "The power cut happened last night."},
-        {"subject": "Alarms", "verb": "Did not ring", "example": "The alarms did not ring."},
-        {"subject": "We", "verb": "Reset/Cleaned", "example": "We reset the panel and cleaned the room."}
+        {"subject": "Have/Has + Participle", "verb": "experiência", "example": "I have operated; He has visited; We have learned."},
+        {"subject": "Ever/Never", "verb": "vida toda", "example": "Have you ever worked…? I have never worked with Angus."},
+        {"subject": "Past vs Present Perfect", "verb": "data vs sem data", "example": "He visited in 2019 (Past). He has visited farms (PP)."}
       ],
       "vocabulary": [
-        {"word": "Tank", "translation": "Tanque"},
-        {"word": "Alarm", "translation": "Alarme"},
-        {"word": "Panel", "translation": "Painel"},
-        {"word": "Log", "translation": "Registro"}
+        {"word": "operated", "translation": "operado"},
+        {"word": "education", "translation": "formação"}
       ],
       "verbs_list": [
-        {"base": "Stop", "past": "Stopped", "translation": "Parar/Parou"},
-        {"base": "Reset", "past": "Reset", "translation": "Reiniciar/Reiniciou"},
-        {"base": "Clean", "past": "Cleaned", "translation": "Limpar/Limpou"}
+        {"base": "operate", "participle": "operated", "translation": "operar"},
+        {"base": "work", "participle": "worked", "translation": "trabalhar"},
+        {"base": "visit", "participle": "visited", "translation": "visitar"},
+        {"base": "see", "participle": "seen", "translation": "ver (visto)"},
+        {"base": "learn", "participle": "learned", "translation": "aprender (aprendido)"},
+        {"base": "go", "participle": "gone", "translation": "ir (ido)"}
       ]
     }
   },
   {
     "id": 8,
     "level": "B1",
-    "category": "Veterinária",
-    "title": "Sick Cow",
-  "title_pt": "Vaca Doente",
-    "text_en": "One cow was sick yesterday after the long rain. She did not eat and stayed apart from the herd. We took her temperature because she looked weak and breathed fast. So we isolated her in a clean pen, gave water, and changed the bedding. We called the vet and prepared records.",
-    "text_pt": "Uma vaca ficou doente ontem após a longa chuva. Ela não comeu e ficou separada do rebanho. Nós medimos a temperatura porque ela parecia fraca e respirava rápido. Então nós a isolamos em um curral limpo, demos água e trocamos a cama. Nós chamamos o veterinário e preparamos os registros.",
+    "category": "Present Perfect",
+    "title": "Status Report (Just, Already, Yet)",
+    "title_pt": "Relatório de Status (Just, Already, Yet)",
+    "text_en": "Hey, have you called the supplier yet? Yes, I have already called him. He is coming. What about the seeds? Have they arrived yet? No, they haven't arrived yet. Look! The fuel truck has just entered the gate. Great. I have just finished checking the tanks. We are fast today. We have already done half of the work.",
+    "text_pt": "Ei, você já ligou para o fornecedor? Sim, eu já liguei para ele. Ele está vindo. E as sementes? Elas já chegaram? Não, elas ainda não chegaram. Olhe! O caminhão de combustível acabou de entrar pelo portão. Ótimo. Eu acabei de terminar de checar os tanques. Estamos rápidos hoje. Nós já fizemos metade do trabalho.",
+    "pairs": [
+      {"en": "Hey, have you called the supplier yet?", "pt": "Ei, você já ligou para o fornecedor?"},
+      {"en": "Yes, I have already called him. He is coming.", "pt": "Sim, eu já liguei para ele. Ele está vindo."},
+      {"en": "What about the seeds? Have they arrived yet?", "pt": "E as sementes? Elas já chegaram?"},
+      {"en": "No, they haven't arrived yet.", "pt": "Não, elas ainda não chegaram."},
+      {"en": "Look! The fuel truck has just entered the gate.", "pt": "Olhe! O caminhão de combustível acabou de entrar pelo portão."},
+      {"en": "Great. I have just finished checking the tanks.", "pt": "Ótimo. Eu acabei de terminar de checar os tanques."},
+      {"en": "We are fast today. We have already done half of the work.", "pt": "Estamos rápidos hoje. Nós já fizemos metade do trabalho."}
+    ],
+    "vocabulary_table": [
+      {"word": "supplier", "translation": "fornecedor"},
+      {"word": "entered", "translation": "entrou"},
+      {"word": "gate", "translation": "portão"},
+      {"word": "half", "translation": "metade"},
+      {"word": "fast", "translation": "rápido"},
+      {"word": "fuel truck", "translation": "caminhão de combustível"},
+      {"word": "tanks", "translation": "tanques"},
+      {"word": "seeds", "translation": "sementes"},
+      {"word": "called", "translation": "ligou (chamou)"},
+      {"word": "arrived", "translation": "chegaram"},
+      {"word": "already", "translation": "já"},
+      {"word": "just", "translation": "acabei de"},
+      {"word": "yet", "translation": "ainda (no final)"}
+    ],
+    "grammar": "Present Perfect com advérbios de tempo: JUST (ação muito recente) e ALREADY (ação já realizada) ficam entre have/has e o particípio. YET aparece no final em perguntas (Já?) e negativas (Ainda não).",
     "teaching_modules": {
-      "explanation": "Past Simple com estados e ações (was, did not eat, stayed, took, looked). Because/so ligam observação à medida tomada.",
+      "explanation": "O relógio das palavras: posicione JUST/ALREADY entre have/has e o particípio; use YET no final em perguntas e negativas.",
       "grammar_table": [
-        {"subject": "The cow", "verb": "Was", "example": "The cow was sick yesterday."},
-        {"subject": "She", "verb": "Did not eat", "example": "She did not eat."},
-        {"subject": "We", "verb": "Took", "example": "We took her temperature."}
+        {"subject": "JUST", "verb": "recente", "example": "I have just finished checking the tanks."},
+        {"subject": "ALREADY", "verb": "já feito", "example": "We have already done half of the work."},
+        {"subject": "YET (question)", "verb": "no final", "example": "Have you called the supplier yet?"},
+        {"subject": "YET (negative)", "verb": "no final", "example": "They haven't arrived yet."}
       ],
       "vocabulary": [
-        {"word": "Pen", "translation": "Curral"},
-        {"word": "Temperature", "translation": "Temperatura"},
-        {"word": "Weak", "translation": "Fraca"},
-        {"word": "Isolate", "translation": "Isolar"}
+        {"word": "supplier", "translation": "fornecedor"},
+        {"word": "gate", "translation": "portão"}
       ],
       "verbs_list": [
-        {"base": "Be", "past": "Was/Were", "translation": "Ser/Estar"},
-        {"base": "Eat", "past": "Ate", "translation": "Comer/Comeu"},
-        {"base": "Take", "past": "Took", "translation": "Medir/Tomar"}
+        {"base": "call", "participle": "called", "translation": "ligar"},
+        {"base": "arrive", "participle": "arrived", "translation": "chegar"},
+        {"base": "enter", "participle": "entered", "translation": "entrar"},
+        {"base": "do", "participle": "done", "translation": "fazer"},
+        {"base": "finish", "participle": "finished", "translation": "terminar"}
       ]
     }
   },
   {
     "id": 9,
     "level": "B1",
-    "category": "Veterinária",
-    "title": "Diagnosis",
-  "title_pt": "O Diagnóstico",
-    "text_en": "The vet came in the afternoon and arrived during light rain. He examined the cow and said it was an infection because the lab strip changed color. We cleaned equipment because hygiene was important and we organized the table. So we prepared a simple plan and wrote notes for the team and the morning check.",
-    "text_pt": "O veterinário veio à tarde e chegou durante uma chuva leve. Ele examinou a vaca e disse que era uma infecção porque a fita do teste mudou de cor. Nós limpamos os equipamentos porque a higiene era importante e organizamos a mesa. Então nós preparamos um plano simples e escrevemos notas para a equipe e para a checagem da manhã.",
+    "category": "Present Perfect",
+    "title": "Long-Term Commitment (For vs. Since)",
+    "title_pt": "Compromisso de Longo Prazo (For vs. Since)",
+    "text_en": "I am the manager of this sector. I have worked on this farm for fifteen years. I have lived in this house since 2010. We have used John Deere tractors for a long time because they are reliable. My assistant is new. He has been here for only two months. It hasn't rained since September, so the dust is terrible. We have built a strong history here.",
+    "text_pt": "Eu sou o gerente deste setor. Eu trabalho nesta fazenda há quinze anos. Eu moro nesta casa desde 2010. Nós usamos tratores John Deere há muito tempo porque são confiáveis. Meu assistente é novo. Ele está aqui há apenas dois meses. Não chove desde setembro, então a poeira está terrível. Nós construímos uma história forte aqui.",
+    "pairs": [
+      {"en":"I am the manager of this sector.","pt":"Eu sou o gerente deste setor."},
+      {"en":"I have worked on this farm for fifteen years.","pt":"Eu trabalho nesta fazenda há quinze anos."},
+      {"en":"I have lived in this house since 2010.","pt":"Eu moro nesta casa desde 2010."},
+      {"en":"We have used John Deere tractors for a long time because they are reliable.","pt":"Nós usamos tratores John Deere há muito tempo porque são confiáveis."},
+      {"en":"My assistant is new. He has been here for only two months.","pt":"Meu assistente é novo. Ele está aqui há apenas dois meses."},
+      {"en":"It hasn't rained since September, so the dust is terrible.","pt":"Não chove desde setembro, então a poeira está terrível."},
+      {"en":"We have built a strong history here.","pt":"Nós construímos uma história forte aqui."}
+    ],
+    "vocabulary_table": [
+      {"word":"reliable","translation":"confiável"},
+      {"word":"dust","translation":"poeira"},
+      {"word":"built","translation":"construído"},
+      {"word":"history","translation":"história/histórico"},
+      {"word":"for","translation":"por (período)"},
+      {"word":"since","translation":"desde (início)"},
+      {"word":"fifteen years","translation":"quinze anos"},
+      {"word":"September","translation":"setembro"},
+      {"word":"two months","translation":"dois meses"}
+    ],
+    "grammar": "Present Perfect com FOR (período) e SINCE (ponto inicial). Use Present Perfect para ações que começaram no passado e continuam hoje. FOR responde 'Quanto tempo?'; SINCE responde 'Quando começou?'.",
     "teaching_modules": {
-      "explanation": "Past Simple com relato clínico (came, examined, said, cleaned, prepared, wrote). Because/so formam uma narrativa lógica.",
+      "explanation": "A linha do tempo: FOR soma o tempo (1+1+1) — duração; SINCE marca o ponto inicial no calendário.",
       "grammar_table": [
-        {"subject": "The vet", "verb": "Came", "example": "The vet came in the afternoon."},
-        {"subject": "He", "verb": "Said", "example": "He said it was an infection."},
-        {"subject": "We", "verb": "Cleaned/Prepared/Wrote", "example": "We cleaned equipment and wrote notes."}
+        {"subject": "FOR (duração)", "verb": "tempo contínuo", "example": "I have worked here for fifteen years."},
+        {"subject": "SINCE (início)", "verb": "ponto inicial", "example": "It hasn't rained since September."},
+        {"subject": "Erro comum", "verb": "corrigir", "example": "I have worked here for 10 years (não: I work here for)."}
       ],
       "vocabulary": [
-        {"word": "Infection", "translation": "Infecção"},
-        {"word": "Hygiene", "translation": "Higiene"},
-        {"word": "Equipment", "translation": "Equipamento"},
-        {"word": "Note", "translation": "Nota"}
+        {"word": "reliable", "translation": "confiável"},
+        {"word": "dust", "translation": "poeira"}
       ],
       "verbs_list": [
-        {"base": "Come", "past": "Came", "translation": "Vir/Veio"},
-        {"base": "Say", "past": "Said", "translation": "Dizer/Disse"},
-        {"base": "Clean", "past": "Cleaned", "translation": "Limpar/Limpou"}
+        {"base": "work", "participle": "worked", "translation": "trabalhar"},
+        {"base": "live", "participle": "lived", "translation": "morar"},
+        {"base": "use", "participle": "used", "translation": "usar"},
+        {"base": "be", "participle": "been", "translation": "estar/ser"},
+        {"base": "rain", "participle": "rained", "translation": "chover"},
+        {"base": "build", "participle": "built", "translation": "construir"}
       ]
     }
   },
   {
     "id": 10,
     "level": "B1",
-    "category": "Veterinária",
-    "title": "Treatment",
-  "title_pt": "O Tratamento",
-    "text_en": "She took medicine and rested yesterday after the diagnosis. Because the fever went down, she drank water and ate a little hay. So the team felt calm and recorded her progress. We changed the bedding and checked her hydration again at night. The vet will check her tomorrow, and she will improve if the temperature stays normal.",
-    "text_pt": "Ela tomou remédio e descansou ontem após o diagnóstico. Porque a febre baixou, ela bebeu água e comeu um pouco de feno. Então a equipe ficou calma e registrou o progresso. Nós trocamos a cama e checamos a hidratação novamente à noite. O veterinário vai checá-la amanhã e ela vai melhorar se a temperatura ficar normal.",
+    "category": "Modals of Probability",
+    "title": "Risks and Probabilities (Might & Could)",
+  "title_pt": "Riscos e Probabilidades (Might & Could)",
+    "text_en": "Farming is a business of uncertainty. Look at those dark clouds. It might rain later, but I am not sure. If the storm is strong, the wind could damage the corn stalks. The market is also unstable right now. The price of soybeans might rise next week, or it could drop. We might hire more workers for the harvest, but it depends on the yield. We must prepare for every scenario.",
+    "text_pt": "A agricultura é um negócio de incerteza. Olhe aquelas nuvens escuras. Pode ser que chova mais tarde, mas eu não tenho certeza. Se a tempestade for forte, o vento poderia danificar as hastes do milho. O mercado também está instável agora. O preço da soja pode subir na próxima semana, ou poderia cair. Podemos contratar mais trabalhadores para a colheita, mas depende do rendimento. Devemos nos preparar para cada cenário.",
+    "pairs": [
+      {"en":"Farming is a business of uncertainty.","pt":"A agricultura é um negócio de incerteza."},
+      {"en":"Look at those dark clouds. It might rain later, but I am not sure.","pt":"Olhe aquelas nuvens escuras. Pode ser que chova mais tarde, mas eu não tenho certeza."},
+      {"en":"If the storm is strong, the wind could damage the corn stalks.","pt":"Se a tempestade for forte, o vento poderia danificar as hastes do milho."},
+      {"en":"The market is also unstable right now.","pt":"O mercado também está instável agora."},
+      {"en":"The price of soybeans might rise next week, or it could drop.","pt":"O preço da soja pode subir na próxima semana, ou poderia cair."},
+      {"en":"We might hire more workers for the harvest, but it depends on the yield.","pt":"Podemos contratar mais trabalhadores para a colheita, mas depende do rendimento."},
+      {"en":"We must prepare for every scenario.","pt":"Devemos nos preparar para cada cenário."}
+    ],
+    "vocabulary_table": [
+      {"word":"uncertainty","translation":"incerteza"},
+      {"word":"damage","translation":"danificar/dano"},
+      {"word":"stalks","translation":"hastes/talos"},
+      {"word":"unstable","translation":"instável"},
+      {"word":"yield","translation":"rendimento"},
+      {"word":"scenario","translation":"cenário"},
+      {"word":"might","translation":"pode ser que"},
+      {"word":"could","translation":"poderia"}
+    ],
     "teaching_modules": {
-      "explanation": "Past Simple para ações de tratamento (took, rested, drank, ate). Inclusão de Future para previsão (will check, will improve). Because/so conectam resultado clínico e estado da equipe.",
+      "explanation": "O talvez profissional: prefira might/could no meio da frase em vez de começar com maybe.",
       "grammar_table": [
-        {"subject": "She", "verb": "Took/Rested", "example": "She took medicine and rested yesterday."},
-        {"subject": "Fever", "verb": "Went down", "example": "The fever went down."},
-        {"subject": "The vet", "verb": "Will check", "example": "The vet will check her tomorrow."}
+        {"subject": "Might", "verb": "possibilidade", "example": "It might rain later."},
+        {"subject": "Could", "verb": "risco/possibilidade", "example": "The wind could damage the corn stalks."},
+        {"subject": "Will vs Might/Could", "verb": "certeza vs dúvida", "example": "It will rain (certeza) → It might rain (dúvida)."}
       ],
       "vocabulary": [
-        {"word": "Medicine", "translation": "Remédio"},
-        {"word": "Fever", "translation": "Febre"},
-        {"word": "Improve", "translation": "Melhorar"},
-        {"word": "Tomorrow", "translation": "Amanhã"}
+        {"word": "yield", "translation": "rendimento"},
+        {"word": "scenario", "translation": "cenário"}
       ],
       "verbs_list": [
-        {"base": "Take", "past": "Took", "translation": "Tomar/Tomou"},
-        {"base": "Drink", "past": "Drank", "translation": "Beber/Bebeu"},
-        {"base": "Eat", "past": "Ate", "translation": "Comer/Comeu"}
+        {"base": "rain", "translation": "chover"},
+        {"base": "damage", "translation": "danificar"},
+        {"base": "rise", "translation": "subir"},
+        {"base": "drop", "translation": "cair"},
+        {"base": "hire", "translation": "contratar"}
       ]
   }
  },
   {
-    "id": 12,
+    "id": 11,
     "level": "B1",
-    "category": "Rotina/Horários",
-    "title": "Yesterday's Schedule and Address",
-    "title_pt": "Horários e endereço de ontem",
-    "text_en": "Yesterday, we started at 6:30 at 125 Green Road. We arrived at the gate at 6:40 and walked to the barn. At 9:30, we met the vet at 18 Oak Street. We checked the address, updated the schedule, and finished at 17:00.",
-    "text_pt": "Ontem, nós começamos às 6:30 na Rua Green, 125. Nós chegamos ao portão às 6:40 e caminhamos até o celeiro. Às 9:30, nós encontramos o veterinário na Rua Oak, 18. Nós conferimos o endereço, atualizamos a programação e terminamos às 17:00.",
+    "category": "Reported Speech",
+    "title": "Passing the Message (Reported Speech)",
+    "title_pt": "Transmitindo a Mensagem (Reported Speech)",
+    "text_en": "We had a meeting with the owner this morning. He said that he was happy with our progress. However, he told us to speed up the planting process. He said that the rain was coming soon. I asked him about the new parts, and he said that they had arrived yesterday. He also told the mechanic to fix the brakes immediately. So, let's get back to work.",
+    "text_pt": "Nós tivemos uma reunião com o dono hoje de manhã. Ele disse que estava feliz com nosso progresso. Porém, ele nos disse para agilizar o processo de plantio. Ele disse que a chuva estava chegando em breve. Eu perguntei a ele sobre as novas peças, e ele disse que elas tinham chegado ontem. Ele também disse ao mecânico para consertar os freios imediatamente. Então, vamos voltar ao trabalho.",
+    "pairs": [
+      {"en":"We had a meeting with the owner this morning.","pt":"Nós tivemos uma reunião com o dono hoje de manhã."},
+      {"en":"He said that he was happy with our progress.","pt":"Ele disse que estava feliz com nosso progresso."},
+      {"en":"However, he told us to speed up the planting process.","pt":"Porém, ele nos disse para agilizar o processo de plantio."},
+      {"en":"He said that the rain was coming soon.","pt":"Ele disse que a chuva estava chegando em breve."},
+      {"en":"I asked him about the new parts, and he said that they had arrived yesterday.","pt":"Eu perguntei a ele sobre as novas peças, e ele disse que elas tinham chegado ontem."},
+      {"en":"He also told the mechanic to fix the brakes immediately.","pt":"Ele também disse ao mecânico para consertar os freios imediatamente."},
+      {"en":"So, let's get back to work.","pt":"Então, vamos voltar ao trabalho."}
+    ],
+    "vocabulary_table": [
+      {"word":"progress","translation":"progresso"},
+      {"word":"speed up","translation":"agilizar/acelerar"},
+      {"word":"brakes","translation":"freios"},
+      {"word":"meeting","translation":"reunião"},
+      {"word":"said","translation":"disse"},
+      {"word":"told","translation":"disse (para alguém)"}
+    ],
+    "grammar": "Reported Speech: dê um 'passo atrás' no tempo verbal. Presente → Passado (am → was; is coming → was coming). Imperativos viram 'to' + verbo com tell + objeto (He told us to speed up). Diferença: say (dizer algo) vs tell (dizer para alguém).",
     "teaching_modules": {
-      "explanation": "Past Simple com tempos e locais: started, arrived, met, checked, finished.",
+      "explanation": "A fofoca profissional: transformar fala direta em relato técnico. Estruturas: 'He said that + frase' e 'He told + objeto + to + verbo'.",
       "grammar_table": [
-        {"subject": "We", "verb": "started", "example": "We started at 6:30."},
-        {"subject": "We", "verb": "met", "example": "We met the vet at 9:30."}
+        {"subject": "Presente → Passado", "verb": "backshift", "example": "He said he was happy (de 'I am happy')."},
+        {"subject": "Is coming → Was coming", "verb": "backshift", "example": "He said the rain was coming."},
+        {"subject": "Imperativo", "verb": "tell + objeto + to", "example": "He told us to speed up."}
       ],
       "vocabulary": [
-        {"word": "Address", "translation": "Endereço"},
-        {"word": "Schedule", "translation": "Programação"},
-        {"word": "Gate", "translation": "Portão"}
+        {"word": "progress", "translation": "progresso"},
+        {"word": "meeting", "translation": "reunião"}
       ],
       "verbs_list": [
-        {"base": "start", "past": "started", "translation": "começar"},
-        {"base": "arrive", "past": "arrived", "translation": "chegar"},
-        {"base": "meet", "past": "met", "translation": "encontrar"},
-        {"base": "check", "past": "checked", "translation": "conferir"},
-        {"base": "finish", "past": "finished", "translation": "terminar"}
+        {"base": "say", "past": "said", "translation": "dizer"},
+        {"base": "tell", "past": "told", "translation": "contar/dizer a"},
+        {"base": "fix", "past": "fixed", "translation": "consertar"}
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "level": "B1",
+    "category": "Tag Questions",
+    "title": "Final Safety Check (Tag Questions)",
+    "title_pt": "Checagem Final de Segurança (Tag Questions)",
+    "text_en": "The harvester is ready to go, isn't it? Yes, it is. I checked everything. You didn't find any leaks, did you? No, the floor is clean. The operator has the map, doesn't he? Yes, he does. We can start the engine now, can't we? Sure. It won't rain today, will it? I hope not. Let's work.",
+    "text_pt": "A colheitadeira está pronta para ir, não está? Sim, está. Eu chequei tudo. Você não encontrou nenhum vazamento, encontrou? Não, o chão está limpo. O operador está com o mapa, não está? Sim, está. Podemos ligar o motor agora, não podemos? Claro. Não vai chover hoje, vai? Espero que não. Vamos trabalhar.",
+    "pairs": [
+      {"en":"The harvester is ready to go, isn't it?","pt":"A colheitadeira está pronta para ir, não está?"},
+      {"en":"You didn't find any leaks, did you?","pt":"Você não encontrou nenhum vazamento, encontrou?"},
+      {"en":"The operator has the map, doesn't he?","pt":"O operador está com o mapa, não está?"},
+      {"en":"We can start the engine now, can't we?","pt":"Podemos ligar o motor agora, não podemos?"},
+      {"en":"It won't rain today, will it?","pt":"Não vai chover hoje, vai?"}
+    ],
+    "vocabulary_table": [
+      {"word":"ready to go","translation":"pronto para começar"},
+      {"word":"leaks","translation":"vazamentos"},
+      {"word":"floor","translation":"chão/piso"},
+      {"word":"hope","translation":"esperar/torcer"},
+      {"word":"operator","translation":"operador"},
+      {"word":"map","translation":"mapa"}
+    ],
+    "grammar": "Tag Questions: confirmação profissional. Regra do espelho: frase positiva (+) → tag negativa (−); frase negativa (−) → tag positiva (+). Auxiliares refletem o tempo: is/isn't, did/didn't, can/can't, will/won't.",
+    "teaching_modules": {
+      "explanation": "A confirmação: use tag questions para checar segurança e procedimentos. Inverter o sinal e repetir o auxiliar correto.",
+      "grammar_table": [
+        {"subject": "+ frase", "verb": "− tag", "example": "It is ready, isn't it?"},
+        {"subject": "− frase", "verb": "+ tag", "example": "You didn't find leaks, did you?"},
+        {"subject": "Auxiliares", "verb": "match", "example": "am/aren't; have/doesn't; was/wasn't; were/weren't; will/won't"},
+        {"subject": "Exemplo", "verb": "segurança", "example": "The tank is full, isn't it?"},
+        {"subject": "Exemplo", "verb": "segurança", "example": "You didn't find leaks, did you?"},
+        {"subject": "Exemplo", "verb": "procedimento", "example": "We can start now, can't we?"},
+        {"subject": "Exemplo", "verb": "checagem", "example": "The operator has the map, doesn't he?"},
+        {"subject": "Exemplo", "verb": "clima", "example": "It won't rain today, will it?"}
+      ],
+      "vocabulary": [
+        {"word": "ready to go", "translation": "pronto para começar"},
+        {"word": "leaks", "translation": "vazamentos"}
+      ],
+      "verbs_list": [
+        {"base": "hope", "translation": "esperar/torcer"},
+        {"base": "find", "translation": "encontrar"},
+        {"base": "start", "translation": "ligar/começar"}
       ]
     }
   }
