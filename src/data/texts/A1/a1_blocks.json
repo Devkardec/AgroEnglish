@@ -3,10 +3,35 @@
     "id": 1,
     "level": "A1",
     "category": "Routine",
-    "title": "Morning Routine on the Farm",
+    "title": "Paul and the Farm (Identity & Description)",
     "title_pt": "Rotina da manhã na fazenda",
-    "text_en": "I am at the farm in the morning. The barn is open. The cows are calm, and the chickens are near the gate. The sun is strong, but the wind is cool. The fence is safe, and the field is clean. We are ready to work and keep the farm clean.",
-    "text_pt": "Eu estou na fazenda pela manhã. O galpão está aberto. As vacas estão calmas e as galinhas estão perto do portão. O sol está forte, mas o vento está fresco. A cerca está segura e o campo está limpo. Nós estamos prontos para trabalhar e manter a fazenda limpa.",
+    "text_en": "Hello! I am Paul, and I am a farmer. I am at the farm now. My sister is here too. She is happy. The barn is open. It is very big. The cows are calm, but the chickens are fast. They are funny. The sun is hot, but the wind is not strong. We are ready for the day.",
+    "text_pt": "Olá! Eu sou Paul, e eu sou fazendeiro. Eu estou na fazenda agora. Minha irmã está aqui também. Ela está feliz. O galpão está aberto. Ele é muito grande. As vacas estão calmas, mas as galinhas são rápidas. Elas são engraçadas. O sol está quente, mas o vento não está forte. Nós estamos prontos para o dia.",
+    "pairs": [
+      {"en":"Hello! I am Paul, and I am a farmer.","pt":"Olá! Eu sou Paul, e eu sou fazendeiro."},
+      {"en":"I am at the farm now.","pt":"Eu estou na fazenda agora."},
+      {"en":"My sister is here too. She is happy.","pt":"Minha irmã está aqui também. Ela está feliz."},
+      {"en":"The barn is open. It is very big.","pt":"O galpão está aberto. Ele é muito grande."},
+      {"en":"The cows are calm, but the chickens are fast. They are funny.","pt":"As vacas estão calmas, mas as galinhas são rápidas. Elas são engraçadas."},
+      {"en":"The sun is hot, but the wind is not strong.","pt":"O sol está quente, mas o vento não está forte."},
+      {"en":"We are ready for the day.","pt":"Nós estamos prontos para o dia."}
+    ],
+    "vocabulary_table": [
+      {"word":"farmer","translation":"fazendeiro"},
+      {"word":"farm","translation":"fazenda"},
+      {"word":"sister","translation":"irmã"},
+      {"word":"barn","translation":"galpão"},
+      {"word":"cows","translation":"vacas"},
+      {"word":"chickens","translation":"galinhas"},
+      {"word":"sun","translation":"sol"},
+      {"word":"wind","translation":"vento"},
+      {"word":"happy","translation":"feliz"},
+      {"word":"big","translation":"grande"},
+      {"word":"fast","translation":"rápido"},
+      {"word":"funny","translation":"engraçado"},
+      {"word":"ready","translation":"pronto"},
+      {"word":"day","translation":"dia"}
+    ],
     "teaching_modules": {
       "explanation": "Verbo to be (am/is/are) para estados e localização simples.",
       "grammar_table": [
@@ -36,320 +61,616 @@
   {
     "id": 2,
     "level": "A1",
-    "category": "Machines",
-    "title": "The Tractor at Work",
-    "title_pt": "O trator no trabalho",
-    "text_en": "João drives the tractor. He checks the oil and the tires. The tractor carries hay to the barn. It makes a loud sound, but it is strong. He moves slowly near the gate. He uses a helmet and gloves. The team waits and helps. The tractor stops next to the barn, and João smiles.",
-    "text_pt": "João dirige o trator. Ele verifica o óleo e os pneus. O trator leva feno para o galpão. Ele faz um som alto, mas é forte. Ele se move devagar perto do portão. Ele usa capacete e luvas. A equipe espera e ajuda. O trator para ao lado do galpão, e João sorri.",
+    "category": "Livestock & Health",
+    "title": "The Veterinarian Visit (Livestock & Health)",
+    "title_pt": "A visita da veterinária (Gado & Saúde)",
+    "text_en": "I have a livestock farm. We have many cows here. This is the veterinarian. Her name is Dr. Silva. She has a medical kit. The bull has a strong body, but he has a small injury on the leg. Dr. Silva has the medicine. We have safe and healthy animals now.",
+    "text_pt": "Eu tenho uma fazenda de pecuária. Nós temos muitas vacas aqui. Esta é a veterinária. O nome dela é Dra. Silva. Ela tem um kit médico. O touro tem um corpo forte, mas ele tem um ferimento pequeno na perna. A Dra. Silva tem o remédio. Agora nós temos animais seguros e saudáveis.",
+    "pairs": [
+      {"en":"I have a livestock farm.","pt":"Eu tenho uma fazenda de pecuária."},
+      {"en":"We have many cows here.","pt":"Nós temos muitas vacas aqui."},
+      {"en":"This is the veterinarian. Her name is Dr. Silva.","pt":"Esta é a veterinária. O nome dela é Dra. Silva."},
+      {"en":"She has a medical kit.","pt":"Ela tem um kit médico."},
+      {"en":"The bull has a strong body, but he has a small injury on the leg.","pt":"O touro tem um corpo forte, mas ele tem um ferimento pequeno na perna."},
+      {"en":"Dr. Silva has the medicine.","pt":"A Dra. Silva tem o remédio."},
+      {"en":"We have safe and healthy animals now.","pt":"Agora nós temos animais seguros e saudáveis."}
+    ],
+    "vocabulary_table": [
+      {"word":"livestock","translation":"pecuária/gado"},
+      {"word":"veterinarian","translation":"veterinária(o)"},
+      {"word":"bull","translation":"touro"},
+      {"word":"medical kit","translation":"kit médico"},
+      {"word":"injury","translation":"ferimento/lesão"},
+      {"word":"medicine","translation":"remédio"},
+      {"word":"body","translation":"corpo"},
+      {"word":"leg","translation":"perna"},
+      {"word":"healthy","translation":"saudável"},
+      {"word":"safe","translation":"seguro"},
+      {"word":"farm","translation":"fazenda"},
+      {"word":"cows","translation":"vacas"}
+    ],
+    "grammar": "To Have no presente: I/We have; She/He/It has. The bull (He) has.",
     "teaching_modules": {
-      "explanation": "He/She/It adiciona -s no verbo: He drives, He checks. It carries/makes/stops.",
+      "explanation": "Verbo to have no presente: I/We have; She/He/It has. Possessivos simples: Her name.",
       "grammar_table": [
-        {"subject": "He (Ele)", "verb": "drives", "example": "He drives the tractor."},
-        {"subject": "It (Tractor)", "verb": "carries", "example": "It carries hay."}
+        {"subject": "I/We", "verb": "have", "example": "We have many cows."},
+        {"subject": "She/He/It", "verb": "has", "example": "The bull has a strong body."}
       ],
       "vocabulary": [
-        {"word": "tractor", "translation": "trator"},
-        {"word": "oil", "translation": "óleo"},
-        {"word": "tire", "translation": "pneu"},
-        {"word": "hay", "translation": "feno"},
-        {"word": "helmet", "translation": "capacete"},
-        {"word": "gloves", "translation": "luvas"},
-        {"word": "gate", "translation": "portão"}
+        {"word": "livestock", "translation": "pecuária/gado"},
+        {"word": "veterinarian", "translation": "veterinária(o)"},
+        {"word": "bull", "translation": "touro"},
+        {"word": "medical kit", "translation": "kit médico"},
+        {"word": "injury", "translation": "ferimento"},
+        {"word": "medicine", "translation": "remédio"},
+        {"word": "body", "translation": "corpo"},
+        {"word": "leg", "translation": "perna"},
+        {"word": "healthy", "translation": "saudável"}
       ],
       "verbs_list": [
-        {"base": "drive", "third_person": "drives", "translation": "dirigir"},
-        {"base": "check", "third_person": "checks", "translation": "verificar"},
-        {"base": "carry", "third_person": "carries", "translation": "levar"}
+        {"base": "have", "third_person": "has", "translation": "ter"}
       ]
     }
   },
   {
     "id": 3,
     "level": "A1",
-    "category": "Livestock Feed",
-    "title": "Water and Feed",
-    "title_pt": "Água e ração",
-    "text_en": "Today we feed the cows and the sheep. We fill the troughs with clean water. We put feed in the bins. Check the water level. Add more if it is low. Keep the buckets clean. Do not waste feed. Work calmly and help the animals. The cows eat, and the sheep drink. The farm is quiet.",
-    "text_pt": "Hoje nós alimentamos as vacas e as ovelhas. Enchemos os cochos com água limpa. Colocamos ração nas caixas. Verifique o nível de água. Adicione mais se estiver baixo. Mantenha os baldes limpos. Não desperdice ração. Trabalhe com calma e ajude os animais. As vacas comem, e as ovelhas bebem. A fazenda está tranquila.",
+    "category": "Actions & Habits",
+    "title": "Daily Feeding Routine (Actions & Habits)",
+    "title_pt": "Rotina diária de alimentação (Ações & Hábitos)",
+    "text_en": "We start work at 6:00 AM. The cows walk to the green pasture. They eat fresh grass all day. The small calf drinks milk. I check the water tanks. They are clean. The farm worker feeds the pigs. He uses corn. Every animal needs water and food.",
+    "text_pt": "Nós começamos o trabalho às 6:00. As vacas caminham para o pasto verde. Elas comem capim fresco o dia todo. O bezerro pequeno bebe leite. Eu confiro os bebedouros/tanques de água. Eles estão limpos. O trabalhador rural alimenta os porcos. Ele usa milho. Todo animal precisa de água e comida.",
+    "pairs": [
+      {"en":"We start work at 6:00 AM.","pt":"Nós começamos o trabalho às 6:00."},
+      {"en":"The cows walk to the green pasture.","pt":"As vacas caminham para o pasto verde."},
+      {"en":"They eat fresh grass all day.","pt":"Elas comem capim fresco o dia todo."},
+      {"en":"The small calf drinks milk.","pt":"O bezerro pequeno bebe leite."},
+      {"en":"I check the water tanks.","pt":"Eu confiro os bebedouros/tanques de água."},
+      {"en":"They are clean.","pt":"Eles estão limpos."},
+      {"en":"The farm worker feeds the pigs.","pt":"O trabalhador rural alimenta os porcos."},
+      {"en":"He uses corn.","pt":"Ele usa milho."},
+      {"en":"Every animal needs water and food.","pt":"Todo animal precisa de água e comida."}
+    ],
+    "vocabulary_table": [
+      {"word":"start","translation":"começar"},
+      {"word":"walk","translation":"andar"},
+      {"word":"eat","translation":"comer"},
+      {"word":"drink","translation":"beber"},
+      {"word":"check","translation":"conferir"},
+      {"word":"feed","translation":"alimentar"},
+      {"word":"need","translation":"precisar"},
+      {"word":"pasture","translation":"pasto"},
+      {"word":"calf","translation":"bezerro"},
+      {"word":"water tanks","translation":"bebedouros/tanques"},
+      {"word":"corn","translation":"milho"},
+      {"word":"farm worker","translation":"trabalhador rural/peão"},
+      {"word":"grass","translation":"capim"},
+      {"word":"pigs","translation":"porcos"}
+    ],
+    "grammar": "Present Simple: I/We/They usam a base (eat, drink). He/She/It adiciona s/es (feeds, drinks). The calf/worker usam forma com s.",
     "teaching_modules": {
-      "explanation": "Imperativo para instruções: Check, Add, Keep. Frases curtas e diretas.",
+      "explanation": "Present Simple para ações e hábitos. Regra: I/We/They usam a base; He/She/It adiciona s/es.",
       "grammar_table": [
-        {"subject": "(Imperativo)", "verb": "Check", "example": "Check the water."},
-        {"subject": "(Imperativo negativo)", "verb": "Do not", "example": "Do not waste feed."}
+        {"subject": "We/They", "verb": "eat", "example": "They eat fresh grass."},
+        {"subject": "He/The calf", "verb": "drinks/feeds", "example": "The calf drinks milk."}
       ],
       "vocabulary": [
-        {"word": "feed", "translation": "ração"},
-        {"word": "trough", "translation": "cocho"},
-        {"word": "bucket", "translation": "balde"},
-        {"word": "bin", "translation": "caixa"},
-        {"word": "level", "translation": "nível"}
+        {"word": "pasture", "translation": "pasto"},
+        {"word": "calf", "translation": "bezerro"},
+        {"word": "water tank", "translation": "bebedouro/tanque"},
+        {"word": "corn", "translation": "milho"}
       ],
       "verbs_list": [
-        {"base": "fill", "third_person": "fills", "translation": "encher"},
-        {"base": "add", "third_person": "adds", "translation": "adicionar"},
-        {"base": "keep", "third_person": "keeps", "translation": "manter"}
+        {"base": "start", "third_person": "starts", "translation": "começar"},
+        {"base": "walk", "third_person": "walks", "translation": "andar"},
+        {"base": "eat", "third_person": "eats", "translation": "comer"},
+        {"base": "drink", "third_person": "drinks", "translation": "beber"},
+        {"base": "check", "third_person": "checks", "translation": "conferir"},
+        {"base": "feed", "third_person": "feeds", "translation": "alimentar"},
+        {"base": "need", "third_person": "needs", "translation": "precisar"}
       ]
     }
   },
   {
     "id": 4,
     "level": "A1",
-    "category": "Barn",
-    "title": "Inside the Barn",
-    "title_pt": "Dentro do galpão",
-    "text_en": "There is a big barn on the farm. There are cows inside. There is clean straw on the floor. There are buckets next to the door. There is a small light over the gate. There are tools on the wall. The barn is clean today. We work in the barn and keep everything simple.",
-    "text_pt": "Há um galpão grande na fazenda. Há vacas dentro. Há palha limpa no chão. Há baldes ao lado da porta. Há uma luz pequena acima do portão. Há ferramentas na parede. O galpão está limpo hoje. Nós trabalhamos no galpão e mantemos tudo simples.",
+    "category": "Machinery & Crops",
+    "title": "The Tractor and The Field (Machinery & Crops)",
+    "title_pt": "O trator e o campo (Máquinas & Culturas)",
+    "text_en": "I drive the green tractor. It is new. The machine is very strong and heavy. We plant soybeans in the large field. The soil is good today. It is humid, not dry. My brother checks the seeds. The harvester is in the shed. It is ready. We work hard in the harvest season.",
+    "text_pt": "Eu dirijo o trator verde. Ele é novo. A máquina é muito forte e pesada. Nós plantamos soja no campo grande. O solo está bom hoje. Está úmido, não seco. Meu irmão confere as sementes. A colheitadeira está no galpão. Ela está pronta. Nós trabalhamos duro na safra.",
+    "pairs": [
+      {"en":"I drive the green tractor.","pt":"Eu dirijo o trator verde."},
+      {"en":"It is new.","pt":"Ele é novo."},
+      {"en":"The machine is very strong and heavy.","pt":"A máquina é muito forte e pesada."},
+      {"en":"We plant soybeans in the large field.","pt":"Nós plantamos soja no campo grande."},
+      {"en":"The soil is good today.","pt":"O solo está bom hoje."},
+      {"en":"It is humid, not dry.","pt":"Está úmido, não seco."},
+      {"en":"My brother checks the seeds.","pt":"Meu irmão confere as sementes."},
+      {"en":"The harvester is in the shed.","pt":"A colheitadeira está no galpão."},
+      {"en":"It is ready.","pt":"Ela está pronta."},
+      {"en":"We work hard in the harvest season.","pt":"Nós trabalhamos duro na safra."}
+    ],
+    "vocabulary_table": [
+      {"word":"tractor","translation":"trator"},
+      {"word":"harvester","translation":"colheitadeira"},
+      {"word":"machine","translation":"máquina"},
+      {"word":"shed","translation":"galpão"},
+      {"word":"soybeans","translation":"soja"},
+      {"word":"field","translation":"campo/talhão"},
+      {"word":"soil","translation":"solo"},
+      {"word":"seeds","translation":"sementes"},
+      {"word":"harvest season","translation":"safra/época de colheita"},
+      {"word":"humid","translation":"úmido"},
+      {"word":"dry","translation":"seco"},
+      {"word":"heavy","translation":"pesado"},
+      {"word":"plant","translation":"plantar"},
+      {"word":"drive","translation":"dirigir/operar"},
+      {"word":"work","translation":"trabalhar"}
+    ],
+    "grammar": "Adjetivos: depois de 'be' (The tractor is green) e antes do nome (The green tractor). Em inglês, o adjetivo costuma vir antes do substantivo.",
     "teaching_modules": {
-      "explanation": "There is (singular) e There are (plural) para dizer que algo existe.",
+      "explanation": "Adjetivos em inglês: posição depois do verbo 'be' e antes do substantivo. Diferença: The tractor is green vs The green tractor.",
       "grammar_table": [
-        {"subject": "There is", "verb": "-", "example": "There is a barn."},
-        {"subject": "There are", "verb": "-", "example": "There are cows."}
+        {"subject": "Após 'be'", "verb": "is", "example": "The tractor is green."},
+        {"subject": "Antes do nome", "verb": "-", "example": "The green tractor"}
       ],
       "vocabulary": [
-        {"word": "barn", "translation": "galpão"},
-        {"word": "straw", "translation": "palha"},
-        {"word": "floor", "translation": "chão"},
-        {"word": "bucket", "translation": "balde"},
-        {"word": "door", "translation": "porta"},
-        {"word": "light", "translation": "luz"},
-        {"word": "gate", "translation": "portão"},
-        {"word": "tool", "translation": "ferramenta"},
-        {"word": "wall", "translation": "parede"}
+        {"word": "tractor", "translation": "trator"},
+        {"word": "harvester", "translation": "colheitadeira"},
+        {"word": "field", "translation": "campo"},
+        {"word": "soil", "translation": "solo"},
+        {"word": "seeds", "translation": "sementes"}
       ],
       "verbs_list": [
-        {"base": "work", "third_person": "works", "translation": "trabalhar"},
-        {"base": "keep", "third_person": "keeps", "translation": "manter"}
+        {"base": "drive", "third_person": "drives", "translation": "dirigir"},
+        {"base": "plant", "third_person": "plants", "translation": "plantar"},
+        {"base": "work", "third_person": "works", "translation": "trabalhar"}
       ]
     }
   },
   {
     "id": 5,
     "level": "A1",
-    "category": "Pasture",
-    "title": "In the Pasture",
-    "title_pt": "No pasto",
-    "text_en": "The cows are in the field. The water tank is next to the fence. The salt block is on a small stand. The dog waits under the tree. We walk along the path and check the grass. The gate is near the road. We work in the morning and keep the field safe and clean.",
-    "text_pt": "As vacas estão no campo. A caixa d’água fica ao lado da cerca. O bloco de sal está sobre um suporte pequeno. O cachorro espera embaixo da árvore. Nós caminhamos pela trilha e verificamos o capim. O portão fica perto da estrada. Trabalhamos de manhã e mantemos o campo seguro e limpo.",
+    "category": "Climate Conditions",
+    "title": "Weather and the Crops (Climate Conditions)",
+    "title_pt": "O clima e a lavoura (Condições Climáticas)",
+    "text_en": "The weather is very hot today. The sun is strong over the farm. The soybean field is dry. The plants need water. Look at the sky! There are dark clouds. It is raining now. The rain is heavy. The water is good for the soil. The harvest depends on the weather.",
+    "text_pt": "O tempo está muito quente hoje. O sol está forte sobre a fazenda. A lavoura de soja está seca. As plantas precisam de água. Olhe para o céu! Há nuvens escuras. Está chovendo agora. A chuva está forte. A água é boa para o solo. A colheita depende do clima.",
+    "pairs": [
+      {"en":"The weather is very hot today.","pt":"O tempo está muito quente hoje."},
+      {"en":"The sun is strong over the farm.","pt":"O sol está forte sobre a fazenda."},
+      {"en":"The soybean field is dry. The plants need water.","pt":"A lavoura de soja está seca. As plantas precisam de água."},
+      {"en":"Look at the sky! There are dark clouds.","pt":"Olhe para o céu! Há nuvens escuras."},
+      {"en":"It is raining now. The rain is heavy.","pt":"Está chovendo agora. A chuva está forte."},
+      {"en":"The water is good for the soil.","pt":"A água é boa para o solo."},
+      {"en":"The harvest depends on the weather.","pt":"A colheita depende do clima."}
+    ],
+    "vocabulary_table": [
+      {"word":"weather","translation":"clima/tempo meteorológico"},
+      {"word":"hot","translation":"quente"},
+      {"word":"sun","translation":"sol"},
+      {"word":"soybean field","translation":"lavoura de soja"},
+      {"word":"dry","translation":"seco"},
+      {"word":"plants","translation":"plantas"},
+      {"word":"water","translation":"água"},
+      {"word":"sky","translation":"céu"},
+      {"word":"clouds","translation":"nuvens"},
+      {"word":"dark","translation":"escuro"},
+      {"word":"rain","translation":"chuva"},
+      {"word":"raining","translation":"chovendo"},
+      {"word":"heavy","translation":"forte"},
+      {"word":"soil","translation":"solo"},
+      {"word":"harvest","translation":"colheita/safra"},
+      {"word":"depends on","translation":"depende de"}
+    ],
+    "grammar": "Clima com sujeito impessoal: It is hot/raining. Uso de There are para existência no plural (There are dark clouds).",
     "teaching_modules": {
-      "explanation": "Preposições básicas indicam posição: in, on, under, next to, near.",
+      "explanation": "Sujeito impessoal em clima: It is hot/raining. Não usamos frases sem sujeito em inglês. There are para dizer que há (plural).",
       "grammar_table": [
-        {"subject": "The tank", "verb": "is next to", "example": "The tank is next to the fence."},
-        {"subject": "The dog", "verb": "is under", "example": "The dog is under the tree."}
+        {"subject": "It", "verb": "is hot/raining", "example": "It is hot. / It is raining."},
+        {"subject": "There are", "verb": "-", "example": "There are dark clouds."}
       ],
       "vocabulary": [
-        {"word": "field", "translation": "campo"},
-        {"word": "tank", "translation": "caixa d’água"},
-        {"word": "fence", "translation": "cerca"},
-        {"word": "salt block", "translation": "bloco de sal"},
-        {"word": "stand", "translation": "suporte"},
-        {"word": "path", "translation": "trilha"},
-        {"word": "grass", "translation": "capim"},
-        {"word": "road", "translation": "estrada"}
+        {"word": "weather", "translation": "clima/tempo"},
+        {"word": "sky", "translation": "céu"},
+        {"word": "clouds", "translation": "nuvens"},
+        {"word": "rain", "translation": "chuva"},
+        {"word": "soil", "translation": "solo"}
       ],
       "verbs_list": [
-        {"base": "wait", "third_person": "waits", "translation": "esperar"},
-        {"base": "walk", "third_person": "walks", "translation": "caminhar"},
-        {"base": "check", "third_person": "checks", "translation": "verificar"}
+        {"base": "depend", "third_person": "depends", "translation": "depender"}
       ]
     }
   },
   {
     "id": 6,
     "level": "A1",
-    "category": "Livestock",
-    "title": "Animals Can...",
-    "title_pt": "Os animais podem…",
-    "text_en": "Cows can run slowly. Horses can jump over small poles. Chickens can peck and eat grain. Sheep can walk together and follow the dog. The animals can drink clean water. They can rest in the shade. We can help them every day. The farm is calm, and the animals feel safe.",
-    "text_pt": "As vacas podem correr devagar. Os cavalos podem pular sobre barras pequenas. As galinhas podem bicar e comer grãos. As ovelhas podem andar juntas e seguir o cachorro. Os animais podem beber água limpa. Eles podem descansar na sombra. Nós podemos ajudar todos os dias. A fazenda é calma, e os animais se sentem seguros.",
+    "category": "Numbers & Quantities",
+    "title": "Counting the Stock (Numbers & Quantities)",
+    "title_pt": "Contando o estoque (Números & Quantidades)",
+    "text_en": "We have a lot of work today. How many bags of corn are in the shed? There are ten bags of corn. How many tractors are here? There is only one tractor. I see five horses and twenty cows. The inventory is correct. We need more salt for the cattle.",
+    "text_pt": "Nós temos muito trabalho hoje. Quantos sacos de milho estão no galpão? Há dez sacos de milho. Quantos tratores estão aqui? Há apenas um trator. Eu vejo cinco cavalos e vinte vacas. O estoque está correto. Nós precisamos de mais sal para o gado.",
+    "pairs": [
+      {"en":"We have a lot of work today.","pt":"Nós temos muito trabalho hoje."},
+      {"en":"How many bags of corn are in the shed?","pt":"Quantos sacos de milho estão no galpão?"},
+      {"en":"There are ten bags of corn.","pt":"Há dez sacos de milho."},
+      {"en":"How many tractors are here?","pt":"Quantos tratores estão aqui?"},
+      {"en":"There is only one tractor.","pt":"Há apenas um trator."},
+      {"en":"I see five horses and twenty cows.","pt":"Eu vejo cinco cavalos e vinte vacas."},
+      {"en":"The inventory is correct.","pt":"O estoque está correto."},
+      {"en":"We need more salt for the cattle.","pt":"Nós precisamos de mais sal para o gado."}
+    ],
+    "vocabulary_table": [
+      {"word":"how many","translation":"quantos/quantas"},
+      {"word":"there is","translation":"há (singular)"},
+      {"word":"there are","translation":"há (plural)"},
+      {"word":"only","translation":"apenas/só"},
+      {"word":"more","translation":"mais"},
+      {"word":"bags of corn","translation":"sacos de milho"},
+      {"word":"shed","translation":"galpão"},
+      {"word":"tractor","translation":"trator"},
+      {"word":"horses","translation":"cavalos"},
+      {"word":"cows","translation":"vacas"},
+      {"word":"inventory","translation":"estoque/inventário"},
+      {"word":"salt","translation":"sal"},
+      {"word":"cattle","translation":"gado"},
+      {"word":"one","translation":"um"},
+      {"word":"five","translation":"cinco"},
+      {"word":"ten","translation":"dez"},
+      {"word":"twenty","translation":"vinte"}
+    ],
+    "grammar": "There is (singular) e There are (plural) para existência/quantidade. Perguntas com How many para contar. Only (apenas) e More (mais).",
     "teaching_modules": {
-      "explanation": "Can + verbo mostra habilidade. Não muda com I/you/he/she/it.",
+      "explanation": "Descrever quantidades: There is/There are. Perguntar com How many. Uso de Only e More.",
       "grammar_table": [
-        {"subject": "Cows", "verb": "can run", "example": "Cows can run."},
-        {"subject": "Horses", "verb": "can jump", "example": "Horses can jump."}
+        {"subject": "There is", "verb": "(singular)", "example": "There is one tractor."},
+        {"subject": "There are", "verb": "(plural)", "example": "There are ten bags."},
+        {"subject": "How many", "verb": "(pergunta)", "example": "How many cows are here?"}
       ],
       "vocabulary": [
-        {"word": "run", "translation": "correr"},
-        {"word": "jump", "translation": "pular"},
-        {"word": "peck", "translation": "bicar"},
-        {"word": "grain", "translation": "grão"},
-        {"word": "shade", "translation": "sombra"}
+        {"word": "bag", "translation": "saco"},
+        {"word": "inventory", "translation": "estoque"},
+        {"word": "salt", "translation": "sal"},
+        {"word": "cattle", "translation": "gado"}
       ],
       "verbs_list": [
-        {"base": "run", "third_person": "runs", "translation": "correr"},
-        {"base": "jump", "third_person": "jumps", "translation": "pular"},
-        {"base": "follow", "third_person": "follows", "translation": "seguir"}
+        {"base": "need", "third_person": "needs", "translation": "precisar"},
+        {"base": "see", "third_person": "sees", "translation": "ver"}
       ]
     }
   },
   {
     "id": 7,
     "level": "A1",
-    "category": "Tools",
-    "title": "Daily Tools",
-    "title_pt": "Ferramentas do dia",
-    "text_en": "We need simple tools today. Do we use the shovel for the soil? Does the rake help with the hay? Do you carry the bucket to the gate? Does this small tool fit in the box? We work with care and ask clear questions. The tools are basic, and the job is simple.",
-    "text_pt": "Precisamos de ferramentas simples hoje. Usamos a pá para o solo? O ancinho ajuda com o feno? Você leva o balde até o portão? Esta ferramenta pequena cabe na caixa? Trabalhamos com cuidado e fazemos perguntas claras. As ferramentas são básicas, e o trabalho é simples.",
+    "category": "Prepositions of Place",
+    "title": "Tools and Locations (Prepositions of Place)",
+    "title_pt": "Ferramentas e locais (Preposições de lugar)",
+    "text_en": "Where are the farm tools? The shovel is in the shed. The hammer is on the wood table. The buckets are under the water tap. The tractor is next to the barn. The cows are behind the fence. Everything is in the right place. Organization is important.",
+    "text_pt": "Onde estão as ferramentas da fazenda? A pá está no galpão. O martelo está sobre a mesa de madeira. Os baldes estão embaixo da torneira de água. O trator está ao lado do galpão. As vacas estão atrás da cerca. Tudo está no lugar certo. Organização é importante.",
+    "pairs": [
+      {"en":"Where are the farm tools?","pt":"Onde estão as ferramentas da fazenda?"},
+      {"en":"The shovel is in the shed.","pt":"A pá está no galpão."},
+      {"en":"The hammer is on the wood table.","pt":"O martelo está sobre a mesa de madeira."},
+      {"en":"The buckets are under the water tap.","pt":"Os baldes estão embaixo da torneira de água."},
+      {"en":"The tractor is next to the barn.","pt":"O trator está ao lado do galpão."},
+      {"en":"The cows are behind the fence.","pt":"As vacas estão atrás da cerca."},
+      {"en":"Everything is in the right place.","pt":"Tudo está no lugar certo."},
+      {"en":"Organization is important.","pt":"Organização é importante."}
+    ],
+    "vocabulary_table": [
+      {"word":"where","translation":"onde"},
+      {"word":"in","translation":"em/dentro"},
+      {"word":"on","translation":"em cima/sobre"},
+      {"word":"under","translation":"embaixo"},
+      {"word":"next to","translation":"ao lado de"},
+      {"word":"behind","translation":"atrás"},
+      {"word":"shovel","translation":"pá"},
+      {"word":"hammer","translation":"martelo"},
+      {"word":"buckets","translation":"baldes"},
+      {"word":"tap","translation":"torneira"},
+      {"word":"wood table","translation":"mesa de madeira"},
+      {"word":"barn","translation":"galpão"},
+      {"word":"fence","translation":"cerca"},
+      {"word":"organization","translation":"organização"},
+      {"word":"right place","translation":"lugar certo"}
+    ],
+    "grammar": "Preposições de lugar: in (dentro), on (sobre a superfície), under (embaixo), next to (ao lado), behind (atrás). Pergunta: Where...? (Onde...).",
     "teaching_modules": {
-      "explanation": "Perguntas: Do + sujeito + verbo; Does para he/she/it. Verbo fica básico.",
+      "explanation": "Onde está? Use preposições de lugar: In = dentro; On = sobre a superfície; Under = embaixo; Next to = ao lado; Behind = atrás.",
       "grammar_table": [
-        {"subject": "We", "verb": "do + use", "example": "Do we use the shovel?"},
-        {"subject": "It (tool)", "verb": "does + fit", "example": "Does it fit in the box?"}
+        {"subject": "In", "verb": "be", "example": "The shovel is in the shed."},
+        {"subject": "On", "verb": "be", "example": "The hammer is on the table."},
+        {"subject": "Under/Next to/Behind", "verb": "be", "example": "The buckets are under the tap."}
       ],
       "vocabulary": [
-        {"word": "tool", "translation": "ferramenta"},
         {"word": "shovel", "translation": "pá"},
-        {"word": "rake", "translation": "ancinho"},
+        {"word": "hammer", "translation": "martelo"},
         {"word": "bucket", "translation": "balde"},
-        {"word": "box", "translation": "caixa"},
-        {"word": "soil", "translation": "solo"},
-        {"word": "hay", "translation": "feno"}
+        {"word": "tap", "translation": "torneira"}
       ],
       "verbs_list": [
-        {"base": "use", "third_person": "uses", "translation": "usar"},
-        {"base": "carry", "third_person": "carries", "translation": "carregar"},
-        {"base": "fit", "third_person": "fits", "translation": "caber"}
+        {"base": "be", "third_person": "is/are", "translation": "estar/ser"}
       ]
     }
   },
   {
     "id": 8,
     "level": "A1",
-    "category": "Teamwork",
-    "title": "Farm Teamwork",
-    "title_pt": "A equipe na fazenda",
-    "text_en": "Our team works together every day. We plan, but we do not rush. João does not push the animals. We do not leave tools on the ground. Ana does not forget the water. We help each other and speak clearly. The farm is safe when the team is calm and organized.",
-    "text_pt": "Nossa equipe trabalha junta todos os dias. Planejamos, mas não corremos. João não empurra os animais. Nós não deixamos ferramentas no chão. Ana não esquece a água. Ajudamos uns aos outros e falamos com clareza. A fazenda é segura quando a equipe está calma e organizada.",
+    "category": "Imperatives & Warnings",
+    "title": "Farm Safety Rules (Imperatives & Warnings)",
+    "title_pt": "Regras de segurança na fazenda (Imperativos & Avisos)",
+    "text_en": "Safety is priority number one. Please, read the signs. Wear your heavy boots and gloves. Stop the machine immediately! Don't touch the electric fence. It is dangerous. Don't smoke near the dry hay. Wash your hands with soap after work. Be careful every day.",
+    "text_pt": "Segurança é prioridade número um. Por favor, leia as placas. Use suas botas pesadas e luvas. Pare a máquina imediatamente! Não toque na cerca elétrica. É perigoso. Não fume perto do feno seco. Lave as mãos com sabão depois do trabalho. Seja cuidadoso todos os dias.",
+    "pairs": [
+      {"en":"Safety is priority number one.","pt":"Segurança é prioridade número um."},
+      {"en":"Please, read the signs.","pt":"Por favor, leia as placas."},
+      {"en":"Wear your heavy boots and gloves.","pt":"Use suas botas pesadas e luvas."},
+      {"en":"Stop the machine immediately!","pt":"Pare a máquina imediatamente!"},
+      {"en":"Don't touch the electric fence. It is dangerous.","pt":"Não toque na cerca elétrica. É perigoso."},
+      {"en":"Don't smoke near the dry hay.","pt":"Não fume perto do feno seco."},
+      {"en":"Wash your hands with soap after work.","pt":"Lave as mãos com sabão depois do trabalho."},
+      {"en":"Be careful every day.","pt":"Seja cuidadoso todos os dias."}
+    ],
+    "vocabulary_table": [
+      {"word":"safety","translation":"segurança"},
+      {"word":"signs","translation":"placas/sinais"},
+      {"word":"wear","translation":"usar/vestir (EPI)"},
+      {"word":"boots","translation":"botas"},
+      {"word":"gloves","translation":"luvas"},
+      {"word":"stop","translation":"parar"},
+      {"word":"machine","translation":"máquina"},
+      {"word":"electric fence","translation":"cerca elétrica"},
+      {"word":"dangerous","translation":"perigoso"},
+      {"word":"smoke","translation":"fumar"},
+      {"word":"dry hay","translation":"feno seco"},
+      {"word":"wash","translation":"lavar"},
+      {"word":"hands","translation":"mãos"},
+      {"word":"soap","translation":"sabão"},
+      {"word":"be careful","translation":"seja cuidadoso"}
+    ],
+    "grammar": "Imperativo: verbo no início (Wear/Stop/Read). Negativo: Don't + verbo (Don't touch/smoke). Não usamos 'You' no início em ordens.",
     "teaching_modules": {
-      "explanation": "Negativa: do not (don’t) e does not (doesn’t). Verbo fica básico.",
+      "explanation": "Ordens diretas: comece com o verbo no infinitivo sem 'to' (Wear, Stop, Read). Proibição: use Don't + verbo (Don't touch, Don't smoke).",
       "grammar_table": [
-        {"subject": "We", "verb": "do not + rush", "example": "We do not rush."},
-        {"subject": "He/She", "verb": "does not + push", "example": "He does not push the animals."}
+        {"subject": "Imperativo afirmativo", "verb": "Wear/Stop/Read", "example": "Wear your boots."},
+        {"subject": "Imperativo negativo", "verb": "Don't + verbo", "example": "Don't touch the fence."}
       ],
       "vocabulary": [
-        {"word": "team", "translation": "equipe"},
-        {"word": "together", "translation": "juntos"},
-        {"word": "rush", "translation": "correr/pressa"},
-        {"word": "push", "translation": "empurrar"},
-        {"word": "ground", "translation": "chão"},
-        {"word": "forget", "translation": "esquecer"}
+        {"word": "boots", "translation": "botas"},
+        {"word": "gloves", "translation": "luvas"},
+        {"word": "soap", "translation": "sabão"},
+        {"word": "electric fence", "translation": "cerca elétrica"}
       ],
       "verbs_list": [
-        {"base": "work", "third_person": "works", "translation": "trabalhar"},
-        {"base": "help", "third_person": "helps", "translation": "ajudar"},
-        {"base": "speak", "third_person": "speaks", "translation": "falar"}
+        {"base": "wear", "third_person": "wear", "translation": "usar/vestir"},
+        {"base": "wash", "third_person": "wash", "translation": "lavar"},
+        {"base": "stop", "third_person": "stop", "translation": "parar"}
       ]
     }
   },
   {
     "id": 9,
     "level": "A1",
-    "category": "Weather",
-    "title": "A Day on the Farm",
-    "title_pt": "O dia na fazenda",
-    "text_en": "In the morning, the sky is clear. The wind is light, and the sun is warm. Today we work in the field and clean the barn in the afternoon. We drink water and rest in the shade. The day is simple and good. The animals eat, and the team works calmly.",
-    "text_pt": "De manhã, o céu está limpo. O vento é leve, e o sol é morno. Hoje trabalhamos no campo e limpamos o galpão à tarde. Nós bebemos água e descansamos na sombra. O dia é simples e bom. Os animais comem, e a equipe trabalha com calma.",
+    "category": "Actions in Progress",
+    "title": "Maintenance Day (Actions in Progress)",
+    "title_pt": "Dia de manutenção (Ações em andamento)",
+    "text_en": "Look at the team now! We are working hard. Carlos is repairing the old fence. The mechanic is fixing the tractor engine. I am cleaning the milking machine. The cows are waiting in the shade. They are not eating at this moment. Everything is moving fast today.",
+    "text_pt": "Olhe para a equipe agora! Nós estamos trabalhando duro. Carlos está consertando a cerca velha. O mecânico está arrumando o motor do trator. Eu estou limpando a ordenhadeira. As vacas estão esperando na sombra. Elas não estão comendo neste momento. Tudo está se movendo rápido hoje.",
+    "pairs": [
+      {"en":"Look at the team now!","pt":"Olhe para a equipe agora!"},
+      {"en":"We are working hard.","pt":"Nós estamos trabalhando duro."},
+      {"en":"Carlos is repairing the old fence.","pt":"Carlos está consertando a cerca velha."},
+      {"en":"The mechanic is fixing the tractor engine.","pt":"O mecânico está arrumando o motor do trator."},
+      {"en":"I am cleaning the milking machine.","pt":"Eu estou limpando a ordenhadeira."},
+      {"en":"The cows are waiting in the shade.","pt":"As vacas estão esperando na sombra."},
+      {"en":"They are not eating at this moment.","pt":"Elas não estão comendo neste momento."},
+      {"en":"Everything is moving fast today.","pt":"Tudo está se movendo rápido hoje."}
+    ],
+    "vocabulary_table": [
+      {"word":"present continuous","translation":"presente contínuo"},
+      {"word":"now","translation":"agora"},
+      {"word":"at this moment","translation":"neste momento"},
+      {"word":"repairing","translation":"consertando/reparando"},
+      {"word":"fixing","translation":"consertando"},
+      {"word":"cleaning","translation":"limpando"},
+      {"word":"waiting","translation":"esperando"},
+      {"word":"moving","translation":"movendo-se"},
+      {"word":"engine","translation":"motor"},
+      {"word":"milking machine","translation":"ordenhadeira"},
+      {"word":"shade","translation":"sombra"}
+    ],
+    "grammar": "Estrutura do Present Continuous: Sujeito + to be (am/is/are) + verbo com -ing. Usamos para ações em andamento agora (now, at this moment).",
     "teaching_modules": {
-      "explanation": "Expressões de tempo: in the morning/afternoon, today, every day com present simple.",
+      "explanation": "Use am/is/are + verbo com -ing para dizer que algo está acontecendo agora.",
       "grammar_table": [
-        {"subject": "We", "verb": "work", "example": "In the morning, we work."},
-        {"subject": "We", "verb": "clean", "example": "In the afternoon, we clean the barn."}
+        {"subject": "We", "verb": "are working", "example": "We are working now."},
+        {"subject": "Carlos", "verb": "is repairing", "example": "Carlos is repairing the fence."},
+        {"subject": "The mechanic", "verb": "is fixing", "example": "The mechanic is fixing the engine."}
       ],
       "vocabulary": [
-        {"word": "sky", "translation": "céu"},
-        {"word": "clear", "translation": "limpo"},
-        {"word": "wind", "translation": "vento"},
-        {"word": "warm", "translation": "morno"},
-        {"word": "afternoon", "translation": "tarde"},
+        {"word": "engine", "translation": "motor"},
+        {"word": "milking machine", "translation": "ordenhadeira"},
         {"word": "shade", "translation": "sombra"}
       ],
       "verbs_list": [
-        {"base": "work", "third_person": "works", "translation": "trabalhar"},
-        {"base": "clean", "third_person": "cleans", "translation": "limpar"},
-        {"base": "rest", "third_person": "rests", "translation": "descansar"}
+        {"base": "repair", "third_person": "repairs", "translation": "consertar"},
+        {"base": "fix", "third_person": "fixes", "translation": "consertar"},
+        {"base": "clean", "third_person": "cleans", "translation": "limpar"}
       ]
     }
   },
   {
     "id": 10,
     "level": "A1",
-    "category": "Worker Routine",
-    "title": "A Workday",
-    "title_pt": "Um dia de trabalho",
-    "text_en": "Carlos starts early. He walks to the farm and checks the gate. He feeds the chickens and cleans the small pen. He carries a bucket and fills it with water. He talks to the team and plans the tasks. He finishes the morning work and smiles. The routine is simple and clear.",
-    "text_pt": "Carlos começa cedo. Ele caminha até a fazenda e verifica o portão. Ele alimenta as galinhas e limpa o cercado pequeno. Ele carrega um balde e o enche com água. Ele conversa com a equipe e planeja as tarefas. Ele termina o trabalho da manhã e sorri. A rotina é simples e clara.",
+    "category": "Capabilities",
+    "title": "Machinery and Skills (Capabilities)",
+    "title_pt": "Máquinas e habilidades (Capacidades)",
+    "text_en": "We have a skilled team on the farm. John can operate the new harvester. He has a special license. I can drive the pickup truck, but I cannot drive the heavy tractor. This red tractor is very strong. It can pull a large trailer with five tons of soy. Can you help me with the bags? Yes, we can do this together.",
+    "text_pt": "Temos uma equipe qualificada na fazenda. John pode operar a colheitadeira nova. Ele tem uma licença especial. Eu posso dirigir a caminhonete, mas eu não posso dirigir o trator pesado. Este trator vermelho é muito forte. Ele pode puxar uma carreta grande com cinco toneladas de soja. Você pode me ajudar com os sacos? Sim, nós podemos fazer isso juntos.",
+    "pairs": [
+      {"en":"We have a skilled team on the farm.","pt":"Temos uma equipe qualificada na fazenda."},
+      {"en":"John can operate the new harvester.","pt":"John pode operar a colheitadeira nova."},
+      {"en":"He has a special license.","pt":"Ele tem uma licença especial."},
+      {"en":"I can drive the pickup truck, but I cannot drive the heavy tractor.","pt":"Eu posso dirigir a caminhonete, mas eu não posso dirigir o trator pesado."},
+      {"en":"This red tractor is very strong.","pt":"Este trator vermelho é muito forte."},
+      {"en":"It can pull a large trailer with five tons of soy.","pt":"Ele pode puxar uma carreta grande com cinco toneladas de soja."},
+      {"en":"Can you help me with the bags?","pt":"Você pode me ajudar com os sacos?"},
+      {"en":"Yes, we can do this together.","pt":"Sim, nós podemos fazer isso juntos."}
+    ],
+    "vocabulary_table": [
+      {"word":"can","translation":"poder/conseguir/saber fazer"},
+      {"word":"cannot","translation":"não poder"},
+      {"word":"operate","translation":"operar"},
+      {"word":"pull","translation":"puxar"},
+      {"word":"help","translation":"ajudar"},
+      {"word":"do","translation":"fazer"},
+      {"word":"license","translation":"licença/carteira"},
+      {"word":"trailer","translation":"carreta/reboque"},
+      {"word":"tons","translation":"toneladas"},
+      {"word":"pickup truck","translation":"caminhonete"},
+      {"word":"harvester","translation":"colheitadeira"},
+      {"word":"tractor","translation":"trator"},
+      {"word":"red","translation":"vermelho"},
+      {"word":"strong","translation":"forte"},
+      {"word":"large","translation":"grande"},
+      {"word":"together","translation":"juntos"}
+    ],
+    "grammar": "Modal CAN: igual para todas as pessoas (I/You/He/She/We/They can + verbo). Negativa: cannot/can’t. O verbo seguinte não usa 'to'.",
     "teaching_modules": {
-      "explanation": "He/She/It adiciona -s no verbo: He starts, He walks, He checks.",
+      "explanation": "O verbo super-herói: CAN não muda com o sujeito e dá a ideia de 'poder'. Negativa: cannot/can’t.",
       "grammar_table": [
-        {"subject": "He (Ele)", "verb": "starts", "example": "He starts early."},
-        {"subject": "He (Ele)", "verb": "checks", "example": "He checks the gate."}
+        {"subject": "John", "verb": "can operate", "example": "John can operate the harvester."},
+        {"subject": "I", "verb": "cannot drive", "example": "I cannot drive the heavy tractor."},
+        {"subject": "It (tractor)", "verb": "can pull", "example": "It can pull a large trailer."}
       ],
       "vocabulary": [
-        {"word": "start", "translation": "começar"},
-        {"word": "gate", "translation": "portão"},
-        {"word": "pen", "translation": "cercado"},
-        {"word": "bucket", "translation": "balde"},
-        {"word": "task", "translation": "tarefa"}
+        {"word": "license", "translation": "licença"},
+        {"word": "trailer", "translation": "carreta"},
+        {"word": "tons", "translation": "toneladas"}
       ],
       "verbs_list": [
-        {"base": "start", "third_person": "starts", "translation": "começar"},
-        {"base": "check", "third_person": "checks", "translation": "verificar"},
-        {"base": "feed", "third_person": "feeds", "translation": "alimentar"}
+        {"base": "can", "third_person": "can", "translation": "poder"},
+        {"base": "operate", "third_person": "operates", "translation": "operar"},
+        {"base": "pull", "third_person": "pulls", "translation": "puxar"}
       ]
     }
   },
   {
     "id": 11,
     "level": "A1",
-    "category": "Hygiene",
-    "title": "Farm Cleaning",
-    "title_pt": "Limpeza da fazenda",
-    "text_en": "Clean the barn floor. Wash the buckets. Keep the tools in the box. Sweep the small area near the gate. Throw garbage in the bin. Use water well. Work slowly and make the place clean. The animals need a clean space. The team helps and checks the work. The barn is clean at the end.",
-    "text_pt": "Limpe o chão do galpão. Lave os baldes. Mantenha as ferramentas na caixa. Varra a área pequena perto do portão. Jogue o lixo na lixeira. Use a água bem. Trabalhe devagar e deixe o lugar limpo. Os animais precisam de um espaço limpo. A equipe ajuda e verifica o trabalho. O galpão está limpo no final.",
+    "category": "Future Plans",
+    "title": "The Harvest Schedule (Future Plans)",
+    "title_pt": "Cronograma da colheita (Planos futuros)",
+    "text_en": "Tomorrow is Monday. It is an important day. We will start the soybean harvest. The trucks will arrive at 7:00 AM. On Tuesday, we will load the grain into the silos. The mechanic will check the harvester again. The weather will be sunny all week. We will sell the production on Friday. It will be a busy week for us.",
+    "text_pt": "Amanhã é segunda-feira. É um dia importante. Nós vamos começar a colheita da soja. Os caminhões vão chegar às 7:00. Na terça-feira, nós vamos carregar o grão nos silos. O mecânico vai verificar a colheitadeira novamente. O clima vai estar ensolarado a semana toda. Nós vamos vender a produção na sexta-feira. Será uma semana cheia para nós.",
+    "pairs": [
+      {"en":"Tomorrow is Monday. It is an important day.","pt":"Amanhã é segunda-feira. É um dia importante."},
+      {"en":"We will start the soybean harvest.","pt":"Nós vamos começar a colheita da soja."},
+      {"en":"The trucks will arrive at 7:00 AM.","pt":"Os caminhões vão chegar às 7:00."},
+      {"en":"On Tuesday, we will load the grain into the silos.","pt":"Na terça-feira, nós vamos carregar o grão nos silos."},
+      {"en":"The mechanic will check the harvester again.","pt":"O mecânico vai verificar a colheitadeira novamente."},
+      {"en":"The weather will be sunny all week.","pt":"O clima vai estar ensolarado a semana toda."},
+      {"en":"We will sell the production on Friday.","pt":"Nós vamos vender a produção na sexta-feira."},
+      {"en":"It will be a busy week for us.","pt":"Será uma semana cheia para nós."}
+    ],
+    "vocabulary_table": [
+      {"word":"will","translation":"(auxiliar de futuro)"},
+      {"word":"tomorrow","translation":"amanhã"},
+      {"word":"week","translation":"semana"},
+      {"word":"monday","translation":"segunda-feira"},
+      {"word":"tuesday","translation":"terça-feira"},
+      {"word":"friday","translation":"sexta-feira"},
+      {"word":"arrive","translation":"chegar"},
+      {"word":"load","translation":"carregar"},
+      {"word":"sell","translation":"vender"},
+      {"word":"grain","translation":"grão"},
+      {"word":"silos","translation":"silos"},
+      {"word":"mechanic","translation":"mecânico"},
+      {"word":"harvester","translation":"colheitadeira"},
+      {"word":"weather","translation":"clima/tempo"},
+      {"word":"sunny","translation":"ensolarado"},
+      {"word":"trucks","translation":"caminhões"},
+      {"word":"production","translation":"produção"},
+      {"word":"busy","translation":"cheio/ocupado"}
+    ],
+    "grammar": "Futuro simples com WILL: Sujeito + will + verbo. Usamos para planos futuros e previsões (tempo). Em inglês basta colocar 'will' antes do verbo (We will sell).",
     "teaching_modules": {
-      "explanation": "Imperativo para instruções: Clean, Wash, Keep. Negativo usa Do not.",
+      "explanation": "O Futuro Simples: coloque 'will' antes do verbo (We will start). Não conjugamos o verbo no futuro; usamos 'will'.",
       "grammar_table": [
-        {"subject": "(Imperativo)", "verb": "Clean", "example": "Clean the floor."},
-        {"subject": "(Imperativo negativo)", "verb": "Do not", "example": "Do not waste water."}
+        {"subject": "We", "verb": "will start", "example": "We will start the harvest."},
+        {"subject": "The trucks", "verb": "will arrive", "example": "The trucks will arrive at 7:00."},
+        {"subject": "We", "verb": "will sell", "example": "We will sell on Friday."}
       ],
       "vocabulary": [
-        {"word": "clean", "translation": "limpo/limpar"},
-        {"word": "wash", "translation": "lavar"},
-        {"word": "sweep", "translation": "varrer"},
-        {"word": "garbage", "translation": "lixo"},
-        {"word": "bin", "translation": "lixeira"}
+        {"word": "grain", "translation": "grão"},
+        {"word": "silos", "translation": "silos"},
+        {"word": "weather", "translation": "clima"}
       ],
       "verbs_list": [
-        {"base": "clean", "third_person": "cleans", "translation": "limpar"},
-        {"base": "wash", "third_person": "washes", "translation": "lavar"},
-        {"base": "keep", "third_person": "keeps", "translation": "manter"}
+        {"base": "arrive", "third_person": "arrives", "translation": "chegar"},
+        {"base": "load", "third_person": "loads", "translation": "carregar"},
+        {"base": "sell", "third_person": "sells", "translation": "vender"}
       ]
     }
   },
   {
     "id": 12,
     "level": "A1",
-    "category": "Safety",
-    "title": "Safety First",
-    "title_pt": "Segurança primeiro",
-    "text_en": "Wear gloves and a helmet. Do not run near the animals. Check the gate before you enter. Stay next to the team. Keep tools away from the ground. Do not touch the wire. Walk slowly and look around. Today we work with care. The farm is safe when we follow simple rules.",
-    "text_pt": "Use luvas e capacete. Não corra perto dos animais. Verifique o portão antes de entrar. Fique ao lado da equipe. Mantenha as ferramentas longe do chão. Não toque no fio. Ande devagar e olhe ao redor. Hoje trabalhamos com cuidado. A fazenda é segura quando seguimos regras simples.",
+    "category": "Market & Prices",
+    "title": "Market and Prices (Money & Transactions)",
+    "title_pt": "Mercado e Preços (Dinheiro & Transações)",
+    "text_en": "The harvest is finished. The silos are full. We go to the cooperative. We sell the grain at the market. The buyer asks, 'How much is one ton?' It costs 500 dollars per ton. Some machines are expensive. Inputs are expensive too. A small bag is cheap. We count the money. We pay the costs and we see the profit.",
+    "text_pt": "A colheita terminou. Os silos estão cheios. Nós vamos para a cooperativa. Nós vendemos o grão no mercado. O comprador pergunta: 'Quanto custa uma tonelada?' Custa 500 dólares por tonelada. Algumas máquinas são caras. Os insumos são caros também. Um saco pequeno é barato. Nós contamos o dinheiro. Nós pagamos os custos e vemos o lucro.",
+    "pairs": [
+      {"en":"The harvest is finished. The silos are full.","pt":"A colheita terminou. Os silos estão cheios."},
+      {"en":"We go to the cooperative.","pt":"Nós vamos para a cooperativa."},
+      {"en":"We sell the grain at the market.","pt":"Nós vendemos o grão no mercado."},
+      {"en":"The buyer asks, 'How much is one ton?'","pt":"O comprador pergunta: 'Quanto custa uma tonelada?'"},
+      {"en":"It costs 500 dollars per ton.","pt":"Custa 500 dólares por tonelada."},
+      {"en":"Some machines are expensive.","pt":"Algumas máquinas são caras."},
+      {"en":"Inputs are expensive too.","pt":"Os insumos são caros também."},
+      {"en":"A small bag is cheap.","pt":"Um saco pequeno é barato."},
+      {"en":"We count the money.","pt":"Nós contamos o dinheiro."},
+      {"en":"We pay the costs and we see the profit.","pt":"Nós pagamos os custos e vemos o lucro."}
+    ],
+    "vocabulary_table": [
+      {"word":"price","translation":"preço"},
+      {"word":"cost","translation":"custo"},
+      {"word":"money","translation":"dinheiro"},
+      {"word":"profit","translation":"lucro"},
+      {"word":"inputs","translation":"insumos"},
+      {"word":"cooperative","translation":"cooperativa"},
+      {"word":"market","translation":"mercado"},
+      {"word":"buyer","translation":"comprador"},
+      {"word":"buy","translation":"comprar"},
+      {"word":"sell","translation":"vender"},
+      {"word":"cheap","translation":"barato"},
+      {"word":"expensive","translation":"caro"},
+      {"word":"pay","translation":"pagar"},
+      {"word":"ton","translation":"tonelada"},
+      {"word":"bag","translation":"saco"},
+      {"word":"dollars","translation":"dólares"}
+    ],
+    "grammar": "Perguntas de preço com 'How much is ...?' para singular. Respostas: 'It costs ...'. No plural: 'They cost ...'. Adjetivos de preço: 'expensive' (caro) e 'cheap' (barato).",
     "teaching_modules": {
-      "explanation": "Imperativo para regras: Wear, Check, Stay. Negativo: Do not.",
+      "explanation": "Use 'How much is ...?' para perguntar preço. Responda com 'It costs ...' no singular e 'They cost ...' no plural. Use 'expensive' para caro e 'cheap' para barato.",
       "grammar_table": [
-        {"subject": "(Imperativo)", "verb": "Wear", "example": "Wear gloves."},
-        {"subject": "(Imperativo negativo)", "verb": "Do not", "example": "Do not touch the wire."}
+        {"subject": "(Pergunta)", "verb": "How much is ...?", "example": "How much is one ton?"},
+        {"subject": "It", "verb": "costs", "example": "It costs 500 dollars."},
+        {"subject": "They", "verb": "cost", "example": "They cost 200 dollars."}
       ],
       "vocabulary": [
-        {"word": "gloves", "translation": "luvas"},
-        {"word": "helmet", "translation": "capacete"},
-        {"word": "wire", "translation": "fio"},
-        {"word": "rules", "translation": "regras"},
-        {"word": "safe", "translation": "seguro"}
+        {"word": "price", "translation": "preço"},
+        {"word": "cost", "translation": "custo"},
+        {"word": "money", "translation": "dinheiro"},
+        {"word": "profit", "translation": "lucro"}
       ],
       "verbs_list": [
-        {"base": "wear", "third_person": "wears", "translation": "usar"},
-        {"base": "check", "third_person": "checks", "translation": "verificar"},
-        {"base": "stay", "third_person": "stays", "translation": "ficar"}
+        {"base": "buy", "third_person": "buys", "translation": "comprar"},
+        {"base": "sell", "third_person": "sells", "translation": "vender"},
+        {"base": "pay", "third_person": "pays", "translation": "pagar"},
+        {"base": "cost", "third_person": "costs", "translation": "custar"}
       ]
     }
   }

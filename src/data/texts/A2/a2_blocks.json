@@ -2,336 +2,604 @@
   {
     "id": 1,
     "level": "A2",
-    "category": "Machines",
-    "title": "Checking the Tractor",
-    "title_pt": "Verificando o trator",
-    "text_en": "I usually check the tractor in the morning. I look at the oil and the tires. Today, I am checking the oil now. The tire is dirty, but the engine is fine. I clean the tire and I wipe the seat. I start the engine and I listen. It sounds good. I write a note. I add a small note about noise. I am closing the hood now. I plan the route because the road is wet. I feel ready for work. I close the toolbox.",
-    "text_pt": "Eu geralmente checo o trator de manhã. Eu olho o óleo e os pneus. Hoje, eu estou checando o óleo agora. O pneu está sujo, mas o motor está bom. Eu limpo o pneu e eu limpo o assento. Eu ligo o motor e eu escuto. Ele soa bem. Eu escrevo uma nota. Eu adiciono uma pequena nota sobre ruído. Eu estou fechando o capô agora. Eu planejo a rota porque a estrada está molhada. Eu me sinto pronto para o trabalho. Eu fecho a caixa de ferramentas.",
+    "category": "Past Conditions",
+    "title": "Yesterday at the Farm (Past Conditions)",
+    "title_pt": "Ontem na fazenda (Condições passadas)",
+    "text_en": "Yesterday was a very busy day. The weather was cold and rainy in the morning. The corn field was muddy. It was difficult to drive there. The cows were in the barn because they were hungry. One calf was sick, but the vet was here quickly. The tractors were in the garage. They were not broken. We were tired at night, but the animals were safe.",
+    "text_pt": "Ontem foi um dia muito ocupado. O clima estava frio e chuvoso pela manhã. A lavoura de milho estava com muita lama. Foi difícil dirigir lá. As vacas estavam no galpão porque estavam com fome. Um bezerro estava doente, mas o veterinário chegou rapidamente. Os tratores estavam na garagem. Eles não estavam quebrados. Nós estávamos cansados à noite, mas os animais estavam seguros.",
+    "pairs": [
+      {"en":"Yesterday was a very busy day.","pt":"Ontem foi um dia muito ocupado."},
+      {"en":"The weather was cold and rainy in the morning.","pt":"O clima estava frio e chuvoso pela manhã."},
+      {"en":"The corn field was muddy.","pt":"A lavoura de milho estava com muita lama."},
+      {"en":"It was difficult to drive there.","pt":"Foi difícil dirigir lá."},
+      {"en":"The cows were in the barn because they were hungry.","pt":"As vacas estavam no galpão porque estavam com fome."},
+      {"en":"One calf was sick, but the vet was here quickly.","pt":"Um bezerro estava doente, mas o veterinário chegou rapidamente."},
+      {"en":"The tractors were in the garage. They were not broken.","pt":"Os tratores estavam na garagem. Eles não estavam quebrados."},
+      {"en":"We were tired at night, but the animals were safe.","pt":"Nós estávamos cansados à noite, mas os animais estavam seguros."}
+    ],
+    "vocabulary_table": [
+      {"word":"yesterday","translation":"ontem"},
+      {"word":"last night","translation":"ontem à noite"},
+      {"word":"busy","translation":"ocupado"},
+      {"word":"muddy","translation":"com muita lama/lameado"},
+      {"word":"tired","translation":"cansado"},
+      {"word":"broken","translation":"quebrado"},
+      {"word":"because","translation":"porque"},
+      {"word":"difficult","translation":"difícil"},
+      {"word":"quickly","translation":"rapidamente"}
+    ],
+    "grammar": "Passado do verbo To Be: Am/Is → Was; Are → Were. Regra: I/He/She/It usam Was. You/We/They usam Were. <table style=\"width:100%;border-collapse:collapse;margin-top:6px\"><thead><tr><th style=\"text-align:left\">Presente</th><th style=\"text-align:left\">Passado</th><th style=\"text-align:left\">Exemplo</th></tr></thead><tbody><tr><td>I am</td><td>I was</td><td>I was tired.</td></tr><tr><td>He/She/It is</td><td>He/She/It was</td><td>It was cold.</td></tr><tr><td>We/You/They are</td><td>We/You/They were</td><td>They were hungry.</td></tr></tbody></table>",
     "teaching_modules": {
-      "explanation": "Usamos advérbios (usually) para rotina em Present Simple e Present Continuous (I am checking) para o que acontece agora.",
+      "explanation": "Use Was/Were para descrever condições e estados no passado. Am/Is viram Was; Are vira Were.",
       "grammar_table": [
-        {"subject": "I", "verb": "Check", "example": "I usually check the tractor (Rotina)"},
-        {"subject": "I", "verb": "Am checking", "example": "I am checking the oil now (Agora)"}
+        {"subject": "I/He/She/It", "verb": "was", "example": "It was rainy."},
+        {"subject": "You/We/They", "verb": "were", "example": "The cows were hungry."},
+        {"subject": "Negativa", "verb": "was/were not", "example": "They were not broken."}
       ],
       "vocabulary": [
-        {"word": "Oil", "translation": "Óleo"},
-        {"word": "Tire", "translation": "Pneu"},
-        {"word": "Seat", "translation": "Assento"},
-        {"word": "Engine", "translation": "Motor"}
+        {"word": "busy", "translation": "ocupado"},
+        {"word": "muddy", "translation": "com muita lama"},
+        {"word": "tired", "translation": "cansado"},
+        {"word": "broken", "translation": "quebrado"}
       ],
       "verbs_list": [
-        {"base": "Check", "third_person": "Checks", "translation": "Checar"},
-        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"},
-        {"base": "Start", "third_person": "Starts", "translation": "Ligar"}
+        {"base": "be", "third_person": "was/were", "translation": "ser/estar"}
       ]
     }
   },
   {
     "id": 2,
     "level": "A2",
-    "category": "Machines",
-    "title": "Harvesting Vegetables for Sale",
-    "title_pt": "Colhendo vegetais para venda",
-    "text_en": "We usually pick vegetables on Friday. We carry boxes and we smile. Today, we are picking carrots now. The box is light, but the table is wet. I wash a tomato and I count pieces. We sort good ones and bad ones. We put labels on the box. We weigh boxes and record numbers. We are cleaning the table now because it is sticky. We plan prices for the market, so we feel ready. We keep working. The box is full. We plan the trip to the market.",
-    "text_pt": "Nós geralmente colhemos vegetais na sexta. Nós carregamos caixas e nós sorrimos. Hoje, nós estamos colhendo cenouras agora. A caixa está leve, mas a mesa está molhada. Eu lavo um tomate e eu conto peças. Nós separamos os bons e os ruins. Nós colocamos etiquetas na caixa. Nós pesamos caixas e registramos números. Nós estamos limpando a mesa agora porque ela está pegajosa. Nós planejamos preços para o mercado, então nós nos sentimos prontos. Nós continuamos trabalhando. A caixa fica cheia. Nós planejamos a ida ao mercado.",
+    "category": "Regular Actions in Past",
+    "title": "A Hard Day of Work (Regular Actions in Past)",
+    "title_pt": "Um dia difícil de trabalho (Ações regulares no passado)",
+    "text_en": "I worked ten hours yesterday. We started the job at 5:00 AM. I checked all the water tanks. My friend cleaned the tractor cab. Then, we repaired the broken fence line. The rain stopped in the afternoon. We finished the work late, but the farm is organized.",
+    "text_pt": "Eu trabalhei dez horas ontem. Nós começamos o trabalho às 5:00 da manhã. Eu conferi todos os tanques de água. Meu amigo limpou a cabine do trator. Então, nós consertamos a linha da cerca quebrada. A chuva parou de tarde. Nós terminamos o trabalho tarde, mas a fazenda está organizada.",
+    "pairs": [
+      {"en":"I worked ten hours yesterday.","pt":"Eu trabalhei dez horas ontem."},
+      {"en":"We started the job at 5:00 AM.","pt":"Nós começamos o trabalho às 5:00 da manhã."},
+      {"en":"I checked all the water tanks.","pt":"Eu conferi todos os tanques de água."},
+      {"en":"My friend cleaned the tractor cab.","pt":"Meu amigo limpou a cabine do trator."},
+      {"en":"Then, we repaired the broken fence line.","pt":"Então, nós consertamos a linha da cerca quebrada."},
+      {"en":"The rain stopped in the afternoon.","pt":"A chuva parou de tarde."},
+      {"en":"We finished the work late, but the farm is organized.","pt":"Nós terminamos o trabalho tarde, mas a fazenda está organizada."}
+    ],
+    "vocabulary_table": [
+      {"word":"yesterday","translation":"ontem"},
+      {"word":"in the afternoon","translation":"de tarde/no período da tarde"},
+      {"word":"late","translation":"tarde (horário)"},
+      {"word":"then","translation":"então/depois"},
+      {"word":"tractor cab","translation":"cabine do trator"},
+      {"word":"fence line","translation":"linha da cerca"},
+      {"word":"organized","translation":"organizada"}
+    ],
+    "grammar": "Passado simples de verbos regulares: adicione -ed (work → worked; start → started; check → checked; clean → cleaned; repair → repaired; stop → stopped; finish → finished). Mesma forma para todas as pessoas (I/You/He/She/It/We/They). A pronúncia do -ed muda (t/d/id), mas a escrita é sempre -ed.",
     "teaching_modules": {
-      "explanation": "Rotina com advérbios (usually) e ação em progresso com Present Continuous (we are picking).",
+      "explanation": "Use -ed para relatar ações concluídas. É a forma mais simples de falar no passado e não muda com o sujeito.",
       "grammar_table": [
-        {"subject": "We", "verb": "Pick", "example": "We usually pick vegetables (Rotina)"},
-        {"subject": "We", "verb": "Are picking", "example": "We are picking carrots now (Agora)"}
+        {"subject": "Base", "verb": "work", "example": "Past: worked"},
+        {"subject": "Base", "verb": "start", "example": "Past: started"},
+        {"subject": "Base", "verb": "clean", "example": "Past: cleaned"}
       ],
       "vocabulary": [
-        {"word": "Carrot", "translation": "Cenoura"},
-        {"word": "Tomato", "translation": "Tomate"},
-        {"word": "Box", "translation": "Caixa"},
-        {"word": "Market", "translation": "Mercado"}
+        {"word": "tractor cab", "translation": "cabine do trator"},
+        {"word": "fence line", "translation": "linha da cerca"}
       ],
       "verbs_list": [
-        {"base": "Pick", "third_person": "Picks", "translation": "Colher"},
-        {"base": "Carry", "third_person": "Carries", "translation": "Carregar"},
-        {"base": "Count", "third_person": "Counts", "translation": "Contar"}
+        {"base": "work", "third_person": "worked", "translation": "trabalhar"},
+        {"base": "start", "third_person": "started", "translation": "começar"},
+        {"base": "check", "third_person": "checked", "translation": "conferir"},
+        {"base": "clean", "third_person": "cleaned", "translation": "limpar"},
+        {"base": "repair", "third_person": "repaired", "translation": "consertar"},
+        {"base": "stop", "third_person": "stopped", "translation": "parar"},
+        {"base": "finish", "third_person": "finished", "translation": "terminar"}
       ]
     }
   },
   {
     "id": 3,
     "level": "A2",
-    "category": "Machines",
-    "title": "Irrigation On Now",
-    "title_pt": "Irrigação ligada agora",
-    "text_en": "I usually turn on irrigation at noon. I check pressure and I walk rows. Now, I am checking water now. The soil is wet. A small pipe leaks, but the valve is okay. I fix the leak and I tighten a clamp. I check the schedule for the next zone. I am walking the rows slowly. I fix a sign because the wind is strong. I write a short note. I close the valve gently. I watch the flow. I feel calm.",
-    "text_pt": "Eu geralmente ligo a irrigação ao meio-dia. Eu checo a pressão e eu caminho pelas fileiras. Agora, eu estou checando a água agora. O solo está úmido. Um cano pequeno vaza, mas a válvula está ok. Eu conserto o vazamento e eu aperto uma abraçadeira. Eu confiro o cronograma da próxima zona. Eu estou caminhando pelas fileiras devagar. Eu arrumo uma placa porque o vento está forte. Eu escrevo uma nota curta. Eu fecho a válvula com cuidado. Eu observo o fluxo. Eu me sinto calmo.",
+    "category": "Irregular Verbs",
+    "title": "The Broken Machine (Irregular Verbs)",
+    "title_pt": "A máquina quebrada (Verbos irregulares)",
+    "text_en": "I went to the corn field at 7:00 AM. I saw a big problem with the harvester. The main belt broke suddenly. We did not have a spare part in the truck. I took the pickup and drove to the city. I bought a new belt at the store. We came back and fixed the machine.",
+    "text_pt": "Eu fui para a lavoura de milho às 7:00. Eu vi um grande problema na colheitadeira. A correia principal quebrou de repente. Nós não tínhamos uma peça de reposição na caminhonete. Eu peguei a caminhonete e dirigi até a cidade. Eu comprei uma correia nova na loja. Nós voltamos e consertamos a máquina.",
+    "pairs": [
+      {"en":"I went to the corn field at 7:00 AM.","pt":"Eu fui para a lavoura de milho às 7:00."},
+      {"en":"I saw a big problem with the harvester.","pt":"Eu vi um grande problema na colheitadeira."},
+      {"en":"The main belt broke suddenly.","pt":"A correia principal quebrou de repente."},
+      {"en":"We did not have a spare part in the truck.","pt":"Nós não tínhamos uma peça de reposição na caminhonete."},
+      {"en":"I took the pickup and drove to the city.","pt":"Eu peguei a caminhonete e dirigi até a cidade."},
+      {"en":"I bought a new belt at the store.","pt":"Eu comprei uma correia nova na loja."},
+      {"en":"We came back and fixed the machine.","pt":"Nós voltamos e consertamos a máquina."}
+    ],
+    "vocabulary_table": [
+      {"word":"spare part","translation":"peça de reposição"},
+      {"word":"main belt","translation":"correia principal"},
+      {"word":"store","translation":"loja"},
+      {"word":"suddenly","translation":"de repente"}
+    ],
+    "grammar": "Verbos irregulares no passado não usam -ed e mudam de forma. Memorize os pares principais: go→went, see→saw, break→broke, have→had, take→took, drive→drove, buy→bought, come→came. Negativa: did not + verbo base (did not have).",
     "teaching_modules": {
-      "explanation": "Present Simple com advérbio (usually) e Present Continuous para o que acontece agora (I am checking).",
+      "explanation": "Os 'rebeldes': não aceitam -ed. Precisam ser memorizados porque a forma muda totalmente.",
       "grammar_table": [
-        {"subject": "I", "verb": "Turn on", "example": "I usually turn on irrigation (Rotina)"},
-        {"subject": "I", "verb": "Am checking", "example": "I am checking the pipes now (Agora)"}
+        {"subject": "Go", "verb": "went", "example": "I went to the field."},
+        {"subject": "See", "verb": "saw", "example": "I saw a problem."},
+        {"subject": "Break", "verb": "broke", "example": "The belt broke."},
+        {"subject": "Have", "verb": "had", "example": "We had no spare part."},
+        {"subject": "Take", "verb": "took", "example": "I took the pickup."},
+        {"subject": "Drive", "verb": "drove", "example": "I drove to the city."},
+        {"subject": "Buy", "verb": "bought", "example": "I bought a new belt."},
+        {"subject": "Come", "verb": "came", "example": "We came back."}
       ],
       "vocabulary": [
-        {"word": "Irrigation", "translation": "Irrigação"},
-        {"word": "Pipe", "translation": "Cano"},
-        {"word": "Leak", "translation": "Vazamento"},
-        {"word": "Flow", "translation": "Fluxo"}
+        {"word": "spare part", "translation": "peça de reposição"},
+        {"word": "main belt", "translation": "correia principal"},
+        {"word": "store", "translation": "loja"},
+        {"word": "suddenly", "translation": "de repente"}
       ],
       "verbs_list": [
-        {"base": "Turn", "third_person": "Turns", "translation": "Ligar"},
-        {"base": "Check", "third_person": "Checks", "translation": "Checar"},
-        {"base": "Fix", "third_person": "Fixes", "translation": "Consertar"}
+        {"base": "go", "third_person": "went", "translation": "ir"},
+        {"base": "see", "third_person": "saw", "translation": "ver"},
+        {"base": "break", "third_person": "broke", "translation": "quebrar"},
+        {"base": "have", "third_person": "had", "translation": "ter"},
+        {"base": "take", "third_person": "took", "translation": "pegar/levar"},
+        {"base": "drive", "third_person": "drove", "translation": "dirigir"},
+        {"base": "buy", "third_person": "bought", "translation": "comprar"},
+        {"base": "come", "third_person": "came", "translation": "vir/voltar"}
       ]
     }
   },
   {
     "id": 4,
     "level": "A2",
-    "category": "Machines",
-    "title": "Walking the Field and Cleaning Tools",
-    "title_pt": "Caminhando pelo campo e limpando ferramentas",
-    "text_en": "We usually walk the field in the morning. We check rows and we plan the day. Today, I am pulling weeds now. The wind is strong, but the sun is warm. I clean tools and I wash a spade. I carry a small bag. We review safety rules. I am tying bags now. We plan the afternoon work, so the team feels organized. I pick trash and I smile. The field looks better. I put the spade on the rack. I drink water.",
-    "text_pt": "Nós geralmente caminhamos pelo campo de manhã. Nós checamos as fileiras e nós planejamos o dia. Hoje, eu estou arrancando ervas daninhas agora. O vento está forte, mas o sol está quente. Eu limpo ferramentas e eu lavo uma pá. Eu carrego uma sacola pequena. Nós revisamos regras de segurança. Eu estou amarrando sacolas agora. Nós planejamos o trabalho da tarde, então a equipe se sente organizada. Eu pego lixo e eu sorrio. O campo fica melhor. Eu coloco a pá no suporte. Eu bebo água.",
+    "category": "Questions & Negatives in Past",
+    "title": "The Checklist (Questions & Negatives in Past)",
+    "title_pt": "A lista de verificação (Perguntas e negativas no passado)",
+    "text_en": "- Did you feed the cattle this morning? - Yes, I fed them early. - Did you clean the water tank? - No, I didn't clean it yet. I didn't see the brush. - Did the vet arrive? - Yes, she came at 8:00 AM. - Did she check the sick horse? - Yes, she checked him. She didn't find any fever.",
+    "text_pt": "- Você alimentou o gado hoje de manhã? - Sim, eu os alimentei cedo. - Você limpou o tanque de água? - Não, eu não limpei ainda. Eu não vi a escova. - A veterinária chegou? - Sim, ela veio às 8:00. - Ela examinou o cavalo doente? - Sim, ela o examinou. Ela não encontrou nenhuma febre.",
+    "pairs": [
+      {"en":"Did you feed the cattle this morning?","pt":"Você alimentou o gado hoje de manhã?"},
+      {"en":"Yes, I fed them early.","pt":"Sim, eu os alimentei cedo."},
+      {"en":"Did you clean the water tank?","pt":"Você limpou o tanque de água?"},
+      {"en":"No, I didn't clean it yet. I didn't see the brush.","pt":"Não, eu não limpei ainda. Eu não vi a escova."},
+      {"en":"Did the vet arrive?","pt":"A veterinária chegou?"},
+      {"en":"Yes, she came at 8:00 AM.","pt":"Sim, ela veio às 8:00."},
+      {"en":"Did she check the sick horse?","pt":"Ela examinou o cavalo doente?"},
+      {"en":"Yes, she checked him. She didn't find any fever.","pt":"Sim, ela o examinou. Ela não encontrou nenhuma febre."}
+    ],
+    "vocabulary_table": [
+      {"word":"did","translation":"auxiliar do passado (pergunta)"},
+      {"word":"didn't","translation":"negativa do passado (não)"},
+      {"word":"cattle","translation":"gado (coletivo)"},
+      {"word":"brush","translation":"escova/vassoura"},
+      {"word":"fever","translation":"febre"},
+      {"word":"find","translation":"encontrar"},
+      {"word":"yet","translation":"ainda (negativa)"},
+      {"word":"feed","translation":"alimentar"},
+      {"word":"water tank","translation":"tanque de água"},
+      {"word":"vet","translation":"veterinária(o)"},
+      {"word":"horse","translation":"cavalo"},
+      {"word":"sick","translation":"doente"}
+    ],
+    "grammar": "Interrogativa/negativa no passado: Did/Didn't + verbo base. Regra de ouro: Did rouba o passado do verbo, então o verbo principal volta para o presente (Did you clean?). Respostas curtas: Yes, I did / No, I didn't. Uso de yet em negativas para 'ainda'.",
     "teaching_modules": {
-      "explanation": "Rotina com 'usually' em Present Simple e ação atual com Present Continuous (I am pulling).",
+      "explanation": "Use Did para perguntar e Didn't para negar. O verbo principal fica na forma base.",
       "grammar_table": [
-        {"subject": "We", "verb": "Check", "example": "We usually check rows (Rotina)"},
-        {"subject": "I", "verb": "Am cleaning", "example": "I am cleaning tools now (Agora)"}
+        {"subject": "Pergunta", "verb": "Did + you + clean?", "example": "Did you clean the tank?"},
+        {"subject": "Resposta", "verb": "Yes, I did / No, I didn't", "example": "No, I didn't clean it yet."},
+        {"subject": "Negativa", "verb": "didn't + base", "example": "She didn't find any fever."}
       ],
       "vocabulary": [
-        {"word": "Field", "translation": "Campo"},
-        {"word": "Row", "translation": "Fileira"},
-        {"word": "Weed", "translation": "Erva daninha"},
-        {"word": "Tool", "translation": "Ferramenta"}
+        {"word": "cattle", "translation": "gado"},
+        {"word": "brush", "translation": "escova"},
+        {"word": "fever", "translation": "febre"}
       ],
       "verbs_list": [
-        {"base": "Walk", "third_person": "Walks", "translation": "Caminhar"},
-        {"base": "Check", "third_person": "Checks", "translation": "Checar"},
-        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"}
+        {"base": "feed", "third_person": "fed", "translation": "alimentar"},
+        {"base": "clean", "third_person": "cleaned", "translation": "limpar"},
+        {"base": "check", "third_person": "checked", "translation": "examinar"}
       ]
     }
   },
   {
     "id": 5,
     "level": "A2",
-    "category": "Livestock",
-    "title": "Milking Routine",
-    "title_pt": "Rotina de ordenha",
-    "text_en": "We always milk the cows at six. We speak calmly and we work slowly. Now, I am washing the buckets now. I prepare the area and I connect lines. I check the milk filter. The equipment is clean. We measure temperature and write the numbers. I am writing a short log now. We store milk carefully because hygiene is important. I carry warm milk and I close the gate. The barn is calm. I write the time. I clean a small spill.",
-    "text_pt": "Nós sempre ordenhamos as vacas às seis. Nós falamos calmamente e nós trabalhamos devagar. Agora, eu estou lavando os baldes agora. Eu preparo a área e eu conecto as linhas. Eu checo o filtro do leite. O equipamento está limpo. Nós medimos a temperatura e escrevemos os números. Eu estou escrevendo um registro curto agora. Nós armazenamos o leite com cuidado porque a higiene é importante. Eu carrego leite morno e eu fecho o portão. O celeiro está calmo. Eu escrevo a hora. Eu limpo um pequeno derramamento.",
+    "category": "Comparatives",
+    "title": "Selecting the Best Bull (Comparatives)",
+    "title_pt": "Selecionando o melhor touro (Comparativos)",
+    "text_en": "We need to choose a new bull for the herd. Look at these two animals. The Black Bull is bigger than the White Bull. He is also stronger and heavier. However, the White Bull is calmer than the Black one. The Black Bull is more expensive because of his genetics. I think the Black Bull is better for our farm.",
+    "text_pt": "Nós precisamos escolher um novo touro para o rebanho. Olhe para estes dois animais. O Touro Preto é maior que o Touro Branco. Ele também é mais forte e mais pesado. Porém, o Touro Branco é mais calmo que o Preto. O Touro Preto é mais caro por causa da sua genética. Eu acho que o Touro Preto é melhor para nossa fazenda.",
+    "pairs": [
+      {"en":"We need to choose a new bull for the herd.","pt":"Nós precisamos escolher um novo touro para o rebanho."},
+      {"en":"Look at these two animals.","pt":"Olhe para estes dois animais."},
+      {"en":"The Black Bull is bigger than the White Bull.","pt":"O Touro Preto é maior que o Touro Branco."},
+      {"en":"He is also stronger and heavier.","pt":"Ele também é mais forte e mais pesado."},
+      {"en":"However, the White Bull is calmer than the Black one.","pt":"Porém, o Touro Branco é mais calmo que o Preto."},
+      {"en":"The Black Bull is more expensive because of his genetics.","pt":"O Touro Preto é mais caro por causa da sua genética."},
+      {"en":"I think the Black Bull is better for our farm.","pt":"Eu acho que o Touro Preto é melhor para nossa fazenda."}
+    ],
+    "vocabulary_table": [
+      {"word":"herd","translation":"rebanho"},
+      {"word":"genetics","translation":"genética"},
+      {"word":"heavier","translation":"mais pesado"},
+      {"word":"calmer","translation":"mais calmo"},
+      {"word":"bigger","translation":"maior"},
+      {"word":"stronger","translation":"mais forte"},
+      {"word":"more expensive","translation":"mais caro"},
+      {"word":"better","translation":"melhor"},
+      {"word":"choose","translation":"escolher"},
+      {"word":"than","translation":"do que/que"},
+      {"word":"however","translation":"porém/no entanto"}
+    ],
+    "grammar": "Comparativos: Regra 1 (adjetivos curtos): adicione -er + than (strong → stronger than). Regra 2 (adjetivos longos): use more + adjetivo + than (expensive → more expensive than). Regra 3 (irregular): good → better (nunca 'gooder').",
     "teaching_modules": {
-      "explanation": "Uso de 'always' para rotina e Present Continuous para a atividade em progresso (I am washing).",
+      "explanation": "Para comparar dois itens, use -er + than em adjetivos curtos; use more + adjetivo + than em adjetivos longos; e memorize good→better.",
       "grammar_table": [
-        {"subject": "We", "verb": "Milk", "example": "We always milk the cows (Rotina)"},
-        {"subject": "I", "verb": "Am washing", "example": "I am washing the buckets now (Agora)"}
+        {"subject": "Curto", "verb": "strong→stronger than", "example": "The bull is stronger than the horse."},
+        {"subject": "Longo", "verb": "expensive→more expensive than", "example": "This animal is more expensive than that one."},
+        {"subject": "Irregular", "verb": "good→better", "example": "The Black Bull is better for our farm."}
       ],
       "vocabulary": [
-        {"word": "Milk", "translation": "Leite"},
-        {"word": "Cow", "translation": "Vaca"},
-        {"word": "Bucket", "translation": "Balde"},
-        {"word": "Gate", "translation": "Portão"}
+        {"word": "herd", "translation": "rebanho"},
+        {"word": "genetics", "translation": "genética"},
+        {"word": "choose", "translation": "escolher"}
       ],
       "verbs_list": [
-        {"base": "Milk", "third_person": "Milks", "translation": "Ordenhar"},
-        {"base": "Wash", "third_person": "Washes", "translation": "Lavar"},
-        {"base": "Carry", "third_person": "Carries", "translation": "Carregar"}
+        {"base": "choose", "third_person": "chooses", "translation": "escolher"}
       ]
     }
   },
   {
     "id": 6,
     "level": "A2",
-    "category": "Livestock",
-    "title": "Sorting Eggs for Sale",
-    "title_pt": "Separando ovos para venda",
-    "text_en": "We usually collect eggs in the morning. We sort eggs and we label boxes. Today, I am counting eggs now. I put eggs in a box. One egg breaks, but we clean the table. We clean crates and check labels. I am taping a box now. We plan delivery so the eggs arrive fresh. I weigh a box. I write the number on the label. I move the box to the shelf. We continue working. We feel happy.",
-    "text_pt": "Nós geralmente coletamos ovos de manhã. Nós separamos ovos e nós rotulamos caixas. Hoje, eu estou contando ovos agora. Eu coloco ovos em uma caixa. Um ovo quebra, mas nós limpamos a mesa. Nós limpamos engradados e conferimos etiquetas. Eu estou colocando fita em uma caixa agora. Nós planejamos a entrega para que os ovos cheguem frescos. Eu peso uma caixa. Eu escrevo o número na etiqueta. Eu movo a caixa para a prateleira. Nós continuamos trabalhando. Nós nos sentimos felizes.",
+    "category": "Superlatives",
+    "title": "The Best Machine (Superlatives)",
+    "title_pt": "A melhor máquina (Superlativos)",
+    "text_en": "We have five tractors on this farm. The green tractor is the newest of all. It is also the most modern machine here. It has GPS and autopilot. However, the old red tractor is the strongest. It is the best tractor for pulling heavy stumps. Unfortunately, repair parts are the most expensive. Safety is the most important thing.",
+    "text_pt": "Nós temos cinco tratores nesta fazenda. O trator verde é o mais novo de todos. Ele também é a máquina mais moderna aqui. Ele tem GPS e piloto automático. Porém, o trator vermelho antigo é o mais forte. Ele é o melhor trator para puxar tocos pesados. Infelizmente, as peças de reposição são as mais caras. A segurança é a coisa mais importante.",
+    "pairs": [
+      {"en":"We have five tractors on this farm.","pt":"Nós temos cinco tratores nesta fazenda."},
+      {"en":"The green tractor is the newest of all.","pt":"O trator verde é o mais novo de todos."},
+      {"en":"It is also the most modern machine here.","pt":"Ele também é a máquina mais moderna aqui."},
+      {"en":"It has GPS and autopilot.","pt":"Ele tem GPS e piloto automático."},
+      {"en":"However, the old red tractor is the strongest.","pt":"Porém, o trator vermelho antigo é o mais forte."},
+      {"en":"It is the best tractor for pulling heavy stumps.","pt":"Ele é o melhor trator para puxar tocos pesados."},
+      {"en":"Unfortunately, repair parts are the most expensive.","pt":"Infelizmente, as peças de reposição são as mais caras."},
+      {"en":"Safety is the most important thing.","pt":"A segurança é a coisa mais importante."}
+    ],
+    "vocabulary_table": [
+      {"word":"newest","translation":"o mais novo"},
+      {"word":"most modern","translation":"o mais moderno"},
+      {"word":"strongest","translation":"o mais forte"},
+      {"word":"best","translation":"o melhor"},
+      {"word":"most expensive","translation":"o mais caro"},
+      {"word":"most important","translation":"o mais importante"},
+      {"word":"GPS","translation":"GPS"},
+      {"word":"autopilot","translation":"piloto automático"},
+      {"word":"stumps","translation":"tocos"},
+      {"word":"pulling","translation":"puxando/arrancando"},
+      {"word":"repair parts","translation":"peças de reposição"},
+      {"word":"fleet/machinery","translation":"frota/maquinário"}
+    ],
+    "grammar": "Superlativos: destaque um item dentro de um grupo. Regra 1 (curtos): the + adjetivo + est (new → the newest; strong → the strongest). Regra 2 (longos): the most + adjetivo (modern → the most modern; important → the most important; expensive → the most expensive). Regra 3 (irregulares): good → the best; bad → the worst. Use sempre 'the' antes do superlativo.",
     "teaching_modules": {
-      "explanation": "Rotina com 'usually' e ação atual com Present Continuous (I am counting).",
+      "explanation": "Não comparamos dois itens; escolhemos o campeão do grupo. Use 'the' + est ou 'the most' + adjetivo.",
       "grammar_table": [
-        {"subject": "We", "verb": "Collect", "example": "We usually collect eggs (Rotina)"},
-        {"subject": "I", "verb": "Am putting", "example": "I am putting eggs in a box (Agora)"}
+        {"subject": "Curto", "verb": "new→the newest", "example": "The green tractor is the newest."},
+        {"subject": "Curto", "verb": "strong→the strongest", "example": "The red tractor is the strongest."},
+        {"subject": "Longo", "verb": "modern→the most modern", "example": "It is the most modern machine."},
+        {"subject": "Longo", "verb": "important→the most important", "example": "Safety is the most important thing."},
+        {"subject": "Irregular", "verb": "good→the best", "example": "It is the best tractor."}
       ],
       "vocabulary": [
-        {"word": "Egg", "translation": "Ovo"},
-        {"word": "Nest", "translation": "Ninho"},
-        {"word": "Box", "translation": "Caixa"},
-        {"word": "Table", "translation": "Mesa"}
+        {"word": "GPS", "translation": "GPS"},
+        {"word": "autopilot", "translation": "piloto automático"},
+        {"word": "stumps", "translation": "tocos"}
       ],
       "verbs_list": [
-        {"base": "Collect", "third_person": "Collects", "translation": "Coletar"},
-        {"base": "Count", "third_person": "Counts", "translation": "Contar"},
-        {"base": "Put", "third_person": "Puts", "translation": "Colocar"}
+        {"base": "pull", "third_person": "pulls", "translation": "puxar"}
       ]
     }
   },
   {
     "id": 7,
     "level": "A2",
-    "category": "Livestock",
-    "title": "Cleaning the Stable",
-    "title_pt": "Limpando o estábulo",
-    "text_en": "We usually clean the stable after feeding. We open doors and we let air in. Now, I am sweeping the floor now. I move straw and I wash a corner. The smell is strong, but I feel calm. We open small windows for air. I am folding cloths now. We check tools because we use them later. The stable looks better. I dry the floor. I put the broom away. I wipe a bucket. I rest a little.",
-    "text_pt": "Nós geralmente limpamos o estábulo após alimentar. Nós abrimos as portas e nós deixamos o ar entrar. Agora, eu estou varrendo o chão agora. Eu movo a palha e eu lavo um canto. O cheiro está forte, mas eu me sinto calmo. Nós abrimos janelas pequenas para o ar. Eu estou dobrando panos agora. Nós conferimos ferramentas porque as usamos mais tarde. O estábulo fica melhor. Eu seco o chão. Eu guardo a vassoura. Eu limpo um balde. Eu descanso um pouco.",
+    "category": "Quantities & Inventory",
+    "title": "Checking the Supplies (Quantities & Inventory)",
+    "title_pt": "Checando os suprimentos (Quantidades & Inventário)",
+    "text_en": "Before we start planting, check the supplies. How much diesel is in the main tank? There is a lot of fuel. We have 2,000 liters. Good. And how many bags of seeds do we have? We don't have many bags left. Only ten. Do we have enough water for the chemical mix? Yes, the water tank is full. We need to buy more seeds quickly.",
+    "text_pt": "Antes de começarmos o plantio, confira os suprimentos. Quanto diesel há no tanque principal? Há muito combustível. Nós temos 2.000 litros. Ótimo. E quantos sacos de sementes nós temos? Nós não temos muitos sacos sobrando. Apenas dez. Nós temos água suficiente para a calda química? Sim, o tanque de água está cheio. Precisamos comprar mais sementes rapidamente.",
+    "pairs": [
+      {"en":"Before we start planting, check the supplies.","pt":"Antes de começarmos o plantio, confira os suprimentos."},
+      {"en":"How much diesel is in the main tank?","pt":"Quanto diesel há no tanque principal?"},
+      {"en":"There is a lot of fuel. We have 2,000 liters.","pt":"Há muito combustível. Nós temos 2.000 litros."},
+      {"en":"Good. And how many bags of seeds do we have?","pt":"Ótimo. E quantos sacos de sementes nós temos?"},
+      {"en":"We don't have many bags left. Only ten.","pt":"Nós não temos muitos sacos sobrando. Apenas dez."},
+      {"en":"Do we have enough water for the chemical mix?","pt":"Nós temos água suficiente para a calda química?"},
+      {"en":"Yes, the water tank is full.","pt":"Sim, o tanque de água está cheio."},
+      {"en":"We need to buy more seeds quickly.","pt":"Precisamos comprar mais sementes rapidamente."}
+    ],
+    "vocabulary_table": [
+      {"word":"supplies","translation":"suprimentos"},
+      {"word":"diesel","translation":"diesel"},
+      {"word":"fuel","translation":"combustível"},
+      {"word":"liters","translation":"litros"},
+      {"word":"bags","translation":"sacos"},
+      {"word":"seeds","translation":"sementes"},
+      {"word":"how much","translation":"quanto (incontável)"},
+      {"word":"how many","translation":"quantos (contável)"},
+      {"word":"a lot of","translation":"muito/muitos"},
+      {"word":"enough","translation":"suficiente"},
+      {"word":"left","translation":"sobrando/restante"},
+      {"word":"chemical mix","translation":"calda/mistura química"}
+    ],
+    "grammar": "Quantificadores: How much (incontáveis: diesel, água) e How many (contáveis: bags, cows). 'A lot of' funciona para quantidades grandes em ambos. 'Enough' indica suficiência. 'Left' indica o que resta (We don't have many bags left). Regra prática: dá para contar um por um? Use many; se for líquido/pó/massa, use much.",
     "teaching_modules": {
-      "explanation": "Present Simple com rotina e Present Continuous para o que acontece agora (I am sweeping).",
+      "explanation": "Use How much para líquidos e massas; How many para itens contáveis. 'A lot of' é coringa. 'Enough' para suficiente; 'left' para restante.",
       "grammar_table": [
-        {"subject": "We", "verb": "Clean", "example": "We usually clean the stable (Rotina)"},
-        {"subject": "I", "verb": "Am moving", "example": "I am moving straw now (Agora)"}
+        {"subject": "Incontável", "verb": "How much diesel...", "example": "How much diesel is in the tank?"},
+        {"subject": "Contável", "verb": "How many bags...", "example": "How many bags do we have?"},
+        {"subject": "Suficiência", "verb": "enough", "example": "Do we have enough water?"}
       ],
       "vocabulary": [
-        {"word": "Stable", "translation": "Estábulo"},
-        {"word": "Straw", "translation": "Palha"},
-        {"word": "Broom", "translation": "Vassoura"},
-        {"word": "Floor", "translation": "Chão"}
+        {"word": "supplies", "translation": "suprimentos"},
+        {"word": "chemical mix", "translation": "calda química"}
       ],
       "verbs_list": [
-        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"},
-        {"base": "Sweep", "third_person": "Sweeps", "translation": "Varrer"},
-        {"base": "Move", "third_person": "Moves", "translation": "Mover"}
+        {"base": "buy", "third_person": "bought", "translation": "comprar"}
       ]
     }
   },
   {
     "id": 8,
     "level": "A2",
-    "category": "Veterinary",
-    "title": "Simple Bandage on a Dog",
-    "title_pt": "Curativo simples em um cachorro",
-    "text_en": "I usually check the dog's paw gently. I look for cuts and I talk to the owner. Today, I am washing the paw now. I am putting a simple bandage. The dog is calm, but the cut is red. I speak softly and I smile. I give basic advice. I usually praise the dog. I am giving a treat now. We plan a simple check tomorrow, so the owner feels calm. I write the time. I throw away trash. I clean the table.",
-    "text_pt": "Eu geralmente checo a pata do cachorro com cuidado. Eu procuro cortes e eu falo com o dono. Hoje, eu estou lavando a pata agora. Eu estou colocando um curativo simples. O cachorro está calmo, mas o corte está vermelho. Eu falo baixo e eu sorrio. Eu dou um conselho básico. Eu geralmente elogio o cachorro. Eu estou dando um petisco agora. Nós planejamos uma checagem simples para amanhã, então o dono fica calmo. Eu escrevo a hora. Eu jogo o lixo fora. Eu limpo a mesa.",
+    "category": "Must vs. Should",
+    "title": "Strict Safety Rules (Must vs. Should)",
+    "title_pt": "Regras rígidas de segurança (Must vs. Should)",
+    "text_en": "Welcome to the team. Please listen to the rules. You must wear safety glasses when you mix chemicals. This is mandatory. You must not smoke near the fuel tanks. It is prohibited. Also, look at the weather. It is very hot today. You should drink water every hour to stay hydrated. You should wear a hat to protect your head from the sun. If you feel dizzy, you must stop immediately.",
+    "text_pt": "Bem-vindo à equipe. Por favor, escute as regras. Você deve usar óculos de segurança quando misturar químicos/defensivos. Isso é obrigatório. Você não deve fumar perto dos tanques de combustível. É proibido. Além disso, observe o clima. Hoje está muito quente. Você deve beber água a cada hora para ficar hidratado. Você deve usar um chapéu para proteger a cabeça do sol. Se você se sentir tonto, você deve parar imediatamente.",
+    "pairs": [
+      {"en":"Welcome to the team. Please listen to the rules.","pt":"Bem-vindo à equipe. Por favor, escute as regras."},
+      {"en":"You must wear safety glasses when you mix chemicals.","pt":"Você deve usar óculos de segurança quando misturar químicos/defensivos."},
+      {"en":"This is mandatory.","pt":"Isso é obrigatório."},
+      {"en":"You must not smoke near the fuel tanks.","pt":"Você não deve fumar perto dos tanques de combustível."},
+      {"en":"It is prohibited.","pt":"É proibido."},
+      {"en":"Also, look at the weather. It is very hot today.","pt":"Além disso, observe o clima. Hoje está muito quente."},
+      {"en":"You should drink water every hour to stay hydrated.","pt":"Você deve beber água a cada hora para ficar hidratado."},
+      {"en":"You should wear a hat to protect your head from the sun.","pt":"Você deve usar um chapéu para proteger a cabeça do sol."},
+      {"en":"If you feel dizzy, you must stop immediately.","pt":"Se você se sentir tonto, você deve parar imediatamente."}
+    ],
+    "vocabulary_table": [
+      {"word":"must","translation":"deve (obrigação)"},
+      {"word":"must not","translation":"não deve (proibição)"},
+      {"word":"should","translation":"deve (conselho)"},
+      {"word":"mandatory","translation":"obrigatório"},
+      {"word":"prohibited","translation":"proibido"},
+      {"word":"hydrated","translation":"hidratado"},
+      {"word":"dizzy","translation":"tonto"},
+      {"word":"protect","translation":"proteger"},
+      {"word":"chemicals","translation":"químicos/defensivos"},
+      {"word":"safety glasses","translation":"óculos de segurança"},
+      {"word":"fuel tanks","translation":"tanques de combustível"},
+      {"word":"weather","translation":"clima"},
+      {"word":"hot","translation":"quente"},
+      {"word":"hat","translation":"chapéu"},
+      {"word":"sun","translation":"sol"},
+      {"word":"immediately","translation":"imediatamente"},
+      {"word":"every hour","translation":"a cada hora"}
+    ],
+    "grammar": "MUST vs SHOULD: Must indica obrigação forte/lei; Must not é proibição absoluta. Should indica conselho ou recomendação de saúde/boas práticas. Estrutura: sujeito + must/should + verbo base. Ex.: Must wear; Should drink. Use Must para segurança legal (óculos, proibição de fumar). Use Should para cuidados (hidratação, chapéu).",
     "teaching_modules": {
-      "explanation": "Rotina com 'usually' e ação atual com Present Continuous (I am washing).",
+      "explanation": "Lei vs. Dica: Must (lei/obrigação) e Must not (proibição). Should (conselho). Todos usam o verbo na base.",
       "grammar_table": [
-        {"subject": "I", "verb": "Check", "example": "I usually check the paw (Rotina)"},
-        {"subject": "I", "verb": "Am putting", "example": "I am putting a bandage now (Agora)"}
+        {"subject": "Obrigação", "verb": "must + wear", "example": "You must wear safety glasses."},
+        {"subject": "Proibição", "verb": "must not + smoke", "example": "You must not smoke near the fuel tanks."},
+        {"subject": "Conselho", "verb": "should + drink", "example": "You should drink water every hour."}
       ],
       "vocabulary": [
-        {"word": "Dog", "translation": "Cachorro"},
-        {"word": "Paw", "translation": "Pata"},
-        {"word": "Bandage", "translation": "Curativo"},
-        {"word": "Cut", "translation": "Corte"}
+        {"word": "mandatory", "translation": "obrigatório"},
+        {"word": "prohibited", "translation": "proibido"},
+        {"word": "hydrated", "translation": "hidratado"}
       ],
       "verbs_list": [
-        {"base": "Check", "third_person": "Checks", "translation": "Checar"},
-        {"base": "Wash", "third_person": "Washes", "translation": "Lavar"},
-        {"base": "Put", "third_person": "Puts", "translation": "Colocar"}
+        {"base": "wear", "third_person": "wears", "translation": "usar"},
+        {"base": "smoke", "third_person": "smokes", "translation": "fumar"},
+        {"base": "drink", "third_person": "drinks", "translation": "beber"},
+        {"base": "protect", "third_person": "protects", "translation": "proteger"},
+        {"base": "mix", "third_person": "mixes", "translation": "misturar"}
       ]
     }
   },
   {
     "id": 11,
     "level": "A2",
-    "category": "Agribusiness",
-    "title": "Farm Routine: Measures and Money",
-    "title_pt": "Rotina da fazenda: medidas e dinheiro",
-    "text_en": "Paulo works on a small farm. In the morning, he usually waters 0.5 hectares of vegetables and uses 100 liters of water. Now he is buying 20 liters of diesel at $1.20 per liter. He feeds the chickens 12 kilograms of feed and collects 36 eggs. He sells 8 kilograms of tomatoes at $2.00 per kg and 5 kilograms of lettuce at $1.50 per kg. He spends $24 on diesel and earns $23.50 from sales.",
-    "text_pt": "Paulo trabalha em uma pequena fazenda. De manhã, ele geralmente irriga 0,5 hectares de hortaliças e usa 100 litros de água. Agora ele está comprando 20 litros de diesel a $1,20 por litro. Ele alimenta as galinhas com 12 quilogramas de ração e coleta 36 ovos. Ele vende 8 quilogramas de tomates a $2,00 por kg e 5 quilogramas de alface a $1,50 por kg. Ele gasta $24 com diesel e ganha $23,50 nas vendas.",
+    "category": "Future (Going To)",
+    "title": "Plans for Tomorrow (Future with Going To)",
+    "title_pt": "Planos para amanhã (Futuro com Going To)",
+    "text_en": "Tomorrow is vaccination day. We are going to start very early, at 5:00 AM. I am going to organize the cattle chute and the needles. The vet is going to bring the vaccines in a cooler. We are going to separate the calves from the cows. It is going to be a long day. Are you going to help us?",
+    "text_pt": "Amanhã é dia de vacinação. Nós vamos (estamos ‘going to’) começar bem cedo, às 5:00. Eu vou organizar o tronco de contenção (brete) e as agulhas. A veterinária vai trazer as vacinas em uma caixa térmica (isopor). Nós vamos separar os bezerros das vacas. Vai ser um dia longo. Você vai nos ajudar?",
+    "pairs": [
+      {"en":"Tomorrow is vaccination day.","pt":"Amanhã é dia de vacinação."},
+      {"en":"We are going to start very early, at 5:00 AM.","pt":"Nós vamos começar bem cedo, às 5:00."},
+      {"en":"I am going to organize the cattle chute and the needles.","pt":"Eu vou organizar o tronco de contenção (brete) e as agulhas."},
+      {"en":"The vet is going to bring the vaccines in a cooler.","pt":"A veterinária vai trazer as vacinas em uma caixa térmica (isopor)."},
+      {"en":"We are going to separate the calves from the cows.","pt":"Nós vamos separar os bezerros das vacas."},
+      {"en":"It is going to be a long day.","pt":"Vai ser um dia longo."},
+      {"en":"Are you going to help us?","pt":"Você vai nos ajudar?"}
+    ],
+    "vocabulary_table": [
+      {"word":"cattle chute","translation":"tronco de contenção/brete"},
+      {"word":"needles","translation":"agulhas"},
+      {"word":"cooler","translation":"caixa térmica/isopor"},
+      {"word":"separate","translation":"separar/apartar"},
+      {"word":"vaccination","translation":"vacinação"}
+    ],
+    "grammar": "Futuro com BE GOING TO: Sujeito + am/is/are + going to + verbo base. Uso: planos definidos e ações concretas já decididas. É mais forte que WILL (não é adivinhação; é planejamento).",
     "teaching_modules": {
-      "explanation": "Rotina com 'usually' (Present Simple) e ação atual com Present Continuous (He is buying…).",
+      "explanation": "O futuro garantido: usamos GOING TO quando o plano já está traçado. Estrutura: Sujeito + am/is/are + going to + verbo.",
       "grammar_table": [
-        {"subject": "He", "verb": "Usually waters", "example": "He usually waters 0.5 hectares."},
-        {"subject": "He", "verb": "Is buying", "example": "He is buying 20 liters of diesel now."}
+        {"subject": "We", "verb": "are going to start", "example": "We are going to start at 5:00 AM."},
+        {"subject": "I", "verb": "am going to organize", "example": "I am going to organize the cattle chute."},
+        {"subject": "The vet", "verb": "is going to bring", "example": "The vet is going to bring the vaccines."}
       ],
       "vocabulary": [
-        {"word": "Hectare", "translation": "Hectare"},
-        {"word": "Liter", "translation": "Litro"},
-        {"word": "Diesel", "translation": "Diesel"},
-        {"word": "Feed", "translation": "Ração"},
-        {"word": "Egg", "translation": "Ovo"},
-        {"word": "Tomato", "translation": "Tomate"},
-        {"word": "Lettuce", "translation": "Alface"},
-        {"word": "Price", "translation": "Preço"},
-        {"word": "Spend", "translation": "Gastar"},
-        {"word": "Earn", "translation": "Ganhar"},
-        {"word": "Budget", "translation": "Orçamento"},
-        {"word": "Sell", "translation": "Vender"}
+        {"word": "cattle chute", "translation": "tronco de contenção/brete"},
+        {"word": "cooler", "translation": "caixa térmica/isopor"}
       ],
       "verbs_list": [
-        {"base": "Water", "third_person": "Waters", "translation": "Irrigar"},
-        {"base": "Feed", "third_person": "Feeds", "translation": "Alimentar"},
-        {"base": "Buy", "third_person": "Buys", "translation": "Comprar"},
-        {"base": "Sell", "third_person": "Sells", "translation": "Vender"},
-        {"base": "Measure", "third_person": "Measures", "translation": "Medir"},
-        {"base": "Collect", "third_person": "Collects", "translation": "Coletar"}
+        {"base": "start", "third_person": "starts", "translation": "começar"},
+        {"base": "organize", "third_person": "organizes", "translation": "organizar"},
+        {"base": "bring", "third_person": "brings", "translation": "trazer"},
+        {"base": "separate", "third_person": "separates", "translation": "separar/apartar"},
+        {"base": "help", "third_person": "helps", "translation": "ajudar"}
       ]
     }
   },
   {
     "id": 9,
     "level": "A2",
-    "category": "Veterinary",
-    "title": "Vitamins for Chickens",
-    "title_pt": "Vitaminas para as galinhas",
-    "text_en": "We usually give vitamins to the chickens. We watch the water and we check drinkers. Now, I am mixing water now. I am adding drops. The chickens drink and cluck. One drinker is empty, but a tray is clean. We monitor drinkers and record numbers. I am washing a bottle now. We plan the next dose because the weather is hot. I refill the drinker and I clean the tray. I check another line. I close the bottle. I write the dose.",
-    "text_pt": "Nós geralmente damos vitaminas às galinhas. Nós observamos a água e nós checamos os bebedouros. Agora, eu estou misturando água agora. Eu estou adicionando gotas. As galinhas bebem e cacarejam. Um bebedouro está vazio, mas uma bandeja está limpa. Nós monitoramos os bebedouros e registramos números. Eu estou lavando um frasco agora. Nós planejamos a próxima dose porque o clima está quente. Eu reponho o bebedouro e eu limpo a bandeja. Eu checo outra linha. Eu fecho o frasco. Eu escrevo a dose.",
+    "category": "Adverbs of Frequency",
+    "title": "Maintenance Schedule (Adverbs of Frequency)",
+    "title_pt": "Cronograma de manutenção (Advérbios de frequência)",
+    "text_en": "To keep the tractor working, follow the schedule. I always check the oil level before I start the engine. We usually clean the air filters every Friday. Sometimes, we need to change the tires if they are old. We rarely have engine problems because we are careful. We never ignore a red warning light on the dashboard. Consistency is the secret.",
+    "text_pt": "Para manter o trator funcionando, siga o cronograma. Eu sempre verifico o nível do óleo antes de ligar o motor. Nós geralmente limpamos os filtros de ar toda sexta-feira. Às vezes, precisamos trocar os pneus se estiverem velhos. Nós raramente temos problemas no motor porque somos cuidadosos. Nós nunca ignoramos uma luz de aviso vermelha no painel. Consistência é o segredo.",
+    "pairs": [
+      {"en":"To keep the tractor working, follow the schedule.","pt":"Para manter o trator funcionando, siga o cronograma."},
+      {"en":"I always check the oil level before I start the engine.","pt":"Eu sempre verifico o nível do óleo antes de ligar o motor."},
+      {"en":"We usually clean the air filters every Friday.","pt":"Nós geralmente limpamos os filtros de ar toda sexta-feira."},
+      {"en":"Sometimes, we need to change the tires if they are old.","pt":"Às vezes, precisamos trocar os pneus se estiverem velhos."},
+      {"en":"We rarely have engine problems because we are careful.","pt":"Nós raramente temos problemas no motor porque somos cuidadosos."},
+      {"en":"We never ignore a red warning light on the dashboard.","pt":"Nós nunca ignoramos uma luz de aviso vermelha no painel."},
+      {"en":"Consistency is the secret.","pt":"Consistência é o segredo."}
+    ],
+    "vocabulary_table": [
+      {"word":"always","translation":"sempre"},
+      {"word":"usually","translation":"geralmente"},
+      {"word":"sometimes","translation":"às vezes"},
+      {"word":"rarely","translation":"raramente"},
+      {"word":"never","translation":"nunca"},
+      {"word":"maintenance","translation":"manutenção"},
+      {"word":"schedule","translation":"cronograma"},
+      {"word":"oil level","translation":"nível do óleo"},
+      {"word":"air filters","translation":"filtros de ar"},
+      {"word":"tires","translation":"pneus"},
+      {"word":"dashboard","translation":"painel de instrumentos"},
+      {"word":"warning light","translation":"luz de aviso/alerta"},
+      {"word":"consistency","translation":"consistência"}
+    ],
+    "grammar": "Advérbios de frequência indicam com que frequência uma ação acontece: Always (100%), Usually (80%), Sometimes (50%), Rarely (10%), Never (0%). Posição: antes do verbo principal em frases afirmativas (I always check).",
     "teaching_modules": {
-      "explanation": "Rotina com 'usually' e ação atual com Present Continuous (I am mixing).",
+      "explanation": "O 'relógio da rotina': Always→Never. Coloque o advérbio antes do verbo principal (I always check).",
       "grammar_table": [
-        {"subject": "We", "verb": "Give", "example": "We usually give vitamins (Rotina)"},
-        {"subject": "I", "verb": "Am adding", "example": "I am adding drops now (Agora)"}
+        {"subject": "Always", "verb": "check", "example": "I always check the oil level."},
+        {"subject": "Usually", "verb": "clean", "example": "We usually clean the air filters."},
+        {"subject": "Never", "verb": "ignore", "example": "We never ignore a warning light."}
       ],
       "vocabulary": [
-        {"word": "Chicken", "translation": "Galinha"},
-        {"word": "Vitamin", "translation": "Vitamina"},
-        {"word": "Water", "translation": "Água"},
-        {"word": "Drop", "translation": "Gota"}
+        {"word": "maintenance", "translation": "manutenção"},
+        {"word": "dashboard", "translation": "painel"}
       ],
       "verbs_list": [
-        {"base": "Give", "third_person": "Gives", "translation": "Dar"},
-        {"base": "Mix", "third_person": "Mixes", "translation": "Misturar"},
-        {"base": "Add", "third_person": "Adds", "translation": "Adicionar"}
+        {"base": "check", "third_person": "checks", "translation": "verificar"},
+        {"base": "clean", "third_person": "cleans", "translation": "limpar"},
+        {"base": "change", "third_person": "changes", "translation": "trocar"},
+        {"base": "ignore", "third_person": "ignores", "translation": "ignorar"}
       ]
     }
   },
   {
     "id": 10,
     "level": "A2",
-    "category": "Veterinary",
-    "title": "Basic Hygiene",
-    "title_pt": "Higiene básica",
-    "text_en": "We always wash hands and clean tools. We keep the room safe and tidy. Today, I am washing my hands now. I am drying them with a towel. I clean the table and I take out the trash. We label clean tools for safety. I am changing gloves now. We review a checklist, so the room stays safe. The room looks good, but the window is closed. I open the window for fresh air. I check the towel and I change it. I wash a cup. I feel ready.",
-    "text_pt": "Nós sempre lavamos as mãos e limpamos ferramentas. Nós mantemos a sala segura e arrumada. Hoje, eu estou lavando minhas mãos agora. Eu estou secando com uma toalha. Eu limpo a mesa e eu tiro o lixo. Nós etiquetamos ferramentas limpas por segurança. Eu estou trocando as luvas agora. Nós revisamos uma lista de verificação, então a sala permanece segura. A sala fica boa, mas a janela está fechada. Eu abro a janela para ar fresco. Eu checo a toalha e eu a troco. Eu lavo um copo. Eu me sinto pronto.",
+    "category": "Because & So",
+    "title": "Explaining the Problem (Because & So)",
+    "title_pt": "Explicando o problema (Porque & Então)",
+    "text_en": "Milk production dropped yesterday. It dropped because the cows were stressed. The weather was extremely hot, so the animals did not eat well. Also, the automatic water pump broke, so they were thirsty for two hours. We fixed the pump immediately because water is essential. We are monitoring the herd because we want healthy animals. The stress is over, so production will return to normal.",
+    "text_pt": "Ontem a produção de leite caiu. Ela caiu porque as vacas estavam estressadas. O clima estava extremamente quente, então os animais não comeram bem. Além disso, a bomba de água automática quebrou, então eles ficaram com sede por duas horas. Nós consertamos a bomba imediatamente porque a água é essencial. Estamos monitorando o rebanho porque queremos animais saudáveis. O estresse acabou, então a produção vai voltar ao normal.",
+    "pairs": [
+      {"en":"Milk production dropped yesterday.","pt":"Ontem a produção de leite caiu."},
+      {"en":"It dropped because the cows were stressed.","pt":"Ela caiu porque as vacas estavam estressadas."},
+      {"en":"The weather was extremely hot, so the animals did not eat well.","pt":"O clima estava extremamente quente, então os animais não comeram bem."},
+      {"en":"Also, the automatic water pump broke, so they were thirsty for two hours.","pt":"Além disso, a bomba de água automática quebrou, então eles ficaram com sede por duas horas."},
+      {"en":"We fixed the pump immediately because water is essential.","pt":"Nós consertamos a bomba imediatamente porque a água é essencial."},
+      {"en":"We are monitoring the herd because we want healthy animals.","pt":"Estamos monitorando o rebanho porque queremos animais saudáveis."},
+      {"en":"The stress is over, so production will return to normal.","pt":"O estresse acabou, então a produção vai voltar ao normal."}
+    ],
+    "vocabulary_table": [
+      {"word":"production dropped","translation":"produção caiu"},
+      {"word":"stressed","translation":"estressado"},
+      {"word":"thirsty","translation":"com sede"},
+      {"word":"essential","translation":"essencial"},
+      {"word":"return to normal","translation":"voltar ao normal"}
+    ],
+    "grammar": "Conectores de causa e efeito: Because introduz a causa (It dropped because the cows were stressed). So introduz o efeito (It was hot, so the animals did not eat well). Estrutura: [Efeito] because [Causa]; [Causa], so [Efeito].",
     "teaching_modules": {
-      "explanation": "Rotina com 'always' e ação atual com Present Continuous (I am washing).",
+      "explanation": "Porque vs. então/por isso: use Because para explicar a causa; use So para apresentar a consequência/efeito.",
       "grammar_table": [
-        {"subject": "We", "verb": "Wash", "example": "We always wash hands (Rotina)"},
-        {"subject": "I", "verb": "Am drying", "example": "I am drying my hands now (Agora)"}
+        {"subject": "Because", "verb": "introduz causa", "example": "It dropped because the cows were stressed."},
+        {"subject": "So", "verb": "introduz efeito", "example": "It was extremely hot, so the animals did not eat well."},
+        {"subject": "So", "verb": "efeito de falha", "example": "The pump broke, so they were thirsty."}
       ],
       "vocabulary": [
-        {"word": "Hands", "translation": "Mãos"},
-        {"word": "Soap", "translation": "Sabão"},
-        {"word": "Towel", "translation": "Toalha"},
-        {"word": "Trash", "translation": "Lixo"}
+        {"word": "stressed", "translation": "estressado"},
+        {"word": "thirsty", "translation": "com sede"},
+        {"word": "essential", "translation": "essencial"}
       ],
       "verbs_list": [
-        {"base": "Wash", "third_person": "Washes", "translation": "Lavar"},
-        {"base": "Clean", "third_person": "Cleans", "translation": "Limpar"},
-        {"base": "Dry", "third_person": "Dries", "translation": "Secar"}
+        {"base": "drop", "third_person": "drops", "translation": "cair (produção)"},
+        {"base": "break", "third_person": "breaks", "translation": "quebrar"},
+        {"base": "fix", "third_person": "fixes", "translation": "consertar"},
+        {"base": "monitor", "third_person": "monitors", "translation": "monitorar"},
+        {"base": "eat", "third_person": "eats", "translation": "comer"}
       ]
-  }
- },
+    }
+  },
   {
     "id": 12,
     "level": "A2",
-    "category": "Rotina/Horários",
-    "title": "Daily Schedule and Address",
-    "title_pt": "Agenda diária e endereço",
-    "text_en": "We usually start at 6:30 at 125 Green Road. Today, we are meeting the vet at 9:30 at 18 Oak Street. We often finish at 17:00, but we are checking the schedule now. The gate is open, and we are walking to the barn at 6:40.",
-    "text_pt": "Nós geralmente começamos às 6:30 na Rua Green, 125. Hoje, nós estamos encontrando o veterinário às 9:30 na Rua Oak, 18. Nós geralmente terminamos às 17:00, mas estamos conferindo a programação agora. O portão está aberto e estamos caminhando para o celeiro às 6:40.",
+    "category": "Interview & Skills",
+    "title": "The Job Interview (Experience & Skills)",
+    "title_pt": "Entrevista de emprego (Experiência e habilidades)",
+    "text_en": "Hello. My name is Carlos and I want this job. I have five years of experience in agriculture. In Brazil, I worked on a large soybean farm. I drove modern tractors and I repaired small engines. I am a hard worker and I am honest. I can operate GPS systems and can drive heavy trucks. I want to work here because this farm is the best in the region. I am ready to start tomorrow.",
+    "text_pt": "Olá. Meu nome é Carlos e eu quero este trabalho. Eu tenho cinco anos de experiência em agricultura. No Brasil, eu trabalhei em uma grande fazenda de soja. Eu dirigi tratores modernos e consertei motores pequenos. Eu sou esforçado/trabalhador e sou honesto. Eu posso operar sistemas de GPS e posso dirigir caminhões pesados. Eu quero trabalhar aqui porque esta fazenda é a melhor da região. Eu estou pronto para começar amanhã.",
+    "pairs": [
+      {"en":"Hello. My name is Carlos and I want this job.","pt":"Olá. Meu nome é Carlos e eu quero este trabalho."},
+      {"en":"I have five years of experience in agriculture.","pt":"Eu tenho cinco anos de experiência em agricultura."},
+      {"en":"In Brazil, I worked on a large soybean farm.","pt":"No Brasil, eu trabalhei em uma grande fazenda de soja."},
+      {"en":"I drove modern tractors and I repaired small engines.","pt":"Eu dirigi tratores modernos e consertei motores pequenos."},
+      {"en":"I am a hard worker and I am honest.","pt":"Eu sou esforçado/trabalhador e sou honesto."},
+      {"en":"I can operate GPS systems and can drive heavy trucks.","pt":"Eu posso operar sistemas de GPS e posso dirigir caminhões pesados."},
+      {"en":"I want to work here because this farm is the best in the region.","pt":"Eu quero trabalhar aqui porque esta fazenda é a melhor da região."},
+      {"en":"I am ready to start tomorrow.","pt":"Eu estou pronto para começar amanhã."}
+    ],
+    "vocabulary_table": [
+      {"word":"experience","translation":"experiência"},
+      {"word":"hard worker","translation":"trabalhador/esforçado"},
+      {"word":"honest","translation":"honesto"},
+      {"word":"ready","translation":"pronto"},
+      {"word":"GPS systems","translation":"sistemas de GPS"},
+      {"word":"heavy trucks","translation":"caminhões pesados"}
+    ],
+    "grammar": "Linha do tempo: Presente (identidade/qualidades: I have, I am) → Passado (experiências: I worked/drove/repaired) → Can (habilidades atuais: I can operate/drive). Note a mistura controlada de tempos para vender a experiência.",
     "teaching_modules": {
-      "explanation": "Present Simple com advérbios de frequência (usually/often) e Present Continuous para ações do momento (are meeting/are walking).",
+      "explanation": "Consolidação A2: apresente-se no presente, comprove no passado e destaque habilidades com CAN. Use também 'I want to' para ambição e 'because' para justificativa.",
       "grammar_table": [
-        {"subject": "We", "verb": "start", "example": "We usually start at 6:30."},
-        {"subject": "We", "verb": "are meeting", "example": "We are meeting the vet at 9:30."}
+        {"subject": "Presente", "verb": "I have / I am", "example": "I have experience; I am honest."},
+        {"subject": "Passado", "verb": "worked / drove / repaired", "example": "I worked on a soybean farm."},
+        {"subject": "Habilidade", "verb": "can + base", "example": "I can operate GPS systems."}
       ],
       "vocabulary": [
-        {"word": "Address", "translation": "Endereço"},
-        {"word": "Schedule", "translation": "Programação"},
-        {"word": "Gate", "translation": "Portão"},
-        {"word": "Street", "translation": "Rua"}
+        {"word": "experience", "translation": "experiência"},
+        {"word": "hard worker", "translation": "trabalhador/esforçado"},
+        {"word": "honest", "translation": "honesto"},
+        {"word": "ready", "translation": "pronto"}
       ],
       "verbs_list": [
-        {"base": "start", "third_person": "starts", "translation": "começar"},
-        {"base": "meet", "third_person": "meets", "translation": "encontrar"},
-        {"base": "walk", "third_person": "walks", "translation": "caminhar"},
-        {"base": "check", "third_person": "checks", "translation": "conferir"}
+        {"base": "work", "third_person": "worked", "translation": "trabalhar"},
+        {"base": "drive", "third_person": "drove", "translation": "dirigir"},
+        {"base": "repair", "third_person": "repaired", "translation": "consertar"},
+        {"base": "operate", "third_person": "operates", "translation": "operar"},
+        {"base": "want", "third_person": "wants", "translation": "querer"}
       ]
     }
   }

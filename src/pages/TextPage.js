@@ -65,6 +65,8 @@ export function TextPage(level, index) {
         </div>
         <div class="section-title" style="margin-top:12px">Vocabulário</div>
         <div id="vocab" class="flash-grid"></div>
+        <div class="section-title" style="margin-top:12px">Vocabulário (Pronúncia)</div>
+        <div id="vocabTable"></div>
       </section>
 
       <section id="tab-practice" class="card" style="display:none">

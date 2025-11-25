@@ -951,13 +951,73 @@ async function setupAudio(data) {
     });
   }
 
+  function toPhoneticBR(str){
+    const dict = {
+      'farmer':'fármer','farm':'fárm','sister':'sístâr','barn':'bárn','cows':'cáuz','chickens':'tchí-kens','sun':'sãn','wind':'uínd','happy':'répi','big':'bíg','fast':'fést','funny':'fâni','ready':'rédi','day':'dêi','open':'óupen','hot':'hót','strong':'stróng',
+      'livestock':'láiv-stók','veterinarian':'vé-te-ri-né-ri-en','bull':'búl','medical kit':'mé-dicol quít','injury':'ín-djuri','medicine':'mé-di-sin','body':'bó-di','leg':'lég','healthy':'hél-fi',
+      'start':'stárt','walk':'uólk','eat':'ít','drink':'drínk','check':'tchék','feed':'fíid','need':'níid','pasture':'péstcher','calf':'káf','water tanks':'uóter ténks','corn':'córn','farm worker':'fárm uârkâr','grass':'grés','pigs':'pígz',
+      'tractor':'tráktor','harvester':'hár-vis-târ','machine':'mâ-xín','shed':'shéd','soybeans':'sói-bíns','field':'fíld','soil':'sóil','seeds':'síidz','harvest season':'hár-vest sí-zân','humid':'híu-mid','dry':'drái','heavy':'hé-vi','drive':'dráiv','plant':'plánt','work':'uârk','brother':'brâthâr',
+      'weather':'ué-dâr','rain':'rêin','raining':'rêi-ning','clouds':'cláudz','sky':'skái','soybean field':'sói-bín fíld','depends on':'di-péndz ón','dark':'dárk','water':'uóter','how many':'ráu mé-ni','there is':'dér íz','there are':'dér ár','only':'óun-li','more':'mór','bags of corn':'bégs óv córn','bag':'bég','inventory':'ín-ven-tó-ri','salt':'sólt','cattle':'ké-tôl','one':'uãn','five':'fáiv','ten':'tén','twenty':'twén-ti','horses':'hórsiz','tractors':'tráktôrz',
+      'where':'uéâr','in':'ín','on':'ón','under':'ândâr','next to':'nékst tú','behind':'biháind','shovel':'xó-vôl','hammer':'ré-mâr','buckets':'bâkits','tap':'tép','wood table':'úd téi-bol','organization':'ór-ga-né-zêi-xân','right place':'ráit plêis',
+      'safety':'sêi-f-ti','signs':'sáinz','wear':'uér','boots':'búts','gloves':'glâvz','stop':'stóp','electric fence':'iléktrik fêns','dangerous':'dên-dja-râs','smoke':'smóuk','wash':'uóx','hands':'hêndz','soap':'sôup','be careful':'bî kér-fôl','please':'plíiz',
+      'repairing':'ri-pér-ing','fixing':'fíks-ing','cleaning':'clí-nin','waiting':'uêi-tin','moving':'mú-vin','engine':'énd-jin','milking machine':'mílk-ing mâ-xín','now':'náu','at this moment':'ét dís mô-ment','shade':'xêid',
+      'can':'kén','cannot':'ké-not','operate':'ó-pe-reit','pull':'púl','help':'hélp','do':'dú','license':'lái-sens','trailer':'trêi-lâr','tons':'tânz','pickup truck':'pík-âp trúk','red':'réd','large':'lárdj','together':'tugé-thâr',
+      'will':'uíl','tomorrow':'tô-mó-rôu','week':'uíik','monday':'mân-dêi','tuesday':'tiúz-dêi','friday':'frái-dêi','arrive':'â-ráiv','load':'lôud','sell':'sél','grain':'grêin','silos':'sái-lôus','mechanic':'mê-ké-nik','sunny':'sâ-ni','production':'prô-dâk-chan','busy':'bí-zi','trucks':'trâks',
+      'price':'práis','cost':'cóst','money':'mâ-ni','profit':'pró-fit','inputs':'ín-púts','cooperative':'co-ó-pe-ra-tiv','market':'már-ket','buyer':'báier','buy':'bái','cheap':'tchíp','expensive':'éks-pén-siv','pay':'pêi','ton':'tân','dollars':'dó-lârz','how much':'ráu mâch'
+      ,
+      'yesterday':'iés-târ-dêi','last night':'lást náit','cold':'cóuld','rainy':'rêi-ni','muddy':'mâ-di','difficult':'dí-fi-cúlt','because':'bi-cóz','tired':'táierd','broken':'brôu-kân','garage':'gâ-ráj','vet':'vét'
+      ,
+          'worked':'uârk-t','started':'stár-ted','checked':'tchékt','cleaned':'clíind','repaired':'ri-pérd','stopped':'stópt','finished':'fí-ni-sht','then':'dén','in the afternoon':'ín di áf-târ-nún','late':'lêit','tractor cab':'tráktor kéb','fence line':'fêns láin','organized':'ór-ga-náizd'
+          ,
+          'go':'gôu','went':'uént','see':'sí','saw':'só','break':'brêik','broke':'brôuk','have':'rév','had':'réd','take':'têik','took':'túk','drive':'dráiv','drove':'drôuv','buy':'bái','bought':'bót','come':'kâm','came':'keim','spare':'spér','part':'párt','main':'mein','belt':'bélt','store':'stór','suddenly':'sâ-dâ-nli','pickup':'pík-âp','city':'sí-ri','corn':'córn','field':'fíld'
+          ,
+          'did':'díd','didn\'t':'dídânt','cattle':'ké-tôl','brush':'brâsh','fever':'fí-vâr','find':'fáind','yet':'yét','horse':'hórs','sick':'sík','tank':'ténk'
+          ,
+          'herd':'hârd','genetics':'djê-né-tiks','heavier':'hé-viâr','calmer':'cáu-mâr','bigger':'bí-gâr','stronger':'strón-gâr','more':'mór','expensive':'éks-pén-siv','better':'bé-târ','choose':'tchúuz','than':'thén','however':'ráu-évâr','black':'blék','white':'uáit','bull':'búl','strong':'stróng','heavy':'hé-vi','calm':'cám','big':'bíg','good':'gud'
+          ,
+          'newest':'nú-est','most':'móst','modern':'mó-dârn','strongest':'strón-gest','best':'bést','important':'im-pór-tânt','gps':'djí-pi-és','autopilot':'óu-to-pái-lôt','stumps':'stâmps','pulling':'púl-ing','repair':'ri-pér','parts':'párts','green':'grín','old':'ôuld','red':'réd','tractor':'tráktor'
+          ,
+          'supplies':'sû-pláis','diesel':'dí-zel','fuel':'fiúl','liters':'lí-târz','bags':'bégz','seeds':'síidz','a':'a','lot':'lór','of':'óv','enough':'enóf','left':'léft','chemical':'ké-mi-col','mix':'míks','many':'mé-ni'
+          ,
+          'must':'mâst','should':'xúd','mandatory':'mán-de-tó-ri','prohibited':'pro-hí-bi-ted','hydrated':'rái-drêi-ted','dizzy':'dí-zi','protect':'prô-tékt','chemicals':'ké-mi-cols','glasses':'glá-siz','fuel':'fiúl','tanks':'ténks','hot':'hót','hat':'rét','sun':'sân','immediately':'i-mí-di-ét-li','every':'évri','hour':'áu-âr'
+          ,
+          'always':'ól-uêiz','usually':'iú-ju-li','sometimes':'sâm-táims','rarely':'réar-li','never':'né-vâr','maintenance':'mêin-tê-nâns','schedule':'ské-dju-l','oil':'óiol','level':'lé-vol','air':'ér','filters':'fíltârz','tires':'táiârz','dashboard':'déch-bórd','warning':'uór-ning','light':'láit','consistency':'cón-sis-ten-si'
+          ,
+          'so':'sôu','dropped':'drópt','stressed':'strést','thirsty':'thâr-sti','essential':'i-sên-xial','return to normal':'ri-târn tú nór-mol'
+          ,
+          'going':'gôu-ing','going to':'gôu-ing tú','vaccination':'vék-si-néi-chân','cattle chute':'ké-tôl xút','needles':'ní-dôlz','cooler':'cú-lâr','separate':'sé-pâ-reit'
+          ,
+          'experience':'éks-pí-ri-êns','hard worker':'hárd uârkâr','honest':'ó-nest','gps systems':'djí-pi-és sís-temz','heavy trucks':'hé-vi trâks','i want to':'ái uónt tú'
+    };
+    const w = String(str||'').toLowerCase();
+    if (dict[w]) return dict[w];
+    let t = String(str||'');
+    t = t.replace(/tion\b/i,'tchân').replace(/ing\b/i,'ín').replace(/^th/i,'d').replace(/oo/i,'ú').replace(/ea/i,'í').replace(/ar/i,'ár').replace(/er\b/i,'âr').replace(/ai/i,'ei');
+    return t;
+  }
+
+  function renderVocabTable(data){
+    const el = document.getElementById('vocabTable'); if(!el) return;
+    const list = Array.isArray(data.vocabulary_table) ? data.vocabulary_table : [];
+    if (!list.length) { el.innerHTML = '<div class="small">Sem vocabulário listado.</div>'; return; }
+    const rows = list.map(v=> `<tr><td>${v.word}</td><td>${v.translation}</td><td>${toPhoneticBR(v.word)}</td></tr>`).join('');
+    el.innerHTML = `
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `;
+  }
+
   function renderGrammar(data) {
     const el = document.querySelector('#grammar');
     if (!el) return;
     const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
     const sentences = pairs.length ? pairs.map(p=>({en:p.en, pt:fixPT(p.pt)})) : String(data.text||'').split(/(?<=[.!?])\s+/).map((s,i)=>({en:s, pt:String(data.translation||'').split(/(?<=[.!?])\s+/).map(fixPT)[i]||''}));
     const gRaw = String(data.grammar||'');
-    const gHead = (String(level).toUpperCase()==='A1' ? 'Present simple with farm routines.' : gRaw);
+    const levelTag = (location.hash.split('/')[2]||'').toUpperCase();
+    const curIdx = Number((location.hash.split('/')[3]||'1'));
+    const gHead = (levelTag==='A1' && curIdx===1) ? 'Present simple with farm routines.' : (gRaw || '');
     function explainForBeginners(v){
       return `
         <div class="card">
@@ -1623,12 +1683,34 @@ async function setupAudio(data) {
         const dict = {
           'i':'Ai','you':'iú','we':'uí','they':'dêi','he':'rí','she':'xí','it':'ít',
           'am':'ém','is':'íz','are':'ár',
-          'at':'ét','the':'dâ','a':'â','an':'ân','in':'in','on':'ón','under':'ândâr','next':'nékst','to':'tú',
+          'at':'ét','the':'dâ','a':'â','an':'ân','in':'in','on':'ón','under':'ândâr','next':'nékst','to':'tú','behind':'biháind','where':'uéâr',
           'farm':'fárm','barn':'bárn','pasture':'péstcher','field':'fíld','gate':'gueit','fence':'fêns',
           'cow':'cáu','cows':'cáuz','chicken':'tchí-ken','chickens':'tchí-kens','sheep':'xíp','horse':'hórs','horses':'hórsiz',
-          'water':'uóter','feed':'fíid','trough':'tróf','bucket':'bâkit','tools':'túuls','box':'bóks',
+          'water':'uóter','feed':'fíid','trough':'tróf','bucket':'bâkit','buckets':'bâkits','tools':'túuls','box':'bóks','tap':'tép','shovel':'xó-vôl','hammer':'ré-mâr','wood':'úd','table':'téi-bol',
           'morning':'mór-ning','today':'tudêi','clean':'clín','ready':'rédi','work':'uârk','keep':'kíip','check':'tchék','open':'óupen','near':'nír','safe':'sêif',
-          'sun':'sãn','wind':'uínd','strong':'stróng','cool':'cúl'
+          'sun':'sãn','wind':'uínd','strong':'stróng','cool':'cúl',
+          'boots':'búts','gloves':'glâvz','signs':'sáinz','electric':'iléktrik','dangerous':'dên-dja-râs','smoke':'smóuk','wash':'uóx','hands':'hêndz','soap':'sôup','please':'plíiz','careful':'kér-fôl',
+          'can':'kén','cannot':'ké-not','operate':'ó-pe-reit','pull':'púl','help':'hélp','do':'dú','license':'lái-sens','trailer':'trêi-lâr','tons':'tânz','pickup':'pík-âp','truck':'trúk','red':'réd','large':'lárdj','together':'tugé-thâr',
+          'will':'uíl','tomorrow':'tô-mó-rôu','week':'uíik','monday':'mân-dêi','tuesday':'tiúz-dêi','friday':'frái-dêi','arrive':'â-ráiv','load':'lôud','sell':'sél','grain':'grêin','silos':'sái-lôus','mechanic':'mê-ké-nik','sunny':'sâ-ni','production':'prô-dâk-chan','busy':'bí-zi','trucks':'trâks',
+          'price':'práis','cost':'cóst','money':'mâ-ni','profit':'pró-fit','inputs':'ín-púts','cooperative':'co-ó-pe-ra-tiv','market':'már-ket','buyer':'báier','buy':'bái','cheap':'tchíp','expensive':'éks-pén-siv','pay':'pêi','ton':'tân','dollars':'dó-lârz','how':'ráu','much':'mâch',
+          'yesterday':'iés-târ-dêi','last':'lást','night':'náit','cold':'cóuld','rainy':'rêi-ni','muddy':'mâ-di','difficult':'dí-fi-cúlt','because':'bi-cóz','tired':'táierd','broken':'brôu-kân','garage':'gâ-ráj','vet':'vét'
+          ,
+      'worked':'uârk-t','started':'stár-ted','checked':'tchékt','cleaned':'clíind','repaired':'ri-pérd','stopped':'stópt','finished':'fí-ni-sht','then':'dén','afternoon':'áf-târ-nún','late':'lêit','tractor':'tráktor','cab':'kéb','fence':'fêns','line':'láin','organized':'ór-ga-náizd'
+      ,
+      'go':'gôu','went':'uént','see':'sí','saw':'só','break':'brêik','broke':'brôuk','have':'rév','had':'réd','take':'têik','took':'túk','drive':'dráiv','drove':'drôuv','buy':'bái','bought':'bót','come':'kâm','came':'keim','spare part':'spér párt','main belt':'mein bélt','belt':'bélt','store':'stór','suddenly':'sâ-dâ-nli','pickup':'pík-âp','city':'sí-ri','corn field':'córn fíld',
+      'did':'díd','didn\'t':'dídânt','cattle':'ké-tôl','brush':'brâsh','fever':'fí-vâr','find':'fáind','yet':'yét','horse':'hórs','sick':'sík','water tank':'uóter ténk',
+      'herd':'hârd','genetics':'djê-né-tiks','heavier':'hé-viâr','calmer':'cáu-mâr','bigger':'bí-gâr','stronger':'strón-gâr','more expensive':'mór éks-pén-siv','better':'bé-târ','choose':'tchúuz','than':'thén','however':'ráu-évâr','black bull':'blék búl','white bull':'uáit búl','black':'blék','white':'uáit','bull':'búl','expensive':'éks-pén-siv','strong':'stróng','heavy':'hé-vi','calm':'cám','big':'bíg','good':'gud',
+      'newest':'nú-est','most modern':'móst mó-dârn','strongest':'strón-guest','best':'bést','most expensive':'móst éks-pén-siv','most important':'móst im-pór-tânt','gps':'djí-pi-és','autopilot':'óu-to-pái-lôt','stumps':'stâmps','pulling':'púl-ing','repair parts':'ri-pér párts','fleet':'flíit','machinery':'mâ-xí-nri','green':'grín','old':'ôuld','red':'réd','tractor':'tráktor',
+      'supplies':'sû-pláis','diesel':'dí-zel','fuel':'fiúl','liters':'lí-târz','bags':'bégz','seeds':'síidz','a lot of':'a lórof','enough':'enóf','left':'léft','chemical mix':'ké-mi-col míks','mix':'míks','how many':'ráu mé-ni',
+      'must':'mâst','must not':'mâst nót','should':'xúd','mandatory':'mán-de-tó-ri','prohibited':'pro-hí-bi-ted','hydrated':'rái-drêi-ted','dizzy':'dí-zi','protect':'prô-tékt','chemicals':'ké-mi-cols','safety glasses':'sêi-f-ti glá-siz','fuel tanks':'fiúl ténks','hot':'hót','hat':'rét','sun':'sân','immediately':'i-mí-di-ét-li','every hour':'évri áu-âr'
+      ,
+      'always':'ól-uêiz','usually':'iú-ju-li','sometimes':'sâm-táims','rarely':'réar-li','never':'né-vâr','maintenance':'mêin-tê-nâns','schedule':'ské-dju-l','oil level':'óiol lé-vol','air filters':'ér fíltârz','filters':'fíltârz','oil':'óiol','air':'ér','tires':'táiârz','dashboard':'déch-bórd','warning light':'uór-ning láit','consistency':'cón-sis-ten-si'
+      ,
+      'so':'sôu','dropped':'drópt','stressed':'strést','thirsty':'thâr-sti','essential':'i-sên-xial','return to normal':'ri-târn tú nór-mol'
+      ,
+      'going':'gôu-ing','going to':'gôu-ing tú','vaccination':'vék-si-néi-chân','cattle chute':'ké-tôl xút','needles':'ní-dôlz','cooler':'cú-lâr','separate':'sé-pâ-reit'
+      ,
+      'experience':'éks-pí-ri-êns','hard worker':'hárd uârkâr','honest':'ó-nest','gps systems':'djí-pi-és sís-temz','heavy trucks':'hé-vi trâks','i want to':'ái uónt tú'
         };
         function mapWord(w){
           const raw = String(w||'');
@@ -1979,6 +2061,7 @@ async function setupAudio(data) {
       try { const vEl = document.querySelector('#verbs'); if (vEl) vEl.remove(); } catch {}
       try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
       try { renderFill(data); } catch (e) { console.error('Error in renderFill:', e); }
+      try { renderVocabTable(data); } catch (e) { console.error('Error in renderVocabTable:', e); }
       try {
         const el = document.getElementById('a1ex');
         if (el) {
@@ -2000,6 +2083,401 @@ async function setupAudio(data) {
             ${compHtml}
             <button class="btn" id="checkA1Complete" style="margin-top:8px">Checar</button>
             <div id="a1CompleteRes" class="small" style="margin-top:6px"></div>
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===1 ? `
+            <div class="section-title" style="margin-top:12px">True or False (3 itens)</div>
+            <div class="card">
+              <div>1. Paul is a farmer. <span class="small" id="tf1"></span></div>
+              <div style="margin-top:6px">2. The chickens are calm. <span class="small" id="tf2"></span></div>
+              <div style="margin-top:6px">3. The barn is open. <span class="small" id="tf3"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="checkTF">Checar</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Complete com Am / Is / Are</div>
+            <div class="card">
+              <div>1. I ___ Paul.</div>
+              <div style="margin-top:6px">2. The barn ___ open.</div>
+              <div style="margin-top:6px">3. The cows ___ calm.</div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===6 ? `
+            <div class="section-title" style="margin-top:12px">Complete com There is / There are</div>
+            <div class="card">
+              <div>1. The shed ___ bags of corn. <input id="st61" class="blank" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:120px" placeholder="there is/are"> <span class="small" id="st61r"></span></div>
+              <div style="margin-top:6px">2. There ___ one tractor. <input id="st62" class="blank" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:120px" placeholder="there is/are"> <span class="small" id="st62r"></span></div>
+              <div style="margin-top:6px">3. In the field ___ twenty cows. <input id="st63" class="blank" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:120px" placeholder="there is/are"> <span class="small" id="st63r"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="checkST6">Checar</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Matemática simples em inglês</div>
+            <div class="card">
+              <div>1. Five + Five = Ten <span class="small" id="sm61"></span></div>
+              <div style="margin-top:6px">2. Ten + Ten = Twenty <span class="small" id="sm62"></span></div>
+              <div style="margin-top:6px">3. One + Twenty = Twenty-one <span class="small" id="sm63"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showSM6">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===7 ? `
+            <div class="section-title" style="margin-top:12px">Escolha a preposição correta (3 itens)</div>
+            <div class="card">
+              <div>1. The shovel is <label><input type="radio" name="p71" value="in"> in</label> <label><input type="radio" name="p71" value="on"> on</label> the shed. <span class="small" id="p71r"></span></div>
+              <div style="margin-top:6px">2. The hammer is <label><input type="radio" name="p72" value="in"> in</label> <label><input type="radio" name="p72" value="on"> on</label> the wood table. <span class="small" id="p72r"></span></div>
+              <div style="margin-top:6px">3. The buckets are <label><input type="radio" name="p73" value="under"> under</label> <label><input type="radio" name="p73" value="behind"> behind</label> the water tap. <span class="small" id="p73r"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="checkP7">Checar</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Tradução simples (3 itens)</div>
+            <div class="card">
+              <div>1. O trator está ao lado do galpão. <span class="small" id="tr71"></span></div>
+              <div style="margin-top:6px">2. As vacas estão atrás da cerca. <span class="small" id="tr72"></span></div>
+              <div style="margin-top:6px">3. A pá está no galpão. <span class="small" id="tr73"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showTR7">Ver traduções</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===8 ? `
+            <div class="section-title" style="margin-top:12px">Transforme para negativa (imperativo)</div>
+            <div class="card">
+              <div>1. Touch the electric fence. <span class="small" id="neg81"></span></div>
+              <div style="margin-top:6px">2. Smoke near the dry hay. <span class="small" id="neg82"></span></div>
+              <div style="margin-top:6px">3. Start the machine now. <span class="small" id="neg83"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showNEG8">Ver negativas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Associações de segurança (3 itens)</div>
+            <div class="card">
+              <div>1. Mãos sujas → <span class="small" id="ass81"></span></div>
+              <div style="margin-top:6px">2. Cerca elétrica → <span class="small" id="ass82"></span></div>
+              <div style="margin-top:6px">3. Feno seco → <span class="small" id="ass83"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showASS8">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===9 ? `
+            <div class="section-title" style="margin-top:12px">Transforme rotina → agora (3 itens)</div>
+            <div class="card">
+              <div>1. I clean the machine. <span class="small" id="pc91"></span></div>
+              <div style="margin-top:6px">2. They eat now. <span class="small" id="pc92"></span></div>
+              <div style="margin-top:6px">3. Carlos repairs the fence. <span class="small" id="pc93"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showPC9">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Compreensão (present continuous)</div>
+            <div class="card">
+              <div>1. Who is repairing the fence? <span class="small" id="pqa91"></span></div>
+              <div style="margin-top:6px">2. What are the cows doing? <span class="small" id="pqa92"></span></div>
+              <div style="margin-top:6px">3. Are they eating at this moment? <span class="small" id="pqa93"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showPQA9">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===10 ? `
+            <div class="section-title" style="margin-top:12px">True or False (3 itens)</div>
+            <div class="card">
+              <div>1. John can operate the new harvester. <span class="small" id="tf101"></span></div>
+              <div style="margin-top:6px">2. I can drive the heavy tractor. <span class="small" id="tf102"></span></div>
+              <div style="margin-top:6px">3. The tractor can pull a large trailer. <span class="small" id="tf103"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="checkTF10">Checar</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Complete com Can / Cannot</div>
+            <div class="card">
+              <div>1. John ___ operate the harvester.</div>
+              <div style="margin-top:6px">2. I ___ drive the heavy tractor.</div>
+              <div style="margin-top:6px">3. It ___ pull a large trailer.</div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===11 ? `
+            <div class="section-title" style="margin-top:12px">Coloque em ordem (3 itens)</div>
+            <div class="card">
+              <div>1. [will / arrive / The trucks] <span class="small" id="ord111"></span></div>
+              <div style="margin-top:6px">2. [We / will / start / the soybean harvest] <span class="small" id="ord112"></span></div>
+              <div style="margin-top:6px">3. [We / will / sell / the production / on Friday] <span class="small" id="ord113"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showORD11">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Compreensão (agenda)</div>
+            <div class="card">
+              <div>1. O que acontece na segunda? <span class="small" id="sch111"></span></div>
+              <div style="margin-top:6px">2. O que acontece na terça? <span class="small" id="sch112"></span></div>
+              <div style="margin-top:6px">3. O que acontece na sexta? <span class="small" id="sch113"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showSCH11">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===12 ? `
+            <div class="section-title" style="margin-top:12px">Caro ou Barato (3 itens)</div>
+            <div class="card">
+              <div>1. Harvester → <span class="small" id="ec121"></span></div>
+              <div style="margin-top:6px">2. Inputs → <span class="small" id="ec122"></span></div>
+              <div style="margin-top:6px">3. Bag → <span class="small" id="ec123"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showEC12">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Compreensão (preço)</div>
+            <div class="card">
+              <div>1. What does the buyer ask? <span class="small" id="mq121"></span></div>
+              <div style="margin-top:6px">2. How much is one ton? <span class="small" id="mq122"></span></div>
+              <div style="margin-top:6px">3. What do we do with the money? <span class="small" id="mq123"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showMQ12">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===1 ? `
+            <div class="section-title" style="margin-top:12px">Complete com Was / Were (3 itens)</div>
+            <div class="card">
+              <div>1. The tractor ___ dirty. <span class="small" id="ww11r"></span></div>
+              <div style="margin-top:6px">2. The cows ___ in the barn. <span class="small" id="ww12r"></span></div>
+              <div style="margin-top:6px">3. It ___ rainy in the morning. <span class="small" id="ww13r"></span></div>
+              <div style="margin-top:8px">
+                <input id="ww11" class="blank" placeholder="was/were" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:100px" />
+                <input id="ww12" class="blank" placeholder="was/were" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:100px;margin-left:6px" />
+                <input id="ww13" class="blank" placeholder="was/were" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:100px;margin-left:6px" />
+                <button class="btn" id="checkWW1" style="margin-left:6px">Checar</button>
+              </div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Transforme Presente → Passado</div>
+            <div class="card">
+              <div>1. It is cold → <span class="small" id="tp11"></span></div>
+              <div style="margin-top:6px">2. The cows are hungry → <span class="small" id="tp12"></span></div>
+              <div style="margin-top:6px">3. We are tired → <span class="small" id="tp13"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showTP1">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===2 ? `
+            <div class="section-title" style="margin-top:12px">Adicione -ED (3 itens)</div>
+            <div class="card">
+              <div>1. I work → <span class="small" id="ed21"></span></div>
+              <div style="margin-top:6px">2. We check → <span class="small" id="ed22"></span></div>
+              <div style="margin-top:6px">3. They repair → <span class="small" id="ed23"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showED2">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Tradução (relatório)</div>
+            <div class="card">
+              <div>1. Eu limpei o tanque. <span class="small" id="tr21"></span></div>
+              <div style="margin-top:6px">2. Nós consertamos a cerca. <span class="small" id="tr22"></span></div>
+              <div style="margin-top:6px">3. A chuva parou de tarde. <span class="small" id="tr23"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showTR2">Ver traduções</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===3 ? `
+            <div class="section-title" style="margin-top:12px">Complete com o passado (3 itens)</div>
+            <div class="card">
+              <div>1. Yesterday I [buy] ___ a new belt. <span class="small" id="iv31r"></span></div>
+              <div style="margin-top:6px">2. We [go] ___ to the city. <span class="small" id="iv32r"></span></div>
+              <div style="margin-top:6px">3. The belt [break] ___ suddenly. <span class="small" id="iv33r"></span></div>
+              <div style="margin-top:8px">
+                <input id="iv31" class="blank" placeholder="bought" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:120px" />
+                <input id="iv32" class="blank" placeholder="went" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:120px;margin-left:6px" />
+                <input id="iv33" class="blank" placeholder="broke" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:120px;margin-left:6px" />
+                <button class="btn" id="checkIV3" style="margin-left:6px">Checar</button>
+              </div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Associe Presente → Passado</div>
+            <div class="card">
+              <div>Go → <span class="small" id="map31"></span></div>
+              <div style="margin-top:6px">Drive → <span class="small" id="map32"></span></div>
+              <div style="margin-top:6px">Buy → <span class="small" id="map33"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showMAP3">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===4 ? `
+            <div class="section-title" style="margin-top:12px">Transforme em pergunta (3 itens)</div>
+            <div class="card">
+              <div>1. You worked → <span class="small" id="q41"></span></div>
+              <div style="margin-top:6px">2. She cleaned the tank → <span class="small" id="q42"></span></div>
+              <div style="margin-top:6px">3. They fed the cattle → <span class="small" id="q43"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showQ4">Ver perguntas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Transforme em negativa (3 itens)</div>
+            <div class="card">
+              <div>1. I saw the cow → <span class="small" id="n41"></span></div>
+              <div style="margin-top:6px">2. The vet arrived → <span class="small" id="n42"></span></div>
+              <div style="margin-top:6px">3. We checked the horse → <span class="small" id="n43"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showN4">Ver negativas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===5 ? `
+            <div class="section-title" style="margin-top:12px">Compare com o adjetivo (3 itens)</div>
+            <div class="card">
+              <div>1. The tractor is [fast] ___ than the horse. <span class="small" id="comp51r"></span></div>
+              <div style="margin-top:6px">2. The Black Bull is [heavy] ___ than the White Bull. <span class="small" id="comp52r"></span></div>
+              <div style="margin-top:6px">3. The cow is [calm] ___ than the bull. <span class="small" id="comp53r"></span></div>
+              <div style="margin-top:8px">
+                <input id="comp51" class="blank" placeholder="faster" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:110px" />
+                <input id="comp52" class="blank" placeholder="heavier" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:110px;margin-left:6px" />
+                <input id="comp53" class="blank" placeholder="calmer" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:110px;margin-left:6px" />
+                <button class="btn" id="checkCOMP5" style="margin-left:6px">Checar</button>
+              </div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Escolha lógica (3 itens)</div>
+            <div class="card">
+              <div>1. Para carregar peso: o mais forte ou o mais fraco? <span class="small" id="log51"></span></div>
+              <div style="margin-top:6px">2. Para acalmar o rebanho: o mais calmo ou o mais nervoso? <span class="small" id="log52"></span></div>
+              <div style="margin-top:6px">3. Para gastar menos: o mais caro ou o mais barato? <span class="small" id="log53"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showLOG5">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===6 ? `
+            <div class="section-title" style="margin-top:12px">Transforme em superlativo (3 itens)</div>
+            <div class="card">
+              <div>1. Big → <span class="small" id="sup61"></span></div>
+              <div style="margin-top:6px">2. Strong → <span class="small" id="sup62"></span></div>
+              <div style="margin-top:6px">3. Expensive → <span class="small" id="sup63"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showSUP6">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Compreensão (superlativo)</div>
+            <div class="card">
+              <div>1. Qual é o trator mais moderno? <span class="small" id="sc61"></span></div>
+              <div style="margin-top:6px">2. Qual é o trator mais forte? <span class="small" id="sc62"></span></div>
+              <div style="margin-top:6px">3. O que é a coisa mais importante? <span class="small" id="sc63"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showSC6">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===7 ? `
+            <div class="section-title" style="margin-top:12px">MUCH ou MANY? (3 itens)</div>
+            <div class="card">
+              <div>1. How ___ pesticide do we need? <span class="small" id="mm71"></span></div>
+              <div style="margin-top:6px">2. How ___ cows are in the field? <span class="small" id="mm72"></span></div>
+              <div style="margin-top:6px">3. How ___ diesel is in the tank? <span class="small" id="mm73"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showMM7">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Tradução (suficiência)</div>
+            <div class="card">
+              <div>1. Temos água suficiente. <span class="small" id="suf71"></span></div>
+              <div style="margin-top:6px">2. Não temos muitos sacos sobrando. <span class="small" id="suf72"></span></div>
+              <div style="margin-top:6px">3. Precisamos comprar mais sementes rapidamente. <span class="small" id="suf73"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showSUF7">Ver traduções</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===8 ? `
+            <div class="section-title" style="margin-top:12px">MUST ou SHOULD? (3 situações)</div>
+            <div class="card">
+              <div>1. Fumar no posto de gasolina → <span class="small" id="ms81"></span></div>
+              <div style="margin-top:6px">2. Beber água no calor → <span class="small" id="ms82"></span></div>
+              <div style="margin-top:6px">3. Usar óculos ao misturar químicos → <span class="small" id="ms83"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showMS8">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Tradução (placas de aviso)</div>
+            <div class="card">
+              <div>1. Proibido fumar <span class="small" id="pl81"></span></div>
+              <div style="margin-top:6px">2. Obrigatório usar óculos de segurança <span class="small" id="pl82"></span></div>
+              <div style="margin-top:6px">3. Pare imediatamente <span class="small" id="pl83"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showPL8">Ver traduções</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===9 ? `
+            <div class="section-title" style="margin-top:12px">Reescreva com advérbio (3 itens)</div>
+            <div class="card">
+              <div>1. I clean the filters [+ Always] → <span class="small" id="af91"></span></div>
+              <div style="margin-top:6px">2. We change the tires [+ Sometimes] → <span class="small" id="af92"></span></div>
+              <div style="margin-top:6px">3. They have engine problems [+ Rarely] → <span class="small" id="af93"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showAF9">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Rotina pessoal (3 perguntas)</div>
+            <div class="card">
+              <div>1. Com que frequência você checa o nível do óleo? <span class="small" id="pr91"></span></div>
+              <div style="margin-top:6px">2. Com que frequência você limpa os filtros de ar? <span class="small" id="pr92"></span></div>
+              <div style="margin-top:6px">3. Com que frequência você troca os pneus? <span class="small" id="pr93"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showPR9">Ver exemplos</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===11 ? `
+            <div class="section-title" style="margin-top:12px">Coloque em ordem (3 itens)</div>
+            <div class="card">
+              <div>1. [going to / am / organize / I] → <span class="small" id="ord111"></span></div>
+              <div style="margin-top:6px">2. [bring / going to / is / The vet / the vaccines] → <span class="small" id="ord112"></span></div>
+              <div style="margin-top:6px">3. [are / start / going to / We / at 5:00 AM] → <span class="small" id="ord113"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showORD11">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Planos pessoais (3 frases)</div>
+            <div class="card">
+              <div>1. Amanhã, eu… <span class="small" id="gp111"></span></div>
+              <div style="margin-top:6px">2. Amanhã, eu… <span class="small" id="gp112"></span></div>
+              <div style="margin-top:6px">3. Amanhã, nós… <span class="small" id="gp113"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showGP11">Ver exemplos</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===12 ? `
+            <div class="section-title" style="margin-top:12px">Entrevista: perguntas (3 itens)</div>
+            <div class="card">
+              <div>1. Why do you want this job? <span class="small" id="int121"></span></div>
+              <div style="margin-top:6px">2. What can you operate? <span class="small" id="int122"></span></div>
+              <div style="margin-top:6px">3. What experience do you have? <span class="small" id="int123"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showINT12">Ver exemplos</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Minhas qualidades (3 frases)</div>
+            <div class="card">
+              <div>1. I am ___ and ___. <span class="small" id="qual121"></span></div>
+              <div style="margin-top:6px">2. I am ___ and ___. <span class="small" id="qual122"></span></div>
+              <div style="margin-top:6px">3. I am ___ and ___. <span class="small" id="qual123"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showQUAL12">Ver exemplos</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A2' && Number((location.hash.split('/')[3]||'1'))===10 ? `
+            <div class="section-title" style="margin-top:12px">Complete com Because / So (3 itens)</div>
+            <div class="card">
+              <div>1. It dropped ___ the cows were stressed. <span class="small" id="bs101"></span></div>
+              <div style="margin-top:6px">2. It was extremely hot, ___ the animals did not eat well. <span class="small" id="bs102"></span></div>
+              <div style="margin-top:6px">3. The pump broke, ___ they were thirsty for two hours. <span class="small" id="bs103"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showBS10">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Conecte problema → solução (3 itens)</div>
+            <div class="card">
+              <div>1. Cows stressed → <span class="small" id="ps101"></span></div>
+              <div style="margin-top:6px">2. Water pump broke → <span class="small" id="ps102"></span></div>
+              <div style="margin-top:6px">3. Production dropped → <span class="small" id="ps103"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showPS10">Ver respostas</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===2 ? `
+            <div class="section-title" style="margin-top:12px">Complete com Have / Has</div>
+            <div class="card">
+              <div>1. The cow ___ milk.</div>
+              <div style="margin-top:6px">2. We ___ many cows.</div>
+              <div style="margin-top:6px">3. The veterinarian ___ a medical kit.</div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Compreensão (bull)</div>
+            <div class="card">
+              <div>1. Does the bull have an injury?</div>
+              <div style="margin-top:6px">2. Where is the injury?</div>
+              <div style="margin-top:6px">3. What does Dr. Silva have?</div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===3 ? `
+            <div class="section-title" style="margin-top:12px">Escolha a forma correta (3 itens)</div>
+            <div class="card">
+              <div>1. The pig <label><input type="radio" name="mc1" value="eat"> eat</label> <label><input type="radio" name="mc1" value="eats"> eats</label> corn. <span class="small" id="mc1r"></span></div>
+              <div style="margin-top:6px">2. The calf <label><input type="radio" name="mc2" value="drink"> drink</label> <label><input type="radio" name="mc2" value="drinks"> drinks</label> milk. <span class="small" id="mc2r"></span></div>
+              <div style="margin-top:6px">3. We <label><input type="radio" name="mc3" value="need"> need</label> <label><input type="radio" name="mc3" value="needs"> needs</label> water. <span class="small" id="mc3r"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="checkMC">Checar</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Tradução simples (3 itens)</div>
+            <div class="card">
+              <div>1. Nós conferimos os bebedouros/tanques. <span class="small" id="tr31"></span></div>
+              <div style="margin-top:6px">2. O bezerro bebe leite. <span class="small" id="tr32"></span></div>
+              <div style="margin-top:6px">3. O trabalhador rural alimenta os porcos. <span class="small" id="tr33"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showTR3">Ver traduções</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===4 ? `
+            <div class="section-title" style="margin-top:12px">Reorganize a frase (3 itens)</div>
+            <div class="card">
+              <div>1. [tractor / is / The / heavy] <span class="small" id="ord41"></span></div>
+              <div style="margin-top:6px">2. [We / plant / soybeans / in / the / large / field] <span class="small" id="ord42"></span></div>
+              <div style="margin-top:6px">3. [soil / humid / is / The] <span class="small" id="ord43"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showORD4">Ver respostas</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Tradução técnica (3 itens)</div>
+            <div class="card">
+              <div>1. O trator é novo. <span class="small" id="tr41"></span></div>
+              <div style="margin-top:6px">2. O solo está úmido, não seco. <span class="small" id="tr42"></span></div>
+              <div style="margin-top:6px">3. A colheitadeira está no galpão. <span class="small" id="tr43"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showTR4">Ver traduções</button></div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===5 ? `
+            <div class="section-title" style="margin-top:12px">Descreva o tempo (3 itens)</div>
+            <div class="card">
+              <div>1. [Sol forte] It is <input id="w51" class="blank" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:120px" placeholder="hot/strong"> <span class="small" id="w51r"></span></div>
+              <div style="margin-top:6px">2. [Chuva pesada] It is <input id="w52" class="blank" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:120px" placeholder="raining/heavy"> <span class="small" id="w52r"></span></div>
+              <div style="margin-top:6px">3. [Nuvens escuras] There are <input id="w53" class="blank" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px;width:160px" placeholder="dark clouds"> <span class="small" id="w53r"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="checkW5">Checar</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Compreensão (clima)</div>
+            <div class="card">
+              <div>1. What do the plants need? <span class="small" id="wc51"></span></div>
+              <div style="margin-top:6px">2. How is the sky? <span class="small" id="wc52"></span></div>
+              <div style="margin-top:6px">3. What does the harvest depend on? <span class="small" id="wc53"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="showWC5">Ver respostas</button></div>
+            </div>
+            ` : ''}
             <div class="section-title" style="margin-top:12px">Transforme para negativa (3 itens)</div>
             ${negHtml || '<div class="small">Sem itens de negativa.</div>'}
             <div class="section-title" style="margin-top:12px">Transforme para pergunta (3 itens)</div>
@@ -2022,6 +2500,258 @@ async function setupAudio(data) {
             if(t.dataset.a1q!==undefined){ const i=Number(t.dataset.a1q); const r=document.getElementById('a1q'+i); if(r) r.innerHTML = `<span class="sent-q">${(ques[i] && ques[i].result) || ''}</span>`; }
             if(t.dataset.a1tr!==undefined){ const i=Number(t.dataset.a1tr); const r=document.getElementById('a1tr'+i); if(r) r.textContent = tr[i] && tr[i].pt || ''; }
             if(t.dataset.a1rep!==undefined){ const i=Number(t.dataset.a1rep); try { speak(rep[i] && rep[i].en || '') } catch {} }
+          });
+          const tfBtn = document.getElementById('checkTF');
+          if (tfBtn) tfBtn.addEventListener('click', ()=>{
+            const r1 = document.getElementById('tf1'); if (r1) { r1.textContent = 'Verdadeiro'; r1.style.color='green'; }
+            const r2 = document.getElementById('tf2'); if (r2) { r2.textContent = 'Falso'; r2.style.color='red'; }
+            const r3 = document.getElementById('tf3'); if (r3) { r3.textContent = 'Verdadeiro'; r3.style.color='green'; }
+          });
+          const mcBtn = document.getElementById('checkMC');
+          if (mcBtn) mcBtn.addEventListener('click', ()=>{
+            const a1 = document.querySelector('input[name="mc1"]:checked'); const r1 = document.getElementById('mc1r'); if (r1) { if (a1 && a1.value==='eats') { r1.textContent='Correto'; r1.style.color='green' } else { r1.textContent='Incorreto'; r1.style.color='red' } }
+            const a2 = document.querySelector('input[name="mc2"]:checked'); const r2 = document.getElementById('mc2r'); if (r2) { if (a2 && a2.value==='drinks') { r2.textContent='Correto'; r2.style.color='green' } else { r2.textContent='Incorreto'; r2.style.color='red' } }
+            const a3 = document.querySelector('input[name="mc3"]:checked'); const r3 = document.getElementById('mc3r'); if (r3) { if (a3 && a3.value==='need') { r3.textContent='Correto'; r3.style.color='green' } else { r3.textContent='Incorreto'; r3.style.color='red' } }
+          });
+          const showTR3 = document.getElementById('showTR3');
+          if (showTR3) showTR3.addEventListener('click', ()=>{
+            const s1 = document.getElementById('tr31'); if (s1) { s1.textContent = 'We check the water tanks.' }
+            const s2 = document.getElementById('tr32'); if (s2) { s2.textContent = 'The calf drinks milk.' }
+            const s3 = document.getElementById('tr33'); if (s3) { s3.textContent = 'The farm worker feeds the pigs.' }
+          });
+          const showORD4 = document.getElementById('showORD4');
+          if (showORD4) showORD4.addEventListener('click', ()=>{
+            const o1 = document.getElementById('ord41'); if (o1) { o1.textContent = 'The tractor is heavy.' }
+            const o2 = document.getElementById('ord42'); if (o2) { o2.textContent = 'We plant soybeans in the large field.' }
+            const o3 = document.getElementById('ord43'); if (o3) { o3.textContent = 'The soil is humid.' }
+          });
+          const showTR4 = document.getElementById('showTR4');
+          if (showTR4) showTR4.addEventListener('click', ()=>{
+            const t1 = document.getElementById('tr41'); if (t1) { t1.textContent = 'The tractor is new.' }
+            const t2 = document.getElementById('tr42'); if (t2) { t2.textContent = 'The soil is humid, not dry.' }
+            const t3 = document.getElementById('tr43'); if (t3) { t3.textContent = 'The harvester is in the shed.' }
+          });
+          const wBtn = document.getElementById('checkW5');
+          if (wBtn) wBtn.addEventListener('click', ()=>{
+            const v1 = (document.getElementById('w51')||{}).value||''; const r1 = document.getElementById('w51r'); if (r1) { const ok = /^(hot|strong)$/i.test(v1.trim()); r1.textContent = ok?'Correto':'Sugestão: hot/strong'; r1.style.color = ok?'green':'#555'; }
+            const v2 = (document.getElementById('w52')||{}).value||''; const r2 = document.getElementById('w52r'); if (r2) { const ok = /^(raining|heavy)$/i.test(v2.trim()); r2.textContent = ok?'Correto':'Sugestão: raining/heavy'; r2.style.color = ok?'green':'#555'; }
+            const v3 = (document.getElementById('w53')||{}).value||''; const r3 = document.getElementById('w53r'); if (r3) { const ok = /^dark\s+clouds$/i.test(v3.trim()); r3.textContent = ok?'Correto':'Sugestão: dark clouds'; r3.style.color = ok?'green':'#555'; }
+          });
+          const showWC5 = document.getElementById('showWC5');
+          if (showWC5) showWC5.addEventListener('click', ()=>{
+            const c1 = document.getElementById('wc51'); if (c1) { c1.textContent = 'Water.' }
+            const c2 = document.getElementById('wc52'); if (c2) { c2.textContent = 'There are dark clouds.' }
+            const c3 = document.getElementById('wc53'); if (c3) { c3.textContent = 'The weather.' }
+          });
+          const stBtn6 = document.getElementById('checkST6');
+          if (stBtn6) stBtn6.addEventListener('click', ()=>{
+            const a1 = (document.getElementById('st61')||{}).value||''; const r1 = document.getElementById('st61r'); if (r1) { const ok=/^there\s+are$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Use: There are'; r1.style.color = ok?'green':'#555'; }
+            const a2 = (document.getElementById('st62')||{}).value||''; const r2 = document.getElementById('st62r'); if (r2) { const ok=/^there\s+is$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Use: There is'; r2.style.color = ok?'green':'#555'; }
+            const a3 = (document.getElementById('st63')||{}).value||''; const r3 = document.getElementById('st63r'); if (r3) { const ok=/^there\s+are$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Use: There are'; r3.style.color = ok?'green':'#555'; }
+          });
+          const smBtn6 = document.getElementById('showSM6');
+          if (smBtn6) smBtn6.addEventListener('click', ()=>{
+            const s1 = document.getElementById('sm61'); if (s1) { s1.textContent = 'Five plus five equals ten.' }
+            const s2 = document.getElementById('sm62'); if (s2) { s2.textContent = 'Ten plus ten equals twenty.' }
+            const s3 = document.getElementById('sm63'); if (s3) { s3.textContent = 'One plus twenty equals twenty-one.' }
+          });
+          const pBtn7 = document.getElementById('checkP7');
+          if (pBtn7) pBtn7.addEventListener('click', ()=>{
+            const a1 = document.querySelector('input[name="p71"]:checked'); const r1 = document.getElementById('p71r'); if (r1) { if (a1 && a1.value==='in') { r1.textContent='Correto'; r1.style.color='green' } else { r1.textContent='In = dentro'; r1.style.color='#555' } }
+            const a2 = document.querySelector('input[name="p72"]:checked'); const r2 = document.getElementById('p72r'); if (r2) { if (a2 && a2.value==='on') { r2.textContent='Correto'; r2.style.color='green' } else { r2.textContent='On = sobre a superfície'; r2.style.color='#555' } }
+            const a3 = document.querySelector('input[name="p73"]:checked'); const r3 = document.getElementById('p73r'); if (r3) { if (a3 && a3.value==='under') { r3.textContent='Correto'; r3.style.color='green' } else { r3.textContent='Under = embaixo'; r3.style.color='#555' } }
+          });
+          const showTR7 = document.getElementById('showTR7');
+          if (showTR7) showTR7.addEventListener('click', ()=>{
+            const t1 = document.getElementById('tr71'); if (t1) { t1.textContent = 'The tractor is next to the barn.' }
+            const t2 = document.getElementById('tr72'); if (t2) { t2.textContent = 'The cows are behind the fence.' }
+            const t3 = document.getElementById('tr73'); if (t3) { t3.textContent = 'The shovel is in the shed.' }
+          });
+          const showNEG8 = document.getElementById('showNEG8');
+          if (showNEG8) showNEG8.addEventListener('click', ()=>{
+            const n1 = document.getElementById('neg81'); if (n1) { n1.textContent = "Don't touch the electric fence." }
+            const n2 = document.getElementById('neg82'); if (n2) { n2.textContent = "Don't smoke near the dry hay." }
+            const n3 = document.getElementById('neg83'); if (n3) { n3.textContent = "Don't start the machine now." }
+          });
+          const showASS8 = document.getElementById('showASS8');
+          if (showASS8) showASS8.addEventListener('click', ()=>{
+            const a1 = document.getElementById('ass81'); if (a1) { a1.textContent = 'Wash your hands with soap.' }
+            const a2 = document.getElementById('ass82'); if (a2) { a2.textContent = "Don't touch the electric fence." }
+            const a3 = document.getElementById('ass83'); if (a3) { a3.textContent = "Don't smoke near the dry hay." }
+          });
+          const showPC9 = document.getElementById('showPC9');
+          if (showPC9) showPC9.addEventListener('click', ()=>{
+            const r1 = document.getElementById('pc91'); if (r1) { r1.textContent = 'I am cleaning the machine.' }
+            const r2 = document.getElementById('pc92'); if (r2) { r2.textContent = 'They are eating now.' }
+            const r3 = document.getElementById('pc93'); if (r3) { r3.textContent = 'Carlos is repairing the fence.' }
+          });
+          const showPQA9 = document.getElementById('showPQA9');
+          if (showPQA9) showPQA9.addEventListener('click', ()=>{
+            const q1 = document.getElementById('pqa91'); if (q1) { q1.textContent = 'Carlos.' }
+            const q2 = document.getElementById('pqa92'); if (q2) { q2.textContent = 'They are waiting in the shade.' }
+            const q3 = document.getElementById('pqa93'); if (q3) { q3.textContent = 'No, they are not eating.' }
+          });
+          const tfBtn10 = document.getElementById('checkTF10');
+          if (tfBtn10) tfBtn10.addEventListener('click', ()=>{
+            const r1 = document.getElementById('tf101'); if (r1) { r1.textContent = 'Verdadeiro'; r1.style.color='green'; }
+            const r2 = document.getElementById('tf102'); if (r2) { r2.textContent = 'Falso'; r2.style.color='red'; }
+            const r3 = document.getElementById('tf103'); if (r3) { r3.textContent = 'Verdadeiro'; r3.style.color='green'; }
+          });
+          const showORD11 = document.getElementById('showORD11');
+          if (showORD11) showORD11.addEventListener('click', ()=>{
+            const o1 = document.getElementById('ord111'); if (o1) { o1.textContent = 'I am going to organize.' }
+            const o2 = document.getElementById('ord112'); if (o2) { o2.textContent = 'The vet is going to bring the vaccines.' }
+            const o3 = document.getElementById('ord113'); if (o3) { o3.textContent = 'We are going to start at 5:00 AM.' }
+          });
+          const showGP11 = document.getElementById('showGP11');
+          if (showGP11) showGP11.addEventListener('click', ()=>{
+            const g1 = document.getElementById('gp111'); if (g1) { g1.textContent = 'I am going to wake up early.' }
+            const g2 = document.getElementById('gp112'); if (g2) { g2.textContent = 'I am going to study English.' }
+            const g3 = document.getElementById('gp113'); if (g3) { g3.textContent = 'We are going to check the cattle chute.' }
+          });
+          const showINT12 = document.getElementById('showINT12');
+          if (showINT12) showINT12.addEventListener('click', ()=>{
+            const i1 = document.getElementById('int121'); if (i1) { i1.textContent = 'I want to work here because this farm is the best in the region.' }
+            const i2 = document.getElementById('int122'); if (i2) { i2.textContent = 'I can operate GPS systems and drive heavy trucks.' }
+            const i3 = document.getElementById('int123'); if (i3) { i3.textContent = 'I have five years of experience in agriculture.' }
+          });
+          const showQUAL12 = document.getElementById('showQUAL12');
+          if (showQUAL12) showQUAL12.addEventListener('click', ()=>{
+            const q1 = document.getElementById('qual121'); if (q1) { q1.textContent = 'I am hardworking and honest.' }
+            const q2 = document.getElementById('qual122'); if (q2) { q2.textContent = 'I am ready and responsible.' }
+            const q3 = document.getElementById('qual123'); if (q3) { q3.textContent = 'I am careful and fast.' }
+          });
+          const showEC12 = document.getElementById('showEC12');
+          if (showEC12) showEC12.addEventListener('click', ()=>{
+            const e1 = document.getElementById('ec121'); if (e1) { e1.textContent = 'Expensive' }
+            const e2 = document.getElementById('ec122'); if (e2) { e2.textContent = 'Expensive' }
+            const e3 = document.getElementById('ec123'); if (e3) { e3.textContent = 'Cheap' }
+          });
+          const showMQ12 = document.getElementById('showMQ12');
+          if (showMQ12) showMQ12.addEventListener('click', ()=>{
+            const m1 = document.getElementById('mq121'); if (m1) { m1.textContent = 'How much is one ton?' }
+            const m2 = document.getElementById('mq122'); if (m2) { m2.textContent = 'It costs 500 dollars per ton.' }
+            const m3 = document.getElementById('mq123'); if (m3) { m3.textContent = 'We pay the costs and we see the profit.' }
+          });
+          const wwBtn1 = document.getElementById('checkWW1');
+          if (wwBtn1) wwBtn1.addEventListener('click', ()=>{
+            const a1 = (document.getElementById('ww11')||{}).value||''; const r1 = document.getElementById('ww11r'); if (r1) { const ok=/^was$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Use: was'; r1.style.color = ok?'green':'#555'; }
+            const a2 = (document.getElementById('ww12')||{}).value||''; const r2 = document.getElementById('ww12r'); if (r2) { const ok=/^were$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Use: were'; r2.style.color = ok?'green':'#555'; }
+            const a3 = (document.getElementById('ww13')||{}).value||''; const r3 = document.getElementById('ww13r'); if (r3) { const ok=/^was$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Use: was'; r3.style.color = ok?'green':'#555'; }
+          });
+          const showTP1 = document.getElementById('showTP1');
+          if (showTP1) showTP1.addEventListener('click', ()=>{
+            const t1 = document.getElementById('tp11'); if (t1) { t1.textContent = 'It was cold.' }
+            const t2 = document.getElementById('tp12'); if (t2) { t2.textContent = 'The cows were hungry.' }
+            const t3 = document.getElementById('tp13'); if (t3) { t3.textContent = 'We were tired.' }
+          });
+          const showED2 = document.getElementById('showED2');
+          if (showED2) showED2.addEventListener('click', ()=>{
+            const e1 = document.getElementById('ed21'); if (e1) { e1.textContent = 'I worked.' }
+            const e2 = document.getElementById('ed22'); if (e2) { e2.textContent = 'We checked.' }
+            const e3 = document.getElementById('ed23'); if (e3) { e3.textContent = 'They repaired.' }
+          });
+          const showTR2 = document.getElementById('showTR2');
+          if (showTR2) showTR2.addEventListener('click', ()=>{
+            const t1 = document.getElementById('tr21'); if (t1) { t1.textContent = 'I cleaned the tank.' }
+            const t2 = document.getElementById('tr22'); if (t2) { t2.textContent = 'We repaired the fence.' }
+            const t3 = document.getElementById('tr23'); if (t3) { t3.textContent = 'The rain stopped in the afternoon.' }
+          });
+          const ivBtn3 = document.getElementById('checkIV3');
+          if (ivBtn3) ivBtn3.addEventListener('click', ()=>{
+            const a1 = (document.getElementById('iv31')||{}).value||''; const r1 = document.getElementById('iv31r'); if (r1) { const ok=/^bought$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Sugestão: bought'; r1.style.color = ok?'green':'#555'; }
+            const a2 = (document.getElementById('iv32')||{}).value||''; const r2 = document.getElementById('iv32r'); if (r2) { const ok=/^went$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Sugestão: went'; r2.style.color = ok?'green':'#555'; }
+            const a3 = (document.getElementById('iv33')||{}).value||''; const r3 = document.getElementById('iv33r'); if (r3) { const ok=/^broke$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Sugestão: broke'; r3.style.color = ok?'green':'#555'; }
+          });
+          const showMAP3 = document.getElementById('showMAP3');
+          if (showMAP3) showMAP3.addEventListener('click', ()=>{
+            const m1 = document.getElementById('map31'); if (m1) { m1.textContent = 'Went' }
+            const m2 = document.getElementById('map32'); if (m2) { m2.textContent = 'Drove' }
+            const m3 = document.getElementById('map33'); if (m3) { m3.textContent = 'Bought' }
+          });
+          const showQ4 = document.getElementById('showQ4');
+          if (showQ4) showQ4.addEventListener('click', ()=>{
+            const q1 = document.getElementById('q41'); if (q1) { q1.textContent = 'Did you work?' }
+            const q2 = document.getElementById('q42'); if (q2) { q2.textContent = 'Did she clean the tank?' }
+            const q3 = document.getElementById('q43'); if (q3) { q3.textContent = 'Did they feed the cattle?' }
+          });
+          const showN4 = document.getElementById('showN4');
+          if (showN4) showN4.addEventListener('click', ()=>{
+            const n1 = document.getElementById('n41'); if (n1) { n1.textContent = "I didn't see the cow." }
+            const n2 = document.getElementById('n42'); if (n2) { n2.textContent = "The vet didn't arrive." }
+            const n3 = document.getElementById('n43'); if (n3) { n3.textContent = "We didn't check the horse." }
+          });
+          const compBtn5 = document.getElementById('checkCOMP5');
+          if (compBtn5) compBtn5.addEventListener('click', ()=>{
+            const a1 = (document.getElementById('comp51')||{}).value||''; const r1 = document.getElementById('comp51r'); if (r1) { const ok=/^faster$/i.test(a1.trim()); r1.textContent = ok?'Correto':'Sugestão: faster'; r1.style.color = ok?'green':'#555'; }
+            const a2 = (document.getElementById('comp52')||{}).value||''; const r2 = document.getElementById('comp52r'); if (r2) { const ok=/^heavier$/i.test(a2.trim()); r2.textContent = ok?'Correto':'Sugestão: heavier'; r2.style.color = ok?'green':'#555'; }
+            const a3 = (document.getElementById('comp53')||{}).value||''; const r3 = document.getElementById('comp53r'); if (r3) { const ok=/^calmer$/i.test(a3.trim()); r3.textContent = ok?'Correto':'Sugestão: calmer'; r3.style.color = ok?'green':'#555'; }
+          });
+          const showLOG5 = document.getElementById('showLOG5');
+          if (showLOG5) showLOG5.addEventListener('click', ()=>{
+            const l1 = document.getElementById('log51'); if (l1) { l1.textContent = 'O mais forte.' }
+            const l2 = document.getElementById('log52'); if (l2) { l2.textContent = 'O mais calmo.' }
+            const l3 = document.getElementById('log53'); if (l3) { l3.textContent = 'O mais barato.' }
+          });
+          const showSUP6 = document.getElementById('showSUP6');
+          if (showSUP6) showSUP6.addEventListener('click', ()=>{
+            const s1 = document.getElementById('sup61'); if (s1) { s1.textContent = 'The biggest' }
+            const s2 = document.getElementById('sup62'); if (s2) { s2.textContent = 'The strongest' }
+            const s3 = document.getElementById('sup63'); if (s3) { s3.textContent = 'The most expensive' }
+          });
+          const showSC6 = document.getElementById('showSC6');
+          if (showSC6) showSC6.addEventListener('click', ()=>{
+            const c1 = document.getElementById('sc61'); if (c1) { c1.textContent = 'The green tractor.' }
+            const c2 = document.getElementById('sc62'); if (c2) { c2.textContent = 'The old red tractor.' }
+            const c3 = document.getElementById('sc63'); if (c3) { c3.textContent = 'Safety.' }
+          });
+          const showMM7 = document.getElementById('showMM7');
+          if (showMM7) showMM7.addEventListener('click', ()=>{
+            const m1 = document.getElementById('mm71'); if (m1) { m1.textContent = 'much' }
+            const m2 = document.getElementById('mm72'); if (m2) { m2.textContent = 'many' }
+            const m3 = document.getElementById('mm73'); if (m3) { m3.textContent = 'much' }
+          });
+          const showSUF7 = document.getElementById('showSUF7');
+          if (showSUF7) showSUF7.addEventListener('click', ()=>{
+            const s1 = document.getElementById('suf71'); if (s1) { s1.textContent = 'We have enough water.' }
+            const s2 = document.getElementById('suf72'); if (s2) { s2.textContent = "We don't have many bags left." }
+            const s3 = document.getElementById('suf73'); if (s3) { s3.textContent = 'We need to buy more seeds quickly.' }
+          });
+          const showMS8 = document.getElementById('showMS8');
+          if (showMS8) showMS8.addEventListener('click', ()=>{
+            const m1 = document.getElementById('ms81'); if (m1) { m1.textContent = 'You must not smoke.' }
+            const m2 = document.getElementById('ms82'); if (m2) { m2.textContent = 'You should drink water every hour.' }
+            const m3 = document.getElementById('ms83'); if (m3) { m3.textContent = 'You must wear safety glasses.' }
+          });
+          const showPL8 = document.getElementById('showPL8');
+          if (showPL8) showPL8.addEventListener('click', ()=>{
+            const p1 = document.getElementById('pl81'); if (p1) { p1.textContent = 'No smoking' }
+            const p2 = document.getElementById('pl82'); if (p2) { p2.textContent = 'Safety glasses required' }
+            const p3 = document.getElementById('pl83'); if (p3) { p3.textContent = 'Stop immediately' }
+          });
+        const showAF9 = document.getElementById('showAF9');
+        if (showAF9) showAF9.addEventListener('click', ()=>{
+          const a1 = document.getElementById('af91'); if (a1) { a1.textContent = 'I always clean the filters.' }
+          const a2 = document.getElementById('af92'); if (a2) { a2.textContent = 'We sometimes change the tires.' }
+          const a3 = document.getElementById('af93'); if (a3) { a3.textContent = 'They rarely have engine problems.' }
+        });
+        const showBS10 = document.getElementById('showBS10');
+        if (showBS10) showBS10.addEventListener('click', ()=>{
+          const b1 = document.getElementById('bs101'); if (b1) { b1.textContent = 'because' }
+          const b2 = document.getElementById('bs102'); if (b2) { b2.textContent = 'so' }
+          const b3 = document.getElementById('bs103'); if (b3) { b3.textContent = 'so' }
+        });
+        const showPS10 = document.getElementById('showPS10');
+        if (showPS10) showPS10.addEventListener('click', ()=>{
+          const s1 = document.getElementById('ps101'); if (s1) { s1.textContent = 'We are monitoring the herd because we want healthy animals.' }
+          const s2 = document.getElementById('ps102'); if (s2) { s2.textContent = 'We fixed the pump immediately because water is essential.' }
+          const s3 = document.getElementById('ps103'); if (s3) { s3.textContent = 'The stress is over, so production will return to normal.' }
+        });
+          const showPR9 = document.getElementById('showPR9');
+          if (showPR9) showPR9.addEventListener('click', ()=>{
+            const r1 = document.getElementById('pr91'); if (r1) { r1.textContent = 'I always check the oil level.' }
+            const r2 = document.getElementById('pr92'); if (r2) { r2.textContent = 'We usually clean the air filters on Friday.' }
+            const r3 = document.getElementById('pr93'); if (r3) { r3.textContent = 'We sometimes change the tires.' }
           });
         }
       } catch (e) { console.error('Error in renderA1Exercises:', e); }
