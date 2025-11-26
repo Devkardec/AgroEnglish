@@ -91,7 +91,7 @@ export function TextPage(level, index) {
         <div id="pronList" class="pron-grid"></div>
         <div class="section-title" style="margin-top:12px">Narrar texto completo</div>
         <div id="fullSpeechText" class="lines" style="margin-top:8px"></div>
-        <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto">
+        <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
           <button class="btn sm" id="fullPlayOrig" style="white-space:nowrap">Ouvir narração original</button>
           <button class="btn danger sm" id="fullRecord" style="white-space:nowrap">Gravar minha narração</button>
           <button class="btn secondary sm" id="fullStop" style="white-space:nowrap">Parar</button>
