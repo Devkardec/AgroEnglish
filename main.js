@@ -1576,6 +1576,7 @@ function renderGrammar(data) {
               <div id="vidEN" style="font-size:28px;line-height:1.2;margin-top:10px;transition:opacity .4s, transform .4s"></div>
               <div id="vidPT" class="small" style="font-size:16px;color:#374151;margin-top:6px;transition:opacity .4s, transform .4s"></div>
               <audio id="vidAudio" preload="metadata" style="display:none"></audio>
+              <div id="vidSlides" style="margin-top:16px"></div>
             </div>
           </div>
         </div>
@@ -1796,6 +1797,54 @@ function renderGrammar(data) {
         }
         tryNext();
       }
+      function renderSlidesTx2(){
+        try {
+          if (!isA1HaveMode) return;
+          const root = document.getElementById('vidSlides');
+          if (!root) return;
+          const base = './public/images/a1texto2/slidetx2/';
+          const files = [];
+          const max = 20;
+          for (let n=1; n<=max; n++){
+            files.push(`to-have-slide-${n}.png`);
+            files.push(`${n}.png`);
+          }
+          const urls = files.map(f=> base + f);
+          const items = [];
+          let loaded = 0;
+          urls.forEach((u)=>{
+            const img = new Image();
+            img.onload = ()=>{ items.push(u); loaded++; if (loaded===urls.length) draw(); };
+            img.onerror = ()=>{ loaded++; if (loaded===urls.length) draw(); };
+            img.src = u;
+          });
+          function numFrom(u){ const m = u.match(/(to-have-slide-|)(\d+)\.(png|jpg|jpeg|webp)$/i); return m ? Number(m[2]) : 0; }
+          function draw(){
+            if (!items.length) { root.innerHTML = ''; return; }
+            const sorted = items.sort((a,b)=> numFrom(a)-numFrom(b));
+            root.innerHTML = `
+              <div class="section-title" style="margin-top:12px">Slides</div>
+              <div class="card" style="padding:12px">
+                <div id="slideView" style="display:flex;align-items:center;gap:12px;justify-content:center">
+                  <button class="btn sm" id="slidePrev" title="Anterior">◀</button>
+                  <img id="slideImg" src="${sorted[0]}" alt="" style="width:100%;max-width:760px;height:340px;object-fit:contain;object-position:top center;border-radius:8px;background:#f5f7fb" />
+                  <button class="btn sm" id="slideNext" title="Próximo">▶</button>
+                </div>
+                <div id="slideCounter" class="small" style="text-align:center;margin-top:8px">1 / ${sorted.length}</div>
+              </div>
+            `;
+            let cur = 0;
+            const imgEl = document.getElementById('slideImg');
+            const ctr = document.getElementById('slideCounter');
+            function show(i){ cur = (i+sorted.length)%sorted.length; imgEl.src = sorted[cur]; ctr.textContent = `${cur+1} / ${sorted.length}`; }
+            const prevBtn = document.getElementById('slidePrev');
+            const nextBtn = document.getElementById('slideNext');
+            if (prevBtn) prevBtn.addEventListener('click', ()=> show(cur-1));
+            if (nextBtn) nextBtn.addEventListener('click', ()=> show(cur+1));
+            document.addEventListener('keydown', (ev)=>{ if (ev.key==='ArrowLeft') show(cur-1); else if (ev.key==='ArrowRight') show(cur+1); });
+          }
+        } catch {}
+      }
       function show(k){
         const e = en[k] || en[en.length-1];
         const p = pt[k] || pt[pt.length-1];
@@ -1824,6 +1873,7 @@ function renderGrammar(data) {
       setCoverImage();
       preloadImages();
       loadAudio();
+      renderSlidesTx2();
     }
 
     
