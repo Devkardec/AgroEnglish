@@ -902,6 +902,9 @@ async function setupAudio(data) {
         btnSpeech.classList.toggle('active', tab==='speech');
       }
       try { localStorage.setItem('lastTab', tab) } catch {}
+      if (tab==='practice') {
+        try { if (window.ExercisePageMount) window.ExercisePageMount(level, idx, data); } catch {}
+      }
     }
     if (btnStudy) btnStudy.addEventListener('click', ()=> showTab('study'));
     if (btnPractice) btnPractice.addEventListener('click', ()=> showTab('practice'));
@@ -2598,7 +2601,10 @@ function renderGrammar(data) {
 
       setupUI(data);
       try { if (window.SlideLessonMount) window.SlideLessonMount(level, idx); } catch {}
-      try { if (window.ExercisePageMount) window.ExercisePageMount(level, idx, data); } catch {}
+      try {
+        const lastTabNow = (function(){ try { return localStorage.getItem('lastTab')||'study' } catch { return 'study' } })();
+        if (lastTabNow==='practice') { if (window.ExercisePageMount) window.ExercisePageMount(level, idx, data); }
+      } catch {}
       if (uiTitle) {
         try { document.getElementById('title').textContent = uiTitle + ' · ' + level; } catch {}
       }

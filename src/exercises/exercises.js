@@ -25,6 +25,30 @@
     );
   }
 
+  function SentenceClassifier({ sentences=[] }){
+    const types = ['Affirmative','Negative','Question'];
+    const [sel, setSel] = React.useState(Array(sentences.length).fill(null));
+    const [res, setRes] = React.useState(null);
+    function set(i,v){ const a=[...sel]; a[i]=v; setSel(a); }
+    function check(){ const ok = sentences.every((s,i)=>{
+      const t = sel[i];
+      const want = s.type;
+      return (want==='aff' && t===0) || (want==='neg' && t===1) || (want==='q' && t===2);
+    }); setRes(ok); }
+    return e('div', null,
+      sentences.map((s,i)=> e('div', { key:i, className:'mb-2' },
+        e('div', { className:'text-sm text-gray-800 mb-1' }, `${i+1}. ${s.text}`),
+        e('div', { className:'flex items-center gap-2' },
+          types.map((t,idx)=> e('button', { key:idx, className:`px-2 py-1 rounded border ${sel[i]===idx?'border-green-600 bg-green-50':'border-gray-200 bg-gray-100'} text-xs`, onClick:()=>set(i,idx) }, t))
+        )
+      )),
+      e('div', { className:'mt-2 flex items-center gap-2' },
+        e('button', { className:'px-3 py-2 rounded bg-green-600 text-white', onClick:check }, 'Checar'),
+        res!==null ? e('span', { className:`text-xs ${res?'text-green-700':'text-red-700'}` }, res?'Correto':'Tente novamente') : null
+      )
+    );
+  }
+
   function TrueFalseCard({ statements=[] }){
     const [ans, setAns] = React.useState(Array(statements.length).fill(null));
     const [res, setRes] = React.useState(null);
@@ -60,6 +84,25 @@
     );
   }
 
+  function TransformSentences({ items=[] }){
+    const [vals, setVals] = React.useState(Array(items.length).fill(''));
+    const [res, setRes] = React.useState(null);
+    function set(i,v){ const a=[...vals]; a[i]=v; setVals(a); }
+    function norm(s){ return String(s||'').trim().replace(/\s+/g,' ').replace(/\s*([?.!])\s*$/,'$1').toLowerCase(); }
+    function check(){ const ok = items.every((it,i)=> norm(it.answer)===norm(vals[i])); setRes(ok); }
+    return e('div', null,
+      items.map((it,i)=> e('div', { key:i, className:'mb-2' },
+        e('div', { className:'text-sm text-gray-800' }, `${i+1}. ${it.base}`),
+        e('div', { className:'text-xs text-gray-600 mb-1' }, `Transforme para: ${it.target==='neg'?'Negativa':it.target==='q'?'Pergunta':'Affirmativa'}`),
+        e('input', { className:'w-full px-2 py-1 rounded border border-gray-300', value:vals[i], onChange:ev=>set(i, ev.target.value), placeholder:'Digite a versão' })
+      )),
+      e('div', { className:'mt-2 flex items-center gap-2' },
+        e('button', { className:'px-3 py-2 rounded bg-green-600 text-white', onClick:check }, 'Checar'),
+        res!==null ? e('span', { className:`text-xs ${res?'text-green-700':'text-red-700'}` }, res?'Correto':'Tente novamente') : null
+      )
+    );
+  }
+
   function OrderingComponent({ items=[] }){
     const [arr, setArr] = React.useState(items.map((it,i)=> ({...it, id:i})));
     const [res, setRes] = React.useState(null);
@@ -70,6 +113,34 @@
         arr.map((it,i)=> e('div', { key:it.id, className:'flex items-center gap-2' },
           e('span', { className:'w-6 text-center text-xs text-gray-600' }, i+1),
           e('div', { className:'flex-1 px-3 py-2 rounded border border-gray-200 bg-gray-50 text-sm text-gray-800' }, it.text),
+          e('div', { className:'flex gap-1' },
+            e('button', { className:'px-2 py-1 rounded bg-gray-100', onClick:()=> swap(i, Math.max(0,i-1)) }, '↑'),
+            e('button', { className:'px-2 py-1 rounded bg-gray-100', onClick:()=> swap(i, Math.min(arr.length-1,i+1)) }, '↓')
+          )
+        ))
+      ),
+      e('div', { className:'mt-2 flex items-center gap-2' },
+        e('button', { className:'px-3 py-2 rounded bg-green-600 text-white', onClick:check }, 'Checar'),
+        res!==null ? e('span', { className:`text-xs ${res?'text-green-700':'text-red-700'}` }, res?'Correto':'Tente novamente') : null
+      )
+    );
+  }
+
+  function OrderWords({ sentence }){
+    const words = React.useMemo(()=> String(sentence||'').replace(/[.?!]$/,'').split(/\s+/).filter(Boolean), [sentence]);
+    const [arr, setArr] = React.useState(()=> {
+      const a = words.slice();
+      for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+      return a.map((w,i)=> ({ w, id:i }));
+    });
+    const [res, setRes] = React.useState(null);
+    function swap(i,j){ const a=[...arr]; const t=a[i]; a[i]=a[j]; a[j]=t; setArr(a); }
+    function check(){ const ok = arr.map(x=>x.w).join(' ')===words.join(' '); setRes(ok); }
+    return e('div', null,
+      e('div', { className:'space-y-2' },
+        arr.map((it,i)=> e('div', { key:it.id, className:'flex items-center gap-2' },
+          e('span', { className:'w-6 text-center text-xs text-gray-600' }, i+1),
+          e('div', { className:'flex-1 px-3 py-2 rounded border border-gray-200 bg-gray-50 text-sm text-gray-800' }, it.w),
           e('div', { className:'flex gap-1' },
             e('button', { className:'px-2 py-1 rounded bg-gray-100', onClick:()=> swap(i, Math.max(0,i-1)) }, '↑'),
             e('button', { className:'px-2 py-1 rounded bg-gray-100', onClick:()=> swap(i, Math.min(arr.length-1,i+1)) }, '↓')
@@ -149,33 +220,67 @@
     );
   }
 
-  function VisualAssociation(){
+  function VisualAssociation12(){
     const items = [
-      { word:'farmer', pt:'fazendeiro', image:'/public/images/a1texto1/slidetx1/11.png' },
-      { word:'barn', pt:'galpão', image:'/public/images/a1texto1/slidetx1/12.png' },
-      { word:'cow', pt:'vaca', image:'/public/images/a1texto1/slidetx1/9.png' },
-      { word:'field', pt:'campo', image:'/public/images/a1texto1/slidetx1/4.png' },
-      { word:'happy', pt:'feliz', image:'/public/images/a1texto1/slidetx1/5.png' },
-      { word:'ready', pt:'pronto', image:'/public/images/a1texto1/slidetx1/7.png' },
+      { word:'farmer', pt:'fazendeiro' },
+      { word:'barn', pt:'galpão' },
+      { word:'cow', pt:'vaca' },
+      { word:'field', pt:'campo' },
+      { word:'happy', pt:'feliz' },
+      { word:'ready', pt:'pronto' },
     ];
-    const [selW, setSelW] = React.useState(null);
+    const shuffledBottom = React.useMemo(()=>{
+      const arr = items.map((it,i)=> ({ pt:it.pt, idx:i }));
+      for (let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
+      return arr;
+    }, []);
+    const [selTop, setSelTop] = React.useState(null);
     const [matches, setMatches] = React.useState({});
-    function chooseWord(i){ setSelW(i); }
-    function chooseImg(i){ if (selW!==null) setMatches(m=> ({...m, [selW]:i})); setSelW(null); }
-    const ok = Object.keys(matches).length===items.length;
+    function chooseTop(i){ setSelTop(i); }
+    function chooseBottom(j){ const orig = shuffledBottom[j].idx; if (selTop!==null && orig===selTop) { setMatches(m=> ({...m, [selTop]:orig})); setSelTop(null); } else { setSelTop(null); } }
+    const matchedBottomSet = React.useMemo(()=>{ const s={}; Object.values(matches).forEach(v=> s[v]=true); return s; }, [matches]);
+    const done = Object.keys(matches).length===items.length;
     return e('div', null,
-      e('div', { className:'grid grid-cols-2 gap-4' },
-        e('div', null,
-          items.map((it,i)=> e('button', { key:i, onClick:()=>chooseWord(i), className:`w-full text-left px-3 py-2 rounded border ${selW===i?'border-green-600':'border-gray-200'} mb-2` }, `${it.word} · ${it.pt}`))
-        ),
-        e('div', { className:'grid grid-cols-2 gap-2' },
-          items.map((it,i)=> e('button', { key:i, onClick:()=>chooseImg(i), className:'rounded-xl border border-gray-200 bg-white' },
-            e('img', { src:it.image, alt:it.word, className:'w-24 h-24 object-contain' }),
-            matches[i]!==undefined ? e('div', { className:'text-xs text-gray-600 p-1' }, items[matches[i]].word) : null
-          ))
-        )
+      e('div', { className:'grid grid-cols-6 gap-2 mb-3' },
+        items.map((it,i)=> {
+          const isMatched = matches[i]!==undefined;
+          const cls = isMatched ? 'border-green-600 bg-green-600 text-white' : (selTop===i ? 'border-green-600 bg-green-50' : 'border-gray-200 bg-gray-100');
+          return e('button', { key:i, onClick:()=>chooseTop(i), disabled:isMatched, className:`px-2 py-1 rounded border text-xs ${cls} text-left` }, it.word);
+        })
       ),
-      e('div', { className:'mt-2 text-xs' }, ok ? e('span', { className:'text-green-700' }, 'Associação completa!') : e('span', { className:'text-gray-600' }, 'Selecione uma palavra e depois uma imagem'))
+      e('div', { className:'grid grid-cols-6 gap-2' },
+        shuffledBottom.map((it,j)=> {
+          const isMatched = matchedBottomSet[it.idx];
+          const cls = isMatched ? 'border-green-600 bg-green-600 text-white' : 'border-gray-200 bg-gray-100';
+          return e('button', { key:j, onClick:()=>chooseBottom(j), disabled:isMatched, className:`px-2 py-1 rounded border text-xs ${cls} text-left` }, it.pt);
+        })
+      ),
+      e('div', { className:'mt-2 text-xs' }, done ? e('span', { className:'text-green-700' }, 'Associação completa!') : e('span', { className:'text-gray-600' }, 'Toque primeiro no botão de cima (EN) e depois no de baixo (PT)'))
+    );
+  }
+
+  function DictationExercise({ sentences=[] }){
+    const sents = Array.isArray(sentences) ? sentences.slice(0,3) : [];
+    const [vals, setVals] = React.useState(Array(sents.length).fill(''));
+    const [res, setRes] = React.useState(null);
+    function setVal(i,v){ const a=[...vals]; a[i]=v; setVals(a); }
+    function norm(s){ return String(s||'').trim().replace(/\s+/g,' ').replace(/\s*([?.!])\s*$/,'$1').toLowerCase(); }
+    function speakOne(txt){ try { const u=new SpeechSynthesisUtterance(String(txt||'')); u.rate=Number(localStorage.getItem('rate')||1); u.pitch=Number(localStorage.getItem('pitch')||1); window.speechSynthesis.speak(u); } catch{} }
+    function playAll(){ let i=0; function step(){ if(i>=sents.length) return; const u=new SpeechSynthesisUtterance(String(sents[i]||'')); u.rate=Number(localStorage.getItem('rate')||1); u.pitch=Number(localStorage.getItem('pitch')||1); u.onend=()=>{ i++; step(); }; try { window.speechSynthesis.cancel(); } catch{} window.speechSynthesis.speak(u); } step(); }
+    function check(){ const ok = sents.every((t,i)=> norm(t)===norm(vals[i])); setRes(ok); }
+    return e('div', null,
+      e('div', { className:'text-sm text-gray-800 mb-2' }, 'Ouça cada frase e escreva.'),
+      sents.map((t,i)=> e('div', { key:i, className:'mb-2' },
+        e('div', { className:'flex items-center gap-2 mb-1' },
+          e('button', { className:'px-2 py-1 rounded bg-green-600 text-white text-xs', onClick:()=>speakOne(t) }, `Play ${i+1}`)
+        ),
+        e('input', { className:'w-full px-2 py-1 rounded border border-gray-300', value:vals[i], onChange:ev=>setVal(i, ev.target.value), placeholder:`Digite a frase ${i+1}` })
+      )),
+      e('div', { className:'mt-2 flex items-center gap-2' },
+        e('button', { className:'px-3 py-2 rounded bg-green-600 text-white', onClick:playAll }, 'Play 3 frases'),
+        e('button', { className:'px-3 py-2 rounded bg-green-600 text-white', onClick:check }, 'Checar'),
+        res!==null ? e('span', { className:`text-xs ${res?'text-green-700':'text-red-700'}` }, res?'Correto':'Tente novamente') : null
+      )
     );
   }
 
@@ -220,23 +325,23 @@
       ),
       e('div', { className:'grid grid-cols-1 gap-4' },
         e(ExerciseCard, { title:'Vocabulário com imagens', instruction:'Veja e associe (jogo de memória)' }, e(VocabularyMemoryGame, { pairs: videoPairs })),
-        e(ExerciseCard, { title:'Múltipla escolha simples', instruction:'Escolha a opção correta' },
-          e(QuestionChoices, { items:['Paul is a farmer.','Paul are a farmer.','Paul am a farmer.'], onCheck:(i)=> i===0 })
-        ),
-        e(ExerciseCard, { title:'Classificar Affirmative/Negative/Question', instruction:'Identifique a estrutura' },
-          e(QuestionChoices, { items:['She is happy.','Is she happy?','She is not happy.'], onCheck:(i)=> [0,1,2].includes(i) })
-        ),
-        e(ExerciseCard, { title:'Transformar frases', instruction:'Veja as versões' },
-          e('div', { className:'space-y-2 text-sm text-gray-800' },
-            e('div', null, 'She is happy. → She is not happy.'),
-            e('div', null, 'The barn is open. → Is the barn open?')
-          )
+        
+        e(ExerciseCard, { title:'Transformar frases', instruction:'Digite a versão pedida' },
+          e(TransformSentences, { items:[
+            { base:'She is happy.', target:'neg', answer:'She is not happy.' },
+            { base:'The barn is open.', target:'q', answer:'Is the barn open?' }
+          ] })
         ),
         e(ExerciseCard, { title:'Completar com Am / Is / Are', instruction:'Preencha corretamente' }, e(InputFillBlank, { items:amIsAre })),
         e(ExerciseCard, { title:'Verdadeiro ou Falso', instruction:'Marque V/F' }, e(TrueFalseCard, { statements: tfStatements })),
-        e(ExerciseCard, { title:'Ordenar frases', instruction:'Coloque na ordem correta' }, e(OrderingComponent, { items:orderItems })),
-        e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva (visual leve)' }, e('div', { className:'text-sm text-gray-600' }, 'Use o player acima para praticar o ditado.')),
-        e(ExerciseCard, { title:'Associação visual', instruction:'Associe palavra e imagem' }, e(VisualAssociation, {})),
+        e(ExerciseCard, { title:'Ordenar palavras', instruction:'Monte a frase correta' },
+          e('div', null,
+            e('div', { className:'text-sm text-gray-800 mb-2' }, 'The barn is open.'),
+            e(OrderWords, { sentence:'The barn is open.' })
+          )
+        ),
+        e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' }, e(DictationExercise, { sentences: videoPairs.map(p=>p.text).filter(Boolean).slice(0,3) })),
+        e(ExerciseCard, { title:'Associação visual', instruction:'Associe botões de cima e de baixo' }, e(VisualAssociation12, {})),
         e(ExerciseCard, { title:'Finalizar', instruction:'Bom trabalho!' }, e('div', { className:'text-sm text-gray-800' }, 'Great job!'))
       )
     );
