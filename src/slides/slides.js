@@ -124,21 +124,28 @@
     const rootEl = document.getElementById('slideLessonRoot');
     if (!rootEl) return;
     let index = 0; let showTr = false;
-    const rerender = ()=>{
-      ReactDOM.render(e(SlideLayout, {
-        slides,
-        index,
-        showTr,
-        onPrev: ()=>{ index = Math.max(0, index-1); rerender(); },
-        onNext: ()=>{ index = Math.min(slides.length-1, index+1); rerender(); }
-      }, null), rootEl);
-    };
-    rerender();
+    let root = null;
+    try {
+      if (ReactDOM.createRoot) root = ReactDOM.createRoot(rootEl);
+    } catch {}
+    const renderTree = ()=> e(SlideLayout, {
+      slides,
+      index,
+      showTr,
+      onPrev: ()=>{ index = Math.max(0, index-1); render(); },
+      onNext: ()=>{ index = Math.min(slides.length-1, index+1); render(); }
+    });
+    function render(){
+      if (root) root.render(renderTree());
+      else ReactDOM.render(renderTree(), rootEl);
+    }
+    render();
   }
 
   window.SlideLessonMount = async function(level, idx){
     if (String(level).toUpperCase()!=='A1' || Number(idx)!==1) return;
     try {
+      try { const ts = document.getElementById('tab-study'); if (ts) ts.style.display = 'block'; } catch {}
       const data = await loadLessonData();
       const slides = Array.isArray(data && data.slides) ? data.slides : [];
       mountSlides(slides);
