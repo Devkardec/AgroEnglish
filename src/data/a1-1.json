@@ -1,0 +1,99 @@
+{
+  "slides": [
+    { "type": "title", "title": "Verb To Be – Farm Routines", "image": "/public/images/a1texto1/slidetx1/1.png" },
+
+    { "type": "explain", "image": "/public/images/a1texto1/slidetx1/2.png", "text": [
+      "To Be = ser/estar.",
+      "Usos: Identidade · Localização · Estado"
+    ], "pt": [
+      "Ser/estar.",
+      "Quem é · Onde está · Como está"
+    ] },
+
+    { "type": "structure", "image": "/public/images/a1texto1/slidetx1/3.png", "text": [
+      "Afirmativa: I am · He/She/It is · We/You/They are",
+      "Negativa: am not · is not · are not",
+      "Pergunta: Am I...? · Is he/she/it...? · Are we/you/they...?"
+    ] },
+
+    { "type": "usage", "image": "/public/images/a1texto1/slidetx1/4.png", "text": [
+      "I am a farmer.",
+      "She is happy.",
+      "The barn is open."
+    ], "pt": [
+      "Eu sou fazendeiro.",
+      "Ela está feliz.",
+      "O galpão está aberto."
+    ] },
+
+    { "type": "usage", "image": "/public/images/a1texto1/slidetx1/5.png", "text": [
+      "We are ready.",
+      "The cows are calm.",
+      "It is very big."
+    ], "pt": [
+      "Nós estamos prontos.",
+      "As vacas estão calmas.",
+      "É muito grande."
+    ] },
+
+    { "type": "structure", "image": "/public/images/a1texto1/slidetx1/6.png", "text": [
+      "Negativa: I am not...",
+      "Negativa: She is not...",
+      "Negativa: They are not..."
+    ], "pt": [
+      "Eu não sou/estou...",
+      "Ela não é/está...",
+      "Eles/Elas não são/estão..."
+    ] },
+
+    { "type": "usage", "image": "/public/images/a1texto1/slidetx1/7.png", "text": [
+      "I am not tired.",
+      "The wind is not strong.",
+      "We are not late."
+    ], "pt": [
+      "Eu não estou cansado.",
+      "O vento não está forte.",
+      "Nós não estamos atrasados."
+    ] },
+
+    { "type": "structure", "image": "/public/images/a1texto1/slidetx1/8.png", "text": [
+      "Pergunta: Am I at the farm?",
+      "Pergunta: Is the barn open?",
+      "Pergunta: Are the cows calm?"
+    ], "pt": [
+      "Eu estou na fazenda?",
+      "O galpão está aberto?",
+      "As vacas estão calmas?"
+    ] },
+
+    { "type": "usage", "image": "/public/images/a1texto1/slidetx1/9.png", "text": [
+      "Am I a farmer?",
+      "Is she happy?",
+      "Are we ready?"
+    ], "pt": [
+      "Eu sou fazendeiro?",
+      "Ela está feliz?",
+      "Nós estamos prontos?"
+    ] },
+
+    { "type": "card", "title": "Regra rápida", "image": "/public/images/a1texto1/slidetx1/10.png", "text": [
+      "To Be não usa do/don't.",
+      "am/is/are mudam sozinhos."
+    ] },
+
+    { "type": "vocab", "image": "/public/images/a1texto1/slidetx1/11.png", "items": [
+      { "word": "farmer", "pt": "fazendeiro", "pron": "fármer" },
+      { "word": "barn", "pt": "galpão", "pron": "bárn" },
+      { "word": "cows", "pt": "vacas", "pron": "cáuz" },
+      { "word": "happy", "pt": "feliz", "pron": "répi" },
+      { "word": "ready", "pt": "pronto", "pron": "rédi" }
+    ] },
+
+    { "type": "summary", "image": "/public/images/a1texto1/slidetx1/12.png", "text": [
+      "To Be = ser/estar.",
+      "am / is / are.",
+      "Identidade, localização, estado.",
+      "Afirmativa · Negativa · Pergunta"
+    ] }
+  ]
+}

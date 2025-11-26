@@ -13,6 +13,7 @@
   <link rel="apple-touch-icon" href="./public/icons/android-chrome-512x512.png">
   <title>AgroEnglish Pro</title>
   <link rel="stylesheet" href="./src/styles/styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <meta name="description" content="PWA para inglês técnico rural: agricultura, pecuária, veterinária, máquinas e rotinas de fazenda.">
 </head>
 <body>
@@ -96,6 +97,9 @@
     window.getUserInfo = function(){ const u = auth.currentUser; return u ? { uid: u.uid, email: u.email||'', displayName: u.displayName||'' } : null }
     window.updateDisplayName = async function(name){ try { if (auth.currentUser) { await updateProfile(auth.currentUser, { displayName: String(name||'').trim() }); try { localStorage.setItem('userName', String(name||'').trim()) } catch {} } } catch {} }
   </script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="./src/slides/slides.js"></script>
   <script type="module" src="./main.js"></script>
   <noscript>Este aplicativo requer JavaScript.</noscript>
   <style>body{min-height:100vh}</style>

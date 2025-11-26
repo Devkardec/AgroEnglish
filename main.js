@@ -1565,11 +1565,6 @@ function renderGrammar(data) {
             </div>
           </div>
         </div>
-        <div class="section-title" style="margin-top:12px">Gramática rápida</div>
-        <div class="card"><div class="small">I = <span style="color:#1e40af;font-weight:bold">am</span> · He/She/It = <span style="color:#1e40af;font-weight:bold">is</span> · You/We/They = <span style="color:#1e40af;font-weight:bold">are</span><div style="margin-top:6px">Exemplos: <em>I <span style="color:#1e40af;font-weight:bold">am</span> a farmer.</em> · <em>She <span style="color:#1e40af;font-weight:bold">is</span> happy.</em></div></div></div>
-        
-        <div class="section-title" style="margin-top:12px">Resumo</div>
-        <div class="card"><div class="small"><div>Verb To Be = <span style="color:#1e40af;font-weight:bold">am/is/are</span></div><div style="margin-top:6px">Identidade, localização e estado</div><div style="margin-top:6px">Sujeito + Verbo + Complemento</div><div style="margin-top:8px;font-weight:700">Great job!</div></div></div>
       `;
       gv.innerHTML = scene;
       const en = [
@@ -2602,6 +2597,7 @@ function renderGrammar(data) {
       if (uiTitle) { data.uiTitle = uiTitle; }
 
       setupUI(data);
+      try { if (window.SlideLessonMount) window.SlideLessonMount(level, idx); } catch {}
       if (uiTitle) {
         try { document.getElementById('title').textContent = uiTitle + ' · ' + level; } catch {}
       }
@@ -2610,6 +2606,31 @@ function renderGrammar(data) {
       
       try { renderVocabulary(data); } catch (e) { console.error('Error in renderVocabulary:', e); }
       try { renderGrammar(data); } catch (e) { console.error('Error in renderGrammar:', e); }
+      try {
+        if (String(level).toUpperCase()==='A1' && Number(idx)===1) {
+          const g = document.getElementById('grammar'); if (g) { g.innerHTML=''; g.style.display = 'none'; }
+          const v = document.getElementById('vocab'); if (v) v.style.display = 'none';
+          const vt = document.getElementById('vocabTable'); if (vt) vt.style.display = 'none';
+          try {
+            const study = document.getElementById('tab-study');
+            if (study) {
+              const titles = Array.from(study.querySelectorAll('.section-title'));
+              titles.forEach(el=> {
+                const txt = String(el.textContent||'').trim();
+                const shouldRemove = /^(Guia de Estudo|Explicação e Estrutura|Vocabulário|Vocabulário \(Pronúncia\))$/i.test(txt);
+                if (shouldRemove) el.remove();
+              });
+              const quickCards = Array.from(study.querySelectorAll('.card')).filter(el=> el!==study);
+              quickCards.forEach(el=> {
+                const hasGrammar = /Gramática rápida|Resumo/i.test(el.textContent||'');
+                if (hasGrammar) { el.remove(); }
+              });
+              const grammarCards = Array.from((document.getElementById('grammar')||study).querySelectorAll('.card'));
+              grammarCards.forEach(el=> el.remove());
+            }
+          } catch {}
+        }
+      } catch {}
       try { const vEl = document.querySelector('#verbs'); if (vEl) vEl.remove(); } catch {}
       try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
       try { renderFill(data); } catch (e) { console.error('Error in renderFill:', e); }
@@ -3911,7 +3932,7 @@ function renderGrammar(data) {
               const s = document.getElementById('answerSheet'); if (s) s.remove();
             }
             function checkRoute(){
-              if (String(location.hash||'').startsWith('#/text/')) ensurePrintButton(); else cleanupPrint();
+              cleanupPrint();
             }
             window.addEventListener('hashchange', checkRoute);
             document.addEventListener('DOMContentLoaded', checkRoute);

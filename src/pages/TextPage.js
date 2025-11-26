@@ -22,8 +22,10 @@ export function TextPage(level, index) {
         </div>
       </section>
 
-      <section id="tab-study" class="card">
+  <section id="tab-study" class="card">
         <div id="grammarVideo" style="margin-top:0;display:none"></div>
+        <div id="slideLessonRoot" style="margin-top:12px"></div>
+        <div class="section-title" style="margin-top:12px">Texto narrado</div>
         <div class="section-title">Guia de Estudo</div>
         <div class="section-title" style="margin-top:12px">Explicação e Estrutura</div>
         <div id="grammar"></div>
@@ -115,7 +117,11 @@ export function TextPage(level, index) {
 
       
 
-      <button id="backToTop" class="btn" style="position:fixed;bottom:20px;right:20px;display:none;">Voltar ao topo</button>
+      <button id="backToTop" class="btn" style="position:fixed;bottom:20px;right:20px;display:none;border-radius:999px;width:46px;height:46px;padding:0;display:none" aria-label="Voltar ao topo" title="Voltar ao topo">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="display:block;margin:auto">
+          <path d="M12 2l3 6h-2v7l-4-2v-5H9l3-6z" />
+        </svg>
+      </button>
     </main>
   `;
 }
