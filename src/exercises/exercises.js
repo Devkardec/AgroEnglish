@@ -259,20 +259,27 @@
     );
   }
 
-  function DictationExercise({ sentences=[] }){
+  function DictationExercise({ sentences=[], segUrls=[] }){
     const sents = Array.isArray(sentences) ? sentences.slice(0,3) : [];
     const [vals, setVals] = React.useState(Array(sents.length).fill(''));
     const [res, setRes] = React.useState(null);
     function setVal(i,v){ const a=[...vals]; a[i]=v; setVals(a); }
     function norm(s){ return String(s||'').trim().replace(/\s+/g,' ').replace(/\s*([?.!])\s*$/,'$1').toLowerCase(); }
-    function speakOne(txt){ try { const u=new SpeechSynthesisUtterance(String(txt||'')); u.rate=Number(localStorage.getItem('rate')||1); u.pitch=Number(localStorage.getItem('pitch')||1); window.speechSynthesis.speak(u); } catch{} }
-    function playAll(){ let i=0; function step(){ if(i>=sents.length) return; const u=new SpeechSynthesisUtterance(String(sents[i]||'')); u.rate=Number(localStorage.getItem('rate')||1); u.pitch=Number(localStorage.getItem('pitch')||1); u.onend=()=>{ i++; step(); }; try { window.speechSynthesis.cancel(); } catch{} window.speechSynthesis.speak(u); } step(); }
+    const useSeg = Array.isArray(segUrls) && segUrls.length>=sents.length;
+    function speakOne(txt, i){
+      if (useSeg) { try { const a = new Audio(segUrls[i]); a.play(); } catch{} return; }
+      try { const u=new SpeechSynthesisUtterance(String(txt||'')); u.rate=Number(localStorage.getItem('rate')||1); u.pitch=Number(localStorage.getItem('pitch')||1); window.speechSynthesis.speak(u); } catch{}
+    }
+    function playAll(){
+      if (useSeg) { let i=0; const next=()=>{ if(i>=sents.length) return; const a=new Audio(segUrls[i]); a.onended=()=>{ i++; next(); }; a.play(); }; next(); return; }
+      let i=0; function step(){ if(i>=sents.length) return; const u=new SpeechSynthesisUtterance(String(sents[i]||'')); u.rate=Number(localStorage.getItem('rate')||1); u.pitch=Number(localStorage.getItem('pitch')||1); u.onend=()=>{ i++; step(); }; try { window.speechSynthesis.cancel(); } catch{} window.speechSynthesis.speak(u); } step();
+    }
     function check(){ const ok = sents.every((t,i)=> norm(t)===norm(vals[i])); setRes(ok); }
     return e('div', null,
       e('div', { className:'text-sm text-gray-800 mb-2' }, 'Ouça cada frase e escreva.'),
       sents.map((t,i)=> e('div', { key:i, className:'mb-2' },
         e('div', { className:'flex items-center gap-2 mb-1' },
-          e('button', { className:'px-2 py-1 rounded bg-green-600 text-white text-xs', onClick:()=>speakOne(t) }, `Play ${i+1}`)
+          e('button', { className:'px-2 py-1 rounded bg-green-600 text-white text-xs', onClick:()=>speakOne(t, i) }, `Play ${i+1}`)
         ),
         e('input', { className:'w-full px-2 py-1 rounded border border-gray-300', value:vals[i], onChange:ev=>setVal(i, ev.target.value), placeholder:`Digite a frase ${i+1}` })
       )),
@@ -340,7 +347,7 @@
             e(OrderWords, { sentence:'The barn is open.' })
           )
         ),
-        e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' }, e(DictationExercise, { sentences: videoPairs.map(p=>p.text).filter(Boolean).slice(0,3) })),
+        e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' }, e(DictationExercise, { sentences: videoPairs.map(p=>p.text).filter(Boolean).slice(0,3), segUrls: ['/src/audio/A1/texto-a1.1-dividido/seg1.mp3','/src/audio/A1/texto-a1.1-dividido/seg2.mp3','/src/audio/A1/texto-a1.1-dividido/seg3.mp3'] })),
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe botões de cima e de baixo' }, e(VisualAssociation12, {})),
         e(ExerciseCard, { title:'Finalizar', instruction:'Bom trabalho!' }, e('div', { className:'text-sm text-gray-800' }, 'Great job!'))
       )

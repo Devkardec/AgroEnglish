@@ -4158,6 +4158,7 @@ function renderGrammar(data) {
         const shown = sentences.slice(0, Math.min(sentences.length || 0, maxCount));
         const useImages = (String(level).toUpperCase()==='A1' && Number(idx)===1);
         const imgs = useImages ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.png`) : [];
+        const segUrls = (String(level).toUpperCase()==='A1' && Number(idx)===1) ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`) : [];
         pronList.innerHTML = shown.map((s,i)=>`
           <div class="pron-card">
             ${useImages ? `<img src="${imgs[i]}" alt="" class="w-36 h-36 sm:w-40 sm:h-40 object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
@@ -4169,6 +4170,7 @@ function renderGrammar(data) {
               <button class="btn sm secondary" data-pron-playrec="${i}">Ouvir minha pronúncia</button>
               <button class="btn sm secondary" data-pron-compare="${i}">Comparar</button>
             </div>
+            ${segUrls.length ? `<audio id="pron-orig-${i}" src="${segUrls[i]}" style="display:none"></audio>` : ''}
             <audio id="pron-audio-${i}" style="margin-top:6px; width:100%; display:none" controls></audio>
           </div>
         `).join('') || '<div class="small">Sem frases disponíveis.</div>';
@@ -4179,7 +4181,9 @@ function renderGrammar(data) {
           if (!idxStr) return;
           const i = Number(idxStr);
           if (t.dataset.pronPlay !== undefined) {
-            speak(sentences[i]);
+            const orig = document.getElementById('pron-orig-'+i);
+            if (orig && orig.src) { try { orig.currentTime=0; orig.play(); } catch {} }
+            else { speak(sentences[i]); }
           } else if (t.dataset.pronRecord !== undefined) {
             recordedChunks = [];
             navigator.mediaDevices.getUserMedia({ audio: true }).then(stream=>{
@@ -4227,14 +4231,18 @@ function renderGrammar(data) {
             if (a && a.src) a.play();
           } else if (t.dataset.pronCompare !== undefined) {
             const a = document.getElementById('pron-audio-'+i);
-            const voice = getVoice();
-            const u = new SpeechSynthesisUtterance(sentences[i]);
-            if (voice) u.voice = voice;
-            u.rate = Number(localStorage.getItem('rate')||state.rate);
-            u.pitch = Number(localStorage.getItem('pitch')||state.pitch);
-            u.onend = () => { if (a && a.src) a.play() };
-            window.speechSynthesis.cancel();
-            window.speechSynthesis.speak(u);
+            const orig = document.getElementById('pron-orig-'+i);
+            if (orig && orig.src) { orig.currentTime=0; orig.play(); orig.onended = () => { if (a && a.src) a.play() }; }
+            else {
+              const voice = getVoice();
+              const u = new SpeechSynthesisUtterance(sentences[i]);
+              if (voice) u.voice = voice;
+              u.rate = Number(localStorage.getItem('rate')||state.rate);
+              u.pitch = Number(localStorage.getItem('pitch')||state.pitch);
+              u.onend = () => { if (a && a.src) a.play() };
+              window.speechSynthesis.cancel();
+              window.speechSynthesis.speak(u);
+            }
           }
         });
       }
@@ -4371,6 +4379,7 @@ function renderGrammar(data) {
       if (openPronModal && pronModal && pronModalList) {
         const renderModalList = () => {
           const max = Math.min((sentences && sentences.length) || 0, 6);
+          const segUrls = (String(level).toUpperCase()==='A1' && Number(idx)===1) ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`) : [];
           pronModalList.innerHTML = (sentences.slice(0, max)).map((s,i)=>`
             <div class="pron-card">
               <div class="text">${s}</div>
@@ -4382,6 +4391,7 @@ function renderGrammar(data) {
                 <button class="btn sm secondary" data-pron-playrec="${i}">Ouvir minha pronúncia</button>
                 <button class="btn sm secondary" data-pron-compare="${i}">Comparar</button>
               </div>
+              ${segUrls.length ? `<audio id="pron-modal-orig-${i}" src="${segUrls[i]}" style="display:none"></audio>` : ''}
               <audio id="pron-modal-audio-${i}" style="margin-top:6px; width:100%; display:none" controls></audio>
             </div>
           `).join('') || '<div class="small">Sem trechos disponíveis para este texto.</div>';
@@ -4406,7 +4416,9 @@ function renderGrammar(data) {
           if (!idxStr) return;
           const i = Number(idxStr);
           if (t.dataset.pronPlay !== undefined) {
-            speak(sentences[i]);
+            const orig = document.getElementById('pron-modal-orig-'+i);
+            if (orig && orig.src) { try { orig.currentTime=0; orig.play(); } catch {} }
+            else { speak(sentences[i]); }
           } else if (t.dataset.pronRecord !== undefined) {
             recordedChunks = [];
             navigator.mediaDevices.getUserMedia({ audio: true }).then(stream=>{
@@ -4433,14 +4445,18 @@ function renderGrammar(data) {
             if (a && a.src) a.play();
           } else if (t.dataset.pronCompare !== undefined) {
             const a = document.getElementById('pron-modal-audio-'+i);
-            const voice = getVoice();
-            const u = new SpeechSynthesisUtterance(sentences[i]);
-            if (voice) u.voice = voice;
-            u.rate = Number(localStorage.getItem('rate')||state.rate);
-            u.pitch = Number(localStorage.getItem('pitch')||state.pitch);
-            u.onend = () => { if (a && a.src) a.play() };
-            window.speechSynthesis.cancel();
-            window.speechSynthesis.speak(u);
+            const orig = document.getElementById('pron-modal-orig-'+i);
+            if (orig && orig.src) { orig.currentTime=0; orig.play(); orig.onended = () => { if (a && a.src) a.play() }; }
+            else {
+              const voice = getVoice();
+              const u = new SpeechSynthesisUtterance(sentences[i]);
+              if (voice) u.voice = voice;
+              u.rate = Number(localStorage.getItem('rate')||state.rate);
+              u.pitch = Number(localStorage.getItem('pitch')||state.pitch);
+              u.onend = () => { if (a && a.src) a.play() };
+              window.speechSynthesis.cancel();
+              window.speechSynthesis.speak(u);
+            }
           }
         });
       }
