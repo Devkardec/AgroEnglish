@@ -1539,7 +1539,7 @@ function renderGrammar(data) {
             <div class="prof-panel" style="flex:0 0 240px;max-width:240px;min-width:220px;display:flex;flex-direction:column;gap:8px;background:#fffaf0;border-right:1px solid #f59e0b;border-radius:12px 0 0 12px">
               <div style="padding:12px;position:relative;min-height:280px;padding-bottom:96px">
                 <div style="font-weight:700">Professor</div>
-                <div style="margin-top:8px;width:100%;height:160px;border-radius:8px;background:url('https://source.unsplash.com/400x300/?teacher') center/cover"></div>
+                <div class="teacher-photo" style="margin-top:8px;width:100%;height:160px;border-radius:8px;background:url('https://source.unsplash.com/400x300/?teacher') center/cover"></div>
                 <div id="vidTipBox" style="margin-top:6px;display:flex;align-items:center;justify-content:center;min-height:80px">
                   <div id="vidTip" class="small" style="color:#111827;text-align:center;font-weight:600"></div>
                 </div>
