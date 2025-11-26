@@ -4132,6 +4132,10 @@ function renderGrammar(data) {
       const pronList = document.getElementById('pronList');
       function getSentences(d){
         if (Array.isArray(d.pairs) && d.pairs.length) return d.pairs.map(p=>p.en);
+        const lines = Array.isArray(d.lines) ? d.lines.map(l=> String(l.en||'').trim()).filter(Boolean) : [];
+        if (lines.length) return lines;
+        const nar = Array.isArray(d.a1_exercises && d.a1_exercises.narration_sentences) ? d.a1_exercises.narration_sentences.map(s=> String(s||'').trim()).filter(Boolean) : [];
+        if (nar.length) return nar;
         const textParts = String(d.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
         if (textParts.length) return textParts;
         const voc = Array.isArray(d.vocabulary) ? d.vocabulary : [];
@@ -4150,9 +4154,13 @@ function renderGrammar(data) {
       }
       const ptSentences = getPtSentences(data);
       if (pronList) {
-        const shown = sentences.slice(0, Math.min(sentences.length || 0, 6));
+        const maxCount = 11;
+        const shown = sentences.slice(0, Math.min(sentences.length || 0, maxCount));
+        const useImages = (String(level).toUpperCase()==='A1' && Number(idx)===1);
+        const imgs = useImages ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.png`) : [];
         pronList.innerHTML = shown.map((s,i)=>`
           <div class="pron-card">
+            ${useImages ? `<img src="${imgs[i]}" alt="" class="w-36 h-36 sm:w-40 sm:h-40 object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
             <div class="text">${s}</div>
             <div class="toolbar" style="margin-top:8px">
               <button class="btn sm secondary" data-pron-play="${i}">Ouvir</button>
