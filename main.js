@@ -1532,31 +1532,42 @@ function renderGrammar(data) {
 
     const gv = document.getElementById('grammarVideo');
     if (gv && isA1BeMode) {
+      try { gv.style.display = 'block' } catch {}
       const scene = `
-        <div class="section-title" style="margin-top:12px">Vídeo-aula · A1-1 – Verb To Be (Farm Edition)</div>
         <div class="card" style="padding:0">
           <div style="display:flex;gap:12px;align-items:stretch;flex-wrap:wrap">
             <div style="flex:0 0 240px;max-width:240px;min-width:220px;display:flex;flex-direction:column;gap:8px;background:#fffaf0;border-right:1px solid #f59e0b;border-radius:12px 0 0 12px">
-              <div style="padding:12px">
+              <div style="padding:12px;position:relative;min-height:280px;padding-bottom:96px">
                 <div style="font-weight:700">Professor</div>
                 <div style="margin-top:8px;width:100%;height:160px;border-radius:8px;background:url('https://source.unsplash.com/400x300/?teacher') center/cover"></div>
-                <div style="margin-top:8px" class="small">Voz lenta e clara · Pausas para repetição</div>
-                <div id="vidTip" class="small" style="margin-top:8px;color:#374151"></div>
-                <div style="margin-top:8px;display:flex;gap:6px"><button class="btn sm" id="vidPlay">▶️ Play</button><button class="btn secondary sm" id="vidPause">⏸ Pausar</button><button class="btn secondary sm" id="vidNext">⏭ Próxima</button></div>
+                <div id="vidTipBox" style="margin-top:6px;display:flex;align-items:center;justify-content:center;min-height:80px">
+                  <div id="vidTip" class="small" style="color:#111827;text-align:center;font-weight:600"></div>
+                </div>
+                <div style="position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;justify-content:center">
+                  <div style="display:flex;gap:10px;align-items:center;justify-content:center;background:#e8f5e9;border:1px solid #cfe8cf;border-radius:14px;padding:8px 12px;box-shadow:0 2px 6px rgba(0,0,0,.08)">
+                    <button class="btn sm" id="vidPlay" title="Play" style="border-radius:999px;padding:8px 10px">▶️</button>
+                    <button class="btn secondary sm" id="vidPause" title="Pausar" style="border-radius:999px;padding:8px 10px">⏸</button>
+                    <select id="vidRate" class="player-rate" title="Velocidade" style="margin-left:4px;border-radius:10px;padding:6px 8px">
+                      <option value="0.75">0.75x</option>
+                      <option value="1" selected>1x</option>
+                      <option value="1.25">1.25x</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
             <div style="flex:1 1 320px;padding:12px">
-              <div id="vidTitle" style="font-size:22px;font-weight:700;margin-bottom:8px">A1-1 – Verb To Be (Farm Edition)</div>
+              
               <div id="vidImage" style="width:100%;height:220px;border-radius:10px;background:url('https://source.unsplash.com/800x450/?farm') center/cover;transition:transform .6s, opacity .4s"></div>
               <div id="vidEN" style="font-size:28px;line-height:1.2;margin-top:10px;transition:opacity .4s, transform .4s"></div>
               <div id="vidPT" class="small" style="font-size:16px;color:#374151;margin-top:6px;transition:opacity .4s, transform .4s"></div>
+              <audio id="vidAudio" preload="metadata" style="display:none"></audio>
             </div>
           </div>
         </div>
         <div class="section-title" style="margin-top:12px">Gramática rápida</div>
         <div class="card"><div class="small">I = <span style="color:#1e40af;font-weight:bold">am</span> · He/She/It = <span style="color:#1e40af;font-weight:bold">is</span> · You/We/They = <span style="color:#1e40af;font-weight:bold">are</span><div style="margin-top:6px">Exemplos: <em>I <span style="color:#1e40af;font-weight:bold">am</span> a farmer.</em> · <em>She <span style="color:#1e40af;font-weight:bold">is</span> happy.</em></div></div></div>
-        <div class="section-title" style="margin-top:12px">Exercício rápido</div>
-        <div class="card"><div class="small"><div id="invBase">My sister <span style="color:#1e40af;font-weight:bold">is</span> here.</div><div id="invRes" style="margin-top:6px"></div><div style="margin-top:8px"><button class="btn" id="invBtn">Mostrar inversão</button></div></div></div>
+        
         <div class="section-title" style="margin-top:12px">Resumo</div>
         <div class="card"><div class="small"><div>Verb To Be = <span style="color:#1e40af;font-weight:bold">am/is/are</span></div><div style="margin-top:6px">Identidade, localização e estado</div><div style="margin-top:6px">Sujeito + Verbo + Complemento</div><div style="margin-top:8px;font-weight:700">Great job!</div></div></div>
       `;
@@ -1619,14 +1630,88 @@ function renderGrammar(data) {
       const ptEl = document.getElementById('vidPT');
       const imgEl = document.getElementById('vidImage');
       const tipEl = document.getElementById('vidTip');
+      const audioEl = document.getElementById('vidAudio');
+      let segLen = 0; let lastScene = -1;
+      function parseRoute(){
+        const h = String(window.location.hash||'');
+        const m = h.match(/#\/text\/(\w+)\/(\d+)/i);
+        if (!m) return { level: 'A1', index: 1 };
+        return { level: m[1], index: Number(m[2]||1) };
+      }
+      function imageBases(){
+        const { level, index } = parseRoute();
+        const L = String(level||'A1').toLowerCase();
+        const i = String(index||1);
+        return [
+          `./public/images/${L}texto${i}/farmedition/`,
+          `./public/images/${L}/texto${i}/`,
+          `./public/images/${L}/text${i}/`,
+          `./public/images/a1texto1/farmedition/`
+        ];
+      }
+      function setCoverImage(){
+        const bases = imageBases();
+        const exts = ['.png','.jpg','.jpeg','.webp'];
+        let bi = 0, ei = 0;
+        function tryNext(){
+          if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?farm")`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; return; }
+          if (ei < exts.length){
+            const url = bases[bi] + '0' + exts[ei++];
+            const probe = new Image();
+            probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; };
+            probe.onerror = tryNext;
+            probe.src = url;
+          } else { bi++; ei=0; tryNext(); }
+        }
+        tryNext();
+      }
+      function loadAudio(){
+        if (!audioEl) return;
+        const file = 'Paul and the Farm (Identity & Description) · A1.mp3';
+        const encoded = encodeURIComponent(file);
+        const bases = ['./src/audio/A1/','./src/audio/','./public/audio/a1texto1/','./public/audio/A1/','./public/audio/','./'];
+        let idx = 0;
+        function tryNext(){
+          if (idx >= bases.length){ if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; }
+          const src = bases[idx++] + encoded;
+          audioEl.src = src;
+          audioEl.load();
+        }
+        audioEl.addEventListener('error', tryNext);
+        audioEl.addEventListener('loadedmetadata', ()=>{ segLen = (audioEl.duration||0) / en.length; });
+        audioEl.addEventListener('canplay', ()=>{ audioEl.removeEventListener('error', tryNext); });
+        audioEl.addEventListener('timeupdate', ()=>{
+          if (!segLen) return;
+          const cur = Math.floor((audioEl.currentTime||0) / segLen);
+          const k = Math.min(en.length-1, Math.max(0, cur));
+          if (k !== lastScene){ lastScene = k; i = k; show(i); }
+        });
+        audioEl.addEventListener('ended', ()=>{ playing=false; });
+        tryNext();
+      }
+      function setSceneImage(k){
+        const q = imgQ[k] || imgQ[imgQ.length-1];
+        const bases = imageBases();
+        const exts = ['.jpg','.jpeg','.png','.webp'];
+        let bi = 0, ei = 0;
+        function tryNext(){
+          if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?${encodeURIComponent(q)}")`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
+          if (ei < exts.length){
+            const url = bases[bi] + String(k+1) + exts[ei++];
+            const probe = new Image();
+            probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; };
+            probe.onerror = tryNext;
+            probe.src = url;
+          } else { bi++; ei=0; tryNext(); }
+        }
+        tryNext();
+      }
       function show(k){
         const e = en[k] || en[en.length-1];
         const p = pt[k] || pt[pt.length-1];
-        const q = imgQ[k] || imgQ[imgQ.length-1];
         enEl.style.opacity = '0'; ptEl.style.opacity = '0';
         setTimeout(()=>{
-          imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?${encodeURIComponent(q)}")`;
-          imgEl.style.opacity = '1'; imgEl.style.transform = 'scale(1.03)';
+          setSceneImage(k);
           enEl.innerHTML = colorBeTokens(e);
           ptEl.textContent = p;
           if (tipEl) tipEl.textContent = tips[k] || '';
@@ -1635,26 +1720,21 @@ function renderGrammar(data) {
           setTimeout(()=>{ enEl.style.transform='translateY(0)'; ptEl.style.transform='translateY(0)'; },150);
         },180);
       }
-      function speakSlow(text){
-        try { window.speechSynthesis.cancel(); } catch {}
-        const u = new SpeechSynthesisUtterance(text);
-        const v = getVoice(); if (v) u.voice = v;
-        u.rate = 0.85; u.pitch = Number(localStorage.getItem('pitch')||1);
-        u.onend = ()=>{ if (playing) { i = Math.min(i+1, en.length-1); show(i); if (i < en.length-1) { speakSlow(en[i]); } else { playing=false; } } };
-        try { window.speechSynthesis.speak(u); } catch {}
+      function play(){
+        playing = true; i = 0; lastScene = -1; show(i);
+        const rateSel = document.getElementById('vidRate');
+        if (audioEl) { audioEl.playbackRate = rateSel ? Number(rateSel.value||1) : 1; try { audioEl.play(); } catch {} }
       }
-      function play(){ playing=true; i=0; show(i); speakSlow(en[i]); }
-      function pause(){ try { window.speechSynthesis.pause(); } catch {} playing=false; }
-      function next(){ i = Math.min(i+1, en.length-1); show(i); speakSlow(en[i]); }
+      function pause(){ playing=false; if (audioEl) { try { audioEl.pause(); } catch {} } }
+      function next(){ i = Math.min(i+1, en.length-1); show(i); if (audioEl && segLen) { audioEl.currentTime = i * segLen; } }
       const btnPlay = document.getElementById('vidPlay');
       const btnPause = document.getElementById('vidPause');
-      const btnNext = document.getElementById('vidNext');
+      const rateSel = document.getElementById('vidRate');
       if (btnPlay) btnPlay.addEventListener('click', play);
       if (btnPause) btnPause.addEventListener('click', pause);
-      if (btnNext) btnNext.addEventListener('click', next);
-      const invBtn = document.getElementById('invBtn');
-      const invRes = document.getElementById('invRes');
-      if (invBtn) invBtn.addEventListener('click', ()=>{ const q = 'Is my sister here?'; invRes.innerHTML = `<span style="color:#1e40af;font-weight:bold;">Is</span> my sister here<span style="color:#dc2626;font-weight:bold;">?</span>`; try { speak(q) } catch {} });
+      if (rateSel) rateSel.addEventListener('change', ()=>{ if (audioEl) audioEl.playbackRate = Number(rateSel.value||1) });
+      setCoverImage();
+      loadAudio();
     }
 
     
