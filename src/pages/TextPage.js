@@ -22,11 +22,8 @@ export function TextPage(level, index) {
         </div>
       </section>
 
-      <section class="card" id="lesson-hero">
-        <div id="grammarVideo" style="margin-top:0;display:none"></div>
-      </section>
-
       <section id="tab-study" class="card">
+        <div id="grammarVideo" style="margin-top:0;display:none"></div>
         <div class="section-title">Guia de Estudo</div>
         <div class="section-title" style="margin-top:12px">Explicação e Estrutura</div>
         <div id="grammar"></div>
@@ -34,6 +31,41 @@ export function TextPage(level, index) {
         <div id="vocab" class="flash-grid"></div>
         <div class="section-title" style="margin-top:12px">Vocabulário (Pronúncia)</div>
         <div id="vocabTable"></div>
+        <section class="card" id="study-footer" style="margin-top:16px">
+          <div style="margin-top:8px">
+            <details class="accordion">
+              <summary><span class="section-title" style="margin:0">Voz da narração</span></summary>
+              <div style="margin-top:8px">
+                <div id="voiceSelector" class="selector" style="gap:6px"></div>
+              </div>
+            </details>
+          </div>
+          <div class="player" style="margin-top:8px">
+            <div class="player-controls">
+              <button class="player-btn" id="playerBack" title="Voltar 10s"><svg viewBox="0 0 24 24"><path d="M11 18l-8-6 8-6v12zm10 0l-8-6 8-6v12z"/></svg></button>
+              <button class="player-btn" id="playerPlay" title="Play/Pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"/></svg></button>
+              <button class="player-btn" id="playerPause" title="Pausar"><svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
+              <button class="player-btn" id="playerStop" title="Parar"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg></button>
+              <button class="player-btn" id="playerFwd" title="Avançar 10s"><svg viewBox="0 0 24 24"><path d="M5 6l8 6-8 6V6zm10 0l8 6-8 6V6z"/></svg></button>
+              <button class="player-btn" id="playerPrevSent" title="Frase anterior"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3 6l9 6V6l-9 6z"/></svg></button>
+              <button class="player-btn" id="playerNextSent" title="Próxima frase"><svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 18l9-6-9-6v12z"/></svg></button>
+              <span id="playerSent" class="small" style="min-width:64px;text-align:center">0/0</span>
+              <select id="playerRate" class="player-rate" title="Velocidade">
+                <option value="0.75">0.75x</option>
+                <option value="1">1x</option>
+                <option value="1.25">1.25x</option>
+                <option value="1.5">1.5x</option>
+              </select>
+              <input id="playerVol" class="player-vol" type="range" min="0" max="1" step="0.05" value="1" title="Volume" />
+              <button class="btn" id="toggleTr" style="align-self:center;margin:8px auto">Mostrar/Ocultar tradução</button>
+            </div>
+            <div class="player-track">
+              <input id="playerSeek" class="player-seek" type="range" min="0" max="100" step="0.1" value="0" />
+              <span id="playerTime" class="small player-time">00:00 / 00:00</span>
+            </div>
+          </div>
+          <div id="lines" class="lines" style="margin-top:8px"></div>
+        </section>
       </section>
 
 
@@ -81,41 +113,7 @@ export function TextPage(level, index) {
         )}">Próximo texto</a>
       </div>
 
-      <section class="card" id="study-footer" style="margin-top:16px">
-        <div style="margin-top:8px">
-          <details class="accordion">
-            <summary><span class="section-title" style="margin:0">Voz da narração</span></summary>
-            <div style="margin-top:8px">
-              <div id="voiceSelector" class="selector" style="gap:6px"></div>
-            </div>
-          </details>
-        </div>
-        <div class="player" style="margin-top:8px">
-          <div class="player-controls">
-            <button class="player-btn" id="playerBack" title="Voltar 10s"><svg viewBox="0 0 24 24"><path d="M11 18l-8-6 8-6v12zm10 0l-8-6 8-6v12z"/></svg></button>
-            <button class="player-btn" id="playerPlay" title="Play/Pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"/></svg></button>
-            <button class="player-btn" id="playerPause" title="Pausar"><svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
-            <button class="player-btn" id="playerStop" title="Parar"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg></button>
-            <button class="player-btn" id="playerFwd" title="Avançar 10s"><svg viewBox="0 0 24 24"><path d="M5 6l8 6-8 6V6zm10 0l8 6-8 6V6z"/></svg></button>
-            <button class="player-btn" id="playerPrevSent" title="Frase anterior"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3 6l9 6V6l-9 6z"/></svg></button>
-            <button class="player-btn" id="playerNextSent" title="Próxima frase"><svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 18l9-6-9-6v12z"/></svg></button>
-            <span id="playerSent" class="small" style="min-width:64px;text-align:center">0/0</span>
-            <select id="playerRate" class="player-rate" title="Velocidade">
-              <option value="0.75">0.75x</option>
-              <option value="1">1x</option>
-              <option value="1.25">1.25x</option>
-              <option value="1.5">1.5x</option>
-            </select>
-            <input id="playerVol" class="player-vol" type="range" min="0" max="1" step="0.05" value="1" title="Volume" />
-            <button class="btn" id="toggleTr" style="align-self:center;margin:8px auto">Mostrar/Ocultar tradução</button>
-          </div>
-          <div class="player-track">
-            <input id="playerSeek" class="player-seek" type="range" min="0" max="100" step="0.1" value="0" />
-            <span id="playerTime" class="small player-time">00:00 / 00:00</span>
-          </div>
-        </div>
-        <div id="lines" class="lines" style="margin-top:8px"></div>
-      </section>
+      
 
       <button id="backToTop" class="btn" style="position:fixed;bottom:20px;right:20px;display:none;">Voltar ao topo</button>
     </main>

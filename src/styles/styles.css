@@ -45,8 +45,7 @@ nav a.active { text-decoration:underline; }
 @media (max-width:400px) {
   #gameToolbar #gDiff .diff-options { grid-template-columns:repeat(2,1fr) }
 }
-  #gameOpts .btn { flex:1 1 120px }
-}
+#gameOpts .btn { flex:1 1 120px }
 input[type="range"] { width:100%; }
 .selector { display:flex; flex-wrap:wrap; gap:8px; }
 .selector .option { padding:6px 10px; border:1px solid #cfd7d3; border-radius:8px; cursor:pointer; }
