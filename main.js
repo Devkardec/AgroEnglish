@@ -2598,6 +2598,7 @@ function renderGrammar(data) {
 
       setupUI(data);
       try { if (window.SlideLessonMount) window.SlideLessonMount(level, idx); } catch {}
+      try { if (window.ExercisePageMount) window.ExercisePageMount(level, idx, data); } catch {}
       if (uiTitle) {
         try { document.getElementById('title').textContent = uiTitle + ' · ' + level; } catch {}
       }
@@ -2751,7 +2752,7 @@ function renderGrammar(data) {
               <div style="margin-top:8px"><button class="btn" id="showST11">Ver respostas</button></div>
             </div>
             ` : ''}
-            ${String(level).toUpperCase()==='B1' && Number((location.hash.split('/')[3]||'1'))===12 ? `
+          ${String(level).toUpperCase()==='B1' && Number((location.hash.split('/')[3]||'1'))===12 ? `
             <div class="section-title" style="margin-top:12px">Complete a Tag Question (3 itens)</div>
             <div class="card">
               <div>1. The harvester is ready, ___? <span class="small" id="tg121"></span></div>
