@@ -1536,14 +1536,14 @@ function renderGrammar(data) {
       const scene = `
         <div class="card" style="padding:0">
           <div style="display:flex;gap:12px;align-items:stretch;flex-wrap:wrap">
-            <div style="flex:0 0 240px;max-width:240px;min-width:220px;display:flex;flex-direction:column;gap:8px;background:#fffaf0;border-right:1px solid #f59e0b;border-radius:12px 0 0 12px">
+            <div class="prof-panel" style="flex:0 0 240px;max-width:240px;min-width:220px;display:flex;flex-direction:column;gap:8px;background:#fffaf0;border-right:1px solid #f59e0b;border-radius:12px 0 0 12px">
               <div style="padding:12px;position:relative;min-height:280px;padding-bottom:96px">
                 <div style="font-weight:700">Professor</div>
                 <div style="margin-top:8px;width:100%;height:160px;border-radius:8px;background:url('https://source.unsplash.com/400x300/?teacher') center/cover"></div>
                 <div id="vidTipBox" style="margin-top:6px;display:flex;align-items:center;justify-content:center;min-height:80px">
                   <div id="vidTip" class="small" style="color:#111827;text-align:center;font-weight:600"></div>
                 </div>
-                <div style="position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;justify-content:center">
+                <div class="prof-controls" style="position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;justify-content:center">
                   <div style="display:flex;gap:10px;align-items:center;justify-content:center;background:#e8f5e9;border:1px solid #cfe8cf;border-radius:14px;padding:8px 12px;box-shadow:0 2px 6px rgba(0,0,0,.08)">
                     <button class="btn sm" id="vidPlay" title="Play" style="border-radius:999px;padding:8px 10px">▶️</button>
                     <button class="btn secondary sm" id="vidPause" title="Pausar" style="border-radius:999px;padding:8px 10px">⏸</button>
@@ -1556,7 +1556,7 @@ function renderGrammar(data) {
                 </div>
               </div>
             </div>
-            <div style="flex:1 1 320px;padding:12px">
+            <div class="video-area" style="flex:1 1 320px;padding:12px">
               
               <div id="vidImage" style="width:100%;height:220px;border-radius:10px;background:url('https://source.unsplash.com/800x450/?farm') center/cover;transition:transform .6s, opacity .4s"></div>
               <div id="vidEN" style="font-size:28px;line-height:1.2;margin-top:10px;transition:opacity .4s, transform .4s"></div>

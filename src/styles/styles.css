@@ -238,6 +238,19 @@ details.accordion[open] > summary::after { transform:rotate(90deg) }
 details.accordion > div { margin-top:8px }
 .accordion-toolbar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px }
 
+/* Mobile adjustments for TextPage video and professor */
+@media (max-width:640px) {
+  .main h2#title { font-size:16px; line-height:1.2 }
+  #lesson-hero .section-title { font-size:16px }
+  .prof-panel { flex:1 1 100% !important; max-width:100% !important; min-width:0 !important; border-right:none !important; border-bottom:1px solid #f59e0b }
+  .video-area { flex:1 1 100% !important; max-width:100% !important }
+  #vidImage { height:180px !important }
+  #vidEN { font-size:22px !important }
+  #vidPT { font-size:14px !important }
+  .prof-panel > div[style*="position:relative"] { padding-bottom:120px !important }
+  .prof-controls { bottom:10px !important }
+}
+
 [data-theme="dark"] details.accordion > summary { background:#182025; border-color:#2a302d }
 [data-theme="dark"] details.accordion[open] > summary { background:#1a2328 }
 
