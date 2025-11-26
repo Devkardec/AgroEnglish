@@ -1687,8 +1687,26 @@ function renderGrammar(data) {
         audioEl.addEventListener('ended', ()=>{ playing=false; });
         tryNext();
       }
+      let preloaded = {};
+      function preloadImages(){
+        const bases = imageBases();
+        const exts = ['.jpg','.jpeg','.png','.webp'];
+        for (let k=0;k<en.length;k++){
+          let done = false;
+          for (let bi=0; bi<bases.length && !done; bi++){
+            for (let ei=0; ei<exts.length && !done; ei++){
+              const url = bases[bi] + String(k+1) + exts[ei];
+              const im = new Image();
+              im.onload = ()=>{ if (!preloaded[k]) preloaded[k] = url; };
+              im.src = url;
+            }
+          }
+        }
+      }
       function setSceneImage(k){
         const q = imgQ[k] || imgQ[imgQ.length-1];
+        const ready = preloaded[k];
+        if (ready){ imgEl.style.backgroundImage = `url('${ready}')`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
         const bases = imageBases();
         const exts = ['.jpg','.jpeg','.png','.webp'];
         let bi = 0, ei = 0;
@@ -1708,15 +1726,13 @@ function renderGrammar(data) {
         const e = en[k] || en[en.length-1];
         const p = pt[k] || pt[pt.length-1];
         enEl.style.opacity = '0'; ptEl.style.opacity = '0';
-        setTimeout(()=>{
-          setSceneImage(k);
-          enEl.innerHTML = colorBeTokens(e);
-          ptEl.textContent = p;
-          if (tipEl) tipEl.textContent = tips[k] || '';
-          enEl.style.transform = 'translateY(6px)'; ptEl.style.transform = 'translateY(6px)';
-          enEl.style.opacity = '1'; ptEl.style.opacity = '1';
-          setTimeout(()=>{ enEl.style.transform='translateY(0)'; ptEl.style.transform='translateY(0)'; },150);
-        },180);
+        setSceneImage(k);
+        enEl.innerHTML = colorBeTokens(e);
+        ptEl.textContent = p;
+        if (tipEl) tipEl.textContent = tips[k] || '';
+        enEl.style.transform = 'translateY(6px)'; ptEl.style.transform = 'translateY(6px)';
+        enEl.style.opacity = '1'; ptEl.style.opacity = '1';
+        setTimeout(()=>{ enEl.style.transform='translateY(0)'; ptEl.style.transform='translateY(0)'; },100);
       }
       function play(){
         playing = true; i = 0; lastScene = -1; show(i);
@@ -1732,6 +1748,7 @@ function renderGrammar(data) {
       if (btnPause) btnPause.addEventListener('click', pause);
       if (rateSel) rateSel.addEventListener('change', ()=>{ if (audioEl) audioEl.playbackRate = Number(rateSel.value||1) });
       setCoverImage();
+      preloadImages();
       loadAudio();
     }
 
