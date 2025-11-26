@@ -174,11 +174,22 @@ function splitSentences(str){
       const prev = s[i - 1] || '';
       const next = s[i + 1] || '';
       const isDecimal = /\d/.test(prev) && /\d/.test(next);
+      const abbrev = (() => {
+        // prevent split on common abbreviations (EN + PT)
+        const m = cur.trim().match(/\b(Dr|Dra|Mr|Mrs|Ms|Prof|Profª|Sr|Sra|Srª|St|vs|etc)\.$/i);
+        // also handle initials like "J." followed by surname: keep together
+        const init = cur.trim().match(/\b[A-Z]\.$/);
+        return !!(m || init);
+      })();
       if (!isDecimal) {
-        let j = i + 1;
-        while (j < s.length && /\s/.test(s[j])) { cur += s[j]; i = j; j++; }
-        out.push(cur.trim());
-        cur = '';
+        if (abbrev) {
+          // do not split; continue accumulating until next punctuation
+        } else {
+          let j = i + 1;
+          while (j < s.length && /\s/.test(s[j])) { cur += s[j]; i = j; j++; }
+          out.push(cur.trim());
+          cur = '';
+        }
       }
     }
   }
@@ -1534,7 +1545,7 @@ function renderGrammar(data) {
     `;
 
     const gv = document.getElementById('grammarVideo');
-    if (gv && isA1BeMode) {
+    if (gv && (isA1BeMode || isA1HaveMode)) {
       try { gv.style.display = 'block' } catch {}
       const scene = `
         <div class="card" style="padding:0">
@@ -1561,7 +1572,7 @@ function renderGrammar(data) {
             </div>
             <div class="video-area" style="flex:1 1 320px;padding:12px">
               
-              <div id="vidImage" style="width:100%;height:220px;border-radius:10px;background:url('https://source.unsplash.com/800x450/?farm') center/cover;transition:transform .6s, opacity .4s"></div>
+              <div id="vidImage" style="width:100%;height:220px;border-radius:10px;background:url('https://source.unsplash.com/800x450/?farm') top center/contain no-repeat;background-color:#f5f7fb;transition:transform .6s, opacity .4s"></div>
               <div id="vidEN" style="font-size:28px;line-height:1.2;margin-top:10px;transition:opacity .4s, transform .4s"></div>
               <div id="vidPT" class="small" style="font-size:16px;color:#374151;margin-top:6px;transition:opacity .4s, transform .4s"></div>
               <audio id="vidAudio" preload="metadata" style="display:none"></audio>
@@ -1570,7 +1581,26 @@ function renderGrammar(data) {
         </div>
       `;
       gv.innerHTML = scene;
-      const en = [
+      function sentencesFor(d){
+        if (Array.isArray(d.pairs) && d.pairs.length) return d.pairs.map(p=>p.en);
+        const lines = Array.isArray(d.lines) ? d.lines.map(l=> String(l.en||'').trim()).filter(Boolean) : [];
+        if (lines.length) return lines;
+        const nar = Array.isArray(d.a1_exercises && d.a1_exercises.narration_sentences) ? d.a1_exercises.narration_sentences.map(s=> String(s||'').trim()).filter(Boolean) : [];
+        if (nar.length) return nar;
+        const textParts = String(d.text||'').split(/(?<=[.!?])\s+/).filter(Boolean);
+        if (textParts.length) return textParts;
+        const voc = Array.isArray(d.vocabulary) ? d.vocabulary : [];
+        if (voc.length) return voc.map(v=> typeof v === 'string' ? v : (v.en || v.term || '')).filter(Boolean);
+        return [];
+      }
+      function ptSentencesFor(d){
+        if (Array.isArray(d.pairs) && d.pairs.length) return d.pairs.map(p=>fixPT(p.pt));
+        const trParts = splitSentences(fixPT(String(d.translation||'')));
+        if (trParts.length) return trParts;
+        const voc = Array.isArray(d.vocabulary) ? d.vocabulary : [];
+        return voc.map(v=> typeof v === 'string' ? '' : fixPT(v.pt || v.translation || '')).filter(x=>true);
+      }
+      const en = isA1BeMode ? [
         'Hello.',
         'I am Paul, and I am a farmer.',
         'I am at the farm now.',
@@ -1582,8 +1612,8 @@ function renderGrammar(data) {
         'They are funny.',
         'The sun is hot, but the wind is not strong.',
         'We are ready for the day.'
-      ];
-      const pt = [
+      ] : sentencesFor(data);
+      const pt = isA1BeMode ? [
         'Olá.',
         'Eu sou Paul e sou fazendeiro.',
         'Eu estou na fazenda agora.',
@@ -1595,8 +1625,8 @@ function renderGrammar(data) {
         'Elas são engraçadas.',
         'O sol está quente, mas o vento não está forte.',
         'Nós estamos prontos para o dia.'
-      ];
-      const imgQ = [
+      ] : ptSentencesFor(data);
+      const imgQ = isA1BeMode ? [
         'farm',
         'farmer portrait',
         'farm entrance',
@@ -1608,8 +1638,10 @@ function renderGrammar(data) {
         'chickens running',
         'sun wind farm',
         'farm workers morning'
-      ];
-      const tips = [
+      ] : (
+        (en || []).map((s,i)=> i===0 ? 'farm' : (/vet|veterinarian/i.test(s) ? 'veterinarian cattle' : (/cow|cattle|calf/i.test(s) ? 'cattle farm' : (/barn/i.test(s) ? 'barn' : 'farm'))))
+      );
+      const tips = isA1BeMode ? [
         'Cumprimento simples com pausa para repetição.',
         'Identidade: I am + profissão.',
         'Localização: I am at + lugar.',
@@ -1621,6 +1653,17 @@ function renderGrammar(data) {
         'Humor: They are + funny.',
         'Clima: The sun is; wind is not + adjetivo.',
         'Preparação: We are + pronto.'
+      ] : [
+        'To Have no presente: I/We have; She/He/It has.',
+        'Posse: We have cows. Característica: The bull has a strong body.',
+        'Regra do S: He/She/It → has. I/We/They → have.',
+        'Pergunta: Does + sujeito + have...? (o verbo volta para have).',
+        "Negativa: sujeito + doesn't + have...",
+        'Exemplo: The bull (He) has a small injury on the leg.',
+        'Identificar sujeito → escolher have/has → dizer o complemento.',
+        'Profissional: This is the veterinarian. She has a medical kit.',
+        'Ação de cuidado: Dr. Silva has the medicine.',
+        'Resultado: We have safe and healthy animals now.'
       ];
       let i = 0;
       let playing = false;
@@ -1641,6 +1684,7 @@ function renderGrammar(data) {
         const L = String(level||'A1').toLowerCase();
         const i = String(index||1);
         return [
+          `./public/images/${L}texto${i}/`,
           `./public/images/${L}texto${i}/farmedition/`,
           `./public/images/${L}/texto${i}/`,
           `./public/images/${L}/text${i}/`,
@@ -1650,52 +1694,79 @@ function renderGrammar(data) {
       function setCoverImage(){
         const bases = imageBases();
         const exts = ['.png','.jpg','.jpeg','.webp'];
-        let bi = 0, ei = 0;
+        const { level, index } = parseRoute();
+        const useDecimal = String(level).toUpperCase()==='A1' && Number(index)===2;
+        const names = useDecimal ? ['0.0','0'] : ['0'];
+        let bi = 0, ni = 0, ei = 0;
         function tryNext(){
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?farm")`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; return; }
-          if (ei < exts.length){
-            const url = bases[bi] + '0' + exts[ei++];
+          if (ni < names.length && ei < exts.length){
+            const url = bases[bi] + names[ni] + exts[ei++];
             const probe = new Image();
-            probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; };
+            probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.backgroundSize='contain'; imgEl.style.backgroundPosition='top center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; };
             probe.onerror = tryNext;
             probe.src = url;
-          } else { bi++; ei=0; tryNext(); }
+          } else if (ni + 1 < names.length) { ni++; ei = 0; tryNext(); }
+          else { bi++; ni = 0; ei = 0; tryNext(); }
         }
         tryNext();
       }
       function loadAudio(){
         if (!audioEl) return;
-        const file = 'Paul and the Farm (Identity & Description) · A1.mp3';
-        const encoded = encodeURIComponent(file);
-        const bases = ['./src/audio/A1/','./src/audio/','./public/audio/a1texto1/','./public/audio/A1/','./public/audio/','./'];
-        let idx = 0;
-        function tryNext(){
-          if (idx >= bases.length){ if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; }
-          const src = bases[idx++] + encoded;
-          audioEl.src = src;
-          audioEl.load();
+        if (isA1BeMode) {
+          const file = 'Paul and the Farm (Identity & Description) · A1.mp3';
+          const encoded = encodeURIComponent(file);
+          const bases = ['./src/audio/A1/','./src/audio/','./public/audio/a1texto1/','./public/audio/A1/','./public/audio/','./'];
+          let idx = 0;
+          function tryNext(){
+            if (idx >= bases.length){ if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; }
+            const src = bases[idx++] + encoded;
+            audioEl.src = src;
+            audioEl.load();
+          }
+          audioEl.addEventListener('error', tryNext);
+          audioEl.addEventListener('loadedmetadata', ()=>{ segLen = (audioEl.duration||0) / en.length; });
+          audioEl.addEventListener('canplay', ()=>{ audioEl.removeEventListener('error', tryNext); });
+          audioEl.addEventListener('timeupdate', ()=>{
+            if (!segLen) return;
+            const cur = Math.floor((audioEl.currentTime||0) / segLen);
+            const k = Math.min(en.length-1, Math.max(0, cur));
+            if (k !== lastScene){ lastScene = k; i = k; show(i); }
+          });
+          audioEl.addEventListener('ended', ()=>{ playing=false; });
+          tryNext();
+        } else {
+          const lvl = String(level).trim();
+          const title = String(data && (data.uiTitle || data.title) || '').trim();
+          const urls = buildAudioUrls(lvl, title);
+          let iUrl = 0;
+          function attempt(){ if (iUrl >= urls.length){ if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; } audioEl.src = urls[iUrl++]; audioEl.load(); }
+          function onLoaded(){ segLen = (audioEl.duration||0) / Math.max(1,en.length); audioEl.removeEventListener('loadedmetadata', onLoaded); audioEl.removeEventListener('error', onError); }
+          function onError(){ attempt(); }
+          audioEl.addEventListener('loadedmetadata', onLoaded);
+          audioEl.addEventListener('error', onError);
+          audioEl.addEventListener('timeupdate', ()=>{
+            if (!segLen) return;
+            const cur = Math.floor((audioEl.currentTime||0) / segLen);
+            const k = Math.min(en.length-1, Math.max(0, cur));
+            if (k !== lastScene){ lastScene = k; i = k; show(i); }
+          });
+          audioEl.addEventListener('ended', ()=>{ playing=false; });
+          attempt();
         }
-        audioEl.addEventListener('error', tryNext);
-        audioEl.addEventListener('loadedmetadata', ()=>{ segLen = (audioEl.duration||0) / en.length; });
-        audioEl.addEventListener('canplay', ()=>{ audioEl.removeEventListener('error', tryNext); });
-        audioEl.addEventListener('timeupdate', ()=>{
-          if (!segLen) return;
-          const cur = Math.floor((audioEl.currentTime||0) / segLen);
-          const k = Math.min(en.length-1, Math.max(0, cur));
-          if (k !== lastScene){ lastScene = k; i = k; show(i); }
-        });
-        audioEl.addEventListener('ended', ()=>{ playing=false; });
-        tryNext();
       }
       let preloaded = {};
       function preloadImages(){
         const bases = imageBases();
         const exts = ['.jpg','.jpeg','.png','.webp'];
+        const { level, index } = parseRoute();
+        const useDecimal = String(level).toUpperCase()==='A1' && Number(index)===2;
         for (let k=0;k<en.length;k++){
           let done = false;
           for (let bi=0; bi<bases.length && !done; bi++){
             for (let ei=0; ei<exts.length && !done; ei++){
-              const url = bases[bi] + String(k+1) + exts[ei];
+              const name = useDecimal ? `${k+1}.${k+1}` : String(k+1);
+              const url = bases[bi] + name + exts[ei];
               const im = new Image();
               im.onload = ()=>{ if (!preloaded[k]) preloaded[k] = url; };
               im.src = url;
@@ -1706,16 +1777,19 @@ function renderGrammar(data) {
       function setSceneImage(k){
         const q = imgQ[k] || imgQ[imgQ.length-1];
         const ready = preloaded[k];
-        if (ready){ imgEl.style.backgroundImage = `url('${ready}')`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
+        if (ready){ imgEl.style.backgroundImage = `url('${ready}')`; imgEl.style.backgroundSize='contain'; imgEl.style.backgroundPosition='top center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
         const bases = imageBases();
         const exts = ['.jpg','.jpeg','.png','.webp'];
+        const { level, index } = parseRoute();
+        const useDecimal = String(level).toUpperCase()==='A1' && Number(index)===2;
         let bi = 0, ei = 0;
         function tryNext(){
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?${encodeURIComponent(q)}")`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
           if (ei < exts.length){
-            const url = bases[bi] + String(k+1) + exts[ei++];
+            const name = useDecimal ? `${k+1}.${k+1}` : String(k+1);
+            const url = bases[bi] + name + exts[ei++];
             const probe = new Image();
-            probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; };
+            probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.backgroundSize='contain'; imgEl.style.backgroundPosition='top center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; };
             probe.onerror = tryNext;
             probe.src = url;
           } else { bi++; ei=0; tryNext(); }
@@ -2278,15 +2352,27 @@ function renderGrammar(data) {
         const parts = String(en||'').split(/(\s+|[.,!?;:])/);
         return parts.map(p=>/^[A-Za-z'-]+$/.test(p)?mapWord(p):p).join('').replace(/\s+/g,' ').trim();
       }
-      const pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
+      let pairs = (Array.isArray(data.pairs) && data.pairs.length) ? data.pairs : [];
+      const lvl = (location.hash.split('/')[2]||'').toUpperCase();
+      const curIdx = Number((location.hash.split('/')[3]||'1').trim());
+      if (!pairs.length && lvl==='A1' && curIdx===2) {
+        pairs = [
+          { en: 'I have a livestock farm.', pt: 'Eu tenho uma fazenda de pecuária.' },
+          { en: 'We have many cows here.', pt: 'Nós temos muitas vacas aqui.' },
+          { en: 'This is the veterinarian.', pt: 'Esta é a veterinária.' },
+          { en: 'Her name is Dr. Silva.', pt: 'O nome dela é Dra. Silva.' },
+          { en: 'She has a medical kit.', pt: 'Ela tem um kit médico.' },
+          { en: 'The bull has a strong body, but he has a small injury on the leg.', pt: 'O touro tem um corpo forte, mas ele tem um ferimento pequeno na perna.' },
+          { en: 'Dr. Silva has the medicine.', pt: 'Dra. Silva tem o remédio.' },
+          { en: 'We have safe and healthy animals now.', pt: 'Agora nós temos animais seguros e saudáveis.' }
+        ];
+      }
       if (pairs.length) {
         linesEl.innerHTML = pairs.map(p=>`<div class="line"><div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div><div class="phon">${phoneticBR(p.en)}</div></div>`).join('');
         return;
       }
       const enBase = splitSentences(String(data.text||''));
       const ptBase = splitSentences(fixPT(String(data.translation||'')));
-      const lvl = (location.hash.split('/')[2]||'').toUpperCase();
-      const curIdx = Number((location.hash.split('/')[3]||'1').trim());
       const needsMoreLines = ['A2','B1','B2','C1','C2'].includes(lvl) && (curIdx===11 || curIdx===12);
       let en = enBase;
       let pt = ptBase;
