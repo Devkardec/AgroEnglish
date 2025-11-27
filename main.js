@@ -1549,34 +1549,31 @@ function renderGrammar(data) {
       try { gv.style.display = 'block' } catch {}
       const scene = `
         <div class="card" style="padding:0">
-          <div style="display:flex;gap:12px;align-items:stretch;flex-wrap:wrap">
-            <div class="prof-panel" style="flex:0 0 240px;max-width:240px;min-width:220px;display:flex;flex-direction:column;gap:8px;background:#fffaf0;border-right:1px solid #f59e0b;border-radius:12px 0 0 12px">
-              <div style="padding:12px;position:relative;min-height:280px;padding-bottom:96px">
-                <div style="font-weight:700">Professor</div>
-                <div class="teacher-photo" style="margin-top:8px;width:100%;height:160px;border-radius:8px;background:url('https://source.unsplash.com/400x300/?teacher') center/cover"></div>
-                <div id="vidTipBox" style="margin-top:6px;display:flex;align-items:center;justify-content:center;min-height:80px">
-                  <div id="vidTip" class="small" style="color:#111827;text-align:center;font-weight:600"></div>
-                </div>
-                <div class="prof-controls" style="position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;justify-content:center">
-                  <div style="display:flex;gap:10px;align-items:center;justify-content:center;background:#e8f5e9;border:1px solid #cfe8cf;border-radius:14px;padding:8px 12px;box-shadow:0 2px 6px rgba(0,0,0,.08)">
-                    <button class="btn sm" id="vidPlay" title="Play" style="border-radius:999px;padding:8px 10px">▶️</button>
-                    <button class="btn secondary sm" id="vidPause" title="Pausar" style="border-radius:999px;padding:8px 10px">⏸</button>
-                    <select id="vidRate" class="player-rate" title="Velocidade" style="margin-left:4px;border-radius:10px;padding:6px 8px">
-                      <option value="0.75">0.75x</option>
-                      <option value="1" selected>1x</option>
-                      <option value="1.25">1.25x</option>
-                    </select>
-                  </div>
-                </div>
+          <div class="video-area" style="padding:12px">
+            <div id="vidImage" style="width:100%;height:260px;border-radius:10px;background:url('https://source.unsplash.com/800x450/?farm') top center/contain no-repeat;background-color:#f5f7fb;transition:transform .6s, opacity .4s"></div>
+            <div id="vidEN" style="font-size:28px;line-height:1.2;margin-top:10px;transition:opacity .4s, transform .4s; text-align:center"></div>
+            <div id="vidPT" class="small" style="font-size:16px;color:#374151;margin-top:6px;transition:opacity .4s, transform .4s; text-align:center"></div>
+            <audio id="vidAudio" preload="metadata" style="display:none"></audio>
+            <div class="yt-controls" style="margin-top:12px;background:#0f0f0f;color:#fff;border-radius:12px;padding:8px 10px;display:flex;align-items:center;gap:10px">
+              <button id="ytPrev" title="Anterior" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:6px 8px">⏮</button>
+              <button id="ytPlay" title="Play/Pause" style="background:#0b3a1e;color:#fff;border:none;border-radius:999px;padding:8px 12px;font-weight:700">▶</button>
+              <button id="ytNext" title="Próximo" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:6px 8px">⏭</button>
+              <div style="display:flex;align-items:center;gap:8px;flex:1">
+                <input id="ytProgress" type="range" min="0" max="1000" value="0" style="flex:1;height:6px;border-radius:4px;background:linear-gradient(90deg,#16a34a 0%,#34d399 0%,#555 0%,#555 100%);appearance:none">
+                <div id="ytTime" class="small" style="min-width:48px;text-align:right">00:00</div>
+                <div style="opacity:.7">/</div>
+                <div id="ytDuration" class="small" style="min-width:48px">00:00</div>
               </div>
+              <button id="ytMute" title="Mudo" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:6px 8px">🔊</button>
+              <input id="ytVolume" type="range" min="0" max="1" step="0.01" value="1" style="width:90px">
+              <select id="ytRate" title="Velocidade" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:6px 8px">
+                <option value="0.75">0.75x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.25">1.25x</option>
+                <option value="1.5">1.5x</option>
+              </select>
             </div>
-            <div class="video-area" style="flex:1 1 320px;padding:12px">
-              
-              <div id="vidImage" style="width:100%;height:220px;border-radius:10px;background:url('https://source.unsplash.com/800x450/?farm') top center/contain no-repeat;background-color:#f5f7fb;transition:transform .6s, opacity .4s"></div>
-              <div id="vidEN" style="font-size:28px;line-height:1.2;margin-top:10px;transition:opacity .4s, transform .4s"></div>
-              <div id="vidPT" class="small" style="font-size:16px;color:#374151;margin-top:6px;transition:opacity .4s, transform .4s"></div>
-              <audio id="vidAudio" preload="metadata" style="display:none"></audio>
-            </div>
+            <div id="vidTip" class="small" style="margin-top:8px;color:#6b7280;text-align:center;font-weight:600"></div>
           </div>
         </div>
       `;
@@ -1809,22 +1806,48 @@ function renderGrammar(data) {
         enEl.style.opacity = '1'; ptEl.style.opacity = '1';
         setTimeout(()=>{ enEl.style.transform='translateY(0)'; ptEl.style.transform='translateY(0)'; },100);
       }
-      function play(){
-        playing = true; i = 0; lastScene = -1; show(i);
-        const rateSel = document.getElementById('vidRate');
-        if (audioEl) { audioEl.playbackRate = rateSel ? Number(rateSel.value||1) : 1; try { audioEl.play(); } catch {} }
+      function fmt(ms){ const s = Math.floor(ms); const m = Math.floor(s/60); const sec = s%60; return String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0'); }
+      function renderProgress(){
+        const prog = document.getElementById('ytProgress');
+        const curEl = document.getElementById('ytTime');
+        const durEl = document.getElementById('ytDuration');
+        const dur = Number(audioEl && audioEl.duration || 0);
+        const cur = Number(audioEl && audioEl.currentTime || 0);
+        if (durEl) durEl.textContent = fmt(Math.floor(dur));
+        if (curEl) curEl.textContent = fmt(Math.floor(cur));
+        if (prog && dur){ const p = Math.round(cur/dur*1000); prog.value = String(p); prog.style.background = `linear-gradient(90deg,#16a34a 0%,#34d399 ${p/10}%,#555 ${p/10}%,#555 100%)`; }
       }
-      function pause(){ playing=false; if (audioEl) { try { audioEl.pause(); } catch {} } }
-      function next(){ i = Math.min(i+1, en.length-1); show(i); if (audioEl && segLen) { audioEl.currentTime = i * segLen; } }
-      const btnPlay = document.getElementById('vidPlay');
-      const btnPause = document.getElementById('vidPause');
-      const rateSel = document.getElementById('vidRate');
-      if (btnPlay) btnPlay.addEventListener('click', play);
-      if (btnPause) btnPause.addEventListener('click', pause);
+      function play(){
+        playing = true; if (i<0) i=0; lastScene = -1; show(i);
+        const rateSel = document.getElementById('ytRate');
+        if (audioEl) { audioEl.playbackRate = rateSel ? Number(rateSel.value||1) : 1; try { audioEl.play(); } catch {} }
+        const btn = document.getElementById('ytPlay'); if (btn) btn.textContent = '⏸';
+      }
+      function pause(){ playing=false; if (audioEl) { try { audioEl.pause(); } catch {} } const btn = document.getElementById('ytPlay'); if (btn) btn.textContent = '▶'; }
+      function next(){ i = Math.min(i+1, en.length-1); show(i); if (audioEl && segLen) { audioEl.currentTime = i * segLen; renderProgress(); } }
+      function prev(){ i = Math.max(i-1, 0); show(i); if (audioEl && segLen) { audioEl.currentTime = i * segLen; renderProgress(); } }
+      const btnPlay = document.getElementById('ytPlay');
+      const btnNext = document.getElementById('ytNext');
+      const btnPrev = document.getElementById('ytPrev');
+      const rateSel = document.getElementById('ytRate');
+      const muteBtn = document.getElementById('ytMute');
+      const volSl = document.getElementById('ytVolume');
+      const prog = document.getElementById('ytProgress');
+      if (btnPlay) btnPlay.addEventListener('click', ()=>{ if (playing) pause(); else play(); });
+      if (btnNext) btnNext.addEventListener('click', next);
+      if (btnPrev) btnPrev.addEventListener('click', prev);
       if (rateSel) rateSel.addEventListener('change', ()=>{ if (audioEl) audioEl.playbackRate = Number(rateSel.value||1) });
-        setCoverImage();
-        preloadImages();
-        loadAudio();
+      if (muteBtn) muteBtn.addEventListener('click', ()=>{ if (!audioEl) return; audioEl.muted = !audioEl.muted; muteBtn.textContent = audioEl.muted ? '🔇' : '🔊'; });
+      if (volSl) volSl.addEventListener('input', ()=>{ if (audioEl) { audioEl.volume = Number(volSl.value||1); if (muteBtn) muteBtn.textContent = (audioEl.volume===0)?'🔇':'🔊'; } });
+      if (prog) prog.addEventListener('input', ()=>{ if (!audioEl) return; const dur = Number(audioEl.duration||0); const p = Number(prog.value||0)/1000; audioEl.currentTime = p * dur; renderProgress(); if (segLen) { const k = Math.floor(audioEl.currentTime/segLen); i = Math.min(en.length-1, Math.max(0,k)); show(i); } });
+      if (audioEl) {
+        audioEl.addEventListener('timeupdate', renderProgress);
+        audioEl.addEventListener('loadedmetadata', renderProgress);
+        audioEl.addEventListener('ended', ()=>{ pause(); });
+      }
+      setCoverImage();
+      preloadImages();
+      loadAudio();
       }
 
     
