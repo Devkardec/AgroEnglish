@@ -1554,19 +1554,19 @@ function renderGrammar(data) {
             <div id="vidEN" style="font-size:28px;line-height:1.2;margin-top:10px;transition:opacity .4s, transform .4s; text-align:center"></div>
             <div id="vidPT" class="small" style="font-size:16px;color:#374151;margin-top:6px;transition:opacity .4s, transform .4s; text-align:center"></div>
             <audio id="vidAudio" preload="metadata" style="display:none"></audio>
-            <div class="yt-controls" style="margin-top:12px;background:#0f0f0f;color:#fff;border-radius:12px;padding:8px 10px;display:flex;align-items:center;gap:6px;flex-wrap:nowrap;overflow-x:auto">
-              <button id="ytPrev" title="Anterior" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:6px 8px">⏮</button>
-              <button id="ytPlay" title="Play/Pause" style="background:#0b3a1e;color:#fff;border:none;border-radius:999px;padding:8px 12px;font-weight:700">▶</button>
-              <button id="ytNext" title="Próximo" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:6px 8px">⏭</button>
-              <div style="display:flex;align-items:center;gap:6px;flex:1 0 220px;min-width:220px">
+            <div class="yt-controls" style="margin-top:12px;background:#0f0f0f;color:#fff;border-radius:12px;padding:8px 10px;display:flex;align-items:center;gap:4px;flex-wrap:nowrap">
+              <button id="ytPrev" title="Anterior" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px">⏮</button>
+              <button id="ytPlay" title="Play/Pause" style="background:#0b3a1e;color:#fff;border:none;border-radius:999px;padding:6px 8px;font-weight:700">▶</button>
+              <button id="ytNext" title="Próximo" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px">⏭</button>
+              <div style="display:flex;align-items:center;gap:4px;flex:1 0 160px;min-width:160px">
                 <input id="ytProgress" type="range" min="0" max="1000" value="0" style="flex:1;height:6px;border-radius:4px;background:linear-gradient(90deg,#16a34a 0%,#34d399 0%,#555 0%,#555 100%);appearance:none">
-                <div id="ytTime" class="small" style="min-width:40px;text-align:right">00:00</div>
+                <div id="ytTime" class="small" style="min-width:36px;text-align:right;color:#e5e7eb">00:00</div>
                 <div style="opacity:.7">/</div>
-                <div id="ytDuration" class="small" style="min-width:40px">00:00</div>
+                <div id="ytDuration" class="small" style="min-width:36px;color:#e5e7eb">00:00</div>
               </div>
-              <button id="ytMute" title="Mudo" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:6px 8px">🔊</button>
-              <input id="ytVolume" type="range" min="0" max="1" step="0.01" value="1" style="width:72px;flex:0 0 72px">
-              <select id="ytRate" title="Velocidade" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:6px 8px">
+              <button id="ytMute" title="Mudo" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px">🔊</button>
+              <input id="ytVolume" type="range" min="0" max="1" step="0.01" value="1" style="width:48px;flex:0 0 48px">
+              <select id="ytRate" title="Velocidade" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px;min-width:48px">
                 <option value="0.75">0.75x</option>
                 <option value="1" selected>1x</option>
                 <option value="1.25">1.25x</option>
