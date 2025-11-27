@@ -79,9 +79,20 @@ input[type="range"] { width:100%; }
 .player-seek::-webkit-slider-thumb { appearance:none; width:14px; height:14px; border-radius:50%; background:var(--green) }
 .player-time { min-width:120px; text-align:right }
 
+/* Player: ajustes para telas pequenas */
+@media (max-width:640px) {
+  .player-controls { gap:6px }
+  .player-btn { padding:8px }
+  .player-rate { padding:6px 8px }
+  .player-vol { width:100px; flex:1 1 100px; min-width:80px }
+  .player-track { flex-direction:column; align-items:stretch; gap:6px }
+  .player-time { min-width:0; text-align:left }
+  .player-seek { width:100% }
+}
+
 /* Destaque de verbo (ação) */
 .verb { font-weight:800 }
-.verb-base { color: var(--blue) }
+.verb-base { color: var(--green) }
 .verb-third { color: var(--green) }
 
 .hero { position:relative; padding:40px 24px; border-radius:20px; background:radial-gradient(circle at 50% 50%, #0f6a3a 0%, #0b3a1e 60%, #061c10 100%); color:#fff; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.12) }
