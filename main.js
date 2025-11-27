@@ -2770,6 +2770,27 @@ function renderGrammar(data) {
             }
           } catch {}
         }
+        if (String(level).toUpperCase()==='A1' && Number(idx)===2) {
+          const g = document.getElementById('grammar'); if (g) { g.innerHTML=''; g.style.display = 'none'; }
+          const v = document.getElementById('vocab'); if (v) { v.innerHTML=''; v.style.display = 'none'; }
+          const vt = document.getElementById('vocabTable'); if (vt) { vt.innerHTML=''; vt.style.display = 'none'; }
+          try {
+            const study = document.getElementById('tab-study');
+            if (study) {
+              const titles = Array.from(study.querySelectorAll('.section-title'));
+              titles.forEach(el=> {
+                const txt = String(el.textContent||'').trim();
+                const shouldRemove = /^(Guia de Estudo|Explicação e Estrutura|Estrutura \(Tradução\)|Vocabulário|Vocabulário \(Pronúncia\))$/i.test(txt);
+                if (shouldRemove) el.remove();
+              });
+              const cards = Array.from(study.querySelectorAll('.card'));
+              cards.forEach(el=> {
+                const t = String(el.textContent||'');
+                if (/Vocabulário|Pronúncia|Gramática rápida|Resumo/i.test(t)) el.remove();
+              });
+            }
+          } catch {}
+        }
       } catch {}
       try { const vEl = document.querySelector('#verbs'); if (vEl) vEl.remove(); } catch {}
       try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
