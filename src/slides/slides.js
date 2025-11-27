@@ -101,6 +101,13 @@
     );
   }
 
+  function SlideRich({ html, image }){
+    return e(Card, { title: null },
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain rounded-lg mb-2' }) : null,
+      e('div', { className:'text-sm text-gray-800', dangerouslySetInnerHTML: { __html: html } })
+    );
+  }
+
   function SlideRenderer({ slide, showTr }){
     const t = String(slide.type||'');
     if (t==='title') return e(SlideTitle, { image:slide.image });
@@ -110,12 +117,14 @@
     if (t==='card') return e(SlideCard, { title:slide.title, text:slide.text, image:slide.image });
     if (t==='vocab') return e(SlideVocab, { items:slide.items, image:slide.image });
     if (t==='summary') return e(SlideSummary, { text:slide.text, image:slide.image });
+    if (t==='rich') return e(SlideRich, { html:slide.html, image:slide.image });
     return e(Card, null, e('div', { className:'text-sm text-gray-600' }, 'Conteúdo')); 
   }
 
-  async function loadLessonData(){
-    const p1 = '/src/data/a1-1.json';
-    const p2 = './src/data/a1-1.json';
+  async function loadLessonData(idx){
+    const name = `a1-${idx}.json`;
+    const p1 = `/src/data/${name}`;
+    const p2 = `./src/data/${name}`;
     try { const r = await fetch(p1); if (r.ok) return r.json(); } catch {}
     const r2 = await fetch(p2); return r2.json();
   }
@@ -143,10 +152,10 @@
   }
 
   window.SlideLessonMount = async function(level, idx){
-    if (String(level).toUpperCase()!=='A1' || Number(idx)!==1) return;
+    if (String(level).toUpperCase()!=='A1' || (Number(idx)!==1 && Number(idx)!==2)) return;
     try {
       try { const ts = document.getElementById('tab-study'); if (ts) ts.style.display = 'block'; } catch {}
-      const data = await loadLessonData();
+      const data = await loadLessonData(idx);
       const slides = Array.isArray(data && data.slides) ? data.slides : [];
       mountSlides(slides);
     } catch {}
