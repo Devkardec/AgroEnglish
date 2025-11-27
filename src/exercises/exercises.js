@@ -220,8 +220,8 @@
     );
   }
 
-  function VisualAssociation12(){
-    const items = [
+  function VisualAssociation12({ items:provided=null }){
+    const items = provided || [
       { word:'farmer', pt:'fazendeiro' },
       { word:'barn', pt:'galpão' },
       { word:'cow', pt:'vaca' },
@@ -291,15 +291,23 @@
     );
   }
 
-  function ExercisePageLayout({ data }){
+  function ExercisePageLayout({ data, idx }){
     const ex = data.a1_exercises || {};
     const comp = Array.isArray(ex.complete) ? ex.complete : [];
-    const tfStatements = [
+    const tfStatements = (Number(idx)===2) ? [
+      { text:'The veterinarian has a medical kit.', correct:true },
+      { text:'The bull has a big injury on the leg.', correct:false },
+      { text:'We have safe and healthy animals now.', correct:true },
+    ] : [
       { text:'Paul is a farmer.', correct:true },
       { text:'The chickens are calm.', correct:false },
       { text:'The barn is open.', correct:true },
     ];
-    const amIsAre = [
+    const amIsAre = (Number(idx)===2) ? [
+      { prompt:'We ____ many cows.', answer:'have' },
+      { prompt:'She ____ a medical kit.', answer:'has' },
+      { prompt:'The bull ____ a strong body.', answer:'has' },
+    ] : [
       { prompt:'I ____ Paul.', answer:'am' },
       { prompt:'The barn ____ open.', answer:'is' },
       { prompt:'The cows ____ calm.', answer:'are' },
@@ -314,48 +322,70 @@
       { text:'The cows are calm.', correctIndex:2 },
     ];
     function makeVideoPairs(){
-      const imgs = Array.from({length:11}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.png`);
+      const isTx2 = Number(idx)===2;
+      const count = isTx2 ? 8 : 11;
+      const imgs = isTx2
+        ? Array.from({length:count}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.png`)
+        : Array.from({length:count}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.png`);
       const lines = Array.isArray(data && data.lines) ? data.lines.map(l=> String(l.en||'').trim()).filter(Boolean) : [];
       const nar = Array.isArray(data && data.a1_exercises && data.a1_exercises.narration_sentences) ? data.a1_exercises.narration_sentences.map(s=> String(s||'').trim()).filter(Boolean) : [];
-      const srcTexts = lines.length ? lines : nar;
+      const srcTexts = (lines.length ? lines : nar).slice(0,count);
       const out = [];
-      for (let i=0;i<11;i++) {
+      for (let i=0;i<count;i++) {
         out.push({ src: imgs[i], text: srcTexts[i] || '' });
       }
       return out;
     }
     const videoPairs = makeVideoPairs();
+    const assocItems = (Number(idx)===2)
+      ? [
+          { word:'veterinarian', pt:'veterinária(o)' },
+          { word:'bull', pt:'touro' },
+          { word:'medical kit', pt:'kit médico' },
+          { word:'injury', pt:'lesão' },
+          { word:'medicine', pt:'remédio' },
+          { word:'leg', pt:'perna' },
+        ]
+      : null;
+    const transformItems = (Number(idx)===2)
+      ? [
+          { base:'She has a medical kit.', target:'neg', answer: "She doesn't have a medical kit." },
+          { base:'The bull has a strong body.', target:'q', answer: 'Does the bull have a strong body?' },
+          { base:'We have safe and healthy animals now.', target:'neg', answer: "We don't have safe and healthy animals now." },
+        ]
+      : [
+          { base:'She is happy.', target:'neg', answer:'She is not happy.' },
+          { base:'The barn is open.', target:'q', answer:'Is the barn open?' }
+        ];
+    const orderSentence = (Number(idx)===2) ? 'We have safe and healthy animals now.' : 'The barn is open.';
     return e('div', { className:'w-full max-w-4xl mx-auto' },
       e('div', { className:'mb-4 flex items-center justify-between' },
-        e('h2', { className:'text-base font-bold text-green-700' }, 'Paul and the Farm · Exercícios (A1)'),
+        e('h2', { className:'text-base font-bold text-green-700' }, `${String(data.uiTitle||data.title||'A1 Texto')} · Exercícios (A1)`),
         e('div', { className:'text-xs text-gray-600' }, 'Nível A1 · Fácil')
       ),
       e('div', { className:'grid grid-cols-1 gap-4' },
         e(ExerciseCard, { title:'Vocabulário com imagens', instruction:'Veja e associe (jogo de memória)' }, e(VocabularyMemoryGame, { pairs: videoPairs })),
         
-        e(ExerciseCard, { title:'Transformar frases', instruction:'Digite a versão pedida' },
-          e(TransformSentences, { items:[
-            { base:'She is happy.', target:'neg', answer:'She is not happy.' },
-            { base:'The barn is open.', target:'q', answer:'Is the barn open?' }
-          ] })
-        ),
-        e(ExerciseCard, { title:'Completar com Am / Is / Are', instruction:'Preencha corretamente' }, e(InputFillBlank, { items:amIsAre })),
+        e(ExerciseCard, { title:'Transformar frases', instruction:'Digite a versão pedida' }, e(TransformSentences, { items: transformItems })),
+        e(ExerciseCard, { title:(Number(idx)===2?'Completar com HAVE / HAS':'Completar com Am / Is / Are'), instruction:'Preencha corretamente' }, e(InputFillBlank, { items:amIsAre })),
         e(ExerciseCard, { title:'Verdadeiro ou Falso', instruction:'Marque V/F' }, e(TrueFalseCard, { statements: tfStatements })),
         e(ExerciseCard, { title:'Ordenar palavras', instruction:'Monte a frase correta' },
           e('div', null,
-            e('div', { className:'text-sm text-gray-800 mb-2' }, 'The barn is open.'),
-            e(OrderWords, { sentence:'The barn is open.' })
+            e('div', { className:'text-sm text-gray-800 mb-2' }, orderSentence),
+            e(OrderWords, { sentence: orderSentence })
           )
         ),
-        e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' }, e(DictationExercise, { sentences: videoPairs.map(p=>p.text).filter(Boolean).slice(0,3), segUrls: ['/src/audio/A1/texto-a1.1-dividido/seg1.mp3','/src/audio/A1/texto-a1.1-dividido/seg2.mp3','/src/audio/A1/texto-a1.1-dividido/seg3.mp3'] })),
-        e(ExerciseCard, { title:'Associação visual', instruction:'Associe botões de cima e de baixo' }, e(VisualAssociation12, {})),
+        e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' }, e(DictationExercise, { sentences: videoPairs.map(p=>p.text).filter(Boolean).slice(0,3), segUrls: (Number(idx)===2 ? ['/src/audio/A1/texto-a1.2-dividido/1.1.mp3','/src/audio/A1/texto-a1.2-dividido/2.2.mp3','/src/audio/A1/texto-a1.2-dividido/3.3.mp3'] : ['/src/audio/A1/texto-a1.1-dividido/seg1.mp3','/src/audio/A1/texto-a1.1-dividido/seg2.mp3','/src/audio/A1/texto-a1.1-dividido/seg3.mp3']) })),
+        e(ExerciseCard, { title:'Associação visual', instruction:'Associe botões de cima e de baixo' }, e(VisualAssociation12, { items: assocItems })),
         e(ExerciseCard, { title:'Finalizar', instruction:'Bom trabalho!' }, e('div', { className:'text-sm text-gray-800' }, 'Great job!'))
       )
     );
   }
 
   window.ExercisePageMount = function(level, idx, data){
-    if (String(level).toUpperCase()!=='A1' || Number(idx)!==1) return;
+    if (String(level).toUpperCase()!=='A1' || (Number(idx)!==1 && Number(idx)!==2)) return;
+    const practiceTab = document.getElementById('tab-practice');
+    if (!practiceTab || practiceTab.style.display==='none') return;
     const rootEl = document.getElementById('exercisePageRoot');
     if (!rootEl) return;
     try {
@@ -364,7 +394,7 @@
         if (el) { el.innerHTML=''; el.style.display='none'; }
       });
     } catch {}
-    const tree = e(ExercisePageLayout, { data });
+    const tree = e(ExercisePageLayout, { data, idx });
     if (ReactDOM.createRoot) ReactDOM.createRoot(rootEl).render(tree); else ReactDOM.render(tree, rootEl);
   };
 })();

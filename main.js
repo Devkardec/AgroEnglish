@@ -2832,6 +2832,21 @@ function renderGrammar(data) {
               <div style="margin-top:6px">3. The cows ___ calm.</div>
             </div>
             ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===2 ? `
+            <div class="section-title" style="margin-top:12px">True or False (3 itens)</div>
+            <div class="card">
+              <div>1. The veterinarian has a medical kit. <span class="small" id="tf21"></span></div>
+              <div style="margin-top:6px">2. The bull has a big injury on the leg. <span class="small" id="tf22"></span></div>
+              <div style="margin-top:6px">3. We have safe and healthy animals now. <span class="small" id="tf23"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="checkTF2">Checar</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Complete com HAVE / HAS</div>
+            <div class="card">
+              <div>1. We ___ many cows.</div>
+              <div style="margin-top:6px">2. She ___ a medical kit.</div>
+              <div style="margin-top:6px">3. The bull ___ a strong body.</div>
+            </div>
+            ` : ''}
             ${String(level).toUpperCase()==='C1' && Number((location.hash.split('/')[3]||'1'))===1 ? `
             <div class="section-title" style="margin-top:12px">Transforme Ativa → Passiva Impessoal (3 itens)</div>
             <div class="card">
@@ -3647,6 +3662,12 @@ function renderGrammar(data) {
             const r1 = document.getElementById('tf1'); if (r1) { r1.textContent = 'Verdadeiro'; r1.style.color='green'; }
             const r2 = document.getElementById('tf2'); if (r2) { r2.textContent = 'Falso'; r2.style.color='red'; }
             const r3 = document.getElementById('tf3'); if (r3) { r3.textContent = 'Verdadeiro'; r3.style.color='green'; }
+          });
+          const tfBtn2 = document.getElementById('checkTF2');
+          if (tfBtn2) tfBtn2.addEventListener('click', ()=>{
+            const r1 = document.getElementById('tf21'); if (r1) { r1.textContent = 'Verdadeiro'; r1.style.color='green'; }
+            const r2 = document.getElementById('tf22'); if (r2) { r2.textContent = 'Falso'; r2.style.color='red'; }
+            const r3 = document.getElementById('tf23'); if (r3) { r3.textContent = 'Verdadeiro'; r3.style.color='green'; }
           });
           const mcBtn = document.getElementById('checkMC');
           if (mcBtn) mcBtn.addEventListener('click', ()=>{
