@@ -1554,19 +1554,23 @@ function renderGrammar(data) {
             <div id="vidEN" style="font-size:28px;line-height:1.2;margin-top:10px;transition:opacity .4s, transform .4s; text-align:center"></div>
             <div id="vidPT" class="small" style="font-size:16px;color:#374151;margin-top:6px;transition:opacity .4s, transform .4s; text-align:center"></div>
             <audio id="vidAudio" preload="metadata" style="display:none"></audio>
-            <div class="yt-controls" style="margin-top:12px;background:#0f0f0f;color:#fff;border-radius:12px;padding:8px 10px;display:flex;align-items:center;gap:4px;flex-wrap:nowrap">
+            <div class="yt-controls" style="margin-top:12px;background:#0f0f0f;color:#fff;border-radius:12px;padding:6px 8px;display:flex;align-items:center;gap:3px;flex-wrap:nowrap">
               <button id="ytPrev" title="Anterior" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px">⏮</button>
               <button id="ytPlay" title="Play/Pause" style="background:#0b3a1e;color:#fff;border:none;border-radius:999px;padding:6px 8px;font-weight:700">▶</button>
               <button id="ytNext" title="Próximo" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px">⏭</button>
-              <div style="display:flex;align-items:center;gap:4px;flex:1 0 160px;min-width:160px">
-                <input id="ytProgress" type="range" min="0" max="1000" value="0" style="flex:1;height:6px;border-radius:4px;background:linear-gradient(90deg,#16a34a 0%,#34d399 0%,#555 0%,#555 100%);appearance:none">
-                <div id="ytTime" class="small" style="min-width:36px;text-align:right;color:#e5e7eb">00:00</div>
-                <div style="opacity:.7">/</div>
-                <div id="ytDuration" class="small" style="min-width:36px;color:#e5e7eb">00:00</div>
+              <div style="display:flex;align-items:center;gap:4px;flex:0 0 auto">
+                <input id="ytProgress" type="range" min="0" max="1000" value="0" style="width:70px;flex:0 0 70px;height:5px;border-radius:4px;background:linear-gradient(90deg,#16a34a 0%,#34d399 0%,#555 0%,#555 100%);appearance:none">
+                <div id="ytTime" class="small" style="min-width:36px;text-align:right;color:#e5e7eb;white-space:nowrap">00:00</div>
+                <div style="opacity:.7;min-width:6px">/</div>
+                <div id="ytDuration" class="small" style="min-width:36px;color:#e5e7eb;white-space:nowrap">00:00</div>
               </div>
-              <button id="ytMute" title="Mudo" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px">🔊</button>
-              <input id="ytVolume" type="range" min="0" max="1" step="0.01" value="1" style="width:48px;flex:0 0 48px">
-              <select id="ytRate" title="Velocidade" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px;min-width:48px">
+              <div style="position:relative;display:flex;align-items:center">
+                <button id="ytVolIcon" title="Volume" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px">🔊</button>
+                <div id="ytVolPopup" style="position:absolute;bottom:100%;right:0;background:#1f2937;color:#fff;border-radius:8px;padding:6px;display:none;box-shadow:0 8px 20px rgba(0,0,0,.3)">
+                  <input id="ytVolume" type="range" min="0" max="1" step="0.01" value="1" style="width:120px">
+                </div>
+              </div>
+              <select id="ytRate" title="Velocidade" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px;min-width:56px;font-weight:700">
                 <option value="0.75">0.75x</option>
                 <option value="1" selected>1x</option>
                 <option value="1.25">1.25x</option>
@@ -1830,15 +1834,17 @@ function renderGrammar(data) {
       const btnNext = document.getElementById('ytNext');
       const btnPrev = document.getElementById('ytPrev');
       const rateSel = document.getElementById('ytRate');
-      const muteBtn = document.getElementById('ytMute');
+      const volIcon = document.getElementById('ytVolIcon');
+      const volPopup = document.getElementById('ytVolPopup');
       const volSl = document.getElementById('ytVolume');
       const prog = document.getElementById('ytProgress');
       if (btnPlay) btnPlay.addEventListener('click', ()=>{ if (playing) pause(); else play(); });
       if (btnNext) btnNext.addEventListener('click', next);
       if (btnPrev) btnPrev.addEventListener('click', prev);
       if (rateSel) rateSel.addEventListener('change', ()=>{ if (audioEl) audioEl.playbackRate = Number(rateSel.value||1) });
-      if (muteBtn) muteBtn.addEventListener('click', ()=>{ if (!audioEl) return; audioEl.muted = !audioEl.muted; muteBtn.textContent = audioEl.muted ? '🔇' : '🔊'; });
-      if (volSl) volSl.addEventListener('input', ()=>{ if (audioEl) { audioEl.volume = Number(volSl.value||1); if (muteBtn) muteBtn.textContent = (audioEl.volume===0)?'🔇':'🔊'; } });
+      if (volIcon && volPopup) volIcon.addEventListener('click', ()=>{ const show = (volPopup.style.display!=='block'); volPopup.style.display = show ? 'block' : 'none'; });
+      if (volSl) volSl.addEventListener('input', ()=>{ if (audioEl) { audioEl.volume = Number(volSl.value||1); audioEl.muted = (audioEl.volume===0); if (volIcon) volIcon.textContent = (audioEl.volume===0)?'🔇':'🔊'; } });
+      document.addEventListener('click', (e)=>{ try { const t = e.target; if (volPopup && volIcon && !volPopup.contains(t) && !volIcon.contains(t)) volPopup.style.display='none'; } catch {} });
       if (prog) prog.addEventListener('input', ()=>{ if (!audioEl) return; const dur = Number(audioEl.duration||0); const p = Number(prog.value||0)/1000; audioEl.currentTime = p * dur; renderProgress(); if (segLen) { const k = Math.floor(audioEl.currentTime/segLen); i = Math.min(en.length-1, Math.max(0,k)); show(i); } });
       if (audioEl) {
         audioEl.addEventListener('timeupdate', renderProgress);
