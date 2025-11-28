@@ -6,7 +6,7 @@
     const { slides, index, onPrev, onNext, showTr } = props;
     const cur = slides[index] || {};
     return e('div', { className: 'w-full max-w-3xl mx-auto' },
-      e(SlideRenderer, { slide: cur, showTr }),
+      e(SlideRenderer, { slide: cur, showTr, index }),
       e('div', { className: 'flex items-center justify-between mt-3' },
         e('div', { className: 'text-sm text-gray-600' }, `Slide ${index+1}/${slides.length}`),
         e('div', { className: 'flex gap-2' },
@@ -108,16 +108,19 @@
     );
   }
 
-  function SlideRenderer({ slide, showTr }){
+  function SlideRenderer({ slide, showTr, index }){
     const t = String(slide.type||'');
-    if (t==='title') return e(SlideTitle, { image:slide.image });
-    if (t==='explain') return e(SlideExplain, { text:slide.text, pt:slide.pt, image:slide.image, showTr });
-    if (t==='usage') return e(SlideUsage, { text:slide.text, pt:slide.pt, image:slide.image, showTr });
-    if (t==='structure') return e(SlideStructure, { text:slide.text, pt:slide.pt, image:slide.image, showTr });
-    if (t==='card') return e(SlideCard, { title:slide.title, text:slide.text, image:slide.image });
-    if (t==='vocab') return e(SlideVocab, { items:slide.items, image:slide.image });
-    if (t==='summary') return e(SlideSummary, { text:slide.text, image:slide.image });
-    if (t==='rich') return e(SlideRich, { html:slide.html, image:slide.image });
+    const idx = Number(index||0);
+    const defaultImgs = Array.isArray(window.__A1_3_IMAGES) ? window.__A1_3_IMAGES : null;
+    const image = slide.image || (defaultImgs ? defaultImgs[idx] : undefined);
+    if (t==='title') return e(SlideTitle, { image });
+    if (t==='explain') return e(SlideExplain, { text:slide.text, pt:slide.pt, image, showTr });
+    if (t==='usage') return e(SlideUsage, { text:slide.text, pt:slide.pt, image, showTr });
+    if (t==='structure') return e(SlideStructure, { text:slide.text, pt:slide.pt, image, showTr });
+    if (t==='card') return e(SlideCard, { title:slide.title, text:slide.text, image });
+    if (t==='vocab') return e(SlideVocab, { items:slide.items, image });
+    if (t==='summary') return e(SlideSummary, { text:slide.text, image });
+    if (t==='rich') return e(SlideRich, { html:slide.html, image });
     return e(Card, null, e('div', { className:'text-sm text-gray-600' }, 'Conteúdo')); 
   }
 
@@ -157,6 +160,11 @@
       try { const ts = document.getElementById('tab-study'); if (ts) ts.style.display = 'block'; } catch {}
       const data = await loadLessonData(idx);
       const slides = Array.isArray(data && data.slides) ? data.slides : [];
+      if (String(level).toUpperCase()==='A1' && Number(idx)===3) {
+        window.__A1_3_IMAGES = slides.map((_,i)=> `/public/images/a1texto3/slidetx3/${i+1}.3.png`);
+      } else {
+        window.__A1_3_IMAGES = null;
+      }
       mountSlides(slides);
     } catch {}
   };
