@@ -4331,9 +4331,18 @@ function renderGrammar(data) {
       if (pronList) {
         const maxCount = 11;
         const shown = sentences.slice(0, Math.min(sentences.length || 0, maxCount));
-        const useImages = (String(level).toUpperCase()==='A1' && Number(idx)===1);
-        const imgs = useImages ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.png`) : [];
-        const segUrls = (String(level).toUpperCase()==='A1' && Number(idx)===1) ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`) : [];
+        const isA1 = String(level).toUpperCase()==='A1';
+        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2);
+        const imgs = useImages ? (
+          Number(idx)===1
+            ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.png`)
+            : Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.png`)
+        ) : [];
+        const segUrls = isA1 && Number(idx)===1
+          ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`)
+          : (isA1 && Number(idx)===2
+              ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`)
+              : []);
         pronList.innerHTML = shown.map((s,i)=>`
           <div class="pron-card">
             ${useImages ? `<img src="${imgs[i]}" alt="" class="w-36 h-36 sm:w-40 sm:h-40 object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
