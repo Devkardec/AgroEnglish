@@ -1,7 +1,7 @@
 {
-    "title":  "As ferramentas do galpão",
-    "text":  "I walk into the shed. I see simple tools. I see a hammer, a bucket, and a rope. I clean the tools. I carry the bucket. I fix a small gate. I tie the rope to a post. I work slowly and safely. I put the tools in a box. I close the shed and smile. The tools help me every day. I use them with care. I keep the shed neat and ready.",
-    "translation":  "Eu entro no galpão. Eu vejo ferramentas simples. Eu vejo um martelo, um balde e uma corda. Eu limpo as ferramentas. Eu carrego o balde. Eu conserto um portão pequeno. Eu amarro a corda em um poste. Eu trabalho devagar e com segurança. Eu coloco as ferramentas em uma caixa. Eu fecho o galpão e sorrio. As ferramentas me ajudam todos os dias. Eu as uso com cuidado. Eu mantenho o galpão organizado e pronto.",
+    "title":  "Daily Feeding Routine (Actions & Habits)",
+    "text":  "I wake up early. We start work at 6:00 AM. The cows walk to the pasture. I check the water tanks. The small calf drinks milk. The farm worker feeds the pigs. We clean the feeding area. We take a short break. We prepare the next tasks. The farm is ready for the day.",
+    "translation":  "Eu acordo cedo. Nós começamos o trabalho às 6:00. As vacas caminham para o pasto. Eu confiro os bebedouros. O bezerro pequeno bebe leite. O trabalhador rural alimenta os porcos. Nós limpamos a área de alimentação. Nós fazemos uma pequena pausa. Nós preparamos as próximas tarefas. A fazenda fica pronta para o dia.",
     "vocabulary":  [
                        { "word": "shed", "meaning": "galpão" },
                        { "word": "tool", "meaning": "ferramenta" },
@@ -9,8 +9,8 @@
                        { "word": "bucket", "meaning": "balde" },
                        { "word": "rope", "meaning": "corda" }
                    ],
-    "grammar":  "Present simple with farm routines.",
-    "verbs":  "Verbs used: see, clean, carry, fix, tie, put, close, use, keep, walk.",
-    "exercises":  { "multiple_choice": [], "fill_in": [], "speaking": "Repeat: Tools in the shed" }
+    "grammar":  "Present Simple for daily actions and habits.",
+    "verbs":  "Verbs used: wake up, start, walk, check, drink, feed, clean, take, prepare.",
+    "exercises":  { "multiple_choice": [], "fill_in": [], "speaking": "Repeat: Daily feeding routine" }
 }
 }

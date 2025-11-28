@@ -1470,37 +1470,7 @@ function renderGrammar(data) {
           <li><strong>Negativa:</strong> The bull <span style=\"color:#dc2626;font-weight:bold;\">doesn't</span> <span style=\"color:#1e40af;font-weight:bold;\">have</span>...</li>
         </ul>
       </div></div>
-    ` : (isA1PSMode ? `
-      <div class=\"section-title\" style=\"margin-top:12px\">Explicação e Estrutura</div>
-      <div class=\"card\"><div class=\"small\">
-        <h3>1. Rotina e Ações (Present Simple)</h3>
-        <p>Nesta aula, saímos do \"Ser/Estar\" e \"Ter\" para falar de <strong>AÇÃO</strong>.</p>
-        <p>Usamos o <em>Present Simple</em> para descrever o que acontece todo dia na fazenda:</p>
-        <ul>
-          <li><em>We <strong>start</strong> work</em> (Nós começamos).</li>
-          <li><em>They <strong>eat</strong> grass</em> (Eles comem).</li>
-        </ul>
-        <h3>2. A Regra de Ouro (O \"S\" da 3ª Pessoa)</h3>
-        <p>Quando quem faz a ação é uma pessoa só (Ele, Ela ou Isso/Animal), o verbo ganha um <strong>S</strong> no final.</p>
-        <ul>
-          <li><strong>Eu/Nós/Eles:</strong> Verbo normal. Ex.: <em>The cows <strong>walk</strong></em>.</li>
-          <li><strong>Ele/Ela/O Bezerro:</strong> Verbo + S. Ex.: <em>The calf <strong>walks</strong></em>.</li>
-        </ul>
-        <blockquote class=\"small\"><strong>Atenção:</strong> Isso não é plural! É apenas a conjugação correta para <em>He/She/It</em>.</blockquote>
-        <h3>3. O Mistério do \"S\" que some</h3>
-        <p>Nas perguntas e negativas, usamos os auxiliares <span style=\"color:#1e40af;font-weight:bold;\">DO</span> e <span style=\"color:#1e40af;font-weight:bold;\">DOES</span>.</p>
-        <ul>
-          <li>Para <strong>I/We/They</strong> → <span style=\"color:#1e40af;font-weight:bold;\">DO</span> / <span style=\"color:#dc2626;font-weight:bold;\">DON'T</span>.</li>
-          <li>Para <strong>He/She/It</strong> → <span style=\"color:#1e40af;font-weight:bold;\">DOES</span> / <span style=\"color:#dc2626;font-weight:bold;\">DOESN'T</span>.</li>
-        </ul>
-        <p><strong>Importante:</strong> Quando usamos <span style=\"color:#1e40af;font-weight:bold;\">Does</span> ou <span style=\"color:#dc2626;font-weight:bold;\">Doesn't</span>, o verbo principal perde o \"S\" e volta ao normal.</p>
-        <ul>
-          <li>Ex.: <em><span style=\"color:#1e40af;font-weight:bold;\">Does</span> the calf drink milk?</em> (O \"S\" está em <em>Does</em>, não em <em>drink</em>).</li>
-        </ul>
-        <blockquote style=\"background-color:#fef9c3;border:1px solid #f59e0b;border-radius:6px;padding:8px\"><strong>Dica:</strong> Afirmativa de 3ª pessoa: verbo + <strong>S</strong> → <em>The calf drink<strong>s</strong></em>. Em pergunta/negativa, o <strong>S</strong> vai para <span style=\"color:#1e40af;font-weight:bold;\">Does</span>/<span style=\"color:#dc2626;font-weight:bold;\">Doesn't</span> → <em><span style=\"color:#1e40af;font-weight:bold;\">Does</span> the calf drink?</em>.</blockquote>
-        </ul>
-      </div></div>
-    ` : ''));
+    ` : (isA1PSMode ? '' : ''));
     el.innerHTML = `
       <div>${explainForBeginners(gHead)}</div>
       ${expEstruturaHtml}
@@ -1545,7 +1515,7 @@ function renderGrammar(data) {
     `;
 
     const gv = document.getElementById('grammarVideo');
-    if (gv && (isA1BeMode || isA1HaveMode)) {
+    if (gv && (isA1BeMode || isA1HaveMode || isA1PSMode)) {
       try { gv.style.display = 'block' } catch {}
       const scene = `
         <div class="card" style="padding:0">
@@ -1639,9 +1609,20 @@ function renderGrammar(data) {
         'chickens running',
         'sun wind farm',
         'farm workers morning'
-      ] : (
+      ] : (isA1PSMode ? (
+        (en || []).map((s,i)=>{
+          const t = String(s||'');
+          if (i===0) return 'farm cover';
+          if (/start\s+work/i.test(t)) return 'farm workers morning';
+          if (/walk\s+to\s+the\s+pasture/i.test(t)) return 'cows pasture';
+          if (/check\s+the\s+water\s+tanks?/i.test(t)) return 'water tanks farm';
+          if (/calf.*drinks\s+milk/i.test(t)) return 'calf drinks milk';
+          if (/feeds?\s+the\s+pigs?/i.test(t)) return 'feeding pigs farm';
+          return 'farm routine';
+        })
+      ) : (
         (en || []).map((s,i)=> i===0 ? 'farm' : (/vet|veterinarian/i.test(s) ? 'veterinarian cattle' : (/cow|cattle|calf/i.test(s) ? 'cattle farm' : (/barn/i.test(s) ? 'barn' : 'farm'))))
-      );
+      ));
       const tips = isA1BeMode ? [
         'Cumprimento simples com pausa para repetição.',
         'Identidade: I am + profissão.',
@@ -1654,18 +1635,24 @@ function renderGrammar(data) {
         'Humor: They are + funny.',
         'Clima: The sun is; wind is not + adjetivo.',
         'Preparação: We are + pronto.'
+      ] : (isA1PSMode ? [
+        'Horário: We start work at 6:00 AM.',
+        'Rotina: The cows walk to the pasture.',
+        'Checagem: I check the water tanks.',
+        'Bezerro: The small calf drinks milk.',
+        'Alimentação: The farm worker feeds the pigs.',
+        'Regra do S: He/She/It → verbo + s/es.',
+        'Negativa: don\'t/doesn\'t + verbo base.',
+        'Pergunta: Do/Does + sujeito + verbo base.'
       ] : [
         'To Have no presente: I/We have; She/He/It has.',
         'Posse: We have cows. Característica: The bull has a strong body.',
         'Regra do S: He/She/It → has. I/We/They → have.',
         'Pergunta: Does + sujeito + have...? (o verbo volta para have).',
-        "Negativa: sujeito + doesn't + have...",
+        "Negativa: sujeito + doesn\'t + have...",
         'Exemplo: The bull (He) has a small injury on the leg.',
-        'Identificar sujeito → escolher have/has → dizer o complemento.',
-        'Profissional: This is the veterinarian. She has a medical kit.',
-        'Ação de cuidado: Dr. Silva has the medicine.',
-        'Resultado: We have safe and healthy animals now.'
-      ];
+        'Identificar sujeito → escolher have/has → dizer o complemento.'
+      ]);
       let i = 0;
       let playing = false;
       const enEl = document.getElementById('vidEN');
@@ -1696,8 +1683,10 @@ function renderGrammar(data) {
         const bases = imageBases();
         const exts = ['.png','.jpg','.jpeg','.webp'];
         const { level, index } = parseRoute();
-        const useDecimal = String(level).toUpperCase()==='A1' && Number(index)===2;
-        const names = useDecimal ? ['0.0','0'] : ['0'];
+        const isA1 = String(level).toUpperCase()==='A1';
+        const idxNum = Number(index);
+        const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : null;
+        const names = coverDecimal ? [coverDecimal,'0'] : ['0'];
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?farm")`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; return; }
@@ -1761,12 +1750,15 @@ function renderGrammar(data) {
         const bases = imageBases();
         const exts = ['.jpg','.jpeg','.png','.webp'];
         const { level, index } = parseRoute();
-        const useDecimal = String(level).toUpperCase()==='A1' && Number(index)===2;
+        const isA1 = String(level).toUpperCase()==='A1';
+        const idxNum = Number(index);
         for (let k=0;k<en.length;k++){
           let done = false;
           for (let bi=0; bi<bases.length && !done; bi++){
             for (let ei=0; ei<exts.length && !done; ei++){
-              const name = useDecimal ? `${k+1}.${k+1}` : String(k+1);
+              let name = String(k+1);
+              if (isA1 && idxNum===2) name = `${k+1}.${k+1}`;
+              else if (isA1 && idxNum===3) name = `${k+1}.3`;
               const url = bases[bi] + name + exts[ei];
               const im = new Image();
               im.onload = ()=>{ if (!preloaded[k]) preloaded[k] = url; };
@@ -1782,12 +1774,15 @@ function renderGrammar(data) {
         const bases = imageBases();
         const exts = ['.jpg','.jpeg','.png','.webp'];
         const { level, index } = parseRoute();
-        const useDecimal = String(level).toUpperCase()==='A1' && Number(index)===2;
+        const isA1 = String(level).toUpperCase()==='A1';
+        const idxNum = Number(index);
         let bi = 0, ei = 0;
         function tryNext(){
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?${encodeURIComponent(q)}")`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
           if (ei < exts.length){
-            const name = useDecimal ? `${k+1}.${k+1}` : String(k+1);
+            let name = String(k+1);
+            if (isA1 && idxNum===2) name = `${k+1}.${k+1}`;
+            else if (isA1 && idxNum===3) name = `${k+1}.3`;
             const url = bases[bi] + name + exts[ei++];
             const probe = new Image();
             probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.backgroundSize='contain'; imgEl.style.backgroundPosition='top center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; };
@@ -2086,18 +2081,20 @@ function renderGrammar(data) {
     (async () => {
       const wrap = document.getElementById('grammarVideo');
       const vid = document.getElementById('lessonVideo');
-      if (String(level) === 'A1' && Number(idx) === 1) {
-        if (vid && wrap) {
-          const url = encodeURI('./public/video/Base do Inglês/Base do Inglês.mp4');
-          vid.src = url;
-          vid.style.display = 'block';
-          wrap.style.display = 'block';
-          vid.addEventListener('error', ()=>{
-            wrap.innerHTML = '<div class="small">Vídeo não encontrado. Caminho esperado: <code>public/video/Base do Inglês/Base do Inglês.mp4</code>.</div>';
-            vid.style.display = 'none';
-          }, { once:true });
-        }
-      } else if (wrap) { wrap.style.display = 'none'; }
+      const isA1Now = String(level) === 'A1';
+      const idxNum = Number(idx);
+      const showGV = isA1Now && (idxNum===1 || idxNum===2 || idxNum===3);
+      if (wrap) { try { wrap.style.display = showGV ? 'block' : 'none'; } catch {} }
+      if (isA1Now && idxNum === 1 && vid && wrap) {
+        const url = encodeURI('./public/video/Base do Inglês/Base do Inglês.mp4');
+        vid.src = url;
+        vid.style.display = 'block';
+        wrap.style.display = 'block';
+        vid.addEventListener('error', ()=>{
+          wrap.innerHTML = '<div class="small">Vídeo não encontrado. Caminho esperado: <code>public/video/Base do Inglês/Base do Inglês.mp4</code>.</div>';
+          vid.style.display = 'none';
+        }, { once:true });
+      }
     })();
   }
 
@@ -2791,6 +2788,39 @@ function renderGrammar(data) {
             }
           } catch {}
         }
+        if (String(level).toUpperCase()==='A1' && Number(idx)===3) {
+          // Padroniza a aba de estudo do texto 3 para seguir mesma configuração do texto 1 e 2
+          try {
+            const g = document.getElementById('grammar'); if (g) { g.innerHTML=''; g.style.display = 'none'; }
+            const v = document.getElementById('vocab'); if (v) { v.innerHTML=''; v.style.display = 'none'; }
+            const vt = document.getElementById('vocabTable'); if (vt) { vt.innerHTML=''; vt.style.display = 'none'; }
+          } catch {}
+          try {
+            const study = document.getElementById('tab-study');
+            if (study) {
+              const skipIds = new Set(['slideLessonRoot','grammarVideo']);
+              const titles = Array.from(study.querySelectorAll('.section-title'));
+              titles.forEach(el=>{
+                const txt = String(el.textContent||'').trim();
+                const shouldRemove = /^(Guia de Estudo|Explicação e Estrutura|Estrutura \(Tradução\)|Vocabulário|Vocabulário \(Pronúncia\))$/i.test(txt);
+                if (shouldRemove) {
+                  const next = el.nextElementSibling;
+                  if (next && next.id && skipIds.has(next.id)) {
+                    // não remover vídeo/cenas nem container de slides
+                  } else if (next && next.classList && next.classList.contains('card')) {
+                    next.remove();
+                  }
+                  el.remove();
+                }
+              });
+              const cards = Array.from(study.querySelectorAll('.card'));
+              cards.forEach(el=>{
+                const t = String(el.textContent||'');
+                if (/Vocabulário|Pronúncia|Gramática rápida|Resumo/i.test(t)) el.remove();
+              });
+            }
+          } catch {}
+        }
       } catch {}
       try { const vEl = document.querySelector('#verbs'); if (vEl) vEl.remove(); } catch {}
       try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
@@ -2845,6 +2875,21 @@ function renderGrammar(data) {
               <div>1. We ___ many cows.</div>
               <div style="margin-top:6px">2. She ___ a medical kit.</div>
               <div style="margin-top:6px">3. The bull ___ a strong body.</div>
+            </div>
+            ` : ''}
+            ${String(level).toUpperCase()==='A1' && Number((location.hash.split('/')[3]||'1'))===3 ? `
+            <div class="section-title" style="margin-top:12px">True or False (3 itens)</div>
+            <div class="card">
+              <div>1. We start work at 6:00 AM. <span class="small" id="tf31"></span></div>
+              <div style="margin-top:6px">2. The cows walk to the barn. <span class="small" id="tf32"></span></div>
+              <div style="margin-top:6px">3. The farm worker feeds the pigs. <span class="small" id="tf33"></span></div>
+              <div style="margin-top:8px"><button class="btn" id="checkTF3">Checar</button></div>
+            </div>
+            <div class="section-title" style="margin-top:12px">Complete com DO / DOES</div>
+            <div class="card">
+              <div>1. ___ the cows walk to the pasture?</div>
+              <div style="margin-top:6px">2. The calf ___ drink milk.</div>
+              <div style="margin-top:6px">3. ___ we clean the feeding area?</div>
             </div>
             ` : ''}
             ${String(level).toUpperCase()==='C1' && Number((location.hash.split('/')[3]||'1'))===1 ? `
@@ -3668,6 +3713,12 @@ function renderGrammar(data) {
             const r1 = document.getElementById('tf21'); if (r1) { r1.textContent = 'Verdadeiro'; r1.style.color='green'; }
             const r2 = document.getElementById('tf22'); if (r2) { r2.textContent = 'Falso'; r2.style.color='red'; }
             const r3 = document.getElementById('tf23'); if (r3) { r3.textContent = 'Verdadeiro'; r3.style.color='green'; }
+          });
+          const tfBtn3 = document.getElementById('checkTF3');
+          if (tfBtn3) tfBtn3.addEventListener('click', ()=>{
+            const r1 = document.getElementById('tf31'); if (r1) { r1.textContent = 'Verdadeiro'; r1.style.color='green'; }
+            const r2 = document.getElementById('tf32'); if (r2) { r2.textContent = 'Falso'; r2.style.color='red'; }
+            const r3 = document.getElementById('tf33'); if (r3) { r3.textContent = 'Verdadeiro'; r3.style.color='green'; }
           });
           const mcBtn = document.getElementById('checkMC');
           if (mcBtn) mcBtn.addEventListener('click', ()=>{
