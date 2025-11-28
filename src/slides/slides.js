@@ -26,7 +26,7 @@
 
   function SlideTitle({ image }){
     return e(Card, { title: null },
-      image ? e('img', { src: image, alt: '', className:'w-full h-auto object-contain rounded-lg' }) : null
+      image ? e('img', { src: image, alt: '', className:'w-full h-auto object-contain rounded-lg', 'data-slide-image':'true' }) : null
     );
   }
 
@@ -34,7 +34,7 @@
     const lines = Array.isArray(text)? text : [String(text||'')];
     const tr = Array.isArray(pt)? pt : [];
     return e(Card, { title: 'Explicação simples' },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', 'data-slide-image':'true' }) : null,
       e('ul', { className: 'list-disc list-inside text-sm text-gray-800' },
         lines.map((t,i)=> e('li', { key:i }, t))
       ),
@@ -46,7 +46,7 @@
     const lines = Array.isArray(text)? text : [String(text||'')];
     const tr = Array.isArray(pt)? pt : [];
     return e(Card, { title:'Exemplos' },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', 'data-slide-image':'true' }) : null,
       e('ul', { className:'space-y-1' },
         lines.map((t,i)=> e('li', { key:i, className:'text-sm text-gray-800' },
           e('div', { className:'flex items-center gap-2' }, e('span', { className:'inline-block w-2 h-2 rounded-full bg-green-600' }), t),
@@ -60,7 +60,7 @@
     const lines = Array.isArray(text)? text : [String(text||'')];
     const tr = Array.isArray(pt)? pt : [];
     return e(Card, { title:'Estrutura rápida' },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', 'data-slide-image':'true' }) : null,
       e('div', { className:'text-sm text-gray-800 space-y-1' },
         lines.map((t,i)=> e('div', { key:i }, t))
       ),
@@ -70,7 +70,7 @@
 
   function SlideCard({ title, text, image }){
     return e(Card, { title },
-      image ? e('img', { src:image, alt:title||'', className:'w-full h-36 object-cover rounded-lg mb-2' }) : null,
+      image ? e('img', { src:image, alt:title||'', className:'w-full h-36 object-cover rounded-lg mb-2', 'data-slide-image':'true' }) : null,
       e('div', { className:'text-sm text-gray-800' }, text)
     );
   }
@@ -78,7 +78,7 @@
   function SlideVocab({ items, image }){
     const list = Array.isArray(items)? items : [];
     return e(Card, { title:'Vocabulário + pronúncia' },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', 'data-slide-image':'true' }) : null,
       e('div', { className:'grid grid-cols-2 gap-2' },
         list.map((it,i)=> e('div', { key:i, className:'flex items-center gap-2' },
           e('div', { className:'w-9 h-9 rounded-md bg-green-50 flex items-center justify-center text-green-700 font-bold' }, it.word[0].toUpperCase()),
@@ -94,7 +94,7 @@
   function SlideSummary({ text, image }){
     const lines = Array.isArray(text)? text : [String(text||'')];
     return e(Card, { title:'Resumo' },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', 'data-slide-image':'true' }) : null,
       e('ul', { className:'list-disc list-inside text-sm text-gray-800' },
         lines.map((t,i)=> e('li', { key:i }, t))
       )
@@ -103,7 +103,7 @@
 
   function SlideRich({ html, image }){
     return e(Card, { title: null },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain rounded-lg mb-2' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain rounded-lg mb-2', 'data-slide-image':'true' }) : null,
       e('div', { className:'text-sm text-gray-800', dangerouslySetInnerHTML: { __html: html } })
     );
   }
@@ -140,12 +140,19 @@
     try {
       if (ReactDOM.createRoot) root = ReactDOM.createRoot(rootEl);
     } catch {}
+    function scrollToImage(){
+      try {
+        const img = rootEl.querySelector('img[data-slide-image="true"]');
+        if (img && typeof img.scrollIntoView==='function') { img.scrollIntoView({ behavior:'smooth', block:'start' }); return; }
+        if (typeof rootEl.scrollIntoView==='function') rootEl.scrollIntoView({ behavior:'smooth', block:'start' });
+      } catch {}
+    }
     const renderTree = ()=> e(SlideLayout, {
       slides,
       index,
       showTr,
-      onPrev: ()=>{ index = Math.max(0, index-1); render(); },
-      onNext: ()=>{ index = Math.min(slides.length-1, index+1); render(); }
+      onPrev: ()=>{ index = Math.max(0, index-1); render(); setTimeout(scrollToImage, 0); },
+      onNext: ()=>{ index = Math.min(slides.length-1, index+1); render(); try { if (window && window.scrollTo) window.scrollTo(0, 0); } catch {} }
     });
     function render(){
       if (root) root.render(renderTree());
