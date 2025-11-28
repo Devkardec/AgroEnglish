@@ -4380,20 +4380,24 @@ function renderGrammar(data) {
       }
       const ptSentences = getPtSentences(data);
       if (pronList) {
-        const maxCount = 11;
-        const shown = sentences.slice(0, Math.min(sentences.length || 0, maxCount));
+        const maxCount = (Number(idx)===3 ? 9 : 11);
+        const shown = sentences.slice(0, Math.min((sentences.length || 0), maxCount));
         const isA1 = String(level).toUpperCase()==='A1';
-        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2);
+        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3);
         const imgs = useImages ? (
           Number(idx)===1
             ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.png`)
-            : Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.png`)
+            : (Number(idx)===2
+                ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.png`)
+                : Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto3/${i+1}.3.png`))
         ) : [];
         const segUrls = isA1 && Number(idx)===1
           ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`)
           : (isA1 && Number(idx)===2
               ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`)
-              : []);
+              : (isA1 && Number(idx)===3
+                  ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.3-dividido/${i+1}.3.mp3`)
+                  : []));
         pronList.innerHTML = shown.map((s,i)=>`
           <div class="pron-card">
             ${useImages ? `<img src="${imgs[i]}" alt="" class="w-36 h-36 sm:w-40 sm:h-40 object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
@@ -4614,7 +4618,14 @@ function renderGrammar(data) {
       if (openPronModal && pronModal && pronModalList) {
         const renderModalList = () => {
           const max = Math.min((sentences && sentences.length) || 0, 6);
-          const segUrls = (String(level).toUpperCase()==='A1' && Number(idx)===1) ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`) : [];
+          const isA1 = String(level).toUpperCase()==='A1';
+          const segUrls = (isA1 && Number(idx)===1)
+            ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`)
+            : (isA1 && Number(idx)===2)
+              ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`)
+              : (isA1 && Number(idx)===3)
+                ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.3-dividido/${i+1}.3.mp3`)
+                : [];
           pronModalList.innerHTML = (sentences.slice(0, max)).map((s,i)=>`
             <div class="pron-card">
               <div class="text">${s}</div>
