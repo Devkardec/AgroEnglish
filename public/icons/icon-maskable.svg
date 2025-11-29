@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <rect width="256" height="256" rx="64" fill="#0a7c52"/>
-  <circle cx="128" cy="128" r="84" fill="#0c9c68"/>
-  <g fill="#ffffff" font-family="Arial, sans-serif" font-weight="700">
-    <text x="50%" y="54%" font-size="88" text-anchor="middle">AE</text>
-  </g>
-</svg>
-

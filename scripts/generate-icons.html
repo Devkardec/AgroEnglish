@@ -36,11 +36,11 @@
             const x = (size - w) / 2;
             const y = (size - h) / 2;
             ctx.drawImage(img, x, y, w, h);
-            const dataUrl = canvas.toDataURL('image/png');
+            const dataUrl = canvas.toDataURL('image/webp');
             const a = document.createElement('a');
             a.href = dataUrl;
-            a.download = `icon-${size}.png`;
-            a.textContent = `Baixar icon-${size}.png`;
+            a.download = `icon-${size}.webp`;
+            a.textContent = `Baixar icon-${size}.webp`;
             a.style.display = 'inline-block';
             a.style.marginRight = '8px';
             links.appendChild(a);

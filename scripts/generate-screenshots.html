@@ -22,15 +22,15 @@
       ctx.textAlign = 'center';
       ctx.fillText(text, 640, 360);
 
-      const dataUrl = canvas.toDataURL('image/png');
+      const dataUrl = canvas.toDataURL('image/webp');
       const a = document.createElement('a');
       a.href = dataUrl;
-      a.download = filename;
+      a.download = filename.replace(/\.(png|jpg|jpeg)$/i, '.webp');
       a.click();
     }
 
-    generateScreenshot('AgroEnglish Pro', 'screenshot1.png');
-    generateScreenshot('Página de um texto', 'screenshot2.png');
+    generateScreenshot('AgroEnglish Pro', 'screenshot1.webp');
+    generateScreenshot('Página de um texto', 'screenshot2.webp');
   </script>
 </body>
 </html>

@@ -12,6 +12,7 @@ function Get-MimeType($path) {
     '.css'  { 'text/css; charset=utf-8' }
     '.svg'  { 'image/svg+xml' }
     '.json' { 'application/json; charset=utf-8' }
+    '.webp' { 'image/webp' }
     '.png'  { 'image/png' }
     '.jpg'  { 'image/jpeg' }
     default { 'application/octet-stream' }
@@ -50,4 +51,3 @@ while ($true) {
     try { $res.StatusCode = 500; $buf = [Text.Encoding]::UTF8.GetBytes('Server Error'); $res.OutputStream.Write($buf,0,$buf.Length); $res.Close() } catch {}
   }
 }
-

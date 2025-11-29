@@ -157,7 +157,7 @@
   function VocabularyMatch({ items=[] }){
     return e('div', { className:'grid grid-cols-2 gap-3 sm:grid-cols-3' },
       items.map((it,i)=> e('div', { key:i, className:'flex items-center gap-2' },
-        e('img', { src:it.image, alt:it.word, className:'w-24 h-24 object-contain rounded-md bg-gray-50' }),
+        e('img', { src:String(it.image||'').replace(/\.(png|jpg|jpeg)$/i, '.webp'), alt:it.word, className:'w-24 h-24 object-contain rounded-md bg-gray-50', loading:'lazy' }),
         e('div', { className:'text-sm text-gray-800' },
           e('div', { className:'font-semibold' }, it.word),
           e('div', { className:'text-gray-600 text-xs' }, it.pt)
@@ -171,7 +171,7 @@
     const cards = React.useMemo(()=> {
       const deck = [];
       items.forEach((it,i)=>{
-        deck.push({ id:`${i}-img`, key:i, type:'image', src:it.src });
+        deck.push({ id:`${i}-img`, key:i, type:'image', src:String(it.src||'').replace(/\.(png|jpg|jpeg)$/i, '.webp') });
         deck.push({ id:`${i}-txt`, key:i, type:'text', text:it.text });
       });
       for (let i=deck.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [deck[i], deck[j]]=[deck[j], deck[i]]; }
@@ -206,7 +206,7 @@
           const btnCls = `relative rounded-xl border ${isMatched?'border-green-600':'border-gray-200'} ${isMatched?'bg-green-50':'bg-white'} shadow-sm overflow-hidden`;
           return e('button', { key:c.id, onClick:()=>click(idx), disabled:isMatched, className:btnCls },
             isOpen ? (c.type==='image'
-                      ? e('img', { src:c.src, alt:'', className:'w-full aspect-square object-contain bg-gray-50' })
+                      ? e('img', { src:c.src, alt:'', className:'w-full aspect-square object-contain bg-gray-50', loading:'lazy' })
                       : e('div', { className:'w-full aspect-square flex items-center justify-center p-2 text-center text-sm text-gray-800' }, c.text))
                    : e('div', { className:'w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center bg-green-50 text-green-700 font-semibold' }, 'AGRO'),
             isMatched ? e('div', { className:'absolute top-1 left-1 w-6 h-6 rounded-full bg-green-600 text-white text-xs flex items-center justify-center' }, String(c.key+1)) : null
@@ -321,8 +321,8 @@
       { prompt:'The cows ____ calm.', answer:'are' },
     ]);
     const vocabItems = [
-      { word:'farmer', pt:'fazendeiro', image:'/public/images/a1texto1/slidetx1/11.png' },
-      { word:'barn', pt:'galpão', image:'/public/images/a1texto1/slidetx1/12.png' },
+      { word:'farmer', pt:'fazendeiro', image:'/public/images/a1texto1/slidetx1/11.webp' },
+      { word:'barn', pt:'galpão', image:'/public/images/a1texto1/slidetx1/12.webp' },
     ];
     const orderItems = [
       { text:'I am Paul.', correctIndex:0 },
@@ -334,10 +334,10 @@
       const isTx3 = Number(idx)===3;
       const count = isTx2 ? 8 : 11;
       const imgs = isTx2
-        ? Array.from({length:count}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.png`)
+        ? Array.from({length:count}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`)
         : (isTx3
-            ? Array.from({length:count}, (_,i)=> `/public/images/a1texto3/${i+1}.3.png`)
-            : Array.from({length:count}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.png`));
+            ? Array.from({length:count}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`)
+            : Array.from({length:count}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`));
       const lines = Array.isArray(data && data.lines) ? data.lines.map(l=> String(l.en||'').trim()).filter(Boolean) : [];
       const nar = Array.isArray(data && data.a1_exercises && data.a1_exercises.narration_sentences) ? data.a1_exercises.narration_sentences.map(s=> String(s||'').trim()).filter(Boolean) : [];
       const srcTexts = (lines.length ? lines : nar).slice(0,count);
