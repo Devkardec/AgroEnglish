@@ -6,7 +6,7 @@ export function Header() {
   return `
     <header class="app-header">
       <div class="brand">
-        <img src="/img/logoagroenglishSF.png" width="84" height="84" alt="AgroEnglish Logo" />
+        <img src="/img/logoagroenglishSF.webp" width="84" height="84" alt="AgroEnglish Logo" loading="lazy" />
       </div>
       <nav class="nav">
         <a href="#/" class="${hash==='#/'?'active':''}">Home</a>

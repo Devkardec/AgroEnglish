@@ -3,7 +3,7 @@ export function Footer(){
     <footer class="app-footer">
       <div class="container">
         <div class="center-group">
-          <img src="/img/AgrocultiveSF.png" alt="AgroCultive Logo" class="brand" />
+          <img src="/img/AgrocultiveSF.webp" alt="AgroCultive Logo" class="brand" loading="lazy" />
           <div class="copy">© 2026 AgroCultive technology · Todos os direitos reservados</div>
         </div>
         <div class="social">

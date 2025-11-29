@@ -4386,10 +4386,10 @@ function renderGrammar(data) {
         const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3);
         const imgs = useImages ? (
           Number(idx)===1
-            ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.png`)
+            ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`)
             : (Number(idx)===2
-                ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.png`)
-                : Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto3/${i+1}.3.png`))
+                ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`)
+                : Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`))
         ) : [];
         const segUrls = isA1 && Number(idx)===1
           ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`)
@@ -4400,7 +4400,7 @@ function renderGrammar(data) {
                   : []));
         pronList.innerHTML = shown.map((s,i)=>`
           <div class="pron-card">
-            ${useImages ? `<img src="${imgs[i]}" alt="" class="w-36 h-36 sm:w-40 sm:h-40 object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
+            ${useImages ? `<img src="${imgs[i]}" alt="" loading="lazy" class="w-36 h-36 sm:w-40 sm:h-40 object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
             <div class="text">${s}</div>
             <div class="toolbar" style="margin-top:8px">
               <button class="btn sm secondary" data-pron-play="${i}">Ouvir</button>

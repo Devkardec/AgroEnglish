@@ -10,7 +10,7 @@ function Title({ title, image }:{ title?:string; image?:string }){
   return (
     <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-4">
       <div className="flex items-center gap-3">
-        {image ? <img src={image} alt={title||''} className="w-14 h-14 rounded-lg object-cover" /> : null}
+        {image ? <img src={(image||'').replace(/\.(png|jpg|jpeg)$/i, '.webp')} alt={title||''} className="w-14 h-14 rounded-lg object-cover" loading="lazy" /> : null}
         <h3 className="text-lg font-bold text-green-700">{title}</h3>
       </div>
     </div>
@@ -62,4 +62,3 @@ export function SlideLessonPage({ slides }:Props){
     </div>
   )
 }
-

@@ -26,7 +26,7 @@
 
   function SlideTitle({ image }){
     return e(Card, { title: null },
-      image ? e('img', { src: image, alt: '', className:'w-full h-auto object-contain rounded-lg', 'data-slide-image':'true' }) : null
+      image ? e('img', { src: image, alt: '', className:'w-full h-auto object-contain rounded-lg', loading:'lazy', 'data-slide-image':'true' }) : null
     );
   }
 
@@ -34,7 +34,7 @@
     const lines = Array.isArray(text)? text : [String(text||'')];
     const tr = Array.isArray(pt)? pt : [];
     return e(Card, { title: 'Explicação simples' },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', 'data-slide-image':'true' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', loading:'lazy', 'data-slide-image':'true' }) : null,
       e('ul', { className: 'list-disc list-inside text-sm text-gray-800' },
         lines.map((t,i)=> e('li', { key:i }, t))
       ),
@@ -46,7 +46,7 @@
     const lines = Array.isArray(text)? text : [String(text||'')];
     const tr = Array.isArray(pt)? pt : [];
     return e(Card, { title:'Exemplos' },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', 'data-slide-image':'true' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', loading:'lazy', 'data-slide-image':'true' }) : null,
       e('ul', { className:'space-y-1' },
         lines.map((t,i)=> e('li', { key:i, className:'text-sm text-gray-800' },
           e('div', { className:'flex items-center gap-2' }, e('span', { className:'inline-block w-2 h-2 rounded-full bg-green-600' }), t),
@@ -60,7 +60,7 @@
     const lines = Array.isArray(text)? text : [String(text||'')];
     const tr = Array.isArray(pt)? pt : [];
     return e(Card, { title:'Estrutura rápida' },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', 'data-slide-image':'true' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', loading:'lazy', 'data-slide-image':'true' }) : null,
       e('div', { className:'text-sm text-gray-800 space-y-1' },
         lines.map((t,i)=> e('div', { key:i }, t))
       ),
@@ -70,7 +70,7 @@
 
   function SlideCard({ title, text, image }){
     return e(Card, { title },
-      image ? e('img', { src:image, alt:title||'', className:'w-full h-36 object-cover rounded-lg mb-2', 'data-slide-image':'true' }) : null,
+      image ? e('img', { src:image, alt:title||'', className:'w-full h-36 object-cover rounded-lg mb-2', loading:'lazy', 'data-slide-image':'true' }) : null,
       e('div', { className:'text-sm text-gray-800' }, text)
     );
   }
@@ -78,7 +78,7 @@
   function SlideVocab({ items, image }){
     const list = Array.isArray(items)? items : [];
     return e(Card, { title:'Vocabulário + pronúncia' },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', 'data-slide-image':'true' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', loading:'lazy', 'data-slide-image':'true' }) : null,
       e('div', { className:'grid grid-cols-2 gap-2' },
         list.map((it,i)=> e('div', { key:i, className:'flex items-center gap-2' },
           e('div', { className:'w-9 h-9 rounded-md bg-green-50 flex items-center justify-center text-green-700 font-bold' }, it.word[0].toUpperCase()),
@@ -94,7 +94,7 @@
   function SlideSummary({ text, image }){
     const lines = Array.isArray(text)? text : [String(text||'')];
     return e(Card, { title:'Resumo' },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', 'data-slide-image':'true' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain max-h-[72vh] rounded-lg mb-2', loading:'lazy', 'data-slide-image':'true' }) : null,
       e('ul', { className:'list-disc list-inside text-sm text-gray-800' },
         lines.map((t,i)=> e('li', { key:i }, t))
       )
@@ -103,7 +103,7 @@
 
   function SlideRich({ html, image }){
     return e(Card, { title: null },
-      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain rounded-lg mb-2', 'data-slide-image':'true' }) : null,
+      image ? e('img', { src:image, alt:'', className:'w-full h-auto object-contain rounded-lg mb-2', loading:'lazy', 'data-slide-image':'true' }) : null,
       e('div', { className:'text-sm text-gray-800', dangerouslySetInnerHTML: { __html: html } })
     );
   }
@@ -112,7 +112,8 @@
     const t = String(slide.type||'');
     const idx = Number(index||0);
     const defaultImgs = Array.isArray(window.__A1_3_IMAGES) ? window.__A1_3_IMAGES : null;
-    const image = slide.image || (defaultImgs ? defaultImgs[idx] : undefined);
+    const rawImage = slide.image || (defaultImgs ? defaultImgs[idx] : undefined);
+    const image = (function(src){ try { const s = String(src||''); return s.replace(/\.(png|jpg|jpeg)$/i, '.webp'); } catch { return src; } })(rawImage);
     if (t==='title') return e(SlideTitle, { image });
     if (t==='explain') return e(SlideExplain, { text:slide.text, pt:slide.pt, image, showTr });
     if (t==='usage') return e(SlideUsage, { text:slide.text, pt:slide.pt, image, showTr });
@@ -168,7 +169,7 @@
       const data = await loadLessonData(idx);
       const slides = Array.isArray(data && data.slides) ? data.slides : [];
       if (String(level).toUpperCase()==='A1' && Number(idx)===3) {
-        window.__A1_3_IMAGES = slides.map((_,i)=> `/public/images/a1texto3/slidetx3/${i+1}.3.png`);
+        window.__A1_3_IMAGES = slides.map((_,i)=> `/public/images/a1texto3/slidetx3/${i+1}.3.webp`);
       } else {
         window.__A1_3_IMAGES = null;
       }
