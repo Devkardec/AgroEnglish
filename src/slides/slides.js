@@ -162,6 +162,25 @@
     render();
   }
 
+  function mountTextList(slides){
+    const rootEl = document.getElementById('lessonTextList');
+    if (!rootEl) return;
+    let root = null;
+    try { if (ReactDOM.createRoot) root = ReactDOM.createRoot(rootEl); } catch {}
+    const items = (Array.isArray(slides)?slides:[]).map((s,i)=>{
+      const hasHtml = !!s && typeof s.html==='string' && s.html.length>0;
+      const lines = Array.isArray(s && s.text) ? s.text : (s && s.text ? [s.text] : []);
+      return e('div', { key:i },
+        e(Card, null,
+          hasHtml ? e('div', { className:'text-sm text-gray-800', dangerouslySetInnerHTML:{ __html: s.html } })
+                  : e('div', { className:'text-sm text-gray-800 space-y-1' }, lines.map((t,j)=> e('div', { key:j }, t)))
+        )
+      );
+    });
+    const tree = e('div', { className:'w-full max-w-3xl mx-auto space-y-3' }, items);
+    if (root) root.render(tree); else ReactDOM.render(tree, rootEl);
+  }
+
   window.SlideLessonMount = async function(level, idx){
     if (String(level).toUpperCase()!=='A1' || (Number(idx)!==1 && Number(idx)!==2 && Number(idx)!==3)) return;
     try {
@@ -173,7 +192,12 @@
       } else {
         window.__A1_3_IMAGES = null;
       }
-      mountSlides(slides);
+      if (String(level).toUpperCase()==='A1' && Number(idx)===1) {
+        const onlyTextSlides = slides.map(s=> ({ ...s, image: undefined }));
+        mountSlides(onlyTextSlides);
+      } else {
+        mountSlides(slides);
+      }
     } catch {}
   };
 })();
