@@ -2080,7 +2080,18 @@ function renderGrammar(data) {
       gameEl.addEventListener('click',(e)=>{ const t=e.target; if(t.id==='gameStart'){ if(playing) return; playing=true; score=0; streak=1; lives=3; timeLeft=60; hintsLeft=2; qi=0; updateHUD(); showQuestion(); clearInterval(timer); timer=setInterval(()=>{ timeLeft--; updateHUD(); if(timeLeft<=0) end('Tempo esgotado.'); },1000); } else if(t.id==='gameStop'){ end('Jogo encerrado.'); } else if(t.id==='gameListen'){ const q=qSrc[qi]; try { let say = ''; if(q.type==='tr'){ say = q.prompt; } else if(q.type==='voc'){ say = q.prompt; } else if(q.type==='aux'){ say = q.prompt.replace(/Complete com do\/does: \[____\]\s*/,'').replace(/\?$/,''); } else { say = q.prompt; } if (say) speak(say); } catch {} } else if(t.id==='gameHint'){ if(!playing || hintsLeft<=0) return; hintsLeft--; const oEl=document.getElementById('gameOpts'); const q=qSrc[qi]; const wrongIdx = [0,1,2,3].filter(i=> i!==q.answer).sort(()=>Math.random()-0.5).slice(0,2); wrongIdx.forEach(i=>{ const btn = oEl.querySelector(`[data-gopt="${i}"]`); if(btn){ btn.disabled = true; btn.style.opacity = '0.6'; } }); updateHUD(); } else if(t.id==='gameResetOrd'){ const q=qSrc[qi]; if(q.type==='ord' || q.type==='seq'){ q.user=[]; const seqEl=document.getElementById('gameOrdSeq'); if(seqEl) seqEl.textContent=''; const oEl=document.getElementById('gameOpts'); oEl.querySelectorAll('[data-gword],[data-gsent]').forEach(b=>{ b.disabled=false; b.style.opacity='1'; }); } } else if(t.dataset.gdiff!==undefined){ const mode=t.dataset.gdiff; if(mode==='easy'){ timeLeft=90; lives=4; } else if(mode==='hard'){ timeLeft=45; lives=2; } else { timeLeft=60; lives=3; } updateHUD(); } else if(t.dataset.gopt!==undefined){ if(!playing) return; const j=Number(t.dataset.gopt); const q=qSrc[qi]; const r=document.getElementById('gameRes'); if(q.type!=='ord' && q.type!=='seq'){ const ok = j===q.answer; if(ok){ score += 10*streak; streak = Math.min(streak+1,5); if(r){ r.textContent='Acertou!'; r.style.color='green'; } next(); } else { streak=1; lives--; if(r){ r.textContent='Tente novamente.'; r.style.color='red'; } if(lives<=0){ end('Acabaram as vidas.'); return; } updateHUD(); } } } else if(t.dataset.gword!==undefined){ if(!playing) return; const q=qSrc[qi]; const seqEl=document.getElementById('gameOrdSeq'); const idx = Number(t.dataset.gword); q.user = q.user || []; q.user.push(q.options[idx]); t.disabled=true; t.style.opacity='0.6'; if(seqEl){ seqEl.textContent = q.user.join(' '); } if(q.user.length === q.options.length){ const ok = q.user.join(' ') === q.answer.join(' '); const r=document.getElementById('gameRes'); if(ok){ score += 12*streak; streak = Math.min(streak+1,5); if(r){ r.textContent='Acertou!'; r.style.color='green'; } next(); } else { streak=1; lives--; if(r){ r.textContent='Tente novamente.'; r.style.color='red'; } if(lives<=0){ end('Acabaram as vidas.'); return; } updateHUD(); } } } else if(t.dataset.gsent!==undefined){ if(!playing) return; const q=qSrc[qi]; const seqEl=document.getElementById('gameOrdSeq'); const idx = Number(t.dataset.gsent); q.user = q.user || []; q.user.push(q.options[idx]); t.disabled=true; t.style.opacity='0.6'; if(seqEl){ seqEl.textContent = q.user.join('  |  '); } if(q.user.length === q.options.length){ const ok = q.user.join(' ') === q.answer.join(' '); const r=document.getElementById('gameRes'); if(ok){ score += 14*streak; streak = Math.min(streak+1,5); if(r){ r.textContent='Acertou!'; r.style.color='green'; } next(); } else { streak=1; lives--; if(r){ r.textContent='Tente novamente.'; r.style.color='red'; } if(lives<=0){ end('Acabaram as vidas.'); return; } updateHUD(); } } }
       });
     }
-    renderTextGame(); renderClassify(); renderTransform(); renderOrdering(); renderDictation(); renderMatchVocab(); renderTrueFalse();
+    (function(){
+      const curLevel = (location.hash.split('/')[2]||'').toUpperCase();
+      if (curLevel !== 'A1') {
+        renderTextGame();
+        renderClassify();
+        renderTransform();
+        renderOrdering();
+        renderDictation();
+        renderMatchVocab();
+        renderTrueFalse();
+      }
+    })();
   }
 
   function renderVerbs(data) {
@@ -2899,9 +2910,14 @@ function renderGrammar(data) {
         }
       } catch {}
       try { const vEl = document.querySelector('#verbs'); if (vEl) vEl.remove(); } catch {}
-      try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
-      try { renderFill(data); } catch (e) { console.error('Error in renderFill:', e); }
-      try { renderVocabTable(data); } catch (e) { console.error('Error in renderVocabTable:', e); }
+      try {
+        const curLevelNow = (location.hash.split('/')[2]||'').toUpperCase();
+        if (curLevelNow !== 'A1') {
+          try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
+          try { renderFill(data); } catch (e) { console.error('Error in renderFill:', e); }
+        }
+        try { renderVocabTable(data); } catch (e) { console.error('Error in renderVocabTable:', e); }
+      } catch {}
       try {
         const el = document.getElementById('a1ex');
         if (el) {
