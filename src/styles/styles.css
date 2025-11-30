@@ -215,8 +215,10 @@ input[type="range"] { width:100%; }
   #tab-speech .btn.sm { flex: 1 1 160px }
 }
 
-.pron-card img { display:block; margin:0 auto; width:100%; max-width:100%; height:220px; object-fit:cover; object-position:center; border-radius:12px; background:#f5f7fb }
-@media (max-width:640px) { .pron-card img { max-width:100%; height:240px } }
+.pron-card img { display:block; margin:0 auto; width:100%; max-width:100%; height:auto; object-fit:contain; object-position:center; border-radius:12px; background:#f5f7fb }
+@media (max-width:640px) { .pron-card img { max-width:100%; height:auto } }
+/* A1 Speech Lab: limit image size to avoid overlap */
+.speech-a1 .pron-card img { max-width:250px; height:auto; object-fit:contain }
 .toast-success { border-left:4px solid #22c55e }
 .toast-error { border-left:4px solid #c62828 }
 .toast.show { opacity:1; transform:translateY(0) }

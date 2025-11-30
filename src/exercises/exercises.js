@@ -172,13 +172,15 @@
       const deck = [];
       items.forEach((it,i)=>{
         deck.push({ id:`${i}-img`, key:i, type:'image', src:String(it.src||'').replace(/\.(png|jpg|jpeg)$/i, '.webp') });
-        deck.push({ id:`${i}-txt`, key:i, type:'text', text:it.text });
+        deck.push({ id:`${i}-txt`, key:i, type:'text', text:it.text, audio:it.audio });
       });
       for (let i=deck.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [deck[i], deck[j]]=[deck[j], deck[i]]; }
       return deck;
     }, []);
     const [open, setOpen] = React.useState([]);
     const [matchedKeys, setMatchedKeys] = React.useState({});
+    function playAudio(src){ try { if (src) { const a = new Audio(src); a.play(); } } catch {}
+    }
     function click(idx){
       const key = cards[idx].key;
       if (matchedKeys[key]) return;
@@ -193,6 +195,10 @@
           setOpen([]);
         }, 450);
       }
+      try {
+        const c = cards[idx];
+        if (c.type==='text' && c.audio) playAudio(c.audio);
+      } catch {}
     }
     function reset(){ setOpen([]); setMatchedKeys({}); }
     const matchedCount = Object.keys(matchedKeys).length;
@@ -259,8 +265,64 @@
     );
   }
 
+  function DictationMultipleChoice({ items=[] }){
+    const list = Array.isArray(items) ? items.slice(0,6) : [];
+    function play(src){ try { const a=new Audio(src); a.play(); } catch{} }
+    return e('div', null,
+      list.map((it,idx)=>{
+        const options = React.useMemo(()=>{
+          const arr = [it.correct, ...it.wrong.slice(0,5)];
+          for (let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
+          return arr;
+        }, [it]);
+        const correctIndex = options.indexOf(it.correct);
+        return e('div', { key:idx, className:'mb-3' },
+          e('div', { className:'flex items-center gap-2 mb-1' },
+            e('button', { className:'px-2 py-1 rounded bg-green-600 text-white text-xs', onClick:()=>play(it.audio) }, `Play ${idx+1}`)
+          ),
+          e(QuestionChoices, { items: options, onCheck:(sel)=> sel===correctIndex })
+        );
+      })
+    );
+  }
+
+  function ImageSentenceAssociation({ items=[] }){
+    const arr = Array.isArray(items) ? items : [];
+    const shuffledBottom = React.useMemo(()=>{
+      const a = arr.map((it,i)=> ({ text:it.text, idx:i, audio:it.audio }));
+      for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+      return a;
+    }, [items]);
+    const [selTop, setSelTop] = React.useState(null);
+    const [matches, setMatches] = React.useState({});
+    function chooseTop(i){ setSelTop(i); }
+    function playAudio(src){ try { if (src) { const a=new Audio(src); a.play(); } } catch{} }
+    function chooseBottom(j){ const orig = shuffledBottom[j].idx; if (selTop!==null && orig===selTop) { setMatches(m=> ({...m, [selTop]:orig})); setSelTop(null); } else { setSelTop(null); } }
+    const matchedBottomSet = React.useMemo(()=>{ const s={}; Object.values(matches).forEach(v=> s[v]=true); return s; }, [matches]);
+    const done = Object.keys(matches).length===arr.length;
+    return e('div', null,
+      e('div', { className:'grid grid-cols-7 gap-2 mb-3' },
+        arr.map((it,i)=>{
+          const isMatched = matches[i]!==undefined;
+          const cls = isMatched ? 'border-green-600 bg-green-600 text-white' : (selTop===i ? 'border-green-600 bg-green-50' : 'border-gray-200 bg-gray-100');
+          return e('button', { key:i, onClick:()=>chooseTop(i), disabled:isMatched, className:`rounded border ${cls} overflow-hidden` },
+            e('img', { src:String(it.src||'').replace(/\.(png|jpg|jpeg)$/i, '.webp'), alt:'', className:'w-20 h-20 sm:w-24 sm:h-24 object-contain bg-gray-50' })
+          );
+        })
+      ),
+      e('div', { className:'grid grid-cols-7 gap-2' },
+        shuffledBottom.map((it,j)=>{
+          const isMatched = matchedBottomSet[it.idx];
+          const cls = isMatched ? 'border-green-600 bg-green-600 text-white' : 'border-gray-200 bg-gray-100';
+          return e('button', { key:j, onClick:()=>{ playAudio(it.audio); chooseBottom(j); }, disabled:isMatched, className:`px-2 py-1 rounded border text-xs ${cls} text-left` }, it.text);
+        })
+      ),
+      e('div', { className:'mt-2 text-xs' }, done ? e('span', { className:'text-green-700' }, 'Associação completa!') : e('span', { className:'text-gray-600' }, 'Toque primeiro na imagem e depois na frase'))
+    );
+  }
+
   function DictationExercise({ sentences=[], segUrls=[] }){
-    const sents = Array.isArray(sentences) ? sentences.slice(0,3) : [];
+    const sents = Array.isArray(sentences) ? sentences.slice(0, Math.min(6, sentences.length)) : [];
     const [vals, setVals] = React.useState(Array(sents.length).fill(''));
     const [res, setRes] = React.useState(null);
     function setVal(i,v){ const a=[...vals]; a[i]=v; setVals(a); }
@@ -284,7 +346,7 @@
         e('input', { className:'w-full px-2 py-1 rounded border border-gray-300', value:vals[i], onChange:ev=>setVal(i, ev.target.value), placeholder:`Digite a frase ${i+1}` })
       )),
       e('div', { className:'mt-2 flex items-center gap-2' },
-        e('button', { className:'px-3 py-2 rounded bg-green-600 text-white', onClick:playAll }, 'Play 3 frases'),
+        e('button', { className:'px-3 py-2 rounded bg-green-600 text-white', onClick:playAll }, `Play ${sents.length} frases`),
         e('button', { className:'px-3 py-2 rounded bg-green-600 text-white', onClick:check }, 'Checar'),
         res!==null ? e('span', { className:`text-xs ${res?'text-green-700':'text-red-700'}` }, res?'Correto':'Tente novamente') : null
       )
@@ -341,26 +403,49 @@
       const isTx2 = Number(idx)===2;
       const isTx3 = Number(idx)===3;
       const isTx4 = Number(idx)===4;
-      const count = isTx2 ? 8 : (isTx4 ? 2 : 11);
+      const count = isTx2 ? 8 : (isTx4 ? 7 : 11);
       const imgs = isTx2
         ? Array.from({length:count}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`)
         : (isTx3
             ? Array.from({length:count}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`)
             : (isTx4
-                ? Array.from({length:count}, (_,i)=> `/public/images/a1texto4/${i+1}.4.webp`)
+                ? [
+                  '/public/images/a1texto4/1.4.webp',
+                  '/public/images/a1texto4/5.4.webp',
+                  '/public/images/a1texto4/3.4.webp',
+                  '/public/images/a1texto4/7.4.webp',
+                  '/public/images/a1texto4/8.4.webp',
+                  '/public/images/a1texto4/9.4.webp',
+                  '/public/images/a1texto4/10.4.webp'
+                ]
                 : Array.from({length:count}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`)));
       const lines = Array.isArray(data && data.lines) ? data.lines.map(l=> String(l.en||'').trim()).filter(Boolean) : [];
       const nar = Array.isArray(data && data.a1_exercises && data.a1_exercises.narration_sentences) ? data.a1_exercises.narration_sentences.map(s=> String(s||'').trim()).filter(Boolean) : [];
       const textParts = String(data && data.text || '').split(/(?<=[.!?])\s+/).filter(Boolean);
       const srcBase = (isTx4 ? [
-        'I drive the green tractor. It is new.',
-        'The harvester is in the shed. It is ready.'
+        'I drive the green tractor.',
+        'The farmer waters the plants in the greenhouse.',
+        'The harvester collects the ripe wheat.',
+        'The trailer carries bales of hay.',
+        'He repairs the engine in the shed.',
+        'The field is ready for sowing.',
+        'The cow drinks water near the barn.'
       ] : (lines.length ? lines : (nar.length ? nar : textParts)));
       const srcTexts = srcBase.slice(0,count);
-      const out = [];
-      for (let i=0;i<count;i++) {
-        out.push({ src: imgs[i], text: srcTexts[i] || '' });
+      if (isTx4) {
+        const audios = [
+          '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
+          '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
+          '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
+          '/src/audio/A1/texto-a1.4-dividido/part_7.mp3',
+          '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
+          '/src/audio/A1/texto-a1.4-dividido/part_9.mp3',
+          '/src/audio/A1/texto-a1.4-dividido/part_10.mp3'
+        ];
+        return srcTexts.map((t,i)=> ({ src: imgs[i], text: t, audio: audios[i] }));
       }
+      const out = [];
+      for (let i=0;i<count;i++) { out.push({ src: imgs[i], text: srcTexts[i] || '' }); }
       return out;
     }
     const videoPairs = makeVideoPairs();
@@ -373,10 +458,7 @@
           { word:'medicine', pt:'remédio' },
           { word:'leg', pt:'perna' },
         ]
-      : (Number(idx)===4 ? [
-            { word:'tractor', pt:'trator' },
-            { word:'harvester', pt:'colheitadeira' }
-        ] : null);
+      : (Number(idx)===4 ? null : null);
     const transformItems = (Number(idx)===2)
       ? [
           { base:'She has a medical kit.', target:'neg', answer: "She doesn't have a medical kit." },
@@ -415,8 +497,41 @@
             e(OrderWords, { sentence: orderSentence })
           )
         ),
-        e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' }, e(DictationExercise, { sentences: (Number(idx)===4 ? ['I drive the green tractor. It is new.', 'The harvester is in the shed. It is ready.'] : videoPairs.map(p=>p.text).filter(Boolean).slice(0,3)), segUrls: (Number(idx)===2 ? ['/src/audio/A1/texto-a1.2-dividido/1.1.mp3','/src/audio/A1/texto-a1.2-dividido/2.2.mp3','/src/audio/A1/texto-a1.2-dividido/3.3.mp3'] : (Number(idx)===3 ? ['/src/audio/A1/texto-a1.3-dividido/1.3.mp3','/src/audio/A1/texto-a1.3-dividido/2.3.mp3','/src/audio/A1/texto-a1.3-dividido/3.3.mp3'] : ['/src/audio/A1/texto-a1.1-dividido/seg1.mp3','/src/audio/A1/texto-a1.1-dividido/seg2.mp3','/src/audio/A1/texto-a1.1-dividido/seg3.mp3'])) })),
-        e(ExerciseCard, { title:'Associação visual', instruction:'Associe botões de cima e de baixo' }, e(VisualAssociation12, { items: assocItems })),
+        e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' },
+          Number(idx)===4
+            ? e(DictationExercise, {
+                sentences: [
+                  'I drive the green tractor.',
+                  'The farmer waters the plants in the greenhouse.',
+                  'The harvester collects the ripe wheat.',
+                  'The trailer carries bales of hay.',
+                  'He repairs the engine in the shed.',
+                  'The field is ready for sowing.'
+                ],
+                segUrls: [
+                  '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
+                  '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
+                  '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
+                  '/src/audio/A1/texto-a1.4-dividido/part_7.mp3',
+                  '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
+                  '/src/audio/A1/texto-a1.4-dividido/part_9.mp3'
+                ]
+              })
+            : e(DictationExercise, { sentences: videoPairs.map(p=>p.text).filter(Boolean).slice(0,3), segUrls: (Number(idx)===2 ? ['/src/audio/A1/texto-a1.2-dividido/1.1.mp3','/src/audio/A1/texto-a1.2-dividido/2.2.mp3','/src/audio/A1/texto-a1.2-dividido/3.3.mp3'] : (Number(idx)===3 ? ['/src/audio/A1/texto-a1.3-dividido/1.3.mp3','/src/audio/A1/texto-a1.3-dividido/2.3.mp3','/src/audio/A1/texto-a1.3-dividido/3.3.mp3'] : ['/src/audio/A1/texto-a1.1-dividido/seg1.mp3','/src/audio/A1/texto-a1.1-dividido/seg2.mp3','/src/audio/A1/texto-a1.1-dividido/seg3.mp3'])) })
+        ),
+        e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
+          Number(idx)===4
+            ? e(ImageSentenceAssociation, { items: [
+                { src:'/public/images/a1texto4/1.4.webp', text:'I drive the green tractor.', audio:'/src/audio/A1/texto-a1.4-dividido/part_1.mp3' },
+                { src:'/public/images/a1texto4/5.4.webp', text:'The farmer waters the plants in the greenhouse.', audio:'/src/audio/A1/texto-a1.4-dividido/part_5.mp3' },
+                { src:'/public/images/a1texto4/3.4.webp', text:'The harvester collects the ripe wheat.', audio:'/src/audio/A1/texto-a1.4-dividido/part_3.mp3' },
+                { src:'/public/images/a1texto4/7.4.webp', text:'The trailer carries bales of hay.', audio:'/src/audio/A1/texto-a1.4-dividido/part_7.mp3' },
+                { src:'/public/images/a1texto4/8.4.webp', text:'He repairs the engine in the shed.', audio:'/src/audio/A1/texto-a1.4-dividido/part_8.mp3' },
+                { src:'/public/images/a1texto4/9.4.webp', text:'The field is ready for sowing.', audio:'/src/audio/A1/texto-a1.4-dividido/part_9.mp3' },
+                { src:'/public/images/a1texto4/10.4.webp', text:'The cow drinks water near the barn.', audio:'/src/audio/A1/texto-a1.4-dividido/part_10.mp3' }
+              ] })
+            : e(VisualAssociation12, { items: assocItems })
+        ),
         e(ExerciseCard, { title:'Finalizar', instruction:'Bom trabalho!' }, e('div', { className:'text-sm text-gray-800' }, 'Great job!'))
       )
     );

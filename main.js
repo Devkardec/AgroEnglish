@@ -4462,7 +4462,7 @@ function renderGrammar(data) {
         }
         return [];
       }
-      const sentences = getSentences(data);
+      let sentences = getSentences(data);
       function getPtSentences(d){
         if (Array.isArray(d.pairs) && d.pairs.length) return d.pairs.map(p=>fixPT(p.pt));
         const trParts = String(d.translation||'').split(/(?<=[.!?])\s+/).map(fixPT).filter(Boolean);
@@ -4470,18 +4470,43 @@ function renderGrammar(data) {
         const voc = Array.isArray(d.vocabulary) ? d.vocabulary : [];
         return voc.map(v=> typeof v === 'string' ? '' : fixPT(v.pt || v.translation || '')).filter(x=>true);
       }
-      const ptSentences = getPtSentences(data);
+      let ptSentences = getPtSentences(data);
       if (pronList) {
         const maxCount = (Number(idx)===3 ? 9 : 11);
-        const shown = sentences.slice(0, Math.min((sentences.length || 0), maxCount));
         const isA1 = String(level).toUpperCase()==='A1';
-        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3);
+        if (isA1 && Number(idx)===4) {
+          sentences = [
+            'I drive the green tractor.',
+            'The farmer waters the plants in the greenhouse.',
+            'The harvester collects the ripe wheat.',
+            'The trailer carries bales of hay.',
+            'He repairs the engine in the shed.',
+            'The field is ready for sowing.',
+            'The cow drinks water near the barn.'
+          ];
+          ptSentences = Array(sentences.length).fill('');
+        }
+        const shown = sentences.slice(0, Math.min((sentences.length || 0), maxCount));
+        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4);
+        try {
+          if (useImages) { pronList.classList.add('speech-a1'); } else { pronList.classList.remove('speech-a1'); }
+        } catch {}
         const imgs = useImages ? (
           Number(idx)===1
             ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`)
             : (Number(idx)===2
                 ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`)
-                : Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`))
+                : (Number(idx)===3
+                    ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`)
+                    : [
+                      '/public/images/a1texto4/1.4.webp',
+                      '/public/images/a1texto4/5.4.webp',
+                      '/public/images/a1texto4/3.4.webp',
+                      '/public/images/a1texto4/7.4.webp',
+                      '/public/images/a1texto4/8.4.webp',
+                      '/public/images/a1texto4/9.4.webp',
+                      '/public/images/a1texto4/10.4.webp'
+                    ]))
         ) : [];
         const segUrls = isA1 && Number(idx)===1
           ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`)
@@ -4489,10 +4514,20 @@ function renderGrammar(data) {
               ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`)
               : (isA1 && Number(idx)===3
                   ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.3-dividido/${i+1}.3.mp3`)
-                  : []));
+                  : (isA1 && Number(idx)===4
+                      ? [
+                        '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
+                        '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
+                        '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
+                        '/src/audio/A1/texto-a1.4-dividido/part_7.mp3',
+                        '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
+                        '/src/audio/A1/texto-a1.4-dividido/part_9.mp3',
+                        '/src/audio/A1/texto-a1.4-dividido/part_10.mp3'
+                      ]
+                      : [])));
         pronList.innerHTML = shown.map((s,i)=>`
           <div class="pron-card">
-            ${useImages ? `<img src="${imgs[i]}" alt="" loading="lazy" class="w-36 h-36 sm:w-40 sm:h-40 object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
+            ${useImages ? `<img src="${imgs[i]}" alt="" loading="lazy" class="object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
             <div class="text">${s}</div>
             <div class="toolbar" style="margin-top:8px">
               <button class="btn sm secondary" data-pron-play="${i}">Ouvir</button>
@@ -4717,7 +4752,16 @@ function renderGrammar(data) {
               ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`)
               : (isA1 && Number(idx)===3)
                 ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.3-dividido/${i+1}.3.mp3`)
-                : [];
+                : (isA1 && Number(idx)===4)
+                  ? [
+                    '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
+                    '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
+                    '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
+                    '/src/audio/A1/texto-a1.4-dividido/part_7.mp3',
+                    '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
+                    '/src/audio/A1/texto-a1.4-dividido/part_9.mp3'
+                  ]
+                  : [];
           pronModalList.innerHTML = (sentences.slice(0, max)).map((s,i)=>`
             <div class="pron-card">
               <div class="text">${s}</div>
