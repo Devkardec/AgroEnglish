@@ -17,13 +17,7 @@ export function Level(level) {
         <p class="desc">Bem-vindo ao Agro English!</p>
         <p class="desc">Neste primeiro módulo, você vai sair do zero e aprender o inglês essencial para o dia a dia na fazenda. Sem gramática complicada, focaremos no que realmente importa para o trabalho.</p>
         <div class="card" style="margin-top:8px">
-          <div class="section-title" style="margin-bottom:6px">O que você vai dominar:</div>
-          <div class="small" style="line-height:1.6">
-            ✅ Identidade:  Apresentar você, sua equipe e os animais.<br>
-            ✅ Rotina:  Descrever o manejo, operar máquinas e falar do clima.<br>
-            ✅ Gestão:  Contar o estoque, localizar ferramentas e dar ordens de segurança.<br>
-            ✅ Negócios:  Planejar a colheita e perguntar preços de insumos.
-          </div>
+          <img src="/public/images/modulo1.webp" alt="Módulo A1 - Fundamentos do Campo" style="display:block;width:100%;border-radius:12px" loading="lazy" />
         </div>
         <p class="desc" style="margin-top:8px">São 12 lições práticas para você começar a falar inglês no campo hoje mesmo.</p>
         <p class="desc">Vamos começar?</p>

@@ -302,11 +302,15 @@
       { text:'We start work at 6:00 AM.', correct:true },
       { text:'The cows walk to the barn.', correct:false },
       { text:'The farm worker feeds the pigs.', correct:true },
+    ] : (Number(idx)===4 ? [
+      { text:'I drive the green tractor.', correct:true },
+      { text:'The harvester is in the shed.', correct:true },
+      { text:'It is ready.', correct:true },
     ] : [
       { text:'Paul is a farmer.', correct:true },
       { text:'The chickens are calm.', correct:false },
       { text:'The barn is open.', correct:true },
-    ]);
+    ]));
     const amIsAre = (Number(idx)===2) ? [
       { prompt:'We ____ many cows.', answer:'have' },
       { prompt:'She ____ a medical kit.', answer:'has' },
@@ -315,11 +319,15 @@
       { prompt:'____ the cows walk to the pasture?', answer:'Do' },
       { prompt:'The calf ____ drink milk.', answer:"doesn't" },
       { prompt:'____ we clean the feeding area?', answer:'Do' },
+    ] : (Number(idx)===4 ? [
+      { prompt:'The tractor ____ new.', answer:'is' },
+      { prompt:'The harvester ____ in the shed.', answer:'is' },
+      { prompt:'It ____ ready.', answer:'is' },
     ] : [
       { prompt:'I ____ Paul.', answer:'am' },
       { prompt:'The barn ____ open.', answer:'is' },
       { prompt:'The cows ____ calm.', answer:'are' },
-    ]);
+    ]));
     const vocabItems = [
       { word:'farmer', pt:'fazendeiro', image:'/public/images/a1texto1/slidetx1/11.webp' },
       { word:'barn', pt:'galpão', image:'/public/images/a1texto1/slidetx1/12.webp' },
@@ -332,15 +340,23 @@
     function makeVideoPairs(){
       const isTx2 = Number(idx)===2;
       const isTx3 = Number(idx)===3;
-      const count = isTx2 ? 8 : 11;
+      const isTx4 = Number(idx)===4;
+      const count = isTx2 ? 8 : (isTx4 ? 2 : 11);
       const imgs = isTx2
         ? Array.from({length:count}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`)
         : (isTx3
             ? Array.from({length:count}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`)
-            : Array.from({length:count}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`));
+            : (isTx4
+                ? Array.from({length:count}, (_,i)=> `/public/images/a1texto4/${i+1}.4.webp`)
+                : Array.from({length:count}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`)));
       const lines = Array.isArray(data && data.lines) ? data.lines.map(l=> String(l.en||'').trim()).filter(Boolean) : [];
       const nar = Array.isArray(data && data.a1_exercises && data.a1_exercises.narration_sentences) ? data.a1_exercises.narration_sentences.map(s=> String(s||'').trim()).filter(Boolean) : [];
-      const srcTexts = (lines.length ? lines : nar).slice(0,count);
+      const textParts = String(data && data.text || '').split(/(?<=[.!?])\s+/).filter(Boolean);
+      const srcBase = (isTx4 ? [
+        'I drive the green tractor. It is new.',
+        'The harvester is in the shed. It is ready.'
+      ] : (lines.length ? lines : (nar.length ? nar : textParts)));
+      const srcTexts = srcBase.slice(0,count);
       const out = [];
       for (let i=0;i<count;i++) {
         out.push({ src: imgs[i], text: srcTexts[i] || '' });
@@ -357,7 +373,10 @@
           { word:'medicine', pt:'remédio' },
           { word:'leg', pt:'perna' },
         ]
-      : null;
+      : (Number(idx)===4 ? [
+            { word:'tractor', pt:'trator' },
+            { word:'harvester', pt:'colheitadeira' }
+        ] : null);
     const transformItems = (Number(idx)===2)
       ? [
           { base:'She has a medical kit.', target:'neg', answer: "She doesn't have a medical kit." },
@@ -370,11 +389,15 @@
               { base:'The cows walk to the pasture.', target:'q', answer:'Do the cows walk to the pasture?' },
               { base:'The small calf drinks milk.', target:'neg', answer:"The small calf doesn't drink milk." }
             ]
-          : [
+          : (Number(idx)===4 ? [
+              { base:'I drive the green tractor.', target:'q', answer:'Do I drive the green tractor?' },
+              { base:'The harvester is in the shed.', target:'neg', answer:'The harvester is not in the shed.' },
+              { base:'It is ready.', target:'q', answer:'Is it ready?' }
+            ] : [
               { base:'She is happy.', target:'neg', answer:'She is not happy.' },
               { base:'The barn is open.', target:'q', answer:'Is the barn open?' }
-            ]);
-    const orderSentence = (Number(idx)===2) ? 'We have safe and healthy animals now.' : (Number(idx)===3 ? 'We start work at 6:00 AM.' : 'The barn is open.');
+            ]));
+    const orderSentence = (Number(idx)===2) ? 'We have safe and healthy animals now.' : (Number(idx)===3 ? 'We start work at 6:00 AM.' : (Number(idx)===4 ? 'The harvester is in the shed.' : 'The barn is open.'));
     return e('div', { className:'w-full max-w-4xl mx-auto' },
       e('div', { className:'mb-4 flex items-center justify-between' },
         e('h2', { className:'text-base font-bold text-green-700' }, `${String(data.uiTitle||data.title||'A1 Texto')} · Exercícios (A1)`),
@@ -392,7 +415,7 @@
             e(OrderWords, { sentence: orderSentence })
           )
         ),
-        e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' }, e(DictationExercise, { sentences: videoPairs.map(p=>p.text).filter(Boolean).slice(0,3), segUrls: (Number(idx)===2 ? ['/src/audio/A1/texto-a1.2-dividido/1.1.mp3','/src/audio/A1/texto-a1.2-dividido/2.2.mp3','/src/audio/A1/texto-a1.2-dividido/3.3.mp3'] : (Number(idx)===3 ? ['/src/audio/A1/texto-a1.3-dividido/1.3.mp3','/src/audio/A1/texto-a1.3-dividido/2.3.mp3','/src/audio/A1/texto-a1.3-dividido/3.3.mp3'] : ['/src/audio/A1/texto-a1.1-dividido/seg1.mp3','/src/audio/A1/texto-a1.1-dividido/seg2.mp3','/src/audio/A1/texto-a1.1-dividido/seg3.mp3'])) })),
+        e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' }, e(DictationExercise, { sentences: (Number(idx)===4 ? ['I drive the green tractor. It is new.', 'The harvester is in the shed. It is ready.'] : videoPairs.map(p=>p.text).filter(Boolean).slice(0,3)), segUrls: (Number(idx)===2 ? ['/src/audio/A1/texto-a1.2-dividido/1.1.mp3','/src/audio/A1/texto-a1.2-dividido/2.2.mp3','/src/audio/A1/texto-a1.2-dividido/3.3.mp3'] : (Number(idx)===3 ? ['/src/audio/A1/texto-a1.3-dividido/1.3.mp3','/src/audio/A1/texto-a1.3-dividido/2.3.mp3','/src/audio/A1/texto-a1.3-dividido/3.3.mp3'] : ['/src/audio/A1/texto-a1.1-dividido/seg1.mp3','/src/audio/A1/texto-a1.1-dividido/seg2.mp3','/src/audio/A1/texto-a1.1-dividido/seg3.mp3'])) })),
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe botões de cima e de baixo' }, e(VisualAssociation12, { items: assocItems })),
         e(ExerciseCard, { title:'Finalizar', instruction:'Bom trabalho!' }, e('div', { className:'text-sm text-gray-800' }, 'Great job!'))
       )
@@ -400,7 +423,7 @@
   }
 
   window.ExercisePageMount = function(level, idx, data){
-    if (String(level).toUpperCase()!=='A1' || (Number(idx)!==1 && Number(idx)!==2 && Number(idx)!==3)) return;
+    if (String(level).toUpperCase()!=='A1' || (Number(idx)!==1 && Number(idx)!==2 && Number(idx)!==3 && Number(idx)!==4)) return;
     const practiceTab = document.getElementById('tab-practice');
     if (!practiceTab || practiceTab.style.display==='none') return;
     const rootEl = document.getElementById('exercisePageRoot');
