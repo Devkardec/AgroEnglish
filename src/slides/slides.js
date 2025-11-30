@@ -192,12 +192,8 @@
       } else {
         window.__A1_3_IMAGES = null;
       }
-      if (String(level).toUpperCase()==='A1' && (Number(idx)===1 || Number(idx)===2)) {
-        const onlyTextSlides = slides.map(s=> ({ ...s, image: undefined }));
-        mountSlides(onlyTextSlides);
-      } else {
-        mountSlides(slides);
-      }
+      const onlyTextSlides = slides.map(s=> ({ ...s, image: undefined }));
+      mountSlides(onlyTextSlides);
     } catch {}
   };
 })();

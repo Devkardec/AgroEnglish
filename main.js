@@ -1520,7 +1520,7 @@ function renderGrammar(data) {
       const scene = `
         <div class="card" style="padding:0">
           <div class="video-area" style="padding:12px">
-            <div id="vidImage" style="width:100%;height:min(260px,42vh);border-radius:10px;background:url('https://source.unsplash.com/800x450/?farm') top center/contain no-repeat;background-color:#f5f7fb;transition:transform .6s, opacity .4s"></div>
+            <div id="vidImage" style="width:100%;height:min(260px,42vh);border-radius:10px;background:url('https://source.unsplash.com/800x450/?farm') center/cover no-repeat;background-color:#f5f7fb;transition:transform .6s, opacity .4s"></div>
             <div id="vidEN" style="font-size:28px;line-height:1.2;margin-top:10px;transition:opacity .4s, transform .4s; text-align:center"></div>
             <div id="vidPT" class="small" style="font-size:16px;color:#374151;margin-top:6px;transition:opacity .4s, transform .4s; text-align:center"></div>
             <audio id="vidAudio" preload="metadata" style="display:none"></audio>
@@ -1689,11 +1689,11 @@ function renderGrammar(data) {
         const names = coverDecimal ? [coverDecimal,'0'] : ['0'];
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
-          if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?farm")`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; return; }
+          if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?farm")`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; return; }
           if (ni < names.length && ei < exts.length){
             const url = bases[bi] + names[ni] + exts[ei++];
             const probe = new Image();
-            probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.backgroundSize='contain'; imgEl.style.backgroundPosition='top center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; };
+            probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; };
             probe.onerror = tryNext;
             probe.src = url;
           } else if (ni + 1 < names.length) { ni++; ei = 0; tryNext(); }
@@ -1778,14 +1778,14 @@ function renderGrammar(data) {
         const idxNum = Number(index);
         let bi = 0, ei = 0;
         function tryNext(){
-          if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?${encodeURIComponent(q)}")`; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
+          if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?${encodeURIComponent(q)}")`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
           if (ei < exts.length){
             let name = String(k+1);
             if (isA1 && idxNum===2) name = `${k+1}.${k+1}`;
             else if (isA1 && idxNum===3) name = `${k+1}.3`;
             const url = bases[bi] + name + exts[ei++];
             const probe = new Image();
-            probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.backgroundSize='contain'; imgEl.style.backgroundPosition='top center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; };
+            probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; };
             probe.onerror = tryNext;
             probe.src = url;
         } else { bi++; ei=0; tryNext(); }
