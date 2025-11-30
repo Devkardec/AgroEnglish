@@ -1348,6 +1348,7 @@ function renderGrammar(data) {
     const isA1BeMode = (levelTag2==='A1' && curIdx2===1);
     const isA1HaveMode = (levelTag2==='A1' && curIdx2===2);
     const isA1PSMode = (levelTag2==='A1' && curIdx2===3);
+    const isA1AdjMode = (levelTag2==='A1' && curIdx2===4);
     const affCard = (aff.length && !(isA1BeMode||isA1HaveMode)) ? `<div class=\"card\"><div class=\"small\"><strong>Afirmativa</strong></div>${aff.slice(0,3).map(lineHtml).join('')}</div>` : '';
     const negCard = (negs.length && !(isA1BeMode||isA1HaveMode)) ? `<div class=\"card\"><div class=\"small\"><strong>Negativa</strong></div>${negs.slice(0,3).map(lineHtml).join('')}</div>` : '';
     const qCard = (quess.length && !(isA1BeMode||isA1HaveMode)) ? `<div class=\"card\"><div class=\"small\"><strong>Pergunta</strong></div>${quess.slice(0,3).map(lineHtml).join('')}</div>` : '';
@@ -1515,7 +1516,7 @@ function renderGrammar(data) {
     `;
 
     const gv = document.getElementById('grammarVideo');
-    if (gv && (isA1BeMode || isA1HaveMode || isA1PSMode)) {
+    if (gv && (isA1BeMode || isA1HaveMode || isA1PSMode || isA1AdjMode)) {
       try { gv.style.display = 'block' } catch {}
       const scene = `
         <div class="card" style="padding:0">
@@ -1552,6 +1553,20 @@ function renderGrammar(data) {
         </div>
       `;
       gv.innerHTML = scene;
+      (function(){
+        const { level, index } = parseRoute();
+        if (String(level).toUpperCase()==='A1' && Number(index)===4) {
+          try {
+            gv.insertAdjacentHTML('beforeend', `
+              <div style="margin-top:12px">
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
+                  <iframe src="https://www.youtube.com/embed/Q39ia_h7l5Q" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+                </div>
+              </div>
+            `);
+          } catch {}
+        }
+      })();
       function sentencesFor(d){
         if (Array.isArray(d.pairs) && d.pairs.length) return d.pairs.map(p=>p.en);
         const lines = Array.isArray(d.lines) ? d.lines.map(l=> String(l.en||'').trim()).filter(Boolean) : [];
@@ -1583,7 +1598,7 @@ function renderGrammar(data) {
         'They are funny.',
         'The sun is hot, but the wind is not strong.',
         'We are ready for the day.'
-      ] : sentencesFor(data);
+      ] : (isA1AdjMode ? sentencesFor(data).slice(0,10) : sentencesFor(data));
       const pt = isA1BeMode ? [
         'Olá.',
         'Eu sou Paul e sou fazendeiro.',
@@ -1596,7 +1611,7 @@ function renderGrammar(data) {
         'Elas são engraçadas.',
         'O sol está quente, mas o vento não está forte.',
         'Nós estamos prontos para o dia.'
-      ] : ptSentencesFor(data);
+      ] : (isA1AdjMode ? ptSentencesFor(data).slice(0,10) : ptSentencesFor(data));
       const imgQ = isA1BeMode ? [
         'farm',
         'farmer portrait',
@@ -1620,9 +1635,11 @@ function renderGrammar(data) {
           if (/feeds?\s+the\s+pigs?/i.test(t)) return 'feeding pigs farm';
           return 'farm routine';
         })
+      ) : (isA1AdjMode ? (
+        (en || []).map((s,i)=> i===0 ? 'farm cover' : 'farm routine')
       ) : (
         (en || []).map((s,i)=> i===0 ? 'farm' : (/vet|veterinarian/i.test(s) ? 'veterinarian cattle' : (/cow|cattle|calf/i.test(s) ? 'cattle farm' : (/barn/i.test(s) ? 'barn' : 'farm'))))
-      ));
+      )));
       const tips = isA1BeMode ? [
         'Cumprimento simples com pausa para repetição.',
         'Identidade: I am + profissão.',
@@ -1685,7 +1702,7 @@ function renderGrammar(data) {
         const { level, index } = parseRoute();
         const isA1 = String(level).toUpperCase()==='A1';
         const idxNum = Number(index);
-        const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : null;
+        const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : (isA1 && idxNum===4) ? '0.4' : null;
         const names = coverDecimal ? [coverDecimal,'0'] : ['0'];
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
@@ -1716,6 +1733,28 @@ function renderGrammar(data) {
           }
           audioEl.addEventListener('error', tryNext);
           audioEl.addEventListener('loadedmetadata', ()=>{ segLen = (audioEl.duration||0) / en.length; });
+          audioEl.addEventListener('canplay', ()=>{ audioEl.removeEventListener('error', tryNext); });
+          audioEl.addEventListener('timeupdate', ()=>{
+            if (!segLen) return;
+            const cur = Math.floor((audioEl.currentTime||0) / segLen);
+            const k = Math.min(en.length-1, Math.max(0, cur));
+            if (k !== lastScene){ lastScene = k; i = k; show(i); }
+          });
+          audioEl.addEventListener('ended', ()=>{ playing=false; });
+          tryNext();
+        } else if (isA1AdjMode) {
+          const file = 'The Tractor and The Field (Machinery & Crops) · A1.mp3';
+          const encoded = encodeURIComponent(file);
+          const bases = ['./src/audio/A1/','./src/audio/','./public/audio/a1texto4/','./public/audio/A1/','./public/audio/','./'];
+          let idx = 0;
+          function tryNext(){
+            if (idx >= bases.length){ if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; }
+            const src = bases[idx++] + encoded;
+            audioEl.src = src;
+            audioEl.load();
+          }
+          audioEl.addEventListener('error', tryNext);
+          audioEl.addEventListener('loadedmetadata', ()=>{ segLen = (audioEl.duration||0) / Math.max(1,en.length); });
           audioEl.addEventListener('canplay', ()=>{ audioEl.removeEventListener('error', tryNext); });
           audioEl.addEventListener('timeupdate', ()=>{
             if (!segLen) return;
@@ -1759,6 +1798,7 @@ function renderGrammar(data) {
               let name = String(k+1);
               if (isA1 && idxNum===2) name = `${k+1}.${k+1}`;
               else if (isA1 && idxNum===3) name = `${k+1}.3`;
+              else if (isA1 && idxNum===4) name = `${k+1}.4`;
               const url = bases[bi] + name + exts[ei];
               const im = new Image();
               im.onload = ()=>{ if (!preloaded[k]) preloaded[k] = url; };
@@ -1783,6 +1823,7 @@ function renderGrammar(data) {
             let name = String(k+1);
             if (isA1 && idxNum===2) name = `${k+1}.${k+1}`;
             else if (isA1 && idxNum===3) name = `${k+1}.3`;
+            else if (isA1 && idxNum===4) name = `${k+1}.4`;
             const url = bases[bi] + name + exts[ei++];
             const probe = new Image();
             probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; };
@@ -2817,6 +2858,41 @@ function renderGrammar(data) {
               cards.forEach(el=>{
                 const t = String(el.textContent||'');
                 if (/Vocabulário|Pronúncia|Gramática rápida|Resumo/i.test(t)) el.remove();
+              });
+            }
+          } catch {}
+        }
+        if (String(level).toUpperCase()==='A1' && Number(idx)===4) {
+          try {
+            const g = document.getElementById('grammar'); if (g) { g.innerHTML=''; g.style.display = 'none'; }
+            const v = document.getElementById('vocab'); if (v) { v.innerHTML=''; v.style.display = 'none'; }
+            const vt = document.getElementById('vocabTable'); if (vt) { vt.innerHTML=''; vt.style.display = 'none'; }
+          } catch {}
+          try {
+            const study = document.getElementById('tab-study');
+            if (study) {
+              const keepIds = new Set(['grammarVideo','slideLessonRoot','study-footer']);
+              const titles = Array.from(study.querySelectorAll('.section-title'));
+              titles.forEach(el=>{
+                const txt = String(el.textContent||'').trim();
+                const keep = /^(Texto narrado)$/i.test(txt);
+                if (!keep) {
+                  const next = el.nextElementSibling;
+                  if (next && next.id && keepIds.has(next.id)) {
+                    // manter blocos essenciais
+                  } else {
+                    if (next && next.classList && next.classList.contains('card')) next.remove();
+                    el.remove();
+                  }
+                }
+              });
+              const cards = Array.from(study.querySelectorAll('.card'));
+              cards.forEach(el=>{
+                if (el.id && keepIds.has(el.id)) return;
+                if (el.closest('#grammarVideo')) return; // manter vídeo narrado (card dentro do wrapper)
+                if (el.closest('#slideLessonRoot')) return; // manter slides
+                if (el.closest('#study-footer')) return; // manter texto narrado e voz
+                el.remove();
               });
             }
           } catch {}

@@ -1,16 +1,26 @@
 {
-    "title":  "Alimentando os animais",
-    "text":  "I carry feed to the cows. I fill the troughs. I check the water. I clean the area. I talk softly to the animals. I see the calves. I give milk to a small calf. I move slowly and safely. I count the cows. I close the gate. I smile and feel calm. The animals eat and drink. They walk in the sun. I watch them and learn. I finish the task with care.",
-    "translation":  "Eu levo ração para as vacas. Eu encho os cochos. Eu verifico a água. Eu limpo a área. Eu falo baixo com os animais. Eu vejo os bezerros. Eu dou leite para um bezerro pequeno. Eu me movo devagar e com segurança. Eu conto as vacas. Eu fecho o portão. Eu sorrio e me sinto calmo. Os animais comem e bebem. Eles caminham no sol. Eu observo e aprendo. Eu termino a tarefa com cuidado.",
-    "vocabulary":  [
-                       { "word": "cow", "meaning": "vaca" },
-                       { "word": "calf", "meaning": "bezerro" },
-                       { "word": "feed", "meaning": "ração" },
-                       { "word": "trough", "meaning": "cocho" },
-                       { "word": "gate", "meaning": "portão" }
-                   ],
-    "grammar":  "Present simple with farm routines.",
-    "verbs":  "Verbs used: carry, fill, check, clean, talk, see, give, count, close, finish.",
-    "exercises":  { "multiple_choice": [], "fill_in": [], "speaking": "Repeat: Feeding the animals" }
+    "title": "The Tractor and The Field (Machinery & Crops)",
+    "text": "I drive the green tractor. It is new. The machine is very strong and heavy. We plant soybeans in the large field. The soil is good today. It is humid, not dry. My brother checks the seeds. The harvester is in the shed. It is ready. We work hard in the harvest season.",
+    "translation": "Eu dirijo o trator verde. Ele é novo. A máquina é muito forte e pesada. Nós plantamos soja no campo grande. O solo está bom hoje. Está úmido, não seco. Meu irmão confere as sementes. A colheitadeira está no galpão. Ela está pronta. Nós trabalhamos duro na safra.",
+    "vocabulary": [
+        { "word": "tractor", "meaning": "trator" },
+        { "word": "harvester", "meaning": "colheitadeira" },
+        { "word": "machine", "meaning": "máquina" },
+        { "word": "shed", "meaning": "galpão" },
+        { "word": "soybeans", "meaning": "soja" },
+        { "word": "field", "meaning": "campo" },
+        { "word": "soil", "meaning": "solo" },
+        { "word": "seeds", "meaning": "sementes" },
+        { "word": "harvest season", "meaning": "safra" },
+        { "word": "humid", "meaning": "úmido" },
+        { "word": "dry", "meaning": "seco" },
+        { "word": "heavy", "meaning": "pesado" },
+        { "word": "plant", "meaning": "plantar" },
+        { "word": "drive", "meaning": "dirigir" },
+        { "word": "work", "meaning": "trabalhar" }
+    ],
+    "grammar": "Adjetivos em inglês: posição após 'be' (The tractor is green) e antes do substantivo (The green tractor).",
+    "verbs": "Verbs used: drive, plant, work, check.",
+    "exercises": { "multiple_choice": [], "fill_in": [], "speaking": "Repeat: The Tractor and The Field" }
 }
-}
+

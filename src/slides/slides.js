@@ -182,7 +182,7 @@
   }
 
   window.SlideLessonMount = async function(level, idx){
-    if (String(level).toUpperCase()!=='A1' || (Number(idx)!==1 && Number(idx)!==2 && Number(idx)!==3)) return;
+    if (String(level).toUpperCase()!=='A1' || (Number(idx)!==1 && Number(idx)!==2 && Number(idx)!==3 && Number(idx)!==4)) return;
     try {
       try { const ts = document.getElementById('tab-study'); if (ts) ts.style.display = 'block'; } catch {}
       const data = await loadLessonData(idx);
