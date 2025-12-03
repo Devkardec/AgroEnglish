@@ -243,7 +243,7 @@ input[type="range"] { width:100%; }
 .pron-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px }
 .pron-card { background:var(--card); border:1px solid #e5e9e7; border-radius:14px; padding:12px; box-shadow:0 4px 14px rgba(0,0,0,0.06) }
 .pron-card .toolbar { display:flex; gap:8px; flex-wrap:wrap }
-.pron-card .text { font-size:14px; color:var(--text) }
+.pron-card .text { font-size:14px; color:var(--text); text-align:center }
 .meter { height:8px; background:#e5e9e7; border-radius:8px; overflow:hidden; margin-top:8px }
 .meter span { display:block; height:100%; width:0; background:linear-gradient(90deg, var(--green), var(--green2)) }
 .compare-badges { display:flex; gap:8px; flex-wrap:wrap }

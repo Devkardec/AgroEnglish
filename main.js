@@ -920,8 +920,11 @@ async function setupAudio(data) {
     if (btnStudy) btnStudy.addEventListener('click', ()=> showTab('study'));
     if (btnPractice) btnPractice.addEventListener('click', ()=> showTab('practice'));
     if (btnSpeech) btnSpeech.addEventListener('click', ()=> showTab('speech'));
-    const lastTab = localStorage.getItem('lastTab') || 'study';
-    showTab(lastTab);
+    const routeKey = `textRoute:${String(level).toUpperCase()}:${String(idx)}`;
+    const visited = (function(){ try { return sessionStorage.getItem(routeKey) } catch { return null } })();
+    const initialTab = visited ? (localStorage.getItem('lastTab') || 'study') : 'study';
+    showTab(initialTab);
+    try { sessionStorage.setItem(routeKey, '1') } catch {}
 
     document.querySelector('#toggleTr').addEventListener('click', () => {
       linesEl.classList.toggle('hide-pt');
@@ -2783,10 +2786,6 @@ function renderGrammar(data) {
 
       setupUI(data);
       try { if (window.SlideLessonMount) window.SlideLessonMount(level, idx); } catch {}
-      try {
-        const lastTabNow = (function(){ try { return localStorage.getItem('lastTab')||'study' } catch { return 'study' } })();
-        if (lastTabNow==='practice') { if (window.ExercisePageMount) window.ExercisePageMount(level, idx, data); }
-      } catch {}
       if (uiTitle) {
         try { document.getElementById('title').textContent = uiTitle + ' · ' + level; } catch {}
       }
@@ -2912,7 +2911,8 @@ function renderGrammar(data) {
       try { const vEl = document.querySelector('#verbs'); if (vEl) vEl.remove(); } catch {}
       try {
         const curLevelNow = (location.hash.split('/')[2]||'').toUpperCase();
-        if (curLevelNow !== 'A1') {
+        const activeTabNow = (function(){ try { return localStorage.getItem('lastTab')||'study' } catch { return 'study' } })();
+        if (curLevelNow !== 'A1' && activeTabNow==='practice') {
           try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
           try { renderFill(data); } catch (e) { console.error('Error in renderFill:', e); }
         }
@@ -4527,7 +4527,7 @@ function renderGrammar(data) {
                       : [])));
         pronList.innerHTML = shown.map((s,i)=>`
           <div class="pron-card">
-            ${useImages ? `<img src="${imgs[i]}" alt="" loading="lazy" class="object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
+            ${useImages ? `<img src="${imgs[i]}" alt="${s}" loading="lazy" class="object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
             <div class="text">${s}</div>
             <div class="toolbar" style="margin-top:8px">
               <button class="btn sm secondary" data-pron-play="${i}">Ouvir</button>
