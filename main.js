@@ -1352,6 +1352,7 @@ function renderGrammar(data) {
     const isA1HaveMode = (levelTag2==='A1' && curIdx2===2);
     const isA1PSMode = (levelTag2==='A1' && curIdx2===3);
     const isA1AdjMode = (levelTag2==='A1' && curIdx2===4);
+    const isA1ClimateMode = (levelTag2==='A1' && curIdx2===5);
     const affCard = (aff.length && !(isA1BeMode||isA1HaveMode)) ? `<div class=\"card\"><div class=\"small\"><strong>Afirmativa</strong></div>${aff.slice(0,3).map(lineHtml).join('')}</div>` : '';
     const negCard = (negs.length && !(isA1BeMode||isA1HaveMode)) ? `<div class=\"card\"><div class=\"small\"><strong>Negativa</strong></div>${negs.slice(0,3).map(lineHtml).join('')}</div>` : '';
     const qCard = (quess.length && !(isA1BeMode||isA1HaveMode)) ? `<div class=\"card\"><div class=\"small\"><strong>Pergunta</strong></div>${quess.slice(0,3).map(lineHtml).join('')}</div>` : '';
@@ -1519,7 +1520,7 @@ function renderGrammar(data) {
     `;
 
     const gv = document.getElementById('grammarVideo');
-    if (gv && (isA1BeMode || isA1HaveMode || isA1PSMode || isA1AdjMode)) {
+    if (gv && (isA1BeMode || isA1HaveMode || isA1PSMode || isA1AdjMode || isA1ClimateMode)) {
       try { gv.style.display = 'block' } catch {}
       const scene = `
         <div class="card" style="padding:0">
@@ -1567,6 +1568,63 @@ function renderGrammar(data) {
                 </div>
               </div>
             `);
+          } catch {}
+        }
+        if (String(level).toUpperCase()==='A1' && Number(index)===5) {
+          try {
+            gv.insertAdjacentHTML('beforeend', `
+              <div style="margin-top:12px">
+                <div id="ytVideo5" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
+                  <iframe src="https://www.youtube.com/embed/CwqqtZ3knsg" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+                </div>
+              </div>
+            `);
+            const lessonHTML5 = `
+              <div class="section-title" style="margin-top:12px">🌱 Aula de Inglês: Adjetivos na Fazenda</div>
+              <div class="card">
+                <div class="small"><strong>📌 Objetivo da aula</strong></div>
+                <div class="small" style="margin-top:6px">Entender o que são adjetivos e como usá-los para descrever pessoas, animais, objetos e clima na fazenda.</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">🔤 O que é adjetivo?</div>
+              <div class="card">
+                <div class="small">Definição: Adjetivo é a palavra que descreve como algo é ou está.</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">Exemplos básicos</div>
+              <div class="card">
+                <div class="small">big (grande)</div>
+                <div class="small">small (pequeno)</div>
+                <div class="small">happy (feliz)</div>
+                <div class="small">calm (calmo)</div>
+                <div class="small" style="margin-top:8px"><strong>👉 Exemplo em frase:</strong> The farmer is happy. (O fazendeiro está feliz.)</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">🐄 Adjetivos para animais da fazenda</div>
+              <div class="card">
+                <div class="small">brown (marrom)</div>
+                <div class="small">white (branco)</div>
+                <div class="small">strong (forte)</div>
+                <div class="small">slow (lento)</div>
+                <div class="small" style="margin-top:8px"><strong>👉 Exemplos em frases:</strong> The cow is brown. (A vaca é marrom.) · The horse is strong. (O cavalo é forte.)</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">🚜 Adjetivos para objetos e lugares</div>
+              <div class="card">
+                <div class="small">clean (limpo)</div>
+                <div class="small">dirty (sujo)</div>
+                <div class="small">new (novo)</div>
+                <div class="small">old (velho)</div>
+                <div class="small">big (grande)</div>
+                <div class="small" style="margin-top:8px"><strong>👉 Exemplos em frases:</strong> The barn is clean. (O celeiro está limpo.) · The tractor is old. (O trator é velho.)</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">☀️ Adjetivos para clima na fazenda</div>
+              <div class="card">
+                <div class="small">hot (quente)</div>
+                <div class="small">cold (frio)</div>
+                <div class="small">rainy (chuvoso)</div>
+                <div class="small">sunny (ensolarado)</div>
+                <div class="small">windy (ventoso)</div>
+                <div class="small" style="margin-top:8px"><strong>👉 Exemplos em frases:</strong> The day is sunny. (O dia está ensolarado.) · The morning is cold. (A manhã está fria.)</div>
+              </div>
+            `;
+            gv.insertAdjacentHTML('beforeend', lessonHTML5);
           } catch {}
         }
       })();
@@ -1705,7 +1763,7 @@ function renderGrammar(data) {
         const { level, index } = parseRoute();
         const isA1 = String(level).toUpperCase()==='A1';
         const idxNum = Number(index);
-        const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : (isA1 && idxNum===4) ? '0.4' : null;
+        const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : (isA1 && idxNum===4) ? '0.4' : (isA1 && idxNum===5) ? '0.5' : null;
         const names = coverDecimal ? [coverDecimal,'0'] : ['0'];
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
@@ -1802,6 +1860,7 @@ function renderGrammar(data) {
               if (isA1 && idxNum===2) name = `${k+1}.${k+1}`;
               else if (isA1 && idxNum===3) name = `${k+1}.3`;
               else if (isA1 && idxNum===4) name = `${k+1}.4`;
+              else if (isA1 && idxNum===5) name = `${k+1}.5`;
               const url = bases[bi] + name + exts[ei];
               const im = new Image();
               im.onload = ()=>{ if (!preloaded[k]) preloaded[k] = url; };
@@ -1827,6 +1886,7 @@ function renderGrammar(data) {
             if (isA1 && idxNum===2) name = `${k+1}.${k+1}`;
             else if (isA1 && idxNum===3) name = `${k+1}.3`;
             else if (isA1 && idxNum===4) name = `${k+1}.4`;
+            else if (isA1 && idxNum===5) name = `${k+1}.5`;
             const url = bases[bi] + name + exts[ei++];
             const probe = new Image();
             probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; };
@@ -2902,6 +2962,41 @@ function renderGrammar(data) {
                 if (el.closest('#grammarVideo')) return; // manter vídeo narrado (card dentro do wrapper)
                 if (el.closest('#slideLessonRoot')) return; // manter slides
                 if (el.closest('#study-footer')) return; // manter texto narrado e voz
+                el.remove();
+              });
+            }
+          } catch {}
+        }
+        if (String(level).toUpperCase()==='A1' && Number(idx)===5) {
+          try {
+            const g = document.getElementById('grammar'); if (g) { g.innerHTML=''; g.style.display = 'none'; }
+            const v = document.getElementById('vocab'); if (v) { v.innerHTML=''; v.style.display = 'none'; }
+            const vt = document.getElementById('vocabTable'); if (vt) { vt.innerHTML=''; vt.style.display = 'none'; }
+          } catch {}
+          try {
+            const study = document.getElementById('tab-study');
+            if (study) {
+              const keepIds = new Set(['grammarVideo','slideLessonRoot','study-footer']);
+              const titles = Array.from(study.querySelectorAll('.section-title'));
+              titles.forEach(el=>{
+                if (el.closest('#grammarVideo')) return;
+                const txt = String(el.textContent||'').trim();
+                const keep = /^(Texto narrado)$/i.test(txt);
+                if (!keep) {
+                  const next = el.nextElementSibling;
+                  if (next && next.id && keepIds.has(next.id)) {
+                  } else {
+                    if (next && next.classList && next.classList.contains('card')) next.remove();
+                    el.remove();
+                  }
+                }
+              });
+              const cards = Array.from(study.querySelectorAll('.card'));
+              cards.forEach(el=>{
+                if (el.id && keepIds.has(el.id)) return;
+                if (el.closest('#grammarVideo')) return;
+                if (el.closest('#slideLessonRoot')) return;
+                if (el.closest('#study-footer')) return;
                 el.remove();
               });
             }
