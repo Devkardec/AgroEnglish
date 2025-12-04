@@ -33,13 +33,9 @@ export function TextPage(level, index) {
 
   <section id="tab-study" class="card">
         <div id="grammarVideo" style="margin-top:0;display:none"></div>
-        <div class="section-title">Guia de Estudo</div>
-        <div class="section-title" style="margin-top:12px">Explicação e Estrutura</div>
-        <div id="grammar"></div>
-        <div class="section-title" style="margin-top:12px">Vocabulário</div>
-        <div id="vocab" class="flash-grid"></div>
-        <div class="section-title" style="margin-top:12px">Vocabulário (Pronúncia)</div>
-        <div id="vocabTable"></div>
+        <div id="grammar" style="margin-top:0"></div>
+        <div id="vocab" class="flash-grid" style="margin-top:12px"></div>
+        <div id="vocabTable" style="margin-top:12px"></div>
       <section class="card" id="study-footer" style="margin-top:16px">
           ${ytEmbed}
           <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
@@ -90,12 +86,12 @@ export function TextPage(level, index) {
 
 
       <section id="tab-practice" class="card" style="display:none">
-        <div class="section-title">Sala de Exercícios</div>
+        <div class="section-title">✍️ Sala de Exercícios</div>
         <div id="exercisePageRoot" style="margin-top:8px"></div>
         <div id="gameTop" style="margin-bottom:12px"></div>
         <div id="mc"></div>
         <div id="gExercises" style="margin-top:12px"></div>
-        <div class="section-title" style="margin-top:12px">Exercícios A1 (capítulo)</div>
+        <div class="section-title" style="margin-top:12px">🧪 Exercícios A1 (capítulo)</div>
         <div id="a1ex" style="margin-top:8px"></div>
         <div id="fill" style="margin-top:12px"></div>
         <button class="btn" id="checkFill" style="margin-top:8px">Checar</button>
@@ -103,11 +99,11 @@ export function TextPage(level, index) {
       </section>
 
       <section id="tab-speech" class="card" style="display:none">
-        <div class="section-title">Laboratório de Fala</div>
+        <div class="section-title">🎧 Laboratório de Fala</div>
         <div class="small">Prática ativa de pronúncia.</div>
-        <div class="section-title" style="margin-top:12px">Treinar pronúncia</div>
+        <div class="section-title" style="margin-top:12px">🎯 Treinar pronúncia</div>
         <div id="pronList" class="pron-grid"></div>
-        <div class="section-title" style="margin-top:12px">Narrar texto completo</div>
+        <div class="section-title" style="margin-top:12px">🧾 Narrar texto completo</div>
         <div id="fullSpeechText" class="lines" style="margin-top:8px"></div>
         <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
           <button class="btn sm" id="fullPlayOrig" style="white-space:nowrap">Ouvir narração original</button>
@@ -136,10 +132,8 @@ export function TextPage(level, index) {
 
       
 
-      <button id="backToTop" class="btn" style="position:fixed;bottom:20px;right:20px;display:none;border-radius:999px;width:46px;height:46px;padding:0;display:none" aria-label="Voltar ao topo" title="Voltar ao topo">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="display:block;margin:auto">
-          <path d="M12 2l3 6h-2v7l-4-2v-5H9l3-6z" />
-        </svg>
+      <button id="backToTop" class="btn" style="position:fixed;bottom:20px;right:20px;display:none;border-radius:999px;width:46px;height:46px;padding:0" aria-label="Voltar ao topo" title="Voltar ao topo">
+        <img src="./public/icons/foguete.ico" alt="Subir" width="24" height="24" style="display:block;margin:auto" />
       </button>
     </main>
   `;
