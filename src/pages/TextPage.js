@@ -42,11 +42,19 @@ export function TextPage(level, index) {
         <div id="vocabTable"></div>
       <section class="card" id="study-footer" style="margin-top:16px">
           ${ytEmbed}
+          <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
+          <div class="small">Assista, leia, pratique e fale — tudo em um só lugar.</div>
+          <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge">🎥 Assistir</span>
+            <span class="badge">📖 Ler</span>
+            <span class="badge">🗣️ Falar</span>
+            <span class="badge">✍️ Exercitar</span>
+          </div>
           <div id="slideLessonRoot" style="margin-top:12px"></div>
-          <div class="section-title" style="margin-top:12px">Texto narrado</div>
+          <div class="section-title" style="margin-top:12px">📖 Texto narrado</div>
           <div style="margin-top:8px">
             <details class="accordion">
-              <summary><span class="section-title" style="margin:0">Voz da narração</span></summary>
+              <summary><span class="section-title" style="margin:0">🎙️ Voz da narração</span></summary>
               <div style="margin-top:8px">
                 <div id="voiceSelector" class="selector" style="gap:6px"></div>
               </div>

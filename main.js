@@ -2944,19 +2944,7 @@ function renderGrammar(data) {
                     <tbody>${rows1}</tbody>
                   </table>
                 </div>
-                <div class="section-title" style="margin-top:12px">Exemplos narrados</div>
-                <div class="card">
-                  <div class="line"><div class="en">I am Paul, and I am a farmer.</div><div class="pt">Eu sou Paul, e eu sou fazendeiro.</div></div>
-                  <div class="line"><div class="en">I am at the farm now.</div><div class="pt">Eu estou na fazenda agora.</div></div>
-                  <div class="line"><div class="en">My sister is here too.</div><div class="pt">Minha irmã está aqui também.</div></div>
-                  <div class="line"><div class="en">She is happy.</div><div class="pt">Ela está feliz.</div></div>
-                  <div class="line"><div class="en">The barn is open.</div><div class="pt">O galpão está aberto.</div></div>
-                  <div class="line"><div class="en">It is very big.</div><div class="pt">Ele é muito grande.</div></div>
-                  <div class="line"><div class="en">The cows are calm, but the chickens are fast.</div><div class="pt">As vacas estão calmas, mas as galinhas são rápidas.</div></div>
-                  <div class="line"><div class="en">They are funny.</div><div class="pt">Elas são engraçadas.</div></div>
-                  <div class="line"><div class="en">The sun is hot, but the wind is not strong.</div><div class="pt">O sol está quente, mas o vento não está forte.</div></div>
-                  <div class="line"><div class="en">We are ready for the day.</div><div class="pt">Nós estamos prontos para o dia.</div></div>
-                </div>
+                
               `;
             }
           } catch {}
@@ -3044,15 +3032,7 @@ function renderGrammar(data) {
                     <tbody>${rows2}</tbody>
                   </table>
                 </div>
-                <div class="section-title" style="margin-top:12px">Exemplos narrados</div>
-                <div class="card">
-                  <div class="line"><div class="en">I have a livestock farm.</div><div class="pt">Eu tenho uma fazenda de pecuária.</div></div>
-                  <div class="line"><div class="en">We have safe and healthy animals now.</div><div class="pt">Nós temos animais seguros e saudáveis agora.</div></div>
-                  <div class="line"><div class="en">This is the veterinarian.</div><div class="pt">Esta é a veterinária.</div></div>
-                  <div class="line"><div class="en">She has a medical kit.</div><div class="pt">Ela tem um kit médico.</div></div>
-                  <div class="line"><div class="en">The bull has a strong body, but he has a small injury on the leg.</div><div class="pt">O touro tem um corpo forte, mas tem um ferimento pequeno na perna.</div></div>
-                  <div class="line"><div class="en">Dr. Silva has the medicine.</div><div class="pt">A Dra. Silva tem o remédio.</div></div>
-                </div>
+                
               `;
             }
           } catch {}
@@ -3152,17 +3132,7 @@ function renderGrammar(data) {
                     <tbody>${rows3}</tbody>
                   </table>
                 </div>
-                <div class=\"section-title\" style=\"margin-top:12px\">Exemplos narrados</div>
-                <div class=\"card\">
-                  <div class=\"line\"><div class=\"en\">We start work at 6:00 AM.</div><div class=\"pt\">Nós começamos o trabalho às 6:00.</div></div>
-                  <div class=\"line\"><div class=\"en\">The cows walk to the green pasture.</div><div class=\"pt\">As vacas caminham para o pasto verde.</div></div>
-                  <div class=\"line\"><div class=\"en\">They eat fresh grass all day.</div><div class=\"pt\">Elas comem capim fresco o dia todo.</div></div>
-                  <div class=\"line\"><div class=\"en\">The small calf drinks milk.</div><div class=\"pt\">O bezerro pequeno bebe leite.</div></div>
-                  <div class=\"line\"><div class=\"en\">I check the water tanks.</div><div class=\"pt\">Eu confiro os bebedouros/tanques de água.</div></div>
-                  <div class=\"line\"><div class=\"en\">The farm worker feeds the pigs.</div><div class=\"pt\">O trabalhador rural alimenta os porcos.</div></div>
-                  <div class=\"line\"><div class=\"en\">He uses corn.</div><div class=\"pt\">Ele usa milho.</div></div>
-                  <div class=\"line\"><div class=\"en\">Every animal needs water and food.</div><div class=\"pt\">Todo animal precisa de água e comida.</div></div>
-                </div>
+                
               `;
             }
           } catch {}
@@ -3270,16 +3240,7 @@ function renderGrammar(data) {
                     <tbody>${rows}</tbody>
                   </table>
                 </div>
-                <div class="section-title" style="margin-top:12px">Exemplos narrados</div>
-                <div class="card">
-                  <div class="line"><div class="en">I drive the green tractor.</div><div class="pt">Eu dirijo o trator verde.</div></div>
-                  <div class="line"><div class="en">The machine is very strong and heavy.</div><div class="pt">A máquina é muito forte e pesada.</div></div>
-                  <div class="line"><div class="en">We plant soybeans in the large field.</div><div class="pt">Nós plantamos soja no campo grande.</div></div>
-                  <div class="line"><div class="en">The soil is good today.</div><div class="pt">O solo está bom hoje.</div></div>
-                  <div class="line"><div class="en">It is humid, not dry.</div><div class="pt">Está úmido, não seco.</div></div>
-                  <div class="line"><div class="en">The harvester is in the shed.</div><div class="pt">A colheitadeira está no galpão.</div></div>
-                  <div class="line"><div class="en">We work hard in the harvest season.</div><div class="pt">Nós trabalhamos duro na safra.</div></div>
-                </div>
+                
               `;
             }
           } catch {}
