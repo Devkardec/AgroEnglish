@@ -2877,6 +2877,89 @@ function renderGrammar(data) {
               grammarCards.forEach(el=> el.remove());
             }
           } catch {}
+          try {
+            const root = document.getElementById('slideLessonRoot');
+            if (root) {
+              const vocab1 = [
+                ['farmer','fazendeiro'],
+                ['farm','fazenda'],
+                ['sister','irmã'],
+                ['barn','galpão/celeiro'],
+                ['cows','vacas'],
+                ['chickens','galinhas'],
+                ['sun','sol'],
+                ['wind','vento'],
+                ['happy','feliz'],
+                ['big','grande'],
+                ['fast','rápido'],
+                ['funny','engraçado'],
+                ['ready','pronto'],
+                ['day','dia']
+              ];
+              const rows1 = vocab1.map(([en,pt])=>`<tr><td>${en}</td><td>${pt}</td><td>${toPhoneticBR(en)}</td></tr>`).join('');
+              root.innerHTML = `
+                <div class="section-title" style="margin-top:12px">🌾 Aula de Inglês 1 – Paul e a Fazenda (Identity & Description)</div>
+                <div class="card"><div class="small">📌 Objetivo da aula: Aprender a usar o verbo To Be (am/is/are) para falar de identidade, localização e descrição na fazenda.</div></div>
+                <div class="section-title" style="margin-top:12px">O verbo To Be</div>
+                <div class="card">
+                  <div class="small">I → am</div>
+                  <div class="small" style="margin-top:6px">He/She/It → is</div>
+                  <div class="small" style="margin-top:6px">You/We/They → are</div>
+                  <div class="small" style="margin-top:6px"><strong>Usos principais</strong></div>
+                  <div class="line" style="margin-top:6px"><div class="en">I am Paul.</div><div class="pt">Eu sou Paul.</div></div>
+                  <div class="line"><div class="en">I am at the farm.</div><div class="pt">Eu estou na fazenda.</div></div>
+                  <div class="line"><div class="en">The barn is open.</div><div class="pt">O galpão está aberto.</div></div>
+                </div>
+                <div class="section-title" style="margin-top:12px">Estrutura da frase</div>
+                <div class="card">
+                  <div class="small">Ordem: Sujeito + Verbo + Complemento</div>
+                  <div class="line" style="margin-top:6px"><div class="en">I am a farmer.</div><div class="pt">Eu sou fazendeiro.</div></div>
+                  <div class="line"><div class="en">My sister is here.</div><div class="pt">Minha irmã está aqui.</div></div>
+                  <div class="line"><div class="en">The cows are calm.</div><div class="pt">As vacas estão calmas.</div></div>
+                  <div class="line"><div class="en">The chickens are fast.</div><div class="pt">As galinhas são rápidas.</div></div>
+                </div>
+                <div class="card" style="margin-top:8px">
+                  <div class="small"><strong>Afirmativa / Negativa / Pergunta</strong></div>
+                  <div class="line" style="margin-top:6px"><div class="en">She is happy.</div><div class="pt">Ela está feliz.</div></div>
+                  <div class="line"><div class="en">She is not happy.</div><div class="pt">Ela não está feliz.</div></div>
+                  <div class="line"><div class="en">Is she happy?</div><div class="pt">Ela está feliz?</div></div>
+                </div>
+                <div class="card" style="margin-top:8px">
+                  <div class="small"><strong>Estrutura</strong></div>
+                  <div class="small" style="margin-top:6px">Afirmativa → Sujeito + am/is/are + complemento</div>
+                  <div class="small" style="margin-top:6px">Negativa → Sujeito + am/is/are + not + complemento</div>
+                  <div class="small" style="margin-top:6px">Pergunta → Am/Is/Are + sujeito + complemento</div>
+                </div>
+                <div class="card" style="margin-top:8px">
+                  <div class="small"><strong>Dicas importantes</strong></div>
+                  <div class="small" style="margin-top:6px">Em inglês, usamos To Be para idade e estados:</div>
+                  <div class="line" style="margin-top:6px"><div class="en">I am 20 years old.</div><div class="pt">Eu tenho 20 anos.</div></div>
+                  <div class="line"><div class="en">I am hungry.</div><div class="pt">Eu estou com fome.</div></div>
+                  <div class="small" style="margin-top:6px">Diferente do português, não usamos “ter” nesses casos.</div>
+                </div>
+                <div class="section-title" style="margin-top:12px">Vocabulário essencial da aula</div>
+                <div class="card">
+                  <table style="width:100%;border-collapse:collapse">
+                    <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+                    <tbody>${rows1}</tbody>
+                  </table>
+                </div>
+                <div class="section-title" style="margin-top:12px">Exemplos narrados</div>
+                <div class="card">
+                  <div class="line"><div class="en">I am Paul, and I am a farmer.</div><div class="pt">Eu sou Paul, e eu sou fazendeiro.</div></div>
+                  <div class="line"><div class="en">I am at the farm now.</div><div class="pt">Eu estou na fazenda agora.</div></div>
+                  <div class="line"><div class="en">My sister is here too.</div><div class="pt">Minha irmã está aqui também.</div></div>
+                  <div class="line"><div class="en">She is happy.</div><div class="pt">Ela está feliz.</div></div>
+                  <div class="line"><div class="en">The barn is open.</div><div class="pt">O galpão está aberto.</div></div>
+                  <div class="line"><div class="en">It is very big.</div><div class="pt">Ele é muito grande.</div></div>
+                  <div class="line"><div class="en">The cows are calm, but the chickens are fast.</div><div class="pt">As vacas estão calmas, mas as galinhas são rápidas.</div></div>
+                  <div class="line"><div class="en">They are funny.</div><div class="pt">Elas são engraçadas.</div></div>
+                  <div class="line"><div class="en">The sun is hot, but the wind is not strong.</div><div class="pt">O sol está quente, mas o vento não está forte.</div></div>
+                  <div class="line"><div class="en">We are ready for the day.</div><div class="pt">Nós estamos prontos para o dia.</div></div>
+                </div>
+              `;
+            }
+          } catch {}
         }
         if (String(level).toUpperCase()==='A1' && Number(idx)===2) {
           const g = document.getElementById('grammar'); if (g) { g.innerHTML=''; g.style.display = 'none'; }
@@ -2896,6 +2979,81 @@ function renderGrammar(data) {
                 const t = String(el.textContent||'');
                 if (/Vocabulário|Pronúncia|Gramática rápida|Resumo/i.test(t)) el.remove();
               });
+            }
+          } catch {}
+          try {
+            const root = document.getElementById('slideLessonRoot');
+            if (root) {
+              const vocab2 = [
+                ['livestock','pecuária/gado'],
+                ['veterinarian','veterinária(o)'],
+                ['bull','touro'],
+                ['medical kit','kit médico'],
+                ['injury','ferimento/lesão'],
+                ['medicine','remédio'],
+                ['body','corpo'],
+                ['leg','perna'],
+                ['healthy','saudável'],
+                ['safe','seguro'],
+                ['farm','fazenda'],
+                ['cows','vacas']
+              ];
+              const rows2 = vocab2.map(([en,pt])=>`<tr><td>${en}</td><td>${pt}</td><td>${toPhoneticBR(en)}</td></tr>`).join('');
+              root.innerHTML = `
+                <div class="section-title" style="margin-top:12px">🐂 Aula de Inglês 2 – A Visita da Veterinária (Livestock & Health)</div>
+                <div class="card"><div class="small">📌 Objetivo da aula: Aprender a usar o verbo To Have no presente para falar de posse e características físicas dos animais e da fazenda.</div></div>
+                <div class="section-title" style="margin-top:12px">O verbo To Have</div>
+                <div class="card">
+                  <div class="small">I/You/We/They → have</div>
+                  <div class="small" style="margin-top:6px">He/She/It → has</div>
+                  <div class="small" style="margin-top:6px"><strong>Usos principais</strong></div>
+                  <div class="line" style="margin-top:6px"><div class="en">I have a livestock farm.</div><div class="pt">Eu tenho uma fazenda de pecuária.</div></div>
+                  <div class="line"><div class="en">The bull has a strong body.</div><div class="pt">O touro tem um corpo forte.</div></div>
+                </div>
+                <div class="section-title" style="margin-top:12px">Estrutura da frase</div>
+                <div class="card">
+                  <div class="small">Ordem: Sujeito + Verbo + Complemento</div>
+                  <div class="line" style="margin-top:6px"><div class="en">We have many cows here.</div><div class="pt">Nós temos muitas vacas aqui.</div></div>
+                  <div class="line"><div class="en">She has a medical kit.</div><div class="pt">Ela tem um kit médico.</div></div>
+                  <div class="line"><div class="en">The bull has a small injury on the leg.</div><div class="pt">O touro tem um ferimento pequeno na perna.</div></div>
+                </div>
+                <div class="card" style="margin-top:8px">
+                  <div class="small"><strong>Afirmativa / Negativa / Pergunta</strong></div>
+                  <div class="line" style="margin-top:6px"><div class="en">The bull has a strong body.</div><div class="pt">O touro tem um corpo forte.</div></div>
+                  <div class="line"><div class="en">The bull doesn't have a strong body.</div><div class="pt">O touro não tem um corpo forte.</div></div>
+                  <div class="line"><div class="en">Does the bull have a strong body?</div><div class="pt">O touro tem um corpo forte?</div></div>
+                </div>
+                <div class="card" style="margin-top:8px">
+                  <div class="small"><strong>Estrutura</strong></div>
+                  <div class="small" style="margin-top:6px">Afirmativa → Sujeito + have/has + complemento</div>
+                  <div class="small" style="margin-top:6px">Negativa → Sujeito + don't/doesn't + have + complemento</div>
+                  <div class="small" style="margin-top:6px">Pergunta → Do/Does + sujeito + have + complemento</div>
+                </div>
+                <div class="card" style="margin-top:8px">
+                  <div class="small"><strong>Regra prática</strong></div>
+                  <div class="small" style="margin-top:6px">Se o sujeito for He/She/It, use has.</div>
+                  <div class="small" style="margin-top:6px">Em negativas e perguntas, o verbo volta para have, porque o s já está no auxiliar (does/doesn’t).</div>
+                  <div class="line" style="margin-top:6px"><div class="en">She has a medical kit.</div><div class="pt">Ela tem um kit médico.</div></div>
+                  <div class="line"><div class="en">Does she have a medical kit?</div><div class="pt">Ela tem um kit médico?</div></div>
+                  <div class="line"><div class="en">The bull doesn't have an injury.</div><div class="pt">O touro não tem uma lesão.</div></div>
+                </div>
+                <div class="section-title" style="margin-top:12px">Vocabulário essencial da aula</div>
+                <div class="card">
+                  <table style="width:100%;border-collapse:collapse">
+                    <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+                    <tbody>${rows2}</tbody>
+                  </table>
+                </div>
+                <div class="section-title" style="margin-top:12px">Exemplos narrados</div>
+                <div class="card">
+                  <div class="line"><div class="en">I have a livestock farm.</div><div class="pt">Eu tenho uma fazenda de pecuária.</div></div>
+                  <div class="line"><div class="en">We have safe and healthy animals now.</div><div class="pt">Nós temos animais seguros e saudáveis agora.</div></div>
+                  <div class="line"><div class="en">This is the veterinarian.</div><div class="pt">Esta é a veterinária.</div></div>
+                  <div class="line"><div class="en">She has a medical kit.</div><div class="pt">Ela tem um kit médico.</div></div>
+                  <div class="line"><div class="en">The bull has a strong body, but he has a small injury on the leg.</div><div class="pt">O touro tem um corpo forte, mas tem um ferimento pequeno na perna.</div></div>
+                  <div class="line"><div class="en">Dr. Silva has the medicine.</div><div class="pt">A Dra. Silva tem o remédio.</div></div>
+                </div>
+              `;
             }
           } catch {}
         }
@@ -2931,6 +3089,83 @@ function renderGrammar(data) {
               });
             }
           } catch {}
+          try {
+            const root = document.getElementById('slideLessonRoot');
+            if (root) {
+              const vocab3 = [
+                ['start','começar'],
+                ['walk','andar'],
+                ['eat','comer'],
+                ['drink','beber'],
+                ['check','conferir'],
+                ['feed','alimentar'],
+                ['need','precisar'],
+                ['pasture','pasto'],
+                ['calf','bezerro'],
+                ['water tanks','bebedouros/tanques'],
+                ['corn','milho'],
+                ['farm worker','trabalhador rural/peão'],
+                ['grass','capim'],
+                ['pigs','porcos']
+              ];
+              const rows3 = vocab3.map(([en,pt])=>`<tr><td>${en}</td><td>${pt}</td><td>${toPhoneticBR(en)}</td></tr>`).join('');
+              root.innerHTML = `
+                <div class=\"section-title\" style=\"margin-top:12px\">🍽️ Aula de Inglês 3 – Rotina de Alimentação (Daily Feeding Routine)</div>
+                <div class=\"card\"><div class=\"small\">📌 Objetivo da aula: Aprender a usar o Present Simple para descrever ações e hábitos diários na fazenda, como alimentar animais, verificar água e iniciar o trabalho.</div></div>
+                <div class=\"section-title\" style=\"margin-top:12px\">Present Simple</div>
+                <div class=\"card\">
+                  <div class=\"small\">I/You/We/They → verbo na forma base (eat, drink, start).</div>
+                  <div class=\"small\" style=\"margin-top:6px\">He/She/It → verbo + s/es (feeds, drinks, walks).</div>
+                  <div class=\"line\" style=\"margin-top:6px\"><div class=\"en\">The cows walk to the pasture.</div><div class=\"pt\">As vacas caminham para o pasto.</div></div>
+                  <div class=\"line\"><div class=\"en\">The calf drinks milk.</div><div class=\"pt\">O bezerro bebe leite.</div></div>
+                </div>
+                <div class=\"section-title\" style=\"margin-top:12px\">Estrutura da frase</div>
+                <div class=\"card\">
+                  <div class=\"small\">Ordem: Sujeito + Verbo + Complemento</div>
+                  <div class=\"line\" style=\"margin-top:6px\"><div class=\"en\">I check the water tanks.</div><div class=\"pt\">Eu confiro os bebedouros/tanques de água.</div></div>
+                  <div class=\"line\"><div class=\"en\">We start work at 6:00 AM.</div><div class=\"pt\">Nós começamos o trabalho às 6:00.</div></div>
+                  <div class=\"line\"><div class=\"en\">The farm worker feeds the pigs.</div><div class=\"pt\">O trabalhador rural alimenta os porcos.</div></div>
+                </div>
+                <div class=\"card\" style=\"margin-top:8px\">
+                  <div class=\"small\"><strong>Afirmativa / Negativa / Pergunta</strong></div>
+                  <div class=\"line\" style=\"margin-top:6px\"><div class=\"en\">The small calf drinks milk.</div><div class=\"pt\">O bezerro pequeno bebe leite.</div></div>
+                  <div class=\"line\"><div class=\"en\">The small calf doesn't drink milk.</div><div class=\"pt\">O bezerro pequeno não bebe leite.</div></div>
+                  <div class=\"line\"><div class=\"en\">Does the small calf drink milk?</div><div class=\"pt\">O bezerro pequeno bebe leite?</div></div>
+                </div>
+                <div class=\"card\" style=\"margin-top:8px\">
+                  <div class=\"small\"><strong>Estrutura</strong></div>
+                  <div class=\"small\" style=\"margin-top:6px\">Afirmativa → Sujeito + verbo base (+s para He/She/It) + complemento</div>
+                  <div class=\"small\" style=\"margin-top:6px\">Negativa → Sujeito + don't/doesn't + verbo base + complemento</div>
+                  <div class=\"small\" style=\"margin-top:6px\">Pergunta → Do/Does + sujeito + verbo base + complemento</div>
+                </div>
+                <div class=\"card\" style=\"margin-top:8px\">
+                  <div class=\"small\"><strong>Regra He/She/It (+s)</strong></div>
+                  <div class=\"small\" style=\"margin-top:6px\">Para He/She/It, acrescenta-se s/es ao verbo. Em negativas e perguntas, o s vai para o auxiliar (does/doesn't) e o verbo volta à forma base.</div>
+                  <div class=\"line\" style=\"margin-top:6px\"><div class=\"en\">The calf drinks milk.</div><div class=\"pt\">O bezerro bebe leite.</div></div>
+                  <div class=\"line\"><div class=\"en\">Does the calf drink milk?</div><div class=\"pt\">O bezerro bebe leite?</div></div>
+                  <div class=\"line\"><div class=\"en\">The farm worker feeds the pigs.</div><div class=\"pt\">O trabalhador rural alimenta os porcos.</div></div>
+                </div>
+                <div class=\"section-title\" style=\"margin-top:12px\">Vocabulário essencial da rotina</div>
+                <div class=\"card\">
+                  <table style=\"width:100%;border-collapse:collapse\">
+                    <thead><tr><th style=\"text-align:left\">EN</th><th style=\"text-align:left\">PT</th><th style=\"text-align:left\">Pronúncia (BR)</th></tr></thead>
+                    <tbody>${rows3}</tbody>
+                  </table>
+                </div>
+                <div class=\"section-title\" style=\"margin-top:12px\">Exemplos narrados</div>
+                <div class=\"card\">
+                  <div class=\"line\"><div class=\"en\">We start work at 6:00 AM.</div><div class=\"pt\">Nós começamos o trabalho às 6:00.</div></div>
+                  <div class=\"line\"><div class=\"en\">The cows walk to the green pasture.</div><div class=\"pt\">As vacas caminham para o pasto verde.</div></div>
+                  <div class=\"line\"><div class=\"en\">They eat fresh grass all day.</div><div class=\"pt\">Elas comem capim fresco o dia todo.</div></div>
+                  <div class=\"line\"><div class=\"en\">The small calf drinks milk.</div><div class=\"pt\">O bezerro pequeno bebe leite.</div></div>
+                  <div class=\"line\"><div class=\"en\">I check the water tanks.</div><div class=\"pt\">Eu confiro os bebedouros/tanques de água.</div></div>
+                  <div class=\"line\"><div class=\"en\">The farm worker feeds the pigs.</div><div class=\"pt\">O trabalhador rural alimenta os porcos.</div></div>
+                  <div class=\"line\"><div class=\"en\">He uses corn.</div><div class=\"pt\">Ele usa milho.</div></div>
+                  <div class=\"line\"><div class=\"en\">Every animal needs water and food.</div><div class=\"pt\">Todo animal precisa de água e comida.</div></div>
+                </div>
+              `;
+            }
+          } catch {}
         }
         if (String(level).toUpperCase()==='A1' && Number(idx)===4) {
           try {
@@ -2964,6 +3199,88 @@ function renderGrammar(data) {
                 if (el.closest('#study-footer')) return; // manter texto narrado e voz
                 el.remove();
               });
+            }
+          } catch {}
+        }
+        if (String(level).toUpperCase()==='A1' && Number(idx)===4) {
+          try {
+            const root = document.getElementById('slideLessonRoot');
+            if (root) {
+              const vocab = [
+                ['tractor','trator'],
+                ['harvester','colheitadeira'],
+                ['machine','máquina'],
+                ['shed','galpão'],
+                ['soybeans','soja'],
+                ['field','campo/talhão'],
+                ['soil','solo'],
+                ['seeds','sementes'],
+                ['harvest season','safra'],
+                ['humid','úmido'],
+                ['dry','seco'],
+                ['heavy','pesado'],
+                ['plant','plantar'],
+                ['drive','dirigir/operar'],
+                ['work','trabalhar']
+              ];
+              const rows = vocab.map(([en,pt])=>`<tr><td>${en}</td><td>${pt}</td><td>${toPhoneticBR(en)}</td></tr>`).join('');
+              root.innerHTML = `
+                <div class="section-title" style="margin-top:12px">🚜 Aula de Inglês 4 – O Trator e o Campo (Machinery & Crops)</div>
+                <div class="card"><div class="small">📌 Objetivo da aula: Aprender como usar adjetivos e o Present Simple para descrever máquinas, campos e condições da fazenda.</div></div>
+                <div class="section-title" style="margin-top:12px">Adjetivos na frase</div>
+                <div class="card">
+                  <div class="small">Em inglês, o adjetivo pode aparecer:</div>
+                  <ul class="list-disc pl-5 text-sm mt-1 space-y-1">
+                    <li><code>The tractor is green.</code> <span class="text-gray-600">→ O trator é verde.</span></li>
+                    <li><code>The green tractor.</code> <span class="text-gray-600">→ O trator verde.</span></li>
+                  </ul>
+                  <div class="small" style="margin-top:6px">👉 Regra geral: em inglês, o adjetivo costuma vir antes do substantivo.</div>
+                </div>
+                <div class="section-title" style="margin-top:12px">Estrutura da frase</div>
+                <div class="card">
+                  <div class="small">Ordem: Sujeito + Verbo + Complemento</div>
+                  <div class="line" style="margin-top:6px"><div class="en">I drive the green tractor.</div><div class="pt">Eu dirijo o trator verde.</div></div>
+                  <div class="line"><div class="en">We plant soybeans in the large field.</div><div class="pt">Nós plantamos soja no campo grande.</div></div>
+                  <div class="line"><div class="en">The machine is very strong and heavy.</div><div class="pt">A máquina é muito forte e pesada.</div></div>
+                </div>
+                <div class="card" style="margin-top:8px">
+                  <div class="small"><strong>Afirmativa / Negativa / Pergunta</strong></div>
+                  <div class="line" style="margin-top:6px"><div class="en">I drive the green tractor.</div><div class="pt">Eu dirijo o trator verde.</div></div>
+                  <div class="line"><div class="en">I don't drive the green tractor.</div><div class="pt">Eu não dirijo o trator verde.</div></div>
+                  <div class="line"><div class="en">Do I drive the green tractor?</div><div class="pt">Eu dirijo o trator verde?</div></div>
+                </div>
+                <div class="card" style="margin-top:8px">
+                  <div class="small"><strong>Estruturas</strong></div>
+                  <div class="small" style="margin-top:6px">Afirmativa → Sujeito + verbo base (+s para He/She/It) + complemento</div>
+                  <div class="small" style="margin-top:6px">Negativa → Sujeito + don't/doesn't + verbo base + complemento</div>
+                  <div class="small" style="margin-top:6px">Pergunta → Do/Does + sujeito + verbo base + complemento</div>
+                </div>
+                <div class="card" style="margin-top:8px">
+                  <div class="small"><strong>Regra He/She/It (+s)</strong></div>
+                  <div class="small" style="margin-top:6px">Para He/She/It, acrescenta-se s/es ao verbo.</div>
+                  <div class="line" style="margin-top:6px"><div class="en">It is new.</div><div class="pt">Ele é novo.</div></div>
+                  <div class="line"><div class="en">The soil is good today.</div><div class="pt">O solo está bom hoje.</div></div>
+                  <div class="line"><div class="en">It is humid, not dry.</div><div class="pt">Está úmido, não seco.</div></div>
+                  <div class="line"><div class="en">The harvester is in the shed.</div><div class="pt">A colheitadeira está no galpão.</div></div>
+                </div>
+                <div class="section-title" style="margin-top:12px">Vocabulário essencial da fazenda</div>
+                <div class="card">
+                  <table style="width:100%;border-collapse:collapse">
+                    <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+                    <tbody>${rows}</tbody>
+                  </table>
+                </div>
+                <div class="section-title" style="margin-top:12px">Exemplos narrados</div>
+                <div class="card">
+                  <div class="line"><div class="en">I drive the green tractor.</div><div class="pt">Eu dirijo o trator verde.</div></div>
+                  <div class="line"><div class="en">The machine is very strong and heavy.</div><div class="pt">A máquina é muito forte e pesada.</div></div>
+                  <div class="line"><div class="en">We plant soybeans in the large field.</div><div class="pt">Nós plantamos soja no campo grande.</div></div>
+                  <div class="line"><div class="en">The soil is good today.</div><div class="pt">O solo está bom hoje.</div></div>
+                  <div class="line"><div class="en">It is humid, not dry.</div><div class="pt">Está úmido, não seco.</div></div>
+                  <div class="line"><div class="en">The harvester is in the shed.</div><div class="pt">A colheitadeira está no galpão.</div></div>
+                  <div class="line"><div class="en">We work hard in the harvest season.</div><div class="pt">Nós trabalhamos duro na safra.</div></div>
+                </div>
+              `;
             }
           } catch {}
         }
