@@ -368,11 +368,15 @@
       { text:'I drive the green tractor.', correct:true },
       { text:'The harvester is in the shed.', correct:true },
       { text:'It is ready.', correct:true },
+    ] : (Number(idx)===5 ? [
+      { text:'The sun is very hot today.', correct:true },
+      { text:'The plants are yellow.', correct:false },
+      { text:'The harvest will be good this year.', correct:true },
     ] : [
       { text:'Paul is a farmer.', correct:true },
       { text:'The chickens are calm.', correct:false },
       { text:'The barn is open.', correct:true },
-    ]));
+    ])));
     const amIsAre = (Number(idx)===2) ? [
       { prompt:'We ____ many cows.', answer:'have' },
       { prompt:'She ____ a medical kit.', answer:'has' },
@@ -385,11 +389,15 @@
       { prompt:'The tractor ____ new.', answer:'is' },
       { prompt:'The harvester ____ in the shed.', answer:'is' },
       { prompt:'It ____ ready.', answer:'is' },
+    ] : (Number(idx)===5 ? [
+        { prompt:'The sun ____ very hot today.', answer:'is' },
+        { prompt:'The plants ____ green.', answer:'are' },
+        { prompt:'The temperature ____ mild.', answer:'is' },
     ] : [
       { prompt:'I ____ Paul.', answer:'am' },
       { prompt:'The barn ____ open.', answer:'is' },
       { prompt:'The cows ____ calm.', answer:'are' },
-    ]));
+    ])));
     const vocabItems = [
       { word:'farmer', pt:'fazendeiro', image:'/public/images/a1texto1/slidetx1/11.webp' },
       { word:'barn', pt:'galpão', image:'/public/images/a1texto1/slidetx1/12.webp' },
@@ -403,7 +411,8 @@
       const isTx2 = Number(idx)===2;
       const isTx3 = Number(idx)===3;
       const isTx4 = Number(idx)===4;
-      const count = isTx2 ? 8 : (isTx4 ? 7 : 11);
+      const isTx5 = Number(idx)===5;
+      const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 11));
       const imgs = isTx2
         ? Array.from({length:count}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`)
         : (isTx3
@@ -418,7 +427,16 @@
                   '/public/images/a1texto4/9.4.webp',
                   '/public/images/a1texto4/10.4.webp'
                 ]
-                : Array.from({length:count}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`)));
+                : (isTx5
+                    ? [
+                        '/public/images/a1texto5/1.5.webp',
+                        '/public/images/a1texto5/3.5.webp',
+                        '/public/images/a1texto5/5.5.webp',
+                        '/public/images/a1texto5/7.5.webp',
+                        '/public/images/a1texto5/9.5.webp',
+                        '/public/images/a1texto5/10.5.webp'
+                      ]
+                    : Array.from({length:count}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`))));
       const lines = Array.isArray(data && data.lines) ? data.lines.map(l=> String(l.en||'').trim()).filter(Boolean) : [];
       const nar = Array.isArray(data && data.a1_exercises && data.a1_exercises.narration_sentences) ? data.a1_exercises.narration_sentences.map(s=> String(s||'').trim()).filter(Boolean) : [];
       const textParts = String(data && data.text || '').split(/(?<=[.!?])\s+/).filter(Boolean);
@@ -430,10 +448,17 @@
         'He repairs the engine in the shed.',
         'The field is ready for sowing.',
         'The cow drinks water near the barn.'
-      ] : (lines.length ? lines : (nar.length ? nar : textParts)));
+      ] : (isTx5 ? [
+        'The sun is very hot today.',
+        'The corn needs rain.',
+        'It will rain soon.',
+        'The plants are green.',
+        'The temperature is mild.',
+        'The harvest will be good this year.'
+      ] : (lines.length ? lines : (nar.length ? nar : textParts))));
       const srcTexts = srcBase.slice(0,count);
-      if (isTx4) {
-        const audios = [
+      if (isTx4 || isTx5) {
+        const audios = isTx4 ? [
           '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
           '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
           '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
@@ -441,6 +466,13 @@
           '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
           '/src/audio/A1/texto-a1.4-dividido/part_9.mp3',
           '/src/audio/A1/texto-a1.4-dividido/part_10.mp3'
+        ] : [
+            '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
+            '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',
+            '/src/audio/A1/texto-a1.5-dividido/part_5.mp3',
+            '/src/audio/A1/texto-a1.5-dividido/part_7.mp3',
+            '/src/audio/A1/texto-a1.5-dividido/part_9.mp3',
+            '/src/audio/A1/texto-a1.5-dividido/part_10.mp3'
         ];
         return srcTexts.map((t,i)=> ({ src: imgs[i], text: t, audio: audios[i] }));
       }
@@ -458,7 +490,7 @@
           { word:'medicine', pt:'remédio' },
           { word:'leg', pt:'perna' },
         ]
-      : (Number(idx)===4 ? null : null);
+      : (Number(idx)===4 || Number(idx)===5 ? null : null);
     const transformItems = (Number(idx)===2)
       ? [
           { base:'She has a medical kit.', target:'neg', answer: "She doesn't have a medical kit." },
@@ -475,11 +507,15 @@
               { base:'I drive the green tractor.', target:'q', answer:'Do I drive the green tractor?' },
               { base:'The harvester is in the shed.', target:'neg', answer:'The harvester is not in the shed.' },
               { base:'It is ready.', target:'q', answer:'Is it ready?' }
+            ] : (Number(idx)===5 ? [
+              { base:'The sun is very hot today.', target:'neg', answer:'The sun is not very hot today.' },
+              { base:'The plants are green.', target:'q', answer:'Are the plants green?' },
+              { base:'The harvest will be good this year.', target:'neg', answer:'The harvest will not be good this year.' }
             ] : [
               { base:'She is happy.', target:'neg', answer:'She is not happy.' },
               { base:'The barn is open.', target:'q', answer:'Is the barn open?' }
-            ]));
-    const orderSentence = (Number(idx)===2) ? 'We have safe and healthy animals now.' : (Number(idx)===3 ? 'We start work at 6:00 AM.' : (Number(idx)===4 ? 'The harvester is in the shed.' : 'The barn is open.'));
+            ])));
+    const orderSentence = (Number(idx)===2) ? 'We have safe and healthy animals now.' : (Number(idx)===3 ? 'We start work at 6:00 AM.' : (Number(idx)===4 ? 'The harvester is in the shed.' : (Number(idx)===5 ? 'The harvest will be good this year.' : 'The barn is open.')));
     return e('div', { className:'w-full max-w-4xl mx-auto' },
       e('div', { className:'mb-4 flex items-center justify-between' },
         e('h2', { className:'text-base font-bold text-green-700' }, `${String(data.uiTitle||data.title||'A1 Texto')} · Exercícios (A1)`),
@@ -498,30 +534,44 @@
           )
         ),
         e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' },
-          Number(idx)===4
+          (Number(idx)===4 || Number(idx)===5)
             ? e(DictationExercise, {
-                sentences: [
+                sentences: (Number(idx)===4 ? [
                   'I drive the green tractor.',
                   'The farmer waters the plants in the greenhouse.',
                   'The harvester collects the ripe wheat.',
                   'The trailer carries bales of hay.',
                   'He repairs the engine in the shed.',
                   'The field is ready for sowing.'
-                ],
-                segUrls: [
+                ] : [
+                  'The sun is very hot today.',
+                  'The corn needs rain.',
+                  'It will rain soon.',
+                  'The plants are green.',
+                  'The temperature is mild.',
+                  'The harvest will be good this year.'
+                ]),
+                segUrls: (Number(idx)===4 ? [
                   '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
                   '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
                   '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
                   '/src/audio/A1/texto-a1.4-dividido/part_7.mp3',
                   '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
                   '/src/audio/A1/texto-a1.4-dividido/part_9.mp3'
-                ]
+                ] : [
+                    '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
+                    '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',
+                    '/src/audio/A1/texto-a1.5-dividido/part_5.mp3',
+                    '/src/audio/A1/texto-a1.5-dividido/part_7.mp3',
+                    '/src/audio/A1/texto-a1.5-dividido/part_9.mp3',
+                    '/src/audio/A1/texto-a1.5-dividido/part_10.mp3'
+                ])
               })
             : e(DictationExercise, { sentences: videoPairs.map(p=>p.text).filter(Boolean).slice(0,3), segUrls: (Number(idx)===2 ? ['/src/audio/A1/texto-a1.2-dividido/1.1.mp3','/src/audio/A1/texto-a1.2-dividido/2.2.mp3','/src/audio/A1/texto-a1.2-dividido/3.3.mp3'] : (Number(idx)===3 ? ['/src/audio/A1/texto-a1.3-dividido/1.3.mp3','/src/audio/A1/texto-a1.3-dividido/2.3.mp3','/src/audio/A1/texto-a1.3-dividido/3.3.mp3'] : ['/src/audio/A1/texto-a1.1-dividido/seg1.mp3','/src/audio/A1/texto-a1.1-dividido/seg2.mp3','/src/audio/A1/texto-a1.1-dividido/seg3.mp3'])) })
         ),
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
-          Number(idx)===4
-            ? e(ImageSentenceAssociation, { items: [
+          (Number(idx)===4 || Number(idx)===5)
+            ? e(ImageSentenceAssociation, { items: (Number(idx)===4 ? [
                 { src:'/public/images/a1texto4/1.4.webp', text:'I drive the green tractor.', audio:'/src/audio/A1/texto-a1.4-dividido/part_1.mp3' },
                 { src:'/public/images/a1texto4/5.4.webp', text:'The farmer waters the plants in the greenhouse.', audio:'/src/audio/A1/texto-a1.4-dividido/part_5.mp3' },
                 { src:'/public/images/a1texto4/3.4.webp', text:'The harvester collects the ripe wheat.', audio:'/src/audio/A1/texto-a1.4-dividido/part_3.mp3' },
@@ -529,7 +579,14 @@
                 { src:'/public/images/a1texto4/8.4.webp', text:'He repairs the engine in the shed.', audio:'/src/audio/A1/texto-a1.4-dividido/part_8.mp3' },
                 { src:'/public/images/a1texto4/9.4.webp', text:'The field is ready for sowing.', audio:'/src/audio/A1/texto-a1.4-dividido/part_9.mp3' },
                 { src:'/public/images/a1texto4/10.4.webp', text:'The cow drinks water near the barn.', audio:'/src/audio/A1/texto-a1.4-dividido/part_10.mp3' }
-              ] })
+              ] : [
+                { src:'/public/images/a1texto5/1.5.webp', text:'The sun is very hot today.', audio:'/src/audio/A1/texto-a1.5-dividido/part_1.mp3' },
+                { src:'/public/images/a1texto5/3.5.webp', text:'The corn needs rain.', audio:'/src/audio/A1/texto-a1.5-dividido/part_3.mp3' },
+                { src:'/public/images/a1texto5/5.5.webp', text:'It will rain soon.', audio:'/src/audio/A1/texto-a1.5-dividido/part_5.mp3' },
+                { src:'/public/images/a1texto5/7.5.webp', text:'The plants are green.', audio:'/src/audio/A1/texto-a1.5-dividido/part_7.mp3' },
+                { src:'/public/images/a1texto5/9.5.webp', text:'The temperature is mild.', audio:'/src/audio/A1/texto-a1.5-dividido/part_9.mp3' },
+                { src:'/public/images/a1texto5/10.5.webp', text:'The harvest will be good this year.', audio:'/src/audio/A1/texto-a1.5-dividido/part_10.mp3' }
+              ]) })
             : e(VisualAssociation12, { items: assocItems })
         ),
         e(ExerciseCard, { title:'Finalizar', instruction:'Bom trabalho!' }, e('div', { className:'text-sm text-gray-800' }, 'Great job!'))
@@ -538,7 +595,7 @@
   }
 
   window.ExercisePageMount = function(level, idx, data){
-    if (String(level).toUpperCase()!=='A1' || (Number(idx)!==1 && Number(idx)!==2 && Number(idx)!==3 && Number(idx)!==4)) return;
+    if (String(level).toUpperCase()!=='A1' || (Number(idx)!==1 && Number(idx)!==2 && Number(idx)!==3 && Number(idx)!==4 && Number(idx)!==5)) return;
     const practiceTab = document.getElementById('tab-practice');
     if (!practiceTab || practiceTab.style.display==='none') return;
     const rootEl = document.getElementById('exercisePageRoot');

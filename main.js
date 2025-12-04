@@ -4859,34 +4859,42 @@ function renderGrammar(data) {
           ];
           ptSentences = Array(sentences.length).fill('');
         }
-        const shown = sentences.slice(0, Math.min((sentences.length || 0), maxCount));
-        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4);
+        let imgCountBase = Math.min((sentences.length || 0), maxCount);
+        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4 || Number(idx)===5);
         try {
           if (useImages) { pronList.classList.add('speech-a1'); } else { pronList.classList.remove('speech-a1'); }
         } catch {}
         const imgs = useImages ? (
           Number(idx)===1
-            ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`)
+            ? Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`)
             : (Number(idx)===2
-                ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`)
+                ? Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`)
                 : (Number(idx)===3
-                    ? Array.from({length:shown.length}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`)
-                    : [
-                      '/public/images/a1texto4/1.4.webp',
-                      '/public/images/a1texto4/5.4.webp',
-                      '/public/images/a1texto4/3.4.webp',
-                      '/public/images/a1texto4/7.4.webp',
-                      '/public/images/a1texto4/8.4.webp',
-                      '/public/images/a1texto4/9.4.webp',
-                      '/public/images/a1texto4/10.4.webp'
-                    ]))
+                    ? Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`)
+                    : (Number(idx)===4
+                      ? [
+                        '/public/images/a1texto4/1.4.webp',
+                        '/public/images/a1texto4/5.4.webp',
+                        '/public/images/a1texto4/3.4.webp',
+                        '/public/images/a1texto4/7.4.webp',
+                        '/public/images/a1texto4/8.4.webp',
+                        '/public/images/a1texto4/9.4.webp',
+                        '/public/images/a1texto4/10.4.webp'
+                      ] : [
+                        '/public/images/a1texto5/1.5.webp',
+                        '/public/images/a1texto5/3.5.webp',
+                        '/public/images/a1texto5/5.5.webp',
+                        '/public/images/a1texto5/7.5.webp',
+                        '/public/images/a1texto5/9.5.webp',
+                        '/public/images/a1texto5/10.5.webp'
+                      ])))
         ) : [];
         const segUrls = isA1 && Number(idx)===1
-          ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`)
+          ? Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`)
           : (isA1 && Number(idx)===2
-              ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`)
+              ? Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`)
               : (isA1 && Number(idx)===3
-                  ? Array.from({length:shown.length}, (_,i)=> `/src/audio/A1/texto-a1.3-dividido/${i+1}.3.mp3`)
+                  ? Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.3-dividido/${i+1}.3.mp3`)
                   : (isA1 && Number(idx)===4
                       ? [
                         '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
@@ -4897,7 +4905,64 @@ function renderGrammar(data) {
                         '/src/audio/A1/texto-a1.4-dividido/part_9.mp3',
                         '/src/audio/A1/texto-a1.4-dividido/part_10.mp3'
                       ]
-                      : [])));
+                      : (isA1 && Number(idx)===5
+                        ? [
+                          '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
+                          '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',
+                          '/src/audio/A1/texto-a1.5-dividido/part_5.mp3',
+                          '/src/audio/A1/texto-a1.5-dividido/part_7.mp3',
+                          '/src/audio/A1/texto-a1.5-dividido/part_9.mp3',
+                          '/src/audio/A1/texto-a1.5-dividido/part_10.mp3'
+                        ]
+                        : [] ))));
+        if (isA1 && Number(idx)===5) {
+          const fullAllEn = [
+            'The weather is very hot today.',
+            'The sun is strong over the farm.',
+            'The soybean field is dry.',
+            'The plants need water.',
+            'Look at the sky!',
+            'There are dark clouds.',
+            'It is raining now.',
+            'The rain is heavy.',
+            'The water is good for the soil.',
+            'The harvest depends on the weather.'
+          ];
+          const fullAllPt = [
+            'O tempo está muito quente hoje.',
+            'O sol está forte sobre a fazenda.',
+            'A lavoura de soja está seca.',
+            'As plantas precisam de água.',
+            'Olhe para o céu!',
+            'Há nuvens escuras.',
+            'Está chovendo agora.',
+            'A chuva está forte.',
+            'A água é boa para o solo.',
+            'A colheita depende do clima.'
+          ];
+          data._fullA1T5 = { en: fullAllEn, pt: fullAllPt };
+          sentences = fullAllEn.slice();
+          ptSentences = fullAllPt.slice();
+        }
+        if (isA1 && Number(idx)===5) {
+          const remove = new Set([
+            'It is raining now.',
+            'The rain is heavy.',
+            'The water is good for the soil.',
+            'The harvest depends on the weather.'
+          ]);
+          sentences = sentences.filter(s=> !remove.has(String(s||'').trim()));
+          const ptMap = {
+            'The weather is very hot today.': 'O tempo está muito quente hoje.',
+            'The sun is strong over the farm.': 'O sol está forte sobre a fazenda.',
+            'The soybean field is dry.': 'A lavoura de soja está seca.',
+            'The plants need water.': 'As plantas precisam de água.',
+            'Look at the sky!': 'Olhe para o céu!',
+            'There are dark clouds.': 'Há nuvens escuras.'
+          };
+          ptSentences = sentences.map(s=> ptMap[s] || '');
+        }
+        const shown = sentences.slice(0, Math.min((sentences.length || 0), maxCount));
         pronList.innerHTML = shown.map((s,i)=>`
           <div class="pron-card">
             ${useImages ? `<img src="${imgs[i]}" alt="${s}" loading="lazy" class="object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
@@ -5006,8 +5071,12 @@ function renderGrammar(data) {
       let fullRecStart = 0;
 
       if (fullTextEl) {
-        const enText = sentences.join(' ');
-        const ptText = ptSentences.join(' ');
+        const isA1 = String(level).toUpperCase()==='A1';
+        const idxNum = Number(idx);
+        const enArr = (isA1 && idxNum===5 && data._fullA1T5) ? (data._fullA1T5.en || []) : sentences;
+        const ptArr = (isA1 && idxNum===5 && data._fullA1T5) ? (data._fullA1T5.pt || []) : ptSentences;
+        const enText = enArr.join(' ');
+        const ptText = ptArr.join(' ');
         fullTextEl.innerHTML = `<div class="line"><div class="en">${enText}</div><div class="pt">${ptText}</div></div>`;
       }
 

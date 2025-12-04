@@ -264,10 +264,7 @@
       {"en":"The weather is very hot today.","pt":"O tempo está muito quente hoje."},
       {"en":"The sun is strong over the farm.","pt":"O sol está forte sobre a fazenda."},
       {"en":"The soybean field is dry. The plants need water.","pt":"A lavoura de soja está seca. As plantas precisam de água."},
-      {"en":"Look at the sky! There are dark clouds.","pt":"Olhe para o céu! Há nuvens escuras."},
-      {"en":"It is raining now. The rain is heavy.","pt":"Está chovendo agora. A chuva está forte."},
-      {"en":"The water is good for the soil.","pt":"A água é boa para o solo."},
-      {"en":"The harvest depends on the weather.","pt":"A colheita depende do clima."}
+      {"en":"Look at the sky! There are dark clouds.","pt":"Olhe para o céu! Há nuvens escuras."}
     ],
     "vocabulary_table": [
       {"word":"weather","translation":"clima/tempo meteorológico"},
