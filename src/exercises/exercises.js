@@ -258,7 +258,7 @@
         shuffledBottom.map((it,j)=> {
           const isMatched = matchedBottomSet[it.idx];
           const cls = isMatched ? 'border-green-600 bg-green-600 text-white' : 'border-gray-200 bg-gray-100';
-          return e('button', { key:j, onClick:()=>chooseBottom(j), disabled:isMatched, className:`px-2 py-1 rounded border text-xs ${cls} text-left` }, it.pt);
+          return e('button', { key:j, onClick:()=>chooseBottom(j), disabled:isMatched, className:`px-2 py-1 rounded border text-xs ${cls} text-left`, style:{wordBreak:'break-word', overflowWrap:'anywhere', minWidth:0} }, it.pt);
         })
       ),
       e('div', { className:'mt-2 text-xs' }, done ? e('span', { className:'text-green-700' }, 'Associação completa!') : e('span', { className:'text-gray-600' }, 'Toque primeiro no botão de cima (EN) e depois no de baixo (PT)'))
