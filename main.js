@@ -1629,6 +1629,13 @@ function renderGrammar(data) {
         }
         if (String(level).toUpperCase()==='A1' && Number(index)===6) {
           try {
+            gv.insertAdjacentHTML('beforeend', `
+              <div style="margin-top:12px">
+                <div id="ytVideo6" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
+                  <iframe src="https://www.youtube.com/embed/trDEbaXjRy8" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+                </div>
+              </div>
+            `);
             const lessonHTML6 = `
               <div class="section-title" style="margin-top:12px">🐑 Aula de Inglês 6 – Contando o Rebanho (Numbers & Quantities)</div>
               <div class="card">
