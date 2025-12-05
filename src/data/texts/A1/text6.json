@@ -1,15 +1,19 @@
 {
-    "title":  "O almoço",
-    "text":  "I stop for lunch. I wash my hands. I sit near the barn. I eat bread and fruit. I drink water. I rest and breathe. I talk to my family. We share simple food. We plan the next tasks. I feel calm and ready. I clean the table. I put the trash in a bag. I stand up and smile. I start work again after lunch.",
-    "translation":  "Eu paro para o almoço. Eu lavo minhas mãos. Eu me sento perto do celeiro. Eu como pão e fruta. Eu bebo água. Eu descanso e respiro. Eu converso com minha família. Nós compartilhamos comida simples. Nós planejamos as próximas tarefas. Eu me sinto calmo e pronto. Eu limpo a mesa. Eu coloco o lixo em uma sacola. Eu me levanto e sorrio. Eu começo a trabalhar novamente após o almoço.",
-    "vocabulary":  [
-                       { "word": "lunch", "meaning": "almoço" },
-                       { "word": "bread", "meaning": "pão" },
-                       { "word": "fruit", "meaning": "fruta" },
-                       { "word": "table", "meaning": "mesa" },
-                       { "word": "bag", "meaning": "sacola" }
-                   ],
-    "grammar":  "Present simple with farm routines.",
-    "verbs":  "Verbs used: wash, eat, drink, rest, talk, share, plan, clean, put, start.",
-    "exercises":  { "multiple_choice": [], "fill_in": [], "speaking": "Repeat: Lunch break" }
+    "title": "Contando o Gado",
+    "text": "I go to the corral. I count the cows. One, two, three cows. I see four sheep. Five, six goats. I write the numbers. I check the list. Seven, eight pigs. I count the chickens. Nine, ten hens. I have all the numbers. The stock is correct. I close the gate.",
+    "translation": "Eu vou para o curral. Eu conto as vacas. Uma, duas, três vacas. Eu vejo quatro ovelhas. Cinco, seis cabras. Eu escrevo os números. Eu verifico a lista. Sete, oito porcos. Eu conto as galinhas. Nove, dez galinhas. Eu tenho todos os números. O rebanho está correto. Eu fecho o portão.",
+    "vocabulary": [
+        { "word": "cow", "meaning": "vaca" },
+        { "word": "sheep", "meaning": "ovelha" },
+        { "word": "goat", "meaning": "cabra" },
+        { "word": "pig", "meaning": "porco" },
+        { "word": "chicken", "meaning": "galinha/frango" }
+    ],
+    "grammar": "Numbers and plurals.",
+    "verbs": "Verbs used: go, count, see, write, check, have, close.",
+    "exercises": {
+        "multiple_choice": [],
+        "fill_in": [],
+        "speaking": "Repeat: Counting the stock"
+    }
 }

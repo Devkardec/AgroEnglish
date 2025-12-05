@@ -1520,7 +1520,7 @@ function renderGrammar(data) {
     `;
 
     const gv = document.getElementById('grammarVideo');
-    if (gv && (isA1BeMode || isA1HaveMode || isA1PSMode || isA1AdjMode || isA1ClimateMode)) {
+    if (gv && (isA1BeMode || isA1HaveMode || isA1PSMode || isA1AdjMode || isA1ClimateMode || ((levelTag2==='A1') && curIdx2===6))) {
       try { gv.style.display = 'block' } catch {}
       const scene = `
         <div class="card" style="padding:0">
@@ -1625,6 +1625,103 @@ function renderGrammar(data) {
               </div>
             `;
             gv.insertAdjacentHTML('beforeend', lessonHTML5);
+          } catch {}
+        }
+        if (String(level).toUpperCase()==='A1' && Number(index)===6) {
+          try {
+            const lessonHTML6 = `
+              <div class="section-title" style="margin-top:12px">🐑 Aula de Inglês 6 – Contando o Rebanho (Numbers & Quantities)</div>
+              <div class="card">
+                <div class="small"><strong>📌 Objetivo da aula</strong></div>
+                <div class="small" style="margin-top:6px">Aprender números, plurais e quantificadores para contar animais e itens na fazenda.</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">🔢 Números básicos (1–10)</div>
+              <div class="card">
+                <div class="small">one (um)</div>
+                <div class="small">two (dois)</div>
+                <div class="small">three (três)</div>
+                <div class="small">four (quatro)</div>
+                <div class="small">five (cinco)</div>
+                <div class="small">six (seis)</div>
+                <div class="small">seven (sete)</div>
+                <div class="small">eight (oito)</div>
+                <div class="small">nine (nove)</div>
+                <div class="small">ten (dez)</div>
+                <div class="small" style="margin-top:8px"><strong>👉 Exemplo de uso:</strong> Three cows (três vacas), Four sheep (quatro ovelhas), Ten chickens (dez galinhas).</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">🐄 Plural dos animais</div>
+              <div class="card">
+                <div class="small">cow → cows</div>
+                <div class="small">goat → goats</div>
+                <div class="small">pig → pigs</div>
+                <div class="small">chicken → chickens</div>
+                <div class="small">sheep → sheep (mesma forma no singular e plural)</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">📦 Quantidades</div>
+              <div class="card">
+                <div class="small">many = muitos</div>
+                <div class="small">few = poucos</div>
+                <div class="small">a lot of = um monte de</div>
+                <div class="small">only = apenas</div>
+                <div class="small">more = mais</div>
+              </div>
+              <div class="card" style="margin-top:8px">
+                <div class="line"><div class="en">We have many cows.</div><div class="pt">Nós temos muitas vacas.</div></div>
+                <div class="line"><div class="en">There are few goats today.</div><div class="pt">Há poucas cabras hoje.</div></div>
+                <div class="line"><div class="en">We need more salt for the cattle.</div><div class="pt">Nós precisamos de mais sal para o gado.</div></div>
+              </div>
+              <div class="section-title" style="margin-top:12px">📝 Estrutura da frase</div>
+              <div class="card">
+                <div class="small">Ordem: Sujeito + Verbo + Complemento</div>
+                <div class="line" style="margin-top:6px"><div class="en">I see five horses and twenty cows.</div><div class="pt">Eu vejo cinco cavalos e vinte vacas.</div></div>
+                <div class="line"><div class="en">We have a lot of work today.</div><div class="pt">Nós temos muito trabalho hoje.</div></div>
+                <div class="line"><div class="en">The inventory is correct.</div><div class="pt">O estoque está correto.</div></div>
+              </div>
+              <div class="section-title" style="margin-top:12px">✅ Afirmativa / ❌ Negativa / ❓ Pergunta</div>
+              <div class="card">
+                <div class="line"><div class="en">There are ten bags of corn.</div><div class="pt">Há dez sacos de milho.</div></div>
+                <div class="line"><div class="en">There are not ten bags of corn.</div><div class="pt">Não há dez sacos de milho.</div></div>
+                <div class="line"><div class="en">Are there ten bags of corn?</div><div class="pt">Há dez sacos de milho?</div></div>
+              </div>
+              <div class="card" style="margin-top:8px">
+                <div class="small"><strong>👉 Estrutura:</strong></div>
+                <div class="small" style="margin-top:6px">Afirmativa → Sujeito + verbo base (+s para He/She/It) + complemento</div>
+                <div class="small" style="margin-top:6px">Negativa → Sujeito + don’t/doesn’t + verbo base + complemento</div>
+                <div class="small" style="margin-top:6px">Pergunta → Do/Does + sujeito + verbo base + complemento</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">📖 Regra He/She/It (+s)</div>
+              <div class="card">
+                <div class="line"><div class="en">The inventory is correct.</div><div class="pt">O estoque está correto.</div></div>
+                <div class="line"><div class="en">He counts the cows.</div><div class="pt">Ele conta as vacas.</div></div>
+              </div>
+              <div class="section-title" style="margin-top:12px">🌾 Vocabulário essencial da aula</div>
+              <div class="card">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+                  <tbody>
+                    <tr><td>how many</td><td>quantos/quantas</td><td>ráu mé-ni</td></tr>
+                    <tr><td>there is</td><td>há (singular)</td><td>dér íz</td></tr>
+                    <tr><td>there are</td><td>há (plural)</td><td>dér ár</td></tr>
+                    <tr><td>only</td><td>apenas/só</td><td>óun-li</td></tr>
+                    <tr><td>more</td><td>mais</td><td>mór</td></tr>
+                    <tr><td>bags of corn</td><td>sacos de milho</td><td>bégs óv córn</td></tr>
+                    <tr><td>shed</td><td>galpão</td><td>shéd</td></tr>
+                    <tr><td>tractor</td><td>trator</td><td>tráktor</td></tr>
+                    <tr><td>horses</td><td>cavalos</td><td>hórsiz</td></tr>
+                    <tr><td>cows</td><td>vacas</td><td>cáuz</td></tr>
+                    <tr><td>inventory</td><td>estoque/inventário</td><td>in-vén-tô-ri</td></tr>
+                    <tr><td>salt</td><td>sal</td><td>sólt</td></tr>
+                    <tr><td>cattle</td><td>gado</td><td>ké-tôl</td></tr>
+                    <tr><td>one</td><td>um</td><td>uãn</td></tr>
+                    <tr><td>five</td><td>cinco</td><td>fáiv</td></tr>
+                    <tr><td>ten</td><td>dez</td><td>tén</td></tr>
+                    <tr><td>twenty</td><td>vinte</td><td>twén-ti</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="small" style="margin-top:8px">✨ Assim, a Aula 6 ensina como contar animais e itens na fazenda usando números, plurais e quantificadores, além de estruturar frases afirmativas, negativas e interrogativas no Present Simple.</div>
+            `;
+            gv.insertAdjacentHTML('beforeend', lessonHTML6);
           } catch {}
         }
       })();
@@ -1763,7 +1860,7 @@ function renderGrammar(data) {
         const { level, index } = parseRoute();
         const isA1 = String(level).toUpperCase()==='A1';
         const idxNum = Number(index);
-        const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : (isA1 && idxNum===4) ? '0.4' : (isA1 && idxNum===5) ? '0.5' : null;
+        const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : (isA1 && idxNum===4) ? '0.4' : (isA1 && idxNum===5) ? '0.5' : (isA1 && idxNum===6) ? '0.6' : null;
         const names = coverDecimal ? [coverDecimal,'0'] : ['0'];
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
@@ -1861,6 +1958,7 @@ function renderGrammar(data) {
               else if (isA1 && idxNum===3) name = `${k+1}.3`;
               else if (isA1 && idxNum===4) name = `${k+1}.4`;
               else if (isA1 && idxNum===5) name = `${k+1}.5`;
+              else if (isA1 && idxNum===6) name = `${k+1}.6`;
               const url = bases[bi] + name + exts[ei];
               const im = new Image();
               im.onload = ()=>{ if (!preloaded[k]) preloaded[k] = url; };
@@ -1887,6 +1985,7 @@ function renderGrammar(data) {
             else if (isA1 && idxNum===3) name = `${k+1}.3`;
             else if (isA1 && idxNum===4) name = `${k+1}.4`;
             else if (isA1 && idxNum===5) name = `${k+1}.5`;
+            else if (isA1 && idxNum===6) name = `${k+1}.6`;
             const url = bases[bi] + name + exts[ei++];
             const probe = new Image();
             probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; };
@@ -3277,6 +3376,42 @@ function renderGrammar(data) {
                 if (el.closest('#study-footer')) return;
                 el.remove();
               });
+            }
+          } catch {}
+        }
+        if (String(level).toUpperCase()==='A1' && Number(idx)===6) {
+          try {
+            const g = document.getElementById('grammar'); if (g) { g.innerHTML=''; g.style.display = 'none'; }
+            const v = document.getElementById('vocab'); if (v) { v.innerHTML=''; v.style.display = 'none'; }
+            const vt = document.getElementById('vocabTable'); if (vt) { vt.innerHTML=''; vt.style.display = 'none'; }
+          } catch {}
+          try {
+            const study = document.getElementById('tab-study');
+            if (study) {
+              const keepIds = new Set(['grammarVideo','slideLessonRoot','study-footer']);
+              const titles = Array.from(study.querySelectorAll('.section-title'));
+              titles.forEach(el=>{
+                if (el.closest('#grammarVideo')) return;
+                const txt = String(el.textContent||'').trim();
+                const keep = /^(Texto narrado)$/i.test(txt);
+                if (!keep) {
+                  const next = el.nextElementSibling;
+                  if (next && next.id && keepIds.has(next.id)) {
+                  } else {
+                    if (next && next.classList && next.classList.contains('card')) next.remove();
+                    el.remove();
+                  }
+                }
+              });
+              const cards = Array.from(study.querySelectorAll('.card'));
+              cards.forEach(el=>{
+                if (el.id && keepIds.has(el.id)) return;
+                if (el.closest('#grammarVideo')) return;
+                if (el.closest('#slideLessonRoot')) return;
+                if (el.closest('#study-footer')) return;
+                el.remove();
+              });
+              try { const gvWrap = document.getElementById('grammarVideo'); if (gvWrap) gvWrap.style.display='block'; } catch {}
             }
           } catch {}
         }
@@ -4860,35 +4995,50 @@ function renderGrammar(data) {
           ptSentences = Array(sentences.length).fill('');
         }
         let imgCountBase = Math.min((sentences.length || 0), maxCount);
-        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4 || Number(idx)===5);
+        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6);
         try {
           if (useImages) { pronList.classList.add('speech-a1'); } else { pronList.classList.remove('speech-a1'); }
         } catch {}
-        const imgs = useImages ? (
-          Number(idx)===1
-            ? Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`)
-            : (Number(idx)===2
-                ? Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`)
-                : (Number(idx)===3
-                    ? Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`)
-                    : (Number(idx)===4
-                      ? [
-                        '/public/images/a1texto4/1.4.webp',
-                        '/public/images/a1texto4/5.4.webp',
-                        '/public/images/a1texto4/3.4.webp',
-                        '/public/images/a1texto4/7.4.webp',
-                        '/public/images/a1texto4/8.4.webp',
-                        '/public/images/a1texto4/9.4.webp',
-                        '/public/images/a1texto4/10.4.webp'
-                      ] : [
-                        '/public/images/a1texto5/1.5.webp',
-                        '/public/images/a1texto5/3.5.webp',
-                        '/public/images/a1texto5/5.5.webp',
-                        '/public/images/a1texto5/7.5.webp',
-                        '/public/images/a1texto5/9.5.webp',
-                        '/public/images/a1texto5/10.5.webp'
-                      ])))
-        ) : [];
+        let imgs = [];
+        if (useImages) {
+          if (Number(idx)===1) {
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`);
+          } else if (Number(idx)===2) {
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`);
+          } else if (Number(idx)===3) {
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`);
+          } else if (Number(idx)===4) {
+            imgs = [
+              '/public/images/a1texto4/1.4.webp',
+              '/public/images/a1texto4/5.4.webp',
+              '/public/images/a1texto4/3.4.webp',
+              '/public/images/a1texto4/7.4.webp',
+              '/public/images/a1texto4/8.4.webp',
+              '/public/images/a1texto4/9.4.webp',
+              '/public/images/a1texto4/10.4.webp'
+            ];
+          } else if (Number(idx)===5) {
+            imgs = [
+              '/public/images/a1texto5/1.5.webp',
+              '/public/images/a1texto5/3.5.webp',
+              '/public/images/a1texto5/5.5.webp',
+              '/public/images/a1texto5/7.5.webp',
+              '/public/images/a1texto5/9.5.webp',
+              '/public/images/a1texto5/10.5.webp'
+            ];
+          } else if (Number(idx)===6) {
+            imgs = [
+              '/public/images/a1texto6/1.6.webp',
+              '/public/images/a1texto6/2.6.webp',
+              '/public/images/a1texto6/3.6.webp',
+              '/public/images/a1texto6/4.6.webp',
+              '/public/images/a1texto6/5.6.webp',
+              '/public/images/a1texto6/6.6.webp',
+              '/public/images/a1texto6/7.6.webp',
+              '/public/images/a1texto6/8.6.webp'
+            ];
+          }
+        }
         const segUrls = isA1 && Number(idx)===1
           ? Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`)
           : (isA1 && Number(idx)===2
@@ -4965,7 +5115,7 @@ function renderGrammar(data) {
         const shown = sentences.slice(0, Math.min((sentences.length || 0), maxCount));
         pronList.innerHTML = shown.map((s,i)=>`
           <div class="pron-card">
-            ${useImages ? `<img src="${imgs[i]}" alt="${s}" loading="lazy" class="object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
+            ${useImages && imgs[i] ? `<img src="${imgs[i]}" alt="${s}" loading="lazy" class="object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}
             <div class="text">${s}</div>
             <div class="toolbar" style="margin-top:8px">
               <button class="btn sm secondary" data-pron-play="${i}">Ouvir</button>

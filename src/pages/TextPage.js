@@ -39,13 +39,6 @@ export function TextPage(level, index) {
       <section class="card" id="study-footer" style="margin-top:16px">
           ${ytEmbed}
           <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
-          <div class="small">Assista, leia, pratique e fale — tudo em um só lugar.</div>
-          <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
-            <span class="badge">🎥 Assistir</span>
-            <span class="badge">📖 Ler</span>
-            <span class="badge">🗣️ Falar</span>
-            <span class="badge">✍️ Exercitar</span>
-          </div>
           <div id="slideLessonRoot" style="margin-top:12px"></div>
           <div class="section-title" style="margin-top:12px">📖 Texto narrado</div>
           <div style="margin-top:8px">
