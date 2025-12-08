@@ -8,6 +8,13 @@ export function TextPage(level, index) {
             </div>
           </div>
   ` : '';
+  const ytEmbedA1T7 = (isA1 && Number(index)===7) ? `
+          <div style="margin-top:12px">
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
+              <iframe src="https://www.youtube.com/embed/_m66JpP0idI" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+            </div>
+          </div>
+  ` : '';
   return `
     <main class="main">
       <div style="display:flex;align-items:center;justify-content:space-between">
@@ -38,6 +45,7 @@ export function TextPage(level, index) {
         <div id="vocabTable" style="margin-top:12px"></div>
       <section class="card" id="study-footer" style="margin-top:16px">
           ${ytEmbed}
+          ${ytEmbedA1T7}
           <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
           <div id="slideLessonRoot" style="margin-top:12px"></div>
           <div class="section-title" style="margin-top:12px">📖 Texto narrado</div>
@@ -68,13 +76,13 @@ export function TextPage(level, index) {
               <input id="playerVol" class="player-vol" type="range" min="0" max="1" step="0.05" value="1" title="Volume" />
               <button class="btn" id="toggleTr" style="align-self:center;margin:8px auto">Mostrar/Ocultar tradução</button>
             </div>
-            <div class="player-track">
-              <input id="playerSeek" class="player-seek" type="range" min="0" max="100" step="0.1" value="0" />
-              <span id="playerTime" class="small player-time">00:00 / 00:00</span>
-            </div>
+          <div class="player-track">
+            <input id="playerSeek" class="player-seek" type="range" min="0" max="100" step="0.1" value="0" />
+            <span id="playerTime" class="small player-time">00:00 / 00:00</span>
           </div>
-          <div id="lines" class="lines" style="margin-top:8px"></div>
-        </section>
+        </div>
+        <div id="lines" class="lines" style="margin-top:8px"></div>
+      </section>
       </section>
 
 
