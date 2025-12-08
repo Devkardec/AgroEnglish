@@ -475,11 +475,26 @@
     const orderSentence = deriveOrderSentence();
     function deriveMemoryPairs(){
       const isA1 = String(level||'').toUpperCase()==='A1';
+      const isTx1 = isA1 && Number(idx)===1;
       const isTx2 = isA1 && Number(idx)===2;
       const isTx3 = isA1 && Number(idx)===3;
       const isTx4 = isA1 && Number(idx)===4;
       const isTx5 = isA1 && Number(idx)===5;
+      const isTx6 = isA1 && Number(idx)===6;
       const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 10));
+      if (isTx1) {
+        const imgs = Array.from({length:12}, (_,i)=> `/public/images/a1texto1/${i}.webp`);
+        const lines = [
+            "Hello! I am Paul, and I am a farmer.",
+            "I am at the farm now.",
+            "My sister is here too. She is happy.",
+            "The barn is open. It is very big.",
+            "The cows are calm, but the chickens are fast. They are funny.",
+            "The sun is hot, but the wind is not strong.",
+            "We are ready for the day."
+        ];
+        return Array.from({length:7}, (_,i)=> ({ src: imgs[i], text: String(lines[i]||'').trim() }));
+      }
       if (isTx2) {
         const imgs = Array.from({length:count}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`);
         const lines = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : [];
@@ -490,7 +505,7 @@
         const lines = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : [];
         return Array.from({length:count}, (_,i)=> ({ src: imgs[i], text: String(lines[i]||'').trim() }));
       }
-      if (isTx4 || isTx5) {
+      if (isTx4 || isTx5 || isTx6) {
         const items = (isTx4 ? [
           { src:'/public/images/a1texto4/1.4.webp', text:'I drive the green tractor.', audio:'/src/audio/A1/texto-a1.4-dividido/part_1.mp3' },
           { src:'/public/images/a1texto4/5.4.webp', text:'The farmer waters the plants in the greenhouse.', audio:'/src/audio/A1/texto-a1.4-dividido/part_5.mp3' },
@@ -499,6 +514,15 @@
           { src:'/public/images/a1texto4/8.4.webp', text:'He repairs the engine in the shed.', audio:'/src/audio/A1/texto-a1.4-dividido/part_8.mp3' },
           { src:'/public/images/a1texto4/9.4.webp', text:'The field is ready for sowing.', audio:'/src/audio/A1/texto-a1.4-dividido/part_9.mp3' },
           { src:'/public/images/a1texto4/10.4.webp', text:'The cow drinks water near the barn.', audio:'/src/audio/A1/texto-a1.4-dividido/part_10.mp3' }
+        ] : isTx6 ? [
+          { src:'/public/images/a1texto6/1.6.webp', text:'We have a lot of work today.', audio:'/src/audio/A1/texto-a1.6-dividido/part_1.mp3' },
+          { src:'/public/images/a1texto6/2.6.webp', text:'How many bags of corn are in the shed?', audio:'/src/audio/A1/texto-a1.6-dividido/part_2.mp3' },
+          { src:'/public/images/a1texto6/3.6.webp', text:'There are ten bags of corn.', audio:'/src/audio/A1/texto-a1.6-dividido/part_3.mp3' },
+          { src:'/public/images/a1texto6/4.6.webp', text:'How many tractors are here?', audio:'/src/audio/A1/texto-a1.6-dividido/part_4.mp3' },
+          { src:'/public/images/a1texto6/5.6.webp', text:'There is only one tractor.', audio:'/src/audio/A1/texto-a1.6-dividido/part_5.mp3' },
+          { src:'/public/images/a1texto6/6.6.webp', text:'I see five horses and twenty cows.', audio:'/src/audio/A1/texto-a1.6-dividido/part_6.mp3' },
+          { src:'/public/images/a1texto6/7.6.webp', text:'The inventory is correct.', audio:'/src/audio/A1/texto-a1.6-dividido/part_7.mp3' },
+          { src:'/public/images/a1texto6/8.6.webp', text:'We need more salt for the cattle.', audio:'/src/audio/A1/texto-a1.6-dividido/part_8.mp3' }
         ] : [
           { src:'/public/images/a1texto5/1.5.webp', text:'The sun is very hot today.', audio:'/src/audio/A1/texto-a1.5-dividido/part_1.mp3' },
           { src:'/public/images/a1texto5/3.5.webp', text:'The corn needs rain.', audio:'/src/audio/A1/texto-a1.5-dividido/part_3.mp3' },
@@ -540,15 +564,32 @@
           )
         ),
         e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' },
-          (isA1 && (Number(idx)===4 || Number(idx)===5))
+          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6))
             ? e(DictationExercise, {
-                sentences: (Number(idx)===4 ? [
+                sentences: (Number(idx)===1 ? [
+                  "Hello! I am Paul, and I am a farmer.",
+                  "I am at the farm now.",
+                  "My sister is here too. She is happy.",
+                  "The barn is open. It is very big.",
+                  "The cows are calm, but the chickens are fast. They are funny.",
+                  "The sun is hot, but the wind is not strong.",
+                  "We are ready for the day."
+                ] : Number(idx)===4 ? [
                   'I drive the green tractor.',
                   'The farmer waters the plants in the greenhouse.',
                   'The harvester collects the ripe wheat.',
                   'The trailer carries bales of hay.',
                   'He repairs the engine in the shed.',
                   'The field is ready for sowing.'
+                ] : Number(idx)===6 ? [
+                  'We have a lot of work today.',
+                  'How many bags of corn are in the shed?',
+                  'There are ten bags of corn.',
+                  'How many tractors are here?',
+                  'There is only one tractor.',
+                  'I see five horses and twenty cows.',
+                  'The inventory is correct.',
+                  'We need more salt for the cattle.'
                 ] : [
                   'The sun is very hot today.',
                   'The corn needs rain.',
@@ -557,13 +598,30 @@
                   'The temperature is mild.',
                   'The harvest will be good this year.'
                 ]),
-                segUrls: (Number(idx)===4 ? [
+                segUrls: (Number(idx)===1 ? [
+                  '/src/audio/A1/texto-a1.1-dividido/part_1.mp3',
+                  '/src/audio/A1/texto-a1.1-dividido/part_2.mp3',
+                  '/src/audio/A1/texto-a1.1-dividido/part_3.mp3',
+                  '/src/audio/A1/texto-a1.1-dividido/part_4.mp3',
+                  '/src/audio/A1/texto-a1.1-dividido/part_5.mp3',
+                  '/src/audio/A1/texto-a1.1-dividido/part_6.mp3',
+                  '/src/audio/A1/texto-a1.1-dividido/part_7.mp3'
+                ] : Number(idx)===4 ? [
                   '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
                   '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
                   '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
                   '/src/audio/A1/texto-a1.4-dividido/part_7.mp3',
                   '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
                   '/src/audio/A1/texto-a1.4-dividido/part_9.mp3'
+                ] : Number(idx)===6 ? [
+                  '/src/audio/A1/texto-a1.6-dividido/part_1.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/part_2.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/part_3.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/part_4.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/part_5.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/part_6.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/part_7.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/part_8.mp3'
                 ] : [
                     '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
                     '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',
@@ -576,8 +634,16 @@
             : e(DictationExercise, { sentences: (Array.isArray(ex.narration_sentences)? ex.narration_sentences.slice(0,6) : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/))).slice(0,6) })
         ),
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
-          (isA1 && (Number(idx)===4 || Number(idx)===5))
-            ? e(ImageSentenceAssociation, { items: (Number(idx)===4 ? [
+          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6))
+            ? e(ImageSentenceAssociation, { items: (Number(idx)===1 ? [
+                { src:'/public/images/a1texto1/0.webp', text:'Hello! I am Paul, and I am a farmer.', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
+                { src:'/public/images/a1texto1/1.webp', text:'I am at the farm now.', audio:'/src/audio/A1/texto-a1.1-dividido/part_2.mp3' },
+                { src:'/public/images/a1texto1/2.webp', text:'My sister is here too. She is happy.', audio:'/src/audio/A1/texto-a1.1-dividido/part_3.mp3' },
+                { src:'/public/images/a1texto1/3.webp', text:'The barn is open. It is very big.', audio:'/src/audio/A1/texto-a1.1-dividido/part_4.mp3' },
+                { src:'/public/images/a1texto1/4.webp', text:'The cows are calm, but the chickens are fast. They are funny.', audio:'/src/audio/A1/texto-a1.1-dividido/part_5.mp3' },
+                { src:'/public/images/a1texto1/5.webp', text:'The sun is hot, but the wind is not strong.', audio:'/src/audio/A1/texto-a1.1-dividido/part_6.mp3' },
+                { src:'/public/images/a1texto1/6.webp', text:'We are ready for the day.', audio:'/src/audio/A1/texto-a1.1-dividido/part_7.mp3' }
+              ] : Number(idx)===4 ? [
                 { src:'/public/images/a1texto4/1.4.webp', text:'I drive the green tractor.', audio:'/src/audio/A1/texto-a1.4-dividido/part_1.mp3' },
                 { src:'/public/images/a1texto4/5.4.webp', text:'The farmer waters the plants in the greenhouse.', audio:'/src/audio/A1/texto-a1.4-dividido/part_5.mp3' },
                 { src:'/public/images/a1texto4/3.4.webp', text:'The harvester collects the ripe wheat.', audio:'/src/audio/A1/texto-a1.4-dividido/part_3.mp3' },
@@ -585,6 +651,15 @@
                 { src:'/public/images/a1texto4/8.4.webp', text:'He repairs the engine in the shed.', audio:'/src/audio/A1/texto-a1.4-dividido/part_8.mp3' },
                 { src:'/public/images/a1texto4/9.4.webp', text:'The field is ready for sowing.', audio:'/src/audio/A1/texto-a1.4-dividido/part_9.mp3' },
                 { src:'/public/images/a1texto4/10.4.webp', text:'The cow drinks water near the barn.', audio:'/src/audio/A1/texto-a1.4-dividido/part_10.mp3' }
+              ] : Number(idx)===6 ? [
+                { src:'/public/images/a1texto6/1.6.webp', text:'We have a lot of work today.', audio:'/src/audio/A1/texto-a1.6-dividido/part_1.mp3' },
+                { src:'/public/images/a1texto6/2.6.webp', text:'How many bags of corn are in the shed?', audio:'/src/audio/A1/texto-a1.6-dividido/part_2.mp3' },
+                { src:'/public/images/a1texto6/3.6.webp', text:'There are ten bags of corn.', audio:'/src/audio/A1/texto-a1.6-dividido/part_3.mp3' },
+                { src:'/public/images/a1texto6/4.6.webp', text:'How many tractors are here?', audio:'/src/audio/A1/texto-a1.6-dividido/part_4.mp3' },
+                { src:'/public/images/a1texto6/5.6.webp', text:'There is only one tractor.', audio:'/src/audio/A1/texto-a1.6-dividido/part_5.mp3' },
+                { src:'/public/images/a1texto6/6.6.webp', text:'I see five horses and twenty cows.', audio:'/src/audio/A1/texto-a1.6-dividido/part_6.mp3' },
+                { src:'/public/images/a1texto6/7.6.webp', text:'The inventory is correct.', audio:'/src/audio/A1/texto-a1.6-dividido/part_7.mp3' },
+                { src:'/public/images/a1texto6/8.6.webp', text:'We need more salt for the cattle.', audio:'/src/audio/A1/texto-a1.6-dividido/part_8.mp3' }
               ] : [
                 { src:'/public/images/a1texto5/1.5.webp', text:'The sun is very hot today.', audio:'/src/audio/A1/texto-a1.5-dividido/part_1.mp3' },
                 { src:'/public/images/a1texto5/3.5.webp', text:'The corn needs rain.', audio:'/src/audio/A1/texto-a1.5-dividido/part_3.mp3' },
