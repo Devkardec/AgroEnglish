@@ -605,7 +605,7 @@
           )
         ),
         e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' },
-          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6))
+          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===8))
             ? e(DictationExercise, {
                 sentences: (Number(idx)===1 ? [
                   "Hello! I am Paul, and I am a farmer.",
@@ -631,6 +631,13 @@
                   'I see five horses and twenty cows.',
                   'The inventory is correct.',
                   'We need more salt for the cattle.'
+                ] : Number(idx)===8 ? [
+                  'Safety is priority number one.',
+                  'Please, read the signs.',
+                  'Wear your heavy boots and gloves.',
+                  'Stop the machine immediately!',
+                  "Don't touch the electric fence. It is dangerous.",
+                  "Don't smoke near the dry hay."
                 ] : [
                   'The sun is very hot today.',
                   'The corn needs rain.',
@@ -663,6 +670,13 @@
                   '/src/audio/A1/texto-a1.6-dividido/part_6.mp3',
                   '/src/audio/A1/texto-a1.6-dividido/part_7.mp3',
                   '/src/audio/A1/texto-a1.6-dividido/part_8.mp3'
+                ] : Number(idx)===8 ? [
+                  '/src/audio/A1/texto-a1.8-dividido/audio_part_1.mp3',
+                  '/src/audio/A1/texto-a1.8-dividido/audio_part_2.mp3',
+                  '/src/audio/A1/texto-a1.8-dividido/audio_part_3.mp3',
+                  '/src/audio/A1/texto-a1.8-dividido/audio_part_4.mp3',
+                  '/src/audio/A1/texto-a1.8-dividido/audio_part_5.mp3',
+                  '/src/audio/A1/texto-a1.8-dividido/audio_part_6.mp3'
                 ] : [
                     '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
                     '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',

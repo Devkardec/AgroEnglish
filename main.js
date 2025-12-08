@@ -5338,43 +5338,46 @@ function renderGrammar(data) {
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto8/${i+1}.8.webp`);
           }
         }
-        const segUrls = isA1 && Number(idx)===1
-          ? Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`)
-          : (isA1 && Number(idx)===2
-              ? Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`)
-              : (isA1 && Number(idx)===3
-                  ? Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.3-dividido/${i+1}.3.mp3`)
-                  : (isA1 && Number(idx)===4
-                      ? [
-                        '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
-                        '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
-                        '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
-                        '/src/audio/A1/texto-a1.4-dividido/part_7.mp3',
-                        '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
-                        '/src/audio/A1/texto-a1.4-dividido/part_9.mp3',
-                        '/src/audio/A1/texto-a1.4-dividido/part_10.mp3'
-                      ]
-                      : (isA1 && Number(idx)===5
-                        ? [
-                          '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
-                          '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',
-                          '/src/audio/A1/texto-a1.5-dividido/part_5.mp3',
-                          '/src/audio/A1/texto-a1.5-dividido/part_7.mp3',
-                          '/src/audio/A1/texto-a1.5-dividido/part_9.mp3',
-                          '/src/audio/A1/texto-a1.5-dividido/part_10.mp3'
-                        ]
-                        : (isA1 && Number(idx)===7
-                          ? [
-                            '/src/audio/A1/texto-a1.7-dividido/part_1.mp3',
-                            '/src/audio/A1/texto-a1.7-dividido/part_2.mp3',
-                            '/src/audio/A1/texto-a1.7-dividido/part_3.mp3',
-                            '/src/audio/A1/texto-a1.7-dividido/part_4.mp3',
-                            '/src/audio/A1/texto-a1.7-dividido/part_5.mp3',
-                            '/src/audio/A1/texto-a1.7-dividido/part_6.mp3',
-                            '/src/audio/A1/texto-a1.7-dividido/part_7.mp3',
-                            '/src/audio/A1/texto-a1.7-dividido/part_8.mp3'
-                          ]
-                          : [] )))));
+        let segUrls = [];
+        if (isA1 && Number(idx)===1) {
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`);
+        } else if (isA1 && Number(idx)===2) {
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`);
+        } else if (isA1 && Number(idx)===3) {
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.3-dividido/${i+1}.3.mp3`);
+        } else if (isA1 && Number(idx)===4) {
+          segUrls = [
+            '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
+            '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
+            '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
+            '/src/audio/A1/texto-a1.4-dividido/part_7.mp3',
+            '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
+            '/src/audio/A1/texto-a1.4-dividido/part_9.mp3',
+            '/src/audio/A1/texto-a1.4-dividido/part_10.mp3'
+          ];
+        } else if (isA1 && Number(idx)===5) {
+          segUrls = [
+            '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
+            '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',
+            '/src/audio/A1/texto-a1.5-dividido/part_5.mp3',
+            '/src/audio/A1/texto-a1.5-dividido/part_7.mp3',
+            '/src/audio/A1/texto-a1.5-dividido/part_9.mp3',
+            '/src/audio/A1/texto-a1.5-dividido/part_10.mp3'
+          ];
+        } else if (isA1 && Number(idx)===7) {
+          segUrls = [
+            '/src/audio/A1/texto-a1.7-dividido/part_1.mp3',
+            '/src/audio/A1/texto-a1.7-dividido/part_2.mp3',
+            '/src/audio/A1/texto-a1.7-dividido/part_3.mp3',
+            '/src/audio/A1/texto-a1.7-dividido/part_4.mp3',
+            '/src/audio/A1/texto-a1.7-dividido/part_5.mp3',
+            '/src/audio/A1/texto-a1.7-dividido/part_6.mp3',
+            '/src/audio/A1/texto-a1.7-dividido/part_7.mp3',
+            '/src/audio/A1/texto-a1.7-dividido/part_8.mp3'
+          ];
+        } else if (isA1 && Number(idx)===8) {
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.8-dividido/audio_part_${i+1}.mp3`);
+        }
         if (isA1 && Number(idx)===5) {
           const fullAllEn = [
             'The weather is very hot today.',
@@ -5663,7 +5666,9 @@ function renderGrammar(data) {
                     '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
                     '/src/audio/A1/texto-a1.4-dividido/part_9.mp3'
                   ]
-                  : [];
+                  : (isA1 && Number(idx)===8)
+                    ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.8-dividido/audio_part_${i+1}.mp3`)
+                    : [];
           pronModalList.innerHTML = (sentences.slice(0, max)).map((s,i)=>`
             <div class="pron-card">
               <div class="text">${s}</div>
