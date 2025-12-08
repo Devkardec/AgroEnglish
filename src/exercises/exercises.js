@@ -353,179 +353,185 @@
     );
   }
 
-  function ExercisePageLayout({ data, idx }){
+  function ExercisePageLayout({ data, idx, level }){
     const ex = data.a1_exercises || {};
     const comp = Array.isArray(ex.complete) ? ex.complete : [];
-    const tfStatements = (Number(idx)===2) ? [
-      { text:'The veterinarian has a medical kit.', correct:true },
-      { text:'The bull has a big injury on the leg.', correct:false },
-      { text:'We have safe and healthy animals now.', correct:true },
-    ] : (Number(idx)===3 ? [
-      { text:'We start work at 6:00 AM.', correct:true },
-      { text:'The cows walk to the barn.', correct:false },
-      { text:'The farm worker feeds the pigs.', correct:true },
-    ] : (Number(idx)===4 ? [
-      { text:'I drive the green tractor.', correct:true },
-      { text:'The harvester is in the shed.', correct:true },
-      { text:'It is ready.', correct:true },
-    ] : (Number(idx)===5 ? [
-      { text:'The sun is very hot today.', correct:true },
-      { text:'The plants are yellow.', correct:false },
-      { text:'The harvest will be good this year.', correct:true },
-    ] : [
-      { text:'Paul is a farmer.', correct:true },
-      { text:'The chickens are calm.', correct:false },
-      { text:'The barn is open.', correct:true },
-    ])));
-    const amIsAre = (Number(idx)===2) ? [
-      { prompt:'We ____ many cows.', answer:'have' },
-      { prompt:'She ____ a medical kit.', answer:'has' },
-      { prompt:'The bull ____ a strong body.', answer:'has' },
-    ] : (Number(idx)===3 ? [
-      { prompt:'____ the cows walk to the pasture?', answer:'Do' },
-      { prompt:'The calf ____ drink milk.', answer:"doesn't" },
-      { prompt:'____ we clean the feeding area?', answer:'Do' },
-    ] : (Number(idx)===4 ? [
-      { prompt:'The tractor ____ new.', answer:'is' },
-      { prompt:'The harvester ____ in the shed.', answer:'is' },
-      { prompt:'It ____ ready.', answer:'is' },
-    ] : (Number(idx)===5 ? [
-        { prompt:'The sun ____ very hot today.', answer:'is' },
-        { prompt:'The plants ____ green.', answer:'are' },
-        { prompt:'The temperature ____ mild.', answer:'is' },
-    ] : [
-      { prompt:'I ____ Paul.', answer:'am' },
-      { prompt:'The barn ____ open.', answer:'is' },
-      { prompt:'The cows ____ calm.', answer:'are' },
-    ])));
-    const vocabItems = [
-      { word:'farmer', pt:'fazendeiro', image:'/public/images/a1texto1/slidetx1/11.webp' },
-      { word:'barn', pt:'galpão', image:'/public/images/a1texto1/slidetx1/12.webp' },
-    ];
-    const orderItems = [
-      { text:'I am Paul.', correctIndex:0 },
-      { text:'The barn is open.', correctIndex:1 },
-      { text:'The cows are calm.', correctIndex:2 },
-    ];
-    function makeVideoPairs(){
-      const isTx2 = Number(idx)===2;
-      const isTx3 = Number(idx)===3;
-      const isTx4 = Number(idx)===4;
-      const isTx5 = Number(idx)===5;
-      const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 11));
-      const imgs = isTx2
-        ? Array.from({length:count}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`)
-        : (isTx3
-            ? Array.from({length:count}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`)
-            : (isTx4
-                ? [
-                  '/public/images/a1texto4/1.4.webp',
-                  '/public/images/a1texto4/5.4.webp',
-                  '/public/images/a1texto4/3.4.webp',
-                  '/public/images/a1texto4/7.4.webp',
-                  '/public/images/a1texto4/8.4.webp',
-                  '/public/images/a1texto4/9.4.webp',
-                  '/public/images/a1texto4/10.4.webp'
-                ]
-                : (isTx5
-                    ? [
-                        '/public/images/a1texto5/1.5.webp',
-                        '/public/images/a1texto5/3.5.webp',
-                        '/public/images/a1texto5/5.5.webp',
-                        '/public/images/a1texto5/7.5.webp',
-                        '/public/images/a1texto5/9.5.webp',
-                        '/public/images/a1texto5/10.5.webp'
-                      ]
-                    : Array.from({length:count}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`))));
-      const lines = Array.isArray(data && data.lines) ? data.lines.map(l=> String(l.en||'').trim()).filter(Boolean) : [];
-      const nar = Array.isArray(data && data.a1_exercises && data.a1_exercises.narration_sentences) ? data.a1_exercises.narration_sentences.map(s=> String(s||'').trim()).filter(Boolean) : [];
-      const textParts = String(data && data.text || '').split(/(?<=[.!?])\s+/).filter(Boolean);
-      const srcBase = (isTx4 ? [
-        'I drive the green tractor.',
-        'The farmer waters the plants in the greenhouse.',
-        'The harvester collects the ripe wheat.',
-        'The trailer carries bales of hay.',
-        'He repairs the engine in the shed.',
-        'The field is ready for sowing.',
-        'The cow drinks water near the barn.'
-      ] : (isTx5 ? [
-        'The sun is very hot today.',
-        'The corn needs rain.',
-        'It will rain soon.',
-        'The plants are green.',
-        'The temperature is mild.',
-        'The harvest will be good this year.'
-      ] : (lines.length ? lines : (nar.length ? nar : textParts))));
-      const srcTexts = srcBase.slice(0,count);
-      if (isTx4 || isTx5) {
-        const audios = isTx4 ? [
-          '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
-          '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
-          '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
-          '/src/audio/A1/texto-a1.4-dividido/part_7.mp3',
-          '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
-          '/src/audio/A1/texto-a1.4-dividido/part_9.mp3',
-          '/src/audio/A1/texto-a1.4-dividido/part_10.mp3'
-        ] : [
-            '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
-            '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',
-            '/src/audio/A1/texto-a1.5-dividido/part_5.mp3',
-            '/src/audio/A1/texto-a1.5-dividido/part_7.mp3',
-            '/src/audio/A1/texto-a1.5-dividido/part_9.mp3',
-            '/src/audio/A1/texto-a1.5-dividido/part_10.mp3'
+    function deriveTF(){
+      const isA1 = String(level||'').toUpperCase()==='A1';
+      if (isA1) {
+        if (Number(idx)===2) return [
+          { text:'The veterinarian has a medical kit.', correct:true },
+          { text:'The bull has a big injury on the leg.', correct:false },
+          { text:'We have safe and healthy animals now.', correct:true },
         ];
-        return srcTexts.map((t,i)=> ({ src: imgs[i], text: t, audio: audios[i] }));
+        if (Number(idx)===3) return [
+          { text:'We start work at 6:00 AM.', correct:true },
+          { text:'The cows walk to the barn.', correct:false },
+          { text:'The farm worker feeds the pigs.', correct:true },
+        ];
+        if (Number(idx)===4) return [
+          { text:'I drive the green tractor.', correct:true },
+          { text:'The harvester is in the shed.', correct:true },
+          { text:'It is ready.', correct:true },
+        ];
+        if (Number(idx)===5) return [
+          { text:'The sun is very hot today.', correct:true },
+          { text:'The plants are yellow.', correct:false },
+          { text:'The harvest will be good this year.', correct:true },
+        ];
+        return [
+          { text:'Paul is a farmer.', correct:true },
+          { text:'The chickens are calm.', correct:false },
+          { text:'The barn is open.', correct:true },
+        ];
       }
+      const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
+      const sents = base.filter(Boolean).slice(0,3).map(t=> String(t).trim());
+      return sents.map(t=> ({ text:t, correct:true }));
+    }
+    const tfStatements = deriveTF();
+    function deriveFill(){
+      const isA1 = String(level||'').toUpperCase()==='A1';
+      if (isA1) {
+        if (Number(idx)===2) return [
+          { prompt:'We ____ many cows.', answer:'have' },
+          { prompt:'She ____ a medical kit.', answer:'has' },
+          { prompt:'The bull ____ a strong body.', answer:'has' },
+        ];
+        if (Number(idx)===3) return [
+          { prompt:'____ the cows walk to the pasture?', answer:'Do' },
+          { prompt:'The calf ____ drink milk.', answer:"doesn't" },
+          { prompt:'____ we clean the feeding area?', answer:'Do' },
+        ];
+        if (Number(idx)===4) return [
+          { prompt:'The tractor ____ new.', answer:'is' },
+          { prompt:'The harvester ____ in the shed.', answer:'is' },
+          { prompt:'It ____ ready.', answer:'is' },
+        ];
+        if (Number(idx)===5) return [
+          { prompt:'The sun ____ very hot today.', answer:'is' },
+          { prompt:'The plants ____ green.', answer:'are' },
+          { prompt:'The temperature ____ mild.', answer:'is' },
+        ];
+        return [
+          { prompt:'I ____ Paul.', answer:'am' },
+          { prompt:'The barn ____ open.', answer:'is' },
+          { prompt:'The cows ____ calm.', answer:'are' },
+        ];
+      }
+      const items = Array.isArray(data.exercises && data.exercises.fill_in) ? data.exercises.fill_in.slice(0,3) : [];
+      if (items.length) return items.map(it=> ({ prompt:it.prompt, answer:it.answer }));
+      const src = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
       const out = [];
-      for (let i=0;i<count;i++) { out.push({ src: imgs[i], text: srcTexts[i] || '' }); }
+      for (let i=0;i<src.length && out.length<3;i++){
+        const s = String(src[i]||'').trim();
+        const words = s.replace(/[.,!?]+$/,'').split(/\s+/);
+        const target = words[1] || words[0] || '';
+        const rx = new RegExp(`\\b${String(target).replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')}\\b`,'i');
+        const blanked = s.replace(rx,'____');
+        out.push({ prompt: blanked, answer: String(target).toLowerCase() });
+      }
       return out;
     }
-    const videoPairs = makeVideoPairs();
-    const assocItems = (Number(idx)===2)
-      ? [
-          { word:'veterinarian', pt:'veterinária(o)' },
-          { word:'bull', pt:'touro' },
-          { word:'medical kit', pt:'kit médico' },
-          { word:'injury', pt:'lesão' },
-          { word:'medicine', pt:'remédio' },
-          { word:'leg', pt:'perna' },
-        ]
-      : (Number(idx)===4 || Number(idx)===5 ? null : null);
-    const transformItems = (Number(idx)===2)
-      ? [
+    const fillItems = deriveFill();
+    function deriveTransform(){
+      const isA1 = String(level||'').toUpperCase()==='A1';
+      if (isA1) {
+        if (Number(idx)===2) return [
           { base:'She has a medical kit.', target:'neg', answer: "She doesn't have a medical kit." },
           { base:'The bull has a strong body.', target:'q', answer: 'Does the bull have a strong body?' },
           { base:'We have safe and healthy animals now.', target:'neg', answer: "We don't have safe and healthy animals now." },
-        ]
-      : (Number(idx)===3
-          ? [
-              { base:'We start work at 6:00 AM.', target:'neg', answer:"We don't start work at 6:00 AM." },
-              { base:'The cows walk to the pasture.', target:'q', answer:'Do the cows walk to the pasture?' },
-              { base:'The small calf drinks milk.', target:'neg', answer:"The small calf doesn't drink milk." }
-            ]
-          : (Number(idx)===4 ? [
-              { base:'I drive the green tractor.', target:'q', answer:'Do I drive the green tractor?' },
-              { base:'The harvester is in the shed.', target:'neg', answer:'The harvester is not in the shed.' },
-              { base:'It is ready.', target:'q', answer:'Is it ready?' }
-            ] : (Number(idx)===5 ? [
-              { base:'The sun is very hot today.', target:'neg', answer:'The sun is not very hot today.' },
-              { base:'The plants are green.', target:'q', answer:'Are the plants green?' },
-              { base:'The harvest will be good this year.', target:'neg', answer:'The harvest will not be good this year.' }
-            ] : [
-              { base:'She is happy.', target:'neg', answer:'She is not happy.' },
-              { base:'The barn is open.', target:'q', answer:'Is the barn open?' }
-            ])));
-    const orderSentence = (Number(idx)===2) ? 'We have safe and healthy animals now.' : (Number(idx)===3 ? 'We start work at 6:00 AM.' : (Number(idx)===4 ? 'The harvester is in the shed.' : (Number(idx)===5 ? 'The harvest will be good this year.' : 'The barn is open.')));
+        ];
+        if (Number(idx)===3) return [
+          { base:'We start work at 6:00 AM.', target:'neg', answer:"We don't start work at 6:00 AM." },
+          { base:'The cows walk to the pasture.', target:'q', answer:'Do the cows walk to the pasture?' },
+          { base:'The small calf drinks milk.', target:'neg', answer:"The small calf doesn't drink milk." }
+        ];
+        if (Number(idx)===4) return [
+          { base:'I drive the green tractor.', target:'q', answer:'Do I drive the green tractor?' },
+          { base:'The harvester is in the shed.', target:'neg', answer:'The harvester is not in the shed.' },
+          { base:'It is ready.', target:'q', answer:'Is it ready?' }
+        ];
+        if (Number(idx)===5) return [
+          { base:'The sun is very hot today.', target:'neg', answer:'The sun is not very hot today.' },
+          { base:'The plants are green.', target:'q', answer:'Are the plants green?' },
+          { base:'The harvest will be good this year.', target:'neg', answer:'The harvest will not be good this year.' }
+        ];
+        return [
+          { base:'She is happy.', target:'neg', answer:'She is not happy.' },
+          { base:'The barn is open.', target:'q', answer:'Is the barn open?' }
+        ];
+      }
+      const neg = Array.isArray(ex.negative) ? ex.negative.slice(0,2) : [];
+      const ques = Array.isArray(ex.question) ? ex.question.slice(0,1) : [];
+      const toItem = (o, t)=> ({ base: String(o && o.base || '').trim(), target: t, answer: String(o && o.result || '').trim() });
+      return [...neg.map(o=> toItem(o,'neg')), ...ques.map(o=> toItem(o,'q'))].filter(it=> it.base && it.answer);
+    }
+    const transformItems = deriveTransform();
+    function deriveOrderSentence(){
+      const src = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
+      return String(src[0]||'').trim() || 'The barn is open.';
+    }
+    const orderSentence = deriveOrderSentence();
+    function deriveMemoryPairs(){
+      const isA1 = String(level||'').toUpperCase()==='A1';
+      const isTx2 = isA1 && Number(idx)===2;
+      const isTx3 = isA1 && Number(idx)===3;
+      const isTx4 = isA1 && Number(idx)===4;
+      const isTx5 = isA1 && Number(idx)===5;
+      const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 10));
+      if (isTx2) {
+        const imgs = Array.from({length:count}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`);
+        const lines = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : [];
+        return Array.from({length:count}, (_,i)=> ({ src: imgs[i], text: String(lines[i]||'').trim() }));
+      }
+      if (isTx3) {
+        const imgs = Array.from({length:count}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`);
+        const lines = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : [];
+        return Array.from({length:count}, (_,i)=> ({ src: imgs[i], text: String(lines[i]||'').trim() }));
+      }
+      if (isTx4 || isTx5) {
+        const items = (isTx4 ? [
+          { src:'/public/images/a1texto4/1.4.webp', text:'I drive the green tractor.', audio:'/src/audio/A1/texto-a1.4-dividido/part_1.mp3' },
+          { src:'/public/images/a1texto4/5.4.webp', text:'The farmer waters the plants in the greenhouse.', audio:'/src/audio/A1/texto-a1.4-dividido/part_5.mp3' },
+          { src:'/public/images/a1texto4/3.4.webp', text:'The harvester collects the ripe wheat.', audio:'/src/audio/A1/texto-a1.4-dividido/part_3.mp3' },
+          { src:'/public/images/a1texto4/7.4.webp', text:'The trailer carries bales of hay.', audio:'/src/audio/A1/texto-a1.4-dividido/part_7.mp3' },
+          { src:'/public/images/a1texto4/8.4.webp', text:'He repairs the engine in the shed.', audio:'/src/audio/A1/texto-a1.4-dividido/part_8.mp3' },
+          { src:'/public/images/a1texto4/9.4.webp', text:'The field is ready for sowing.', audio:'/src/audio/A1/texto-a1.4-dividido/part_9.mp3' },
+          { src:'/public/images/a1texto4/10.4.webp', text:'The cow drinks water near the barn.', audio:'/src/audio/A1/texto-a1.4-dividido/part_10.mp3' }
+        ] : [
+          { src:'/public/images/a1texto5/1.5.webp', text:'The sun is very hot today.', audio:'/src/audio/A1/texto-a1.5-dividido/part_1.mp3' },
+          { src:'/public/images/a1texto5/3.5.webp', text:'The corn needs rain.', audio:'/src/audio/A1/texto-a1.5-dividido/part_3.mp3' },
+          { src:'/public/images/a1texto5/5.5.webp', text:'It will rain soon.', audio:'/src/audio/A1/texto-a1.5-dividido/part_5.mp3' },
+          { src:'/public/images/a1texto5/7.5.webp', text:'The plants are green.', audio:'/src/audio/A1/texto-a1.5-dividido/part_7.mp3' },
+          { src:'/public/images/a1texto5/9.5.webp', text:'The temperature is mild.', audio:'/src/audio/A1/texto-a1.5-dividido/part_9.mp3' },
+          { src:'/public/images/a1texto5/10.5.webp', text:'The harvest will be good this year.', audio:'/src/audio/A1/texto-a1.5-dividido/part_10.mp3' }
+        ]);
+        return items;
+      }
+      const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
+      const texts = base.filter(Boolean).slice(0,count).map(t=> String(t).trim());
+      const placeholder = '/public/icons/apple-touch-icon.webp';
+      return texts.map(t=> ({ src: placeholder, text: t }));
+    }
+    const videoPairs = deriveMemoryPairs();
+    function deriveAssoc(){
+      const v = Array.isArray(data.vocabulary) ? data.vocabulary.slice(0,6) : null;
+      if (v) return v.map(it=> ({ word: String(it.en||it.word||'').trim(), pt: String(it.pt||'').trim() })).filter(it=> it.word && it.pt);
+      const trs = Array.isArray(ex.translation_short) ? ex.translation_short.slice(0,6) : [];
+      return trs.map(it=> ({ word: String(it.en||'').trim(), pt: String(it.pt||'').trim() }));
+    }
+    const assocItems = deriveAssoc();
+    const isA1 = String(level||'').toUpperCase()==='A1';
     return e('div', { className:'w-full max-w-4xl mx-auto' },
       e('div', { className:'mb-4 flex items-center justify-between' },
-        e('h2', { className:'text-base font-bold text-green-700' }, `${String(data.uiTitle||data.title||'A1 Texto')} · Exercícios (A1)`),
-        e('div', { className:'text-xs text-gray-600' }, 'Nível A1 · Fácil')
+        e('h2', { className:'text-base font-bold text-green-700' }, isA1 ? `${String(data.uiTitle||data.title||'A1 Texto')} · Exercícios (A1)` : `${String(data.uiTitle||data.title||'Texto')} · Exercícios (${String(level||'').toUpperCase()})`),
+        e('div', { className:'text-xs text-gray-600' }, isA1 ? 'Nível A1 · Fácil' : `Nível ${String(level||'').toUpperCase()}`)
       ),
       e('div', { className:'grid grid-cols-1 gap-4' },
         e(ExerciseCard, { title:'Vocabulário com imagens', instruction:'Veja e associe (jogo de memória)' }, e(VocabularyMemoryGame, { pairs: videoPairs })),
-        
         e(ExerciseCard, { title:'Transformar frases', instruction:'Digite a versão pedida' }, e(TransformSentences, { items: transformItems })),
-        e(ExerciseCard, { title:(Number(idx)===2?'Completar com HAVE / HAS':(Number(idx)===3?'Completar com DO / DOES':'Completar com Am / Is / Are')), instruction:'Preencha corretamente' }, e(InputFillBlank, { items:amIsAre })),
+        e(ExerciseCard, { title: (isA1 ? (Number(idx)===2?'Completar com HAVE / HAS':(Number(idx)===3?'Completar com DO / DOES':'Completar com Am / Is / Are')) : 'Completar lacunas'), instruction:'Preencha corretamente' }, e(InputFillBlank, { items: fillItems })),
         e(ExerciseCard, { title:'Verdadeiro ou Falso', instruction:'Marque V/F' }, e(TrueFalseCard, { statements: tfStatements })),
         e(ExerciseCard, { title:'Ordenar palavras', instruction:'Monte a frase correta' },
           e('div', null,
@@ -534,7 +540,7 @@
           )
         ),
         e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' },
-          (Number(idx)===4 || Number(idx)===5)
+          (isA1 && (Number(idx)===4 || Number(idx)===5))
             ? e(DictationExercise, {
                 sentences: (Number(idx)===4 ? [
                   'I drive the green tractor.',
@@ -567,10 +573,10 @@
                     '/src/audio/A1/texto-a1.5-dividido/part_10.mp3'
                 ])
               })
-            : e(DictationExercise, { sentences: videoPairs.map(p=>p.text).filter(Boolean).slice(0,3), segUrls: (Number(idx)===2 ? ['/src/audio/A1/texto-a1.2-dividido/1.1.mp3','/src/audio/A1/texto-a1.2-dividido/2.2.mp3','/src/audio/A1/texto-a1.2-dividido/3.3.mp3'] : (Number(idx)===3 ? ['/src/audio/A1/texto-a1.3-dividido/1.3.mp3','/src/audio/A1/texto-a1.3-dividido/2.3.mp3','/src/audio/A1/texto-a1.3-dividido/3.3.mp3'] : ['/src/audio/A1/texto-a1.1-dividido/seg1.mp3','/src/audio/A1/texto-a1.1-dividido/seg2.mp3','/src/audio/A1/texto-a1.1-dividido/seg3.mp3'])) })
+            : e(DictationExercise, { sentences: (Array.isArray(ex.narration_sentences)? ex.narration_sentences.slice(0,6) : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/))).slice(0,6) })
         ),
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
-          (Number(idx)===4 || Number(idx)===5)
+          (isA1 && (Number(idx)===4 || Number(idx)===5))
             ? e(ImageSentenceAssociation, { items: (Number(idx)===4 ? [
                 { src:'/public/images/a1texto4/1.4.webp', text:'I drive the green tractor.', audio:'/src/audio/A1/texto-a1.4-dividido/part_1.mp3' },
                 { src:'/public/images/a1texto4/5.4.webp', text:'The farmer waters the plants in the greenhouse.', audio:'/src/audio/A1/texto-a1.4-dividido/part_5.mp3' },
@@ -595,7 +601,6 @@
   }
 
   window.ExercisePageMount = function(level, idx, data){
-    if (String(level).toUpperCase()!=='A1' || (Number(idx)!==1 && Number(idx)!==2 && Number(idx)!==3 && Number(idx)!==4 && Number(idx)!==5)) return;
     const practiceTab = document.getElementById('tab-practice');
     if (!practiceTab || practiceTab.style.display==='none') return;
     const rootEl = document.getElementById('exercisePageRoot');
@@ -606,7 +611,7 @@
         if (el) { el.innerHTML=''; el.style.display='none'; }
       });
     } catch {}
-    const tree = e(ExercisePageLayout, { data, idx });
+    const tree = e(ExercisePageLayout, { data, idx, level });
     if (ReactDOM.createRoot) ReactDOM.createRoot(rootEl).render(tree); else ReactDOM.render(tree, rootEl);
   };
 })();

@@ -1520,7 +1520,7 @@ function renderGrammar(data) {
     `;
 
     const gv = document.getElementById('grammarVideo');
-    if (gv && (isA1BeMode || isA1HaveMode || isA1PSMode || isA1AdjMode || isA1ClimateMode || ((levelTag2==='A1') && curIdx2===6))) {
+    if (gv) {
       try { gv.style.display = 'block' } catch {}
       const scene = `
         <div class="card" style="padding:0">
@@ -2304,7 +2304,7 @@ function renderGrammar(data) {
       const vid = document.getElementById('lessonVideo');
       const isA1Now = String(level) === 'A1';
       const idxNum = Number(idx);
-      const showGV = isA1Now && (idxNum===1 || idxNum===2 || idxNum===3);
+      const showGV = true;
       if (wrap) { try { wrap.style.display = showGV ? 'block' : 'none'; } catch {} }
       if (isA1Now && idxNum === 1 && vid && wrap) {
         const url = encodeURI('./public/video/Base do Inglês/Base do Inglês.mp4');
@@ -3421,6 +3421,52 @@ function renderGrammar(data) {
               try { const gvWrap = document.getElementById('grammarVideo'); if (gvWrap) gvWrap.style.display='block'; } catch {}
             }
           } catch {}
+        }
+      } catch {}
+      try {
+        const lvlTag = String(level).toUpperCase();
+        const idxNum = Number(idx);
+        const isProtectedA1 = (lvlTag==='A1' && idxNum>=1 && idxNum<=6);
+        if (!isProtectedA1) {
+          const g = document.getElementById('grammar'); if (g) { g.innerHTML=''; g.style.display = 'none'; }
+          const v = document.getElementById('vocab'); if (v) { v.innerHTML=''; v.style.display = 'none'; }
+          const vt = document.getElementById('vocabTable'); if (vt) { vt.innerHTML=''; vt.style.display = 'none'; }
+          const root = document.getElementById('slideLessonRoot');
+          if (root) {
+            const titleNow = String(data.uiTitle||data.title||`Texto ${idxNum}`).trim();
+            const guideTitle = `${titleNow} · ${lvlTag}`;
+            const trShort = Array.isArray(data && data.a1_exercises && data.a1_exercises.translation_short) ? data.a1_exercises.translation_short.slice(0,3) : [];
+            const neg = Array.isArray(data && data.a1_exercises && data.a1_exercises.negative) ? data.a1_exercises.negative.slice(0,1) : [];
+            const ques = Array.isArray(data && data.a1_exercises && data.a1_exercises.question) ? data.a1_exercises.question.slice(0,1) : [];
+            const vocabItems = (function(){
+              const vtRows = Array.isArray(data && data.vocabulary_table) ? data.vocabulary_table.slice(0,10) : null;
+              if (vtRows && vtRows.length) return vtRows.map(row=>({ en:String(row.en||row.word||'').trim(), pt:String(row.pt||'').trim() })).filter(x=>x.en);
+              const vlist = Array.isArray(data && data.vocabulary) ? data.vocabulary.slice(0,10) : [];
+              return vlist.map(it=>({ en:String(it.en||it.word||'').trim(), pt:String(it.pt||'').trim() })).filter(x=>x.en);
+            })();
+            const rowsV = vocabItems.map(it=>`<tr><td>${it.en}</td><td>${fixPT(it.pt)}</td><td>${toPhoneticBR(it.en)}</td></tr>`).join('');
+            const linesBlock = trShort.map(p=>`<div class="line"><div class="en">${annotateTextManual(p.en)}</div><div class="pt">${fixPT(p.pt||'')}</div></div>`).join('');
+            const negBlock = neg.length ? `<div class="line" style="margin-top:6px"><div class="en">${annotateTextManual(neg[0].base)}</div><div class="pt"></div></div><div class="line"><div class="en">${annotateTextManual(neg[0].result)}</div><div class="pt"></div></div>` : '';
+            const quesBlock = ques.length ? `<div class="line"><div class="en">${annotateTextManual(ques[0].result)}</div><div class="pt"></div></div>` : '';
+            root.innerHTML = `
+              <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês – ${guideTitle}</div>
+              <div class="card"><div class="small">📌 Objetivo da aula: Guia padronizado com explicação, estrutura, exemplos e vocabulário do texto.</div></div>
+              <div class="section-title" style="margin-top:12px">🔤 Explicação e Estrutura</div>
+              <div class="card">${linesBlock || '<div class="small">Conteúdo disponível na narrativa do texto.</div>'}</div>
+              <div class="card" style="margin-top:8px">
+                <div class="small"><strong>⚖️ Afirmativa / Negativa / Pergunta</strong></div>
+                ${negBlock}
+                ${quesBlock}
+              </div>
+              <div class="section-title" style="margin-top:12px">📘 Vocabulário (Pronúncia)</div>
+              <div class="card">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+                  <tbody>${rowsV}</tbody>
+                </table>
+              </div>
+            `;
+          }
         }
       } catch {}
       try { const vEl = document.querySelector('#verbs'); if (vEl) vEl.remove(); } catch {}
