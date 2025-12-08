@@ -3620,7 +3620,7 @@ function renderGrammar(data) {
                 ['cows','vacas','cáuz']
               ].map(([en,pt,pr])=>`<tr><td>${en}</td><td>${pt}</td><td>${pr}</td></tr>`).join('');
               root.innerHTML = `
-                <div class="section-title" style="margin-top:12px">🌱 Aula 7 – Prepositions of Place na Fazenda</div>
+                <div class="section-title" style="margin-top:12px">🌱 Aula 7 Preposições de Lugar na Fazenda</div>
                 <div class="card"><div class="small"><strong>Tema:</strong> Ferramentas e Locais da Fazenda</div><div class="small" style="margin-top:6px"><strong>Título:</strong> Where are the farm tools?</div></div>
                 <div class="section-title" style="margin-top:12px">🎯 Objetivos da Aula</div>
                 <div class="card">
@@ -5260,7 +5260,7 @@ function renderGrammar(data) {
       }
       let ptSentences = getPtSentences(data);
       if (pronList) {
-        const maxCount = (Number(idx)===3 ? 9 : 11);
+        const maxCount = (Number(idx)===3 ? 9 : (Number(idx)===7 ? 8 : 11));
         const isA1 = String(level).toUpperCase()==='A1';
         if (isA1 && Number(idx)===4) {
           sentences = [
@@ -5275,7 +5275,7 @@ function renderGrammar(data) {
           ptSentences = Array(sentences.length).fill('');
         }
         let imgCountBase = Math.min((sentences.length || 0), maxCount);
-        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6);
+        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7);
         try {
           if (useImages) { pronList.classList.add('speech-a1'); } else { pronList.classList.remove('speech-a1'); }
         } catch {}
@@ -5317,6 +5317,17 @@ function renderGrammar(data) {
               '/public/images/a1texto6/7.6.webp',
               '/public/images/a1texto6/8.6.webp'
             ];
+          } else if (Number(idx)===7) {
+            imgs = [
+              '/public/images/a1texto7/1.7.webp',
+              '/public/images/a1texto7/2.7.webp',
+              '/public/images/a1texto7/3.7.webp',
+              '/public/images/a1texto7/4.7.webp',
+              '/public/images/a1texto7/5.7.webp',
+              '/public/images/a1texto7/6.7.webp',
+              '/public/images/a1texto7/7.7.webp',
+              '/public/images/a1texto7/8.7.webp'
+            ];
           }
         }
         const segUrls = isA1 && Number(idx)===1
@@ -5344,7 +5355,18 @@ function renderGrammar(data) {
                           '/src/audio/A1/texto-a1.5-dividido/part_9.mp3',
                           '/src/audio/A1/texto-a1.5-dividido/part_10.mp3'
                         ]
-                        : [] ))));
+                        : (isA1 && Number(idx)===7
+                          ? [
+                            '/src/audio/A1/texto-a1.7-dividido/part_1.mp3',
+                            '/src/audio/A1/texto-a1.7-dividido/part_2.mp3',
+                            '/src/audio/A1/texto-a1.7-dividido/part_3.mp3',
+                            '/src/audio/A1/texto-a1.7-dividido/part_4.mp3',
+                            '/src/audio/A1/texto-a1.7-dividido/part_5.mp3',
+                            '/src/audio/A1/texto-a1.7-dividido/part_6.mp3',
+                            '/src/audio/A1/texto-a1.7-dividido/part_7.mp3',
+                            '/src/audio/A1/texto-a1.7-dividido/part_8.mp3'
+                          ]
+                          : [] )))));
         if (isA1 && Number(idx)===5) {
           const fullAllEn = [
             'The weather is very hot today.',

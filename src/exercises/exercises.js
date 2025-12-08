@@ -166,7 +166,7 @@
     );
   }
 
-  function VocabularyMemoryGame({ pairs }){
+  function VocabularyMemoryGame({ pairs, initialCorrect=0 }){
     const items = Array.isArray(pairs) ? pairs.slice(0,11) : [];
     const cards = React.useMemo(()=> {
       const deck = [];
@@ -178,7 +178,13 @@
       return deck;
     }, []);
     const [open, setOpen] = React.useState([]);
-    const [matchedKeys, setMatchedKeys] = React.useState({});
+    const initMatched = React.useMemo(()=>{
+      const m={};
+      const n = Math.max(0, Math.min(Number(initialCorrect||0), items.length));
+      for (let i=0;i<n;i++){ m[i]=true; }
+      return m;
+    }, [items.length, initialCorrect]);
+    const [matchedKeys, setMatchedKeys] = React.useState(initMatched);
     function playAudio(src){ try { if (src) { const a = new Audio(src); a.play(); } } catch {}
     }
     function click(idx){
@@ -481,6 +487,7 @@
       const isTx4 = isA1 && Number(idx)===4;
       const isTx5 = isA1 && Number(idx)===5;
       const isTx6 = isA1 && Number(idx)===6;
+      const isTx7 = isA1 && Number(idx)===7;
       const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 10));
       if (isTx1) {
         const imgs = Array.from({length:12}, (_,i)=> `/public/images/a1texto1/${i}.webp`);
@@ -533,6 +540,22 @@
         ]);
         return items;
       }
+      if (isTx7) {
+        const imgs = [
+          '/public/images/a1texto7/1.7.webp',
+          '/public/images/a1texto7/2.7.webp',
+          '/public/images/a1texto7/3.7.webp',
+          '/public/images/a1texto7/4.7.webp',
+          '/public/images/a1texto7/5.7.webp',
+          '/public/images/a1texto7/6.7.webp',
+          '/public/images/a1texto7/7.7.webp',
+          '/public/images/a1texto7/8.7.webp'
+        ];
+        const lines = Array.isArray(ex.narration_sentences)
+          ? ex.narration_sentences
+          : (Array.isArray(data.lines) ? data.lines.map(l=>l.en) : []);
+        return imgs.map((src,i)=> ({ src, text: String(lines[i]||'').trim() }));
+      }
       const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
       const texts = base.filter(Boolean).slice(0,count).map(t=> String(t).trim());
       const placeholder = '/public/icons/apple-touch-icon.webp';
@@ -553,7 +576,7 @@
         e('div', { className:'text-xs text-gray-600' }, isA1 ? 'Nível A1 · Fácil' : `Nível ${String(level||'').toUpperCase()}`)
       ),
       e('div', { className:'grid grid-cols-1 gap-4' },
-        e(ExerciseCard, { title:'Vocabulário com imagens', instruction:'Veja e associe (jogo de memória)' }, e(VocabularyMemoryGame, { pairs: videoPairs })),
+        e(ExerciseCard, { title:'Vocabulário com imagens', instruction:'Veja e associe (jogo de memória)' }, e(VocabularyMemoryGame, { pairs: videoPairs, initialCorrect: (isA1 && Number(idx)===7 ? 1 : 0) })),
         e(ExerciseCard, { title:'Transformar frases', instruction:'Digite a versão pedida' }, e(TransformSentences, { items: transformItems })),
         e(ExerciseCard, { title: (isA1 ? (Number(idx)===2?'Completar com HAVE / HAS':(Number(idx)===3?'Completar com DO / DOES':'Completar com Am / Is / Are')) : 'Completar lacunas'), instruction:'Preencha corretamente' }, e(InputFillBlank, { items: fillItems })),
         e(ExerciseCard, { title:'Verdadeiro ou Falso', instruction:'Marque V/F' }, e(TrueFalseCard, { statements: tfStatements })),
