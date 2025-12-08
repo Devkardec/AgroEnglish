@@ -1579,52 +1579,6 @@ function renderGrammar(data) {
                 </div>
               </div>
             `);
-            const lessonHTML5 = `
-              <div class="section-title" style="margin-top:12px">🌱 Aula de Inglês: Adjetivos na Fazenda</div>
-              <div class="card">
-                <div class="small"><strong>📌 Objetivo da aula</strong></div>
-                <div class="small" style="margin-top:6px">Entender o que são adjetivos e como usá-los para descrever pessoas, animais, objetos e clima na fazenda.</div>
-              </div>
-              <div class="section-title" style="margin-top:12px">🔤 O que é adjetivo?</div>
-              <div class="card">
-                <div class="small">Definição: Adjetivo é a palavra que descreve como algo é ou está.</div>
-              </div>
-              <div class="section-title" style="margin-top:12px">Exemplos básicos</div>
-              <div class="card">
-                <div class="small">big (grande)</div>
-                <div class="small">small (pequeno)</div>
-                <div class="small">happy (feliz)</div>
-                <div class="small">calm (calmo)</div>
-                <div class="small" style="margin-top:8px"><strong>👉 Exemplo em frase:</strong> The farmer is happy. (O fazendeiro está feliz.)</div>
-              </div>
-              <div class="section-title" style="margin-top:12px">🐄 Adjetivos para animais da fazenda</div>
-              <div class="card">
-                <div class="small">brown (marrom)</div>
-                <div class="small">white (branco)</div>
-                <div class="small">strong (forte)</div>
-                <div class="small">slow (lento)</div>
-                <div class="small" style="margin-top:8px"><strong>👉 Exemplos em frases:</strong> The cow is brown. (A vaca é marrom.) · The horse is strong. (O cavalo é forte.)</div>
-              </div>
-              <div class="section-title" style="margin-top:12px">🚜 Adjetivos para objetos e lugares</div>
-              <div class="card">
-                <div class="small">clean (limpo)</div>
-                <div class="small">dirty (sujo)</div>
-                <div class="small">new (novo)</div>
-                <div class="small">old (velho)</div>
-                <div class="small">big (grande)</div>
-                <div class="small" style="margin-top:8px"><strong>👉 Exemplos em frases:</strong> The barn is clean. (O celeiro está limpo.) · The tractor is old. (O trator é velho.)</div>
-              </div>
-              <div class="section-title" style="margin-top:12px">☀️ Adjetivos para clima na fazenda</div>
-              <div class="card">
-                <div class="small">hot (quente)</div>
-                <div class="small">cold (frio)</div>
-                <div class="small">rainy (chuvoso)</div>
-                <div class="small">sunny (ensolarado)</div>
-                <div class="small">windy (ventoso)</div>
-                <div class="small" style="margin-top:8px"><strong>👉 Exemplos em frases:</strong> The day is sunny. (O dia está ensolarado.) · The morning is cold. (A manhã está fria.)</div>
-              </div>
-            `;
-            gv.insertAdjacentHTML('beforeend', lessonHTML5);
           } catch {}
         }
         if (String(level).toUpperCase()==='A1' && Number(index)===6) {
