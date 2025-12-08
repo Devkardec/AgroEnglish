@@ -171,7 +171,7 @@
     const cards = React.useMemo(()=> {
       const deck = [];
       items.forEach((it,i)=>{
-        deck.push({ id:`${i}-img`, key:i, type:'image', src:String(it.src||'').replace(/\.(png|jpg|jpeg)$/i, '.webp') });
+        deck.push({ id:`${i}-img`, key:i, type:'image', src:String(it.src||'') });
         deck.push({ id:`${i}-txt`, key:i, type:'text', text:it.text, audio:it.audio });
       });
       for (let i=deck.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [deck[i], deck[j]]=[deck[j], deck[i]]; }
@@ -488,6 +488,7 @@
       const isTx5 = isA1 && Number(idx)===5;
       const isTx6 = isA1 && Number(idx)===6;
       const isTx7 = isA1 && Number(idx)===7;
+      const isTx8 = isA1 && Number(idx)===8;
       const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 10));
       if (isTx1) {
         const imgs = Array.from({length:12}, (_,i)=> `/public/images/a1texto1/${i}.webp`);
@@ -550,6 +551,22 @@
           '/public/images/a1texto7/6.7.webp',
           '/public/images/a1texto7/7.7.webp',
           '/public/images/a1texto7/8.7.webp'
+        ];
+        const lines = Array.isArray(ex.narration_sentences)
+          ? ex.narration_sentences
+          : (Array.isArray(data.lines) ? data.lines.map(l=>l.en) : []);
+        return imgs.map((src,i)=> ({ src, text: String(lines[i]||'').trim() }));
+      }
+      if (isTx8) {
+        const imgs = [
+          '/public/images/a1texto8/1.8.png',
+          '/public/images/a1texto8/2.8.png',
+          '/public/images/a1texto8/3.8.png',
+          '/public/images/a1texto8/4.8.png',
+          '/public/images/a1texto8/5.8.png',
+          '/public/images/a1texto8/6.8.png',
+          '/public/images/a1texto8/7.8.png',
+          '/public/images/a1texto8/8.8.png'
         ];
         const lines = Array.isArray(ex.narration_sentences)
           ? ex.narration_sentences

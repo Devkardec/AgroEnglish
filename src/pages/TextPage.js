@@ -15,6 +15,94 @@ export function TextPage(level, index) {
             </div>
           </div>
   ` : '';
+  const lessonA1T8 = (isA1 && Number(index)===8) ? `
+    <div class="section-title" style="margin-top:12px">⚠️ Aula 8 – Imperatives & Warnings na Fazenda</div>
+    <div class="small" style="margin-top:8px"><strong>Tema:</strong> Regras de segurança na fazenda</div>
+    <div class="small" style="margin-top:4px"><strong>Título:</strong> Farm Safety Rules</div>
+    <div class="section-title" style="margin-top:12px">🎯 Objetivos da Aula</div>
+    <ul style="margin-top:8px">
+      <li>Usar o imperativo em inglês para dar ordens e instruções.</li>
+      <li>Reconhecer frases de alerta e advertência comuns na fazenda.</li>
+      <li>Ampliar vocabulário relacionado à segurança agrícola.</li>
+      <li>Compreender a importância da segurança como prioridade no trabalho rural.</li>
+    </ul>
+    <div class="section-title" style="margin-top:12px">📚 Estrutura da Aula</div>
+    <div style="margin-top:8px"><strong>1. Introdução</strong></div>
+    <div class="small" style="margin-top:4px">Na fazenda, a segurança é prioridade. Em inglês, usamos o imperativo para dar instruções diretas e claras. Exemplo:</div>
+    <div style="margin-top:6px">Wear your boots. → Use suas botas.</div>
+    <div>Don’t touch the fence. → Não toque na cerca.</div>
+    <div style="margin-top:10px"><strong>2. Estrutura do Imperativo</strong></div>
+    <div>Forma afirmativa: verbo na forma base → Read the signs.</div>
+    <div>Forma negativa: Don’t + verbo → Don’t smoke near the hay.</div>
+    <div class="small">➡️ O sujeito (you) está implícito.</div>
+    <div style="margin-top:10px"><strong>3. Vocabulário Essencial</strong></div>
+    <table style="width:100%;border-collapse:collapse;margin-top:6px">
+      <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+      <tbody>
+        <tr><td>safety</td><td>segurança</td><td>sêi-f-ti</td></tr>
+        <tr><td>signs</td><td>placas</td><td>sáinz</td></tr>
+        <tr><td>wear</td><td>usar/vestir</td><td>uér</td></tr>
+        <tr><td>boots</td><td>botas</td><td>búts</td></tr>
+        <tr><td>gloves</td><td>luvas</td><td>glâvz</td></tr>
+        <tr><td>stop</td><td>parar</td><td>stóp</td></tr>
+        <tr><td>machine</td><td>máquina</td><td>mâ-xín</td></tr>
+        <tr><td>electric fence</td><td>cerca elétrica</td><td>iléktrik fêns</td></tr>
+        <tr><td>dangerous</td><td>perigoso</td><td>dên-dja-râs</td></tr>
+        <tr><td>smoke</td><td>fumar/fumaça</td><td>smóuk</td></tr>
+      </tbody>
+    </table>
+    <div class="section-title" style="margin-top:12px">🔑 Opções de Aprendizagem</div>
+    <div style="margin-top:6px"><strong>🔹 1. Comandos Positivos e Negativos</strong></div>
+    <div>Positivo: Be careful every day. → Seja cuidadoso todos os dias.</div>
+    <div>Negativo: Don’t run near the machines. → Não corra perto das máquinas.</div>
+    <div style="margin-top:8px"><strong>🔹 2. Cartazes de Segurança (Signs)</strong></div>
+    <div>Danger – Electric Fence → Perigo – Cerca elétrica</div>
+    <div>Stop – Authorized Personnel Only → Pare – Somente pessoal autorizado</div>
+    <div>No Smoking → Proibido fumar</div>
+    <div class="small">➡️ O aluno pode imaginar ou desenhar placas simples com essas frases.</div>
+    <div style="margin-top:8px"><strong>🔹 3. Mini-Diálogo de Segurança</strong></div>
+    <div>Supervisor: Please, wear your gloves.</div>
+    <div>Trabalhador: Yes, I will.</div>
+    <div>Supervisor: Don’t touch the electric fence. It is dangerous.</div>
+    <div>Trabalhador: Okay, I understand.</div>
+    <div style="margin-top:8px"><strong>🔹 4. Lista de Regras da Fazenda</strong></div>
+    <ul style="margin-top:6px">
+      <li>Safety is priority number one.</li>
+      <li>Wear boots and gloves.</li>
+      <li>Stop the machine immediately.</li>
+      <li>Don’t smoke near the hay.</li>
+      <li>Wash your hands after work.</li>
+    </ul>
+    <div style="margin-top:8px"><strong>🔹 5. Comparação Cultural</strong></div>
+    <div>Em inglês, as regras de segurança são diretas e curtas, geralmente em forma de imperativo. Exemplo: Wash your hands.</div>
+    <div>Em português, muitas vezes usamos frases mais longas: “Por favor, lave bem as mãos depois do trabalho.”</div>
+    <div class="section-title" style="margin-top:12px">🌾 Mini-História da Aula</div>
+    <div style="margin-top:6px"><strong>Em Português</strong></div>
+    <div>Na fazenda, Paul lembra seus trabalhadores:</div>
+    <div>A segurança é prioridade número um.</div>
+    <div>Todos devem usar botas e luvas.</div>
+    <div>Se a máquina apresentar problemas, deve ser desligada imediatamente.</div>
+    <div>Ninguém pode tocar na cerca elétrica.</div>
+    <div>Fumar perto do feno seco é proibido.</div>
+    <div>Após o trabalho, todos lavam as mãos com sabão.</div>
+    <div>Assim, cada dia na fazenda é mais seguro.</div>
+    <div style="margin-top:8px"><strong>In English</strong></div>
+    <div>On the farm, Paul reminds his workers:</div>
+    <div>Safety is priority number one.</div>
+    <div>Everyone must wear boots and gloves.</div>
+    <div>If the machine has a problem, stop it immediately.</div>
+    <div>Nobody should touch the electric fence.</div>
+    <div>Smoking near the dry hay is forbidden.</div>
+    <div>After work, everyone washes their hands with soap.</div>
+    <div>This way, every day on the farm is safer.</div>
+    <div class="section-title" style="margin-top:12px">🔚 Encerramento</div>
+    <ul style="margin-top:6px">
+      <li>O uso do imperativo para ordens e instruções.</li>
+      <li>Frases de alerta e advertência em inglês.</li>
+      <li>Vocabulário essencial sobre segurança agrícola.</li>
+      <li>Como reconhecer placas e regras de segurança na fazenda.</li>
+    </ul>
+  ` : '';
   return `
     <main class="main">
       <div style="display:flex;align-items:center;justify-content:space-between">
@@ -46,8 +134,7 @@ export function TextPage(level, index) {
       <section class="card" id="study-footer" style="margin-top:16px">
           ${ytEmbed}
           ${ytEmbedA1T7}
-          <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
-          <div id="slideLessonRoot" style="margin-top:12px"></div>
+          ${lessonA1T8 || `<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div><div id="slideLessonRoot" style="margin-top:12px"></div>`}
           <div class="section-title" style="margin-top:12px">📖 Texto narrado</div>
           <div style="margin-top:8px">
             <details class="accordion">
