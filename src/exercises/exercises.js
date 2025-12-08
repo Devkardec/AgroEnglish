@@ -605,7 +605,7 @@
           )
         ),
         e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' },
-          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===8))
+          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8))
             ? e(DictationExercise, {
                 sentences: (Number(idx)===1 ? [
                   "Hello! I am Paul, and I am a farmer.",
@@ -631,6 +631,15 @@
                   'I see five horses and twenty cows.',
                   'The inventory is correct.',
                   'We need more salt for the cattle.'
+                ] : Number(idx)===7 ? [
+                  'Where are the farm tools?',
+                  'The shovel is in the shed.',
+                  'The hammer is on the wood table.',
+                  'The buckets are under the water tap.',
+                  'The tractor is next to the barn.',
+                  'The cows are behind the fence.',
+                  'Everything is in the right place.',
+                  'Organization is important.'
                 ] : Number(idx)===8 ? [
                   'Safety is priority number one.',
                   'Please, read the signs.',
@@ -662,14 +671,23 @@
                   '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
                   '/src/audio/A1/texto-a1.4-dividido/part_9.mp3'
                 ] : Number(idx)===6 ? [
-                  '/src/audio/A1/texto-a1.6-dividido/part_1.mp3',
-                  '/src/audio/A1/texto-a1.6-dividido/part_2.mp3',
-                  '/src/audio/A1/texto-a1.6-dividido/part_3.mp3',
-                  '/src/audio/A1/texto-a1.6-dividido/part_4.mp3',
-                  '/src/audio/A1/texto-a1.6-dividido/part_5.mp3',
-                  '/src/audio/A1/texto-a1.6-dividido/part_6.mp3',
-                  '/src/audio/A1/texto-a1.6-dividido/part_7.mp3',
-                  '/src/audio/A1/texto-a1.6-dividido/part_8.mp3'
+                  '/src/audio/A1/texto-a1.6-dividido/audio_part_1.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/audio_part_2.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/audio_part_3.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/audio_part_4.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/audio_part_5.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/audio_part_6.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/audio_part_7.mp3',
+                  '/src/audio/A1/texto-a1.6-dividido/audio_part_8.mp3'
+                ] : Number(idx)===7 ? [
+                  '/src/audio/A1/texto-a1.7-dividido/part_1.mp3',
+                  '/src/audio/A1/texto-a1.7-dividido/part_2.mp3',
+                  '/src/audio/A1/texto-a1.7-dividido/part_3.mp3',
+                  '/src/audio/A1/texto-a1.7-dividido/part_4.mp3',
+                  '/src/audio/A1/texto-a1.7-dividido/part_5.mp3',
+                  '/src/audio/A1/texto-a1.7-dividido/part_6.mp3',
+                  '/src/audio/A1/texto-a1.7-dividido/part_7.mp3',
+                  '/src/audio/A1/texto-a1.7-dividido/part_8.mp3'
                 ] : Number(idx)===8 ? [
                   '/src/audio/A1/texto-a1.8-dividido/audio_part_1.mp3',
                   '/src/audio/A1/texto-a1.8-dividido/audio_part_2.mp3',
