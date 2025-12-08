@@ -559,14 +559,15 @@
       }
       if (isTx8) {
         const imgs = [
-          '/public/images/a1texto8/1.8.png',
-          '/public/images/a1texto8/2.8.png',
-          '/public/images/a1texto8/3.8.png',
-          '/public/images/a1texto8/4.8.png',
-          '/public/images/a1texto8/5.8.png',
-          '/public/images/a1texto8/6.8.png',
-          '/public/images/a1texto8/7.8.png',
-          '/public/images/a1texto8/8.8.png'
+          '/public/images/a1texto8/1.8.webp',
+          '/public/images/a1texto8/2.8.webp',
+          '/public/images/a1texto8/3.8.webp',
+          '/public/images/a1texto8/4.8.webp',
+          '/public/images/a1texto8/5.8.webp',
+          '/public/images/a1texto8/6.8.webp',
+          '/public/images/a1texto8/7.8.webp',
+          '/public/images/a1texto8/8.8.webp',
+          '/public/images/a1texto8/9.8.webp'
         ];
         const lines = Array.isArray(ex.narration_sentences)
           ? ex.narration_sentences
