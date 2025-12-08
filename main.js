@@ -1858,7 +1858,12 @@ function renderGrammar(data) {
           `./public/images/${L}texto${i}/farmedition/`,
           `./public/images/${L}/texto${i}/`,
           `./public/images/${L}/text${i}/`,
-          `./public/images/a1texto1/farmedition/`
+          `./public/imagens/${L}texto${i}/`,
+          `./public/imagens/${L}texto${i}/farmedition/`,
+          `./public/imagens/${L}/texto${i}/`,
+          `./public/imagens/${L}/text${i}/`,
+          `./public/images/a1texto1/farmedition/`,
+          `./public/imagens/a1texto1/farmedition/`
         ];
       }
       function setCoverImage(){
@@ -1867,7 +1872,7 @@ function renderGrammar(data) {
         const { level, index } = parseRoute();
         const isA1 = String(level).toUpperCase()==='A1';
         const idxNum = Number(index);
-        const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : (isA1 && idxNum===4) ? '0.4' : (isA1 && idxNum===5) ? '0.5' : (isA1 && idxNum===6) ? '0.6' : null;
+        const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : (isA1 && idxNum===4) ? '0.4' : (isA1 && idxNum===5) ? '0.5' : (isA1 && idxNum===6) ? '0.6' : (isA1 && idxNum===7) ? '0.7' : null;
         const names = coverDecimal ? [coverDecimal,'0'] : ['0'];
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
@@ -1959,17 +1964,18 @@ function renderGrammar(data) {
         for (let k=0;k<en.length;k++){
           let done = false;
           for (let bi=0; bi<bases.length && !done; bi++){
-            for (let ei=0; ei<exts.length && !done; ei++){
-              let name = String(k+1);
-              if (isA1 && idxNum===2) name = `${k+1}.${k+1}`;
-              else if (isA1 && idxNum===3) name = `${k+1}.3`;
-              else if (isA1 && idxNum===4) name = `${k+1}.4`;
-              else if (isA1 && idxNum===5) name = `${k+1}.5`;
-              else if (isA1 && idxNum===6) name = `${k+1}.6`;
-              const url = bases[bi] + name + exts[ei];
-              const im = new Image();
-              im.onload = ()=>{ if (!preloaded[k]) preloaded[k] = url; };
-              im.src = url;
+            const names = (function(){
+              const main = String(k+1);
+              const dec = (isA1 && idxNum===2) ? `${k+1}.${k+1}` : (isA1 && idxNum===3) ? `${k+1}.3` : (isA1 && idxNum===4) ? `${k+1}.4` : (isA1 && idxNum===5) ? `${k+1}.5` : (isA1 && idxNum===6) ? `${k+1}.6` : (isA1 && idxNum===7) ? `${k+1}.7` : null;
+              return dec ? [dec, main] : [main];
+            })();
+            for (let ni=0; ni<names.length && !done; ni++){
+              for (let ei=0; ei<exts.length && !done; ei++){
+                const url = bases[bi] + names[ni] + exts[ei];
+                const im = new Image();
+                im.onload = ()=>{ if (!preloaded[k]) preloaded[k] = url; };
+                im.src = url;
+              }
             }
           }
         }
@@ -1983,22 +1989,22 @@ function renderGrammar(data) {
         const { level, index } = parseRoute();
         const isA1 = String(level).toUpperCase()==='A1';
         const idxNum = Number(index);
-        let bi = 0, ei = 0;
+        let bi = 0, ni = 0, ei = 0;
         function tryNext(){
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?${encodeURIComponent(q)}")`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
-          if (ei < exts.length){
-            let name = String(k+1);
-            if (isA1 && idxNum===2) name = `${k+1}.${k+1}`;
-            else if (isA1 && idxNum===3) name = `${k+1}.3`;
-            else if (isA1 && idxNum===4) name = `${k+1}.4`;
-            else if (isA1 && idxNum===5) name = `${k+1}.5`;
-            else if (isA1 && idxNum===6) name = `${k+1}.6`;
-            const url = bases[bi] + name + exts[ei++];
+          const names = (function(){
+            const main = String(k+1);
+            const dec = (isA1 && idxNum===2) ? `${k+1}.${k+1}` : (isA1 && idxNum===3) ? `${k+1}.3` : (isA1 && idxNum===4) ? `${k+1}.4` : (isA1 && idxNum===5) ? `${k+1}.5` : (isA1 && idxNum===6) ? `${k+1}.6` : (isA1 && idxNum===7) ? `${k+1}.7` : null;
+            return dec ? [dec, main] : [main];
+          })();
+          if (ni < names.length && ei < exts.length){
+            const url = bases[bi] + names[ni] + exts[ei++];
             const probe = new Image();
             probe.onload = ()=>{ imgEl.style.backgroundImage = `url('${url}')`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; };
             probe.onerror = tryNext;
             probe.src = url;
-        } else { bi++; ei=0; tryNext(); }
+          } else if (ni + 1 < names.length) { ni++; ei = 0; tryNext(); }
+          else { bi++; ni = 0; ei = 0; tryNext(); }
         }
         tryNext();
       }
@@ -2948,6 +2954,88 @@ function renderGrammar(data) {
         const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
         uiTitle = String(item.title||'');
       } catch {}
+      try {
+        const lvlTag = String(level).toUpperCase();
+        const idxNum = Number(idx);
+        if (lvlTag==='A1' && idxNum===7) {
+          const g = document.getElementById('grammar'); if (g) { g.innerHTML=''; g.style.display = 'none'; }
+          const v = document.getElementById('vocab'); if (v) { v.innerHTML=''; v.style.display = 'none'; }
+          const vt = document.getElementById('vocabTable'); if (vt) { vt.innerHTML=''; vt.style.display = 'none'; }
+          const root = document.getElementById('slideLessonRoot');
+          if (root) {
+            const rowsV = [
+              ['where','onde','uéâr'],
+              ['in','dentro','ín'],
+              ['on','sobre','ón'],
+              ['under','embaixo','ândâr'],
+              ['next to','ao lado de','nékst tú'],
+              ['behind','atrás','biháind'],
+              ['shovel','pá','xó-vôl'],
+              ['hammer','martelo','ré-mâr'],
+              ['buckets','baldes','bâkits'],
+              ['tap','torneira','tép'],
+              ['barn','galpão','bárn'],
+              ['fence','cerca','fêns'],
+              ['tractor','trator','tráktor'],
+              ['cows','vacas','cáuz']
+            ].map(([en,pt,pr])=>`<tr><td>${en}</td><td>${pt}</td><td>${pr}</td></tr>`).join('');
+            root.innerHTML = `
+              <div class="section-title" style="margin-top:12px">🌱 Aula 7 – Prepositions of Place na Fazenda</div>
+              <div class="card"><div class="small"><strong>Tema:</strong> Ferramentas e Locais da Fazenda</div><div class="small" style="margin-top:6px"><strong>Título:</strong> Where are the farm tools?</div></div>
+              <div class="section-title" style="margin-top:12px">🎯 Objetivos da Aula</div>
+              <div class="card">
+                <div class="small">Aprender e reconhecer as principais preposições de lugar em inglês.</div>
+                <div class="small" style="margin-top:6px">Usar vocabulário agrícola para localizar objetos e animais na fazenda.</div>
+                <div class="small" style="margin-top:6px">Construir frases afirmativas, negativas e interrogativas simples.</div>
+                <div class="small" style="margin-top:6px">Desenvolver compreensão auditiva e leitura com frases curtas e repetitivas.</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">📚 Contexto da Aula</div>
+              <div class="card">
+                <div class="small">Imagine que você está em uma fazenda organizada. Cada ferramenta e cada animal tem o seu lugar.</div>
+                <div class="small" style="margin-top:6px">Para falar sobre isso em inglês, usamos <em>prepositions of place</em> (preposições de lugar).</div>
+                <div class="small" style="margin-top:6px"><strong>Pergunta‑chave:</strong> Where are the farm tools? (Onde estão as ferramentas da fazenda?)</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">🧩 Vocabulário Essencial</div>
+              <div class="card">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+                  <tbody>${rowsV}</tbody>
+                </table>
+              </div>
+              <div class="section-title" style="margin-top:12px">🏡 Exemplos Narrados</div>
+              <div class="card">
+                <div class="line"><div class="en">The shovel is in the shed.</div><div class="pt">A pá está no galpão.</div></div>
+                <div class="line"><div class="en">The hammer is on the wood table.</div><div class="pt">O martelo está sobre a mesa de madeira.</div></div>
+                <div class="line"><div class="en">The buckets are under the water tap.</div><div class="pt">Os baldes estão embaixo da torneira de água.</div></div>
+                <div class="line"><div class="en">The tractor is next to the barn.</div><div class="pt">O trator está ao lado do galpão.</div></div>
+                <div class="line"><div class="en">The cows are behind the fence.</div><div class="pt">As vacas estão atrás da cerca.</div></div>
+              </div>
+              <div class="section-title" style="margin-top:12px">📝 Estrutura Gramatical</div>
+              <div class="card">
+                <div class="line"><div class="en">Afirmativa: The shovel is in the shed.</div><div class="pt"></div></div>
+                <div class="line"><div class="en">Negativa: The shovel is not in the shed.</div><div class="pt"></div></div>
+                <div class="line"><div class="en">Pergunta: Is the shovel in the shed?</div><div class="pt"></div></div>
+                <div class="small" style="margin-top:6px">➡️ Ordem: [Objeto] + [verbo <em>to be</em>] + [preposição] + [local].</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">🌾 Mini‑História da Fazenda</div>
+              <div class="card">
+                <div class="small">Na fazenda do Sr. Green, tudo está organizado:</div>
+                <div class="line" style="margin-top:6px"><div class="en">The tools are in the shed.</div><div class="pt">As ferramentas estão no galpão.</div></div>
+                <div class="line"><div class="en">The tractor is next to the barn.</div><div class="pt">O trator está ao lado do celeiro.</div></div>
+                <div class="line"><div class="en">The cows rest behind the fence.</div><div class="pt">As vacas descansam atrás da cerca.</div></div>
+                <div class="line"><div class="en">The buckets stay under the tap.</div><div class="pt">Os baldes ficam embaixo da torneira.</div></div>
+                <div class="small" style="margin-top:6px">Everything is in the right place. Organization is important.</div>
+              </div>
+              <div class="section-title" style="margin-top:12px">🔑 Encerramento</div>
+              <div class="card">
+                <div class="small">Como usar <strong>in</strong>, <strong>on</strong>, <strong>under</strong>, <strong>next to</strong>, <strong>behind</strong>.</div>
+                <div class="small" style="margin-top:6px">Vocabulário agrícola básico (shovel, hammer, buckets, tractor, barn, cows).</div>
+                <div class="small" style="margin-top:6px">Estruturas simples para afirmar, negar e perguntar.</div>
+              </div>
+            `;
+          }
+        }
+      } catch {}
       if (uiTitle) { data.uiTitle = uiTitle; }
 
       setupUI(data);
@@ -3448,24 +3536,97 @@ function renderGrammar(data) {
             const linesBlock = trShort.map(p=>`<div class="line"><div class="en">${annotateTextManual(p.en)}</div><div class="pt">${fixPT(p.pt||'')}</div></div>`).join('');
             const negBlock = neg.length ? `<div class="line" style="margin-top:6px"><div class="en">${annotateTextManual(neg[0].base)}</div><div class="pt"></div></div><div class="line"><div class="en">${annotateTextManual(neg[0].result)}</div><div class="pt"></div></div>` : '';
             const quesBlock = ques.length ? `<div class="line"><div class="en">${annotateTextManual(ques[0].result)}</div><div class="pt"></div></div>` : '';
-            root.innerHTML = `
-              <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês – ${guideTitle}</div>
-              <div class="card"><div class="small">📌 Objetivo da aula: Guia padronizado com explicação, estrutura, exemplos e vocabulário do texto.</div></div>
-              <div class="section-title" style="margin-top:12px">🔤 Explicação e Estrutura</div>
-              <div class="card">${linesBlock || '<div class="small">Conteúdo disponível na narrativa do texto.</div>'}</div>
-              <div class="card" style="margin-top:8px">
-                <div class="small"><strong>⚖️ Afirmativa / Negativa / Pergunta</strong></div>
-                ${negBlock}
-                ${quesBlock}
-              </div>
-              <div class="section-title" style="margin-top:12px">📘 Vocabulário (Pronúncia)</div>
-              <div class="card">
-                <table style="width:100%;border-collapse:collapse">
-                  <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
-                  <tbody>${rowsV}</tbody>
-                </table>
-              </div>
-            `;
+            if (lvlTag==='A1' && idxNum===7) {
+              const customRows = [
+                ['where','onde','uéâr'],
+                ['in','dentro','ín'],
+                ['on','sobre','ón'],
+                ['under','embaixo','ândâr'],
+                ['next to','ao lado de','nékst tú'],
+                ['behind','atrás','biháind'],
+                ['shovel','pá','xó-vôl'],
+                ['hammer','martelo','ré-mâr'],
+                ['buckets','baldes','bâkits'],
+                ['tap','torneira','tép'],
+                ['barn','galpão','bárn'],
+                ['fence','cerca','fêns'],
+                ['tractor','trator','tráktor'],
+                ['cows','vacas','cáuz']
+              ].map(([en,pt,pr])=>`<tr><td>${en}</td><td>${pt}</td><td>${pr}</td></tr>`).join('');
+              root.innerHTML = `
+                <div class="section-title" style="margin-top:12px">🌱 Aula 7 – Prepositions of Place na Fazenda</div>
+                <div class="card"><div class="small"><strong>Tema:</strong> Ferramentas e Locais da Fazenda</div><div class="small" style="margin-top:6px"><strong>Título:</strong> Where are the farm tools?</div></div>
+                <div class="section-title" style="margin-top:12px">🎯 Objetivos da Aula</div>
+                <div class="card">
+                  <div class="small">Aprender e reconhecer as principais preposições de lugar em inglês.</div>
+                  <div class="small" style="margin-top:6px">Usar vocabulário agrícola para localizar objetos e animais na fazenda.</div>
+                  <div class="small" style="margin-top:6px">Construir frases afirmativas, negativas e interrogativas simples.</div>
+                  <div class="small" style="margin-top:6px">Desenvolver compreensão auditiva e leitura com frases curtas e repetitivas.</div>
+                </div>
+                <div class="section-title" style="margin-top:12px">📚 Contexto da Aula</div>
+                <div class="card">
+                  <div class="small">Imagine que você está em uma fazenda organizada. Cada ferramenta e cada animal tem o seu lugar.</div>
+                  <div class="small" style="margin-top:6px">Para falar sobre isso em inglês, usamos <em>prepositions of place</em> (preposições de lugar).</div>
+                  <div class="small" style="margin-top:6px"><strong>Pergunta‑chave:</strong> Where are the farm tools? (Onde estão as ferramentas da fazenda?)</div>
+                </div>
+                <div class="section-title" style="margin-top:12px">🧩 Vocabulário Essencial</div>
+                <div class="card">
+                  <table style="width:100%;border-collapse:collapse">
+                    <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+                    <tbody>${customRows}</tbody>
+                  </table>
+                </div>
+                <div class="section-title" style="margin-top:12px">🏡 Exemplos Narrados</div>
+                <div class="card">
+                  <div class="line"><div class="en">The shovel is in the shed.</div><div class="pt">A pá está no galpão.</div></div>
+                  <div class="line"><div class="en">The hammer is on the wood table.</div><div class="pt">O martelo está sobre a mesa de madeira.</div></div>
+                  <div class="line"><div class="en">The buckets are under the water tap.</div><div class="pt">Os baldes estão embaixo da torneira de água.</div></div>
+                  <div class="line"><div class="en">The tractor is next to the barn.</div><div class="pt">O trator está ao lado do galpão.</div></div>
+                  <div class="line"><div class="en">The cows are behind the fence.</div><div class="pt">As vacas estão atrás da cerca.</div></div>
+                </div>
+                <div class="section-title" style="margin-top:12px">📝 Estrutura Gramatical</div>
+                <div class="card">
+                  <div class="line"><div class="en">Afirmativa: The shovel is in the shed.</div><div class="pt"></div></div>
+                  <div class="line"><div class="en">Negativa: The shovel is not in the shed.</div><div class="pt"></div></div>
+                  <div class="line"><div class="en">Pergunta: Is the shovel in the shed?</div><div class="pt"></div></div>
+                  <div class="small" style="margin-top:6px">➡️ Ordem: [Objeto] + [verbo <em>to be</em>] + [preposição] + [local].</div>
+                </div>
+                <div class="section-title" style="margin-top:12px">🌾 Mini‑História da Fazenda</div>
+                <div class="card">
+                  <div class="small">Na fazenda do Sr. Green, tudo está organizado:</div>
+                  <div class="line" style="margin-top:6px"><div class="en">The tools are in the shed.</div><div class="pt">As ferramentas estão no galpão.</div></div>
+                  <div class="line"><div class="en">The tractor is next to the barn.</div><div class="pt">O trator está ao lado do celeiro.</div></div>
+                  <div class="line"><div class="en">The cows rest behind the fence.</div><div class="pt">As vacas descansam atrás da cerca.</div></div>
+                  <div class="line"><div class="en">The buckets stay under the tap.</div><div class="pt">Os baldes ficam embaixo da torneira.</div></div>
+                  <div class="small" style="margin-top:6px">Everything is in the right place. Organization is important.</div>
+                </div>
+                <div class="section-title" style="margin-top:12px">🔑 Encerramento</div>
+                <div class="card">
+                  <div class="small">Como usar <strong>in</strong>, <strong>on</strong>, <strong>under</strong>, <strong>next to</strong>, <strong>behind</strong>.</div>
+                  <div class="small" style="margin-top:6px">Vocabulário agrícola básico (shovel, hammer, buckets, tractor, barn, cows).</div>
+                  <div class="small" style="margin-top:6px">Estruturas simples para afirmar, negar e perguntar.</div>
+                </div>
+              `;
+            } else {
+              root.innerHTML = `
+                <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês – ${guideTitle}</div>
+                <div class="card"><div class="small">📌 Objetivo da aula: Guia padronizado com explicação, estrutura, exemplos e vocabulário do texto.</div></div>
+                <div class="section-title" style="margin-top:12px">🔤 Explicação e Estrutura</div>
+                <div class="card">${linesBlock || '<div class="small">Conteúdo disponível na narrativa do texto.</div>'}</div>
+                <div class="card" style="margin-top:8px">
+                  <div class="small"><strong>⚖️ Afirmativa / Negativa / Pergunta</strong></div>
+                  ${negBlock}
+                  ${quesBlock}
+                </div>
+                <div class="section-title" style="margin-top:12px">📘 Vocabulário (Pronúncia)</div>
+                <div class="card">
+                  <table style="width:100%;border-collapse:collapse">
+                    <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+                    <tbody>${rowsV}</tbody>
+                  </table>
+                </div>
+              `;
+            }
           }
         }
       } catch {}
