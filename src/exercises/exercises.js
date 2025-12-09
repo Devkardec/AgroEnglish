@@ -489,6 +489,7 @@
       const isTx6 = isA1 && Number(idx)===6;
       const isTx7 = isA1 && Number(idx)===7;
       const isTx8 = isA1 && Number(idx)===8;
+      const isTx9 = isA1 && Number(idx)===9;
       const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 10));
       if (isTx1) {
         const imgs = Array.from({length:12}, (_,i)=> `/public/images/a1texto1/${i}.webp`);
@@ -572,6 +573,26 @@
         const lines = Array.isArray(ex.narration_sentences)
           ? ex.narration_sentences
           : (Array.isArray(data.lines) ? data.lines.map(l=>l.en) : []);
+        return imgs.map((src,i)=> ({ src, text: String(lines[i]||'').trim() }));
+      }
+      if (isTx9) {
+        const imgs = [
+          '/public/images/a1texto9/1.9.webp',
+          '/public/images/a1texto9/2.9.webp',
+          '/public/images/a1texto9/3.9.webp',
+          '/public/images/a1texto9/4.9.webp',
+          '/public/images/a1texto9/5.9.webp',
+          '/public/images/a1texto9/6.9.webp',
+          '/public/images/a1texto9/7.9.webp',
+          '/public/images/a1texto9/8.9.webp'
+        ];
+        const lines = Array.isArray(data.pairs)
+          ? data.pairs.map(p=> String(p.en||'').trim())
+          : (Array.isArray(ex.narration_sentences)
+              ? ex.narration_sentences
+              : (Array.isArray(data.lines)
+                  ? data.lines.map(l=> String(l.en||'').trim())
+                  : String(data.text||'').split(/(?<=[.!?])\s+/)));
         return imgs.map((src,i)=> ({ src, text: String(lines[i]||'').trim() }));
       }
       const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
@@ -707,7 +728,7 @@
             : e(DictationExercise, { sentences: (Array.isArray(ex.narration_sentences)? ex.narration_sentences.slice(0,6) : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/))).slice(0,6) })
         ),
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
-          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6))
+          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9))
             ? e(ImageSentenceAssociation, { items: (Number(idx)===1 ? [
                 { src:'/public/images/a1texto1/0.webp', text:'Hello! I am Paul, and I am a farmer.', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
                 { src:'/public/images/a1texto1/1.webp', text:'I am at the farm now.', audio:'/src/audio/A1/texto-a1.1-dividido/part_2.mp3' },
@@ -733,6 +754,15 @@
                 { src:'/public/images/a1texto6/6.6.webp', text:'I see five horses and twenty cows.', audio:'/src/audio/A1/texto-a1.6-dividido/part_6.mp3' },
                 { src:'/public/images/a1texto6/7.6.webp', text:'The inventory is correct.', audio:'/src/audio/A1/texto-a1.6-dividido/part_7.mp3' },
                 { src:'/public/images/a1texto6/8.6.webp', text:'We need more salt for the cattle.', audio:'/src/audio/A1/texto-a1.6-dividido/part_8.mp3' }
+              ] : Number(idx)===9 ? [
+                { src:'/public/images/a1texto9/1.9.webp', text:'Look at the team now!' },
+                { src:'/public/images/a1texto9/2.9.webp', text:'We are working hard.' },
+                { src:'/public/images/a1texto9/3.9.webp', text:'Carlos is repairing the old fence.' },
+                { src:'/public/images/a1texto9/4.9.webp', text:'The mechanic is fixing the tractor engine.' },
+                { src:'/public/images/a1texto9/5.9.webp', text:'I am cleaning the milking machine.' },
+                { src:'/public/images/a1texto9/6.9.webp', text:'The cows are waiting in the shade.' },
+                { src:'/public/images/a1texto9/7.9.webp', text:'They are not eating at this moment.' },
+                { src:'/public/images/a1texto9/8.9.webp', text:'Everything is moving fast today.' }
               ] : [
                 { src:'/public/images/a1texto5/1.5.webp', text:'The sun is very hot today.', audio:'/src/audio/A1/texto-a1.5-dividido/part_1.mp3' },
                 { src:'/public/images/a1texto5/3.5.webp', text:'The corn needs rain.', audio:'/src/audio/A1/texto-a1.5-dividido/part_3.mp3' },
