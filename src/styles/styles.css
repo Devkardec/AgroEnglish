@@ -706,6 +706,13 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
 .forms-table th, .forms-table td, .rule-table th, .rule-table td { padding:6px 0; vertical-align:top }
 .forms-table th:first-child, .forms-table td:first-child, .rule-table th:first-child, .rule-table td:first-child { width:40% }
 .forms-table th:last-child, .forms-table td:last-child, .rule-table th:last-child, .rule-table td:last-child { width:60% }
+/* Vocab tables: fixed layout to alinhar EN/PT/Pronúncia por coluna */
+.vocab-table { width:100%; border-collapse:collapse; table-layout:fixed }
+.vocab-table thead th { text-align:left }
+.vocab-table th, .vocab-table td { padding:4px 0; vertical-align:top }
+.vocab-table thead th:nth-child(1), .vocab-table tbody td:nth-child(1) { width:33% }
+.vocab-table thead th:nth-child(2), .vocab-table tbody td:nth-child(2) { width:33% }
+.vocab-table thead th:nth-child(3), .vocab-table tbody td:nth-child(3) { width:34% }
 .app-footer { margin-top:20px; background:radial-gradient(circle at 50% 50%, #0f6a3a 0%, #0b3a1e 60%, #061c10 100%); color:#fff; border-top:1px solid #0b3a1e }
 .app-footer .container { max-width:1200px; margin:0 auto; padding:10px 14px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:12px }
 .app-footer .center-group { display:flex; align-items:center; justify-content:center; gap:8px; text-align:center; flex-direction:row; flex-wrap:wrap }

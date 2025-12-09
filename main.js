@@ -2914,7 +2914,7 @@ function renderGrammar(data) {
               parts.push('<div class="section-title" style="margin-top:12px">🧩 Vocabulário Essencial da Fazenda</div>');
               parts.push('<div class="card">');
               parts.push('<div class="small"><strong>👥 Pessoas</strong></div>');
-              parts.push('<table style="width:100%;border-collapse:collapse;margin-top:6px"><thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia</th></tr></thead><tbody>');
+              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
               parts.push('<tr><td>farmer</td><td>fazendeiro</td><td>fár-mer</td></tr>');
               parts.push('<tr><td>sister</td><td>irmã</td><td>sís-târ</td></tr>');
               parts.push('</tbody></table>');
@@ -2922,7 +2922,7 @@ function renderGrammar(data) {
               parts.push('</div>');
               parts.push('<div class="card" style="margin-top:8px">');
               parts.push('<div class="small"><strong>🏡 Lugares</strong></div>');
-              parts.push('<table style="width:100%;border-collapse:collapse;margin-top:6px"><thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia</th></tr></thead><tbody>');
+              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
               parts.push('<tr><td>farm</td><td>fazenda</td><td>fárm</td></tr>');
               parts.push('<tr><td>barn</td><td>galpão/celeiro</td><td>bárn</td></tr>');
               parts.push('</tbody></table>');
@@ -2930,7 +2930,7 @@ function renderGrammar(data) {
               parts.push('</div>');
               parts.push('<div class="card" style="margin-top:8px">');
               parts.push('<div class="small"><strong>🐄 Animais</strong></div>');
-              parts.push('<table style="width:100%;border-collapse:collapse;margin-top:6px"><thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia</th></tr></thead><tbody>');
+              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
               parts.push('<tr><td>cows</td><td>vacas</td><td>cáuz</td></tr>');
               parts.push('<tr><td>chickens</td><td>galinhas</td><td>tchí-kens</td></tr>');
               parts.push('</tbody></table>');
@@ -2938,7 +2938,7 @@ function renderGrammar(data) {
               parts.push('</div>');
               parts.push('<div class="card" style="margin-top:8px">');
               parts.push('<div class="small"><strong>☀️ Natureza</strong></div>');
-              parts.push('<table style="width:100%;border-collapse:collapse;margin-top:6px"><thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia</th></tr></thead><tbody>');
+              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
               parts.push('<tr><td>sun</td><td>sol</td><td>sân</td></tr>');
               parts.push('<tr><td>wind</td><td>vento</td><td>uínd</td></tr>');
               parts.push('<tr><td>day</td><td>dia</td><td>dêi</td></tr>');
@@ -2947,7 +2947,7 @@ function renderGrammar(data) {
               parts.push('</div>');
               parts.push('<div class="card" style="margin-top:8px">');
               parts.push('<div class="small"><strong>😊 Adjetivos</strong></div>');
-              parts.push('<table style="width:100%;border-collapse:collapse;margin-top:6px"><thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia</th></tr></thead><tbody>');
+              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
               parts.push('<tr><td>happy</td><td>feliz</td><td>hé-pi</td></tr>');
               parts.push('<tr><td>big</td><td>grande</td><td>bíg</td></tr>');
               parts.push('<tr><td>fast</td><td>rápido</td><td>fást</td></tr>');
