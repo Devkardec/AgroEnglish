@@ -626,7 +626,7 @@
           )
         ),
         e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' },
-          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8))
+          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8 || Number(idx)===9))
             ? e(DictationExercise, {
                 sentences: (Number(idx)===1 ? [
                   "Hello! I am Paul, and I am a farmer.",
@@ -668,6 +668,15 @@
                   'Stop the machine immediately!',
                   "Don't touch the electric fence. It is dangerous.",
                   "Don't smoke near the dry hay."
+                ] : Number(idx)===9 ? [
+                  'Look at the team now!',
+                  'We are working hard.',
+                  'Carlos is repairing the old fence.',
+                  'The mechanic is fixing the tractor engine.',
+                  'I am cleaning the milking machine.',
+                  'The cows are waiting in the shade.',
+                  'They are not eating at this moment.',
+                  'Everything is moving fast today.'
                 ] : [
                   'The sun is very hot today.',
                   'The corn needs rain.',
@@ -716,6 +725,15 @@
                   '/src/audio/A1/texto-a1.8-dividido/audio_part_4.mp3',
                   '/src/audio/A1/texto-a1.8-dividido/audio_part_5.mp3',
                   '/src/audio/A1/texto-a1.8-dividido/audio_part_6.mp3'
+                ] : Number(idx)===9 ? [
+                  '/src/audio/A1/texto-a1.9-dividido/part1.mp3',
+                  '/src/audio/A1/texto-a1.9-dividido/part2.mp3',
+                  '/src/audio/A1/texto-a1.9-dividido/part3.mp3',
+                  '/src/audio/A1/texto-a1.9-dividido/part4.mp3',
+                  '/src/audio/A1/texto-a1.9-dividido/part5.mp3',
+                  '/src/audio/A1/texto-a1.9-dividido/part6.mp3',
+                  '/src/audio/A1/texto-a1.9-dividido/part7.mp3',
+                  '/src/audio/A1/texto-a1.9-dividido/part8.mp3'
                 ] : [
                     '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
                     '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',
