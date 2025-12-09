@@ -5353,7 +5353,7 @@ function renderGrammar(data) {
         let imgs = [];
         if (useImages) {
           if (Number(idx)===1) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto1/farmedition/${i+1}.webp`);
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto1/${i+1}.webp`);
           } else if (Number(idx)===2) {
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`);
           } else if (Number(idx)===3) {
