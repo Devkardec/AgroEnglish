@@ -110,6 +110,72 @@ export function TextPage(level, index) {
       <li>Como reconhecer placas e regras de segurança na fazenda.</li>
     </ul>
   ` : '';
+  const lessonA1T9 = (isA1 && Number(index)===9) ? `
+    <div class="section-title" style="margin-top:12px">🛠️ Aula 9 – Actions in Progress</div>
+    <div class="small" style="margin-top:8px"><strong>Tema:</strong> Dia de manutenção na fazenda</div>
+    <div class="small" style="margin-top:4px"><strong>Título:</strong> Maintenance Day</div>
+    <div class="section-title" style="margin-top:12px">🎯 Objetivos da Aula</div>
+    <ul style="margin-top:8px">
+      <li>Usar o Present Continuous para falar de ações acontecendo agora.</li>
+      <li>Diferenciar frases afirmativas, negativas e interrogativas no tempo contínuo.</li>
+      <li>Ampliar vocabulário sobre manutenção, máquinas e atividades em andamento.</li>
+      <li>Criar frases vivas e descritivas sobre o que está acontecendo na fazenda.</li>
+    </ul>
+    <div class="section-title" style="margin-top:12px">📚 Estrutura da Aula</div>
+    <div style="margin-top:8px"><strong>1. Introdução Bonita</strong></div>
+    <div class="small" style="margin-top:4px">Imagine que você chega na fazenda e tudo está em movimento:</div>
+    <div style="margin-top:6px">The tractor is being repaired. → O trator está sendo consertado.</div>
+    <div>The fence is being fixed. → A cerca está sendo reparada.</div>
+    <div>The cows are waiting in the shade. → As vacas estão esperando na sombra.</div>
+    <div class="small" style="margin-top:6px">Esse é o Present Continuous: mostrar o que está acontecendo neste momento.</div>
+    <div style="margin-top:10px"><strong>2. Estrutura do Present Continuous</strong></div>
+    <div>Afirmativa: Sujeito + verbo to be + verbo com -ing</div>
+    <div>We are working hard.</div>
+    <div style="margin-top:6px">Negativa: Sujeito + verbo to be + not + verbo com -ing</div>
+    <div>They are not eating now.</div>
+    <div style="margin-top:6px">Pergunta: Verbo to be + sujeito + verbo com -ing</div>
+    <div>Is Carlos repairing the fence?</div>
+    <div style="margin-top:10px"><strong>3. Vocabulário Essencial</strong></div>
+    <table style="width:100%;border-collapse:collapse;margin-top:6px">
+      <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+      <tbody>
+        <tr><td>now</td><td>agora</td><td>náu</td></tr>
+        <tr><td>at this moment</td><td>neste momento</td><td>ét dís mô-ment</td></tr>
+        <tr><td>repairing</td><td>consertando</td><td>ri-pér-ing</td></tr>
+        <tr><td>fixing</td><td>arrumando</td><td>fíks-ing</td></tr>
+        <tr><td>cleaning</td><td>limpando</td><td>clí-nin</td></tr>
+        <tr><td>waiting</td><td>esperando</td><td>uêi-tin</td></tr>
+        <tr><td>moving</td><td>movendo</td><td>mú-vin</td></tr>
+        <tr><td>engine</td><td>motor</td><td>énd-jin</td></tr>
+        <tr><td>milking machine</td><td>ordenhadeira</td><td>mílk-ing mâ-xín</td></tr>
+      </tbody>
+    </table>
+    <div class="section-title" style="margin-top:12px">🌟 Exemplos Criativos</div>
+    <div style="margin-top:6px"><strong>👷‍♂️ Pessoas trabalhando</strong></div>
+    <div>Carlos is repairing the old fence. → Carlos está consertando a cerca velha.</div>
+    <div>The mechanic is fixing the tractor engine. → O mecânico está arrumando o motor do trator.</div>
+    <div>I am cleaning the milking machine. → Eu estou limpando a ordenhadeira.</div>
+    <div style="margin-top:8px"><strong>🐄 Animais na fazenda</strong></div>
+    <div>The cows are waiting in the shade. → As vacas estão esperando na sombra.</div>
+    <div>They are not eating at this moment. → Elas não estão comendo neste momento.</div>
+    <div style="margin-top:8px"><strong>🌾 Ambiente em movimento</strong></div>
+    <div>Everything is moving fast today. → Tudo está se movendo rápido hoje.</div>
+    <div>The workers are carrying tools. → Os trabalhadores estão carregando ferramentas.</div>
+    <div>The children are watching the animals. → As crianças estão observando os animais.</div>
+    <div class="section-title" style="margin-top:12px">❓ Perguntas úteis</div>
+    <ul style="margin-top:6px">
+      <li>Are we working hard today? → Nós estamos trabalhando duro hoje?</li>
+      <li>Is the mechanic fixing the engine now? → O mecânico está arrumando o motor agora?</li>
+      <li>Are the cows waiting in the shade? → As vacas estão esperando na sombra?</li>
+    </ul>
+    <div class="section-title" style="margin-top:12px">🔚 Encerramento</div>
+    <ul style="margin-top:6px">
+      <li>O uso do Present Continuous para ações em andamento.</li>
+      <li>Como formar frases afirmativas, negativas e interrogativas.</li>
+      <li>Vocabulário prático para falar de manutenção e rotina da fazenda.</li>
+      <li>Exemplos bonitos e vivos que mostram a fazenda em movimento.</li>
+    </ul>
+  ` : '';
   return `
     <main class="main">
       <div style="display:flex;align-items:center;justify-content:space-between">
@@ -142,7 +208,7 @@ export function TextPage(level, index) {
           ${ytEmbed}
           ${ytEmbedA1T7}
           ${ytEmbedA1T8}
-          ${lessonA1T8 || `<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div><div id="slideLessonRoot" style="margin-top:12px"></div>`}
+          ${lessonA1T8 || lessonA1T9 || `<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div><div id="slideLessonRoot" style="margin-top:12px"></div>`}
           <div class="section-title" style="margin-top:12px">📖 Texto narrado</div>
           <div style="margin-top:8px">
             <details class="accordion">
