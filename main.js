@@ -3038,90 +3038,117 @@ function renderGrammar(data) {
           try {
             const root = document.getElementById('slideLessonRoot');
             if (root) {
-              const vocab = [
-                ['livestock','pecuária/gado','láiv-stók'],
-                ['veterinarian','veterinária(o)','vé-te-ri-né-ri-en'],
-                ['bull','touro','búl'],
-                ['medical kit','kit médico','mé-dicol quít'],
-                ['injury','ferimento/lesão','ín-djuri'],
-                ['medicine','remédio','mé-di-sin'],
-                ['body','corpo','bó-di'],
-                ['leg','perna','lég'],
-                ['healthy','saudável','hél-fi'],
-                ['safe','seguro','sêif'],
-                ['cows','vacas','cáuz'],
-                ['farm','fazenda','fárm']
-              ];
-              const rows = vocab.map(([en,pt,pr])=>`<tr><td>${en}</td><td>${pt}</td><td>${pr}</td></tr>`).join('');
               const parts = [];
               parts.push('<div class="section-title" style="margin-top:12px">🐄 Aula 2 – Livestock & Health</div>');
-              parts.push('<div class="card"><div class="small"><strong>Tema:</strong> A visita da veterinária na fazenda</div><div class="small" style="margin-top:6px"><strong>Título:</strong> The Veterinarian Visit</div></div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🎯 Objetivos da Aula</div>');
+              parts.push('<div class="card"><div class="small"><strong>Tema:</strong> A visita da veterinária na fazenda</div><div class="small" style="margin-top:6px"><strong>Título:</strong> The Veterinarian Visit</div><div class="small" style="margin-top:6px"><strong>Nível:</strong> A1 - Iniciante</div></div>');
+              parts.push('<div class="section-title" style="margin-top:12px">🎯 Objetivos de Aprendizagem</div>');
               parts.push('<div class="card">');
-              parts.push('<div class="small">Aprender a usar o verbo <em>to have</em> (ter) no presente.</div>');
-              parts.push('<div class="small" style="margin-top:6px">Diferenciar <em>have</em> e <em>has</em> de forma simples.</div>');
-              parts.push('<div class="small" style="margin-top:6px">Usar o verbo <em>to have</em> para falar de posse e características físicas.</div>');
-              parts.push('<div class="small" style="margin-top:6px">Ampliar o vocabulário sobre animais da fazenda e saúde.</div>');
+              parts.push('<div class="small">✅ Aprender o verbo <em>to have</em> (ter) no presente</div>');
+              parts.push('<div class="small" style="margin-top:6px">✅ Diferenciar <em>have</em> e <em>has</em></div>');
+              parts.push('<div class="small" style="margin-top:6px">✅ Usar <em>to have</em> para posse e características</div>');
+              parts.push('<div class="small" style="margin-top:6px">✅ Vocabulário sobre animais e saúde</div>');
               parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">📚 Estrutura da Aula</div>');
+              parts.push('<div class="section-title" style="margin-top:12px">📚 Conteúdo Programático</div>');
               parts.push('<div class="card">');
-              parts.push('<div class="small"><strong>1. Introdução</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">Na fazenda, precisamos falar sobre o que os animais têm e como eles são. Para isso usamos o verbo <em>to have</em>.</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">I have a livestock farm.</div><div class="pt">Eu tenho uma fazenda de pecuária.</div></div>');
+              parts.push('<div class="small"><strong>1️⃣ Introdução ao Verbo TO HAVE</strong></div>');
+              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>English</th><th>Português</th><th>Pronúncia</th></tr></thead><tbody>');
+              parts.push('<tr><td>I have a livestock farm.</td><td>Eu tenho uma fazenda de pecuária.</td><td>Ai hév â láiv-stók fárm.</td></tr>');
+              parts.push('<tr><td>She has a medical kit.</td><td>Ela tem um kit médico.</td><td>Xí has â mé-dicol quít.</td></tr>');
+              parts.push('</tbody></table>');
+              parts.push('</div>');
+              parts.push('<div class="card" style="margin-top:8px">');
+              parts.push('<div class="small"><strong>2️⃣ O Poder do Verbo TO HAVE</strong></div>');
+              parts.push('<div class="small" style="margin-top:6px">🏆 POSSE – O que alguém possui</div>');
+              parts.push('<div class="line" style="margin-top:6px"><div class="en">We have many cows.</div><div class="pt">Nós temos muitas vacas.</div></div>');
               parts.push('<div class="line"><div class="en">She has a medical kit.</div><div class="pt">Ela tem um kit médico.</div></div>');
+              parts.push('<div class="small" style="margin-top:6px">💪 CARACTERÍSTICAS – Como algo é</div>');
+              parts.push('<div class="line" style="margin-top:6px"><div class="en">The bull has a strong body.</div><div class="pt">O touro tem um corpo forte.</div></div>');
+              parts.push('<div class="line"><div class="en">He has a small injury.</div><div class="pt">Ele tem um ferimento pequeno.</div></div>');
               parts.push('</div>');
               parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>2. O Poder do Verbo To Have</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">Posse: dizer o que alguém possui.</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">We have many cows here.</div><div class="pt">Nós temos muitas vacas aqui.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">Características: descrever como algo é.</div>');
+              parts.push('<div class="small"><strong>3️⃣ A Regra do "S" – HAVE vs HAS</strong></div>');
+              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>Pronome</th><th>Forma</th><th>Exemplo</th></tr></thead><tbody>');
+              parts.push('<tr><td>I / You / We / They</td><td>have</td><td>We have cows</td></tr>');
+              parts.push('<tr><td>He / She / It</td><td>has</td><td>She has a kit</td></tr>');
+              parts.push('</tbody></table>');
+              parts.push('<div class="small" style="margin-top:6px">⚡ Regra de Ouro: He, She, It → sempre usa <strong>HAS</strong></div>');
+              parts.push('</div>');
+              parts.push('<div class="card" style="margin-top:8px">');
+              parts.push('<div class="small"><strong>4️⃣ Estruturas de Frases</strong></div>');
+              parts.push('<div class="small" style="margin-top:6px">✅ Afirmativa</div>');
               parts.push('<div class="line"><div class="en">The bull has a strong body.</div><div class="pt">O touro tem um corpo forte.</div></div>');
-              parts.push('</div>');
-              parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>3. A Regra do “S” (Have vs Has)</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">I / You / We / They → <strong>HAVE</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">He / She / It → <strong>HAS</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">➡️ Dica: sempre que o sujeito for He, She ou It, usamos <em>has</em>.</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">She has a medical kit.</div><div class="pt">Ela tem um kit médico.</div></div>');
-              parts.push('<div class="line"><div class="en">The bull has a small injury.</div><div class="pt">O touro tem uma pequena lesão.</div></div>');
-              parts.push('</div>');
-              parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>4. Estrutura da Frase</strong></div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">Afirmativa: The bull has a strong body.</div><div class="pt"></div></div>');
-              parts.push('<div class="line"><div class="en">Negativa: The bull doesn’t have a strong body.</div><div class="pt"></div></div>');
-              parts.push('<div class="line"><div class="en">Pergunta: Does the bull have a strong body?</div><div class="pt"></div></div>');
-              parts.push('<div class="small" style="margin-top:6px">➡️ Observe que em perguntas e negativas o verbo volta para <em>have</em>, porque o auxiliar (does/doesn’t) já carrega o “s”.</div>');
+              parts.push('<div class="line"><div class="en">We have many cows.</div><div class="pt">Nós temos muitas vacas.</div></div>');
+              parts.push('<div class="small" style="margin-top:6px">❌ Negativa</div>');
+              parts.push('<div class="line"><div class="en">The bull doesn\'t have a strong body.</div><div class="pt">O touro não tem um corpo forte.</div></div>');
+              parts.push('<div class="line"><div class="en">We don\'t have many cows.</div><div class="pt">Nós não temos muitas vacas.</div></div>');
+              parts.push('<div class="small" style="margin-top:6px">⚠️ Atenção: O verbo volta para HAVE (sem o "s")!</div>');
+              parts.push('<div class="small" style="margin-top:6px">❓ Interrogativa</div>');
+              parts.push('<div class="line"><div class="en">Does the bull have a strong body?</div><div class="pt">O touro tem um corpo forte?</div></div>');
+              parts.push('<div class="line"><div class="en">Do we have many cows?</div><div class="pt">Nós temos muitas vacas?</div></div>');
               parts.push('</div>');
               parts.push('<div class="section-title" style="margin-top:12px">🧩 Vocabulário Essencial</div>');
-              parts.push('<div class="card">');
-              parts.push('<table style="width:100%;border-collapse:collapse">');
-              parts.push('<thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>');
-              parts.push('<tbody>' + rows + '</tbody>');
-              parts.push('</table>');
-              parts.push('</div>');
+              parts.push('<div class="card"><div class="small"><strong>🐄 Pecuária & Animais</strong></div>');
+              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
+              parts.push('<tr><td>livestock</td><td>pecuária/gado</td><td>láiv-stók</td></tr>');
+              parts.push('<tr><td>bull</td><td>touro</td><td>búl</td></tr>');
+              parts.push('<tr><td>cows</td><td>vacas</td><td>cáuz</td></tr>');
+              parts.push('<tr><td>farm</td><td>fazenda</td><td>fárm</td></tr>');
+              parts.push('</tbody></table></div>');
+              parts.push('<div class="card" style="margin-top:8px"><div class="small"><strong>👩‍⚕️ Saúde & Medicina</strong></div>');
+              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
+              parts.push('<tr><td>veterinarian</td><td>veterinária(o)</td><td>vé-te-ri-né-ri-en</td></tr>');
+              parts.push('<tr><td>medical kit</td><td>kit médico</td><td>mé-dicol quít</td></tr>');
+              parts.push('<tr><td>injury</td><td>ferimento/lesão</td><td>ín-djuri</td></tr>');
+              parts.push('<tr><td>medicine</td><td>remédio</td><td>mé-di-sin</td></tr>');
+              parts.push('<tr><td>healthy</td><td>saudável</td><td>hél-fi</td></tr>');
+              parts.push('<tr><td>safe</td><td>seguros</td><td>sêif</td></tr>');
+              parts.push('</tbody></table></div>');
+              parts.push('<div class="card" style="margin-top:8px"><div class="small"><strong>🦴 Corpo & Descrições</strong></div>');
+              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
+              parts.push('<tr><td>body</td><td>corpo</td><td>bó-di</td></tr>');
+              parts.push('<tr><td>leg</td><td>perna</td><td>lég</td></tr>');
+              parts.push('<tr><td>strong</td><td>forte</td><td>stróng</td></tr>');
+              parts.push('<tr><td>small</td><td>pequeno</td><td>smól</td></tr>');
+              parts.push('</tbody></table></div>');
               parts.push('<div class="section-title" style="margin-top:12px">🏡 Exemplos Narrados</div>');
               parts.push('<div class="card">');
+              parts.push('<div class="line"><div class="en">I have a livestock farm.</div><div class="pt">Eu tenho uma fazenda de pecuária.</div></div>');
+              parts.push('<div class="line"><div class="en">We have many cows here.</div><div class="pt">Nós temos muitas vacas aqui.</div></div>');
               parts.push('<div class="line"><div class="en">This is the veterinarian. Her name is Dr. Silva.</div><div class="pt">Esta é a veterinária. O nome dela é Dra. Silva.</div></div>');
               parts.push('<div class="line"><div class="en">She has a medical kit.</div><div class="pt">Ela tem um kit médico.</div></div>');
               parts.push('<div class="line"><div class="en">The bull has a strong body, but he has a small injury on the leg.</div><div class="pt">O touro tem um corpo forte, mas tem um ferimento pequeno na perna.</div></div>');
-              parts.push('<div class="line"><div class="en">Dr. Silva has the medicine.</div><div class="pt">A Dra. Silva tem o remédio.</div></div>');
-              parts.push('<div class="line"><div class="en">We have safe and healthy animals now.</div><div class="pt">Agora nós temos animais seguros e saudáveis.</div></div>');
+              parts.push('<div class="line"><div class="en">Dr. Silva has the medicine.</div><div class="pt">Dra. Silva tem o remédio.</div></div>');
+              parts.push('<div class="line"><div class="en">We have safe and healthy animals now.</div><div class="pt">Agora temos animais seguros e saudáveis.</div></div>');
               parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🌾 Mini‑História da Aula</div>');
+              parts.push('<div class="section-title" style="margin-top:12px">🌾 Mini-História: A Visita da Veterinária</div>');
               parts.push('<div class="card">');
-              parts.push('<div class="small">Na fazenda de pecuária, Paul recebe a visita da veterinária Dra. Silva.</div>');
-              parts.push('<div class="small" style="margin-top:6px">Ela chega com seu kit médico.</div>');
-              parts.push('<div class="small" style="margin-top:6px">O touro é forte, mas tem uma pequena lesão na perna.</div>');
-              parts.push('<div class="small" style="margin-top:6px">A veterinária aplica o remédio.</div>');
-              parts.push('<div class="small" style="margin-top:6px">No final, os animais estão seguros e saudáveis.</div>');
+              parts.push('<div class="small">🐄 Paul tem uma fazenda de pecuária</div>');
+              parts.push('<div class="small" style="margin-top:6px">🐮 Eles têm muitas vacas</div>');
+              parts.push('<div class="small" style="margin-top:6px">🚗 Dra. Silva chega com seu kit médico</div>');
+              parts.push('<div class="small" style="margin-top:6px">💼 Ela tem todos os instrumentos</div>');
+              parts.push('<div class="small" style="margin-top:6px">💪 O touro tem corpo forte</div>');
+              parts.push('<div class="small" style="margin-top:6px">🩹 Mas tem uma lesão na perna</div>');
+              parts.push('<div class="small" style="margin-top:6px">👩‍⚕️ Dra. Silva tem o remédio</div>');
+              parts.push('<div class="small" style="margin-top:6px">💉 Ela cuida do touro</div>');
+              parts.push('<div class="small" style="margin-top:6px">😊 Todos os animais estão seguros</div>');
+              parts.push('<div class="small" style="margin-top:6px">🏆 A fazenda tem animais saudáveis</div>');
               parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🔑 Encerramento</div>');
+              parts.push('<div class="section-title" style="margin-top:12px">🔑 Resumo da Aula</div>');
               parts.push('<div class="card">');
-              parts.push('<div class="small">O verbo <em>to have</em> no presente.</div>');
-              parts.push('<div class="small" style="margin-top:6px">A diferença entre <em>have</em> e <em>has</em>.</div>');
-              parts.push('<div class="small" style="margin-top:6px">Estruturas afirmativas, negativas e interrogativas.</div>');
-              parts.push('<div class="small" style="margin-top:6px">Vocabulário sobre pecuária e saúde animal.</div>');
+              parts.push('<div class="small">✅ Verbo TO HAVE (have / has)</div>');
+              parts.push('<div class="small" style="margin-top:6px">✅ Regra do "S": I/You/We/They = have | He/She/It = has</div>');
+              parts.push('<div class="small" style="margin-top:6px">✅ Estruturas: afirmativas, negativas e interrogativas</div>');
+              parts.push('<div class="small" style="margin-top:6px">✅ Vocabulário: pecuária, saúde e animais</div>');
               parts.push('</div>');
+              parts.push('<div class="section-title" style="margin-top:12px">🎓 Dicas de Estudo</div>');
+              parts.push('<div class="card">');
+              parts.push('<div class="small">💡 Pratique com objetos reais</div>');
+              parts.push('<div class="small" style="margin-top:6px">🔊 Repita have/has em voz alta</div>');
+              parts.push('<div class="small" style="margin-top:6px">📝 Escreva sobre o que você tem</div>');
+              parts.push('<div class="small" style="margin-top:6px">⚠️ Lembre: He/She/It sempre usa HAS</div>');
+              parts.push('</div>');
+              parts.push('<div class="section-title" style="margin-top:12px">🌟 Próximos Passos</div>');
+              parts.push('<div class="card"><div class="small">➡️ Próxima Aula: Daily Routines on the Farm</div><div class="small" style="margin-top:6px">🎯 Foco: Rotinas diárias na fazenda</div><div class="small" style="margin-top:10px">✅ Parabéns por completar a Aula 2! 🐄💊</div></div>');
               root.innerHTML = parts.join('');
             }
           } catch {}
