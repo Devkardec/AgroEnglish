@@ -646,7 +646,7 @@
           )
         ),
         e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' },
-          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8 || Number(idx)===9))
+          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8 || Number(idx)===9 || Number(idx)===10))
             ? e(DictationExercise, {
                 sentences: (Number(idx)===1 ? [
                   "Hello! I am Paul, and I am a farmer.",
@@ -697,6 +697,15 @@
                   'The cows are waiting in the shade.',
                   'They are not eating at this moment.',
                   'Everything is moving fast today.'
+                ] : Number(idx)===10 ? [
+                  'We have a skilled team on the farm.',
+                  'John can operate the new harvester.',
+                  'He has a special license.',
+                  'I can drive the pickup truck, but I cannot drive the heavy tractor.',
+                  'This red tractor is very strong.',
+                  'It can pull a large trailer with five tons of soy.',
+                  'Can you help me with the bags?',
+                  'Yes, we can do this together.'
                 ] : [
                   'The sun is very hot today.',
                   'The corn needs rain.',
@@ -754,6 +763,15 @@
                   '/src/audio/A1/texto-a1.9-dividido/part6.mp3',
                   '/src/audio/A1/texto-a1.9-dividido/part7.mp3',
                   '/src/audio/A1/texto-a1.9-dividido/part8.mp3'
+                ] : Number(idx)===10 ? [
+                  '/src/audio/A1/texto-a1.10-dividido/audio_1.mp3',
+                  '/src/audio/A1/texto-a1.10-dividido/audio_2.mp3',
+                  '/src/audio/A1/texto-a1.10-dividido/audio_3.mp3',
+                  '/src/audio/A1/texto-a1.10-dividido/audio_4.mp3',
+                  '/src/audio/A1/texto-a1.10-dividido/audio_5.mp3',
+                  '/src/audio/A1/texto-a1.10-dividido/audio_6.mp3',
+                  '/src/audio/A1/texto-a1.10-dividido/audio_7.mp3',
+                  '/src/audio/A1/texto-a1.10-dividido/audio_8.mp3'
                 ] : [
                     '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
                     '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',
