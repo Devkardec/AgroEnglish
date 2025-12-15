@@ -12,6 +12,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./public/icons/apple-touch-icon.webp">
   <link rel="apple-touch-icon" href="./public/icons/android-chrome-512x512.webp">
   <title>AgroEnglish Pro</title>
+  <!-- Google Fonts: Poppins para títulos, Inter para corpo (já carregado via sistema) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./src/styles/styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <meta name="description" content="PWA para inglês técnico rural: agricultura, pecuária, veterinária, máquinas e rotinas de fazenda.">
@@ -19,31 +23,31 @@
 <body>
   <a href="#app" class="skip-link">Pular para conteúdo</a>
   <div id="app"></div>
-  <div id="auth-gate" style="position:fixed;inset:0;background:rgba(245,245,245,0.98);z-index:9999;display:none">
-    <div style="max-width:520px;margin:40px auto;padding:16px">
-      <div style="font-size:22px;font-weight:600;margin-bottom:10px">Autenticação</div>
-      <div style="background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);padding:16px">
-        <div style="display:flex;gap:8px;margin-bottom:10px">
-          <button id="gate-tab-login" class="ae-btn" style="padding:8px 12px;border:1px solid #ddd;border-radius:8px;background:#f5f5f5">Login</button>
-          <button id="gate-tab-register" class="ae-btn" style="padding:8px 12px;border:1px solid #ddd;border-radius:8px;background:#fff">Cadastro</button>
+  <div id="auth-gate" style="position:fixed;inset:0;background:rgba(250,250,250,0.98);backdrop-filter:blur(10px);z-index:9999;display:none;align-items:center;justify-content:center;padding:16px">
+    <div style="max-width:520px;width:100%;margin:0 auto">
+      <div style="font-size:24px;font-weight:700;margin-bottom:16px;font-family:'Poppins',sans-serif;color:#1a1a1a">Autenticação</div>
+      <div style="background:#fff;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,0.1);padding:24px;border:1px solid #e5e5e5">
+        <div style="display:flex;gap:8px;margin-bottom:20px">
+          <button id="gate-tab-login" class="ae-btn" style="flex:1;padding:12px 16px;border:2px solid #e5e5e5;border-radius:12px;background:#f5f5f5;color:#1a1a1a;font-weight:600;min-height:44px;transition:all 0.2s ease">Login</button>
+          <button id="gate-tab-register" class="ae-btn" style="flex:1;padding:12px 16px;border:2px solid #e5e5e5;border-radius:12px;background:#fff;color:#1a1a1a;font-weight:600;min-height:44px;transition:all 0.2s ease">Cadastro</button>
         </div>
         <div id="gate-login" style="display:block">
-          <label>E-mail</label>
-          <input id="gate-login-email" type="email" class="ae-input" placeholder="seu@email.com" style="width:100%;margin:6px 0 10px;border:1px solid #ddd;border-radius:8px;padding:10px">
-          <label>Senha</label>
-          <input id="gate-login-password" type="password" class="ae-input" placeholder="••••••••" style="width:100%;margin:6px 0 10px;border:1px solid #ddd;border-radius:8px;padding:10px">
-          <button id="gate-login-submit" class="ae-btn ae-btn-primary" style="width:100%;padding:10px;border-radius:8px;background:#0f6a3a;color:#fff">Entrar</button>
-          <div id="gate-login-msg" style="margin-top:8px;font-size:13px;color:#c62828"></div>
+          <label style="display:block;font-weight:600;margin-bottom:8px;color:#1a1a1a;font-size:14px">E-mail</label>
+          <input id="gate-login-email" type="email" class="ae-input" placeholder="seu@email.com" style="width:100%;margin:0 0 16px 0;border:2px solid #e5e5e5;border-radius:12px;padding:12px 16px;font-size:16px;min-height:44px;transition:all 0.2s ease">
+          <label style="display:block;font-weight:600;margin-bottom:8px;color:#1a1a1a;font-size:14px">Senha</label>
+          <input id="gate-login-password" type="password" class="ae-input" placeholder="••••••••" style="width:100%;margin:0 0 20px 0;border:2px solid #e5e5e5;border-radius:12px;padding:12px 16px;font-size:16px;min-height:44px;transition:all 0.2s ease">
+          <button id="gate-login-submit" class="ae-btn ae-btn-primary" style="width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,#0a7f42,#085232);color:#fff;font-weight:700;min-height:44px;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:all 0.2s ease">Entrar</button>
+          <div id="gate-login-msg" style="margin-top:12px;font-size:14px;color:#dc2626;font-weight:500"></div>
         </div>
         <div id="gate-register" style="display:none">
-          <label>Nome</label>
-          <input id="gate-register-name" type="text" class="ae-input" placeholder="Seu nome" style="width:100%;margin:6px 0 10px;border:1px solid #ddd;border-radius:8px;padding:10px">
-          <label>E-mail</label>
-          <input id="gate-register-email" type="email" class="ae-input" placeholder="seu@email.com" style="width:100%;margin:6px 0 10px;border:1px solid #ddd;border-radius:8px;padding:10px">
-          <label>Senha</label>
-          <input id="gate-register-password" type="password" class="ae-input" placeholder="Crie uma senha" style="width:100%;margin:6px 0 10px;border:1px solid #ddd;border-radius:8px;padding:10px">
-          <button id="gate-register-submit" class="ae-btn ae-btn-primary" style="width:100%;padding:10px;border-radius:8px;background:#0f6a3a;color:#fff">Criar conta</button>
-          <div id="gate-register-msg" style="margin-top:8px;font-size:13px;color:#c62828"></div>
+          <label style="display:block;font-weight:600;margin-bottom:8px;color:#1a1a1a;font-size:14px">Nome</label>
+          <input id="gate-register-name" type="text" class="ae-input" placeholder="Seu nome" style="width:100%;margin:0 0 16px 0;border:2px solid #e5e5e5;border-radius:12px;padding:12px 16px;font-size:16px;min-height:44px;transition:all 0.2s ease">
+          <label style="display:block;font-weight:600;margin-bottom:8px;color:#1a1a1a;font-size:14px">E-mail</label>
+          <input id="gate-register-email" type="email" class="ae-input" placeholder="seu@email.com" style="width:100%;margin:0 0 16px 0;border:2px solid #e5e5e5;border-radius:12px;padding:12px 16px;font-size:16px;min-height:44px;transition:all 0.2s ease">
+          <label style="display:block;font-weight:600;margin-bottom:8px;color:#1a1a1a;font-size:14px">Senha</label>
+          <input id="gate-register-password" type="password" class="ae-input" placeholder="Crie uma senha" style="width:100%;margin:0 0 20px 0;border:2px solid #e5e5e5;border-radius:12px;padding:12px 16px;font-size:16px;min-height:44px;transition:all 0.2s ease">
+          <button id="gate-register-submit" class="ae-btn ae-btn-primary" style="width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,#0a7f42,#085232);color:#fff;font-weight:700;min-height:44px;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:all 0.2s ease">Criar conta</button>
+          <div id="gate-register-msg" style="margin-top:12px;font-size:14px;color:#dc2626;font-weight:500"></div>
         </div>
       </div>
     </div>

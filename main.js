@@ -2858,18 +2858,215 @@ function renderGrammar(data) {
       
       try { renderVocabulary(data); } catch (e) { console.error('Error in renderVocabulary:', e); }
       try { renderGrammar(data); } catch (e) { console.error('Error in renderGrammar:', e); }
+      
+      // Função genérica para gerar estrutura da aula com ícones
+      function generateLessonStructure(item, level, idx, items, phoneticBR) {
+        if (!item || !item.title) return '';
+        
+        const lvl = String(level).toUpperCase();
+        const idxNum = Number(idx);
+        const levelNames = { A1: 'Iniciante', A2: 'Básico', B1: 'Intermediário', B2: 'Intermediário Superior', C1: 'Avançado', C2: 'Proficiente' };
+        const levelName = levelNames[lvl] || 'Iniciante';
+        const emojiMap = { 1: '🌱', 2: '🐄', 3: '🌾', 4: '🚜', 5: '☀️', 6: '📊', 7: '🔧', 8: '⚠️', 9: '🛠️', 10: '⚙️', 11: '📅', 12: '💰' };
+        const emoji = emojiMap[idxNum] || '📚';
+        const category = String(item.category || '').trim();
+        const title = String(item.title || '').trim();
+        const titlePt = String(item.title_pt || '').trim();
+        const grammar = String(item.grammar || item.teaching_modules?.explanation || '').trim();
+        const vocabTable = Array.isArray(item.vocabulary_table) ? item.vocabulary_table : [];
+        const pairs = Array.isArray(item.pairs) ? item.pairs : [];
+        const teachingModules = item.teaching_modules || {};
+        const grammarTable = Array.isArray(teachingModules.grammar_table) ? teachingModules.grammar_table : [];
+        const verbsList = Array.isArray(teachingModules.verbs_list) ? teachingModules.verbs_list : [];
+        
+        // Obter próximo texto
+        let nextItem = null;
+        if (Array.isArray(items)) {
+          nextItem = items.find(o => Number(o.id) === idxNum + 1) || items[idxNum];
+        }
+        const nextTitle = nextItem ? String(nextItem.title || '').trim() : '';
+        const nextCategory = nextItem ? String(nextItem.category || '').trim() : '';
+        
+        const parts = [];
+        
+        // Título da Aula
+        parts.push(`<div class="section-title" style="margin-top:12px">${emoji} Aula ${idxNum} – ${category || title}</div>`);
+        
+        // Informações da Aula
+        parts.push('<div class="card">');
+        parts.push('<div class="small"><strong>📋 Informações da Aula</strong></div>');
+        if (category) parts.push(`<div class="small" style="margin-top:6px">🎯 Tema: ${category}</div>`);
+        if (title) parts.push(`<div class="small" style="margin-top:6px">📖 Título: ${title}</div>`);
+        parts.push(`<div class="small" style="margin-top:6px">⏱️ Duração: 45 minutos</div>`);
+        parts.push(`<div class="small" style="margin-top:6px">📊 Nível: ${lvl} - ${levelName}</div>`);
+        parts.push('</div>');
+        
+        // Objetivos de Aprendizagem (extrair da grammar ou criar genérico)
+        parts.push('<div class="section-title" style="margin-top:12px">🎯 Objetivos de Aprendizagem</div>');
+        parts.push('<div class="card">');
+        if (grammar) {
+          const objectives = grammar.split(/[.;]/).filter(s => s.trim().length > 10).slice(0, 5);
+          objectives.forEach(obj => {
+            if (obj.trim()) parts.push(`<div class="small">✅ ${obj.trim()}</div>`);
+          });
+        }
+        if (vocabTable.length > 0) {
+          parts.push('<div class="small" style="margin-top:6px">✅ Ampliar vocabulário essencial da fazenda</div>');
+        }
+        if (pairs.length > 0) {
+          parts.push('<div class="small" style="margin-top:6px">✅ Desenvolver compreensão auditiva com exemplos práticos</div>');
+        }
+        if (parts[parts.length - 1] === '<div class="card">') {
+          parts.push('<div class="small">✅ Dominar o conteúdo gramatical apresentado</div>');
+          parts.push('<div class="small" style="margin-top:6px">✅ Aplicar o conhecimento em situações práticas</div>');
+        }
+        parts.push('</div>');
+        
+        // Conteúdo Programático
+        parts.push('<div class="section-title" style="margin-top:12px">📚 Conteúdo Programático</div>');
+        
+        // Seção 1: Introdução/Gramática
+        if (grammar || grammarTable.length > 0) {
+          parts.push('<div class="card">');
+          parts.push('<div class="small"><strong>1️⃣ ' + (grammarTable.length > 0 ? 'Estrutura Gramatical' : 'Introdução') + '</strong></div>');
+          if (grammar) {
+            parts.push(`<div class="small" style="margin-top:6px">${grammar}</div>`);
+          }
+          if (grammarTable.length > 0) {
+            parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr>');
+            const headers = Object.keys(grammarTable[0]);
+            headers.forEach(h => parts.push(`<th>${h.charAt(0).toUpperCase() + h.slice(1)}</th>`));
+            parts.push('</tr></thead><tbody>');
+            grammarTable.forEach(row => {
+              parts.push('<tr>');
+              headers.forEach(h => parts.push(`<td>${row[h] || ''}</td>`));
+              parts.push('</tr>');
+            });
+            parts.push('</tbody></table>');
+          }
+          parts.push('</div>');
+        }
+        
+        // Seção 2: Exemplos das frases do texto
+        if (pairs.length > 0) {
+          parts.push('<div class="card" style="margin-top:8px">');
+          parts.push('<div class="small"><strong>2️⃣ Exemplos Práticos</strong></div>');
+          pairs.slice(0, 5).forEach(pair => {
+            parts.push(`<div class="line" style="margin-top:6px"><div class="en">${pair.en || ''}</div><div class="pt">${pair.pt || ''}</div></div>`);
+            if (pair.en && phoneticBR) {
+              const phon = phoneticBR(pair.en);
+              if (phon) parts.push(`<div class="small" style="margin-top:6px">🔊 ${phon}</div>`);
+            }
+          });
+          parts.push('</div>');
+        }
+        
+        // Vocabulário Essencial
+        if (vocabTable.length > 0) {
+          parts.push('<div class="section-title" style="margin-top:12px">🧩 Vocabulário Essencial da Fazenda</div>');
+          
+          // Agrupar vocabulário por categoria (se possível)
+          const groupedVocab = {};
+          vocabTable.forEach(v => {
+            const word = String(v.word || '').toLowerCase();
+            let category = '📚 Geral';
+            if (word.includes('farm') || word.includes('barn') || word.includes('field')) category = '🏡 Lugares';
+            else if (word.includes('cow') || word.includes('chicken') || word.includes('bull') || word.includes('animal')) category = '🐄 Animais';
+            else if (word.includes('work') || word.includes('farmer') || word.includes('vet')) category = '👥 Pessoas';
+            else if (word.includes('happy') || word.includes('big') || word.includes('strong') || word.includes('fast')) category = '😊 Adjetivos';
+            else if (word.includes('sun') || word.includes('wind') || word.includes('rain') || word.includes('weather')) category = '☀️ Natureza';
+            
+            if (!groupedVocab[category]) groupedVocab[category] = [];
+            groupedVocab[category].push(v);
+          });
+          
+          Object.entries(groupedVocab).forEach(([cat, words]) => {
+            parts.push('<div class="card" style="margin-top:8px">');
+            parts.push(`<div class="small"><strong>${cat}</strong></div>`);
+            parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
+            words.forEach(v => {
+              const word = String(v.word || '');
+              const trans = String(v.translation || '');
+              const phon = phoneticBR ? phoneticBR(word) : '';
+              parts.push(`<tr><td>${word}</td><td>${trans}</td><td>${phon}</td></tr>`);
+            });
+            parts.push('</tbody></table>');
+            parts.push('</div>');
+          });
+        }
+        
+        // Exemplos Narrados
+        if (pairs.length > 0) {
+          parts.push('<div class="section-title" style="margin-top:12px">🏡 Exemplos Narrados com Contexto</div>');
+          parts.push('<div class="card">');
+          pairs.slice(0, 7).forEach(pair => {
+            parts.push(`<div class="line"><div class="en">${pair.en || ''}</div><div class="pt">${pair.pt || ''}</div></div>`);
+            if (pair.en && phoneticBR) {
+              const phon = phoneticBR(pair.en);
+              if (phon) parts.push(`<div class="small" style="margin-top:6px">🔊 ${phon}</div>`);
+            }
+          });
+          parts.push('</div>');
+        }
+        
+        // Resumo da Aula
+        parts.push('<div class="section-title" style="margin-top:12px">🔑 Resumo da Aula</div>');
+        parts.push('<div class="card">');
+        if (grammar) parts.push(`<div class="small">✅ ${grammar.split(/[.;]/)[0] || 'Conteúdo gramatical apresentado'}</div>`);
+        if (vocabTable.length > 0) parts.push('<div class="small" style="margin-top:6px">✅ Vocabulário essencial da fazenda</div>');
+        if (pairs.length > 0) parts.push('<div class="small" style="margin-top:6px">✅ Pronúncia básica de palavras essenciais</div>');
+        parts.push('<div class="small" style="margin-top:6px">✅ Contexto prático em situações do dia a dia</div>');
+        parts.push('</div>');
+        
+        // Dicas de Estudo
+        parts.push('<div class="section-title" style="margin-top:12px">🎓 Dicas de Estudo</div>');
+        parts.push('<div class="card">');
+        parts.push('<div class="small">💡 Pratique diariamente (15 minutos)</div>');
+        parts.push('<div class="small" style="margin-top:6px">🔊 Repita em voz alta</div>');
+        parts.push('<div class="small" style="margin-top:6px">📝 Escreva frases próprias com vocabulário da fazenda</div>');
+        parts.push('<div class="small" style="margin-top:6px">👂 Escute várias vezes para melhorar compreensão</div>');
+        parts.push('<div class="small" style="margin-top:6px">🤝 Pratique com alguém sempre que possível</div>');
+        parts.push('</div>');
+        
+        // Próximos Passos
+        parts.push('<div class="section-title" style="margin-top:12px">🌟 Próximos Passos</div>');
+        parts.push('<div class="card">');
+        if (nextTitle) {
+          parts.push(`<div class="small">➡️ Próxima Aula: ${nextTitle}</div>`);
+          if (nextCategory) parts.push(`<div class="small" style="margin-top:6px">📚 Tópico: ${nextCategory}</div>`);
+        } else {
+          parts.push(`<div class="small">➡️ Continue praticando e revisando o conteúdo</div>`);
+        }
+        parts.push(`<div class="small" style="margin-top:10px">✅ Parabéns por completar a Aula ${idxNum}! Continue praticando! 🚜🌾</div>`);
+        parts.push('</div>');
+        
+        return parts.join('');
+      }
+      
       try {
-        if (String(level).toUpperCase()==='A1' && Number(idx)===1) {
+        // Aplicar estrutura para TODOS os textos de TODOS os níveis
+        const lvl = String(level).toUpperCase();
+        const idxNum = Number(idx);
+        const blocksName = `${lvl.toLowerCase()}_blocks.json`;
+        const bp1 = `/src/data/texts/${lvl}/${blocksName}`;
+        const bp2 = `./src/data/texts/${lvl}/${blocksName}`;
+        let items = [];
+        try {
+          items = await (fetch(bp1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(bp2).then(r=> r.json())));
+        } catch {}
+        const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === idxNum) || items[idxNum-1]) : null) || {};
+        
+        if (item && item.title) {
           const g = document.getElementById('grammar'); if (g) { g.innerHTML=''; g.style.display = 'none'; }
-          const v = document.getElementById('vocab'); if (v) v.style.display = 'none';
-          const vt = document.getElementById('vocabTable'); if (vt) vt.style.display = 'none';
+          const v = document.getElementById('vocab'); if (v) { v.innerHTML=''; v.style.display = 'none'; }
+          const vt = document.getElementById('vocabTable'); if (vt) { vt.innerHTML=''; vt.style.display = 'none'; }
           try {
             const study = document.getElementById('tab-study');
             if (study) {
               const titles = Array.from(study.querySelectorAll('.section-title'));
               titles.forEach(el=> {
                 const txt = String(el.textContent||'').trim();
-                const shouldRemove = /^(Guia de Estudo|Explicação e Estrutura|Vocabulário|Vocabulário \(Pronúncia\))$/i.test(txt);
+                const shouldRemove = /^(Guia de Estudo|Explicação e Estrutura|Estrutura \(Tradução\)|Vocabulário|Vocabulário \(Pronúncia\))$/i.test(txt);
                 if (shouldRemove) el.remove();
               });
               const quickCards = Array.from(study.querySelectorAll('.card')).filter(el=> el!==study);
@@ -2884,294 +3081,85 @@ function renderGrammar(data) {
           try {
             const root = document.getElementById('slideLessonRoot');
             if (root) {
-              const parts = [];
-              parts.push('<div class="section-title" style="margin-top:12px">🌱 Aula 1 – Identity & Description na Fazenda</div>');
-              parts.push('<div class="card"><div class="small"><strong>📋 Informações da Aula</strong></div><div class="small" style="margin-top:6px">🎯 Tema: Identidade e Descrição na Fazenda</div><div class="small" style="margin-top:6px">📖 Título: Paul and the Farm</div><div class="small" style="margin-top:6px">⏱️ Duração: 45 minutos</div><div class="small" style="margin-top:6px">📊 Nível: A1 - Iniciante</div></div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🎯 Objetivos de Aprendizagem</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="small">✅ Aprender a usar o verbo <em>to be</em> (am / is / are) para falar de identidade, localização e descrição</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Reconhecer a estrutura básica da frase em inglês</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Usar vocabulário simples da fazenda para descrever pessoas, animais e o ambiente</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Diferenciar frases afirmativas, negativas e interrogativas</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Desenvolver compreensão auditiva com exemplos práticos</div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">📚 Conteúdo Programático</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="small"><strong>1️⃣ Introdução ao Verbo TO BE</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">O verbo <em>to be</em> é um dos mais importantes em inglês. Ele serve para:</div>');
-              parts.push('<div class="small" style="margin-top:6px">👤 Dizer quem somos · 📍 Indicar onde estamos · 😊 Expressar como estamos</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">I am Paul.</div><div class="pt">Eu sou Paul.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">🔊 Ai ém Paul.</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">I am at the farm.</div><div class="pt">Eu estou na fazenda.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">🔊 Ai ém ét dâ fárm.</div>');
-              parts.push('</div>');
-              parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>2️⃣ Conjugação do Verbo TO BE</strong></div>');
-              parts.push('<div class="grid" style="margin-top:6px;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px">');
-              parts.push('<div class="small">I</div><div class="small">am</div>');
-              parts.push('<div class="small">He / She / It</div><div class="small">is</div>');
-              parts.push('<div class="small">You / We / They</div><div class="small">are</div>');
-              parts.push('</div>');
-              parts.push('<div class="small" style="margin-top:6px">🎨 Dica Visual: I → AM · He/She/It → IS · You/We/They → ARE</div>');
-              parts.push('</div>');
-              parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>3️⃣ Estruturas de Frases</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Afirmativa: Sujeito + am/is/are + complemento</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">She is happy.</div><div class="pt">Ela está feliz.</div></div>');
-              parts.push('<div class="line"><div class="en">The barn is open.</div><div class="pt">O galpão está aberto.</div></div>');
-              parts.push('<div class="line"><div class="en">We are ready.</div><div class="pt">Nós estamos prontos.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">❌ Negativa: Sujeito + am/is/are + not + complemento</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">She is not sad.</div><div class="pt">Ela não está triste.</div></div>');
-              parts.push('<div class="line"><div class="en">The wind is not strong.</div><div class="pt">O vento não está forte.</div></div>');
-              parts.push('<div class="line"><div class="en">They are not slow.</div><div class="pt">Eles não são lentos.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">💡 Contrações: isn\'t · aren\'t</div>');
-              parts.push('<div class="small" style="margin-top:6px">❓ Interrogativa: Am/Is/Are + sujeito + complemento + ?</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">Is she happy?</div><div class="pt">Ela está feliz?</div></div>');
-              parts.push('<div class="line"><div class="en">Are you ready?</div><div class="pt">Você está pronto?</div></div>');
-              parts.push('<div class="line"><div class="en">Is the barn open?</div><div class="pt">O galpão está aberto?</div></div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🧩 Vocabulário Essencial da Fazenda</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="small"><strong>👥 Pessoas</strong></div>');
-              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
-              parts.push('<tr><td>farmer</td><td>fazendeiro</td><td>fár-mer</td></tr>');
-              parts.push('<tr><td>sister</td><td>irmã</td><td>sís-târ</td></tr>');
-              parts.push('</tbody></table>');
-              parts.push('<div class="small" style="margin-top:6px">Ex.: I am a farmer · My sister is here</div>');
-              parts.push('</div>');
-              parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>🏡 Lugares</strong></div>');
-              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
-              parts.push('<tr><td>farm</td><td>fazenda</td><td>fárm</td></tr>');
-              parts.push('<tr><td>barn</td><td>galpão/celeiro</td><td>bárn</td></tr>');
-              parts.push('</tbody></table>');
-              parts.push('<div class="small" style="margin-top:6px">Ex.: I am at the farm · The barn is big</div>');
-              parts.push('</div>');
-              parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>🐄 Animais</strong></div>');
-              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
-              parts.push('<tr><td>cows</td><td>vacas</td><td>cáuz</td></tr>');
-              parts.push('<tr><td>chickens</td><td>galinhas</td><td>tchí-kens</td></tr>');
-              parts.push('</tbody></table>');
-              parts.push('<div class="small" style="margin-top:6px">Ex.: The cows are calm · The chickens are fast</div>');
-              parts.push('</div>');
-              parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>☀️ Natureza</strong></div>');
-              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
-              parts.push('<tr><td>sun</td><td>sol</td><td>sân</td></tr>');
-              parts.push('<tr><td>wind</td><td>vento</td><td>uínd</td></tr>');
-              parts.push('<tr><td>day</td><td>dia</td><td>dêi</td></tr>');
-              parts.push('</tbody></table>');
-              parts.push('<div class="small" style="margin-top:6px">Ex.: Ready for the day · The wind is strong</div>');
-              parts.push('</div>');
-              parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>😊 Adjetivos</strong></div>');
-              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
-              parts.push('<tr><td>happy</td><td>feliz</td><td>hé-pi</td></tr>');
-              parts.push('<tr><td>big</td><td>grande</td><td>bíg</td></tr>');
-              parts.push('<tr><td>fast</td><td>rápido</td><td>fást</td></tr>');
-              parts.push('<tr><td>funny</td><td>engraçado</td><td>fâ-ni</td></tr>');
-              parts.push('<tr><td>ready</td><td>pronto</td><td>ré-di</td></tr>');
-              parts.push('<tr><td>calm</td><td>calmo</td><td>cám</td></tr>');
-              parts.push('<tr><td>hot</td><td>quente</td><td>hót</td></tr>');
-              parts.push('<tr><td>strong</td><td>forte</td><td>stróng</td></tr>');
-              parts.push('<tr><td>open</td><td>aberto</td><td>óu-pen</td></tr>');
-              parts.push('</tbody></table>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🏡 Exemplos Narrados com Contexto</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="line"><div class="en">I am Paul, and I am a farmer.</div><div class="pt">Eu sou Paul, e eu sou fazendeiro.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">🔊 Ai ém Paul, and Ai ém â fár-mer.</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">My sister is here too.</div><div class="pt">Minha irmã está aqui também.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">🔊 Mai sís-târ íz hier tú.</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">The barn is open.</div><div class="pt">O galpão está aberto.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">🔊 Dâ bárn íz óu-pen.</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">The cows are calm, but the chickens are fast.</div><div class="pt">As vacas estão calmas, mas as galinhas são rápidas.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">🔊 Dâ cáuz ár cám, but dâ tchí-kens ár fást.</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">The sun is hot, but the wind is not strong.</div><div class="pt">O sol está quente, mas o vento não está forte.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">🔊 Dâ sân íz hót, but dâ uínd íz not stróng.</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">We are ready for the day.</div><div class="pt">Nós estamos prontos para o dia.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">🔊 Uí ár ré-di for dâ dêi.</div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🌾 Mini‑História: Um Dia na Fazenda de Paul</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="small"><strong>🌅 Manhã na Fazenda</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">👨‍🌾 Ele é fazendeiro → I am a farmer</div>');
-              parts.push('<div class="small" style="margin-top:6px">📍 Ele está na fazenda → I am at the farm</div>');
-              parts.push('<div class="small" style="margin-top:6px">👭 Sua irmã também está lá → My sister is here too</div>');
-              parts.push('<div class="small" style="margin-top:10px"><strong>🏡 A Fazenda</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">🚪 O celeiro está aberto → The barn is open</div>');
-              parts.push('<div class="small" style="margin-top:6px">📏 Ele é muito grande → It is very big</div>');
-              parts.push('<div class="small" style="margin-top:10px"><strong>🐄 Os Animais</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">😌 As vacas estão calmas → The cows are calm</div>');
-              parts.push('<div class="small" style="margin-top:6px">🏃 As galinhas são rápidas → The chickens are fast</div>');
-              parts.push('<div class="small" style="margin-top:6px">😄 Elas são engraçadas → They are funny</div>');
-              parts.push('<div class="small" style="margin-top:10px"><strong>🌤️ O Tempo</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">☀️ O sol está quente → The sun is hot</div>');
-              parts.push('<div class="small" style="margin-top:6px">🌬️ O vento não está forte → The wind is not strong</div>');
-              parts.push('<div class="small" style="margin-top:10px"><strong>✅ Prontos para o Dia</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">🎯 Todos estão prontos → We are ready for the day</div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🔑 Resumo da Aula</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="small">✅ O verbo TO BE (am / is / are)</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Estruturas de frases: afirmativas, negativas e interrogativas</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Vocabulário da fazenda: pessoas, animais, lugares e descrições</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Pronúncia básica de palavras essenciais</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Contexto prático em situações do dia a dia</div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🎓 Dicas de Estudo</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="small">💡 Pratique diariamente (15 minutos)</div>');
-              parts.push('<div class="small" style="margin-top:6px">🔊 Repita em voz alta</div>');
-              parts.push('<div class="small" style="margin-top:6px">📝 Escreva frases próprias com vocabulário da fazenda</div>');
-              parts.push('<div class="small" style="margin-top:6px">👂 Escute várias vezes para melhorar compreensão</div>');
-              parts.push('<div class="small" style="margin-top:6px">🤝 Pratique com alguém sempre que possível</div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🌟 Próximos Passos</div>');
-              parts.push('<div class="card"><div class="small">➡️ Próxima Aula: Actions on the Farm</div><div class="small" style="margin-top:6px">📚 Tópico: Verbos de ação no presente simples</div><div class="small" style="margin-top:6px">🎯 Foco: Descrever atividades diárias na fazenda</div><div class="small" style="margin-top:10px">✅ Parabéns por completar a Aula 1! Continue praticando! 🚜🌾</div></div>');
-              root.innerHTML = parts.join('');
+              // Obter função phoneticBR do escopo
+              function phoneticBR(en){
+                const dict = {
+                  'i':'Ai','you':'iú','we':'uí','they':'dêi','he':'rí','she':'xí','it':'ít',
+                  'am':'ém','is':'íz','are':'ár',
+                  'at':'ét','the':'dâ','a':'â','an':'ân','in':'in','on':'ón','under':'ândâr','next':'nékst','to':'tú','behind':'biháind','where':'uéâr',
+                  'farm':'fárm','barn':'bárn','pasture':'péstcher','field':'fíld','gate':'gueit','fence':'fêns',
+                  'cow':'cáu','cows':'cáuz','chicken':'tchí-ken','chickens':'tchí-kens','sheep':'xíp','horse':'hórs','horses':'hórsiz',
+                  'water':'uóter','feed':'fíid','trough':'tróf','bucket':'bâkit','buckets':'bâkits','tools':'túuls','box':'bóks','tap':'tép','shovel':'xó-vôl','hammer':'ré-mâr','wood':'úd','table':'téi-bol',
+                  'morning':'mór-ning','today':'tudêi','clean':'clín','ready':'rédi','work':'uârk','keep':'kíip','check':'tchék','open':'óupen','near':'nír','safe':'sêif',
+                  'sun':'sãn','wind':'uínd','strong':'stróng','cool':'cúl',
+                  'boots':'búts','gloves':'glâvz','signs':'sáinz','electric':'iléktrik','dangerous':'dên-dja-râs','smoke':'smóuk','wash':'uóx','hands':'hêndz','soap':'sôup','please':'plíiz','careful':'kér-fôl',
+                  'can':'kén','cannot':'ké-not','operate':'ó-pe-reit','pull':'púl','help':'hélp','do':'dú','license':'lái-sens','trailer':'trêi-lâr','tons':'tânz','pickup':'pík-âp','truck':'trúk','red':'réd','large':'lárdj','together':'tugé-thâr',
+                  'will':'uíl','tomorrow':'tô-mó-rôu','week':'uíik','monday':'mân-dêi','tuesday':'tiúz-dêi','friday':'frái-dêi','arrive':'â-ráiv','load':'lôud','sell':'sél','grain':'grêin','silos':'sái-lôus','mechanic':'mê-ké-nik','sunny':'sâ-ni','production':'prô-dâk-chan','busy':'bí-zi','trucks':'trâks',
+                  'price':'práis','cost':'cóst','money':'mâ-ni','profit':'pró-fit','inputs':'ín-púts','cooperative':'co-ó-pe-ra-tiv','market':'már-ket','buyer':'báier','buy':'bái','cheap':'tchíp','expensive':'éks-pén-siv','pay':'pêi','ton':'tân','dollars':'dó-lârz','how':'ráu','much':'mâch',
+                  'yesterday':'iés-târ-dêi','last':'lást','night':'náit','cold':'cóuld','rainy':'rêi-ni','muddy':'mâ-di','difficult':'dí-fi-cúlt','because':'bi-cóz','tired':'táierd','broken':'brôu-kân','garage':'gâ-ráj','vet':'vét'
+                  ,
+              'worked':'uârk-t','started':'stár-ted','checked':'tchékt','cleaned':'clíind','repaired':'ri-pérd','stopped':'stópt','finished':'fí-ni-sht','then':'dén','afternoon':'áf-târ-nún','late':'lêit','tractor':'tráktor','cab':'kéb','fence':'fêns','line':'láin','organized':'ór-ga-náizd'
+              ,
+              'go':'gôu','went':'uént','see':'sí','saw':'só','break':'brêik','broke':'brôuk','have':'rév','had':'réd','take':'têik','took':'túk','drive':'dráiv','drove':'drôuv','buy':'bái','bought':'bót','come':'kâm','came':'keim','spare part':'spér párt','main belt':'mein bélt','belt':'bélt','store':'stór','suddenly':'sâ-dâ-nli','pickup':'pík-âp','city':'sí-ri','corn field':'córn fíld',
+              'did':'díd','didn\'t':'dídânt','cattle':'ké-tôl','brush':'brâsh','fever':'fí-vâr','find':'fáind','yet':'yét','horse':'hórs','sick':'sík','water tank':'uóter ténk',
+              'herd':'hârd','genetics':'djê-né-tiks','heavier':'hé-viâr','calmer':'cáu-mâr','bigger':'bí-gâr','stronger':'strón-gâr','more expensive':'mór éks-pén-siv','better':'bé-târ','choose':'tchúuz','than':'thén','however':'ráu-évâr','black bull':'blék búl','white bull':'uáit búl','black':'blék','white':'uáit','bull':'búl','expensive':'éks-pén-siv','strong':'stróng','heavy':'hé-vi','calm':'cám','big':'bíg','good':'gud',
+              'newest':'nú-est','most modern':'móst mó-dârn','strongest':'strón-guest','best':'bést','most expensive':'móst éks-pén-siv','most important':'móst im-pór-tânt','gps':'djí-pi-és','autopilot':'óu-to-pái-lôt','stumps':'stâmps','pulling':'púl-ing','repair parts':'ri-pér párts','fleet':'flíit','machinery':'mâ-xí-nri','green':'grín','old':'ôuld','red':'réd','tractor':'tráktor',
+              'supplies':'sû-pláis','diesel':'dí-zel','fuel':'fiúl','liters':'lí-târz','bags':'bégz','seeds':'síidz','a lot of':'a lórof','enough':'enóf','left':'léft','chemical mix':'ké-mi-col míks','mix':'míks','how many':'ráu mé-ni',
+              'must':'mâst','must not':'mâst nót','should':'xúd','mandatory':'mán-de-tó-ri','prohibited':'pro-hí-bi-ted','hydrated':'rái-drêi-ted','dizzy':'dí-zi','protect':'prô-tékt','chemicals':'ké-mi-cols','safety glasses':'sêi-f-ti glá-siz','fuel tanks':'fiúl ténks','hot':'hót','hat':'rét','sun':'sân','immediately':'i-mí-di-ét-li','every hour':'évri áu-âr'
+              ,
+              'always':'ól-uêiz','usually':'iú-ju-li','sometimes':'sâm-táims','rarely':'réar-li','never':'né-vâr','maintenance':'mêin-tê-nâns','schedule':'ské-dju-l','oil level':'óiol lé-vol','air filters':'ér fíltârz','filters':'fíltârz','oil':'óiol','air':'ér','tires':'táiârz','dashboard':'déch-bórd','warning light':'uór-ning láit','consistency':'cón-sis-ten-si'
+              ,
+              'so':'sôu','dropped':'drópt','stressed':'strést','thirsty':'thâr-sti','essential':'i-sên-xial','return to normal':'ri-târn tú nór-mol'
+              ,
+              'going':'gôu-ing','going to':'gôu-ing tú','vaccination':'vék-si-néi-chân','cattle chute':'ké-tôl xút','needles':'ní-dôlz','cooler':'cú-lâr','separate':'sé-pâ-reit'
+              ,
+              'experience':'éks-pí-ri-êns','hard worker':'hárd uârkâr','honest':'ó-nest','gps systems':'djí-pi-és sís-temz','heavy trucks':'hé-vi trâks','i want to':'ái uónt tú'
+              ,
+              'warning':'uór-ning','light':'láit','shut':'xât','off':'óf','cooling':'cú-lin','system':'sís-tem','leak':'lík','emergency':'i-mârd-jen-si','stop':'stóp','protective':'prô-ték-tiv','gloves':'glâvz'
+              ,
+              'turns':'târns','on':'ón','overheats':'óuvâr-ríts','cool':'cúl','down':'dáun','strange':'strêindj','noise':'nóiz','protocols':'pró-to-cols'
+              ,
+              'budget':'bâ-djêt','upgrades':'âp-grêidz','solar':'sô-lâr','energy':'é-ne-rji','rose':'rôuz','monitoring':'mó-ni-tâ-ring','would':'úd'
+              ,
+              'used to':'iúzd tú','didn\'t use to':'dídnt iúz tú','milk by hand':'mílk bai hénd','ac':'êi-sí','air conditioning':'ér con-di-xô-ning','straight lines':'strêit láinz','efficiency':'ê-fí-xian-si','owner':'ôu-nâr','robots':'rôu-bóts'
+              ,
+              'milking parlor':'míul-kin párlâr','udders':'â-dârz','iodine':'áiô-dáin','stainless steel':'stêin-lês stíl','samples':'sém-plz','dairy cooperative':'déi-ri cô-uó-pâ-râ-tiv','brought':'brót','cleaned':'clínd','collected':'co-léc-ted','cooled':'cúld','sent':'sént','sold':'sôuld','maintained':'mein-têind'
+              ,
+              'logbook':'lóg-búk','service':'sér-vis','harvester':'hár-ves-târ','engine oil':'ên-djin ói-ol','air filters':'ér fíltârz','tires':'táiârz','hydraulic system':'rai-dró-lik sís-tem','done':'dân','changed':'tchéindjd','replaced':'ri-plêi-st','inspected':'in-spék-ted','tested':'tés-ted','solved':'sólv-d','returned':'ri-târn-d'
+              ,
+              'who':'rú','which':'uí-tch','that':'dét','tag':'tég','shelf':'xélf','virus':'váirâs','vacation':'vêi-кêi-xân','critical':'crí-ti-col'
+                };
+                function mapWord(w){
+                  const raw = String(w||'');
+                  const clean = raw.replace(/[^A-Za-z'-]/g,'');
+                  if (!clean) return raw;
+                  const lw = clean.toLowerCase();
+                  if (dict[lw]) return dict[lw];
+                  let t = clean;
+                  t = t.replace(/tion\b/i,'tchân');
+                  t = t.replace(/ing\b/i,'ín');
+                  t = t.replace(/^th/i,'d');
+                  t = t.replace(/oo/i,'ú');
+                  t = t.replace(/ea/i,'í');
+                  t = t.replace(/ar/i,'ár');
+                  t = t.replace(/er\b/i,'âr');
+                  t = t.replace(/ai/i,'ei');
+                  return t;
+                }
+                const parts = String(en||'').split(/(\s+|[.,!?;:])/);
+                return parts.map(p=>/^[A-Za-z'-]+$/.test(p)?mapWord(p):p).join('').replace(/\s+/g,' ').trim();
+              }
+              
+              root.innerHTML = generateLessonStructure(item, level, idxNum, items, phoneticBR);
             }
           } catch {}
         }
-        if (String(level).toUpperCase()==='A1' && Number(idx)===2) {
-          const g = document.getElementById('grammar'); if (g) { g.innerHTML=''; g.style.display = 'none'; }
-          const v = document.getElementById('vocab'); if (v) { v.innerHTML=''; v.style.display = 'none'; }
-          const vt = document.getElementById('vocabTable'); if (vt) { vt.innerHTML=''; vt.style.display = 'none'; }
-          try {
-            const study = document.getElementById('tab-study');
-            if (study) {
-              const titles = Array.from(study.querySelectorAll('.section-title'));
-              titles.forEach(el=> {
-                const txt = String(el.textContent||'').trim();
-                const shouldRemove = /^(Guia de Estudo|Explicação e Estrutura|Estrutura \(Tradução\)|Vocabulário|Vocabulário \(Pronúncia\))$/i.test(txt);
-                if (shouldRemove) el.remove();
-              });
-              const cards = Array.from(study.querySelectorAll('.card'));
-              cards.forEach(el=> {
-                const t = String(el.textContent||'');
-                if (/Vocabulário|Pronúncia|Gramática rápida|Resumo/i.test(t)) el.remove();
-              });
-            }
-          } catch {}
-          try {
-            const root = document.getElementById('slideLessonRoot');
-            if (root) {
-              const parts = [];
-              parts.push('<div class="section-title" style="margin-top:12px">🐄 Aula 2 – Livestock & Health</div>');
-              parts.push('<div class="card"><div class="small"><strong>Tema:</strong> A visita da veterinária na fazenda</div><div class="small" style="margin-top:6px"><strong>Título:</strong> The Veterinarian Visit</div><div class="small" style="margin-top:6px"><strong>Nível:</strong> A1 - Iniciante</div></div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🎯 Objetivos de Aprendizagem</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="small">✅ Aprender o verbo <em>to have</em> (ter) no presente</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Diferenciar <em>have</em> e <em>has</em></div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Usar <em>to have</em> para posse e características</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Vocabulário sobre animais e saúde</div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">📚 Conteúdo Programático</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="small"><strong>1️⃣ Introdução ao Verbo TO HAVE</strong></div>');
-              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>English</th><th>Português</th><th>Pronúncia</th></tr></thead><tbody>');
-              parts.push('<tr><td>I have a livestock farm.</td><td>Eu tenho uma fazenda de pecuária.</td><td>Ai hév â láiv-stók fárm.</td></tr>');
-              parts.push('<tr><td>She has a medical kit.</td><td>Ela tem um kit médico.</td><td>Xí has â mé-dicol quít.</td></tr>');
-              parts.push('</tbody></table>');
-              parts.push('</div>');
-              parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>2️⃣ O Poder do Verbo TO HAVE</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">🏆 POSSE – O que alguém possui</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">We have many cows.</div><div class="pt">Nós temos muitas vacas.</div></div>');
-              parts.push('<div class="line"><div class="en">She has a medical kit.</div><div class="pt">Ela tem um kit médico.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">💪 CARACTERÍSTICAS – Como algo é</div>');
-              parts.push('<div class="line" style="margin-top:6px"><div class="en">The bull has a strong body.</div><div class="pt">O touro tem um corpo forte.</div></div>');
-              parts.push('<div class="line"><div class="en">He has a small injury.</div><div class="pt">Ele tem um ferimento pequeno.</div></div>');
-              parts.push('</div>');
-              parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>3️⃣ A Regra do "S" – HAVE vs HAS</strong></div>');
-              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>Pronome</th><th>Forma</th><th>Exemplo</th></tr></thead><tbody>');
-              parts.push('<tr><td>I / You / We / They</td><td>have</td><td>We have cows</td></tr>');
-              parts.push('<tr><td>He / She / It</td><td>has</td><td>She has a kit</td></tr>');
-              parts.push('</tbody></table>');
-              parts.push('<div class="small" style="margin-top:6px">⚡ Regra de Ouro: He, She, It → sempre usa <strong>HAS</strong></div>');
-              parts.push('</div>');
-              parts.push('<div class="card" style="margin-top:8px">');
-              parts.push('<div class="small"><strong>4️⃣ Estruturas de Frases</strong></div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Afirmativa</div>');
-              parts.push('<div class="line"><div class="en">The bull has a strong body.</div><div class="pt">O touro tem um corpo forte.</div></div>');
-              parts.push('<div class="line"><div class="en">We have many cows.</div><div class="pt">Nós temos muitas vacas.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">❌ Negativa</div>');
-              parts.push('<div class="line"><div class="en">The bull doesn\'t have a strong body.</div><div class="pt">O touro não tem um corpo forte.</div></div>');
-              parts.push('<div class="line"><div class="en">We don\'t have many cows.</div><div class="pt">Nós não temos muitas vacas.</div></div>');
-              parts.push('<div class="small" style="margin-top:6px">⚠️ Atenção: O verbo volta para HAVE (sem o "s")!</div>');
-              parts.push('<div class="small" style="margin-top:6px">❓ Interrogativa</div>');
-              parts.push('<div class="line"><div class="en">Does the bull have a strong body?</div><div class="pt">O touro tem um corpo forte?</div></div>');
-              parts.push('<div class="line"><div class="en">Do we have many cows?</div><div class="pt">Nós temos muitas vacas?</div></div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🧩 Vocabulário Essencial</div>');
-              parts.push('<div class="card"><div class="small"><strong>🐄 Pecuária & Animais</strong></div>');
-              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
-              parts.push('<tr><td>livestock</td><td>pecuária/gado</td><td>láiv-stók</td></tr>');
-              parts.push('<tr><td>bull</td><td>touro</td><td>búl</td></tr>');
-              parts.push('<tr><td>cows</td><td>vacas</td><td>cáuz</td></tr>');
-              parts.push('<tr><td>farm</td><td>fazenda</td><td>fárm</td></tr>');
-              parts.push('</tbody></table></div>');
-              parts.push('<div class="card" style="margin-top:8px"><div class="small"><strong>👩‍⚕️ Saúde & Medicina</strong></div>');
-              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
-              parts.push('<tr><td>veterinarian</td><td>veterinária(o)</td><td>vé-te-ri-né-ri-en</td></tr>');
-              parts.push('<tr><td>medical kit</td><td>kit médico</td><td>mé-dicol quít</td></tr>');
-              parts.push('<tr><td>injury</td><td>ferimento/lesão</td><td>ín-djuri</td></tr>');
-              parts.push('<tr><td>medicine</td><td>remédio</td><td>mé-di-sin</td></tr>');
-              parts.push('<tr><td>healthy</td><td>saudável</td><td>hél-fi</td></tr>');
-              parts.push('<tr><td>safe</td><td>seguros</td><td>sêif</td></tr>');
-              parts.push('</tbody></table></div>');
-              parts.push('<div class="card" style="margin-top:8px"><div class="small"><strong>🦴 Corpo & Descrições</strong></div>');
-              parts.push('<table class="vocab-table" style="margin-top:6px"><thead><tr><th>EN</th><th>PT</th><th>Pronúncia</th></tr></thead><tbody>');
-              parts.push('<tr><td>body</td><td>corpo</td><td>bó-di</td></tr>');
-              parts.push('<tr><td>leg</td><td>perna</td><td>lég</td></tr>');
-              parts.push('<tr><td>strong</td><td>forte</td><td>stróng</td></tr>');
-              parts.push('<tr><td>small</td><td>pequeno</td><td>smól</td></tr>');
-              parts.push('</tbody></table></div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🏡 Exemplos Narrados</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="line"><div class="en">I have a livestock farm.</div><div class="pt">Eu tenho uma fazenda de pecuária.</div></div>');
-              parts.push('<div class="line"><div class="en">We have many cows here.</div><div class="pt">Nós temos muitas vacas aqui.</div></div>');
-              parts.push('<div class="line"><div class="en">This is the veterinarian. Her name is Dr. Silva.</div><div class="pt">Esta é a veterinária. O nome dela é Dra. Silva.</div></div>');
-              parts.push('<div class="line"><div class="en">She has a medical kit.</div><div class="pt">Ela tem um kit médico.</div></div>');
-              parts.push('<div class="line"><div class="en">The bull has a strong body, but he has a small injury on the leg.</div><div class="pt">O touro tem um corpo forte, mas tem um ferimento pequeno na perna.</div></div>');
-              parts.push('<div class="line"><div class="en">Dr. Silva has the medicine.</div><div class="pt">Dra. Silva tem o remédio.</div></div>');
-              parts.push('<div class="line"><div class="en">We have safe and healthy animals now.</div><div class="pt">Agora temos animais seguros e saudáveis.</div></div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🌾 Mini-História: A Visita da Veterinária</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="small">🐄 Paul tem uma fazenda de pecuária</div>');
-              parts.push('<div class="small" style="margin-top:6px">🐮 Eles têm muitas vacas</div>');
-              parts.push('<div class="small" style="margin-top:6px">🚗 Dra. Silva chega com seu kit médico</div>');
-              parts.push('<div class="small" style="margin-top:6px">💼 Ela tem todos os instrumentos</div>');
-              parts.push('<div class="small" style="margin-top:6px">💪 O touro tem corpo forte</div>');
-              parts.push('<div class="small" style="margin-top:6px">🩹 Mas tem uma lesão na perna</div>');
-              parts.push('<div class="small" style="margin-top:6px">👩‍⚕️ Dra. Silva tem o remédio</div>');
-              parts.push('<div class="small" style="margin-top:6px">💉 Ela cuida do touro</div>');
-              parts.push('<div class="small" style="margin-top:6px">😊 Todos os animais estão seguros</div>');
-              parts.push('<div class="small" style="margin-top:6px">🏆 A fazenda tem animais saudáveis</div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🔑 Resumo da Aula</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="small">✅ Verbo TO HAVE (have / has)</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Regra do "S": I/You/We/They = have | He/She/It = has</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Estruturas: afirmativas, negativas e interrogativas</div>');
-              parts.push('<div class="small" style="margin-top:6px">✅ Vocabulário: pecuária, saúde e animais</div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🎓 Dicas de Estudo</div>');
-              parts.push('<div class="card">');
-              parts.push('<div class="small">💡 Pratique com objetos reais</div>');
-              parts.push('<div class="small" style="margin-top:6px">🔊 Repita have/has em voz alta</div>');
-              parts.push('<div class="small" style="margin-top:6px">📝 Escreva sobre o que você tem</div>');
-              parts.push('<div class="small" style="margin-top:6px">⚠️ Lembre: He/She/It sempre usa HAS</div>');
-              parts.push('</div>');
-              parts.push('<div class="section-title" style="margin-top:12px">🌟 Próximos Passos</div>');
-              parts.push('<div class="card"><div class="small">➡️ Próxima Aula: Daily Routines on the Farm</div><div class="small" style="margin-top:6px">🎯 Foco: Rotinas diárias na fazenda</div><div class="small" style="margin-top:10px">✅ Parabéns por completar a Aula 2! 🐄💊</div></div>');
-              root.innerHTML = parts.join('');
-            }
-          } catch {}
-        }
+      } catch {}
+      
+      // Código antigo hardcoded removido - agora todos os textos usam a função genérica generateLessonStructure acima
+      
+      // Código específico para A1 texto 3 (mantido por compatibilidade)
+      try {
         if (String(level).toUpperCase()==='A1' && Number(idx)===3) {
           // Padroniza a aba de estudo do texto 3 para seguir mesma configuração do texto 1 e 2
           try {

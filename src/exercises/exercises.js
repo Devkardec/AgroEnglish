@@ -307,23 +307,28 @@
     const matchedBottomSet = React.useMemo(()=>{ const s={}; Object.values(matches).forEach(v=> s[v]=true); return s; }, [matches]);
     const done = Object.keys(matches).length===arr.length;
     return e('div', null,
-      e('div', { className:'grid grid-cols-7 gap-2 mb-3' },
+      e('div', { className:'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2 mb-4' },
         arr.map((it,i)=>{
           const isMatched = matches[i]!==undefined;
           const cls = isMatched ? 'border-green-600 bg-green-600 text-white' : (selTop===i ? 'border-green-600 bg-green-50' : 'border-gray-200 bg-gray-100');
-          return e('button', { key:i, onClick:()=>chooseTop(i), disabled:isMatched, className:`rounded border ${cls} overflow-hidden` },
-            e('img', { src:String(it.src||'').replace(/\.(png|jpg|jpeg)$/i, '.webp'), alt:'', className:'w-20 h-20 sm:w-24 sm:h-24 object-contain bg-gray-50' })
+          return e('button', { key:i, onClick:()=>chooseTop(i), disabled:isMatched, className:`rounded-lg border-2 ${cls} overflow-hidden transition-all hover:scale-105` },
+            e('img', { src:String(it.src||'').replace(/\.(png|jpg|jpeg)$/i, '.webp'), alt:'', className:'w-full h-20 sm:h-24 md:h-28 object-cover bg-gray-50' })
           );
         })
       ),
-      e('div', { className:'grid grid-cols-7 gap-2' },
+      e('div', { className:'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-7 gap-2' },
         shuffledBottom.map((it,j)=>{
           const isMatched = matchedBottomSet[it.idx];
-          const cls = isMatched ? 'border-green-600 bg-green-600 text-white' : 'border-gray-200 bg-gray-100';
-          return e('button', { key:j, onClick:()=>{ playAudio(it.audio); chooseBottom(j); }, disabled:isMatched, className:`px-2 py-1 rounded border text-xs ${cls} text-left` }, it.text);
+          const cls = isMatched ? 'border-green-600 bg-green-600 text-white' : 'border-gray-200 bg-gray-100 hover:border-green-400';
+          return e('button', { 
+            key:j, 
+            onClick:()=>{ playAudio(it.audio); chooseBottom(j); }, 
+            disabled:isMatched, 
+            className:`px-3 py-2 rounded-lg border-2 text-sm font-medium ${cls} text-left transition-all hover:scale-105 min-h-[44px] flex items-center justify-start` 
+          }, it.text);
         })
       ),
-      e('div', { className:'mt-2 text-xs' }, done ? e('span', { className:'text-green-700' }, 'Associação completa!') : e('span', { className:'text-gray-600' }, 'Toque primeiro na imagem e depois na frase'))
+      e('div', { className:'mt-3 text-sm text-center' }, done ? e('span', { className:'text-green-700 font-semibold' }, '✅ Associação completa!') : e('span', { className:'text-gray-600' }, 'Toque primeiro na imagem e depois na frase'))
     );
   }
 
