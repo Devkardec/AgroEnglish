@@ -475,11 +475,70 @@ function render() {
     pageInit = initGlossaryPage;
   } else if (hash.startsWith('#/settings')) {
     view = Settings({ state, setSetting });
+  } else if (hash.startsWith('#/offline')) {
+    view = Offline();
   } else {
     view = Offline();
   }
   app.innerHTML = Header() + view + Footer();
   pageInit();
+}
+
+const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+
+function loadProgress() {
+  try {
+    return JSON.parse(localStorage.getItem('progress') || '{}') || {};
+  } catch {
+    return {};
+  }
+}
+
+async function fetchJsonWithFallback(path1, path2) {
+  const tryFetch = async (p) => {
+    const res = await fetch(p);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  };
+  try {
+    return await tryFetch(path1);
+  } catch {
+    return tryFetch(path2);
+  }
+}
+
+async function loadLevelBlocks(level) {
+  const map = {
+    A1: ['/src/data/texts/A1/a1_blocks.json','./src/data/texts/A1/a1_blocks.json'],
+    A2: ['/src/data/texts/A2/a2_blocks.json','./src/data/texts/A2/a2_blocks.json'],
+    B1: ['/src/data/texts/B1/b1_blocks.json','./src/data/texts/B1/b1_blocks.json'],
+    B2: ['/src/data/texts/B2/b2_blocks.json','./src/data/texts/B2/b2_blocks.json'],
+    C1: ['/src/data/texts/C1/c1_blocks.json','./src/data/texts/C1/c1_blocks.json'],
+    C2: ['/src/data/texts/C2/c2_blocks.json','./src/data/texts/C2/c2_blocks.json']
+  };
+  const [p1, p2] = map[level] || [];
+  if (!p1 || !p2) throw new Error(`Unknown level ${level}`);
+  return fetchJsonWithFallback(p1, p2);
+}
+
+async function getLevelTotal(level) {
+  try {
+    const blocks = await loadLevelBlocks(level);
+    return Array.isArray(blocks) ? blocks.length : 10;
+  } catch {
+    return 10;
+  }
+}
+
+async function getAllLevelProgress() {
+  const prog = loadProgress();
+  const result = {};
+  for (const level of LEVELS) {
+    const total = await getLevelTotal(level);
+    const done = prog[level] || 0;
+    result[level] = { done, total };
+  }
+  return result;
 }
 
 function initGlossaryPage() {
@@ -602,36 +661,22 @@ function initGlossaryPage() {
 }
 
 async function initHomePage() {
-  const lvls = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  const lvls = LEVELS.slice();
   const preload = document.getElementById('preload');
   const cont = document.getElementById('continueCta');
-  const prog = JSON.parse(localStorage.getItem('progress')||'{}');
+  const prog = loadProgress();
   const last = prog.lastLevel;
   const idx = last ? (prog[last]||1) : 1;
   if (cont) cont.setAttribute('href', last ? `#/text/${last}/${idx}` : '#/text/A1/1');
-  async function getLevelCount(level){
-    const map = {
-      A1: ['/src/data/texts/A1/a1_blocks.json','./src/data/texts/A1/a1_blocks.json'],
-      A2: ['/src/data/texts/A2/a2_blocks.json','./src/data/texts/A2/a2_blocks.json'],
-      B1: ['/src/data/texts/B1/b1_blocks.json','./src/data/texts/B1/b1_blocks.json'],
-      B2: ['/src/data/texts/B2/b2_blocks.json','./src/data/texts/B2/b2_blocks.json'],
-      C1: ['/src/data/texts/C1/c1_blocks.json','./src/data/texts/C1/c1_blocks.json'],
-      C2: ['/src/data/texts/C2/c2_blocks.json','./src/data/texts/C2/c2_blocks.json']
-    };
-    const p = map[level];
-    try {
-      const r = await fetch(p[0]); if (r.ok) { const items = await r.json(); return Array.isArray(items)? items.length : 10; }
-    } catch {}
-    try {
-      const r = await fetch(p[1]); const items = await r.json(); return Array.isArray(items)? items.length : 10;
-    } catch {}
-    return 10;
-  }
-  const lastTotal = last ? await getLevelCount(last) : 10;
+  const lastTotal = last ? await getLevelTotal(last) : 10;
   const percent = last ? Math.round(((idx-1)/lastTotal)*100) : 0;
   const badge = document.getElementById('progressBadge');
   if (badge) badge.textContent = `Progresso ${percent}%`;
-  for (const l of lvls){ const b=document.getElementById(`badge-${l}`); if(b){ const n=prog[l]||0; const total = await getLevelCount(l); b.textContent = `${n}/${total}` } }
+  const all = await getAllLevelProgress();
+  for (const [level, stats] of Object.entries(all)) {
+    const b = document.getElementById(`badge-${level}`);
+    if (b) b.textContent = `${stats.done}/${stats.total}`;
+  }
 
   const tipEl = document.getElementById('dailyTip');
   const tipSpeak = document.getElementById('dailyTipSpeak');
@@ -651,6 +696,36 @@ async function initHomePage() {
           filesToCache.push(`/src/data/texts/${l}/text${i}.json`);
         }
       }
+      // Áudio essencial dos níveis A1 e A2
+      const mediaAudio = [
+        // A1: arquivos divididos (exemplo representativo)
+        '/src/audio/A1/texto-a1.1-dividido/part_1.mp3',
+        '/src/audio/A1/texto-a1.1-dividido/part_2.mp3',
+        '/src/audio/A1/texto-a1.1-dividido/part_3.mp3',
+        // A2: faixas principais (nomes conforme estrutura atual)
+        '/src/audio/A2/Basic Hygiene · A2.mp3',
+        '/src/audio/A2/Checking the Tractor · A2.mp3',
+        '/src/audio/A2/Cleaning the Stable · A2.mp3',
+        '/src/audio/A2/Daily Schedule and Address · A2.mp3',
+        '/src/audio/A2/Farm Routine Measures and Money · A2.mp3',
+        '/src/audio/A2/Harvesting Vegetables for Sale · A2.mp3',
+        '/src/audio/A2/Irrigation On Now · A2.mp3',
+        '/src/audio/A2/Milking Routine · A2.mp3',
+        '/src/audio/A2/Simple Bandage on a Dog · A2.mp3',
+        '/src/audio/A2/Sorting Eggs for Sale · A2.mp3',
+        '/src/audio/A2/Vitamins for Chickens · A2.mp3',
+        '/src/audio/A2/Walking the Field and Cleaning Tools · A2.mp3',
+      ];
+      // Imagens principais do módulo A1
+      const mediaImages = [
+        '/public/images/modulo1.webp',
+        // Exemplos de grupos de imagens dos primeiros textos A1
+        '/public/images/a1texto1/0.webp',
+        '/public/images/a1texto1/1.webp',
+        '/public/images/a1texto2/0.0.webp',
+        '/public/images/a1texto3/0.3.webp',
+      ];
+      filesToCache.push(...mediaAudio, ...mediaImages);
       if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
         navigator.serviceWorker.controller.postMessage({
           type: 'CACHE_FILES',
@@ -666,122 +741,33 @@ function initLevelPage(level) {
 
   const textList = document.getElementById('textList');
   if (textList) {
-    if (level === 'A1') {
-      const p1 = '/src/data/texts/A1/a1_blocks.json';
-      const p2 = './src/data/texts/A1/a1_blocks.json';
-      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const total = Array.isArray(items) ? items.length : 10;
-        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
-        const links = list.map((data, i) => {
+    loadLevelBlocks(level).then((items) => {
+      const total = Array.isArray(items) ? items.length : 10;
+      const list = Array.isArray(items)
+        ? items
+            .slice()
+            .sort(
+              (a, b) =>
+                Number(a && a.id || 0) - Number(b && b.id || 0)
+            )
+        : [];
+      const links = list
+        .map((data, i) => {
           const title = (data && data.title) ? data.title : `Texto ${i+1}`;
           const ptHint = String((data && data.title_pt) || '').trim();
-          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
+          const dataAttr = ptHint ? ` data-pt=\"${ptHint}\"` : '';
           const id = (data && data.id) ? Number(data.id) : (i+1);
-          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
-        }).join('');
-        textList.innerHTML = links;
-      }).catch(()=>{
-        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
-      });
-    } else if (level === 'A2') {
-      const p1 = '/src/data/texts/A2/a2_blocks.json';
-      const p2 = './src/data/texts/A2/a2_blocks.json';
-      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const total = Array.isArray(items) ? items.length : 10;
-        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
-        const links = list.map((data, i) => {
-          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
-          const ptHint = String((data && data.title_pt) || '').trim();
-          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          const id = (data && data.id) ? Number(data.id) : (i+1);
-          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
-        }).join('');
-        textList.innerHTML = links;
-      }).catch(()=>{
-        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
-      });
-    } else if (level === 'B1') {
-      const p1 = '/src/data/texts/B1/b1_blocks.json';
-      const p2 = './src/data/texts/B1/b1_blocks.json';
-      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const total = Array.isArray(items) ? items.length : 10;
-        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
-        const links = list.map((data, i) => {
-          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
-          const ptHint = String((data && data.title_pt) || '').trim();
-          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          const id = (data && data.id) ? Number(data.id) : (i+1);
-          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
-        }).join('');
-        textList.innerHTML = links;
-      }).catch(()=>{
-        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
-      });
-    } else if (level === 'C1') {
-      const p1 = '/src/data/texts/C1/c1_blocks.json';
-      const p2 = './src/data/texts/C1/c1_blocks.json';
-      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const total = Array.isArray(items) ? items.length : 10;
-        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
-        const links = list.map((data, i) => {
-          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
-          const ptHint = String((data && data.title_pt) || '').trim();
-          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          const id = (data && data.id) ? Number(data.id) : (i+1);
-          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
-        }).join('');
-        textList.innerHTML = links;
-      }).catch(()=>{
-        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
-      });
-    } else if (level === 'B2') {
-      const p1 = '/src/data/texts/B2/b2_blocks.json';
-      const p2 = './src/data/texts/B2/b2_blocks.json';
-      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const total = Array.isArray(items) ? items.length : 10;
-        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
-        const links = list.map((data, i) => {
-          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
-          const ptHint = String((data && data.title_pt) || '').trim();
-          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          const id = (data && data.id) ? Number(data.id) : (i+1);
-          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
-        }).join('');
-        textList.innerHTML = links;
-      }).catch(()=>{
-        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
-      });
-    } else if (level === 'C2') {
-      const p1 = '/src/data/texts/C2/c2_blocks.json';
-      const p2 = './src/data/texts/C2/c2_blocks.json';
-      (fetch(p1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(p2).then(r=> r.json()))).then(items => {
-        const total = Array.isArray(items) ? items.length : 10;
-        const list = Array.isArray(items) ? items.slice().sort((a,b)=> Number(a && a.id || 0) - Number(b && b.id || 0)) : [];
-        const links = list.map((data, i) => {
-          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
-          const ptHint = String((data && data.title_pt) || '').trim();
-          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          const id = (data && data.id) ? Number(data.id) : (i+1);
-          return `<a class="level-card" href="#/text/${level}/${id}"${dataAttr}><span class="title">${title}</span><span class="badge">${id}/${total}</span></a>`;
-        }).join('');
-        textList.innerHTML = links;
-      }).catch(()=>{
-        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
-      });
-    } else {
-      const reqs = Array.from({ length: 10 }, (_, i) => fetch(`/src/data/texts/${level}/text${i + 1}.json`).then(r => r.json()).catch(()=>null));
-      Promise.all(reqs).then(items => {
-        const links = items.map((data, i) => {
-          const title = (data && data.title) ? data.title : `Texto ${i+1}`;
-          const ptHint = String((data && data.title_pt) || '').trim();
-          const dataAttr = ptHint ? ` data-pt="${ptHint}"` : '';
-          return `<a class="level-card" href="#/text/${level}/${i+1}"${dataAttr}><span class="title">${title}</span><span class="badge">${i+1}/10</span></a>`;
-        }).join('');
-        textList.innerHTML = links;
-      }).catch(()=>{
-        textList.innerHTML = Array.from({length:10},(_,i)=>`<a class="level-card" href="#/text/${level}/${i+1}"><span class="title">Texto ${i+1}</span></a>`).join('');
-      });
-    }
+          return `<a class=\"level-card\" href=\"#/text/${level}/${id}\"${dataAttr}><span class=\"title\">${title}</span><span class=\"badge\">${id}/${total}</span></a>`;
+        })
+        .join('');
+      textList.innerHTML = links;
+    }).catch(() => {
+      textList.innerHTML = Array.from(
+        { length: 10 },
+        (_, i) =>
+          `<a class=\"level-card\" href=\"#/text/${level}/${i+1}\"><span class=\"title\">Texto ${i+1}</span></a>`
+      ).join('');
+    });
   }
 
   const openBtn = document.getElementById('openLevelInfo');
@@ -889,6 +875,40 @@ async function setupAudio(data) {
   audio.addEventListener('timeupdate', () => { if (!hasMp3) return; const d = audio.duration||0; const c = audio.currentTime||0; if (seekRange && isFinite(d) && d>0) seekRange.value = String((c/d)*100); if (timeEl) timeEl.textContent = fmt(c)+' / '+fmt(d); if (boundaries.length===sentences.length+1) { for(let i=0;i<sentences.length;i++){ if (c>=boundaries[i] && c<boundaries[i+1]) { if (curSentIdx!==i) { curSentIdx=i; updateSentLabel(); setActiveSentence(curSentIdx); } break; } } } });
 }
 
+  function setupTabs({ tabs, storageKey, onTabChange }) {
+    if (!Array.isArray(tabs) || !tabs.length) return;
+    const stateKey = storageKey || 'tab';
+    const current = (function () {
+      try {
+        return localStorage.getItem(stateKey) || tabs[0].id;
+      } catch {
+        return tabs[0].id;
+      }
+    })();
+
+    function show(tabId) {
+      tabs.forEach(({ id, button, panel }) => {
+        const isActive = id === tabId;
+        if (panel) panel.style.display = isActive ? 'block' : 'none';
+        if (button) {
+          button.classList.toggle('secondary', !isActive);
+          button.classList.toggle('active', isActive);
+        }
+      });
+      try {
+        localStorage.setItem(stateKey, tabId);
+        localStorage.setItem('lastTab', tabId);
+      } catch {}
+      if (onTabChange) onTabChange(tabId);
+    }
+
+    tabs.forEach(({ id, button }) => {
+      if (button) button.addEventListener('click', () => show(id));
+    });
+
+    show(current);
+  }
+
   function setupUI(data) {
     document.getElementById('title').textContent = data.title + ' · ' + level;
     const vEl = document.querySelector('#verbs'); if (vEl) vEl.textContent = '';
@@ -899,31 +919,28 @@ async function setupAudio(data) {
     const btnStudy = document.getElementById('tabStudyBtn');
     const btnPractice = document.getElementById('tabPracticeBtn');
     const btnSpeech = document.getElementById('tabSpeechBtn');
-    function showTab(tab){
-      if (!study || !practice || !speech) return;
-      study.style.display = tab==='study' ? 'block' : 'none';
-      practice.style.display = tab==='practice' ? 'block' : 'none';
-      speech.style.display = tab==='speech' ? 'block' : 'none';
-      if (btnStudy && btnPractice && btnSpeech){
-        btnStudy.classList.toggle('secondary', tab!=='study');
-        btnPractice.classList.toggle('secondary', tab!=='practice');
-        btnSpeech.classList.toggle('secondary', tab!=='speech');
-        btnStudy.classList.toggle('active', tab==='study');
-        btnPractice.classList.toggle('active', tab==='practice');
-        btnSpeech.classList.toggle('active', tab==='speech');
-      }
-      try { localStorage.setItem('lastTab', tab) } catch {}
-      if (tab==='practice') {
-        try { if (window.ExercisePageMount) window.ExercisePageMount(level, idx, data); } catch {}
-      }
-    }
-    if (btnStudy) btnStudy.addEventListener('click', ()=> showTab('study'));
-    if (btnPractice) btnPractice.addEventListener('click', ()=> showTab('practice'));
-    if (btnSpeech) btnSpeech.addEventListener('click', ()=> showTab('speech'));
+
     const routeKey = `textRoute:${String(level).toUpperCase()}:${String(idx)}`;
     const visited = (function(){ try { return sessionStorage.getItem(routeKey) } catch { return null } })();
-    const initialTab = visited ? (localStorage.getItem('lastTab') || 'study') : 'study';
-    showTab(initialTab);
+    const storageKey = `textTab:${String(level).toUpperCase()}:${String(idx)}`;
+    if (!visited) {
+      try { localStorage.removeItem(storageKey); } catch {}
+    }
+
+    setupTabs({
+      storageKey,
+      tabs: [
+        { id: 'study', button: btnStudy, panel: study },
+        { id: 'practice', button: btnPractice, panel: practice },
+        { id: 'speech', button: btnSpeech, panel: speech },
+      ],
+      onTabChange: (tab) => {
+        if (tab === 'practice') {
+          try { if (window.ExercisePageMount) window.ExercisePageMount(level, idx, data); } catch {}
+        }
+      },
+    });
+
     try { sessionStorage.setItem(routeKey, '1') } catch {}
 
     document.querySelector('#toggleTr').addEventListener('click', () => {
