@@ -5475,6 +5475,8 @@ function renderGrammar(data) {
           ];
         } else if (isA1 && Number(idx)===8) {
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.8-dividido/audio_part_${i+1}.mp3`);
+        } else if (isA1 && Number(idx)===10) {
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.10-dividido/audio_${i+1}.mp3`);
         }
         if (isA1 && Number(idx)===5) {
           const fullAllEn = [
