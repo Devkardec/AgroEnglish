@@ -595,6 +595,26 @@
                   : String(data.text||'').split(/(?<=[.!?])\s+/)));
         return imgs.map((src,i)=> ({ src, text: String(lines[i]||'').trim() }));
       }
+      if (isA1 && Number(idx)===10) {
+        const imgs = [
+          '/public/images/a1texto10/1.10.webp',
+          '/public/images/a1texto10/2.10.webp',
+          '/public/images/a1texto10/3.10.webp',
+          '/public/images/a1texto10/4.10.webp',
+          '/public/images/a1texto10/5.10.webp',
+          '/public/images/a1texto10/6.10.webp',
+          '/public/images/a1texto10/7.10.webp',
+          '/public/images/a1texto10/8.10.webp'
+        ];
+        const lines = Array.isArray(data.pairs)
+          ? data.pairs.map(p=> String(p.en||'').trim())
+          : (Array.isArray(ex.narration_sentences)
+              ? ex.narration_sentences
+              : (Array.isArray(data.lines)
+                  ? data.lines.map(l=> String(l.en||'').trim())
+                  : String(data.text||'').split(/(?<=[.!?])\s+/)));
+        return imgs.map((src,i)=> ({ src, text: String(lines[i]||'').trim() }));
+      }
       const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
       const texts = base.filter(Boolean).slice(0,count).map(t=> String(t).trim());
       const placeholder = '/public/icons/apple-touch-icon.webp';

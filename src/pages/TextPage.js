@@ -29,6 +29,72 @@ export function TextPage(level, index) {
             </div>
           </div>
   ` : '';
+  const lessonA1T10 = (isA1 && Number(index)===10) ? `
+    <div class="section-title" style="margin-top:12px">🚜 Aula 10 – Capabilities na Fazenda</div>
+    <div class="small" style="margin-top:8px"><strong>Tema:</strong> Máquinas e habilidades dos trabalhadores</div>
+    <div class="small" style="margin-top:4px"><strong>Título:</strong> Machinery and Skills</div>
+    <div class="section-title" style="margin-top:12px">🎯 Objetivos da Aula</div>
+    <ul style="margin-top:8px">
+      <li>Usar can / cannot para falar de habilidades e capacidades.</li>
+      <li>Formar frases afirmativas, negativas e interrogativas com can.</li>
+      <li>Ampliar vocabulário sobre máquinas agrícolas e tarefas da fazenda.</li>
+      <li>Reconhecer como expressar o que é possível ou não fazer.</li>
+    </ul>
+    <div class="section-title" style="margin-top:12px">📚 Estrutura da Aula</div>
+    <div style="margin-top:8px"><strong>1. Introdução Bonita</strong></div>
+    <div class="small" style="margin-top:4px">Na fazenda, cada pessoa tem uma função e cada máquina tem uma capacidade.</div>
+    <div style="margin-top:6px">O trator pode puxar toneladas.</div>
+    <div>O trabalhador pode dirigir a caminhonete.</div>
+    <div>Mas nem todos podem operar a colheitadeira. É assim que usamos can / cannot em inglês.</div>
+    <div style="margin-top:10px"><strong>2. Estrutura do “Can”</strong></div>
+    <div>Afirmativa: Sujeito + can + verbo base</div>
+    <div>John can operate the harvester.</div>
+    <div style="margin-top:6px">Negativa: Sujeito + cannot (can’t) + verbo base</div>
+    <div>I cannot drive the heavy tractor.</div>
+    <div style="margin-top:6px">Pergunta: Can + sujeito + verbo base</div>
+    <div>Can you help me with the bags?</div>
+    <div class="small" style="margin-top:6px">➡️ Respostas curtas: Yes, I can. / No, I can’t.</div>
+    <div class="section-title" style="margin-top:12px">3. Vocabulário Essencial</div>
+    <table style="width:100%;border-collapse:collapse;margin-top:6px">
+      <thead><tr><th style="text-align:left">EN</th><th style="text-align:left">PT</th><th style="text-align:left">Pronúncia (BR)</th></tr></thead>
+      <tbody>
+        <tr><td>can</td><td>poder / conseguir</td><td>kén</td></tr>
+        <tr><td>cannot (can’t)</td><td>não poder</td><td>ké-not</td></tr>
+        <tr><td>operate</td><td>operar</td><td>ó-pe-reit</td></tr>
+        <tr><td>pull</td><td>puxar</td><td>púl</td></tr>
+        <tr><td>help</td><td>ajudar</td><td>hélp</td></tr>
+        <tr><td>license</td><td>licença</td><td>lái-sens</td></tr>
+        <tr><td>trailer</td><td>carreta</td><td>trêi-lâr</td></tr>
+        <tr><td>tons</td><td>toneladas</td><td>tânz</td></tr>
+        <tr><td>pickup truck</td><td>caminhonete</td><td>pík-âp trúk</td></tr>
+      </tbody>
+    </table>
+    <div class="section-title" style="margin-top:12px">🌟 Exemplos Criativos</div>
+    <div style="margin-top:6px"><strong>👷‍♂️ Pessoas e suas habilidades</strong></div>
+    <div>We have a skilled team on the farm. → Temos uma equipe qualificada na fazenda.</div>
+    <div>John can operate the new harvester. → John pode operar a colheitadeira nova.</div>
+    <div>He has a special license. → Ele tem uma licença especial.</div>
+    <div style="margin-top:8px"><strong>🚜 Máquinas e suas capacidades</strong></div>
+    <div>This red tractor is very strong. → Este trator vermelho é muito forte.</div>
+    <div>It can pull a large trailer with five tons of soy. → Ele pode puxar uma carreta grande com cinco toneladas de soja.</div>
+    <div style="margin-top:8px"><strong>❓ Perguntas úteis</strong></div>
+    <ul style="margin-top:6px">
+      <li>Can you help me with the bags? → Você pode me ajudar com os sacos?</li>
+      <li>Can we do this together? → Nós podemos fazer isso juntos?</li>
+    </ul>
+    <div class="small">➡️ Resposta: Yes, we can do this together.</div>
+    <div class="section-title" style="margin-top:12px">🌾 Mais exemplos bonitos</div>
+    <div>I can drive the pickup truck, but I cannot drive the heavy tractor. → Eu posso dirigir a caminhonete, mas não posso dirigir o trator pesado.</div>
+    <div>The team can finish the work today. → A equipe pode terminar o trabalho hoje.</div>
+    <div>The machine can work fast in the field. → A máquina pode trabalhar rápido no campo.</div>
+    <div class="section-title" style="margin-top:12px">🔚 Encerramento</div>
+    <ul style="margin-top:6px">
+      <li>O uso de can / cannot para falar de habilidades e capacidades.</li>
+      <li>Estruturas afirmativas, negativas e interrogativas com can.</li>
+      <li>Vocabulário essencial sobre máquinas e tarefas da fazenda.</li>
+      <li>Como expressar o que é possível ou não fazer na rotina agrícola.</li>
+    </ul>
+  ` : '';
   const lessonA1T8 = (isA1 && Number(index)===8) ? `
     <div class="section-title" style="margin-top:12px">⚠️ Aula 8 – Imperatives & Warnings na Fazenda</div>
     <div class="small" style="margin-top:8px"><strong>Tema:</strong> Regras de segurança na fazenda</div>
@@ -216,7 +282,7 @@ export function TextPage(level, index) {
           ${ytEmbedA1T7}
           ${ytEmbedA1T8}
           ${ytEmbedA1T9}
-          ${lessonA1T8 || lessonA1T9 || `<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div><div id="slideLessonRoot" style="margin-top:12px"></div>`}
+          ${lessonA1T8 || lessonA1T9 || lessonA1T10 || `<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div><div id="slideLessonRoot" style="margin-top:12px"></div>`}
           <div class="section-title" style="margin-top:12px">📖 Texto narrado</div>
           <div style="margin-top:8px">
             <details class="accordion">
