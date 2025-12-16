@@ -13,7 +13,7 @@ export function Header() {
     <!-- Header Modernizado (Sem navegação - apenas logo) -->
     <header class="app-header">
       <div class="brand">
-        <img src="/img/logoagroenglishSF.webp" width="84" height="84" alt="AgroEnglish Logo" loading="lazy" />
+        <img src="/img/logoagroenglishSF.webp" alt="AgroEnglish Logo" loading="lazy" class="brand-logo" />
       </div>
     </header>
     

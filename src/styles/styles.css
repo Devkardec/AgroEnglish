@@ -624,13 +624,13 @@ input[type="range"]::-moz-range-thumb {
   padding: var(--spacing-sm) var(--spacing-md); 
   display: flex; 
   align-items: center; 
-  justify-content: center; /* Centralizado */
+  justify-content: center; 
   position: sticky; 
   top: 0; 
   z-index: 100; 
   box-shadow: var(--shadow-md);
-  backdrop-filter: blur(10px);
-  min-height: 64px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 60px;
 }
 
 .app-header .brand { 
@@ -638,23 +638,34 @@ input[type="range"]::-moz-range-thumb {
   align-items: center; 
   justify-content: center;
   gap: var(--spacing-sm);
+  width: 100%;
 }
 
-.app-header .brand img {
-  height: 48px;
+.app-header .brand img,
+.app-header .brand-logo {
+  height: 80px;
   width: auto;
   object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Desktop: header maior */
+.app-header .brand img:hover,
+.app-header .brand-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+/* Desktop: header compacto mas logo grande */
 @media (min-width: 769px) {
   .app-header {
-    padding: var(--spacing-md);
-    min-height: 72px;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    min-height: 70px;
   }
   
-  .app-header .brand img {
-    height: 56px;
+  .app-header .brand img,
+  .app-header .brand-logo {
+    height: 96px;
   }
 }
 
@@ -863,12 +874,13 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
    ============================================ */
 @media (max-width: 640px) {
   .app-header { 
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-md);
     min-height: 56px;
   }
   
-  .app-header .brand img { 
-    height: 40px; 
+  .app-header .brand img,
+  .app-header .brand-logo { 
+    height: 72px; 
     width: auto; 
     object-fit: contain; 
   }
@@ -930,8 +942,9 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
     justify-content: center;
   }
   
-  .app-header .brand img { 
-    height: 56px; 
+  .app-header .brand img,
+  .app-header .brand-logo { 
+    height: 88px; 
     width: auto; 
     object-fit: contain; 
   }
