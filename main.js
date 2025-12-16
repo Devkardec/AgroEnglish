@@ -671,7 +671,9 @@ async function initHomePage() {
   const lastTotal = last ? await getLevelTotal(last) : 10;
   const percent = last ? Math.round(((idx-1)/lastTotal)*100) : 0;
   const badge = document.getElementById('progressBadge');
-  if (badge) badge.textContent = `Progresso ${percent}%`;
+  if (badge) badge.textContent = `${percent}%`;
+  const progressBar = document.getElementById('progressBarFill');
+  if (progressBar) progressBar.style.width = `${percent}%`;
   const all = await getAllLevelProgress();
   for (const [level, stats] of Object.entries(all)) {
     const b = document.getElementById(`badge-${level}`);
