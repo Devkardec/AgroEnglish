@@ -1359,7 +1359,7 @@ function renderGrammar(data) {
     const beQRows = groupBe.map(s=>({ en: annotateTextManual(beQuestionLine(s.en)), pt: ptQ(s.pt||'') }));
     function beTable(a,b,c){ return `
       <table style="width:100%;border-collapse:collapse">
-        <thead><tr><th style="text-align:left;color:#15803d">Afirmativa</th><th style="text-align:left">Negativa</th><th style="text-align:left">Pergunta</th></tr></thead>
+        <thead><tr><th style="text-align:left;color:#047857">Afirmativa</th><th style="text-align:left">Negativa</th><th style="text-align:left">Pergunta</th></tr></thead>
         <tbody>
           ${a.map((x,i)=>`<tr><td class="sent-aff">${colorBeTokens(x.en)}${svcExplain(x.en)}</td><td class="sent-neg">${colorBeTokens(b[i].en)}${svcExplain(b[i].en)}</td><td class="sent-q">${colorBeTokens(c[i].en)}${svcExplain(c[i].en)}</td></tr>`).join('')}
         </tbody>
@@ -1550,10 +1550,10 @@ function renderGrammar(data) {
             <audio id="vidAudio" preload="metadata" style="display:none"></audio>
             <div class="yt-controls" style="margin-top:12px;background:#0f0f0f;color:#fff;border-radius:12px;padding:6px 8px;display:flex;align-items:center;gap:3px;flex-wrap:nowrap">
               <button id="ytPrev" title="Anterior" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px">⏮</button>
-              <button id="ytPlay" title="Play/Pause" style="background:#0b3a1e;color:#fff;border:none;border-radius:999px;padding:6px 8px;font-weight:700">▶</button>
+              <button id="ytPlay" title="Play/Pause" style="background:#065f46;color:#fff;border:none;border-radius:999px;padding:6px 8px;font-weight:700">▶</button>
               <button id="ytNext" title="Próximo" style="background:#1f2937;color:#fff;border:none;border-radius:8px;padding:4px 6px">⏭</button>
               <div style="display:flex;align-items:center;gap:4px;flex:0 0 auto">
-                <input id="ytProgress" type="range" min="0" max="1000" value="0" style="width:70px;flex:0 0 70px;height:5px;border-radius:4px;background:linear-gradient(90deg,#16a34a 0%,#34d399 0%,#555 0%,#555 100%);appearance:none">
+                <input id="ytProgress" type="range" min="0" max="1000" value="0" style="width:70px;flex:0 0 70px;height:5px;border-radius:4px;background:linear-gradient(90deg,#10b981 0%,#059669 0%,#555 0%,#555 100%);appearance:none">
                 <div id="ytTime" class="small" style="min-width:36px;text-align:right;color:#e5e7eb;white-space:nowrap">00:00</div>
                 <div style="opacity:.7;min-width:6px">/</div>
                 <div id="ytDuration" class="small" style="min-width:36px;color:#e5e7eb;white-space:nowrap">00:00</div>
@@ -1916,7 +1916,7 @@ function renderGrammar(data) {
         const cur = Number(audioEl && audioEl.currentTime || 0);
         if (durEl) durEl.textContent = fmt(Math.floor(dur));
         if (curEl) curEl.textContent = fmt(Math.floor(cur));
-        if (prog && dur){ const p = Math.round(cur/dur*1000); prog.value = String(p); prog.style.background = `linear-gradient(90deg,#16a34a 0%,#34d399 ${p/10}%,#555 ${p/10}%,#555 100%)`; }
+        if (prog && dur){ const p = Math.round(cur/dur*1000); prog.value = String(p); prog.style.background = `linear-gradient(90deg,#10b981 0%,#059669 ${p/10}%,#555 ${p/10}%,#555 100%)`; }
       }
       function play(){
         playing = true; if (i<0) i=0; lastScene = -1; show(i);
@@ -2122,7 +2122,7 @@ function renderGrammar(data) {
 
       let score = 0; let streak = 1; let lives = 3; let timeLeft = 60; let qi = 0; let timer = null; let playing = false; let hintsLeft = 2; let best = 0;
       try { best = Number(localStorage.getItem('textSprintHiScore:'+levelTag)||0) } catch {}
-      const hud = `<div id="gameHUD" class="small" style="display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap"><div style="font-weight:600">${titleTag} · ${levelTag}</div><div>Pontuação <span id="gScore">0</span></div><div>Série x<span id="gStreak">1</span></div><div style="flex:1;min-width:160px"><div style="height:8px;background:#e6f1ec;border-radius:6px;overflow:hidden"><div id="gProg" style="width:0%;height:8px;background:linear-gradient(90deg,#0b3a1e,#36a269);transition:width .3s"></div></div></div><div>Tempo <span id="gTime">60</span>s</div><div>Vidas <span id="gLives">♥♥♥</span></div><div>Melhor <span id="gBest">${best}</span></div></div>`;
+      const hud = `<div id="gameHUD" class="small" style="display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap"><div style="font-weight:600">${titleTag} · ${levelTag}</div><div>Pontuação <span id="gScore">0</span></div><div>Série x<span id="gStreak">1</span></div><div style="flex:1;min-width:160px"><div style="height:8px;background:#e6f1ec;border-radius:6px;overflow:hidden"><div id="gProg" style="width:0%;height:8px;background:linear-gradient(90deg,#065f46,#047857);transition:width .3s"></div></div></div><div>Tempo <span id="gTime">60</span>s</div><div>Vidas <span id="gLives">♥♥♥</span></div><div>Melhor <span id="gBest">${best}</span></div></div>`;
 
       let gameEl = document.getElementById('gameTop') || gEx;
       if (gameEl) {
