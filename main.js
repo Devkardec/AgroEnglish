@@ -10,6 +10,8 @@ import vocabularyData from './src/data/vocabularyData.js';
 import { GlossaryCard } from './src/components/GlossaryCard.js';
 import { Footer } from './src/components/Footer.js';
 
+const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+
 const state = {
   voiceName: localStorage.getItem('voiceName') || '',
   rate: Number(localStorage.getItem('rate') || 1),
@@ -483,8 +485,6 @@ function render() {
   app.innerHTML = Header() + view + Footer();
   pageInit();
 }
-
-const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
 function loadProgress() {
   try {
