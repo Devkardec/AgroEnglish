@@ -3017,15 +3017,21 @@ function renderGrammar(data) {
         // Mini-História (gerada a partir dos pares)
         if (pairs.length > 0) {
           parts.push('<div class="section-title" style="margin-top:12px">🌾 Mini‑História: Contexto Prático</div>');
-              parts.push('<div class="card">');
+          parts.push('<div class="card">');
           const storyPairs = pairs.slice(0, Math.min(8, pairs.length));
           storyPairs.forEach((pair, i) => {
-            if (i === 0) parts.push('<div class="small"><strong>🌅 Situação Inicial</strong></div>');
-            else if (i === Math.floor(storyPairs.length / 2)) parts.push('<div class="small" style="margin-top:10px"><strong>🏡 Desenvolvimento</strong></div>');
-            else if (i === storyPairs.length - 1) parts.push('<div class="small" style="margin-top:10px"><strong>✅ Conclusão</strong></div>');
+            if (i === 0) {
+              parts.push('<div class="small"><strong>🌅 Situação Inicial</strong></div>');
+            } else if (i === storyPairs.length - 1) {
+              // Sempre mostrar "Conclusão" no último item, mesmo que seja o meio
+              parts.push('<div class="small" style="margin-top:10px"><strong>✅ Conclusão</strong></div>');
+            } else if (i === Math.floor(storyPairs.length / 2)) {
+              // Mostrar "Desenvolvimento" apenas se não for o último item
+              parts.push('<div class="small" style="margin-top:10px"><strong>🏡 Desenvolvimento</strong></div>');
+            }
             parts.push(`<div class="small" style="margin-top:6px">${pair.pt ? `→ ${pair.pt}` : ''} ${pair.en ? `→ ${pair.en}` : ''}</div>`);
           });
-              parts.push('</div>');
+          parts.push('</div>');
         }
         
         // Resumo da Aula
