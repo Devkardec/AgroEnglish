@@ -585,7 +585,8 @@
     "text_en": "Tomorrow is Monday. It is an important day. We will start the soybean harvest. The trucks will arrive at 7:00 AM. On Tuesday, we will load the grain into the silos. The mechanic will check the harvester again. The weather will be sunny all week. We will sell the production on Friday. It will be a busy week for us.",
     "text_pt": "Amanhã é segunda-feira. É um dia importante. Nós vamos começar a colheita da soja. Os caminhões vão chegar às 7:00. Na terça-feira, nós vamos carregar o grão nos silos. O mecânico vai verificar a colheitadeira novamente. O clima vai estar ensolarado a semana toda. Nós vamos vender a produção na sexta-feira. Será uma semana cheia para nós.",
     "pairs": [
-      {"en":"Tomorrow is Monday. It is an important day.","pt":"Amanhã é segunda-feira. É um dia importante."},
+      {"en":"Tomorrow is Monday.","pt":"Amanhã é segunda-feira."},
+      {"en":"It is an important day.","pt":"É um dia importante."},
       {"en":"We will start the soybean harvest.","pt":"Nós vamos começar a colheita da soja."},
       {"en":"The trucks will arrive at 7:00 AM.","pt":"Os caminhões vão chegar às 7:00."},
       {"en":"On Tuesday, we will load the grain into the silos.","pt":"Na terça-feira, nós vamos carregar o grão nos silos."},

@@ -2540,8 +2540,13 @@ function renderGrammar(data) {
         ];
       }
       if (pairs.length) {
-        const useImg = (lvl==='A1' && curIdx===10);
-        const imgs = useImg ? Array.from({length: Math.min(pairs.length, 11)}, (_,i)=> `/public/images/a1texto10/${i+1}.10.webp`) : [];
+        const useImg = (lvl==='A1' && (curIdx===10 || curIdx===11));
+        let imgs = [];
+        if (lvl==='A1' && curIdx===10) {
+          imgs = Array.from({length: Math.min(pairs.length, 11)}, (_,i)=> `/public/images/a1texto10/${i+1}.10.webp`);
+        } else if (lvl==='A1' && curIdx===11) {
+          imgs = Array.from({length: Math.min(pairs.length, 11)}, (_,i)=> `/public/images/a1texto11/${i+1}.11.webp`);
+        }
         linesEl.innerHTML = pairs.map((p,i)=>`<div class="line">${useImg && imgs[i] ? `<img src="${imgs[i]}" alt="${p.en}" loading="lazy" class="object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}<div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div><div class="phon">${phoneticBR(p.en)}</div></div>`).join('');
         return;
       }
@@ -4799,7 +4804,7 @@ function renderGrammar(data) {
           ptSentences = Array(sentences.length).fill('');
         }
         let imgCountBase = Math.min((sentences.length || 0), maxCount);
-        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8 || Number(idx)===9 || Number(idx)===10);
+        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8 || Number(idx)===9 || Number(idx)===10 || Number(idx)===11);
         try {
           if (useImages) { pronList.classList.add('speech-a1'); } else { pronList.classList.remove('speech-a1'); }
         } catch {}
@@ -4858,6 +4863,8 @@ function renderGrammar(data) {
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto9/${i+1}.9.webp`);
           } else if (Number(idx)===10) {
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto10/${i+1}.10.webp`);
+          } else if (Number(idx)===11) {
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto11/${i+1}.11.webp`);
           }
         }
         let segUrls = [];
@@ -4901,6 +4908,8 @@ function renderGrammar(data) {
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.8-dividido/audio_part_${i+1}.mp3`);
         } else if (isA1 && Number(idx)===10) {
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.10-dividido/audio_${i+1}.mp3`);
+        } else if (isA1 && Number(idx)===11) {
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.11-dividido/audio_${i+1}.mp3`);
         }
         if (isA1 && Number(idx)===5) {
           const fullAllEn = [

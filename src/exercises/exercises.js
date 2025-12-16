@@ -620,6 +620,19 @@
                   : String(data.text||'').split(/(?<=[.!?])\s+/)));
         return imgs.map((src,i)=> ({ src, text: String(lines[i]||'').trim() }));
       }
+      if (isA1 && Number(idx)===11) {
+        return [
+          { src:'/public/images/a1texto11/1.11.webp', text:'Tomorrow is Monday.' },
+          { src:'/public/images/a1texto11/2.11.webp', text:'It is an important day.' },
+          { src:'/public/images/a1texto11/3.11.webp', text:'We will start the soybean harvest.' },
+          { src:'/public/images/a1texto11/4.11.webp', text:'The trucks will arrive at 7:00 AM.' },
+          { src:'/public/images/a1texto11/5.11.webp', text:'On Tuesday, we will load the grain into the silos.' },
+          { src:'/public/images/a1texto11/6.11.webp', text:'The mechanic will check the harvester again.' },
+          { src:'/public/images/a1texto11/7.11.webp', text:'The weather will be sunny all week.' },
+          { src:'/public/images/a1texto11/8.11.webp', text:'We will sell the production on Friday.' },
+          { src:'/public/images/a1texto11/9.11.webp', text:'It will be a busy week for us.' }
+        ];
+      }
       const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
       const texts = base.filter(Boolean).slice(0,count).map(t=> String(t).trim());
       const placeholder = '/public/icons/apple-touch-icon.webp';
@@ -651,7 +664,7 @@
           )
         ),
         e(ExerciseCard, { title:'Ditado', instruction:'Ouça e escreva' },
-          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8 || Number(idx)===9 || Number(idx)===10))
+          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8 || Number(idx)===9 || Number(idx)===10 || Number(idx)===11))
             ? e(DictationExercise, {
                 sentences: (Number(idx)===1 ? [
                   "Hello! I am Paul, and I am a farmer.",
@@ -711,6 +724,16 @@
                   'It can pull a large trailer with five tons of soy.',
                   'Can you help me with the bags?',
                   'Yes, we can do this together.'
+                ] : Number(idx)===11 ? [
+                  'Tomorrow is Monday.',
+                  'It is an important day.',
+                  'We will start the soybean harvest.',
+                  'The trucks will arrive at 7:00 AM.',
+                  'On Tuesday, we will load the grain into the silos.',
+                  'The mechanic will check the harvester again.',
+                  'The weather will be sunny all week.',
+                  'We will sell the production on Friday.',
+                  'It will be a busy week for us.'
                 ] : [
                   'The sun is very hot today.',
                   'The corn needs rain.',
@@ -777,6 +800,16 @@
                   '/src/audio/A1/texto-a1.10-dividido/audio_6.mp3',
                   '/src/audio/A1/texto-a1.10-dividido/audio_7.mp3',
                   '/src/audio/A1/texto-a1.10-dividido/audio_8.mp3'
+                ] : Number(idx)===11 ? [
+                  '/src/audio/A1/texto-a1.11-dividido/audio_1.mp3',
+                  '/src/audio/A1/texto-a1.11-dividido/audio_2.mp3',
+                  '/src/audio/A1/texto-a1.11-dividido/audio_3.mp3',
+                  '/src/audio/A1/texto-a1.11-dividido/audio_4.mp3',
+                  '/src/audio/A1/texto-a1.11-dividido/audio_5.mp3',
+                  '/src/audio/A1/texto-a1.11-dividido/audio_6.mp3',
+                  '/src/audio/A1/texto-a1.11-dividido/audio_7.mp3',
+                  '/src/audio/A1/texto-a1.11-dividido/audio_8.mp3',
+                  '/src/audio/A1/texto-a1.11-dividido/audio_9.mp3'
                 ] : [
                     '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
                     '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',
@@ -789,7 +822,7 @@
             : e(DictationExercise, { sentences: (Array.isArray(ex.narration_sentences)? ex.narration_sentences.slice(0,6) : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/))).slice(0,6) })
         ),
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
-          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9))
+          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9 || Number(idx)===11))
             ? e(ImageSentenceAssociation, { items: (Number(idx)===1 ? [
                 { src:'/public/images/a1texto1/0.webp', text:'Hello! I am Paul, and I am a farmer.', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
                 { src:'/public/images/a1texto1/1.webp', text:'I am at the farm now.', audio:'/src/audio/A1/texto-a1.1-dividido/part_2.mp3' },
@@ -824,6 +857,16 @@
                 { src:'/public/images/a1texto9/6.9.webp', text:'The cows are waiting in the shade.' },
                 { src:'/public/images/a1texto9/7.9.webp', text:'They are not eating at this moment.' },
                 { src:'/public/images/a1texto9/8.9.webp', text:'Everything is moving fast today.' }
+              ] : Number(idx)===11 ? [
+                { src:'/public/images/a1texto11/1.11.webp', text:'Tomorrow is Monday.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_1.mp3' },
+                { src:'/public/images/a1texto11/2.11.webp', text:'It is an important day.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_2.mp3' },
+                { src:'/public/images/a1texto11/3.11.webp', text:'We will start the soybean harvest.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_3.mp3' },
+                { src:'/public/images/a1texto11/4.11.webp', text:'The trucks will arrive at 7:00 AM.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_4.mp3' },
+                { src:'/public/images/a1texto11/5.11.webp', text:'On Tuesday, we will load the grain into the silos.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_5.mp3' },
+                { src:'/public/images/a1texto11/6.11.webp', text:'The mechanic will check the harvester again.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_6.mp3' },
+                { src:'/public/images/a1texto11/7.11.webp', text:'The weather will be sunny all week.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_7.mp3' },
+                { src:'/public/images/a1texto11/8.11.webp', text:'We will sell the production on Friday.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_8.mp3' },
+                { src:'/public/images/a1texto11/9.11.webp', text:'It will be a busy week for us.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_9.mp3' }
               ] : [
                 { src:'/public/images/a1texto5/1.5.webp', text:'The sun is very hot today.', audio:'/src/audio/A1/texto-a1.5-dividido/part_1.mp3' },
                 { src:'/public/images/a1texto5/3.5.webp', text:'The corn needs rain.', audio:'/src/audio/A1/texto-a1.5-dividido/part_3.mp3' },
