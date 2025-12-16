@@ -542,9 +542,10 @@ async function getAllLevelProgress() {
 }
 
 function initGlossaryPage() {
-  const filterContainer = document.querySelector('.filter-container');
+  const filterContainer = document.querySelector('.filter-container-modern') || document.querySelector('.filter-container');
   const grid = document.getElementById('glossary-grid');
   const searchInput = document.getElementById('glossary-search');
+  const searchClear = document.getElementById('glossary-search-clear');
   const countEl = document.getElementById('glossary-count');
   const sortSelect = document.getElementById('glossary-sort-select');
   const loadMoreBtn = document.getElementById('glossary-load-more');
@@ -553,7 +554,7 @@ function initGlossaryPage() {
   if (filterContainer && grid) {
     const apply = () => {
       const q = (localStorage.getItem('glossaryQuery')||'').trim().toLowerCase();
-      const catBtn = filterContainer.querySelector('.filter-btn.active');
+      const catBtn = filterContainer.querySelector('.filter-btn-modern.active') || filterContainer.querySelector('.filter-btn.active');
       const category = catBtn ? catBtn.dataset.category : (localStorage.getItem('glossaryCategory')||'All');
       const sort = localStorage.getItem('glossarySort')||'az';
       let data = (category === 'All' ? vocabularyData : vocabularyData.filter(item => item.category === category))
@@ -567,20 +568,36 @@ function initGlossaryPage() {
       if (sort === 'category') data = data.slice().sort((a,b)=>String(a.category||'').localeCompare(String(b.category||'')) || String(a.term_en||'').localeCompare(String(b.term_en||'')));
       const visible = data.slice(0, pageSize);
       grid.innerHTML = visible.map(GlossaryCard).join('');
-      if (countEl) countEl.textContent = `${data.length} termos`;
+      if (countEl) {
+        const countNumber = countEl.querySelector('.count-number');
+        const countLabel = countEl.querySelector('.count-label');
+        if (countNumber) countNumber.textContent = data.length;
+        else countEl.textContent = `${data.length} termos`;
+      }
       const flipMap = JSON.parse(localStorage.getItem('glossaryFlip')||'{}');
       for (const k in flipMap) {
         const cardEl = grid.querySelector(`.glossary-card-container[data-id="${k}"] .glossary-card`);
         if (cardEl && flipMap[k]) cardEl.classList.add('is-flipped');
       }
       if (loadMoreBtn) loadMoreBtn.style.display = data.length > pageSize ? 'inline-flex' : 'none';
+      
+      // Atualizar botão de limpar busca
+      if (searchInput && searchClear) {
+        if (searchInput.value.trim()) {
+          searchClear.style.display = 'flex';
+        } else {
+          searchClear.style.display = 'none';
+        }
+      }
     };
+    
     filterContainer.addEventListener('click', (e) => {
-      if (e.target.matches('.filter-btn')) {
-        const category = e.target.dataset.category;
-        const active = filterContainer.querySelector('.filter-btn.active');
+      const filterBtn = e.target.closest('.filter-btn-modern') || e.target.closest('.filter-btn');
+      if (filterBtn) {
+        const category = filterBtn.dataset.category;
+        const active = filterContainer.querySelector('.filter-btn-modern.active') || filterContainer.querySelector('.filter-btn.active');
         if (active) active.classList.remove('active');
-        e.target.classList.add('active');
+        filterBtn.classList.add('active');
         localStorage.setItem('glossaryCategory', category);
         pageSize = 12;
         apply();
@@ -588,7 +605,7 @@ function initGlossaryPage() {
     });
 
     grid.addEventListener('click', (e) => {
-      const speakButton = e.target.closest('.speak-btn');
+      const speakButton = e.target.closest('.speak-btn-modern') || e.target.closest('.speak-btn');
       if (speakButton) {
         e.stopPropagation();
         const termToSpeak = speakButton.dataset.term;
@@ -638,7 +655,22 @@ function initGlossaryPage() {
         pageSize = 12;
         apply();
       };
-      searchInput.addEventListener('input', () => { clearTimeout(t); t = setTimeout(applySearch, 150); });
+      searchInput.addEventListener('input', () => { 
+        clearTimeout(t); 
+        t = setTimeout(applySearch, 150);
+        apply();
+      });
+      
+      // Botão de limpar busca
+      if (searchClear) {
+        searchClear.addEventListener('click', () => {
+          searchInput.value = '';
+          localStorage.setItem('glossaryQuery', '');
+          pageSize = 12;
+          apply();
+          searchInput.focus();
+        });
+      }
     }
 
     if (sortSelect) {
