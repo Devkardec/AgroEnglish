@@ -365,6 +365,14 @@ input[type="range"]::-moz-range-thumb {
 .lines { margin-top:12px }
 .line { padding:6px 0; border-bottom:1px solid #e5e9e7 }
 .line.active { background:#f2fbf4; border-left:3px solid var(--green); padding-left:8px }
+
+/* Slideshow mode para A1 textos com imagens */
+.lines.slideshow-mode .line { display:none }
+.lines.slideshow-mode .line.active { display:block; border:none; padding:0; background:transparent; text-align:center }
+.lines.slideshow-mode .line.active img { max-width:100%; max-height:300px; margin:0 auto 12px; display:block; border-radius:12px }
+.lines.slideshow-mode .line.active .en { font-size:1.25rem; font-weight:600; margin-bottom:6px }
+.lines.slideshow-mode .line.active .pt { font-size:1rem; color:var(--muted) }
+.lines.slideshow-mode .line.active .phon { display:none }
 .line .en { font-weight:600; color:var(--text); font-size:var(--size-md); letter-spacing:.1px }
 .line .pt { font-size:var(--size-sm); color:var(--muted) }
 .line .phon { font-size:var(--size-sm); color:var(--text); font-style:italic }

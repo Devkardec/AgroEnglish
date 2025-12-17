@@ -2548,6 +2548,12 @@ function renderGrammar(data) {
           imgs = Array.from({length: Math.min(pairs.length, 11)}, (_,i)=> `/public/images/a1texto11/${i+1}.11.webp`);
         }
         linesEl.innerHTML = pairs.map((p,i)=>`<div class="line">${useImg && imgs[i] ? `<img src="${imgs[i]}" alt="${p.en}" loading="lazy" class="object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}<div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div><div class="phon">${phoneticBR(p.en)}</div></div>`).join('');
+        if (useImg) { 
+          linesEl.classList.add('slideshow-mode'); 
+          try { const firstLine = linesEl.querySelector('.line'); if (firstLine) firstLine.classList.add('active'); } catch {}
+        } else { 
+          linesEl.classList.remove('slideshow-mode'); 
+        }
         return;
       }
       const enBase = splitSentences(String(data.text||''));
