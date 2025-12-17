@@ -497,22 +497,30 @@
       const isTx9 = isA1 && Number(idx)===9;
       const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 10));
       if (isTx1) {
-        const imgs = Array.from({length:12}, (_,i)=> `/public/images/a1texto1/${i}.webp`);
-        const lines = [
-            "Hello! I am Paul, and I am a farmer.",
-            "I am at the farm now.",
-            "My sister is here too. She is happy.",
-            "The barn is open. It is very big.",
-            "The cows are calm, but the chickens are fast. They are funny.",
-            "The sun is hot, but the wind is not strong.",
-            "We are ready for the day."
+        return [
+          { src:'/public/images/a1texto1/1.1.webp', text:'Hello!' },
+          { src:'/public/images/a1texto1/2.1.webp', text:'I am Paul, and I am a farmer.' },
+          { src:'/public/images/a1texto1/3.1.webp', text:'I am at the farm now.' },
+          { src:'/public/images/a1texto1/4.1.webp', text:'My sister is here too.' },
+          { src:'/public/images/a1texto1/5.1.webp', text:'She is happy.' },
+          { src:'/public/images/a1texto1/6.1.webp', text:'The barn is open.' },
+          { src:'/public/images/a1texto1/7.1.webp', text:'It is very big.' },
+          { src:'/public/images/a1texto1/8.1.webp', text:'The cows are calm, but the chickens are fast.' },
+          { src:'/public/images/a1texto1/9.1.webp', text:'They are funny.' },
+          { src:'/public/images/a1texto1/10.1.webp', text:'The sun is hot, but the wind is not strong.' },
+          { src:'/public/images/a1texto1/11.1.webp', text:'We are ready for the day.' }
         ];
-        return Array.from({length:7}, (_,i)=> ({ src: imgs[i], text: String(lines[i]||'').trim() }));
       }
       if (isTx2) {
-        const imgs = Array.from({length:count}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`);
-        const lines = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : [];
-        return Array.from({length:count}, (_,i)=> ({ src: imgs[i], text: String(lines[i]||'').trim() }));
+        return [
+          { src:'/public/images/a1texto2/1.2.webp', text:'I have a livestock farm.' },
+          { src:'/public/images/a1texto2/2.2.webp', text:'We have many cows here.' },
+          { src:'/public/images/a1texto2/3.2.webp', text:'This is the veterinarian. Her name is Dr. Silva.' },
+          { src:'/public/images/a1texto2/4.2.webp', text:'She has a medical kit.' },
+          { src:'/public/images/a1texto2/5.2.webp', text:'The bull has a strong body, but he has a small injury on the leg.' },
+          { src:'/public/images/a1texto2/6.2.webp', text:'Dr. Silva has the medicine.' },
+          { src:'/public/images/a1texto2/7.2.webp', text:'We have safe and healthy animals now.' }
+        ];
       }
       if (isTx3) {
         const imgs = Array.from({length:count}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`);
@@ -838,13 +846,17 @@
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
           (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9 || Number(idx)===11 || Number(idx)===12))
             ? e(ImageSentenceAssociation, { items: (Number(idx)===1 ? [
-                { src:'/public/images/a1texto1/0.webp', text:'Hello! I am Paul, and I am a farmer.', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
-                { src:'/public/images/a1texto1/1.webp', text:'I am at the farm now.', audio:'/src/audio/A1/texto-a1.1-dividido/part_2.mp3' },
-                { src:'/public/images/a1texto1/2.webp', text:'My sister is here too. She is happy.', audio:'/src/audio/A1/texto-a1.1-dividido/part_3.mp3' },
-                { src:'/public/images/a1texto1/3.webp', text:'The barn is open. It is very big.', audio:'/src/audio/A1/texto-a1.1-dividido/part_4.mp3' },
-                { src:'/public/images/a1texto1/4.webp', text:'The cows are calm, but the chickens are fast. They are funny.', audio:'/src/audio/A1/texto-a1.1-dividido/part_5.mp3' },
-                { src:'/public/images/a1texto1/5.webp', text:'The sun is hot, but the wind is not strong.', audio:'/src/audio/A1/texto-a1.1-dividido/part_6.mp3' },
-                { src:'/public/images/a1texto1/6.webp', text:'We are ready for the day.', audio:'/src/audio/A1/texto-a1.1-dividido/part_7.mp3' }
+                { src:'/public/images/a1texto1/1.1.webp', text:'Hello!', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
+                { src:'/public/images/a1texto1/2.1.webp', text:'I am Paul, and I am a farmer.', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
+                { src:'/public/images/a1texto1/3.1.webp', text:'I am at the farm now.', audio:'/src/audio/A1/texto-a1.1-dividido/part_2.mp3' },
+                { src:'/public/images/a1texto1/4.1.webp', text:'My sister is here too.', audio:'/src/audio/A1/texto-a1.1-dividido/part_3.mp3' },
+                { src:'/public/images/a1texto1/5.1.webp', text:'She is happy.', audio:'/src/audio/A1/texto-a1.1-dividido/part_3.mp3' },
+                { src:'/public/images/a1texto1/6.1.webp', text:'The barn is open.', audio:'/src/audio/A1/texto-a1.1-dividido/part_4.mp3' },
+                { src:'/public/images/a1texto1/7.1.webp', text:'It is very big.', audio:'/src/audio/A1/texto-a1.1-dividido/part_4.mp3' },
+                { src:'/public/images/a1texto1/8.1.webp', text:'The cows are calm, but the chickens are fast.', audio:'/src/audio/A1/texto-a1.1-dividido/part_5.mp3' },
+                { src:'/public/images/a1texto1/9.1.webp', text:'They are funny.', audio:'/src/audio/A1/texto-a1.1-dividido/part_5.mp3' },
+                { src:'/public/images/a1texto1/10.1.webp', text:'The sun is hot, but the wind is not strong.', audio:'/src/audio/A1/texto-a1.1-dividido/part_6.mp3' },
+                { src:'/public/images/a1texto1/11.1.webp', text:'We are ready for the day.', audio:'/src/audio/A1/texto-a1.1-dividido/part_7.mp3' }
               ] : Number(idx)===4 ? [
                 { src:'/public/images/a1texto4/1.4.webp', text:'I drive the green tractor.', audio:'/src/audio/A1/texto-a1.4-dividido/part_1.mp3' },
                 { src:'/public/images/a1texto4/5.4.webp', text:'The farmer waters the plants in the greenhouse.', audio:'/src/audio/A1/texto-a1.4-dividido/part_5.mp3' },
