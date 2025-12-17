@@ -1778,8 +1778,7 @@ function renderGrammar(data) {
         const { level, index } = parseRoute();
         const isA1 = String(level).toUpperCase()==='A1';
         const idxNum = Number(index);
-        const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : (isA1 && idxNum===4) ? '0.4' : (isA1 && idxNum===5) ? '0.5' : (isA1 && idxNum===6) ? '0.6' : (isA1 && idxNum===7) ? '0.7' : null;
-        const names = (isA1 && idxNum===8) ? ['1.8','0'] : (isA1 && idxNum===9) ? ['1.9','0'] : (isA1 && idxNum===10) ? ['1.10','0'] : (isA1 && idxNum===11) ? ['1.11','0'] : (isA1 && idxNum===12) ? ['1.12','0'] : (coverDecimal ? [coverDecimal,'0'] : ['0']);
+        const names = [`1.${idxNum}`, `0.${idxNum}`, '0'];
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?farm")`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; return; }
@@ -1872,8 +1871,8 @@ function renderGrammar(data) {
           for (let bi=0; bi<bases.length && !done; bi++){
             const names = (function(){
               const main = String(k+1);
-              const dec = (isA1 && idxNum===2) ? `${k+1}.${k+1}` : (isA1 && idxNum===3) ? `${k+1}.3` : (isA1 && idxNum===4) ? `${k+1}.4` : (isA1 && idxNum===5) ? `${k+1}.5` : (isA1 && idxNum===6) ? `${k+1}.6` : (isA1 && idxNum===7) ? `${k+1}.7` : (isA1 && idxNum===8) ? `${k+1}.8` : (isA1 && idxNum===9) ? `${k+1}.9` : (isA1 && idxNum===10) ? `${k+1}.10` : (isA1 && idxNum===11) ? `${k+1}.11` : (isA1 && idxNum===12) ? `${k+1}.12` : null;
-              return dec ? [dec, main] : [main];
+              const dec = `${k+1}.${idxNum}`;
+              return [dec, main];
             })();
             for (let ni=0; ni<names.length && !done; ni++){
               for (let ei=0; ei<exts.length && !done; ei++){
@@ -1900,8 +1899,8 @@ function renderGrammar(data) {
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?${encodeURIComponent(q)}")`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
           const names = (function(){
             const main = String(k+1);
-            const dec = (isA1 && idxNum===2) ? `${k+1}.${k+1}` : (isA1 && idxNum===3) ? `${k+1}.3` : (isA1 && idxNum===4) ? `${k+1}.4` : (isA1 && idxNum===5) ? `${k+1}.5` : (isA1 && idxNum===6) ? `${k+1}.6` : (isA1 && idxNum===7) ? `${k+1}.7` : (isA1 && idxNum===8) ? `${k+1}.8` : (isA1 && idxNum===9) ? `${k+1}.9` : (isA1 && idxNum===10) ? `${k+1}.10` : (isA1 && idxNum===11) ? `${k+1}.11` : (isA1 && idxNum===12) ? `${k+1}.12` : null;
-            return dec ? [dec, main] : [main];
+            const dec = `${k+1}.${idxNum}`;
+            return [dec, main];
           })();
           if (ni < names.length && ei < exts.length){
             const url = bases[bi] + names[ni] + exts[ei++];
@@ -2911,8 +2910,17 @@ function renderGrammar(data) {
         const nextTitle = nextItem ? String(nextItem.title || '').trim() : '';
         const nextCategory = nextItem ? String(nextItem.category || '').trim() : '';
         
-              const parts = [];
-        
+const parts = [];
+
+        // Vídeo do YouTube para aulas específicas
+        const youtubeVideos = {
+          'A1-12': 'apYUQM_PBEQ'
+        };
+        const videoKey = `${lvl}-${idxNum}`;
+        if (youtubeVideos[videoKey]) {
+          parts.push(`<div style="margin-top:12px"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000"><iframe src="https://www.youtube.com/embed/${youtubeVideos[videoKey]}" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe></div></div>`);
+        }
+
         // Título da Aula
         parts.push(`<div class="section-title" style="margin-top:12px">${emoji} Aula ${idxNum} – ${category || title}</div>`);
         
@@ -4789,70 +4797,14 @@ function renderGrammar(data) {
           ptSentences = Array(sentences.length).fill('');
         }
         let imgCountBase = Math.min((sentences.length || 0), maxCount);
-        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8 || Number(idx)===9 || Number(idx)===10 || Number(idx)===11 || Number(idx)===12);
+        const useImages = isA1 && Number(idx) >= 1;
         try {
           if (useImages) { pronList.classList.add('speech-a1'); } else { pronList.classList.remove('speech-a1'); }
         } catch {}
         let imgs = [];
         if (useImages) {
-          if (Number(idx)===1) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto1/${i+1}.webp`);
-          } else if (Number(idx)===2) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto2/${i+1}.${i+1}.webp`);
-          } else if (Number(idx)===3) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`);
-          } else if (Number(idx)===4) {
-            imgs = [
-              '/public/images/a1texto4/1.4.webp',
-              '/public/images/a1texto4/5.4.webp',
-              '/public/images/a1texto4/3.4.webp',
-              '/public/images/a1texto4/7.4.webp',
-              '/public/images/a1texto4/8.4.webp',
-              '/public/images/a1texto4/9.4.webp',
-              '/public/images/a1texto4/10.4.webp'
-            ];
-          } else if (Number(idx)===5) {
-            imgs = [
-              '/public/images/a1texto5/1.5.webp',
-              '/public/images/a1texto5/3.5.webp',
-              '/public/images/a1texto5/5.5.webp',
-              '/public/images/a1texto5/7.5.webp',
-              '/public/images/a1texto5/9.5.webp',
-              '/public/images/a1texto5/10.5.webp'
-            ];
-          } else if (Number(idx)===6) {
-            imgs = [
-              '/public/images/a1texto6/1.6.webp',
-              '/public/images/a1texto6/2.6.webp',
-              '/public/images/a1texto6/3.6.webp',
-              '/public/images/a1texto6/4.6.webp',
-              '/public/images/a1texto6/5.6.webp',
-              '/public/images/a1texto6/6.6.webp',
-              '/public/images/a1texto6/7.6.webp',
-              '/public/images/a1texto6/8.6.webp'
-            ];
-          } else if (Number(idx)===7) {
-            imgs = [
-              '/public/images/a1texto7/1.7.webp',
-              '/public/images/a1texto7/2.7.webp',
-              '/public/images/a1texto7/3.7.webp',
-              '/public/images/a1texto7/4.7.webp',
-              '/public/images/a1texto7/5.7.webp',
-              '/public/images/a1texto7/6.7.webp',
-              '/public/images/a1texto7/7.7.webp',
-              '/public/images/a1texto7/8.7.webp'
-            ];
-          } else if (Number(idx)===8) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto8/${i+1}.8.webp`);
-          } else if (Number(idx)===9) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto9/${i+1}.9.webp`);
-          } else if (Number(idx)===10) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto10/${i+1}.10.webp`);
-          } else if (Number(idx)===11) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto11/${i+1}.11.webp`);
-          } else if (Number(idx)===12) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto12/${i+1}.12.webp`);
-          }
+          // Padrão genérico: /public/images/a1texto{idx}/{n}.{idx}.webp
+          imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto${idx}/${i+1}.${idx}.webp`);
         }
         let segUrls = [];
         if (isA1 && Number(idx)===1) {
@@ -4899,6 +4851,9 @@ function renderGrammar(data) {
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `./src/audio/A1/texto-a1.11-dividido/audio_${i+1}.mp3`);
         } else if (isA1 && Number(idx)===12) {
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `./src/audio/A1/texto-a1.12-dividido/${String(i+1).padStart(2,'0')}.mp3`);
+        } else if (isA1 && Number(idx) >= 13) {
+          // Padrão genérico para aulas futuras: tenta vários formatos
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `./src/audio/A1/texto-a1.${idx}-dividido/${String(i+1).padStart(2,'0')}.mp3`);
         }
         if (isA1 && Number(idx)===5) {
           const fullAllEn = [
