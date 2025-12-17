@@ -29,7 +29,7 @@
     { "word": "large", "translation": "grande" },
     { "word": "together", "translation": "juntos" }
   ],
-  "grammar": "Modal CAN: igual para todas as pessoas (I/You/He/She/We/They can + verbo). Negativa: cannot/can’t. O verbo seguinte não usa 'to'.",
+  "grammar": "Modal CAN: igual para todas as pessoas (I/You/He/She/We/They can + verbo). Negativa: cannot/can't. O verbo seguinte não usa 'to'.",
   "a1_exercises": {
     "narration_sentences": [
       "We have a skilled team on the farm.",
@@ -40,6 +40,13 @@
       "It can pull a large trailer with five tons of soy.",
       "Can you help me with the bags?",
       "Yes, we can do this together."
+    ],
+    "complete": [
+      { "prompt": "John ____ operate the harvester.", "answer": "can" },
+      { "prompt": "I ____ drive the heavy tractor.", "answer": "cannot" },
+      { "prompt": "The tractor ____ pull a large trailer.", "answer": "can" },
+      { "prompt": "____ you help me?", "answer": "Can" },
+      { "prompt": "We ____ do this together.", "answer": "can" }
     ],
     "translation_short": [
       { "en": "can", "pt": "poder" },

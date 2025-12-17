@@ -2528,22 +2528,10 @@ function renderGrammar(data) {
         ];
       }
       if (pairs.length) {
-        const useImg = (lvl==='A1' && (curIdx===10 || curIdx===11));
-        let imgs = [];
-        if (lvl==='A1' && curIdx===10) {
-          imgs = Array.from({length: Math.min(pairs.length, 11)}, (_,i)=> `./public/images/a1texto10/${i+1}.10.webp`);
-        } else if (lvl==='A1' && curIdx===11) {
-          imgs = Array.from({length: Math.min(pairs.length, 11)}, (_,i)=> `./public/images/a1texto11/${i+1}.11.webp`);
-        }
         linesEl.innerHTML = pairs.map((p,i)=>{
-          const imgSrc = (useImg && imgs[i]) ? imgs[i] : '';
-          return `<div class="line${i===0?' active':''}">${imgSrc ? `<img src="${imgSrc}" alt="${p.en}" style="width:100%;max-height:180px;object-fit:contain;display:block;margin:0 auto 8px;border-radius:8px;background:#f5f7fb;" />` : ''}<div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div><div class="phon">${phoneticBR(p.en)}</div></div>`;
+          return `<div class="line${i===0?' active':''}""><div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div><div class="phon">${phoneticBR(p.en)}</div></div>`;
         }).join('');
-        if (useImg) { 
-          linesEl.classList.add('slideshow-mode'); 
-        } else { 
-          linesEl.classList.remove('slideshow-mode'); 
-        }
+        linesEl.classList.remove('slideshow-mode');
         return;
       }
       const enBase = splitSentences(String(data.text||''));
@@ -4858,10 +4846,6 @@ function renderGrammar(data) {
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto8/${i+1}.8.webp`);
           } else if (Number(idx)===9) {
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto9/${i+1}.9.webp`);
-          } else if (Number(idx)===10) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `./public/images/a1texto10/${i+1}.10.webp`);
-          } else if (Number(idx)===11) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `./public/images/a1texto11/${i+1}.11.webp`);
           }
         }
         let segUrls = [];

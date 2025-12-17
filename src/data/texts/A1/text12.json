@@ -1,180 +1,66 @@
 {
-    "title":  "Farm Hours and Address",
-    "text":  "Checking the plants. The greenhouse helps control temperature and humidity. We record yields and monitor feed intake. The tractor needs a safety check before operation. We start work before sunrise during harvest. I clean the barn after milking. Irrigation is scheduled to reduce water waste. I feed cows and check plants. In winter we protect equipment from freezing. I work on a farm. Farm safety rules are part of our routine. I start the tractor carefully. Sprayer calibration prevents over application. We water animals and fix tools. Veterinary biosecurity keeps the herd healthy. We rotate pastures to improve forage quality.",
-    "translation":  "The estufa helps control temperature and humidity. We record yields and monitor alimentar intake. The trator needs a seguranÃ§a check before operation. We start work before sunrise during colheita. I clean the celeiro after milking. irrigaÃ§Ã£o is scheduled to reduce water waste. I alimentar vacas and check plants. In inverno we protect equipment from freezing. I work on a fazenda. fazenda seguranÃ§a rules are part of our routine. I start the trator carefully. pulverizador calibration prevents over application. We water animais and fix tools. Veterinary biosecurity keeps the herd healthy. We rotate pastagems to improve forage quality.",
-    "pairs":  [
-                  {
-                      "pt":  "The estufa helps control temperature and humidity.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "We record yields and monitor alimentar intake.",
-                      "en":  "We record yields and monitor feed intake."
-                  },
-                  {
-                      "pt":  "The trator needs a seguranÃ§a check before operation.",
-                      "en":  "The tractor needs a safety check before operation."
-                  },
-                  {
-                      "pt":  "We start work before sunrise during colheita.",
-                      "en":  "We start work before sunrise during harvest."
-                  },
-                  {
-                      "pt":  "I clean the celeiro after milking.",
-                      "en":  "I clean the barn after milking."
-                  },
-                  {
-                      "pt":  "irrigaÃ§Ã£o is scheduled to reduce water waste.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "I alimentar vacas and check plants.",
-                      "en":  "I feed cows and check plants."
-                  },
-                  {
-                      "pt":  "In inverno we protect equipment from freezing.",
-                      "en":  "In winter we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "I work on a fazenda.",
-                      "en":  "I work on a farm."
-                  },
-                  {
-                      "pt":  "fazenda seguranÃ§a rules are part of our routine.",
-                      "en":  "Farm safety rules are part of our routine."
-                  },
-                  {
-                      "pt":  "I start the trator carefully.",
-                      "en":  "I start the tractor carefully."
-                  },
-                  {
-                      "pt":  "pulverizador calibration prevents over application.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "We water animais and fix tools.",
-                      "en":  "We water animals and fix tools."
-                  },
-                  {
-                      "pt":  "Veterinary biosecurity keeps the herd healthy.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "We rotate pastagems to improve forage quality.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  }
-              ],
-    "vocabulary":  [
-                       {
-                           "word":  "tractor",
-                           "meaning":  "trator"
-                       },
-                       {
-                           "word":  "cow",
-                           "meaning":  "vaca"
-                       },
-                       {
-                           "word":  "corn",
-                           "meaning":  "milho"
-                       },
-                       {
-                           "word":  "sprayer",
-                           "meaning":  "pulverizador"
-                       },
-                       {
-                           "word":  "harvest",
-                           "meaning":  "colheita"
-                       },
-                       {
-                           "word":  "irrigation",
-                           "meaning":  "irrigaÃ§Ã£o"
-                       },
-                       {
-                           "word":  "pasture",
-                           "meaning":  "pastagem"
-                       },
-                       {
-                           "word":  "greenhouse",
-                           "meaning":  "estufa"
-                       },
-                       {
-                           "word":  "veterinary",
-                           "meaning":  "veterinÃ¡ria"
-                       },
-                       {
-                           "word":  "safety",
-                           "meaning":  "seguranÃ§a"
-                       }
-                   ],
-    "grammar":  "Present simple with farm routines.",
-    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
-    "exercises":  {
-                      "multiple_choice":  [
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we check every morning?",
-                                                  "options":  [
-                                                                  "Plants",
-                                                                  "Emails",
-                                                                  "Movies",
-                                                                  "Games"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Which machine is for spraying?",
-                                                  "options":  [
-                                                                  "Sprayer",
-                                                                  "Oven",
-                                                                  "Printer",
-                                                                  "Mixer"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What protects animals in cold weather?",
-                                                  "options":  [
-                                                                  "Barn",
-                                                                  "Laptop",
-                                                                  "Radio",
-                                                                  "Paint"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we rotate to improve forage?",
-                                                  "options":  [
-                                                                  "Pastures",
-                                                                  "Books",
-                                                                  "Rooms",
-                                                                  "Shoes"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Where do we grow plants with climate control?",
-                                                  "options":  [
-                                                                  "Greenhouse",
-                                                                  "Garage",
-                                                                  "Office",
-                                                                  "Kitchen"
-                                                              ]
-                                              }
-                                          ],
-                      "fill_in":  [
-                                      {
-                                          "sentence":  "We ____ the cows every morning.",
-                                          "answer":  "feed"
-                                      },
-                                      {
-                                          "sentence":  "Start the ____ carefully.",
-                                          "answer":  "tractor"
-                                      },
-                                      {
-                                          "sentence":  "Check the ____ for the animals.",
-                                          "answer":  "water"
-                                      }
-                                  ],
-                      "speaking":  "Repeat: Checking the plants"
-                  }
+  "title": "Market and Prices (Money & Transactions)",
+  "text": "The harvest is finished. The silos are full. We go to the cooperative. We sell the grain at the market. The buyer asks, 'How much is one ton?' It costs 500 dollars per ton. Some machines are expensive. Inputs are expensive too. A small bag is cheap. We count the money. We pay the costs and we see the profit.",
+  "translation": "A colheita terminou. Os silos estão cheios. Nós vamos para a cooperativa. Nós vendemos o grão no mercado. O comprador pergunta: 'Quanto custa uma tonelada?' Custa 500 dólares por tonelada. Algumas máquinas são caras. Os insumos são caros também. Um saco pequeno é barato. Nós contamos o dinheiro. Nós pagamos os custos e vemos o lucro.",
+  "pairs": [
+    { "en": "The harvest is finished. The silos are full.", "pt": "A colheita terminou. Os silos estão cheios." },
+    { "en": "We go to the cooperative.", "pt": "Nós vamos para a cooperativa." },
+    { "en": "We sell the grain at the market.", "pt": "Nós vendemos o grão no mercado." },
+    { "en": "The buyer asks, 'How much is one ton?'", "pt": "O comprador pergunta: 'Quanto custa uma tonelada?'" },
+    { "en": "It costs 500 dollars per ton.", "pt": "Custa 500 dólares por tonelada." },
+    { "en": "Some machines are expensive.", "pt": "Algumas máquinas são caras." },
+    { "en": "Inputs are expensive too.", "pt": "Os insumos são caros também." },
+    { "en": "A small bag is cheap.", "pt": "Um saco pequeno é barato." },
+    { "en": "We count the money.", "pt": "Nós contamos o dinheiro." },
+    { "en": "We pay the costs and we see the profit.", "pt": "Nós pagamos os custos e vemos o lucro." }
+  ],
+  "vocabulary": [
+    { "word": "price", "translation": "preço" },
+    { "word": "cost", "translation": "custo" },
+    { "word": "money", "translation": "dinheiro" },
+    { "word": "profit", "translation": "lucro" },
+    { "word": "inputs", "translation": "insumos" },
+    { "word": "cooperative", "translation": "cooperativa" },
+    { "word": "market", "translation": "mercado" },
+    { "word": "buyer", "translation": "comprador" },
+    { "word": "buy", "translation": "comprar" },
+    { "word": "sell", "translation": "vender" },
+    { "word": "cheap", "translation": "barato" },
+    { "word": "expensive", "translation": "caro" },
+    { "word": "pay", "translation": "pagar" },
+    { "word": "ton", "translation": "tonelada" },
+    { "word": "bag", "translation": "saco" },
+    { "word": "dollars", "translation": "dólares" }
+  ],
+  "grammar": "Perguntas de preço com 'How much is ...?' para singular. Respostas: 'It costs ...'. No plural: 'They cost ...'. Adjetivos de preço: 'expensive' (caro) e 'cheap' (barato).",
+  "a1_exercises": {
+    "narration_sentences": [
+      "The harvest is finished.",
+      "The silos are full.",
+      "We go to the cooperative.",
+      "We sell the grain at the market.",
+      "The buyer asks, 'How much is one ton?'",
+      "It costs 500 dollars per ton.",
+      "Some machines are expensive.",
+      "Inputs are expensive too.",
+      "A small bag is cheap.",
+      "We count the money.",
+      "We pay the costs and we see the profit."
+    ],
+    "complete": [
+      { "prompt": "How much ____ one ton?", "answer": "is" },
+      { "prompt": "It ____ 500 dollars.", "answer": "costs" },
+      { "prompt": "Some machines ____ expensive.", "answer": "are" },
+      { "prompt": "A small bag ____ cheap.", "answer": "is" },
+      { "prompt": "We ____ the costs.", "answer": "pay" }
+    ],
+    "translation_short": [
+      { "en": "How much", "pt": "Quanto" },
+      { "en": "cost", "pt": "custar" },
+      { "en": "expensive", "pt": "caro" },
+      { "en": "cheap", "pt": "barato" },
+      { "en": "profit", "pt": "lucro" },
+      { "en": "pay", "pt": "pagar" }
+    ]
+  }
 }

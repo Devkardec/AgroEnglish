@@ -1,180 +1,65 @@
 {
-    "title":  "Farm Shop: Numbers and Sales",
-    "text":  "Starting the tractor. In winter we protect equipment from freezing. We rotate pastures to improve forage quality. The greenhouse helps control temperature and humidity. Veterinary biosecurity keeps the herd healthy. The tractor needs a safety check before operation. Irrigation is scheduled to reduce water waste. We record yields and monitor feed intake. I work on a farm. Sprayer calibration prevents over application. We water animals and fix tools. We start work before sunrise during harvest. I feed cows and check plants. Farm safety rules are part of our routine. I clean the barn after milking. I start the tractor carefully.",
-    "translation":  "In inverno we protect equipment from freezing. We rotate pastagems to improve forage quality. The estufa helps control temperature and humidity. Veterinary biosecurity keeps the herd healthy. The trator needs a seguranÃ§a check before operation. irrigaÃ§Ã£o is scheduled to reduce water waste. We record yields and monitor alimentar intake. I work on a fazenda. pulverizador calibration prevents over application. We water animais and fix tools. We start work before sunrise during colheita. I alimentar vacas and check plants. fazenda seguranÃ§a rules are part of our routine. I clean the celeiro after milking. I start the trator carefully.",
-    "pairs":  [
-                  {
-                      "pt":  "In inverno we protect equipment from freezing.",
-                      "en":  "In winter we protect equipment from freezing."
-                  },
-                  {
-                      "pt":  "We rotate pastagems to improve forage quality.",
-                      "en":  "We rotate pastures to improve forage quality."
-                  },
-                  {
-                      "pt":  "The estufa helps control temperature and humidity.",
-                      "en":  "The greenhouse helps control temperature and humidity."
-                  },
-                  {
-                      "pt":  "Veterinary biosecurity keeps the herd healthy.",
-                      "en":  "Veterinary biosecurity keeps the herd healthy."
-                  },
-                  {
-                      "pt":  "The trator needs a seguranÃ§a check before operation.",
-                      "en":  "The tractor needs a safety check before operation."
-                  },
-                  {
-                      "pt":  "irrigaÃ§Ã£o is scheduled to reduce water waste.",
-                      "en":  "Irrigation is scheduled to reduce water waste."
-                  },
-                  {
-                      "pt":  "We record yields and monitor alimentar intake.",
-                      "en":  "We record yields and monitor feed intake."
-                  },
-                  {
-                      "pt":  "I work on a fazenda.",
-                      "en":  "I work on a farm."
-                  },
-                  {
-                      "pt":  "pulverizador calibration prevents over application.",
-                      "en":  "Sprayer calibration prevents over application."
-                  },
-                  {
-                      "pt":  "We water animais and fix tools.",
-                      "en":  "We water animals and fix tools."
-                  },
-                  {
-                      "pt":  "We start work before sunrise during colheita.",
-                      "en":  "We start work before sunrise during harvest."
-                  },
-                  {
-                      "pt":  "I alimentar vacas and check plants.",
-                      "en":  "I feed cows and check plants."
-                  },
-                  {
-                      "pt":  "fazenda seguranÃ§a rules are part of our routine.",
-                      "en":  "Farm safety rules are part of our routine."
-                  },
-                  {
-                      "pt":  "I clean the celeiro after milking.",
-                      "en":  "I clean the barn after milking."
-                  },
-                  {
-                      "pt":  "I start the trator carefully.",
-                      "en":  "I start the tractor carefully."
-                  }
-              ],
-    "vocabulary":  [
-                       {
-                           "word":  "tractor",
-                           "meaning":  "trator"
-                       },
-                       {
-                           "word":  "cow",
-                           "meaning":  "vaca"
-                       },
-                       {
-                           "word":  "corn",
-                           "meaning":  "milho"
-                       },
-                       {
-                           "word":  "sprayer",
-                           "meaning":  "pulverizador"
-                       },
-                       {
-                           "word":  "harvest",
-                           "meaning":  "colheita"
-                       },
-                       {
-                           "word":  "irrigation",
-                           "meaning":  "irrigaÃ§Ã£o"
-                       },
-                       {
-                           "word":  "pasture",
-                           "meaning":  "pastagem"
-                       },
-                       {
-                           "word":  "greenhouse",
-                           "meaning":  "estufa"
-                       },
-                       {
-                           "word":  "veterinary",
-                           "meaning":  "veterinÃ¡ria"
-                       },
-                       {
-                           "word":  "safety",
-                           "meaning":  "seguranÃ§a"
-                       }
-                   ],
-    "grammar":  "Present simple with farm routines.",
-    "verbs":  "Verbs used: feed, check, start, clean, adjust, monitor, operate, record, assess, coordinate.",
-    "exercises":  {
-                      "multiple_choice":  [
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we check every morning?",
-                                                  "options":  [
-                                                                  "Plants",
-                                                                  "Emails",
-                                                                  "Movies",
-                                                                  "Games"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Which machine is for spraying?",
-                                                  "options":  [
-                                                                  "Sprayer",
-                                                                  "Oven",
-                                                                  "Printer",
-                                                                  "Mixer"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What protects animals in cold weather?",
-                                                  "options":  [
-                                                                  "Barn",
-                                                                  "Laptop",
-                                                                  "Radio",
-                                                                  "Paint"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "What do we rotate to improve forage?",
-                                                  "options":  [
-                                                                  "Pastures",
-                                                                  "Books",
-                                                                  "Rooms",
-                                                                  "Shoes"
-                                                              ]
-                                              },
-                                              {
-                                                  "answer":  0,
-                                                  "question":  "Where do we grow plants with climate control?",
-                                                  "options":  [
-                                                                  "Greenhouse",
-                                                                  "Garage",
-                                                                  "Office",
-                                                                  "Kitchen"
-                                                              ]
-                                              }
-                                          ],
-                      "fill_in":  [
-                                      {
-                                          "sentence":  "We ____ the cows every morning.",
-                                          "answer":  "feed"
-                                      },
-                                      {
-                                          "sentence":  "Start the ____ carefully.",
-                                          "answer":  "tractor"
-                                      },
-                                      {
-                                          "sentence":  "Check the ____ for the animals.",
-                                          "answer":  "water"
-                                      }
-                                  ],
-                      "speaking":  "Repeat: Starting the tractor"
-                  }
+  "title": "The Harvest Schedule (Future Plans)",
+  "text": "Tomorrow is Monday. It is an important day. We will start the soybean harvest. The trucks will arrive at 7:00 AM. On Tuesday, we will load the grain into the silos. The mechanic will check the harvester again. The weather will be sunny all week. We will sell the production on Friday. It will be a busy week for us.",
+  "translation": "Amanhã é segunda-feira. É um dia importante. Nós vamos começar a colheita da soja. Os caminhões vão chegar às 7:00. Na terça-feira, nós vamos carregar o grão nos silos. O mecânico vai verificar a colheitadeira novamente. O clima vai estar ensolarado a semana toda. Nós vamos vender a produção na sexta-feira. Será uma semana cheia para nós.",
+  "pairs": [
+    { "en": "Tomorrow is Monday.", "pt": "Amanhã é segunda-feira." },
+    { "en": "It is an important day.", "pt": "É um dia importante." },
+    { "en": "We will start the soybean harvest.", "pt": "Nós vamos começar a colheita da soja." },
+    { "en": "The trucks will arrive at 7:00 AM.", "pt": "Os caminhões vão chegar às 7:00." },
+    { "en": "On Tuesday, we will load the grain into the silos.", "pt": "Na terça-feira, nós vamos carregar o grão nos silos." },
+    { "en": "The mechanic will check the harvester again.", "pt": "O mecânico vai verificar a colheitadeira novamente." },
+    { "en": "The weather will be sunny all week.", "pt": "O clima vai estar ensolarado a semana toda." },
+    { "en": "We will sell the production on Friday.", "pt": "Nós vamos vender a produção na sexta-feira." },
+    { "en": "It will be a busy week for us.", "pt": "Será uma semana cheia para nós." }
+  ],
+  "vocabulary": [
+    { "word": "will", "translation": "(auxiliar de futuro)" },
+    { "word": "tomorrow", "translation": "amanhã" },
+    { "word": "week", "translation": "semana" },
+    { "word": "monday", "translation": "segunda-feira" },
+    { "word": "tuesday", "translation": "terça-feira" },
+    { "word": "friday", "translation": "sexta-feira" },
+    { "word": "arrive", "translation": "chegar" },
+    { "word": "load", "translation": "carregar" },
+    { "word": "sell", "translation": "vender" },
+    { "word": "grain", "translation": "grão" },
+    { "word": "silos", "translation": "silos" },
+    { "word": "mechanic", "translation": "mecânico" },
+    { "word": "harvester", "translation": "colheitadeira" },
+    { "word": "weather", "translation": "clima/tempo" },
+    { "word": "sunny", "translation": "ensolarado" },
+    { "word": "trucks", "translation": "caminhões" },
+    { "word": "production", "translation": "produção" },
+    { "word": "busy", "translation": "cheio/ocupado" }
+  ],
+  "grammar": "Futuro simples com WILL: Sujeito + will + verbo. Usamos para planos futuros e previsões (tempo). Em inglês basta colocar 'will' antes do verbo (We will sell).",
+  "a1_exercises": {
+    "narration_sentences": [
+      "Tomorrow is Monday.",
+      "It is an important day.",
+      "We will start the soybean harvest.",
+      "The trucks will arrive at 7:00 AM.",
+      "On Tuesday, we will load the grain into the silos.",
+      "The mechanic will check the harvester again.",
+      "The weather will be sunny all week.",
+      "We will sell the production on Friday.",
+      "It will be a busy week for us."
+    ],
+    "complete": [
+      { "prompt": "We ____ start the harvest.", "answer": "will" },
+      { "prompt": "The trucks ____ arrive at 7:00.", "answer": "will" },
+      { "prompt": "We ____ load the grain.", "answer": "will" },
+      { "prompt": "The weather ____ be sunny.", "answer": "will" },
+      { "prompt": "We ____ sell the production.", "answer": "will" }
+    ],
+    "translation_short": [
+      { "en": "will", "pt": "vai/irá" },
+      { "en": "tomorrow", "pt": "amanhã" },
+      { "en": "arrive", "pt": "chegar" },
+      { "en": "load", "pt": "carregar" },
+      { "en": "sell", "pt": "vender" },
+      { "en": "busy", "pt": "ocupado" }
+    ]
+  }
 }
