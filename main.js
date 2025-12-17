@@ -1766,22 +1766,10 @@ function renderGrammar(data) {
         const L = String(level||'A1').toLowerCase();
         const i = String(index||1);
         return [
-          `/public/images/${L}texto${i}/`,
-          `/public/images/${L}texto${i}/farmedition/`,
-          `/public/images/${L}/texto${i}/`,
-          `/public/images/${L}/text${i}/`,
           `./public/images/${L}texto${i}/`,
+          `/public/images/${L}texto${i}/`,
           `./public/images/${L}texto${i}/farmedition/`,
-          `./public/images/${L}/texto${i}/`,
-          `./public/images/${L}/text${i}/`,
-          `./public/imagens/${L}texto${i}/`,
-          `./public/imagens/${L}texto${i}/farmedition/`,
-          `./public/imagens/${L}/texto${i}/`,
-          `./public/imagens/${L}/text${i}/`,
-          `/public/images/a1texto1/farmedition/`,
-          `/public/imagens/a1texto1/farmedition/`,
-          `./public/images/a1texto1/farmedition/`,
-          `./public/imagens/a1texto1/farmedition/`
+          `/public/images/${L}texto${i}/farmedition/`
         ];
       }
       function setCoverImage(){
@@ -1791,7 +1779,7 @@ function renderGrammar(data) {
         const isA1 = String(level).toUpperCase()==='A1';
         const idxNum = Number(index);
         const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : (isA1 && idxNum===4) ? '0.4' : (isA1 && idxNum===5) ? '0.5' : (isA1 && idxNum===6) ? '0.6' : (isA1 && idxNum===7) ? '0.7' : null;
-        const names = (isA1 && idxNum===8) ? ['1.8','0'] : (isA1 && idxNum===9) ? ['1.9','0'] : (isA1 && idxNum===10) ? ['1.10','0'] : (coverDecimal ? [coverDecimal,'0'] : ['0']);
+        const names = (isA1 && idxNum===8) ? ['1.8','0'] : (isA1 && idxNum===9) ? ['1.9','0'] : (isA1 && idxNum===10) ? ['1.10','0'] : (isA1 && idxNum===11) ? ['1.11','0'] : (coverDecimal ? [coverDecimal,'0'] : ['0']);
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?farm")`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; return; }
@@ -1912,7 +1900,7 @@ function renderGrammar(data) {
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?${encodeURIComponent(q)}")`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
           const names = (function(){
             const main = String(k+1);
-            const dec = (isA1 && idxNum===2) ? `${k+1}.${k+1}` : (isA1 && idxNum===3) ? `${k+1}.3` : (isA1 && idxNum===4) ? `${k+1}.4` : (isA1 && idxNum===5) ? `${k+1}.5` : (isA1 && idxNum===6) ? `${k+1}.6` : (isA1 && idxNum===7) ? `${k+1}.7` : (isA1 && idxNum===8) ? `${k+1}.8` : (isA1 && idxNum===9) ? `${k+1}.9` : (isA1 && idxNum===10) ? `${k+1}.10` : null;
+            const dec = (isA1 && idxNum===2) ? `${k+1}.${k+1}` : (isA1 && idxNum===3) ? `${k+1}.3` : (isA1 && idxNum===4) ? `${k+1}.4` : (isA1 && idxNum===5) ? `${k+1}.5` : (isA1 && idxNum===6) ? `${k+1}.6` : (isA1 && idxNum===7) ? `${k+1}.7` : (isA1 && idxNum===8) ? `${k+1}.8` : (isA1 && idxNum===9) ? `${k+1}.9` : (isA1 && idxNum===10) ? `${k+1}.10` : (isA1 && idxNum===11) ? `${k+1}.11` : null;
             return dec ? [dec, main] : [main];
           })();
           if (ni < names.length && ei < exts.length){
@@ -2543,14 +2531,16 @@ function renderGrammar(data) {
         const useImg = (lvl==='A1' && (curIdx===10 || curIdx===11));
         let imgs = [];
         if (lvl==='A1' && curIdx===10) {
-          imgs = Array.from({length: Math.min(pairs.length, 11)}, (_,i)=> `/public/images/a1texto10/${i+1}.10.webp`);
+          imgs = Array.from({length: Math.min(pairs.length, 11)}, (_,i)=> `./public/images/a1texto10/${i+1}.10.webp`);
         } else if (lvl==='A1' && curIdx===11) {
-          imgs = Array.from({length: Math.min(pairs.length, 11)}, (_,i)=> `/public/images/a1texto11/${i+1}.11.webp`);
+          imgs = Array.from({length: Math.min(pairs.length, 11)}, (_,i)=> `./public/images/a1texto11/${i+1}.11.webp`);
         }
-        linesEl.innerHTML = pairs.map((p,i)=>`<div class="line">${useImg && imgs[i] ? `<img src="${imgs[i]}" alt="${p.en}" loading="lazy" class="object-contain rounded-xl bg-gray-50 mx-auto block" />` : ''}<div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div><div class="phon">${phoneticBR(p.en)}</div></div>`).join('');
+        linesEl.innerHTML = pairs.map((p,i)=>{
+          const imgSrc = (useImg && imgs[i]) ? imgs[i] : '';
+          return `<div class="line${i===0?' active':''}">${imgSrc ? `<img src="${imgSrc}" alt="${p.en}" style="width:100%;max-height:180px;object-fit:contain;display:block;margin:0 auto 8px;border-radius:8px;background:#f5f7fb;" />` : ''}<div class="en">${p.en}</div><div class="pt">${fixPT(p.pt)}</div><div class="phon">${phoneticBR(p.en)}</div></div>`;
+        }).join('');
         if (useImg) { 
           linesEl.classList.add('slideshow-mode'); 
-          try { const firstLine = linesEl.querySelector('.line'); if (firstLine) firstLine.classList.add('active'); } catch {}
         } else { 
           linesEl.classList.remove('slideshow-mode'); 
         }
@@ -2801,6 +2791,7 @@ function renderGrammar(data) {
         title: item.title || `Texto ${idx}`,
         text: item.text_en || '',
         translation: item.text_pt || '',
+        pairs: item.pairs || [],
         vocabulary: vocab,
         grammar: grammarText,
         verbs: verbsStr,
@@ -4868,9 +4859,9 @@ function renderGrammar(data) {
           } else if (Number(idx)===9) {
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto9/${i+1}.9.webp`);
           } else if (Number(idx)===10) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto10/${i+1}.10.webp`);
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `./public/images/a1texto10/${i+1}.10.webp`);
           } else if (Number(idx)===11) {
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto11/${i+1}.11.webp`);
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `./public/images/a1texto11/${i+1}.11.webp`);
           }
         }
         let segUrls = [];
@@ -4915,7 +4906,7 @@ function renderGrammar(data) {
         } else if (isA1 && Number(idx)===10) {
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.10-dividido/audio_${i+1}.mp3`);
         } else if (isA1 && Number(idx)===11) {
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.11-dividido/audio_${i+1}.mp3`);
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `./src/audio/A1/texto-a1.11-dividido/audio_${i+1}.mp3`);
         }
         if (isA1 && Number(idx)===5) {
           const fullAllEn = [

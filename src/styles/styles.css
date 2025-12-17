@@ -368,10 +368,19 @@ input[type="range"]::-moz-range-thumb {
 
 /* Slideshow mode para A1 textos com imagens */
 .lines.slideshow-mode .line { display:none }
-.lines.slideshow-mode .line.active { display:block; border:none; padding:0; background:transparent; text-align:center }
-.lines.slideshow-mode .line.active img { max-width:100%; max-height:300px; margin:0 auto 12px; display:block; border-radius:12px }
-.lines.slideshow-mode .line.active .en { font-size:1.25rem; font-weight:600; margin-bottom:6px }
-.lines.slideshow-mode .line.active .pt { font-size:1rem; color:var(--muted) }
+.lines.slideshow-mode .line.active { display:block; border:none; padding:8px 0; background:transparent; text-align:center }
+.lines.slideshow-mode .line.active img { 
+  width:75% !important; 
+  max-width:75% !important; 
+  height:auto !important;
+  max-height:150px !important; 
+  object-fit:contain !important;
+  display:block;
+  margin:0 auto 8px;
+  border-radius:8px;
+}
+.lines.slideshow-mode .line.active .en { font-size:1.15rem; font-weight:600; margin-bottom:6px }
+.lines.slideshow-mode .line.active .pt { font-size:0.95rem; color:var(--muted) }
 .lines.slideshow-mode .line.active .phon { display:none }
 .line .en { font-weight:600; color:var(--text); font-size:var(--size-md); letter-spacing:.1px }
 .line .pt { font-size:var(--size-sm); color:var(--muted) }
@@ -1341,7 +1350,7 @@ body {
   #tab-speech .btn.sm { flex: 1 1 160px }
 }
 
-.pron-card img { display:block; margin:0 auto; width:100%; max-width:100%; height:auto; object-fit:contain; object-position:center; border-radius:12px; background:#f5f7fb }
+.pron-card img { display:block; margin:0 auto; width:100%; max-width:600px; height:auto; object-fit:contain; object-position:center; border-radius:12px; background:#f5f7fb }
 @media (max-width:640px) { .pron-card img { max-width:100%; height:auto } }
 /* A1 Speech Lab: limit image size to avoid overlap */
 .speech-a1 .pron-card img { max-width:250px; height:auto; object-fit:contain }
@@ -2373,8 +2382,10 @@ button[data-tab]::before { font-size:1rem; line-height:1; }
 .media-cover,
 .media-cover img {
   width:100%;
-  height:100%;
-  object-fit:cover;
+  max-width:600px;
+  height:auto;
+  object-fit:contain;
   object-position:center;
   display:block;
+  margin:0 auto;
 }
