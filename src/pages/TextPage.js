@@ -29,6 +29,13 @@ export function TextPage(level, index) {
             </div>
           </div>
   ` : '';
+  const ytEmbedA1T11 = (isA1 && Number(index)===11) ? `
+          <div style="margin-top:12px">
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
+              <iframe src="https://www.youtube.com/embed/40wqbTWnbOc" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+            </div>
+          </div>
+  ` : '';
   const lessonA1T10 = (isA1 && Number(index)===10) ? `
     <div style="margin-top:12px">
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
@@ -287,6 +294,7 @@ export function TextPage(level, index) {
           ${ytEmbedA1T7}
           ${ytEmbedA1T8}
           ${ytEmbedA1T9}
+          ${ytEmbedA1T11}
           ${lessonA1T8 || lessonA1T9 || lessonA1T10 || `<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div><div id="slideLessonRoot" style="margin-top:12px"></div>`}
           <div class="section-title" style="margin-top:12px">📖 Texto narrado</div>
           <div style="margin-top:8px">

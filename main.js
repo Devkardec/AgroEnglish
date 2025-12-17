@@ -4846,6 +4846,10 @@ function renderGrammar(data) {
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto8/${i+1}.8.webp`);
           } else if (Number(idx)===9) {
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto9/${i+1}.9.webp`);
+          } else if (Number(idx)===10) {
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto10/${i+1}.10.webp`);
+          } else if (Number(idx)===11) {
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto11/${i+1}.11.webp`);
           }
         }
         let segUrls = [];
