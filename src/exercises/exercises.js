@@ -633,6 +633,20 @@
           { src:'./public/images/a1texto11/9.11.webp', text:'It will be a busy week for us.' }
         ];
       }
+      if (isA1 && Number(idx)===12) {
+        return [
+          { src:'/public/images/a1texto12/1.12.webp', text:'The harvest is finished. The silos are full.' },
+          { src:'/public/images/a1texto12/2.12.webp', text:'We go to the cooperative.' },
+          { src:'/public/images/a1texto12/3.12.webp', text:'We sell the grain at the market.' },
+          { src:'/public/images/a1texto12/4.12.webp', text:'The buyer asks, How much is one ton?' },
+          { src:'/public/images/a1texto12/5.12.webp', text:'It costs 500 dollars per ton.' },
+          { src:'/public/images/a1texto12/6.12.webp', text:'Some machines are expensive.' },
+          { src:'/public/images/a1texto12/7.12.webp', text:'Inputs are expensive too.' },
+          { src:'/public/images/a1texto12/8.12.webp', text:'A small bag is cheap.' },
+          { src:'/public/images/a1texto12/9.12.webp', text:'We count the money.' },
+          { src:'/public/images/a1texto12/10.12.webp', text:'We pay the costs and we see the profit.' }
+        ];
+      }
       const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
       const texts = base.filter(Boolean).slice(0,count).map(t=> String(t).trim());
       const placeholder = '/public/icons/apple-touch-icon.webp';
@@ -822,7 +836,7 @@
             : e(DictationExercise, { sentences: (Array.isArray(ex.narration_sentences)? ex.narration_sentences.slice(0,6) : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/))).slice(0,6) })
         ),
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
-          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9 || Number(idx)===11))
+          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9 || Number(idx)===11 || Number(idx)===12))
             ? e(ImageSentenceAssociation, { items: (Number(idx)===1 ? [
                 { src:'/public/images/a1texto1/0.webp', text:'Hello! I am Paul, and I am a farmer.', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
                 { src:'/public/images/a1texto1/1.webp', text:'I am at the farm now.', audio:'/src/audio/A1/texto-a1.1-dividido/part_2.mp3' },
@@ -867,6 +881,17 @@
                 { src:'./public/images/a1texto11/7.11.webp', text:'The weather will be sunny all week.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_7.mp3' },
                 { src:'./public/images/a1texto11/8.11.webp', text:'We will sell the production on Friday.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_8.mp3' },
                 { src:'./public/images/a1texto11/9.11.webp', text:'It will be a busy week for us.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_9.mp3' }
+              ] : Number(idx)===12 ? [
+                { src:'/public/images/a1texto12/1.12.webp', text:'The harvest is finished. The silos are full.' },
+                { src:'/public/images/a1texto12/2.12.webp', text:'We go to the cooperative.' },
+                { src:'/public/images/a1texto12/3.12.webp', text:'We sell the grain at the market.' },
+                { src:'/public/images/a1texto12/4.12.webp', text:'The buyer asks, How much is one ton?' },
+                { src:'/public/images/a1texto12/5.12.webp', text:'It costs 500 dollars per ton.' },
+                { src:'/public/images/a1texto12/6.12.webp', text:'Some machines are expensive.' },
+                { src:'/public/images/a1texto12/7.12.webp', text:'Inputs are expensive too.' },
+                { src:'/public/images/a1texto12/8.12.webp', text:'A small bag is cheap.' },
+                { src:'/public/images/a1texto12/9.12.webp', text:'We count the money.' },
+                { src:'/public/images/a1texto12/10.12.webp', text:'We pay the costs and we see the profit.' }
               ] : [
                 { src:'/public/images/a1texto5/1.5.webp', text:'The sun is very hot today.', audio:'/src/audio/A1/texto-a1.5-dividido/part_1.mp3' },
                 { src:'/public/images/a1texto5/3.5.webp', text:'The corn needs rain.', audio:'/src/audio/A1/texto-a1.5-dividido/part_3.mp3' },
