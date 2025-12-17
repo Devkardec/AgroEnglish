@@ -1779,7 +1779,7 @@ function renderGrammar(data) {
         const isA1 = String(level).toUpperCase()==='A1';
         const idxNum = Number(index);
         const coverDecimal = (isA1 && idxNum===2) ? '0.0' : (isA1 && idxNum===3) ? '0.3' : (isA1 && idxNum===4) ? '0.4' : (isA1 && idxNum===5) ? '0.5' : (isA1 && idxNum===6) ? '0.6' : (isA1 && idxNum===7) ? '0.7' : null;
-        const names = (isA1 && idxNum===8) ? ['1.8','0'] : (isA1 && idxNum===9) ? ['1.9','0'] : (isA1 && idxNum===10) ? ['1.10','0'] : (isA1 && idxNum===11) ? ['1.11','0'] : (coverDecimal ? [coverDecimal,'0'] : ['0']);
+        const names = (isA1 && idxNum===8) ? ['1.8','0'] : (isA1 && idxNum===9) ? ['1.9','0'] : (isA1 && idxNum===10) ? ['1.10','0'] : (isA1 && idxNum===11) ? ['1.11','0'] : (isA1 && idxNum===12) ? ['1.12','0'] : (coverDecimal ? [coverDecimal,'0'] : ['0']);
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?farm")`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; return; }
@@ -1872,7 +1872,7 @@ function renderGrammar(data) {
           for (let bi=0; bi<bases.length && !done; bi++){
             const names = (function(){
               const main = String(k+1);
-              const dec = (isA1 && idxNum===2) ? `${k+1}.${k+1}` : (isA1 && idxNum===3) ? `${k+1}.3` : (isA1 && idxNum===4) ? `${k+1}.4` : (isA1 && idxNum===5) ? `${k+1}.5` : (isA1 && idxNum===6) ? `${k+1}.6` : (isA1 && idxNum===7) ? `${k+1}.7` : (isA1 && idxNum===8) ? `${k+1}.8` : (isA1 && idxNum===9) ? `${k+1}.9` : (isA1 && idxNum===10) ? `${k+1}.10` : null;
+              const dec = (isA1 && idxNum===2) ? `${k+1}.${k+1}` : (isA1 && idxNum===3) ? `${k+1}.3` : (isA1 && idxNum===4) ? `${k+1}.4` : (isA1 && idxNum===5) ? `${k+1}.5` : (isA1 && idxNum===6) ? `${k+1}.6` : (isA1 && idxNum===7) ? `${k+1}.7` : (isA1 && idxNum===8) ? `${k+1}.8` : (isA1 && idxNum===9) ? `${k+1}.9` : (isA1 && idxNum===10) ? `${k+1}.10` : (isA1 && idxNum===11) ? `${k+1}.11` : (isA1 && idxNum===12) ? `${k+1}.12` : null;
               return dec ? [dec, main] : [main];
             })();
             for (let ni=0; ni<names.length && !done; ni++){
@@ -1900,7 +1900,7 @@ function renderGrammar(data) {
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?${encodeURIComponent(q)}")`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
           const names = (function(){
             const main = String(k+1);
-            const dec = (isA1 && idxNum===2) ? `${k+1}.${k+1}` : (isA1 && idxNum===3) ? `${k+1}.3` : (isA1 && idxNum===4) ? `${k+1}.4` : (isA1 && idxNum===5) ? `${k+1}.5` : (isA1 && idxNum===6) ? `${k+1}.6` : (isA1 && idxNum===7) ? `${k+1}.7` : (isA1 && idxNum===8) ? `${k+1}.8` : (isA1 && idxNum===9) ? `${k+1}.9` : (isA1 && idxNum===10) ? `${k+1}.10` : (isA1 && idxNum===11) ? `${k+1}.11` : null;
+            const dec = (isA1 && idxNum===2) ? `${k+1}.${k+1}` : (isA1 && idxNum===3) ? `${k+1}.3` : (isA1 && idxNum===4) ? `${k+1}.4` : (isA1 && idxNum===5) ? `${k+1}.5` : (isA1 && idxNum===6) ? `${k+1}.6` : (isA1 && idxNum===7) ? `${k+1}.7` : (isA1 && idxNum===8) ? `${k+1}.8` : (isA1 && idxNum===9) ? `${k+1}.9` : (isA1 && idxNum===10) ? `${k+1}.10` : (isA1 && idxNum===11) ? `${k+1}.11` : (isA1 && idxNum===12) ? `${k+1}.12` : null;
             return dec ? [dec, main] : [main];
           })();
           if (ni < names.length && ei < exts.length){
@@ -4789,7 +4789,7 @@ function renderGrammar(data) {
           ptSentences = Array(sentences.length).fill('');
         }
         let imgCountBase = Math.min((sentences.length || 0), maxCount);
-        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8 || Number(idx)===9 || Number(idx)===10 || Number(idx)===11);
+        const useImages = isA1 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===7 || Number(idx)===8 || Number(idx)===9 || Number(idx)===10 || Number(idx)===11 || Number(idx)===12);
         try {
           if (useImages) { pronList.classList.add('speech-a1'); } else { pronList.classList.remove('speech-a1'); }
         } catch {}
@@ -4850,6 +4850,8 @@ function renderGrammar(data) {
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto10/${i+1}.10.webp`);
           } else if (Number(idx)===11) {
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto11/${i+1}.11.webp`);
+          } else if (Number(idx)===12) {
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto12/${i+1}.12.webp`);
           }
         }
         let segUrls = [];
@@ -4895,6 +4897,8 @@ function renderGrammar(data) {
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.10-dividido/audio_${i+1}.mp3`);
         } else if (isA1 && Number(idx)===11) {
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `./src/audio/A1/texto-a1.11-dividido/audio_${i+1}.mp3`);
+        } else if (isA1 && Number(idx)===12) {
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `./src/audio/A1/texto-a1.12-dividido/${String(i+1).padStart(2,'0')}.mp3`);
         }
         if (isA1 && Number(idx)===5) {
           const fullAllEn = [
