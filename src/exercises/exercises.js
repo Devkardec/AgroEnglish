@@ -218,7 +218,7 @@
           const btnCls = `relative rounded-xl border ${isMatched?'border-green-600':'border-gray-200'} ${isMatched?'bg-green-50':'bg-white'} shadow-sm overflow-hidden`;
           return e('button', { key:c.id, onClick:()=>click(idx), disabled:isMatched, className:btnCls },
             isOpen ? (c.type==='image'
-                      ? e('img', { src:c.src, alt:'', className:'w-full aspect-square object-contain bg-gray-50', loading:'lazy' })
+                      ? e('img', { src:c.src, alt:'', className:'w-full aspect-square object-contain bg-gray-50', loading:'lazy', onError: function(e){ e.target.style.display='none'; e.target.parentElement.innerHTML='<div class="w-full aspect-square flex items-center justify-center bg-gray-100 text-gray-400">Imagem</div>'; } })
                       : e('div', { className:'w-full aspect-square flex items-center justify-center p-2 text-center text-sm text-gray-800' }, c.text))
                    : e('div', { className:'w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center bg-green-50 text-green-700 font-semibold' }, 'AGRO'),
             isMatched ? e('div', { className:'absolute top-1 left-1 w-6 h-6 rounded-full bg-green-600 text-white text-xs flex items-center justify-center' }, String(c.key+1)) : null
@@ -312,7 +312,7 @@
           const isMatched = matches[i]!==undefined;
           const cls = isMatched ? 'border-green-600 bg-green-600 text-white' : (selTop===i ? 'border-green-600 bg-green-50' : 'border-gray-200 bg-gray-100');
           return e('button', { key:i, onClick:()=>chooseTop(i), disabled:isMatched, className:`rounded-lg border-2 ${cls} overflow-hidden transition-all hover:scale-105` },
-            e('img', { src:String(it.src||'').replace(/\.(png|jpg|jpeg)$/i, '.webp'), alt:'', className:'w-full h-20 sm:h-24 md:h-28 object-cover bg-gray-50' })
+            e('img', { src:String(it.src||'').replace(/\.(png|jpg|jpeg)$/i, '.webp'), alt:'', className:'w-full h-20 sm:h-24 md:h-28 object-cover bg-gray-50', onError: function(e){ e.target.style.display='none'; e.target.parentElement.innerHTML='<div class="w-full h-20 sm:h-24 md:h-28 flex items-center justify-center bg-gray-100 text-gray-400 text-xs">Imagem</div>'; } })
           );
         })
       ),
@@ -369,6 +369,7 @@
     const comp = Array.isArray(ex.complete) ? ex.complete : [];
     function deriveTF(){
       const isA1 = String(level||'').toUpperCase()==='A1';
+      const isA2 = String(level||'').toUpperCase()==='A2';
       if (isA1) {
         if (Number(idx)===2) return [
           { text:'The veterinarian has a medical kit.', correct:true },
@@ -396,6 +397,13 @@
           { text:'The barn is open.', correct:true },
         ];
       }
+      if (isA2 && Number(idx)===1) {
+        return [
+          { text:'Yesterday was a very busy day.', correct:true },
+          { text:'The weather was sunny in the morning.', correct:false },
+          { text:'The cows were in the barn because they were hungry.', correct:true },
+        ];
+      }
       const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
       const sents = base.filter(Boolean).slice(0,3).map(t=> String(t).trim());
       return sents.map(t=> ({ text:t, correct:true }));
@@ -403,6 +411,7 @@
     const tfStatements = deriveTF();
     function deriveFill(){
       const isA1 = String(level||'').toUpperCase()==='A1';
+      const isA2 = String(level||'').toUpperCase()==='A2';
       if (isA1) {
         if (Number(idx)===2) return [
           { prompt:'We ____ many cows.', answer:'have' },
@@ -430,6 +439,13 @@
           { prompt:'The cows ____ calm.', answer:'are' },
         ];
       }
+      if (isA2 && Number(idx)===1) {
+        return [
+          { prompt:'Yesterday ____ a very busy day.', answer:'was' },
+          { prompt:'The weather ____ cold and rainy in the morning.', answer:'was' },
+          { prompt:'The cows ____ in the barn because they were hungry.', answer:'were' },
+        ];
+      }
       const items = Array.isArray(data.exercises && data.exercises.fill_in) ? data.exercises.fill_in.slice(0,3) : [];
       if (items.length) return items.map(it=> ({ prompt:it.prompt, answer:it.answer }));
       const src = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
@@ -447,6 +463,7 @@
     const fillItems = deriveFill();
     function deriveTransform(){
       const isA1 = String(level||'').toUpperCase()==='A1';
+      const isA2 = String(level||'').toUpperCase()==='A2';
       if (isA1) {
         if (Number(idx)===2) return [
           { base:'She has a medical kit.', target:'neg', answer: "She doesn't have a medical kit." },
@@ -473,6 +490,13 @@
           { base:'The barn is open.', target:'q', answer:'Is the barn open?' }
         ];
       }
+      if (isA2 && Number(idx)===1) {
+        return [
+          { base:'The weather was cold and rainy.', target:'neg', answer:'The weather was not cold and rainy.' },
+          { base:'The cows were in the barn.', target:'q', answer:'Were the cows in the barn?' },
+          { base:'One calf was sick.', target:'neg', answer:'One calf was not sick.' }
+        ];
+      }
       const neg = Array.isArray(ex.negative) ? ex.negative.slice(0,2) : [];
       const ques = Array.isArray(ex.question) ? ex.question.slice(0,1) : [];
       const toItem = (o, t)=> ({ base: String(o && o.base || '').trim(), target: t, answer: String(o && o.result || '').trim() });
@@ -484,8 +508,19 @@
       return String(src[0]||'').trim() || 'The barn is open.';
     }
     const orderSentence = deriveOrderSentence();
+    // ============================================================
+    // PADRÃO PARA ADICIONAR IMAGENS NA SALA DE EXERCÍCIOS
+    // ============================================================
+    // REGRA GERAL:
+    // 1. Adicionar detecção do nível: const isA2 = String(level||'').toUpperCase()==='A2';
+    // 2. Adicionar condição específica: const isA2Tx1 = isA2 && Number(idx)===1;
+    // 3. Adicionar bloco if com as imagens mapeadas para as frases
+    // 4. Estrutura: /public/images/{LEVEL}/{level}texto{idx}/{n}.{idx}.webp
+    // 5. Usar data.pairs ou ex.narration_sentences para obter as frases
+    // ============================================================
     function deriveMemoryPairs(){
       const isA1 = String(level||'').toUpperCase()==='A1';
+      const isA2 = String(level||'').toUpperCase()==='A2';
       const isTx1 = isA1 && Number(idx)===1;
       const isTx2 = isA1 && Number(idx)===2;
       const isTx3 = isA1 && Number(idx)===3;
@@ -495,6 +530,7 @@
       const isTx7 = isA1 && Number(idx)===7;
       const isTx8 = isA1 && Number(idx)===8;
       const isTx9 = isA1 && Number(idx)===9;
+      const isA2Tx1 = isA2 && Number(idx)===1;
       const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 10));
       if (isTx1) {
         return [
@@ -655,6 +691,25 @@
           { src:'/public/images/A1/a1texto12/10.12.webp', text:'We pay the costs and we see the profit.' }
         ];
       }
+      if (isA2Tx1) {
+        const lines = Array.isArray(data.pairs)
+          ? data.pairs.map(p=> String(p.en||'').trim())
+          : (Array.isArray(ex.narration_sentences)
+              ? ex.narration_sentences
+              : (Array.isArray(data.lines)
+                  ? data.lines.map(l=> String(l.en||'').trim())
+                  : String(data.text||'').split(/(?<=[.!?])\s+/)));
+        return [
+          { src:'/public/images/A2/a2texto1/1.1.webp', text: String(lines[0]||'').trim() },
+          { src:'/public/images/A2/a2texto1/2.1.webp', text: String(lines[1]||'').trim() },
+          { src:'/public/images/A2/a2texto1/3.1.webp', text: String(lines[2]||'').trim() },
+          { src:'/public/images/A2/a2texto1/4.1.webp', text: String(lines[3]||'').trim() },
+          { src:'/public/images/A2/a2texto1/5.1.webp', text: String(lines[4]||'').trim() },
+          { src:'/public/images/A2/a2texto1/6.1.webp', text: String(lines[5]||'').trim() },
+          { src:'/public/images/A2/a2texto1/7.1.webp', text: String(lines[6]||'').trim() },
+          { src:'/public/images/A2/a2texto1/8.1.webp', text: String(lines[7]||'').trim() }
+        ];
+      }
       const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
       const texts = base.filter(Boolean).slice(0,count).map(t=> String(t).trim());
       const placeholder = '/public/icons/apple-touch-icon.webp';
@@ -669,6 +724,7 @@
     }
     const assocItems = deriveAssoc();
     const isA1 = String(level||'').toUpperCase()==='A1';
+    const isA2 = String(level||'').toUpperCase()==='A2';
     return e('div', { className:'w-full max-w-4xl mx-auto' },
       e('div', { className:'mb-4 flex items-center justify-between' },
         e('h2', { className:'text-base font-bold text-green-700' }, isA1 ? `${String(data.uiTitle||data.title||'A1 Texto')} · Exercícios (A1)` : `${String(data.uiTitle||data.title||'Texto')} · Exercícios (${String(level||'').toUpperCase()})`),
@@ -843,9 +899,26 @@
               })
             : e(DictationExercise, { sentences: (Array.isArray(ex.narration_sentences)? ex.narration_sentences.slice(0,6) : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/))).slice(0,6) })
         ),
+        // ============================================================
+        // PADRÃO PARA ADICIONAR IMAGENS NA ASSOCIAÇÃO VISUAL
+        // ============================================================
+        // REGRA: Adicionar condição na verificação acima e no array de items
+        // Estrutura: { src:'/public/images/{LEVEL}/{level}texto{idx}/{n}.{idx}.webp', 
+        //              text:'Frase em inglês', 
+        //              audio:'/src/audio/{LEVEL}/texto-{level}.{idx}-dividido/part_{NN}.mp3' }
+        // ============================================================
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
-          (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9 || Number(idx)===11 || Number(idx)===12))
-            ? e(ImageSentenceAssociation, { items: (Number(idx)===1 ? [
+          ((isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9 || Number(idx)===11 || Number(idx)===12)) || (isA2 && Number(idx)===1))
+            ? e(ImageSentenceAssociation, { items: (isA2 && Number(idx)===1 ? [
+                { src:'/public/images/A2/a2texto1/1.1.webp', text:'Yesterday was a very busy day.', audio:'/src/audio/A2/texto-a2.1-dividido/part_01.mp3' },
+                { src:'/public/images/A2/a2texto1/2.1.webp', text:'The weather was cold and rainy in the morning.', audio:'/src/audio/A2/texto-a2.1-dividido/part_02.mp3' },
+                { src:'/public/images/A2/a2texto1/3.1.webp', text:'The corn field was muddy.', audio:'/src/audio/A2/texto-a2.1-dividido/part_03.mp3' },
+                { src:'/public/images/A2/a2texto1/4.1.webp', text:'It was difficult to drive there.', audio:'/src/audio/A2/texto-a2.1-dividido/part_04.mp3' },
+                { src:'/public/images/A2/a2texto1/5.1.webp', text:'The cows were in the barn because they were hungry.', audio:'/src/audio/A2/texto-a2.1-dividido/part_05.mp3' },
+                { src:'/public/images/A2/a2texto1/6.1.webp', text:'One calf was sick, but the vet was here quickly.', audio:'/src/audio/A2/texto-a2.1-dividido/part_06.mp3' },
+                { src:'/public/images/A2/a2texto1/7.1.webp', text:'The tractors were in the garage. They were not broken.', audio:'/src/audio/A2/texto-a2.1-dividido/part_07.mp3' },
+                { src:'/public/images/A2/a2texto1/8.1.webp', text:'We were tired at night, but the animals were safe.', audio:'/src/audio/A2/texto-a2.1-dividido/part_08.mp3' }
+              ] : Number(idx)===1 ? [
                 { src:'/public/images/A1/a1texto1/1.1.webp', text:'Hello!', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
                 { src:'/public/images/A1/a1texto1/2.1.webp', text:'I am Paul, and I am a farmer.', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
                 { src:'/public/images/A1/a1texto1/3.1.webp', text:'I am at the farm now.', audio:'/src/audio/A1/texto-a1.1-dividido/part_2.mp3' },

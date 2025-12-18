@@ -1788,9 +1788,7 @@ function renderGrammar(data) {
         const prefix = `${levelUpper}/`;
         return [
           `./public/images/${prefix}${L}texto${i}/`,
-          `/public/images/${prefix}${L}texto${i}/`,
-          `./public/images/${prefix}${L}texto${i}/farmedition/`,
-          `/public/images/${prefix}${L}texto${i}/farmedition/`
+          `/public/images/${prefix}${L}texto${i}/`
         ];
       }
       function setCoverImage(){
@@ -2796,7 +2794,79 @@ function renderGrammar(data) {
       const narration = enParts.slice(0);
       return { complete, negative: neg, question: ques, translation_short: trShort, repetition_phrases: repeat, narration_sentences: narration };
     }
-    const a1ex = buildA1Exercises();
+    function buildA2Exercises(){
+      const enParts = splitSentences(String(item.text_en||''));
+      const ptParts = splitSentences(fixPT(String(item.text_pt||'')));
+      const complete = (function(){
+        const vb = Array.isArray(verbsBase) ? verbsBase : [];
+        const out = [];
+        for (let i=0;i<enParts.length;i++){
+          const s = enParts[i];
+          let target = '';
+          let blanked = s;
+          const wasWereRx = /\b(was|were)\b/i;
+          const wasWereMatch = s.match(wasWereRx);
+          if (wasWereMatch) {
+            target = wasWereMatch[0].toLowerCase();
+            blanked = s.replace(wasWereRx, '____');
+          } else {
+            const rx = vb.length ? new RegExp(`\\b(${vb.join('|')})(es|s|ed|ied)?\\b`,'i') : null;
+            const m = rx ? s.match(rx) : null;
+            if (m){ target = (m[0]||'').replace(/[.,!?]/g,''); blanked = s.replace(rx,'____'); }
+            else {
+              const words = s.replace(/[.,!?]+$/,'').split(/\s+/);
+              target = words[1] || words[0] || '';
+              const rx2 = new RegExp(`\\b${target.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')}\\b`,'i');
+              blanked = s.replace(rx2,'____');
+            }
+          }
+          if (target) out.push({ prompt: blanked, answer: String(target).toLowerCase() });
+          if (out.length>=5) break;
+        }
+        return out;
+      })();
+      function formsFor(s){
+        const f = (function(ex){
+          const clean = String(ex||'').trim().replace(/[.?!]+$/,'');
+          if (!clean) return { affirmative:'',negative:'',interrogative:'' };
+          const words = clean.split(/\s+/);
+          let subject = words[0];
+          if (/^(the|a|an)$/i.test(words[0]) && words.length>=2) subject = words[0]+' '+words[1];
+          const subjEsc = subject.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&');
+          let rest = clean.replace(new RegExp('^'+subjEsc+'\\s+'),'');
+          const first = (rest.split(/\s+/)[0]||'').toLowerCase();
+          const isThird = /^(he|she|it|i)$/i.test(subject) || /^(the|a|an)\b/i.test(subject);
+          if (first==='was'){
+            const tail = rest.replace(/^was\s+/i,'');
+            return { affirmative: clean, negative: subject+' was not '+tail, interrogative: 'Was '+subject+' '+tail+'?' };
+          }
+          if (first==='were'){
+            const tail = rest.replace(/^were\s+/i,'');
+            return { affirmative: clean, negative: subject+' were not '+tail, interrogative: 'Were '+subject+' '+tail+'?' };
+          }
+          function baseVerb(w){ if (/^went$/i.test(w)) return 'go'; if (/ed$/i.test(w)) return w.replace(/ed$/i,''); if (/ied$/i.test(w)) return w.replace(/ied$/i,'y'); return w; }
+          const base = baseVerb(first);
+          const restWords = rest.split(/\s+/); if (restWords.length) restWords[0] = base;
+          const negAux = "didn't"; const qAux = 'Did';
+          return { affirmative: clean, negative: (subject+' '+negAux+' '+base+' '+restWords.slice(1).join(' ')).trim(), interrogative: (qAux+' '+subject+' '+restWords.join(' ')+'?').trim() };
+        })(s);
+        return { base: annotateTextManual(s), negative: annotateTextManual(f.negative), interrogative: annotateTextManual(f.interrogative) };
+      }
+      const neg = []; const ques = [];
+      for (let i=0;i<enParts.length && (neg.length<3 || ques.length<3); i++){
+        const f = formsFor(enParts[i]);
+        if (neg.length<3 && f.negative) neg.push({ base: f.base, result: f.negative });
+        if (ques.length<3 && f.interrogative) ques.push({ base: f.base, result: f.interrogative });
+      }
+      const trShort = [];
+      for (let i=0;i<Math.min(3,enParts.length); i++){
+        trShort.push({ en: annotateTextManual(enParts[i]), pt: fixPT(ptParts[i]||'') });
+      }
+      const repeat = enParts.slice(0,5).map(s=>({ en: annotateTextManual(s) }));
+      const narration = enParts.slice(0);
+      return { complete, negative: neg, question: ques, translation_short: trShort, repetition_phrases: repeat, narration_sentences: narration };
+    }
+    const a1ex = (lvl === 'A1') ? buildA1Exercises() : (lvl === 'A2') ? buildA2Exercises() : buildA1Exercises();
       return {
         title: item.title || `Texto ${idx}`,
         text: item.text_en || '',
@@ -4807,6 +4877,7 @@ const parts = [];
       if (pronList) {
         const maxCount = 11;
         const isA1 = String(level).toUpperCase()==='A1';
+        const isA2 = String(level).toUpperCase()==='A2';
         if (isA1 && Number(idx)===4) {
           sentences = [
             'I drive the green tractor.',
@@ -4820,16 +4891,35 @@ const parts = [];
           ptSentences = Array(sentences.length).fill('');
         }
         let imgCountBase = Math.min((sentences.length || 0), maxCount);
-        const useImages = isA1 && Number(idx) >= 1;
+        const useImages = (isA1 && Number(idx) >= 1) || (isA2 && Number(idx) === 1);
         try {
           if (useImages) { pronList.classList.add('speech-a1'); } else { pronList.classList.remove('speech-a1'); }
         } catch {}
         let imgs = [];
         if (useImages) {
-          // Padrão genérico: /public/images/{LEVEL}/{level}texto{idx}/{n}.{idx}.webp
+          // ============================================================
+          // PADRÃO PARA ADICIONAR IMAGENS NO LABORATÓRIO DE FALA
+          // ============================================================
+          // REGRA GERAL:
+          // 1. Estrutura de pastas: /public/images/{LEVEL}/{level}texto{idx}/
+          // 2. Nomenclatura das imagens:
+          //    - A1: {n}.{idx}.webp (ex: 1.1.webp, 2.1.webp para texto 1)
+          //    - A2 Texto 1: {n}.1.webp (ex: 1.1.webp, 2.1.webp)
+          //    - Outros níveis: seguir padrão {n}.{idx}.webp
+          // 3. Para adicionar imagens em novos textos/níveis:
+          //    a) Adicionar condição em useImages: || (isA2 && Number(idx) === X)
+          //    b) Adicionar condição específica aqui se o padrão for diferente
+          //    c) Adicionar áudios correspondentes na seção segUrls abaixo
+          // ============================================================
           const levelUpper = String(level||'A1').toUpperCase();
           const levelLower = String(level||'A1').toLowerCase();
-          imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.${idx}.webp`);
+          if (isA2 && Number(idx) === 1) {
+            // A2 Texto 1: padrão específico 1.1.webp, 2.1.webp, etc.
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.1.webp`);
+          } else {
+            // Padrão genérico: {n}.{idx}.webp
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.${idx}.webp`);
+          }
         }
         let segUrls = [];
         if (isA1 && Number(idx)===1) {
@@ -4879,7 +4969,15 @@ const parts = [];
         } else if (isA1 && Number(idx) >= 13) {
           // Padrão genérico para aulas futuras: tenta vários formatos
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `./src/audio/A1/texto-a1.${idx}-dividido/${String(i+1).padStart(2,'0')}.mp3`);
+        } else if (isA2 && Number(idx) === 1) {
+          // A2 Texto 1: áudios divididos
+          // PADRÃO: /src/audio/{LEVEL}/texto-{level}.{idx}-dividido/part_{NN}.mp3
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A2/texto-a2.1-dividido/part_${String(i+1).padStart(2,'0')}.mp3`);
         }
+        // Para adicionar novos textos/níveis:
+        // else if (isA2 && Number(idx) === X) {
+        //   segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A2/texto-a2.${idx}-dividido/part_${String(i+1).padStart(2,'0')}.mp3`);
+        // }
         if (isA1 && Number(idx)===5) {
           const fullAllEn = [
             'The weather is very hot today.',
