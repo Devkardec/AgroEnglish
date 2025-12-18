@@ -249,8 +249,12 @@ function splitOnConnectorsPT(sentence){
   return parts.filter(Boolean);
 }
 
-function buildAudioUrls(lvl, title){
+function buildAudioUrls(lvl, title, idx){
+  const levelUpper = String(lvl||'').toUpperCase();
   const base = `./src/audio/${lvl}/`;
+  // Para todos os níveis, procurar na pasta audiotexto se existir
+  const baseAudiotexto = `./src/audio/${lvl}/audiotexto/`;
+  const textIdx = Number(idx) || 0;
   const t0 = String(title||'');
   const t1 = t0.replace(/[’']/g,'');
   const t2 = t0.replace(/[:]/g,'');
@@ -267,7 +271,21 @@ function buildAudioUrls(lvl, title){
     `${t1}.mp3`,
     `${t2}.mp3`
   ]));
-  return candidates.map(n => base + encodeURIComponent(n));
+  const urls = candidates.map(n => base + encodeURIComponent(n));
+  // Para todos os níveis, também procurar na pasta audiotexto
+  // Primeiro tentar com número no início (ex: "1-Paul and the Farm...")
+  const numberedCandidates = textIdx > 0 ? Array.from(new Set([
+    `${textIdx}-${t0} · ${lvl}.mp3`,
+    `${textIdx}-${t1} · ${lvl}.mp3`,
+    `${textIdx}-${t2} · ${lvl}.mp3`,
+    `${textIdx}-${t0} - ${lvl}.mp3`,
+    `${textIdx}-${t1} - ${lvl}.mp3`,
+    `${textIdx}-${t2} - ${lvl}.mp3`,
+    `${textIdx}-${t3} - ${lvl}.mp3`
+  ])) : [];
+  const numberedUrls = numberedCandidates.map(n => baseAudiotexto + encodeURIComponent(n));
+  const audiotextoUrls = candidates.map(n => baseAudiotexto + encodeURIComponent(n));
+  return [...numberedUrls, ...audiotextoUrls, ...urls];
 }
 
 function baseVideoCandidates(lvl){
@@ -752,12 +770,12 @@ async function initHomePage() {
       ];
       // Imagens principais do módulo A1
       const mediaImages = [
-        '/public/images/modulo1.webp',
+        '/public/images/A1/modulo1.webp',
         // Exemplos de grupos de imagens dos primeiros textos A1
-        '/public/images/a1texto1/0.webp',
-        '/public/images/a1texto1/1.webp',
-        '/public/images/a1texto2/0.0.webp',
-        '/public/images/a1texto3/0.3.webp',
+        '/public/images/A1/a1texto1/0.webp',
+        '/public/images/A1/a1texto1/1.webp',
+        '/public/images/A1/a1texto2/0.0.webp',
+        '/public/images/A1/a1texto3/0.3.webp',
       ];
       filesToCache.push(...mediaAudio, ...mediaImages);
       if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
@@ -853,7 +871,7 @@ async function setupAudio(data) {
   const idx = Number((location.hash.split('/')[3] || '1').trim());
   renderAudioStatus();
   (function tryLoadAudio(){
-    const urls = buildAudioUrls(level, title);
+    const urls = buildAudioUrls(level, title, idx);
     let i = 0;
     function attempt(){
       if (i >= urls.length) { hasMp3 = false; renderAudioStatus(); return; }
@@ -1765,11 +1783,14 @@ function renderGrammar(data) {
         const { level, index } = parseRoute();
         const L = String(level||'A1').toLowerCase();
         const i = String(index||1);
+        const levelUpper = String(level||'A1').toUpperCase();
+        // Usar estrutura de pastas por nível para todos os níveis (A1, A2, B1, B2, C1, C2)
+        const prefix = `${levelUpper}/`;
         return [
-          `./public/images/${L}texto${i}/`,
-          `/public/images/${L}texto${i}/`,
-          `./public/images/${L}texto${i}/farmedition/`,
-          `/public/images/${L}texto${i}/farmedition/`
+          `./public/images/${prefix}${L}texto${i}/`,
+          `/public/images/${prefix}${L}texto${i}/`,
+          `./public/images/${prefix}${L}texto${i}/farmedition/`,
+          `/public/images/${prefix}${L}texto${i}/farmedition/`
         ];
       }
       function setCoverImage(){
@@ -1798,7 +1819,7 @@ function renderGrammar(data) {
         if (isA1BeMode) {
           const file = 'Paul and the Farm (Identity & Description) · A1.mp3';
           const encoded = encodeURIComponent(file);
-          const bases = ['./src/audio/A1/','./src/audio/','./public/audio/a1texto1/','./public/audio/A1/','./public/audio/','./'];
+          const bases = ['./src/audio/A1/audiotexto/','./src/audio/A1/','./src/audio/','./public/audio/a1texto1/','./public/audio/A1/','./public/audio/','./'];
           let idx = 0;
           function tryNext(){
             if (idx >= bases.length){ if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; }
@@ -1820,7 +1841,7 @@ function renderGrammar(data) {
         } else if (isA1AdjMode) {
           const file = 'The Tractor and The Field (Machinery & Crops) · A1.mp3';
           const encoded = encodeURIComponent(file);
-          const bases = ['./src/audio/A1/','./src/audio/','./public/audio/a1texto4/','./public/audio/A1/','./public/audio/','./'];
+          const bases = ['./src/audio/A1/audiotexto/','./src/audio/A1/','./src/audio/','./public/audio/a1texto4/','./public/audio/A1/','./public/audio/','./'];
           let idx = 0;
           function tryNext(){
             if (idx >= bases.length){ if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; }
@@ -1840,9 +1861,11 @@ function renderGrammar(data) {
           audioEl.addEventListener('ended', ()=>{ playing=false; });
           tryNext();
         } else {
-          const lvl = String(level).trim();
+          const { level: routeLevel, index: routeIndex } = parseRoute();
+          const lvl = String(routeLevel || level).trim();
           const title = String(data && (data.uiTitle || data.title) || '').trim();
-          const urls = buildAudioUrls(lvl, title);
+          const idxNum = Number(routeIndex || 1);
+          const urls = buildAudioUrls(lvl, title, idxNum);
           let iUrl = 0;
           function attempt(){ if (iUrl >= urls.length){ if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; } audioEl.src = urls[iUrl++]; audioEl.load(); }
           function onLoaded(){ segLen = (audioEl.duration||0) / Math.max(1,en.length); audioEl.removeEventListener('loadedmetadata', onLoaded); audioEl.removeEventListener('error', onError); }
@@ -4803,8 +4826,10 @@ const parts = [];
         } catch {}
         let imgs = [];
         if (useImages) {
-          // Padrão genérico: /public/images/a1texto{idx}/{n}.{idx}.webp
-          imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/a1texto${idx}/${i+1}.${idx}.webp`);
+          // Padrão genérico: /public/images/{LEVEL}/{level}texto{idx}/{n}.{idx}.webp
+          const levelUpper = String(level||'A1').toUpperCase();
+          const levelLower = String(level||'A1').toLowerCase();
+          imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.${idx}.webp`);
         }
         let segUrls = [];
         if (isA1 && Number(idx)===1) {
@@ -5023,7 +5048,8 @@ const parts = [];
       (function tryLoadFullAudio(){
         const lvl = String(level).trim();
         const title = String(data && (data.uiTitle || data.title) || '').trim();
-        const urls = buildAudioUrls(lvl, title);
+        const idxNum = Number(idx);
+        const urls = buildAudioUrls(lvl, title, idxNum);
         let i = 0;
         function attempt(){
           if (!fullOrigAudio) return;

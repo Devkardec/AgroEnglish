@@ -498,73 +498,73 @@
       const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 10));
       if (isTx1) {
         return [
-          { src:'/public/images/a1texto1/1.1.webp', text:'Hello!' },
-          { src:'/public/images/a1texto1/2.1.webp', text:'I am Paul, and I am a farmer.' },
-          { src:'/public/images/a1texto1/3.1.webp', text:'I am at the farm now.' },
-          { src:'/public/images/a1texto1/4.1.webp', text:'My sister is here too.' },
-          { src:'/public/images/a1texto1/5.1.webp', text:'She is happy.' },
-          { src:'/public/images/a1texto1/6.1.webp', text:'The barn is open.' },
-          { src:'/public/images/a1texto1/7.1.webp', text:'It is very big.' },
-          { src:'/public/images/a1texto1/8.1.webp', text:'The cows are calm, but the chickens are fast.' },
-          { src:'/public/images/a1texto1/9.1.webp', text:'They are funny.' },
-          { src:'/public/images/a1texto1/10.1.webp', text:'The sun is hot, but the wind is not strong.' },
-          { src:'/public/images/a1texto1/11.1.webp', text:'We are ready for the day.' }
+          { src:'/public/images/A1/a1texto1/1.1.webp', text:'Hello!' },
+          { src:'/public/images/A1/a1texto1/2.1.webp', text:'I am Paul, and I am a farmer.' },
+          { src:'/public/images/A1/a1texto1/3.1.webp', text:'I am at the farm now.' },
+          { src:'/public/images/A1/a1texto1/4.1.webp', text:'My sister is here too.' },
+          { src:'/public/images/A1/a1texto1/5.1.webp', text:'She is happy.' },
+          { src:'/public/images/A1/a1texto1/6.1.webp', text:'The barn is open.' },
+          { src:'/public/images/A1/a1texto1/7.1.webp', text:'It is very big.' },
+          { src:'/public/images/A1/a1texto1/8.1.webp', text:'The cows are calm, but the chickens are fast.' },
+          { src:'/public/images/A1/a1texto1/9.1.webp', text:'They are funny.' },
+          { src:'/public/images/A1/a1texto1/10.1.webp', text:'The sun is hot, but the wind is not strong.' },
+          { src:'/public/images/A1/a1texto1/11.1.webp', text:'We are ready for the day.' }
         ];
       }
       if (isTx2) {
         return [
-          { src:'/public/images/a1texto2/1.2.webp', text:'I have a livestock farm.' },
-          { src:'/public/images/a1texto2/2.2.webp', text:'We have many cows here.' },
-          { src:'/public/images/a1texto2/3.2.webp', text:'This is the veterinarian. Her name is Dr. Silva.' },
-          { src:'/public/images/a1texto2/4.2.webp', text:'She has a medical kit.' },
-          { src:'/public/images/a1texto2/5.2.webp', text:'The bull has a strong body, but he has a small injury on the leg.' },
-          { src:'/public/images/a1texto2/6.2.webp', text:'Dr. Silva has the medicine.' },
-          { src:'/public/images/a1texto2/7.2.webp', text:'We have safe and healthy animals now.' }
+          { src:'/public/images/A1/a1texto2/1.2.webp', text:'I have a livestock farm.' },
+          { src:'/public/images/A1/a1texto2/2.2.webp', text:'We have many cows here.' },
+          { src:'/public/images/A1/a1texto2/3.2.webp', text:'This is the veterinarian. Her name is Dr. Silva.' },
+          { src:'/public/images/A1/a1texto2/4.2.webp', text:'She has a medical kit.' },
+          { src:'/public/images/A1/a1texto2/5.2.webp', text:'The bull has a strong body, but he has a small injury on the leg.' },
+          { src:'/public/images/A1/a1texto2/6.2.webp', text:'Dr. Silva has the medicine.' },
+          { src:'/public/images/A1/a1texto2/7.2.webp', text:'We have safe and healthy animals now.' }
         ];
       }
       if (isTx3) {
-        const imgs = Array.from({length:count}, (_,i)=> `/public/images/a1texto3/${i+1}.3.webp`);
+        const imgs = Array.from({length:count}, (_,i)=> `/public/images/A1/a1texto3/${i+1}.3.webp`);
         const lines = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : [];
         return Array.from({length:count}, (_,i)=> ({ src: imgs[i], text: String(lines[i]||'').trim() }));
       }
       if (isTx4 || isTx5 || isTx6) {
         const items = (isTx4 ? [
-          { src:'/public/images/a1texto4/1.4.webp', text:'I drive the green tractor.', audio:'/src/audio/A1/texto-a1.4-dividido/part_1.mp3' },
-          { src:'/public/images/a1texto4/5.4.webp', text:'The farmer waters the plants in the greenhouse.', audio:'/src/audio/A1/texto-a1.4-dividido/part_5.mp3' },
-          { src:'/public/images/a1texto4/3.4.webp', text:'The harvester collects the ripe wheat.', audio:'/src/audio/A1/texto-a1.4-dividido/part_3.mp3' },
-          { src:'/public/images/a1texto4/7.4.webp', text:'The trailer carries bales of hay.', audio:'/src/audio/A1/texto-a1.4-dividido/part_7.mp3' },
-          { src:'/public/images/a1texto4/8.4.webp', text:'He repairs the engine in the shed.', audio:'/src/audio/A1/texto-a1.4-dividido/part_8.mp3' },
-          { src:'/public/images/a1texto4/9.4.webp', text:'The field is ready for sowing.', audio:'/src/audio/A1/texto-a1.4-dividido/part_9.mp3' },
-          { src:'/public/images/a1texto4/10.4.webp', text:'The cow drinks water near the barn.', audio:'/src/audio/A1/texto-a1.4-dividido/part_10.mp3' }
+          { src:'/public/images/A1/a1texto4/1.4.webp', text:'I drive the green tractor.', audio:'/src/audio/A1/texto-a1.4-dividido/part_1.mp3' },
+          { src:'/public/images/A1/a1texto4/5.4.webp', text:'The farmer waters the plants in the greenhouse.', audio:'/src/audio/A1/texto-a1.4-dividido/part_5.mp3' },
+          { src:'/public/images/A1/a1texto4/3.4.webp', text:'The harvester collects the ripe wheat.', audio:'/src/audio/A1/texto-a1.4-dividido/part_3.mp3' },
+          { src:'/public/images/A1/a1texto4/7.4.webp', text:'The trailer carries bales of hay.', audio:'/src/audio/A1/texto-a1.4-dividido/part_7.mp3' },
+          { src:'/public/images/A1/a1texto4/8.4.webp', text:'He repairs the engine in the shed.', audio:'/src/audio/A1/texto-a1.4-dividido/part_8.mp3' },
+          { src:'/public/images/A1/a1texto4/9.4.webp', text:'The field is ready for sowing.', audio:'/src/audio/A1/texto-a1.4-dividido/part_9.mp3' },
+          { src:'/public/images/A1/a1texto4/10.4.webp', text:'The cow drinks water near the barn.', audio:'/src/audio/A1/texto-a1.4-dividido/part_10.mp3' }
         ] : isTx6 ? [
-          { src:'/public/images/a1texto6/1.6.webp', text:'We have a lot of work today.', audio:'/src/audio/A1/texto-a1.6-dividido/part_1.mp3' },
-          { src:'/public/images/a1texto6/2.6.webp', text:'How many bags of corn are in the shed?', audio:'/src/audio/A1/texto-a1.6-dividido/part_2.mp3' },
-          { src:'/public/images/a1texto6/3.6.webp', text:'There are ten bags of corn.', audio:'/src/audio/A1/texto-a1.6-dividido/part_3.mp3' },
-          { src:'/public/images/a1texto6/4.6.webp', text:'How many tractors are here?', audio:'/src/audio/A1/texto-a1.6-dividido/part_4.mp3' },
-          { src:'/public/images/a1texto6/5.6.webp', text:'There is only one tractor.', audio:'/src/audio/A1/texto-a1.6-dividido/part_5.mp3' },
-          { src:'/public/images/a1texto6/6.6.webp', text:'I see five horses and twenty cows.', audio:'/src/audio/A1/texto-a1.6-dividido/part_6.mp3' },
-          { src:'/public/images/a1texto6/7.6.webp', text:'The inventory is correct.', audio:'/src/audio/A1/texto-a1.6-dividido/part_7.mp3' },
-          { src:'/public/images/a1texto6/8.6.webp', text:'We need more salt for the cattle.', audio:'/src/audio/A1/texto-a1.6-dividido/part_8.mp3' }
+          { src:'/public/images/A1/a1texto6/1.6.webp', text:'We have a lot of work today.', audio:'/src/audio/A1/texto-a1.6-dividido/part_1.mp3' },
+          { src:'/public/images/A1/a1texto6/2.6.webp', text:'How many bags of corn are in the shed?', audio:'/src/audio/A1/texto-a1.6-dividido/part_2.mp3' },
+          { src:'/public/images/A1/a1texto6/3.6.webp', text:'There are ten bags of corn.', audio:'/src/audio/A1/texto-a1.6-dividido/part_3.mp3' },
+          { src:'/public/images/A1/a1texto6/4.6.webp', text:'How many tractors are here?', audio:'/src/audio/A1/texto-a1.6-dividido/part_4.mp3' },
+          { src:'/public/images/A1/a1texto6/5.6.webp', text:'There is only one tractor.', audio:'/src/audio/A1/texto-a1.6-dividido/part_5.mp3' },
+          { src:'/public/images/A1/a1texto6/6.6.webp', text:'I see five horses and twenty cows.', audio:'/src/audio/A1/texto-a1.6-dividido/part_6.mp3' },
+          { src:'/public/images/A1/a1texto6/7.6.webp', text:'The inventory is correct.', audio:'/src/audio/A1/texto-a1.6-dividido/part_7.mp3' },
+          { src:'/public/images/A1/a1texto6/8.6.webp', text:'We need more salt for the cattle.', audio:'/src/audio/A1/texto-a1.6-dividido/part_8.mp3' }
         ] : [
-          { src:'/public/images/a1texto5/1.5.webp', text:'The sun is very hot today.', audio:'/src/audio/A1/texto-a1.5-dividido/part_1.mp3' },
-          { src:'/public/images/a1texto5/3.5.webp', text:'The corn needs rain.', audio:'/src/audio/A1/texto-a1.5-dividido/part_3.mp3' },
-          { src:'/public/images/a1texto5/5.5.webp', text:'It will rain soon.', audio:'/src/audio/A1/texto-a1.5-dividido/part_5.mp3' },
-          { src:'/public/images/a1texto5/7.5.webp', text:'The plants are green.', audio:'/src/audio/A1/texto-a1.5-dividido/part_7.mp3' },
-          { src:'/public/images/a1texto5/9.5.webp', text:'The temperature is mild.', audio:'/src/audio/A1/texto-a1.5-dividido/part_9.mp3' },
-          { src:'/public/images/a1texto5/10.5.webp', text:'The harvest will be good this year.', audio:'/src/audio/A1/texto-a1.5-dividido/part_10.mp3' }
+          { src:'/public/images/A1/a1texto5/1.5.webp', text:'The sun is very hot today.', audio:'/src/audio/A1/texto-a1.5-dividido/part_1.mp3' },
+          { src:'/public/images/A1/a1texto5/3.5.webp', text:'The corn needs rain.', audio:'/src/audio/A1/texto-a1.5-dividido/part_3.mp3' },
+          { src:'/public/images/A1/a1texto5/5.5.webp', text:'It will rain soon.', audio:'/src/audio/A1/texto-a1.5-dividido/part_5.mp3' },
+          { src:'/public/images/A1/a1texto5/7.5.webp', text:'The plants are green.', audio:'/src/audio/A1/texto-a1.5-dividido/part_7.mp3' },
+          { src:'/public/images/A1/a1texto5/9.5.webp', text:'The temperature is mild.', audio:'/src/audio/A1/texto-a1.5-dividido/part_9.mp3' },
+          { src:'/public/images/A1/a1texto5/10.5.webp', text:'The harvest will be good this year.', audio:'/src/audio/A1/texto-a1.5-dividido/part_10.mp3' }
         ]);
         return items;
       }
       if (isTx7) {
         const imgs = [
-          '/public/images/a1texto7/1.7.webp',
-          '/public/images/a1texto7/2.7.webp',
-          '/public/images/a1texto7/3.7.webp',
-          '/public/images/a1texto7/4.7.webp',
-          '/public/images/a1texto7/5.7.webp',
-          '/public/images/a1texto7/6.7.webp',
-          '/public/images/a1texto7/7.7.webp',
-          '/public/images/a1texto7/8.7.webp'
+          '/public/images/A1/a1texto7/1.7.webp',
+          '/public/images/A1/a1texto7/2.7.webp',
+          '/public/images/A1/a1texto7/3.7.webp',
+          '/public/images/A1/a1texto7/4.7.webp',
+          '/public/images/A1/a1texto7/5.7.webp',
+          '/public/images/A1/a1texto7/6.7.webp',
+          '/public/images/A1/a1texto7/7.7.webp',
+          '/public/images/A1/a1texto7/8.7.webp'
         ];
         const lines = Array.isArray(ex.narration_sentences)
           ? ex.narration_sentences
@@ -573,15 +573,15 @@
       }
       if (isTx8) {
         const imgs = [
-          '/public/images/a1texto8/1.8.webp',
-          '/public/images/a1texto8/2.8.webp',
-          '/public/images/a1texto8/3.8.webp',
-          '/public/images/a1texto8/4.8.webp',
-          '/public/images/a1texto8/5.8.webp',
-          '/public/images/a1texto8/6.8.webp',
-          '/public/images/a1texto8/7.8.webp',
-          '/public/images/a1texto8/8.8.webp',
-          '/public/images/a1texto8/9.8.webp'
+          '/public/images/A1/a1texto8/1.8.webp',
+          '/public/images/A1/a1texto8/2.8.webp',
+          '/public/images/A1/a1texto8/3.8.webp',
+          '/public/images/A1/a1texto8/4.8.webp',
+          '/public/images/A1/a1texto8/5.8.webp',
+          '/public/images/A1/a1texto8/6.8.webp',
+          '/public/images/A1/a1texto8/7.8.webp',
+          '/public/images/A1/a1texto8/8.8.webp',
+          '/public/images/A1/a1texto8/9.8.webp'
         ];
         const lines = Array.isArray(ex.narration_sentences)
           ? ex.narration_sentences
@@ -590,14 +590,14 @@
       }
       if (isTx9) {
         const imgs = [
-          '/public/images/a1texto9/1.9.webp',
-          '/public/images/a1texto9/2.9.webp',
-          '/public/images/a1texto9/3.9.webp',
-          '/public/images/a1texto9/4.9.webp',
-          '/public/images/a1texto9/5.9.webp',
-          '/public/images/a1texto9/6.9.webp',
-          '/public/images/a1texto9/7.9.webp',
-          '/public/images/a1texto9/8.9.webp'
+          '/public/images/A1/a1texto9/1.9.webp',
+          '/public/images/A1/a1texto9/2.9.webp',
+          '/public/images/A1/a1texto9/3.9.webp',
+          '/public/images/A1/a1texto9/4.9.webp',
+          '/public/images/A1/a1texto9/5.9.webp',
+          '/public/images/A1/a1texto9/6.9.webp',
+          '/public/images/A1/a1texto9/7.9.webp',
+          '/public/images/A1/a1texto9/8.9.webp'
         ];
         const lines = Array.isArray(data.pairs)
           ? data.pairs.map(p=> String(p.en||'').trim())
@@ -610,14 +610,14 @@
       }
       if (isA1 && Number(idx)===10) {
         const imgs = [
-          '/public/images/a1texto10/1.10.webp',
-          '/public/images/a1texto10/2.10.webp',
-          '/public/images/a1texto10/3.10.webp',
-          '/public/images/a1texto10/4.10.webp',
-          '/public/images/a1texto10/5.10.webp',
-          '/public/images/a1texto10/6.10.webp',
-          '/public/images/a1texto10/7.10.webp',
-          '/public/images/a1texto10/8.10.webp'
+          '/public/images/A1/a1texto10/1.10.webp',
+          '/public/images/A1/a1texto10/2.10.webp',
+          '/public/images/A1/a1texto10/3.10.webp',
+          '/public/images/A1/a1texto10/4.10.webp',
+          '/public/images/A1/a1texto10/5.10.webp',
+          '/public/images/A1/a1texto10/6.10.webp',
+          '/public/images/A1/a1texto10/7.10.webp',
+          '/public/images/A1/a1texto10/8.10.webp'
         ];
         const lines = Array.isArray(data.pairs)
           ? data.pairs.map(p=> String(p.en||'').trim())
@@ -630,29 +630,29 @@
       }
       if (isA1 && Number(idx)===11) {
         return [
-          { src:'./public/images/a1texto11/1.11.webp', text:'Tomorrow is Monday.' },
-          { src:'./public/images/a1texto11/2.11.webp', text:'It is an important day.' },
-          { src:'./public/images/a1texto11/3.11.webp', text:'We will start the soybean harvest.' },
-          { src:'./public/images/a1texto11/4.11.webp', text:'The trucks will arrive at 7:00 AM.' },
-          { src:'./public/images/a1texto11/5.11.webp', text:'On Tuesday, we will load the grain into the silos.' },
-          { src:'./public/images/a1texto11/6.11.webp', text:'The mechanic will check the harvester again.' },
-          { src:'./public/images/a1texto11/7.11.webp', text:'The weather will be sunny all week.' },
-          { src:'./public/images/a1texto11/8.11.webp', text:'We will sell the production on Friday.' },
-          { src:'./public/images/a1texto11/9.11.webp', text:'It will be a busy week for us.' }
+          { src:'./public/images/A1/a1texto11/1.11.webp', text:'Tomorrow is Monday.' },
+          { src:'./public/images/A1/a1texto11/2.11.webp', text:'It is an important day.' },
+          { src:'./public/images/A1/a1texto11/3.11.webp', text:'We will start the soybean harvest.' },
+          { src:'./public/images/A1/a1texto11/4.11.webp', text:'The trucks will arrive at 7:00 AM.' },
+          { src:'./public/images/A1/a1texto11/5.11.webp', text:'On Tuesday, we will load the grain into the silos.' },
+          { src:'./public/images/A1/a1texto11/6.11.webp', text:'The mechanic will check the harvester again.' },
+          { src:'./public/images/A1/a1texto11/7.11.webp', text:'The weather will be sunny all week.' },
+          { src:'./public/images/A1/a1texto11/8.11.webp', text:'We will sell the production on Friday.' },
+          { src:'./public/images/A1/a1texto11/9.11.webp', text:'It will be a busy week for us.' }
         ];
       }
       if (isA1 && Number(idx)===12) {
         return [
-          { src:'/public/images/a1texto12/1.12.webp', text:'The harvest is finished. The silos are full.' },
-          { src:'/public/images/a1texto12/2.12.webp', text:'We go to the cooperative.' },
-          { src:'/public/images/a1texto12/3.12.webp', text:'We sell the grain at the market.' },
-          { src:'/public/images/a1texto12/4.12.webp', text:'The buyer asks, How much is one ton?' },
-          { src:'/public/images/a1texto12/5.12.webp', text:'It costs 500 dollars per ton.' },
-          { src:'/public/images/a1texto12/6.12.webp', text:'Some machines are expensive.' },
-          { src:'/public/images/a1texto12/7.12.webp', text:'Inputs are expensive too.' },
-          { src:'/public/images/a1texto12/8.12.webp', text:'A small bag is cheap.' },
-          { src:'/public/images/a1texto12/9.12.webp', text:'We count the money.' },
-          { src:'/public/images/a1texto12/10.12.webp', text:'We pay the costs and we see the profit.' }
+          { src:'/public/images/A1/a1texto12/1.12.webp', text:'The harvest is finished. The silos are full.' },
+          { src:'/public/images/A1/a1texto12/2.12.webp', text:'We go to the cooperative.' },
+          { src:'/public/images/A1/a1texto12/3.12.webp', text:'We sell the grain at the market.' },
+          { src:'/public/images/A1/a1texto12/4.12.webp', text:'The buyer asks, How much is one ton?' },
+          { src:'/public/images/A1/a1texto12/5.12.webp', text:'It costs 500 dollars per ton.' },
+          { src:'/public/images/A1/a1texto12/6.12.webp', text:'Some machines are expensive.' },
+          { src:'/public/images/A1/a1texto12/7.12.webp', text:'Inputs are expensive too.' },
+          { src:'/public/images/A1/a1texto12/8.12.webp', text:'A small bag is cheap.' },
+          { src:'/public/images/A1/a1texto12/9.12.webp', text:'We count the money.' },
+          { src:'/public/images/A1/a1texto12/10.12.webp', text:'We pay the costs and we see the profit.' }
         ];
       }
       const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
@@ -846,71 +846,71 @@
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
           (isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9 || Number(idx)===11 || Number(idx)===12))
             ? e(ImageSentenceAssociation, { items: (Number(idx)===1 ? [
-                { src:'/public/images/a1texto1/1.1.webp', text:'Hello!', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
-                { src:'/public/images/a1texto1/2.1.webp', text:'I am Paul, and I am a farmer.', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
-                { src:'/public/images/a1texto1/3.1.webp', text:'I am at the farm now.', audio:'/src/audio/A1/texto-a1.1-dividido/part_2.mp3' },
-                { src:'/public/images/a1texto1/4.1.webp', text:'My sister is here too.', audio:'/src/audio/A1/texto-a1.1-dividido/part_3.mp3' },
-                { src:'/public/images/a1texto1/5.1.webp', text:'She is happy.', audio:'/src/audio/A1/texto-a1.1-dividido/part_3.mp3' },
-                { src:'/public/images/a1texto1/6.1.webp', text:'The barn is open.', audio:'/src/audio/A1/texto-a1.1-dividido/part_4.mp3' },
-                { src:'/public/images/a1texto1/7.1.webp', text:'It is very big.', audio:'/src/audio/A1/texto-a1.1-dividido/part_4.mp3' },
-                { src:'/public/images/a1texto1/8.1.webp', text:'The cows are calm, but the chickens are fast.', audio:'/src/audio/A1/texto-a1.1-dividido/part_5.mp3' },
-                { src:'/public/images/a1texto1/9.1.webp', text:'They are funny.', audio:'/src/audio/A1/texto-a1.1-dividido/part_5.mp3' },
-                { src:'/public/images/a1texto1/10.1.webp', text:'The sun is hot, but the wind is not strong.', audio:'/src/audio/A1/texto-a1.1-dividido/part_6.mp3' },
-                { src:'/public/images/a1texto1/11.1.webp', text:'We are ready for the day.', audio:'/src/audio/A1/texto-a1.1-dividido/part_7.mp3' }
+                { src:'/public/images/A1/a1texto1/1.1.webp', text:'Hello!', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
+                { src:'/public/images/A1/a1texto1/2.1.webp', text:'I am Paul, and I am a farmer.', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
+                { src:'/public/images/A1/a1texto1/3.1.webp', text:'I am at the farm now.', audio:'/src/audio/A1/texto-a1.1-dividido/part_2.mp3' },
+                { src:'/public/images/A1/a1texto1/4.1.webp', text:'My sister is here too.', audio:'/src/audio/A1/texto-a1.1-dividido/part_3.mp3' },
+                { src:'/public/images/A1/a1texto1/5.1.webp', text:'She is happy.', audio:'/src/audio/A1/texto-a1.1-dividido/part_3.mp3' },
+                { src:'/public/images/A1/a1texto1/6.1.webp', text:'The barn is open.', audio:'/src/audio/A1/texto-a1.1-dividido/part_4.mp3' },
+                { src:'/public/images/A1/a1texto1/7.1.webp', text:'It is very big.', audio:'/src/audio/A1/texto-a1.1-dividido/part_4.mp3' },
+                { src:'/public/images/A1/a1texto1/8.1.webp', text:'The cows are calm, but the chickens are fast.', audio:'/src/audio/A1/texto-a1.1-dividido/part_5.mp3' },
+                { src:'/public/images/A1/a1texto1/9.1.webp', text:'They are funny.', audio:'/src/audio/A1/texto-a1.1-dividido/part_5.mp3' },
+                { src:'/public/images/A1/a1texto1/10.1.webp', text:'The sun is hot, but the wind is not strong.', audio:'/src/audio/A1/texto-a1.1-dividido/part_6.mp3' },
+                { src:'/public/images/A1/a1texto1/11.1.webp', text:'We are ready for the day.', audio:'/src/audio/A1/texto-a1.1-dividido/part_7.mp3' }
               ] : Number(idx)===4 ? [
-                { src:'/public/images/a1texto4/1.4.webp', text:'I drive the green tractor.', audio:'/src/audio/A1/texto-a1.4-dividido/part_1.mp3' },
-                { src:'/public/images/a1texto4/5.4.webp', text:'The farmer waters the plants in the greenhouse.', audio:'/src/audio/A1/texto-a1.4-dividido/part_5.mp3' },
-                { src:'/public/images/a1texto4/3.4.webp', text:'The harvester collects the ripe wheat.', audio:'/src/audio/A1/texto-a1.4-dividido/part_3.mp3' },
-                { src:'/public/images/a1texto4/7.4.webp', text:'The trailer carries bales of hay.', audio:'/src/audio/A1/texto-a1.4-dividido/part_7.mp3' },
-                { src:'/public/images/a1texto4/8.4.webp', text:'He repairs the engine in the shed.', audio:'/src/audio/A1/texto-a1.4-dividido/part_8.mp3' },
-                { src:'/public/images/a1texto4/9.4.webp', text:'The field is ready for sowing.', audio:'/src/audio/A1/texto-a1.4-dividido/part_9.mp3' },
-                { src:'/public/images/a1texto4/10.4.webp', text:'The cow drinks water near the barn.', audio:'/src/audio/A1/texto-a1.4-dividido/part_10.mp3' }
+                { src:'/public/images/A1/a1texto4/1.4.webp', text:'I drive the green tractor.', audio:'/src/audio/A1/texto-a1.4-dividido/part_1.mp3' },
+                { src:'/public/images/A1/a1texto4/5.4.webp', text:'The farmer waters the plants in the greenhouse.', audio:'/src/audio/A1/texto-a1.4-dividido/part_5.mp3' },
+                { src:'/public/images/A1/a1texto4/3.4.webp', text:'The harvester collects the ripe wheat.', audio:'/src/audio/A1/texto-a1.4-dividido/part_3.mp3' },
+                { src:'/public/images/A1/a1texto4/7.4.webp', text:'The trailer carries bales of hay.', audio:'/src/audio/A1/texto-a1.4-dividido/part_7.mp3' },
+                { src:'/public/images/A1/a1texto4/8.4.webp', text:'He repairs the engine in the shed.', audio:'/src/audio/A1/texto-a1.4-dividido/part_8.mp3' },
+                { src:'/public/images/A1/a1texto4/9.4.webp', text:'The field is ready for sowing.', audio:'/src/audio/A1/texto-a1.4-dividido/part_9.mp3' },
+                { src:'/public/images/A1/a1texto4/10.4.webp', text:'The cow drinks water near the barn.', audio:'/src/audio/A1/texto-a1.4-dividido/part_10.mp3' }
               ] : Number(idx)===6 ? [
-                { src:'/public/images/a1texto6/1.6.webp', text:'We have a lot of work today.', audio:'/src/audio/A1/texto-a1.6-dividido/part_1.mp3' },
-                { src:'/public/images/a1texto6/2.6.webp', text:'How many bags of corn are in the shed?', audio:'/src/audio/A1/texto-a1.6-dividido/part_2.mp3' },
-                { src:'/public/images/a1texto6/3.6.webp', text:'There are ten bags of corn.', audio:'/src/audio/A1/texto-a1.6-dividido/part_3.mp3' },
-                { src:'/public/images/a1texto6/4.6.webp', text:'How many tractors are here?', audio:'/src/audio/A1/texto-a1.6-dividido/part_4.mp3' },
-                { src:'/public/images/a1texto6/5.6.webp', text:'There is only one tractor.', audio:'/src/audio/A1/texto-a1.6-dividido/part_5.mp3' },
-                { src:'/public/images/a1texto6/6.6.webp', text:'I see five horses and twenty cows.', audio:'/src/audio/A1/texto-a1.6-dividido/part_6.mp3' },
-                { src:'/public/images/a1texto6/7.6.webp', text:'The inventory is correct.', audio:'/src/audio/A1/texto-a1.6-dividido/part_7.mp3' },
-                { src:'/public/images/a1texto6/8.6.webp', text:'We need more salt for the cattle.', audio:'/src/audio/A1/texto-a1.6-dividido/part_8.mp3' }
+                { src:'/public/images/A1/a1texto6/1.6.webp', text:'We have a lot of work today.', audio:'/src/audio/A1/texto-a1.6-dividido/part_1.mp3' },
+                { src:'/public/images/A1/a1texto6/2.6.webp', text:'How many bags of corn are in the shed?', audio:'/src/audio/A1/texto-a1.6-dividido/part_2.mp3' },
+                { src:'/public/images/A1/a1texto6/3.6.webp', text:'There are ten bags of corn.', audio:'/src/audio/A1/texto-a1.6-dividido/part_3.mp3' },
+                { src:'/public/images/A1/a1texto6/4.6.webp', text:'How many tractors are here?', audio:'/src/audio/A1/texto-a1.6-dividido/part_4.mp3' },
+                { src:'/public/images/A1/a1texto6/5.6.webp', text:'There is only one tractor.', audio:'/src/audio/A1/texto-a1.6-dividido/part_5.mp3' },
+                { src:'/public/images/A1/a1texto6/6.6.webp', text:'I see five horses and twenty cows.', audio:'/src/audio/A1/texto-a1.6-dividido/part_6.mp3' },
+                { src:'/public/images/A1/a1texto6/7.6.webp', text:'The inventory is correct.', audio:'/src/audio/A1/texto-a1.6-dividido/part_7.mp3' },
+                { src:'/public/images/A1/a1texto6/8.6.webp', text:'We need more salt for the cattle.', audio:'/src/audio/A1/texto-a1.6-dividido/part_8.mp3' }
               ] : Number(idx)===9 ? [
-                { src:'/public/images/a1texto9/1.9.webp', text:'Look at the team now!' },
-                { src:'/public/images/a1texto9/2.9.webp', text:'We are working hard.' },
-                { src:'/public/images/a1texto9/3.9.webp', text:'Carlos is repairing the old fence.' },
-                { src:'/public/images/a1texto9/4.9.webp', text:'The mechanic is fixing the tractor engine.' },
-                { src:'/public/images/a1texto9/5.9.webp', text:'I am cleaning the milking machine.' },
-                { src:'/public/images/a1texto9/6.9.webp', text:'The cows are waiting in the shade.' },
-                { src:'/public/images/a1texto9/7.9.webp', text:'They are not eating at this moment.' },
-                { src:'/public/images/a1texto9/8.9.webp', text:'Everything is moving fast today.' }
+                { src:'/public/images/A1/a1texto9/1.9.webp', text:'Look at the team now!' },
+                { src:'/public/images/A1/a1texto9/2.9.webp', text:'We are working hard.' },
+                { src:'/public/images/A1/a1texto9/3.9.webp', text:'Carlos is repairing the old fence.' },
+                { src:'/public/images/A1/a1texto9/4.9.webp', text:'The mechanic is fixing the tractor engine.' },
+                { src:'/public/images/A1/a1texto9/5.9.webp', text:'I am cleaning the milking machine.' },
+                { src:'/public/images/A1/a1texto9/6.9.webp', text:'The cows are waiting in the shade.' },
+                { src:'/public/images/A1/a1texto9/7.9.webp', text:'They are not eating at this moment.' },
+                { src:'/public/images/A1/a1texto9/8.9.webp', text:'Everything is moving fast today.' }
               ] : Number(idx)===11 ? [
-                { src:'./public/images/a1texto11/1.11.webp', text:'Tomorrow is Monday.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_1.mp3' },
-                { src:'./public/images/a1texto11/2.11.webp', text:'It is an important day.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_2.mp3' },
-                { src:'./public/images/a1texto11/3.11.webp', text:'We will start the soybean harvest.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_3.mp3' },
-                { src:'./public/images/a1texto11/4.11.webp', text:'The trucks will arrive at 7:00 AM.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_4.mp3' },
-                { src:'./public/images/a1texto11/5.11.webp', text:'On Tuesday, we will load the grain into the silos.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_5.mp3' },
-                { src:'./public/images/a1texto11/6.11.webp', text:'The mechanic will check the harvester again.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_6.mp3' },
-                { src:'./public/images/a1texto11/7.11.webp', text:'The weather will be sunny all week.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_7.mp3' },
-                { src:'./public/images/a1texto11/8.11.webp', text:'We will sell the production on Friday.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_8.mp3' },
-                { src:'./public/images/a1texto11/9.11.webp', text:'It will be a busy week for us.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_9.mp3' }
+                { src:'./public/images/A1/a1texto11/1.11.webp', text:'Tomorrow is Monday.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_1.mp3' },
+                { src:'./public/images/A1/a1texto11/2.11.webp', text:'It is an important day.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_2.mp3' },
+                { src:'./public/images/A1/a1texto11/3.11.webp', text:'We will start the soybean harvest.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_3.mp3' },
+                { src:'./public/images/A1/a1texto11/4.11.webp', text:'The trucks will arrive at 7:00 AM.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_4.mp3' },
+                { src:'./public/images/A1/a1texto11/5.11.webp', text:'On Tuesday, we will load the grain into the silos.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_5.mp3' },
+                { src:'./public/images/A1/a1texto11/6.11.webp', text:'The mechanic will check the harvester again.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_6.mp3' },
+                { src:'./public/images/A1/a1texto11/7.11.webp', text:'The weather will be sunny all week.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_7.mp3' },
+                { src:'./public/images/A1/a1texto11/8.11.webp', text:'We will sell the production on Friday.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_8.mp3' },
+                { src:'./public/images/A1/a1texto11/9.11.webp', text:'It will be a busy week for us.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_9.mp3' }
               ] : Number(idx)===12 ? [
-                { src:'/public/images/a1texto12/1.12.webp', text:'The harvest is finished. The silos are full.' },
-                { src:'/public/images/a1texto12/2.12.webp', text:'We go to the cooperative.' },
-                { src:'/public/images/a1texto12/3.12.webp', text:'We sell the grain at the market.' },
-                { src:'/public/images/a1texto12/4.12.webp', text:'The buyer asks, How much is one ton?' },
-                { src:'/public/images/a1texto12/5.12.webp', text:'It costs 500 dollars per ton.' },
-                { src:'/public/images/a1texto12/6.12.webp', text:'Some machines are expensive.' },
-                { src:'/public/images/a1texto12/7.12.webp', text:'Inputs are expensive too.' },
-                { src:'/public/images/a1texto12/8.12.webp', text:'A small bag is cheap.' },
-                { src:'/public/images/a1texto12/9.12.webp', text:'We count the money.' },
-                { src:'/public/images/a1texto12/10.12.webp', text:'We pay the costs and we see the profit.' }
+                { src:'/public/images/A1/a1texto12/1.12.webp', text:'The harvest is finished. The silos are full.' },
+                { src:'/public/images/A1/a1texto12/2.12.webp', text:'We go to the cooperative.' },
+                { src:'/public/images/A1/a1texto12/3.12.webp', text:'We sell the grain at the market.' },
+                { src:'/public/images/A1/a1texto12/4.12.webp', text:'The buyer asks, How much is one ton?' },
+                { src:'/public/images/A1/a1texto12/5.12.webp', text:'It costs 500 dollars per ton.' },
+                { src:'/public/images/A1/a1texto12/6.12.webp', text:'Some machines are expensive.' },
+                { src:'/public/images/A1/a1texto12/7.12.webp', text:'Inputs are expensive too.' },
+                { src:'/public/images/A1/a1texto12/8.12.webp', text:'A small bag is cheap.' },
+                { src:'/public/images/A1/a1texto12/9.12.webp', text:'We count the money.' },
+                { src:'/public/images/A1/a1texto12/10.12.webp', text:'We pay the costs and we see the profit.' }
               ] : [
-                { src:'/public/images/a1texto5/1.5.webp', text:'The sun is very hot today.', audio:'/src/audio/A1/texto-a1.5-dividido/part_1.mp3' },
-                { src:'/public/images/a1texto5/3.5.webp', text:'The corn needs rain.', audio:'/src/audio/A1/texto-a1.5-dividido/part_3.mp3' },
-                { src:'/public/images/a1texto5/5.5.webp', text:'It will rain soon.', audio:'/src/audio/A1/texto-a1.5-dividido/part_5.mp3' },
-                { src:'/public/images/a1texto5/7.5.webp', text:'The plants are green.', audio:'/src/audio/A1/texto-a1.5-dividido/part_7.mp3' },
-                { src:'/public/images/a1texto5/9.5.webp', text:'The temperature is mild.', audio:'/src/audio/A1/texto-a1.5-dividido/part_9.mp3' },
-                { src:'/public/images/a1texto5/10.5.webp', text:'The harvest will be good this year.', audio:'/src/audio/A1/texto-a1.5-dividido/part_10.mp3' }
+                { src:'/public/images/A1/a1texto5/1.5.webp', text:'The sun is very hot today.', audio:'/src/audio/A1/texto-a1.5-dividido/part_1.mp3' },
+                { src:'/public/images/A1/a1texto5/3.5.webp', text:'The corn needs rain.', audio:'/src/audio/A1/texto-a1.5-dividido/part_3.mp3' },
+                { src:'/public/images/A1/a1texto5/5.5.webp', text:'It will rain soon.', audio:'/src/audio/A1/texto-a1.5-dividido/part_5.mp3' },
+                { src:'/public/images/A1/a1texto5/7.5.webp', text:'The plants are green.', audio:'/src/audio/A1/texto-a1.5-dividido/part_7.mp3' },
+                { src:'/public/images/A1/a1texto5/9.5.webp', text:'The temperature is mild.', audio:'/src/audio/A1/texto-a1.5-dividido/part_9.mp3' },
+                { src:'/public/images/A1/a1texto5/10.5.webp', text:'The harvest will be good this year.', audio:'/src/audio/A1/texto-a1.5-dividido/part_10.mp3' }
               ]) })
             : e(VisualAssociation12, { items: assocItems })
         ),

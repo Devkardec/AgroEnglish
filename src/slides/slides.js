@@ -189,7 +189,7 @@
       const data = await loadLessonData(idx);
       const slides = Array.isArray(data && data.slides) ? data.slides : [];
       if (String(level).toUpperCase()==='A1' && Number(idx)===3) {
-        window.__A1_3_IMAGES = slides.map((_,i)=> `/public/images/a1texto3/slidetx3/${i+1}.3.webp`);
+        window.__A1_3_IMAGES = slides.map((_,i)=> `/public/images/A1/a1texto3/slidetx3/${i+1}.3.webp`);
       } else {
         window.__A1_3_IMAGES = null;
       }
