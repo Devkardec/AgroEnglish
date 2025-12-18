@@ -31,6 +31,9 @@ export function Level(level) {
         <p class="desc">Pronto para o próximo nível?</p>
         <p class="desc">No A1, você aprendeu a sobreviver. Agora, no A2, você vai aprender a trabalhar. O foco é relatar o que aconteceu, entender ordens complexas e comparar equipamentos.</p>
         <div class="card" style="margin-top:8px">
+          <img src="/public/images/A2/CapadoModuloA2.webp" alt="Módulo A2 - Operação e Relatórios" style="display:block;width:100%;border-radius:12px" loading="lazy" />
+        </div>
+        <div class="card" style="margin-top:8px">
           <div class="section-title" style="margin-bottom:6px">O que você vai dominar:</div>
           <div class="small" style="line-height:1.6">
             ✅ Passado: Relatar tarefas feitas ontem e explicar problemas mecânicos.<br>
