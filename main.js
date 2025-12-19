@@ -2976,7 +2976,7 @@ function renderGrammar(data) {
       try { renderGrammar(data); } catch (e) { console.error('Error in renderGrammar:', e); }
       
       // Função genérica para gerar estrutura da aula com ícones
-      function generateLessonStructure(item, level, idx, items, phoneticBR) {
+      function generateLessonStructure(item, level, idx, items, phoneticBR, skipTitle = false) {
         if (!item || !item.title) return '';
         
         const lvl = String(level).toUpperCase();
@@ -3014,8 +3014,10 @@ const parts = [];
           parts.push(`<div style="margin-top:12px"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000"><iframe src="https://www.youtube.com/embed/${youtubeVideos[videoKey]}" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe></div></div>`);
         }
 
-        // Título da Aula
-        parts.push(`<div class="section-title" style="margin-top:12px">${emoji} Aula ${idxNum} – ${category || title}</div>`);
+        // Título da Aula (pular se skipTitle for true - para evitar duplicação)
+        if (!skipTitle) {
+          parts.push(`<div class="section-title" style="margin-top:12px">${emoji} Aula ${idxNum} – ${category || title}</div>`);
+        }
         
         // Informações da Aula
         parts.push('<div class="card">');
@@ -3304,7 +3306,9 @@ const parts = [];
                 return parts.map(p=>/^[A-Za-z'-]+$/.test(p)?mapWord(p):p).join('').replace(/\s+/g,' ').trim();
               }
               
-              root.innerHTML = generateLessonStructure(item, level, idxNum, items, phoneticBR);
+              // Para A2 Texto 1 e Texto 2, não renderizar o título (já está em lessonA2T1/lessonA2T2)
+              const isA2Custom = (lvl === 'A2' && (idxNum === 1 || idxNum === 2));
+              root.innerHTML = generateLessonStructure(item, level, idxNum, items, phoneticBR, isA2Custom);
             }
           } catch {}
         }
