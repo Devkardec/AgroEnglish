@@ -1,10 +1,18 @@
 export function TextPage(level, index) {
   const isA1 = String(level).toUpperCase()==='A1';
+  const isA2 = String(level).toUpperCase()==='A2';
   const ytId = (isA1 && Number(index)===1) ? 'WXbcHk3TJsE' : (isA1 && Number(index)===2 ? '2uZ0WKMrfkY' : (isA1 && Number(index)===3 ? 'X1BkKKokG5M' : ''));
   const ytEmbed = ytId ? `
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
               <iframe src="https://www.youtube.com/embed/${ytId}" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+            </div>
+          </div>
+  ` : '';
+  const ytEmbedA2T1 = (isA2 && Number(index)===1) ? `
+          <div style="margin-top:12px">
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
+              <iframe src="https://www.youtube.com/embed/5tSCdi__weM" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
             </div>
           </div>
   ` : '';
@@ -35,6 +43,11 @@ export function TextPage(level, index) {
               <iframe src="https://www.youtube.com/embed/40wqbTWnbOc" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
             </div>
           </div>
+  ` : '';
+  const lessonA2T1 = (isA2 && Number(index)===1) ? `
+    <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
+    <div class="section-title" style="margin-top:12px">🌱 Aula 1 – Past Conditions</div>
+    <div id="slideLessonRoot" style="margin-top:12px"></div>
   ` : '';
   const lessonA1T10 = (isA1 && Number(index)===10) ? `
     <div style="margin-top:12px">
@@ -295,7 +308,8 @@ export function TextPage(level, index) {
           ${ytEmbedA1T8}
           ${ytEmbedA1T9}
           ${ytEmbedA1T11}
-          ${lessonA1T8 || lessonA1T9 || lessonA1T10 || `<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div><div id="slideLessonRoot" style="margin-top:12px"></div>`}
+          ${ytEmbedA2T1}
+          ${lessonA2T1 || lessonA1T8 || lessonA1T9 || lessonA1T10 || `<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div><div id="slideLessonRoot" style="margin-top:12px"></div>`}
           <div class="section-title" style="margin-top:12px">📖 Texto narrado</div>
           <div style="margin-top:8px">
             <details class="accordion">
