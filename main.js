@@ -2064,7 +2064,9 @@ function renderGrammar(data) {
             audioEl.load(); 
           }
           loadedHandler = function onLoaded(){ 
-            segLen = (audioEl.duration||0) / Math.max(1,en.length); 
+            if (audioEl.duration > 0 && en.length > 0) {
+              segLen = (audioEl.duration||0) / Math.max(1,en.length); 
+            }
             audioEl.removeEventListener('loadedmetadata', loadedHandler); 
             if (errorHandler) audioEl.removeEventListener('error', errorHandler); 
           };
@@ -2074,12 +2076,7 @@ function renderGrammar(data) {
           };
           audioEl.addEventListener('loadedmetadata', loadedHandler);
           audioEl.addEventListener('error', errorHandler);
-          audioEl.addEventListener('timeupdate', ()=>{
-            if (!segLen) return;
-            const cur = Math.floor((audioEl.currentTime||0) / segLen);
-            const k = Math.min(en.length-1, Math.max(0, cur));
-            if (k !== lastScene){ lastScene = k; i = k; show(i); }
-          });
+          // Não adicionar timeupdate aqui - será adicionado depois quando o áudio estiver pronto
           audioEl.addEventListener('ended', ()=>{ playing=false; });
           attempt();
         }
@@ -2184,9 +2181,17 @@ function renderGrammar(data) {
         if (prog && dur){ const p = Math.round(cur/dur*1000); prog.value = String(p); prog.style.background = `linear-gradient(90deg,#10b981 0%,#059669 ${p/10}%,#555 ${p/10}%,#555 100%)`; }
       }
       function play(){
-        playing = true; if (i<0) i=0; lastScene = -1; show(i);
+        playing = true; 
+        if (i<0) i=0; 
+        lastScene = -1; 
+        show(i); // Mostrar primeira frase/imagem imediatamente
         const rateSel = document.getElementById('ytRate');
-        if (audioEl) { audioEl.playbackRate = rateSel ? Number(rateSel.value||1) : 1; try { audioEl.play(); } catch {} }
+        if (audioEl) { 
+          audioEl.playbackRate = rateSel ? Number(rateSel.value||1) : 1; 
+          try { 
+            audioEl.play(); 
+          } catch {} 
+        }
         const btn = document.getElementById('ytPlay'); if (btn) btn.textContent = '⏸';
       }
       function pause(){ playing=false; if (audioEl) { try { audioEl.pause(); } catch {} } const btn = document.getElementById('ytPlay'); if (btn) btn.textContent = '▶'; }
@@ -2209,13 +2214,38 @@ function renderGrammar(data) {
       document.addEventListener('click', (e)=>{ try { const t = e.target; if (volPopup && volIcon && !volPopup.contains(t) && !volIcon.contains(t)) volPopup.style.display='none'; } catch {} });
       if (prog) prog.addEventListener('input', ()=>{ if (!audioEl) return; const dur = Number(audioEl.duration||0); const p = Number(prog.value||0)/1000; audioEl.currentTime = p * dur; renderProgress(); if (segLen) { const k = Math.floor(audioEl.currentTime/segLen); i = Math.min(en.length-1, Math.max(0,k)); show(i); } });
       if (audioEl) {
-        audioEl.addEventListener('timeupdate', renderProgress);
-        audioEl.addEventListener('loadedmetadata', renderProgress);
+        // Listener único para timeupdate que atualiza progresso E imagem/frase
+        audioEl.addEventListener('timeupdate', ()=>{
+          renderProgress();
+          // Atualizar imagem e frase conforme o áudio avança
+          if (segLen && en.length > 0 && audioEl.duration > 0) {
+            const cur = Math.floor((audioEl.currentTime||0) / segLen);
+            const k = Math.min(en.length-1, Math.max(0, cur));
+            if (k !== lastScene) {
+              lastScene = k;
+              i = k;
+              show(i);
+            }
+          }
+        });
+        audioEl.addEventListener('loadedmetadata', ()=>{
+          renderProgress();
+          // Recalcular segLen quando metadata carrega
+          if (audioEl.duration > 0 && en.length > 0) {
+            segLen = (audioEl.duration || 0) / Math.max(1, en.length);
+          }
+        });
         audioEl.addEventListener('ended', ()=>{ pause(); });
       }
       setCoverImage();
       preloadImages();
       loadAudio();
+      // Inicializar mostrando a primeira frase e imagem
+      if (en.length > 0) {
+        i = 0;
+        lastScene = -1;
+        show(0);
+      }
       }
 
     

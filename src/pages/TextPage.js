@@ -63,6 +63,16 @@ export function TextPage(level, index) {
   const lessonA2T2Title = (isA2 && Number(index)===2) ? `
     <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
   ` : '';
+  const lessonA2T3Title = (isA2 && Number(index)===3) ? `
+    <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
+  ` : '';
+  const ytEmbedA2T3 = (isA2 && Number(index)===3) ? `
+          <div style="margin-top:12px">
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
+              <iframe src="https://www.youtube.com/embed/uxB1B69EcAg?rel=0&enablejsapi=1${ytOrigin ? '&origin=' + ytOrigin : ''}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
+            </div>
+          </div>
+  ` : '';
   const lessonA2T1 = (isA2 && Number(index)===1) ? `
     <div class="section-title" style="margin-top:12px">🌱 Aula 1 – Past Conditions</div>
     <div id="slideLessonRoot" style="margin-top:12px"></div>
@@ -326,7 +336,7 @@ export function TextPage(level, index) {
         <div id="vocab" class="flash-grid" style="margin-top:12px"></div>
         <div id="vocabTable" style="margin-top:12px"></div>
       <section class="card" id="study-footer" style="margin-top:16px">
-          ${lessonA2T1Title || lessonA2T2Title || ''}
+          ${lessonA2T1Title || lessonA2T2Title || lessonA2T3Title || ''}
           ${ytEmbed}
           ${ytEmbedA1T7}
           ${ytEmbedA1T8}
@@ -334,6 +344,7 @@ export function TextPage(level, index) {
           ${ytEmbedA1T11}
           ${ytEmbedA2T1}
           ${ytEmbedA2T2}
+          ${ytEmbedA2T3}
           ${lessonA2T1 || lessonA2T2 || lessonA1T8 || lessonA1T9 || lessonA1T10 || `<div id="slideLessonRoot" style="margin-top:12px"></div>`}
           <div class="section-title" style="margin-top:12px">📖 Texto narrado</div>
           <div class="player" style="margin-top:8px">
