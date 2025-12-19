@@ -1953,8 +1953,11 @@ function renderGrammar(data) {
         const isA2 = String(level).toUpperCase()==='A2';
         const idxNum = Number(index);
         // A2 Texto 2: usar apenas formato com sufixo .2 (1.2.webp, 2.2.webp, etc.)
+        // A2 Texto 3: usar apenas formato com sufixo .3 (1.3.webp, 2.3.webp, etc.)
         const names = (isA2 && idxNum === 2) 
           ? [`1.2`, `0.2`] 
+          : (isA2 && idxNum === 3)
+          ? [`1.3`, `0.3`]
           : [`1.${idxNum}`, `0.${idxNum}`, '0'];
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
@@ -2099,6 +2102,10 @@ function renderGrammar(data) {
               if (isA2 && idxNum === 2) {
                 return [`${k+1}.2`];
               }
+              // A2 Texto 3: usar apenas formato com sufixo .3 (1.3.webp, 2.3.webp, etc.)
+              if (isA2 && idxNum === 3) {
+                return [`${k+1}.3`];
+              }
               // A1 e outros: usar formato com sufixo (1.1.webp, 2.1.webp, etc.) - arquivos sempre têm sufixo
               const dec = `${k+1}.${idxNum}`;
               return [dec];
@@ -2132,6 +2139,10 @@ function renderGrammar(data) {
             // A2 Texto 2: usar apenas formato com sufixo .2 (1.2.webp, 2.2.webp, etc.)
             if (isA2 && idxNum === 2) {
               return [`${k+1}.2`];
+            }
+            // A2 Texto 3: usar apenas formato com sufixo .3 (1.3.webp, 2.3.webp, etc.)
+            if (isA2 && idxNum === 3) {
+              return [`${k+1}.3`];
             }
             // A1 e outros: usar formato com sufixo (1.1.webp, 2.1.webp, etc.) - arquivos sempre têm sufixo
             const dec = `${k+1}.${idxNum}`;
@@ -5122,7 +5133,7 @@ const parts = [];
           ptSentences = Array(sentences.length).fill('');
         }
         let imgCountBase = Math.min((sentences.length || 0), maxCount);
-        const useImages = (isA1 && Number(idx) >= 1) || (isA2 && (Number(idx) === 1 || Number(idx) === 2));
+        const useImages = (isA1 && Number(idx) >= 1) || (isA2 && (Number(idx) === 1 || Number(idx) === 2 || Number(idx) === 3));
         try {
           if (useImages) { pronList.classList.add('speech-a1'); } else { pronList.classList.remove('speech-a1'); }
         } catch {}
@@ -5151,6 +5162,9 @@ const parts = [];
           } else if (isA2 && Number(idx) === 2) {
             // A2 Texto 2: padrão específico 1.2.webp, 2.2.webp, etc.
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.2.webp`);
+          } else if (isA2 && Number(idx) === 3) {
+            // A2 Texto 3: padrão específico 1.3.webp, 2.3.webp, etc.
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.3.webp`);
           } else {
             // Padrão genérico: {n}.{idx}.webp
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.${idx}.webp`);
@@ -5211,6 +5225,9 @@ const parts = [];
         } else if (isA2 && Number(idx) === 2) {
           // A2 Texto 2: áudios divididos
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A2/texto-a2.2-dividido/part_${String(i+1).padStart(2,'0')}.mp3`);
+        } else if (isA2 && Number(idx) === 3) {
+          // A2 Texto 3: áudios divididos
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A2/texto-a2.3-dividido/part_${String(i+1).padStart(2,'0')}.mp3`);
         }
         // Para adicionar novos textos/níveis:
         // else if (isA2 && Number(idx) === X) {

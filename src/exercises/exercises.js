@@ -589,6 +589,7 @@
       const isTx9 = isA1 && Number(idx)===9;
       const isA2Tx1 = isA2 && Number(idx)===1;
       const isA2Tx2 = isA2 && Number(idx)===2;
+      const isA2Tx3 = isA2 && Number(idx)===3;
       const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 10));
       if (isTx1) {
         return [
@@ -784,6 +785,24 @@
           { src:'/public/images/A2/a2texto2/5.2.webp', text: String(lines[4]||'').trim() },
           { src:'/public/images/A2/a2texto2/6.2.webp', text: String(lines[5]||'').trim() },
           { src:'/public/images/A2/a2texto2/7.2.webp', text: String(lines[6]||'').trim() }
+        ];
+      }
+      if (isA2Tx3) {
+        const lines = Array.isArray(data.pairs)
+          ? data.pairs.map(p=> String(p.en||'').trim())
+          : (Array.isArray(ex.narration_sentences)
+              ? ex.narration_sentences
+              : (Array.isArray(data.lines)
+                  ? data.lines.map(l=> String(l.en||'').trim())
+                  : String(data.text||'').split(/(?<=[.!?])\s+/)));
+        return [
+          { src:'/public/images/A2/a2texto3/1.3.webp', text: String(lines[0]||'').trim() },
+          { src:'/public/images/A2/a2texto3/2.3.webp', text: String(lines[1]||'').trim() },
+          { src:'/public/images/A2/a2texto3/3.3.webp', text: String(lines[2]||'').trim() },
+          { src:'/public/images/A2/a2texto3/4.3.webp', text: String(lines[3]||'').trim() },
+          { src:'/public/images/A2/a2texto3/5.3.webp', text: String(lines[4]||'').trim() },
+          { src:'/public/images/A2/a2texto3/6.3.webp', text: String(lines[5]||'').trim() },
+          { src:'/public/images/A2/a2texto3/7.3.webp', text: String(lines[6]||'').trim() }
         ];
       }
       const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
@@ -984,7 +1003,7 @@
         //              audio:'/src/audio/{LEVEL}/texto-{level}.{idx}-dividido/part_{NN}.mp3' }
         // ============================================================
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
-          ((isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9 || Number(idx)===11 || Number(idx)===12)) || (isA2 && (Number(idx)===1 || Number(idx)===2)))
+          ((isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9 || Number(idx)===11 || Number(idx)===12)) || (isA2 && (Number(idx)===1 || Number(idx)===2 || Number(idx)===3)))
             ? e(ImageSentenceAssociation, { items: (isA2 && Number(idx)===1 ? [
                 { src:'/public/images/A2/a2texto1/1.1.webp', text:'Yesterday was a very busy day.', audio:'/src/audio/A2/texto-a2.1-dividido/part_01.mp3' },
                 { src:'/public/images/A2/a2texto1/2.1.webp', text:'The weather was cold and rainy in the morning.', audio:'/src/audio/A2/texto-a2.1-dividido/part_02.mp3' },
@@ -1002,6 +1021,14 @@
                 { src:'/public/images/A2/a2texto2/5.2.webp', text:'Then, we repaired the broken fence line.', audio:'/src/audio/A2/texto-a2.2-dividido/part_05.mp3' },
                 { src:'/public/images/A2/a2texto2/6.2.webp', text:'The rain stopped in the afternoon.', audio:'/src/audio/A2/texto-a2.2-dividido/part_06.mp3' },
                 { src:'/public/images/A2/a2texto2/7.2.webp', text:'We finished the work late, but the farm is organized.', audio:'/src/audio/A2/texto-a2.2-dividido/part_07.mp3' }
+              ] : isA2 && Number(idx)===3 ? [
+                { src:'/public/images/A2/a2texto3/1.3.webp', text:'In the morning, I wake up early and walk to the fields.', audio:'/src/audio/A2/texto-a2.3-dividido/part_01.mp3' },
+                { src:'/public/images/A2/a2texto3/2.3.webp', text:'The sun is low, and the soil is cool and soft.', audio:'/src/audio/A2/texto-a2.3-dividido/part_02.mp3' },
+                { src:'/public/images/A2/a2texto3/3.3.webp', text:'I work on Green Valley Farm, and every day is busy.', audio:'/src/audio/A2/texto-a2.3-dividido/part_03.mp3' },
+                { src:'/public/images/A2/a2texto3/4.3.webp', text:'In Canadian winter, we protect equipment from freezing.', audio:'/src/audio/A2/texto-a2.3-dividido/part_04.mp3' },
+                { src:'/public/images/A2/a2texto3/5.3.webp', text:'Farm safety rules are part of our routine.', audio:'/src/audio/A2/texto-a2.3-dividido/part_05.mp3' },
+                { src:'/public/images/A2/a2texto3/6.3.webp', text:'We rotate pastures to improve forage quality.', audio:'/src/audio/A2/texto-a2.3-dividido/part_06.mp3' },
+                { src:'/public/images/A2/a2texto3/7.3.webp', text:'The tractor starts slowly; I drive carefully on the farm road.', audio:'/src/audio/A2/texto-a2.3-dividido/part_07.mp3' }
               ] : Number(idx)===1 ? [
                 { src:'/public/images/A1/a1texto1/1.1.webp', text:'Hello!', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
                 { src:'/public/images/A1/a1texto1/2.1.webp', text:'I am Paul, and I am a farmer.', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
