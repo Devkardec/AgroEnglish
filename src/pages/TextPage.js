@@ -377,16 +377,7 @@ export function TextPage(level, index) {
 
 
       <section id="tab-practice" class="card" style="display:none">
-        <div class="section-title">✍️ Sala de Exercícios</div>
-        <div id="exercisePageRoot" style="margin-top:8px"></div>
-        <div id="gameTop" style="margin-bottom:12px"></div>
-        <div id="mc"></div>
-        <div id="gExercises" style="margin-top:12px"></div>
-        <div class="section-title" style="margin-top:12px">🧪 Exercícios ${String(level).toUpperCase()} Texto ${index}</div>
-        <div id="a1ex" style="margin-top:8px"></div>
-        <div id="fill" style="margin-top:12px"></div>
-        <button class="btn" id="checkFill" style="margin-top:8px">Checar</button>
-        <div id="fillResult" class="small" style="margin-top:6px"></div>
+        <div id="exercisePageRoot"></div>
       </section>
 
       <section id="tab-speech" class="card" style="display:none">

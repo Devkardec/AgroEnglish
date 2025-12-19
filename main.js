@@ -755,22 +755,22 @@ async function initHomePage() {
       // Áudio essencial dos níveis A1 e A2
       const mediaAudio = [
         // A1: arquivos divididos (exemplo representativo)
-        '/src/audio/A1/texto-a1.1-dividido/part_1.mp3',
-        '/src/audio/A1/texto-a1.1-dividido/part_2.mp3',
-        '/src/audio/A1/texto-a1.1-dividido/part_3.mp3',
+        '/audio/A1/texto-a1.1-dividido/part_1.mp3',
+        '/audio/A1/texto-a1.1-dividido/part_2.mp3',
+        '/audio/A1/texto-a1.1-dividido/part_3.mp3',
         // A2: faixas principais (nomes conforme estrutura atual)
-        '/src/audio/A2/Basic Hygiene · A2.mp3',
-        '/src/audio/A2/Checking the Tractor · A2.mp3',
-        '/src/audio/A2/Cleaning the Stable · A2.mp3',
-        '/src/audio/A2/Daily Schedule and Address · A2.mp3',
-        '/src/audio/A2/Farm Routine Measures and Money · A2.mp3',
-        '/src/audio/A2/Harvesting Vegetables for Sale · A2.mp3',
-        '/src/audio/A2/Irrigation On Now · A2.mp3',
-        '/src/audio/A2/Milking Routine · A2.mp3',
-        '/src/audio/A2/Simple Bandage on a Dog · A2.mp3',
-        '/src/audio/A2/Sorting Eggs for Sale · A2.mp3',
-        '/src/audio/A2/Vitamins for Chickens · A2.mp3',
-        '/src/audio/A2/Walking the Field and Cleaning Tools · A2.mp3',
+        '/audio/A2/Basic Hygiene · A2.mp3',
+        '/audio/A2/Checking the Tractor · A2.mp3',
+        '/audio/A2/Cleaning the Stable · A2.mp3',
+        '/audio/A2/Daily Schedule and Address · A2.mp3',
+        '/audio/A2/Farm Routine Measures and Money · A2.mp3',
+        '/audio/A2/Harvesting Vegetables for Sale · A2.mp3',
+        '/audio/A2/Irrigation On Now · A2.mp3',
+        '/audio/A2/Milking Routine · A2.mp3',
+        '/audio/A2/Simple Bandage on a Dog · A2.mp3',
+        '/audio/A2/Sorting Eggs for Sale · A2.mp3',
+        '/audio/A2/Vitamins for Chickens · A2.mp3',
+        '/audio/A2/Walking the Field and Cleaning Tools · A2.mp3',
       ];
       // Imagens principais do módulo A1
       const mediaImages = [
@@ -1139,7 +1139,14 @@ async function setupAudio(data) {
       ],
       onTabChange: (tab) => {
         if (tab === 'practice') {
-          try { if (window.ExercisePageMount) window.ExercisePageMount(level, idx, data); } catch {}
+          // Priorizar o novo componente moderno
+          try { 
+            if (window.ModernExerciseRoomMount) {
+              window.ModernExerciseRoomMount(level, idx, data);
+            } else if (window.ExercisePageMount) {
+              window.ExercisePageMount(level, idx, data);
+            }
+          } catch {}
         }
       },
     });
@@ -1980,7 +1987,7 @@ function renderGrammar(data) {
           const file = '1-Paul and the Farm (Identity & Description) · A1.mp3';
           const encoded = encodeURIComponent(file);
           // Priorizar apenas as pastas corretas - reduzir tentativas 404
-          const bases = ['/src/audio/A1/audiotexto/','/src/audio/A1/'];
+          const bases = ['/audio/A1/audiotexto/','/audio/A1/'];
           let idx = 0;
           let errorHandler = null;
           function tryNext(){
@@ -2012,7 +2019,7 @@ function renderGrammar(data) {
           const file = 'The Tractor and The Field (Machinery & Crops) · A1.mp3';
           const encoded = encodeURIComponent(file);
           // Priorizar apenas as pastas corretas - reduzir tentativas 404
-          const bases = ['/src/audio/A1/audiotexto/','/src/audio/A1/'];
+          const bases = ['/audio/A1/audiotexto/','/audio/A1/'];
           let idx = 0;
           let errorHandler = null;
           function tryNext(){
@@ -2436,18 +2443,19 @@ function renderGrammar(data) {
       gameEl.addEventListener('click',(e)=>{ const t=e.target; if(t.id==='gameStart'){ if(playing) return; playing=true; score=0; streak=1; lives=3; timeLeft=60; hintsLeft=2; qi=0; updateHUD(); showQuestion(); clearInterval(timer); timer=setInterval(()=>{ timeLeft--; updateHUD(); if(timeLeft<=0) end('Tempo esgotado.'); },1000); } else if(t.id==='gameStop'){ end('Jogo encerrado.'); } else if(t.id==='gameListen'){ const q=qSrc[qi]; try { let say = ''; if(q.type==='tr'){ say = q.prompt; } else if(q.type==='voc'){ say = q.prompt; } else if(q.type==='aux'){ say = q.prompt.replace(/Complete com do\/does: \[____\]\s*/,'').replace(/\?$/,''); } else { say = q.prompt; } if (say) speak(say); } catch {} } else if(t.id==='gameHint'){ if(!playing || hintsLeft<=0) return; hintsLeft--; const oEl=document.getElementById('gameOpts'); const q=qSrc[qi]; const wrongIdx = [0,1,2,3].filter(i=> i!==q.answer).sort(()=>Math.random()-0.5).slice(0,2); wrongIdx.forEach(i=>{ const btn = oEl.querySelector(`[data-gopt="${i}"]`); if(btn){ btn.disabled = true; btn.style.opacity = '0.6'; } }); updateHUD(); } else if(t.id==='gameResetOrd'){ const q=qSrc[qi]; if(q.type==='ord' || q.type==='seq'){ q.user=[]; const seqEl=document.getElementById('gameOrdSeq'); if(seqEl) seqEl.textContent=''; const oEl=document.getElementById('gameOpts'); oEl.querySelectorAll('[data-gword],[data-gsent]').forEach(b=>{ b.disabled=false; b.style.opacity='1'; }); } } else if(t.dataset.gdiff!==undefined){ const mode=t.dataset.gdiff; if(mode==='easy'){ timeLeft=90; lives=4; } else if(mode==='hard'){ timeLeft=45; lives=2; } else { timeLeft=60; lives=3; } updateHUD(); } else if(t.dataset.gopt!==undefined){ if(!playing) return; const j=Number(t.dataset.gopt); const q=qSrc[qi]; const r=document.getElementById('gameRes'); if(q.type!=='ord' && q.type!=='seq'){ const ok = j===q.answer; if(ok){ score += 10*streak; streak = Math.min(streak+1,5); if(r){ r.textContent='Acertou!'; r.style.color='green'; } next(); } else { streak=1; lives--; if(r){ r.textContent='Tente novamente.'; r.style.color='red'; } if(lives<=0){ end('Acabaram as vidas.'); return; } updateHUD(); } } } else if(t.dataset.gword!==undefined){ if(!playing) return; const q=qSrc[qi]; const seqEl=document.getElementById('gameOrdSeq'); const idx = Number(t.dataset.gword); q.user = q.user || []; q.user.push(q.options[idx]); t.disabled=true; t.style.opacity='0.6'; if(seqEl){ seqEl.textContent = q.user.join(' '); } if(q.user.length === q.options.length){ const ok = q.user.join(' ') === q.answer.join(' '); const r=document.getElementById('gameRes'); if(ok){ score += 12*streak; streak = Math.min(streak+1,5); if(r){ r.textContent='Acertou!'; r.style.color='green'; } next(); } else { streak=1; lives--; if(r){ r.textContent='Tente novamente.'; r.style.color='red'; } if(lives<=0){ end('Acabaram as vidas.'); return; } updateHUD(); } } } else if(t.dataset.gsent!==undefined){ if(!playing) return; const q=qSrc[qi]; const seqEl=document.getElementById('gameOrdSeq'); const idx = Number(t.dataset.gsent); q.user = q.user || []; q.user.push(q.options[idx]); t.disabled=true; t.style.opacity='0.6'; if(seqEl){ seqEl.textContent = q.user.join('  |  '); } if(q.user.length === q.options.length){ const ok = q.user.join(' ') === q.answer.join(' '); const r=document.getElementById('gameRes'); if(ok){ score += 14*streak; streak = Math.min(streak+1,5); if(r){ r.textContent='Acertou!'; r.style.color='green'; } next(); } else { streak=1; lives--; if(r){ r.textContent='Tente novamente.'; r.style.color='red'; } if(lives<=0){ end('Acabaram as vidas.'); return; } updateHUD(); } } }
       });
     }
-    (function(){
-      const curLevel = (location.hash.split('/')[2]||'').toUpperCase();
-      if (curLevel !== 'A1') {
-        renderTextGame();
-        renderClassify();
-        renderTransform();
-        renderOrdering();
-        renderDictation();
-        renderMatchVocab();
-        renderTrueFalse();
-      }
-    })();
+    // DESABILITADO: Layout antigo removido - usando ModernExerciseRoom agora
+    // (function(){
+    //   const curLevel = (location.hash.split('/')[2]||'').toUpperCase();
+    //   if (curLevel !== 'A1') {
+    //     renderTextGame();
+    //     renderClassify();
+    //     renderTransform();
+    //     renderOrdering();
+    //     renderDictation();
+    //     renderMatchVocab();
+    //     renderTrueFalse();
+    //   }
+    // })();
   }
 
   function renderVerbs(data) {
@@ -3585,17 +3593,21 @@ const parts = [];
       // Código antigo hardcoded removido - agora todos os textos usam a função genérica generateLessonStructure acima
       try { const vEl = document.querySelector('#verbs'); if (vEl) vEl.remove(); } catch {}
       try {
-        const curLevelNow = (location.hash.split('/')[2]||'').toUpperCase();
-        const activeTabNow = (function(){ try { return localStorage.getItem('lastTab')||'study' } catch { return 'study' } })();
-        if (curLevelNow !== 'A1' && activeTabNow==='practice') {
-          try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
-          try { renderFill(data); } catch (e) { console.error('Error in renderFill:', e); }
-        }
+        // DESABILITADO: Layout antigo removido - usando ModernExerciseRoom agora
+        // const curLevelNow = (location.hash.split('/')[2]||'').toUpperCase();
+        // const activeTabNow = (function(){ try { return localStorage.getItem('lastTab')||'study' } catch { return 'study' } })();
+        // if (curLevelNow !== 'A1' && activeTabNow==='practice') {
+        //   try { renderMC(data); } catch (e) { console.error('Error in renderMC:', e); }
+        //   try { renderFill(data); } catch (e) { console.error('Error in renderFill:', e); }
+        // }
         try { renderVocabTable(data); } catch (e) { console.error('Error in renderVocabTable:', e); }
       } catch {}
+      // DESABILITADO: Layout antigo removido - usando ModernExerciseRoom agora
+      // Todo o código antigo que populava #a1ex, #mc, #fill, #gExercises foi desabilitado
       try {
+        // Bloco antigo completamente desabilitado - não renderiza mais o layout legado
         const el = document.getElementById('a1ex');
-        if (el) {
+        if (false) { // Sempre false - código antigo desabilitado
           const ex = data.a1_exercises || {};
           const comp = Array.isArray(ex.complete) ? ex.complete : [];
           const neg = Array.isArray(ex.negative) ? ex.negative : [];
@@ -5163,7 +5175,7 @@ const parts = [];
           ptSentences = Array(sentences.length).fill('');
         }
         let imgCountBase = Math.min((sentences.length || 0), maxCount);
-        const useImages = (isA1 && Number(idx) >= 1) || (isA2 && (Number(idx) === 1 || Number(idx) === 2 || Number(idx) === 3));
+        const useImages = (isA1 && Number(idx) >= 1) || (isA2 && (Number(idx) === 1 || Number(idx) === 2 || Number(idx) === 3 || Number(idx) === 4));
         try {
           if (useImages) { pronList.classList.add('speech-a1'); } else { pronList.classList.remove('speech-a1'); }
         } catch {}
@@ -5195,73 +5207,28 @@ const parts = [];
           } else if (isA2 && Number(idx) === 3) {
             // A2 Texto 3: padrão específico 1.3.webp, 2.3.webp, etc.
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.3.webp`);
+          } else if (isA2 && Number(idx) === 4) {
+            // A2 Texto 4: padrão específico 1.4.webp, 2.4.webp, etc.
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.4.webp`);
+          } else if (isA2 && Number(idx) >= 1) {
+            // Padrão automático para A2: {n}.{idx}.webp
+            // Padrão REAL imagem: ${sentenceIndex}.${textId}.webp
+            const textIdImg = Number(idx) || 1;
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${textIdImg}/${i+1}.${textIdImg}.webp`);
           } else {
-            // Padrão genérico: {n}.{idx}.webp
-            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.${idx}.webp`);
+            // Padrão REAL imagem: ${sentenceIndex}.${textId}.webp
+            const textIdImg = Number(idx) || 1;
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${textIdImg}/${i+1}.${textIdImg}.webp`);
           }
         }
-        let segUrls = [];
-        if (isA1 && Number(idx)===1) {
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`);
-        } else if (isA1 && Number(idx)===2) {
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`);
-        } else if (isA1 && Number(idx)===3) {
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.3-dividido/${i+1}.3.mp3`);
-        } else if (isA1 && Number(idx)===4) {
-          segUrls = [
-            '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
-            '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
-            '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
-            '/src/audio/A1/texto-a1.4-dividido/part_7.mp3',
-            '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
-            '/src/audio/A1/texto-a1.4-dividido/part_9.mp3',
-            '/src/audio/A1/texto-a1.4-dividido/part_10.mp3'
-          ];
-        } else if (isA1 && Number(idx)===5) {
-          segUrls = [
-            '/src/audio/A1/texto-a1.5-dividido/part_1.mp3',
-            '/src/audio/A1/texto-a1.5-dividido/part_3.mp3',
-            '/src/audio/A1/texto-a1.5-dividido/part_5.mp3',
-            '/src/audio/A1/texto-a1.5-dividido/part_7.mp3',
-            '/src/audio/A1/texto-a1.5-dividido/part_9.mp3',
-            '/src/audio/A1/texto-a1.5-dividido/part_10.mp3'
-          ];
-        } else if (isA1 && Number(idx)===7) {
-          segUrls = [
-            '/src/audio/A1/texto-a1.7-dividido/part_1.mp3',
-            '/src/audio/A1/texto-a1.7-dividido/part_2.mp3',
-            '/src/audio/A1/texto-a1.7-dividido/part_3.mp3',
-            '/src/audio/A1/texto-a1.7-dividido/part_4.mp3',
-            '/src/audio/A1/texto-a1.7-dividido/part_5.mp3',
-            '/src/audio/A1/texto-a1.7-dividido/part_6.mp3',
-            '/src/audio/A1/texto-a1.7-dividido/part_7.mp3',
-            '/src/audio/A1/texto-a1.7-dividido/part_8.mp3'
-          ];
-        } else if (isA1 && Number(idx)===8) {
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.8-dividido/audio_part_${i+1}.mp3`);
-        } else if (isA1 && Number(idx)===10) {
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.10-dividido/audio_${i+1}.mp3`);
-        } else if (isA1 && Number(idx)===11) {
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.11-dividido/audio_${i+1}.mp3`);
-        } else if (isA1 && Number(idx)===12) {
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.12-dividido/${String(i+1).padStart(2,'0')}.mp3`);
-        } else if (isA1 && Number(idx) >= 13) {
-          // Padrão genérico para aulas futuras: tenta vários formatos
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.${idx}-dividido/${String(i+1).padStart(2,'0')}.mp3`);
-        } else if (isA2 && Number(idx) === 1) {
-          // A2 Texto 1: áudios divididos
-          // PADRÃO: /src/audio/{LEVEL}/texto-{level}.{idx}-dividido/part_{NN}.mp3
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A2/texto-a2.1-dividido/part_${String(i+1).padStart(2,'0')}.mp3`);
-        } else if (isA2 && Number(idx) === 2) {
-          // A2 Texto 2: áudios divididos
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A2/texto-a2.2-dividido/part_${String(i+1).padStart(2,'0')}.mp3`);
-        } else if (isA2 && Number(idx) === 3) {
-          // A2 Texto 3: áudios divididos
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A2/texto-a2.3-dividido/part_${String(i+1).padStart(2,'0')}.mp3`);
-        }
+        // Padrão REAL: /audio/{LEVEL}/texto-{level}.{textId}-dividido/{sentenceIndex}.{textId}.mp3
+        const levelUpper = String(level).toUpperCase();
+        const levelLower = String(level).toLowerCase();
+        const textId = Number(idx) || 1;
+        const segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/${levelUpper}/texto-${levelLower}.${textId}-dividido/${i+1}.${textId}.mp3`);
         // Para adicionar novos textos/níveis:
         // else if (isA2 && Number(idx) === X) {
-        //   segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A2/texto-a2.${idx}-dividido/part_${String(i+1).padStart(2,'0')}.mp3`);
+        //   segUrls = Array.from({length:imgCountBase}, (_,i)=> `/audio/A2/texto-a2.${idx}-dividido/part_${String(i+1).padStart(2,'0')}.mp3`);
         // }
         if (isA1 && Number(idx)===5) {
           const fullAllEn = [
@@ -5696,22 +5663,22 @@ const parts = [];
           const max = Math.min((sentences && sentences.length) || 0, 6);
           const isA1 = String(level).toUpperCase()==='A1';
           const segUrls = (isA1 && Number(idx)===1)
-            ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`)
+            ? Array.from({length:max}, (_,i)=> `/audio/A1/texto-a1.1-dividido/seg${i+1}.mp3`)
             : (isA1 && Number(idx)===2)
-              ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`)
+              ? Array.from({length:max}, (_,i)=> `/audio/A1/texto-a1.2-dividido/${i+1}.${i+1}.mp3`)
               : (isA1 && Number(idx)===3)
-                ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.3-dividido/${i+1}.3.mp3`)
+                ? Array.from({length:max}, (_,i)=> `/audio/A1/texto-a1.3-dividido/${i+1}.3.mp3`)
                 : (isA1 && Number(idx)===4)
                   ? [
-                    '/src/audio/A1/texto-a1.4-dividido/part_1.mp3',
-                    '/src/audio/A1/texto-a1.4-dividido/part_5.mp3',
-                    '/src/audio/A1/texto-a1.4-dividido/part_3.mp3',
-                    '/src/audio/A1/texto-a1.4-dividido/part_7.mp3',
-                    '/src/audio/A1/texto-a1.4-dividido/part_8.mp3',
-                    '/src/audio/A1/texto-a1.4-dividido/part_9.mp3'
+                    '/audio/A1/texto-a1.4-dividido/part_1.mp3',
+                    '/audio/A1/texto-a1.4-dividido/part_5.mp3',
+                    '/audio/A1/texto-a1.4-dividido/part_3.mp3',
+                    '/audio/A1/texto-a1.4-dividido/part_7.mp3',
+                    '/audio/A1/texto-a1.4-dividido/part_8.mp3',
+                    '/audio/A1/texto-a1.4-dividido/part_9.mp3'
                   ]
                   : (isA1 && Number(idx)===8)
-                    ? Array.from({length:max}, (_,i)=> `/src/audio/A1/texto-a1.8-dividido/audio_part_${i+1}.mp3`)
+                    ? Array.from({length:max}, (_,i)=> `/audio/A1/texto-a1.8-dividido/audio_part_${i+1}.mp3`)
                     : [];
           pronModalList.innerHTML = (sentences.slice(0, max)).map((s,i)=>`
             <div class="pron-card">
