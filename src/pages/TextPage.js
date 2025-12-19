@@ -51,13 +51,17 @@ export function TextPage(level, index) {
             </div>
           </div>
   ` : '';
-  const lessonA2T1 = (isA2 && Number(index)===1) ? `
+  const lessonA2T1Title = (isA2 && Number(index)===1) ? `
     <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
+  ` : '';
+  const lessonA2T2Title = (isA2 && Number(index)===2) ? `
+    <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
+  ` : '';
+  const lessonA2T1 = (isA2 && Number(index)===1) ? `
     <div class="section-title" style="margin-top:12px">🌱 Aula 1 – Past Conditions</div>
     <div id="slideLessonRoot" style="margin-top:12px"></div>
   ` : '';
   const lessonA2T2 = (isA2 && Number(index)===2) ? `
-    <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
     <div class="section-title" style="margin-top:12px">🐄 Aula 2 – Regular Actions in Past</div>
     <div id="slideLessonRoot" style="margin-top:12px"></div>
   ` : '';
@@ -315,6 +319,7 @@ export function TextPage(level, index) {
         <div id="vocab" class="flash-grid" style="margin-top:12px"></div>
         <div id="vocabTable" style="margin-top:12px"></div>
       <section class="card" id="study-footer" style="margin-top:16px">
+          ${lessonA2T1Title || lessonA2T2Title || (lessonA1T8 || lessonA1T9 || lessonA1T10 ? '' : `<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>`)}
           ${ytEmbed}
           ${ytEmbedA1T7}
           ${ytEmbedA1T8}
@@ -322,7 +327,7 @@ export function TextPage(level, index) {
           ${ytEmbedA1T11}
           ${ytEmbedA2T1}
           ${ytEmbedA2T2}
-          ${lessonA2T1 || lessonA2T2 || lessonA1T8 || lessonA1T9 || lessonA1T10 || `<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div><div id="slideLessonRoot" style="margin-top:12px"></div>`}
+          ${lessonA2T1 || lessonA2T2 || lessonA1T8 || lessonA1T9 || lessonA1T10 || `<div id="slideLessonRoot" style="margin-top:12px"></div>`}
           <div class="section-title" style="margin-top:12px">📖 Texto narrado</div>
           <div style="margin-top:8px">
             <details class="accordion">
