@@ -4891,7 +4891,7 @@ const parts = [];
           ptSentences = Array(sentences.length).fill('');
         }
         let imgCountBase = Math.min((sentences.length || 0), maxCount);
-        const useImages = (isA1 && Number(idx) >= 1) || (isA2 && Number(idx) === 1);
+        const useImages = (isA1 && Number(idx) >= 1) || (isA2 && (Number(idx) === 1 || Number(idx) === 2));
         try {
           if (useImages) { pronList.classList.add('speech-a1'); } else { pronList.classList.remove('speech-a1'); }
         } catch {}
@@ -4905,6 +4905,7 @@ const parts = [];
           // 2. Nomenclatura das imagens:
           //    - A1: {n}.{idx}.webp (ex: 1.1.webp, 2.1.webp para texto 1)
           //    - A2 Texto 1: {n}.1.webp (ex: 1.1.webp, 2.1.webp)
+          //    - A2 Texto 2: {n}.2.webp (ex: 1.2.webp, 2.2.webp)
           //    - Outros níveis: seguir padrão {n}.{idx}.webp
           // 3. Para adicionar imagens em novos textos/níveis:
           //    a) Adicionar condição em useImages: || (isA2 && Number(idx) === X)
@@ -4916,6 +4917,9 @@ const parts = [];
           if (isA2 && Number(idx) === 1) {
             // A2 Texto 1: padrão específico 1.1.webp, 2.1.webp, etc.
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.1.webp`);
+          } else if (isA2 && Number(idx) === 2) {
+            // A2 Texto 2: padrão específico 1.2.webp, 2.2.webp, etc.
+            imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.2.webp`);
           } else {
             // Padrão genérico: {n}.{idx}.webp
             imgs = Array.from({length:imgCountBase}, (_,i)=> `/public/images/${levelUpper}/${levelLower}texto${idx}/${i+1}.${idx}.webp`);
@@ -4973,6 +4977,9 @@ const parts = [];
           // A2 Texto 1: áudios divididos
           // PADRÃO: /src/audio/{LEVEL}/texto-{level}.{idx}-dividido/part_{NN}.mp3
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A2/texto-a2.1-dividido/part_${String(i+1).padStart(2,'0')}.mp3`);
+        } else if (isA2 && Number(idx) === 2) {
+          // A2 Texto 2: áudios divididos
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A2/texto-a2.2-dividido/part_${String(i+1).padStart(2,'0')}.mp3`);
         }
         // Para adicionar novos textos/níveis:
         // else if (isA2 && Number(idx) === X) {

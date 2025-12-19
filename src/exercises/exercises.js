@@ -156,13 +156,17 @@
 
   function VocabularyMatch({ items=[] }){
     return e('div', { className:'grid grid-cols-2 gap-3 sm:grid-cols-3' },
-      items.map((it,i)=> e('div', { key:i, className:'flex items-center gap-2' },
-        e('img', { src:String(it.image||'').replace(/\.(png|jpg|jpeg)$/i, '.webp'), alt:it.word, className:'w-24 h-24 object-contain rounded-md bg-gray-50', loading:'lazy' }),
+      items.map((it,i)=> {
+        if (!it) return null;
+        const imgSrc = it.image ? (String(it.image).endsWith('.webp') ? String(it.image) : String(it.image).replace(/\.(png|jpg|jpeg)$/i, '.webp')) : '';
+        return e('div', { key:i, className:'flex items-center gap-2' },
+        e('img', { src:imgSrc, alt:it.word||'', className:'w-24 h-24 object-contain rounded-md bg-gray-50', loading:'lazy' }),
         e('div', { className:'text-sm text-gray-800' },
-          e('div', { className:'font-semibold' }, it.word),
-          e('div', { className:'text-gray-600 text-xs' }, it.pt)
+          e('div', { className:'font-semibold' }, it.word||''),
+          e('div', { className:'text-gray-600 text-xs' }, it.pt||'')
         )
-      ))
+      );
+      })
     );
   }
 
@@ -309,10 +313,12 @@
     return e('div', null,
       e('div', { className:'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2 mb-4' },
         arr.map((it,i)=>{
+          if (!it) return null;
           const isMatched = matches[i]!==undefined;
           const cls = isMatched ? 'border-green-600 bg-green-600 text-white' : (selTop===i ? 'border-green-600 bg-green-50' : 'border-gray-200 bg-gray-100');
+          const imgSrc = it.src ? (String(it.src).endsWith('.webp') ? String(it.src) : String(it.src).replace(/\.(png|jpg|jpeg)$/i, '.webp')) : '';
           return e('button', { key:i, onClick:()=>chooseTop(i), disabled:isMatched, className:`rounded-lg border-2 ${cls} overflow-hidden transition-all hover:scale-105` },
-            e('img', { src:String(it.src||'').replace(/\.(png|jpg|jpeg)$/i, '.webp'), alt:'', className:'w-full h-20 sm:h-24 md:h-28 object-cover bg-gray-50', onError: function(e){ e.target.style.display='none'; e.target.parentElement.innerHTML='<div class="w-full h-20 sm:h-24 md:h-28 flex items-center justify-center bg-gray-100 text-gray-400 text-xs">Imagem</div>'; } })
+            e('img', { src:imgSrc, alt:'', className:'w-full h-20 sm:h-24 md:h-28 object-cover bg-gray-50', onError: function(e){ e.target.style.display='none'; e.target.parentElement.innerHTML='<div class="w-full h-20 sm:h-24 md:h-28 flex items-center justify-center bg-gray-100 text-gray-400 text-xs">Imagem</div>'; } })
           );
         })
       ),
@@ -404,6 +410,13 @@
           { text:'The cows were in the barn because they were hungry.', correct:true },
         ];
       }
+      if (isA2 && Number(idx)===2) {
+        return [
+          { text:'I worked ten hours yesterday.', correct:true },
+          { text:'We started the job at 6:00 AM.', correct:false },
+          { text:'We finished the work late, but the farm is organized.', correct:true },
+        ];
+      }
       const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
       const sents = base.filter(Boolean).slice(0,3).map(t=> String(t).trim());
       return sents.map(t=> ({ text:t, correct:true }));
@@ -444,6 +457,13 @@
           { prompt:'Yesterday ____ a very busy day.', answer:'was' },
           { prompt:'The weather ____ cold and rainy in the morning.', answer:'was' },
           { prompt:'The cows ____ in the barn because they were hungry.', answer:'were' },
+        ];
+      }
+      if (isA2 && Number(idx)===2) {
+        return [
+          { prompt:'I ____ ten hours yesterday.', answer:'worked' },
+          { prompt:'We ____ the job at 5:00 AM.', answer:'started' },
+          { prompt:'I ____ all the water tanks.', answer:'checked' },
         ];
       }
       const items = Array.isArray(data.exercises && data.exercises.fill_in) ? data.exercises.fill_in.slice(0,3) : [];
@@ -497,6 +517,13 @@
           { base:'One calf was sick.', target:'neg', answer:'One calf was not sick.' }
         ];
       }
+      if (isA2 && Number(idx)===2) {
+        return [
+          { base:'I worked ten hours yesterday.', target:'neg', answer:"I didn't work ten hours yesterday." },
+          { base:'We started the job at 5:00 AM.', target:'q', answer:'Did we start the job at 5:00 AM?' },
+          { base:'We repaired the broken fence line.', target:'neg', answer:"We didn't repair the broken fence line." }
+        ];
+      }
       const neg = Array.isArray(ex.negative) ? ex.negative.slice(0,2) : [];
       const ques = Array.isArray(ex.question) ? ex.question.slice(0,1) : [];
       const toItem = (o, t)=> ({ base: String(o && o.base || '').trim(), target: t, answer: String(o && o.result || '').trim() });
@@ -531,6 +558,7 @@
       const isTx8 = isA1 && Number(idx)===8;
       const isTx9 = isA1 && Number(idx)===9;
       const isA2Tx1 = isA2 && Number(idx)===1;
+      const isA2Tx2 = isA2 && Number(idx)===2;
       const count = isTx2 ? 8 : (isTx4 ? 7 : (isTx5 ? 6 : 10));
       if (isTx1) {
         return [
@@ -708,6 +736,24 @@
           { src:'/public/images/A2/a2texto1/6.1.webp', text: String(lines[5]||'').trim() },
           { src:'/public/images/A2/a2texto1/7.1.webp', text: String(lines[6]||'').trim() },
           { src:'/public/images/A2/a2texto1/8.1.webp', text: String(lines[7]||'').trim() }
+        ];
+      }
+      if (isA2Tx2) {
+        const lines = Array.isArray(data.pairs)
+          ? data.pairs.map(p=> String(p.en||'').trim())
+          : (Array.isArray(ex.narration_sentences)
+              ? ex.narration_sentences
+              : (Array.isArray(data.lines)
+                  ? data.lines.map(l=> String(l.en||'').trim())
+                  : String(data.text||'').split(/(?<=[.!?])\s+/)));
+        return [
+          { src:'/public/images/A2/a2texto2/1.2.webp', text: String(lines[0]||'').trim() },
+          { src:'/public/images/A2/a2texto2/2.2.webp', text: String(lines[1]||'').trim() },
+          { src:'/public/images/A2/a2texto2/3.2.webp', text: String(lines[2]||'').trim() },
+          { src:'/public/images/A2/a2texto2/4.2.webp', text: String(lines[3]||'').trim() },
+          { src:'/public/images/A2/a2texto2/5.2.webp', text: String(lines[4]||'').trim() },
+          { src:'/public/images/A2/a2texto2/6.2.webp', text: String(lines[5]||'').trim() },
+          { src:'/public/images/A2/a2texto2/7.2.webp', text: String(lines[6]||'').trim() }
         ];
       }
       const base = Array.isArray(ex.narration_sentences) ? ex.narration_sentences : (Array.isArray(data.lines)? data.lines.map(l=>l.en) : String(data.text||'').split(/(?<=[.!?])\s+/));
@@ -908,7 +954,7 @@
         //              audio:'/src/audio/{LEVEL}/texto-{level}.{idx}-dividido/part_{NN}.mp3' }
         // ============================================================
         e(ExerciseCard, { title:'Associação visual', instruction:'Associe imagem e frase' },
-          ((isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9 || Number(idx)===11 || Number(idx)===12)) || (isA2 && Number(idx)===1))
+          ((isA1 && (Number(idx)===1 || Number(idx)===4 || Number(idx)===5 || Number(idx)===6 || Number(idx)===9 || Number(idx)===11 || Number(idx)===12)) || (isA2 && (Number(idx)===1 || Number(idx)===2)))
             ? e(ImageSentenceAssociation, { items: (isA2 && Number(idx)===1 ? [
                 { src:'/public/images/A2/a2texto1/1.1.webp', text:'Yesterday was a very busy day.', audio:'/src/audio/A2/texto-a2.1-dividido/part_01.mp3' },
                 { src:'/public/images/A2/a2texto1/2.1.webp', text:'The weather was cold and rainy in the morning.', audio:'/src/audio/A2/texto-a2.1-dividido/part_02.mp3' },
@@ -918,6 +964,14 @@
                 { src:'/public/images/A2/a2texto1/6.1.webp', text:'One calf was sick, but the vet was here quickly.', audio:'/src/audio/A2/texto-a2.1-dividido/part_06.mp3' },
                 { src:'/public/images/A2/a2texto1/7.1.webp', text:'The tractors were in the garage. They were not broken.', audio:'/src/audio/A2/texto-a2.1-dividido/part_07.mp3' },
                 { src:'/public/images/A2/a2texto1/8.1.webp', text:'We were tired at night, but the animals were safe.', audio:'/src/audio/A2/texto-a2.1-dividido/part_08.mp3' }
+              ] : isA2 && Number(idx)===2 ? [
+                { src:'/public/images/A2/a2texto2/1.2.webp', text:'I worked ten hours yesterday.', audio:'/src/audio/A2/texto-a2.2-dividido/part_01.mp3' },
+                { src:'/public/images/A2/a2texto2/2.2.webp', text:'We started the job at 5:00 AM.', audio:'/src/audio/A2/texto-a2.2-dividido/part_02.mp3' },
+                { src:'/public/images/A2/a2texto2/3.2.webp', text:'I checked all the water tanks.', audio:'/src/audio/A2/texto-a2.2-dividido/part_03.mp3' },
+                { src:'/public/images/A2/a2texto2/4.2.webp', text:'My friend cleaned the tractor cab.', audio:'/src/audio/A2/texto-a2.2-dividido/part_04.mp3' },
+                { src:'/public/images/A2/a2texto2/5.2.webp', text:'Then, we repaired the broken fence line.', audio:'/src/audio/A2/texto-a2.2-dividido/part_05.mp3' },
+                { src:'/public/images/A2/a2texto2/6.2.webp', text:'The rain stopped in the afternoon.', audio:'/src/audio/A2/texto-a2.2-dividido/part_06.mp3' },
+                { src:'/public/images/A2/a2texto2/7.2.webp', text:'We finished the work late, but the farm is organized.', audio:'/src/audio/A2/texto-a2.2-dividido/part_07.mp3' }
               ] : Number(idx)===1 ? [
                 { src:'/public/images/A1/a1texto1/1.1.webp', text:'Hello!', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
                 { src:'/public/images/A1/a1texto1/2.1.webp', text:'I am Paul, and I am a farmer.', audio:'/src/audio/A1/texto-a1.1-dividido/part_1.mp3' },
