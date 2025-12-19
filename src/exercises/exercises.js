@@ -71,12 +71,16 @@
     const [vals, setVals] = React.useState(Array(items.length).fill(''));
     const [res, setRes] = React.useState(null);
     function set(i,v){ const a=[...vals]; a[i]=v; setVals(a); }
-    function check(){ const ok = items.every((it,i)=> it.answer.toLowerCase()===String(vals[i]||'').trim().toLowerCase()); setRes(ok); }
+    function check(){ const ok = items.every((it,i)=> it && it.answer && it.answer.toLowerCase()===String(vals[i]||'').trim().toLowerCase()); setRes(ok); }
     return e('div', null,
-      items.map((it,i)=> e('div', { key:i, className:'mb-2 text-sm text-gray-800' },
-        e('span', null, `${i+1}. ${it.prompt.replace('____','')}`),
-        e('input', { className:'ml-2 px-2 py-1 rounded border border-gray-300', value:vals[i], onChange:ev=>set(i, ev.target.value), placeholder:'____' })
-      )),
+      items.map((it,i)=> {
+        if (!it || !it.prompt) return null;
+        const promptText = String(it.prompt || '').replace('____','');
+        return e('div', { key:i, className:'mb-2 text-sm text-gray-800' },
+          e('span', null, `${i+1}. ${promptText}`),
+          e('input', { className:'ml-2 px-2 py-1 rounded border border-gray-300', value:vals[i], onChange:ev=>set(i, ev.target.value), placeholder:'____' })
+        );
+      }),
       e('div', { className:'mt-2 flex items-center gap-2' },
         e('button', { className:'px-3 py-2 rounded bg-green-600 text-white', onClick:check }, 'Checar'),
         res!==null ? e('span', { className:`text-xs ${res?'text-green-700':'text-red-700'}` }, res?'Correto':'Tente novamente') : null
@@ -158,7 +162,19 @@
     return e('div', { className:'grid grid-cols-2 gap-3 sm:grid-cols-3' },
       items.map((it,i)=> {
         if (!it) return null;
-        const imgSrc = it.image ? (String(it.image).endsWith('.webp') ? String(it.image) : String(it.image).replace(/\.(png|jpg|jpeg)$/i, '.webp')) : '';
+        // Forçar apenas .webp - sem tentar outras extensões
+        let imgSrc = '';
+        if (it.image) {
+          const imgPath = String(it.image || '');
+          if (imgPath.endsWith('.webp')) {
+            imgSrc = imgPath;
+          } else if (imgPath.match(/\.(png|jpg|jpeg)$/i)) {
+            imgSrc = imgPath.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+          } else {
+            // Se não tem extensão, adiciona .webp
+            imgSrc = imgPath + (imgPath.endsWith('.') ? 'webp' : '.webp');
+          }
+        }
         return e('div', { key:i, className:'flex items-center gap-2' },
         e('img', { src:imgSrc, alt:it.word||'', className:'w-24 h-24 object-contain rounded-md bg-gray-50', loading:'lazy' }),
         e('div', { className:'text-sm text-gray-800' },
@@ -316,7 +332,19 @@
           if (!it) return null;
           const isMatched = matches[i]!==undefined;
           const cls = isMatched ? 'border-green-600 bg-green-600 text-white' : (selTop===i ? 'border-green-600 bg-green-50' : 'border-gray-200 bg-gray-100');
-          const imgSrc = it.src ? (String(it.src).endsWith('.webp') ? String(it.src) : String(it.src).replace(/\.(png|jpg|jpeg)$/i, '.webp')) : '';
+          // Forçar apenas .webp - sem tentar outras extensões
+          let imgSrc = '';
+          if (it.src) {
+            const imgPath = String(it.src || '');
+            if (imgPath.endsWith('.webp')) {
+              imgSrc = imgPath;
+            } else if (imgPath.match(/\.(png|jpg|jpeg)$/i)) {
+              imgSrc = imgPath.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+            } else {
+              // Se não tem extensão, adiciona .webp
+              imgSrc = imgPath + (imgPath.endsWith('.') ? 'webp' : '.webp');
+            }
+          }
           return e('button', { key:i, onClick:()=>chooseTop(i), disabled:isMatched, className:`rounded-lg border-2 ${cls} overflow-hidden transition-all hover:scale-105` },
             e('img', { src:imgSrc, alt:'', className:'w-full h-20 sm:h-24 md:h-28 object-cover bg-gray-50', onError: function(e){ e.target.style.display='none'; e.target.parentElement.innerHTML='<div class="w-full h-20 sm:h-24 md:h-28 flex items-center justify-center bg-gray-100 text-gray-400 text-xs">Imagem</div>'; } })
           );
@@ -472,8 +500,10 @@
       const out = [];
       for (let i=0;i<src.length && out.length<3;i++){
         const s = String(src[i]||'').trim();
+        if (!s) continue; // Guard clause: pular se vazio
         const words = s.replace(/[.,!?]+$/,'').split(/\s+/);
         const target = words[1] || words[0] || '';
+        if (!target) continue; // Guard clause: pular se não houver target
         const rx = new RegExp(`\\b${String(target).replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')}\\b`,'i');
         const blanked = s.replace(rx,'____');
         out.push({ prompt: blanked, answer: String(target).toLowerCase() });

@@ -252,40 +252,36 @@ function splitOnConnectorsPT(sentence){
 function buildAudioUrls(lvl, title, idx){
   const levelUpper = String(lvl||'').toUpperCase();
   const base = `./src/audio/${lvl}/`;
-  // Para todos os níveis, procurar na pasta audiotexto se existir
   const baseAudiotexto = `./src/audio/${lvl}/audiotexto/`;
   const textIdx = Number(idx) || 0;
-  const t0 = String(title||'');
-  const t1 = t0.replace(/[’']/g,'');
-  const t2 = t0.replace(/[:]/g,'');
-  const t3 = t0.replace(/[·]/g,'-').replace(/\s+-\s+/g,' - ');
-  const candidates = Array.from(new Set([
-    `${t0} · ${lvl}.mp3`,
-    `${t1} · ${lvl}.mp3`,
-    `${t2} · ${lvl}.mp3`,
-    `${t0} - ${lvl}.mp3`,
-    `${t1} - ${lvl}.mp3`,
-    `${t2} - ${lvl}.mp3`,
-    `${t3} - ${lvl}.mp3`,
-    `${t0}.mp3`,
-    `${t1}.mp3`,
-    `${t2}.mp3`
-  ]));
-  const urls = candidates.map(n => base + encodeURIComponent(n));
-  // Para todos os níveis, também procurar na pasta audiotexto
-  // Primeiro tentar com número no início (ex: "1-Paul and the Farm...")
-  const numberedCandidates = textIdx > 0 ? Array.from(new Set([
-    `${textIdx}-${t0} · ${lvl}.mp3`,
-    `${textIdx}-${t1} · ${lvl}.mp3`,
-    `${textIdx}-${t2} · ${lvl}.mp3`,
-    `${textIdx}-${t0} - ${lvl}.mp3`,
-    `${textIdx}-${t1} - ${lvl}.mp3`,
-    `${textIdx}-${t2} - ${lvl}.mp3`,
-    `${textIdx}-${t3} - ${lvl}.mp3`
-  ])) : [];
-  const numberedUrls = numberedCandidates.map(n => baseAudiotexto + encodeURIComponent(n));
-  const audiotextoUrls = candidates.map(n => baseAudiotexto + encodeURIComponent(n));
-  return [...numberedUrls, ...audiotextoUrls, ...urls];
+  const t0 = String(title||'').trim();
+  if (!t0) return []; // Guard clause: retornar vazio se não houver título
+  
+  // Prioridade 1: Formato exato com número no início (mais comum para A2)
+  // Exemplo: "2-A Hard Day of Work (Regular Actions in Past) · A2.mp3"
+  const exactNumbered = textIdx > 0 ? `${textIdx}-${t0} · ${levelUpper}.mp3` : null;
+  
+  // Prioridade 2: Formato com número e hífen alternativo
+  const altNumbered = textIdx > 0 ? `${textIdx}-${t0} - ${levelUpper}.mp3` : null;
+  
+  // Prioridade 3: Formato sem número na pasta audiotexto
+  const exactAudiotexto = `${t0} · ${levelUpper}.mp3`;
+  const altAudiotexto = `${t0} - ${levelUpper}.mp3`;
+  
+  // Prioridade 4: Formato na pasta base (sem audiotexto)
+  const exactBase = `${t0} · ${levelUpper}.mp3`;
+  const altBase = `${t0} - ${levelUpper}.mp3`;
+  
+  // Construir array de URLs na ordem de prioridade (mais específico primeiro)
+  const urls = [];
+  if (exactNumbered) urls.push(baseAudiotexto + encodeURIComponent(exactNumbered));
+  if (altNumbered) urls.push(baseAudiotexto + encodeURIComponent(altNumbered));
+  urls.push(baseAudiotexto + encodeURIComponent(exactAudiotexto));
+  urls.push(baseAudiotexto + encodeURIComponent(altAudiotexto));
+  urls.push(base + encodeURIComponent(exactBase));
+  urls.push(base + encodeURIComponent(altBase));
+  
+  return urls;
 }
 
 function baseVideoCandidates(lvl){
@@ -872,14 +868,38 @@ async function setupAudio(data) {
   renderAudioStatus();
   (function tryLoadAudio(){
     const urls = buildAudioUrls(level, title, idx);
+    if (!urls || urls.length === 0) { hasMp3 = false; renderAudioStatus(); return; }
     let i = 0;
+    let errorHandler = null;
+    let loadedHandler = null;
     function attempt(){
-      if (i >= urls.length) { hasMp3 = false; renderAudioStatus(); return; }
+      if (i >= urls.length) { 
+        hasMp3 = false; 
+        renderAudioStatus(); 
+        if (errorHandler) audio.removeEventListener('error', errorHandler);
+        if (loadedHandler) audio.removeEventListener('loadedmetadata', loadedHandler);
+        return; 
+      }
+      // Limpar listeners anteriores antes de tentar nova URL
+      if (errorHandler) audio.removeEventListener('error', errorHandler);
+      if (loadedHandler) audio.removeEventListener('loadedmetadata', loadedHandler);
+      
       audio.src = urls[i];
       audio.load();
     }
-    audio.addEventListener('loadedmetadata', function onLoaded(){ hasMp3 = true; renderAudioStatus(); audio.removeEventListener('loadedmetadata', onLoaded); });
-    audio.addEventListener('error', function onError(){ i++; attempt(); });
+    loadedHandler = function onLoaded(){ 
+      hasMp3 = true; 
+      renderAudioStatus(); 
+      audio.removeEventListener('loadedmetadata', loadedHandler);
+      if (errorHandler) audio.removeEventListener('error', errorHandler);
+    };
+    errorHandler = function onError(e){ 
+      // Silenciar erro 404 - apenas tentar próxima URL
+      i++; 
+      attempt(); 
+    };
+    audio.addEventListener('loadedmetadata', loadedHandler);
+    audio.addEventListener('error', errorHandler);
     attempt();
   })();
 
@@ -1793,11 +1813,15 @@ function renderGrammar(data) {
       }
       function setCoverImage(){
         const bases = imageBases();
-        const exts = ['.png','.jpg','.jpeg','.webp'];
+        const exts = ['.webp']; // Apenas .webp - sem fallbacks
         const { level, index } = parseRoute();
         const isA1 = String(level).toUpperCase()==='A1';
+        const isA2 = String(level).toUpperCase()==='A2';
         const idxNum = Number(index);
-        const names = [`1.${idxNum}`, `0.${idxNum}`, '0'];
+        // A2 Texto 2: usar apenas formato com sufixo .2 (1.2.webp, 2.2.webp, etc.)
+        const names = (isA2 && idxNum === 2) 
+          ? [`1.2`, `0.2`] 
+          : [`1.${idxNum}`, `0.${idxNum}`, '0'];
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?farm")`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.02)'; return; }
@@ -1817,15 +1841,25 @@ function renderGrammar(data) {
         if (isA1BeMode) {
           const file = 'Paul and the Farm (Identity & Description) · A1.mp3';
           const encoded = encodeURIComponent(file);
-          const bases = ['./src/audio/A1/audiotexto/','./src/audio/A1/','./src/audio/','./public/audio/a1texto1/','./public/audio/A1/','./public/audio/','./'];
+          // Priorizar apenas as pastas corretas - reduzir tentativas 404
+          const bases = ['./src/audio/A1/audiotexto/','./src/audio/A1/'];
           let idx = 0;
+          let errorHandler = null;
           function tryNext(){
-            if (idx >= bases.length){ if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; }
+            if (idx >= bases.length){ 
+              if (tipEl) tipEl.textContent = 'Áudio não encontrado'; 
+              if (errorHandler) audioEl.removeEventListener('error', errorHandler);
+              return; 
+            }
             const src = bases[idx++] + encoded;
+            if (errorHandler) audioEl.removeEventListener('error', errorHandler);
+            errorHandler = tryNext;
+            audioEl.addEventListener('error', errorHandler);
             audioEl.src = src;
             audioEl.load();
           }
-          audioEl.addEventListener('error', tryNext);
+          errorHandler = tryNext;
+          audioEl.addEventListener('error', errorHandler);
           audioEl.addEventListener('loadedmetadata', ()=>{ segLen = (audioEl.duration||0) / en.length; });
           audioEl.addEventListener('canplay', ()=>{ audioEl.removeEventListener('error', tryNext); });
           audioEl.addEventListener('timeupdate', ()=>{
@@ -1839,15 +1873,25 @@ function renderGrammar(data) {
         } else if (isA1AdjMode) {
           const file = 'The Tractor and The Field (Machinery & Crops) · A1.mp3';
           const encoded = encodeURIComponent(file);
-          const bases = ['./src/audio/A1/audiotexto/','./src/audio/A1/','./src/audio/','./public/audio/a1texto4/','./public/audio/A1/','./public/audio/','./'];
+          // Priorizar apenas as pastas corretas - reduzir tentativas 404
+          const bases = ['./src/audio/A1/audiotexto/','./src/audio/A1/'];
           let idx = 0;
+          let errorHandler = null;
           function tryNext(){
-            if (idx >= bases.length){ if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; }
+            if (idx >= bases.length){ 
+              if (tipEl) tipEl.textContent = 'Áudio não encontrado'; 
+              if (errorHandler) audioEl.removeEventListener('error', errorHandler);
+              return; 
+            }
             const src = bases[idx++] + encoded;
+            if (errorHandler) audioEl.removeEventListener('error', errorHandler);
+            errorHandler = tryNext;
+            audioEl.addEventListener('error', errorHandler);
             audioEl.src = src;
             audioEl.load();
           }
-          audioEl.addEventListener('error', tryNext);
+          errorHandler = tryNext;
+          audioEl.addEventListener('error', errorHandler);
           audioEl.addEventListener('loadedmetadata', ()=>{ segLen = (audioEl.duration||0) / Math.max(1,en.length); });
           audioEl.addEventListener('canplay', ()=>{ audioEl.removeEventListener('error', tryNext); });
           audioEl.addEventListener('timeupdate', ()=>{
@@ -1864,12 +1908,34 @@ function renderGrammar(data) {
           const title = String(data && (data.uiTitle || data.title) || '').trim();
           const idxNum = Number(routeIndex || 1);
           const urls = buildAudioUrls(lvl, title, idxNum);
+          if (!urls || urls.length === 0) { if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; }
           let iUrl = 0;
-          function attempt(){ if (iUrl >= urls.length){ if (tipEl) tipEl.textContent = 'Áudio não encontrado'; return; } audioEl.src = urls[iUrl++]; audioEl.load(); }
-          function onLoaded(){ segLen = (audioEl.duration||0) / Math.max(1,en.length); audioEl.removeEventListener('loadedmetadata', onLoaded); audioEl.removeEventListener('error', onError); }
-          function onError(){ attempt(); }
-          audioEl.addEventListener('loadedmetadata', onLoaded);
-          audioEl.addEventListener('error', onError);
+          let errorHandler = null;
+          let loadedHandler = null;
+          function attempt(){ 
+            if (iUrl >= urls.length){ 
+              if (tipEl) tipEl.textContent = 'Áudio não encontrado'; 
+              if (errorHandler) audioEl.removeEventListener('error', errorHandler);
+              if (loadedHandler) audioEl.removeEventListener('loadedmetadata', loadedHandler);
+              return; 
+            }
+            // Limpar listeners anteriores
+            if (errorHandler) audioEl.removeEventListener('error', errorHandler);
+            if (loadedHandler) audioEl.removeEventListener('loadedmetadata', loadedHandler);
+            audioEl.src = urls[iUrl++]; 
+            audioEl.load(); 
+          }
+          loadedHandler = function onLoaded(){ 
+            segLen = (audioEl.duration||0) / Math.max(1,en.length); 
+            audioEl.removeEventListener('loadedmetadata', loadedHandler); 
+            if (errorHandler) audioEl.removeEventListener('error', errorHandler); 
+          };
+          errorHandler = function onError(){ 
+            // Silenciar erro 404 - apenas tentar próxima URL
+            attempt(); 
+          };
+          audioEl.addEventListener('loadedmetadata', loadedHandler);
+          audioEl.addEventListener('error', errorHandler);
           audioEl.addEventListener('timeupdate', ()=>{
             if (!segLen) return;
             const cur = Math.floor((audioEl.currentTime||0) / segLen);
@@ -1883,14 +1949,19 @@ function renderGrammar(data) {
       let preloaded = {};
       function preloadImages(){
         const bases = imageBases();
-        const exts = ['.jpg','.jpeg','.png','.webp'];
+        const exts = ['.webp']; // Apenas .webp - sem fallbacks
         const { level, index } = parseRoute();
         const isA1 = String(level).toUpperCase()==='A1';
         const idxNum = Number(index);
+        const isA2 = String(level).toUpperCase()==='A2';
         for (let k=0;k<en.length;k++){
           let done = false;
           for (let bi=0; bi<bases.length && !done; bi++){
             const names = (function(){
+              // A2 Texto 2: usar apenas formato com sufixo .2 (1.2.webp, 2.2.webp, etc.)
+              if (isA2 && idxNum === 2) {
+                return [`${k+1}.2`];
+              }
               const main = String(k+1);
               const dec = `${k+1}.${idxNum}`;
               return [dec, main];
@@ -1900,6 +1971,7 @@ function renderGrammar(data) {
                 const url = bases[bi] + names[ni] + exts[ei];
                 const im = new Image();
                 im.onload = ()=>{ if (!preloaded[k]) preloaded[k] = url; };
+                im.onerror = ()=>{ /* Silenciar erro 404 - apenas .webp será tentado */ };
                 im.src = url;
               }
             }
@@ -1911,14 +1983,19 @@ function renderGrammar(data) {
         const ready = preloaded[k];
         if (ready){ imgEl.style.backgroundImage = `url('${ready}')`; imgEl.style.backgroundSize='contain'; imgEl.style.backgroundPosition='top center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.backgroundColor='#f5f7fb'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
         const bases = imageBases();
-        const exts = ['.jpg','.jpeg','.png','.webp'];
+        const exts = ['.webp']; // Apenas .webp - sem fallbacks
         const { level, index } = parseRoute();
         const isA1 = String(level).toUpperCase()==='A1';
+        const isA2 = String(level).toUpperCase()==='A2';
         const idxNum = Number(index);
         let bi = 0, ni = 0, ei = 0;
         function tryNext(){
           if (bi >= bases.length){ imgEl.style.backgroundImage = `url("https://source.unsplash.com/800x450/?${encodeURIComponent(q)}")`; imgEl.style.backgroundSize='cover'; imgEl.style.backgroundPosition='center'; imgEl.style.backgroundRepeat='no-repeat'; imgEl.style.opacity='1'; imgEl.style.transform='scale(1.03)'; return; }
           const names = (function(){
+            // A2 Texto 2: usar apenas formato com sufixo .2 (1.2.webp, 2.2.webp, etc.)
+            if (isA2 && idxNum === 2) {
+              return [`${k+1}.2`];
+            }
             const main = String(k+1);
             const dec = `${k+1}.${idxNum}`;
             return [dec, main];
@@ -2388,9 +2465,11 @@ function renderGrammar(data) {
         return;
     }
 
-    fillEl.innerHTML = src.map((f,i)=>`
-      <div class="card"><div>${i+1}. ${f.sentence.replace('____',`<input class="blank" data-fill="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`)}</div></div>
-    `).join('');
+    fillEl.innerHTML = src.map((f,i)=> {
+      if (!f || !f.sentence) return '';
+      const sentence = String(f.sentence || '').replace('____',`<input class="blank" data-fill="${i}" style="border:1px solid #cfd7d3;border-radius:6px;padding:4px" />`);
+      return `<div class="card"><div>${i+1}. ${sentence}</div></div>`;
+    }).join('');
 
     const checkBtn = document.querySelector('#checkFill');
     if (checkBtn) {
@@ -2402,8 +2481,9 @@ function renderGrammar(data) {
       let correctCount = 0;
       inputs.forEach((inp) => {
         const i = Number(inp.dataset.fill);
+        if (i < 0 || i >= src.length || !src[i] || !src[i].answer) return; // Guard clause
         const userAnswer = (inp.value || '').trim().toLowerCase();
-        const correctAnswer = String(src[i].answer).toLowerCase();
+        const correctAnswer = String(src[i].answer || '').toLowerCase();
         if (userAnswer === correctAnswer) {
             correctCount++;
             inp.style.borderColor = 'green';
