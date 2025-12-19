@@ -258,25 +258,32 @@ function buildAudioUrls(lvl, title, idx){
   const t0 = String(title||'').trim();
   if (!t0) return []; // Guard clause: retornar vazio se não houver título
   
-  // Prioridade 1: Formato exato com número no início (mais comum para A2)
-  // Exemplo: "2-A Hard Day of Work (Regular Actions in Past) · A2.mp3"
+  // Prioridade 1: Formato exato com número no início (A1 e A2 usam este formato)
+  // Exemplo A1: "1-Paul and the Farm (Identity & Description) · A1.mp3"
+  // Exemplo A2: "2-A Hard Day of Work (Regular Actions in Past) · A2.mp3"
   const exactNumbered = textIdx > 0 ? `${textIdx}-${t0} · ${levelUpper}.mp3` : null;
   
-  // Prioridade 2: Formato com número e hífen alternativo
+  // Prioridade 2: Formato com número e hífen alternativo (sem ponto médio)
   const altNumbered = textIdx > 0 ? `${textIdx}-${t0} - ${levelUpper}.mp3` : null;
   
-  // Prioridade 3: Formato sem número na pasta audiotexto
+  // Prioridade 3: Formato sem número na pasta audiotexto (fallback para compatibilidade)
   const exactAudiotexto = `${t0} · ${levelUpper}.mp3`;
   const altAudiotexto = `${t0} - ${levelUpper}.mp3`;
   
-  // Prioridade 4: Formato na pasta base (sem audiotexto)
+  // Prioridade 4: Formato na pasta base (sem audiotexto) - último recurso
   const exactBase = `${t0} · ${levelUpper}.mp3`;
   const altBase = `${t0} - ${levelUpper}.mp3`;
   
   // Construir array de URLs na ordem de prioridade (mais específico primeiro)
+  // IMPORTANTE: O formato com prefixo numérico (${id}-${titulo}) é sempre tentado primeiro
   const urls = [];
-  if (exactNumbered) urls.push(baseAudiotexto + encodeURIComponent(exactNumbered));
-  if (altNumbered) urls.push(baseAudiotexto + encodeURIComponent(altNumbered));
+  if (exactNumbered) {
+    urls.push(baseAudiotexto + encodeURIComponent(exactNumbered));
+  }
+  if (altNumbered) {
+    urls.push(baseAudiotexto + encodeURIComponent(altNumbered));
+  }
+  // Fallbacks apenas se o formato com prefixo não funcionar
   urls.push(baseAudiotexto + encodeURIComponent(exactAudiotexto));
   urls.push(baseAudiotexto + encodeURIComponent(altAudiotexto));
   urls.push(base + encodeURIComponent(exactBase));
@@ -868,38 +875,103 @@ async function setupAudio(data) {
   const idx = Number((location.hash.split('/')[3] || '1').trim());
   renderAudioStatus();
   (function tryLoadAudio(){
-    const urls = buildAudioUrls(level, title, idx);
-    if (!urls || urls.length === 0) { hasMp3 = false; renderAudioStatus(); return; }
+    // Se não houver título, tentar obter do a1_blocks.json ou a2_blocks.json
+    let finalTitle = title;
+    if (!finalTitle && (level.toUpperCase() === 'A1' || level.toUpperCase() === 'A2')) {
+      // Tentar buscar o título do blocks.json de forma síncrona (já deve estar carregado)
+      try {
+        const blocksKey = `${level.toLowerCase()}_blocks`;
+        const cachedData = window.__cachedBlocksData || {};
+        if (cachedData[blocksKey] && Array.isArray(cachedData[blocksKey])) {
+          const item = cachedData[blocksKey].find(o => Number(o.id) === Number(idx)) || cachedData[blocksKey][idx-1];
+          if (item && item.title) {
+            finalTitle = String(item.title).trim();
+          }
+        }
+      } catch {}
+    }
+    // Se ainda não houver título, usar um título padrão baseado no índice
+    if (!finalTitle) {
+      const defaultTitles = {
+        'A1': {
+          1: 'Paul and the Farm (Identity & Description)',
+          2: 'The Veterinarian Visit (Livestock & Health)',
+          3: 'Daily Feeding Routine (Actions & Habits)',
+          4: 'The Tractor and The Field (Machinery & Crops)',
+          5: 'Weather and the Crops (Climate Conditions)',
+          6: 'Counting the Stock (Numbers & Quantities)',
+          7: 'Tools and Locations (Prepositions of Place)',
+          8: 'Farm Safety Rules (Imperatives & Warnings)',
+          9: 'Maintenance Day (Actions in Progress)',
+          10: 'Machinery and Skills (Capabilities)',
+          11: 'The Harvest Schedule (Future Plans)',
+          12: 'Market and Prices (Money & Transactions)'
+        },
+        'A2': {
+          1: 'Yesterday at the Farm (Past Conditions)',
+          2: 'A Hard Day of Work (Regular Actions in Past)'
+        }
+      };
+      if (defaultTitles[level.toUpperCase()] && defaultTitles[level.toUpperCase()][idx]) {
+        finalTitle = defaultTitles[level.toUpperCase()][idx];
+      }
+    }
+    const urls = buildAudioUrls(level, finalTitle, idx);
+    if (!urls || urls.length === 0) { 
+      hasMp3 = false; 
+      renderAudioStatus(); 
+      return; 
+    }
     let i = 0;
     let errorHandler = null;
     let loadedHandler = null;
+    let canplayHandler = null;
     function attempt(){
       if (i >= urls.length) { 
         hasMp3 = false; 
         renderAudioStatus(); 
         if (errorHandler) audio.removeEventListener('error', errorHandler);
         if (loadedHandler) audio.removeEventListener('loadedmetadata', loadedHandler);
+        if (canplayHandler) audio.removeEventListener('canplay', canplayHandler);
         return; 
       }
       // Limpar listeners anteriores antes de tentar nova URL
       if (errorHandler) audio.removeEventListener('error', errorHandler);
       if (loadedHandler) audio.removeEventListener('loadedmetadata', loadedHandler);
+      if (canplayHandler) audio.removeEventListener('canplay', canplayHandler);
       
+      // Tentar carregar a URL atual
       audio.src = urls[i];
       audio.load();
     }
     loadedHandler = function onLoaded(){ 
       hasMp3 = true; 
       renderAudioStatus(); 
+      // Garantir que o src esteja definido
+      if (!audio.src) audio.src = urls[i-1] || urls[0];
       audio.removeEventListener('loadedmetadata', loadedHandler);
       if (errorHandler) audio.removeEventListener('error', errorHandler);
+      if (canplayHandler) audio.removeEventListener('canplay', canplayHandler);
+    };
+    // Também usar 'canplay' como fallback caso 'loadedmetadata' não dispare
+    canplayHandler = function onCanPlay(){ 
+      if (!hasMp3) {
+        hasMp3 = true; 
+        renderAudioStatus(); 
+        // Garantir que o src esteja definido
+        if (!audio.src && urls[i-1]) audio.src = urls[i-1];
+      }
+      audio.removeEventListener('canplay', canplayHandler);
+      if (errorHandler) audio.removeEventListener('error', errorHandler);
+      if (loadedHandler) audio.removeEventListener('loadedmetadata', loadedHandler);
     };
     errorHandler = function onError(e){ 
-      // Silenciar erro 404 - apenas tentar próxima URL
+      // Tentar próxima URL se a atual falhar
       i++; 
       attempt(); 
     };
     audio.addEventListener('loadedmetadata', loadedHandler);
+    audio.addEventListener('canplay', canplayHandler);
     audio.addEventListener('error', errorHandler);
     attempt();
   })();
@@ -932,8 +1004,66 @@ async function setupAudio(data) {
   function seekToSentence(i){ curSentIdx = Math.max(0, Math.min(sentences.length-1, i)); updateSentLabel(); setActiveSentence(curSentIdx); if (hasMp3 && boundaries.length===sentences.length+1) { try { audio.currentTime = boundaries[curSentIdx]; audio.play(); } catch{} } else { try { window.speechSynthesis.cancel(); } catch{} const s = sentences[curSentIdx]||''; narrate(s); } }
 
   if (playBtn) playBtn.addEventListener('click', () => {
-    if (hasMp3 && audio.src) { audio.play(); }
-    else { const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' '); narrate(enText); }
+    // Verificar se o áudio está carregado e pronto para tocar
+    if (hasMp3 && audio.src && audio.readyState >= 2) { 
+      try { 
+        audio.play().catch(err => {
+          // Se falhar ao tocar, tentar recarregar e tocar novamente
+          audio.load();
+          setTimeout(() => {
+            if (audio.readyState >= 2) {
+              audio.play().catch(() => {
+                // Se ainda falhar, usar TTS como último recurso
+                const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' '); 
+                narrate(enText);
+              });
+            } else {
+              const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' '); 
+              narrate(enText);
+            }
+          }, 500);
+        });
+      } catch(err) {
+        const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' '); 
+        narrate(enText);
+      }
+    } else if (audio.src && !hasMp3) {
+      // Se há src mas hasMp3 é false, aguardar o carregamento
+      const checkReady = () => {
+        if (audio.readyState >= 2) {
+          hasMp3 = true;
+          try { audio.play().catch(() => {
+            const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' '); 
+            narrate(enText);
+          }); } catch(err) {
+            const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' '); 
+            narrate(enText);
+          }
+        } else {
+          setTimeout(checkReady, 100);
+        }
+      };
+      audio.addEventListener('canplay', () => {
+        hasMp3 = true;
+        try { audio.play().catch(() => {
+          const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' '); 
+          narrate(enText);
+        }); } catch(err) {
+          const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' '); 
+          narrate(enText);
+        }
+      }, { once: true });
+      audio.load();
+      setTimeout(() => {
+        if (!hasMp3) {
+          const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' '); 
+          narrate(enText);
+        }
+      }, 2000);
+    } else { 
+      const enText = Array.from(linesEl.querySelectorAll('.line .en')).map(el=>el.textContent).join(' '); 
+      narrate(enText); 
+    }
   });
   if (pauseBtn) pauseBtn.addEventListener('click', () => { if (hasMp3) { audio.pause(); } else { window.speechSynthesis.pause(); } });
   if (stopBtn) stopBtn.addEventListener('click', () => { if (hasMp3) { try { audio.pause(); audio.currentTime = 0; } catch{} } else { window.speechSynthesis.cancel(); } try { setActiveSentence(-1) } catch {} });
@@ -1654,7 +1784,7 @@ function renderGrammar(data) {
             gv.insertAdjacentHTML('beforeend', `
               <div style="margin-top:12px">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-                  <iframe src="https://www.youtube.com/embed/Q39ia_h7l5Q" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+                  <iframe src="https://www.youtube.com/embed/Q39ia_h7l5Q?rel=0" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
                 </div>
               </div>
             `);
@@ -1665,7 +1795,7 @@ function renderGrammar(data) {
             gv.insertAdjacentHTML('beforeend', `
               <div style="margin-top:12px">
                 <div id="ytVideo5" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-                  <iframe src="https://www.youtube.com/embed/CwqqtZ3knsg" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+                  <iframe src="https://www.youtube.com/embed/CwqqtZ3knsg?rel=0" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
                 </div>
               </div>
             `);
@@ -1676,7 +1806,7 @@ function renderGrammar(data) {
             gv.insertAdjacentHTML('beforeend', `
               <div style="margin-top:12px">
                 <div id="ytVideo6" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-                  <iframe src="https://www.youtube.com/embed/trDEbaXjRy8" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+                  <iframe src="https://www.youtube.com/embed/trDEbaXjRy8?rel=0" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
                 </div>
               </div>
             `);
@@ -3039,6 +3169,12 @@ function renderGrammar(data) {
         const items = await (fetch(bp1).then(r=> r.ok ? r.json() : Promise.reject()).catch(()=> fetch(bp2).then(r=> r.json())));
         const item = (Array.isArray(items) ? (items.find(o => Number(o.id) === Number(idx)) || items[idx-1]) : null) || {};
         uiTitle = String(item.title||'');
+        // Cache dos dados para uso posterior no setupAudio
+        try {
+          if (!window.__cachedBlocksData) window.__cachedBlocksData = {};
+          const blocksKey = `${String(level).toLowerCase()}_blocks`;
+          window.__cachedBlocksData[blocksKey] = items;
+        } catch {}
       } catch {}
       try {
         const lvlTag = String(level).toUpperCase();
@@ -3054,6 +3190,9 @@ function renderGrammar(data) {
         try { document.getElementById('title').textContent = uiTitle + ' · ' + level; } catch {}
       }
       renderLines(data);
+      // IMPORTANTE: setupAudio deve ser chamado DEPOIS de uiTitle ser definido
+      // para garantir que use o título correto do a1_blocks.json (ex: "Paul and the Farm...")
+      // em vez do título do text1.json (ex: "John se apresenta...")
       setupAudio(data);
       
       try { renderVocabulary(data); } catch (e) { console.error('Error in renderVocabulary:', e); }
@@ -3095,7 +3234,7 @@ const parts = [];
         };
         const videoKey = `${lvl}-${idxNum}`;
         if (youtubeVideos[videoKey]) {
-          parts.push(`<div style="margin-top:12px"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000"><iframe src="https://www.youtube.com/embed/${youtubeVideos[videoKey]}" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe></div></div>`);
+          parts.push(`<div style="margin-top:12px"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000"><iframe src="https://www.youtube.com/embed/${youtubeVideos[videoKey]}?rel=0" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>`);
         }
 
         // Título da Aula (pular se skipTitle for true - para evitar duplicação)
@@ -5132,10 +5271,31 @@ const parts = [];
               <button class="btn sm secondary" data-pron-playrec="${i}">Ouvir minha pronúncia</button>
               <button class="btn sm secondary" data-pron-compare="${i}">Comparar</button>
             </div>
-            ${segUrls.length ? `<audio id="pron-orig-${i}" src="${segUrls[i]}" style="display:none"></audio>` : ''}
+            ${segUrls.length && segUrls[i] ? `<audio id="pron-orig-${i}" src="${segUrls[i]}" preload="auto" style="display:none"></audio>` : ''}
             <audio id="pron-audio-${i}" style="margin-top:6px; width:100%; display:none" controls></audio>
           </div>
         `).join('') || '<div class="small">Sem frases disponíveis.</div>';
+        
+        // Pré-carregar todos os áudios disponíveis para evitar fallback para TTS
+        if (segUrls && segUrls.length > 0) {
+          segUrls.forEach((url, idx) => {
+            if (url) {
+              const audioEl = document.getElementById('pron-orig-'+idx);
+              if (audioEl) {
+                // Forçar carregamento do áudio
+                audioEl.load();
+                // Adicionar listener para detectar quando carregar
+                audioEl.addEventListener('canplay', function() {
+                  // Áudio carregado com sucesso
+                }, { once: true });
+                audioEl.addEventListener('error', function() {
+                  // Silenciar erro - o fallback para TTS será usado se necessário
+                }, { once: true });
+              }
+            }
+          });
+        }
+        
         const recordedURLMap = {};
         pronList.addEventListener('click', (e)=>{
           const t = e.target;
@@ -5144,8 +5304,30 @@ const parts = [];
           const i = Number(idxStr);
           if (t.dataset.pronPlay !== undefined) {
             const orig = document.getElementById('pron-orig-'+i);
-            if (orig && orig.src) { try { orig.currentTime=0; orig.play(); } catch {} }
-            else { speak(sentences[i]); }
+            if (orig && orig.src && segUrls && segUrls[i]) { 
+              // Garantir que o áudio esteja carregado antes de tocar
+              if (orig.readyState >= 2) { // HAVE_CURRENT_DATA ou superior
+                try { orig.currentTime=0; orig.play().catch(()=>{}); } catch {} 
+              } else {
+                // Aguardar o áudio carregar antes de tocar
+                const onCanPlay = function() {
+                  try { orig.currentTime=0; orig.play().catch(()=>{}); } catch {}
+                  orig.removeEventListener('canplay', onCanPlay);
+                };
+                orig.addEventListener('canplay', onCanPlay, { once: true });
+                orig.load(); // Forçar carregamento
+                // Timeout de segurança: se não carregar em 3 segundos, usar TTS
+                setTimeout(() => {
+                  if (orig.readyState < 2) {
+                    orig.removeEventListener('canplay', onCanPlay);
+                    speak(sentences[i]);
+                  }
+                }, 3000);
+              }
+            } else { 
+              // Fallback para TTS apenas se não houver áudio disponível
+              speak(sentences[i]); 
+            }
           } else if (t.dataset.pronRecord !== undefined) {
             recordedChunks = [];
             navigator.mediaDevices.getUserMedia({ audio: true }).then(stream=>{
@@ -5239,20 +5421,97 @@ const parts = [];
       }
 
       (function tryLoadFullAudio(){
+        if (!fullOrigAudio) return;
         const lvl = String(level).trim();
-        const title = String(data && (data.uiTitle || data.title) || '').trim();
+        let title = String(data && (data.uiTitle || data.title) || '').trim();
         const idxNum = Number(idx);
+        
+        // Se não houver título, tentar obter do cache ou usar mapeamento padrão
+        if (!title && (lvl.toUpperCase() === 'A1' || lvl.toUpperCase() === 'A2')) {
+          try {
+            const blocksKey = `${lvl.toLowerCase()}_blocks`;
+            const cachedData = window.__cachedBlocksData || {};
+            if (cachedData[blocksKey] && Array.isArray(cachedData[blocksKey])) {
+              const item = cachedData[blocksKey].find(o => Number(o.id) === Number(idxNum)) || cachedData[blocksKey][idxNum-1];
+              if (item && item.title) {
+                title = String(item.title).trim();
+              }
+            }
+          } catch {}
+          
+          // Se ainda não houver título, usar mapeamento padrão
+          if (!title) {
+            const defaultTitles = {
+              'A1': {
+                1: 'Paul and the Farm (Identity & Description)',
+                2: 'The Veterinarian Visit (Livestock & Health)',
+                3: 'Daily Feeding Routine (Actions & Habits)',
+                4: 'The Tractor and The Field (Machinery & Crops)',
+                5: 'Weather and the Crops (Climate Conditions)',
+                6: 'Counting the Stock (Numbers & Quantities)',
+                7: 'Tools and Locations (Prepositions of Place)',
+                8: 'Farm Safety Rules (Imperatives & Warnings)',
+                9: 'Maintenance Day (Actions in Progress)',
+                10: 'Machinery and Skills (Capabilities)',
+                11: 'The Harvest Schedule (Future Plans)',
+                12: 'Market and Prices (Money & Transactions)'
+              },
+              'A2': {
+                1: 'Yesterday at the Farm (Past Conditions)',
+                2: 'A Hard Day of Work (Regular Actions in Past)'
+              }
+            };
+            if (defaultTitles[lvl.toUpperCase()] && defaultTitles[lvl.toUpperCase()][idxNum]) {
+              title = defaultTitles[lvl.toUpperCase()][idxNum];
+            }
+          }
+        }
+        
         const urls = buildAudioUrls(lvl, title, idxNum);
+        if (!urls || urls.length === 0) { hasFullMp3 = false; return; }
         let i = 0;
+        let errorHandler = null;
+        let loadedHandler = null;
+        let canplayHandler = null;
         function attempt(){
-          if (!fullOrigAudio) return;
-          if (i >= urls.length) { hasFullMp3 = false; return; }
+          if (i >= urls.length) { 
+            hasFullMp3 = false; 
+            if (errorHandler) fullOrigAudio.removeEventListener('error', errorHandler);
+            if (loadedHandler) fullOrigAudio.removeEventListener('loadedmetadata', loadedHandler);
+            if (canplayHandler) fullOrigAudio.removeEventListener('canplay', canplayHandler);
+            return; 
+          }
+          // Limpar listeners anteriores
+          if (errorHandler) fullOrigAudio.removeEventListener('error', errorHandler);
+          if (loadedHandler) fullOrigAudio.removeEventListener('loadedmetadata', loadedHandler);
+          if (canplayHandler) fullOrigAudio.removeEventListener('canplay', canplayHandler);
+          
           fullOrigAudio.src = urls[i];
           fullOrigAudio.load();
         }
-        function onLoaded(){ hasFullMp3 = true; fullOrigAudio.style.display='block'; fullOrigAudio.removeEventListener('loadedmetadata', onLoaded); fullOrigAudio.removeEventListener('error', onError); }
-        function onError(){ i++; attempt(); }
-        if (fullOrigAudio) { fullOrigAudio.addEventListener('loadedmetadata', onLoaded); fullOrigAudio.addEventListener('error', onError); }
+        loadedHandler = function onLoaded(){ 
+          hasFullMp3 = true; 
+          fullOrigAudio.style.display='block'; 
+          fullOrigAudio.removeEventListener('loadedmetadata', loadedHandler);
+          if (errorHandler) fullOrigAudio.removeEventListener('error', errorHandler);
+          if (canplayHandler) fullOrigAudio.removeEventListener('canplay', canplayHandler);
+        };
+        canplayHandler = function onCanPlay(){ 
+          if (!hasFullMp3) {
+            hasFullMp3 = true; 
+            fullOrigAudio.style.display='block'; 
+          }
+          fullOrigAudio.removeEventListener('canplay', canplayHandler);
+          if (errorHandler) fullOrigAudio.removeEventListener('error', errorHandler);
+          if (loadedHandler) fullOrigAudio.removeEventListener('loadedmetadata', loadedHandler);
+        };
+        errorHandler = function onError(){ 
+          i++; 
+          attempt(); 
+        };
+        fullOrigAudio.addEventListener('loadedmetadata', loadedHandler);
+        fullOrigAudio.addEventListener('canplay', canplayHandler);
+        fullOrigAudio.addEventListener('error', errorHandler);
         attempt();
       })();
 
@@ -5264,7 +5523,45 @@ const parts = [];
         if (btnFullRecord) { btnFullRecord.disabled = false; btnFullRecord.textContent = fullRecordDefaultLabel; }
         if (btnFullStop) btnFullStop.disabled = true;
       }
-      if (btnFullPlayOrig) btnFullPlayOrig.addEventListener('click', ()=>{ if (hasFullMp3 && fullOrigAudio && fullOrigAudio.src) { fullOrigAudio.currentTime=0; fullOrigAudio.play(); } else { speakFull() } });
+      if (btnFullPlayOrig) btnFullPlayOrig.addEventListener('click', ()=>{ 
+        if (hasFullMp3 && fullOrigAudio && fullOrigAudio.src && fullOrigAudio.readyState >= 2) { 
+          try { 
+            fullOrigAudio.currentTime=0; 
+            fullOrigAudio.play().catch(() => {
+              // Se falhar ao tocar, tentar recarregar
+              fullOrigAudio.load();
+              setTimeout(() => {
+                if (fullOrigAudio.readyState >= 2) {
+                  fullOrigAudio.play().catch(() => speakFull());
+                } else {
+                  speakFull();
+                }
+              }, 500);
+            });
+          } catch(err) {
+            speakFull();
+          }
+        } else if (fullOrigAudio && fullOrigAudio.src && !hasFullMp3) {
+          // Se há src mas hasFullMp3 é false, aguardar o carregamento
+          fullOrigAudio.addEventListener('canplay', () => {
+            hasFullMp3 = true;
+            try { 
+              fullOrigAudio.currentTime=0; 
+              fullOrigAudio.play().catch(() => speakFull());
+            } catch(err) {
+              speakFull();
+            }
+          }, { once: true });
+          fullOrigAudio.load();
+          setTimeout(() => {
+            if (!hasFullMp3) {
+              speakFull();
+            }
+          }, 2000);
+        } else { 
+          speakFull(); 
+        } 
+      });
       if (btnFullRecord) btnFullRecord.addEventListener('click', ()=>{
         fullRecordedChunks = [];
         navigator.mediaDevices.getUserMedia({ audio:true }).then(stream=>{

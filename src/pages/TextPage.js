@@ -5,49 +5,49 @@ export function TextPage(level, index) {
   const ytEmbed = ytId ? `
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-              <iframe src="https://www.youtube.com/embed/${ytId}" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/${ytId}?rel=0&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
             </div>
           </div>
   ` : '';
   const ytEmbedA2T1 = (isA2 && Number(index)===1) ? `
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-              <iframe src="https://www.youtube.com/embed/5tSCdi__weM" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/5tSCdi__weM?rel=0&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
             </div>
           </div>
   ` : '';
   const ytEmbedA2T2 = (isA2 && Number(index)===2) ? `
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-              <iframe src="https://www.youtube.com/embed/4CShnBtEG_U" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/4CShnBtEG_U?rel=0&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
             </div>
           </div>
   ` : '';
   const ytEmbedA1T7 = (isA1 && Number(index)===7) ? `
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-              <iframe src="https://www.youtube.com/embed/_m66JpP0idI" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/_m66JpP0idI?rel=0&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
             </div>
           </div>
   ` : '';
   const ytEmbedA1T8 = (isA1 && Number(index)===8) ? `
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-              <iframe src="https://www.youtube.com/embed/ufBTMWG1cXY" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/ufBTMWG1cXY?rel=0&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
             </div>
           </div>
   ` : '';
   const ytEmbedA1T9 = (isA1 && Number(index)===9) ? `
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-              <iframe src="https://www.youtube.com/embed/OdXvxZKzKVc" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/OdXvxZKzKVc?rel=0&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
             </div>
           </div>
   ` : '';
   const ytEmbedA1T11 = (isA1 && Number(index)===11) ? `
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-              <iframe src="https://www.youtube.com/embed/40wqbTWnbOc" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/40wqbTWnbOc?rel=0&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
             </div>
           </div>
   ` : '';
@@ -68,7 +68,7 @@ export function TextPage(level, index) {
   const lessonA1T10 = (isA1 && Number(index)===10) ? `
     <div style="margin-top:12px">
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-        <iframe src="https://www.youtube.com/embed/zbrwpPGDuSY" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%" loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/zbrwpPGDuSY?rel=0&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
       </div>
     </div>
     <div class="section-title" style="margin-top:12px">🚜 Aula 10 – Capabilities na Fazenda</div>
