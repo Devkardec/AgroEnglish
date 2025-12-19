@@ -336,14 +336,6 @@ export function TextPage(level, index) {
           ${ytEmbedA2T2}
           ${lessonA2T1 || lessonA2T2 || lessonA1T8 || lessonA1T9 || lessonA1T10 || `<div id="slideLessonRoot" style="margin-top:12px"></div>`}
           <div class="section-title" style="margin-top:12px">📖 Texto narrado</div>
-          <div style="margin-top:8px">
-            <details class="accordion">
-              <summary><span class="section-title" style="margin:0">🎙️ Voz da narração</span></summary>
-              <div style="margin-top:8px">
-                <div id="voiceSelector" class="selector" style="gap:6px"></div>
-              </div>
-            </details>
-          </div>
           <div class="player" style="margin-top:8px">
             <div class="player-controls">
               <button class="player-btn" id="playerBack" title="Voltar 10s"><svg viewBox="0 0 24 24"><path d="M11 18l-8-6 8-6v12zm10 0l-8-6 8-6v12z"/></svg></button>
