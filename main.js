@@ -1782,6 +1782,7 @@ function renderGrammar(data) {
         if (String(level).toUpperCase()==='A1' && Number(index)===4) {
           try {
             gv.insertAdjacentHTML('beforeend', `
+              <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
               <div style="margin-top:12px">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
                   <iframe src="https://www.youtube.com/embed/Q39ia_h7l5Q?rel=0&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
@@ -1793,6 +1794,7 @@ function renderGrammar(data) {
         if (String(level).toUpperCase()==='A1' && Number(index)===5) {
           try {
             gv.insertAdjacentHTML('beforeend', `
+              <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
               <div style="margin-top:12px">
                 <div id="ytVideo5" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
                   <iframe src="https://www.youtube.com/embed/CwqqtZ3knsg?rel=0&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
@@ -1804,6 +1806,7 @@ function renderGrammar(data) {
         if (String(level).toUpperCase()==='A1' && Number(index)===6) {
           try {
             gv.insertAdjacentHTML('beforeend', `
+              <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
               <div style="margin-top:12px">
                 <div id="ytVideo6" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
                   <iframe src="https://www.youtube.com/embed/trDEbaXjRy8?rel=0&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
@@ -3235,7 +3238,7 @@ const parts = [];
         const videoKey = `${lvl}-${idxNum}`;
         if (youtubeVideos[videoKey]) {
           const ytOrigin = typeof window !== 'undefined' ? encodeURIComponent(window.location.origin) : '';
-          parts.push(`<div style="margin-top:12px"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000"><iframe src="https://www.youtube.com/embed/${youtubeVideos[videoKey]}?rel=0&enablejsapi=1${ytOrigin ? '&origin=' + ytOrigin : ''}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>`);
+          parts.push(`<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div><div style="margin-top:12px"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000"><iframe src="https://www.youtube.com/embed/${youtubeVideos[videoKey]}?rel=0&enablejsapi=1${ytOrigin ? '&origin=' + ytOrigin : ''}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>`);
         }
 
         // Título da Aula (pular se skipTitle for true - para evitar duplicação)

@@ -4,6 +4,7 @@ export function TextPage(level, index) {
   const ytOrigin = typeof window !== 'undefined' ? encodeURIComponent(window.location.origin) : '';
   const ytId = (isA1 && Number(index)===1) ? 'WXbcHk3TJsE' : (isA1 && Number(index)===2 ? '2uZ0WKMrfkY' : (isA1 && Number(index)===3 ? 'X1BkKKokG5M' : ''));
   const ytEmbed = ytId ? `
+          <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
               <iframe src="https://www.youtube.com/embed/${ytId}?rel=0&enablejsapi=1${ytOrigin ? '&origin=' + ytOrigin : ''}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
@@ -25,6 +26,7 @@ export function TextPage(level, index) {
           </div>
   ` : '';
   const ytEmbedA1T7 = (isA1 && Number(index)===7) ? `
+          <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
               <iframe src="https://www.youtube.com/embed/_m66JpP0idI?rel=0&enablejsapi=1${ytOrigin ? '&origin=' + ytOrigin : ''}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
@@ -32,6 +34,7 @@ export function TextPage(level, index) {
           </div>
   ` : '';
   const ytEmbedA1T8 = (isA1 && Number(index)===8) ? `
+          <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
               <iframe src="https://www.youtube.com/embed/ufBTMWG1cXY?rel=0&enablejsapi=1${ytOrigin ? '&origin=' + ytOrigin : ''}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
@@ -39,6 +42,7 @@ export function TextPage(level, index) {
           </div>
   ` : '';
   const ytEmbedA1T9 = (isA1 && Number(index)===9) ? `
+          <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
               <iframe src="https://www.youtube.com/embed/OdXvxZKzKVc?rel=0&enablejsapi=1${ytOrigin ? '&origin=' + ytOrigin : ''}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
@@ -46,6 +50,7 @@ export function TextPage(level, index) {
           </div>
   ` : '';
   const ytEmbedA1T11 = (isA1 && Number(index)===11) ? `
+          <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
           <div style="margin-top:12px">
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
               <iframe src="https://www.youtube.com/embed/40wqbTWnbOc?rel=0&enablejsapi=1${ytOrigin ? '&origin=' + ytOrigin : ''}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
@@ -67,6 +72,7 @@ export function TextPage(level, index) {
     <div id="slideLessonRoot" style="margin-top:12px"></div>
   ` : '';
   const lessonA1T10 = (isA1 && Number(index)===10) ? `
+    <div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>
     <div style="margin-top:12px">
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
         <iframe src="https://www.youtube.com/embed/zbrwpPGDuSY?rel=0&enablejsapi=1${ytOrigin ? '&origin=' + ytOrigin : ''}" title="YouTube video" frameborder="0" referrerPolicy="strict-origin-when-cross-origin" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
@@ -320,7 +326,7 @@ export function TextPage(level, index) {
         <div id="vocab" class="flash-grid" style="margin-top:12px"></div>
         <div id="vocabTable" style="margin-top:12px"></div>
       <section class="card" id="study-footer" style="margin-top:16px">
-          ${lessonA2T1Title || lessonA2T2Title || (lessonA1T8 || lessonA1T9 || lessonA1T10 ? '' : `<div class="section-title" style="margin-top:12px">🎓 Aula de Inglês</div>`)}
+          ${lessonA2T1Title || lessonA2T2Title || ''}
           ${ytEmbed}
           ${ytEmbedA1T7}
           ${ytEmbedA1T8}
