@@ -1041,15 +1041,15 @@
                 { src:'/public/images/A1/a1texto9/7.9.webp', text:'They are not eating at this moment.' },
                 { src:'/public/images/A1/a1texto9/8.9.webp', text:'Everything is moving fast today.' }
               ] : Number(idx)===11 ? [
-                { src:'./public/images/A1/a1texto11/1.11.webp', text:'Tomorrow is Monday.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_1.mp3' },
-                { src:'./public/images/A1/a1texto11/2.11.webp', text:'It is an important day.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_2.mp3' },
-                { src:'./public/images/A1/a1texto11/3.11.webp', text:'We will start the soybean harvest.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_3.mp3' },
-                { src:'./public/images/A1/a1texto11/4.11.webp', text:'The trucks will arrive at 7:00 AM.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_4.mp3' },
-                { src:'./public/images/A1/a1texto11/5.11.webp', text:'On Tuesday, we will load the grain into the silos.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_5.mp3' },
-                { src:'./public/images/A1/a1texto11/6.11.webp', text:'The mechanic will check the harvester again.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_6.mp3' },
-                { src:'./public/images/A1/a1texto11/7.11.webp', text:'The weather will be sunny all week.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_7.mp3' },
-                { src:'./public/images/A1/a1texto11/8.11.webp', text:'We will sell the production on Friday.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_8.mp3' },
-                { src:'./public/images/A1/a1texto11/9.11.webp', text:'It will be a busy week for us.', audio:'./src/audio/A1/texto-a1.11-dividido/audio_9.mp3' }
+                { src:'/public/images/A1/a1texto11/1.11.webp', text:'Tomorrow is Monday.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_1.mp3' },
+                { src:'/public/images/A1/a1texto11/2.11.webp', text:'It is an important day.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_2.mp3' },
+                { src:'/public/images/A1/a1texto11/3.11.webp', text:'We will start the soybean harvest.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_3.mp3' },
+                { src:'/public/images/A1/a1texto11/4.11.webp', text:'The trucks will arrive at 7:00 AM.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_4.mp3' },
+                { src:'/public/images/A1/a1texto11/5.11.webp', text:'On Tuesday, we will load the grain into the silos.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_5.mp3' },
+                { src:'/public/images/A1/a1texto11/6.11.webp', text:'The mechanic will check the harvester again.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_6.mp3' },
+                { src:'/public/images/A1/a1texto11/7.11.webp', text:'The weather will be sunny all week.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_7.mp3' },
+                { src:'/public/images/A1/a1texto11/8.11.webp', text:'We will sell the production on Friday.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_8.mp3' },
+                { src:'/public/images/A1/a1texto11/9.11.webp', text:'It will be a busy week for us.', audio:'/src/audio/A1/texto-a1.11-dividido/audio_9.mp3' }
               ] : Number(idx)===12 ? [
                 { src:'/public/images/A1/a1texto12/1.12.webp', text:'The harvest is finished. The silos are full.' },
                 { src:'/public/images/A1/a1texto12/2.12.webp', text:'We go to the cooperative.' },

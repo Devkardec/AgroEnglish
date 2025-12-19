@@ -251,8 +251,9 @@ function splitOnConnectorsPT(sentence){
 
 function buildAudioUrls(lvl, title, idx){
   const levelUpper = String(lvl||'').toUpperCase();
-  const base = `./src/audio/${lvl}/`;
-  const baseAudiotexto = `./src/audio/${lvl}/audiotexto/`;
+  // Usar caminho absoluto da raiz do servidor (sem ./ para evitar problemas de resolução)
+  const base = `/src/audio/${lvl}/`;
+  const baseAudiotexto = `/src/audio/${lvl}/audiotexto/`;
   const textIdx = Number(idx) || 0;
   const t0 = String(title||'').trim();
   if (!t0) return []; // Guard clause: retornar vazio se não houver título
@@ -1839,10 +1840,11 @@ function renderGrammar(data) {
       function loadAudio(){
         if (!audioEl) return;
         if (isA1BeMode) {
-          const file = 'Paul and the Farm (Identity & Description) · A1.mp3';
+          // A1 Texto 1: arquivo real tem prefixo "1-" antes do título (igual ao A2)
+          const file = '1-Paul and the Farm (Identity & Description) · A1.mp3';
           const encoded = encodeURIComponent(file);
           // Priorizar apenas as pastas corretas - reduzir tentativas 404
-          const bases = ['./src/audio/A1/audiotexto/','./src/audio/A1/'];
+          const bases = ['/src/audio/A1/audiotexto/','/src/audio/A1/'];
           let idx = 0;
           let errorHandler = null;
           function tryNext(){
@@ -1874,7 +1876,7 @@ function renderGrammar(data) {
           const file = 'The Tractor and The Field (Machinery & Crops) · A1.mp3';
           const encoded = encodeURIComponent(file);
           // Priorizar apenas as pastas corretas - reduzir tentativas 404
-          const bases = ['./src/audio/A1/audiotexto/','./src/audio/A1/'];
+          const bases = ['/src/audio/A1/audiotexto/','/src/audio/A1/'];
           let idx = 0;
           let errorHandler = null;
           function tryNext(){
@@ -1954,7 +1956,9 @@ function renderGrammar(data) {
         const isA1 = String(level).toUpperCase()==='A1';
         const idxNum = Number(index);
         const isA2 = String(level).toUpperCase()==='A2';
-        for (let k=0;k<en.length;k++){
+        // A1 Texto 1: limitar loop para apenas 3 imagens (1.1.webp, 2.1.webp, 3.1.webp)
+        const maxImages = (isA1 && idxNum === 1) ? 3 : en.length;
+        for (let k=0;k<Math.min(en.length, maxImages);k++){
           let done = false;
           for (let bi=0; bi<bases.length && !done; bi++){
             const names = (function(){
@@ -1962,9 +1966,9 @@ function renderGrammar(data) {
               if (isA2 && idxNum === 2) {
                 return [`${k+1}.2`];
               }
-              const main = String(k+1);
+              // A1 e outros: usar formato com sufixo (1.1.webp, 2.1.webp, etc.) - arquivos sempre têm sufixo
               const dec = `${k+1}.${idxNum}`;
-              return [dec, main];
+              return [dec];
             })();
             for (let ni=0; ni<names.length && !done; ni++){
               for (let ei=0; ei<exts.length && !done; ei++){
@@ -1996,9 +2000,9 @@ function renderGrammar(data) {
             if (isA2 && idxNum === 2) {
               return [`${k+1}.2`];
             }
-            const main = String(k+1);
+            // A1 e outros: usar formato com sufixo (1.1.webp, 2.1.webp, etc.) - arquivos sempre têm sufixo
             const dec = `${k+1}.${idxNum}`;
-            return [dec, main];
+            return [dec];
           })();
           if (ni < names.length && ei < exts.length){
             const url = bases[bi] + names[ni] + exts[ei++];
@@ -5051,12 +5055,12 @@ const parts = [];
         } else if (isA1 && Number(idx)===10) {
           segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.10-dividido/audio_${i+1}.mp3`);
         } else if (isA1 && Number(idx)===11) {
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `./src/audio/A1/texto-a1.11-dividido/audio_${i+1}.mp3`);
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.11-dividido/audio_${i+1}.mp3`);
         } else if (isA1 && Number(idx)===12) {
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `./src/audio/A1/texto-a1.12-dividido/${String(i+1).padStart(2,'0')}.mp3`);
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.12-dividido/${String(i+1).padStart(2,'0')}.mp3`);
         } else if (isA1 && Number(idx) >= 13) {
           // Padrão genérico para aulas futuras: tenta vários formatos
-          segUrls = Array.from({length:imgCountBase}, (_,i)=> `./src/audio/A1/texto-a1.${idx}-dividido/${String(i+1).padStart(2,'0')}.mp3`);
+          segUrls = Array.from({length:imgCountBase}, (_,i)=> `/src/audio/A1/texto-a1.${idx}-dividido/${String(i+1).padStart(2,'0')}.mp3`);
         } else if (isA2 && Number(idx) === 1) {
           // A2 Texto 1: áudios divididos
           // PADRÃO: /src/audio/{LEVEL}/texto-{level}.{idx}-dividido/part_{NN}.mp3
