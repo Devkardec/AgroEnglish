@@ -1158,7 +1158,8 @@
                 { src:'/public/images/A1/a1texto5/5.5.webp', text:'The temperature is mild.', audio:'/src/audio/A1/texto-a1.5-dividido/5.5.mp3' },
                 { src:'/public/images/A1/a1texto5/6.5.webp', text:'The harvest will be good this year.', audio:'/src/audio/A1/texto-a1.5-dividido/6.5.mp3' }
               ]) })
-            : e(VisualAssociation12, { items: assocItems })
+            : e(VisualAssociation12, { items: assocItems });
+          })()
         ),
         e(ExerciseCard, { title:'Finalizar', instruction:'Bom trabalho!' }, e('div', { className:'text-sm text-gray-800' }, 'Great job!'))
       )
